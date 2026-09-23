@@ -37,6 +37,41 @@ body {
     font-size: 16px;
     cursor: pointer;
 }
+/* THE IDEA */
+
+.beginner {
+    padding: 120px 30px;
+    text-align: center;
+    background: #ffffff;
+}
+
+.beginner .section-label {
+    margin: 0 0 18px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.beginner h2 {
+    margin: 0 0 40px;
+    font-size: 56px;
+    line-height: 1.05;
+}
+
+.beginner-text {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.beginner-text p {
+    margin: 5px 0;
+}
+
+.beginner-rule {
+    margin: 45px 0 0;
+    font-size: 24px;
+    font-weight: 700;
+}
 .categories {
     padding: 80px 40px;
     text-align: center;
@@ -388,5 +423,21 @@ body {
 
     #try-form button {
         width: 100%;
+    }
+        .beginner {
+        padding: 80px 20px;
+    }
+
+    .beginner h2 {
+        font-size: 38px;
+    }
+
+    .beginner-text {
+        font-size: 18px;
+    }
+
+    .beginner-rule {
+        margin-top: 35px;
+        font-size: 21px;
     }
 }
