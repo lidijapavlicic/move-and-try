@@ -29,8 +29,8 @@
 
 <body>
     
-<div class="hero">
-    
+<body>
+
 <!-- HERO -->
 
 <div class="hero">
@@ -70,20 +70,21 @@
 
 </section>
 
-   <section class="categories">
+
+<!-- CATEGORIES -->
+
+<section class="categories">
 
     <h2>WHAT DO YOU FEEL LIKE?</h2>
 
     <div class="category-list">
 
-    <a href="running.html" class="category-link">
-
-    <div class="category">
-        <h3>MOVE</h3>
-        <p>Move your body. Try something physical.</p>
-    </div>
-
-</a>
+        <a href="running.html" class="category-link">
+            <div class="category">
+                <h3>MOVE</h3>
+                <p>Move your body. Try something physical.</p>
+            </div>
+        </a>
 
         <div class="category">
             <h3>LEARN</h3>
@@ -109,26 +110,11 @@
 
     <button class="surprise-button" onclick="surpriseMe()">🎲 SURPRISE ME</button>
 
-</section> 
-
-<section class="beginner">
-
-    <p class="section-label">THE IDEA</p>
-
-    <h2>YOU'RE ALLOWED<br>TO BE A BEGINNER.</h2>
-
-    <div class="beginner-text">
-        <p>You don't need the right gear.</p>
-        <p>You don't need experience.</p>
-        <p>You don't even need to know if you'll like it.</p>
-    </div>
-
-    <p class="beginner-rule">
-        Try first. Decide later.
-    </p>
-
 </section>
-    
+
+
+<!-- YOUR TURN -->
+
 <section class="suggest">
 
     <p class="section-label">YOUR TURN</p>
@@ -142,18 +128,18 @@
     </p>
 
     <form
-    id="try-form"
-    action="https://formspree.io/f/mvkgrgpb"
-    method="POST"
->
+        id="try-form"
+        action="https://formspree.io/f/mvkgrgpb"
+        method="POST"
+    >
 
-     <input
-    type="text"
-    id="try-input"
-    name="try"
-    placeholder="I'd like to try..."
-    required
->
+        <input
+            type="text"
+            id="try-input"
+            name="try"
+            placeholder="I'd like to try..."
+            required
+        >
 
         <button type="submit">
             TELL ME
@@ -166,10 +152,13 @@
     </p>
 
     <p class="privacy-note">
-    We don't ask for your name or email. Responses are collected via Formspree.
-</p>
-    
+        We don't ask for your name or email. Responses are collected via Formspree.
+    </p>
+
 </section>
+
 <script src="script.js"></script>
+
+</body>
 </body>
 </html>
