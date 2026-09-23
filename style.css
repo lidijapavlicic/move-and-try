@@ -126,6 +126,8 @@ body {
 
 .try-section {
     max-width: 650px;
+    margin-bottom: 100px;
+}
 }
 
 .try-section h2 {
