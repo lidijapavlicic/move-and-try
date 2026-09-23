@@ -149,6 +149,100 @@ body {
     padding-left: 25px;
     border-left: 4px solid #111111;
 }
+/* PRACTICAL TRY CONTENT */
+
+.section-label {
+    font-size: 13px !important;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 10px !important;
+}
+
+.practical {
+    max-width: 800px;
+}
+
+.need-grid {
+    display: flex;
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.need-box {
+    flex: 1;
+    padding: 30px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.need-box h3 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.need-box p {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.try-note {
+    padding: 25px;
+    background-color: #f7f7f7;
+}
+
+/* FIRST TRY STEPS */
+
+.step {
+    display: flex;
+    gap: 25px;
+    margin: 40px 0;
+}
+
+.step > span {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding-top: 4px;
+}
+
+.step h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+
+.step p {
+    margin: 0;
+}
+
+/* VERDICT */
+
+.verdict-grid {
+    display: flex;
+    gap: 15px;
+    margin: 40px 0 50px;
+}
+
+.verdict-card {
+    flex: 1;
+    padding: 25px 20px;
+    background-color: #f7f7f7;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.verdict-card span {
+    font-size: 32px;
+}
+
+.verdict-card h3 {
+    font-size: 16px;
+    margin: 15px 0 8px;
+}
+
+.verdict-card p {
+    font-size: 15px;
+    margin: 0;
+}
 @media (max-width: 768px) {
 
     .hero {
@@ -208,5 +302,20 @@ body {
 
     .try-highlight {
         font-size: 22px !important;
+    }
+        .need-grid {
+        flex-direction: column;
+    }
+
+    .step {
+        gap: 18px;
+    }
+
+    .verdict-grid {
+        flex-direction: column;
+    }
+
+    .verdict-card {
+        width: 100%;
     }
 }
