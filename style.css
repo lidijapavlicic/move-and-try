@@ -1,9 +1,18 @@
+/* =========================
+   GLOBAL
+   ========================= */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     background-color: #ffffff;
     color: #111111;
 }
+
+
+/* =========================
+   HERO
+   ========================= */
 
 .hero {
     min-height: 75vh;
@@ -37,7 +46,11 @@ body {
     font-size: 16px;
     cursor: pointer;
 }
-/* THE IDEA */
+
+
+/* =========================
+   THE IDEA
+   ========================= */
 
 .beginner {
     padding: 100px 30px;
@@ -72,61 +85,117 @@ body {
     font-size: 24px;
     font-weight: 700;
 }
+
+
+/* =========================
+   CATEGORIES
+   ========================= */
+
 .categories {
-    padding: 80px 40px;
+    padding: 110px 30px;
+    background: #f5f5f5;
     text-align: center;
-    background-color: #f7f7f7;
 }
 
-.categories h2 {
-    font-size: 32px;
-    margin-bottom: 50px;
+.categories .section-label {
+    margin: 0 0 15px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
 }
 
-.category-list {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    max-width: 1200px;
+.categories > h2 {
+    margin: 0 0 60px;
+    font-size: 42px;
+}
+
+.category-grid {
+    max-width: 1100px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    text-align: left;
 }
 
-.category {
-    background-color: white;
-    padding: 30px 20px;
-    width: 180px;
-    min-height: 150px;
+.category-card {
+    min-height: 240px;
+    padding: 30px;
     box-sizing: border-box;
+    background: #ffffff;
+    color: #111111;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
 }
 
-.category h3 {
-    font-size: 22px;
-    margin-top: 0;
+.category-card:hover {
+    transform: translateY(-5px);
 }
 
-.category p {
+.category-move {
+    grid-column: span 7;
+}
+
+.category-learn {
+    grid-column: span 5;
+}
+
+.category-create {
+    grid-column: span 4;
+}
+
+.category-explore {
+    grid-column: span 8;
+}
+
+.category-dare {
+    grid-column: 3 / span 8;
+}
+
+.category-number {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.45;
+}
+
+.category-card h3 {
+    margin: auto 0 12px;
+    font-size: 38px;
+}
+
+.category-card p {
+    margin: 0 0 25px;
+    max-width: 420px;
+    font-size: 17px;
     line-height: 1.5;
 }
 
+.category-action,
+.category-status {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.category-status {
+    opacity: 0.4;
+}
+
 .surprise-button {
-    margin-top: 50px;
+    margin-top: 55px;
     padding: 16px 30px;
     font-size: 16px;
     cursor: pointer;
 }
-.category-link {
-    color: inherit;
-    text-decoration: none;
-}
 
-.category-link:hover .category {
-    transform: translateY(-5px);
-}
 
-.category {
-    transition: transform 0.2s ease;
-}
-/* TRY PAGE */
+/* =========================
+   TRY PAGE
+   ========================= */
 
 .try-page {
     max-width: 800px;
@@ -163,7 +232,6 @@ body {
     max-width: 650px;
     margin-bottom: 100px;
 }
-}
 
 .try-section h2 {
     font-size: 30px;
@@ -184,7 +252,11 @@ body {
     padding-left: 25px;
     border-left: 4px solid #111111;
 }
-/* PRACTICAL TRY CONTENT */
+
+
+/* =========================
+   PRACTICAL TRY CONTENT
+   ========================= */
 
 .section-label {
     font-size: 13px !important;
@@ -225,7 +297,10 @@ body {
     background-color: #f7f7f7;
 }
 
-/* FIRST TRY STEPS */
+
+/* =========================
+   FIRST TRY STEPS
+   ========================= */
 
 .step {
     display: flex;
@@ -249,7 +324,10 @@ body {
     margin: 0;
 }
 
-/* VERDICT */
+
+/* =========================
+   VERDICT
+   ========================= */
 
 .verdict-grid {
     display: flex;
@@ -278,7 +356,11 @@ body {
     font-size: 15px;
     margin: 0;
 }
-/* SUGGEST A TRY */
+
+
+/* =========================
+   SUGGEST A TRY
+   ========================= */
 
 .suggest {
     padding: 100px 30px;
@@ -316,7 +398,7 @@ body {
     font-size: 15px;
     font-weight: bold;
     background-color: #111111;
-    color: white;
+    color: #ffffff;
     border: 1px solid #111111;
     cursor: pointer;
 }
@@ -325,7 +407,21 @@ body {
     margin-top: 18px;
     font-size: 14px;
 }
+
+.privacy-note {
+    margin-top: 8px;
+    font-size: 11px;
+    opacity: 0.55;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
 @media (max-width: 768px) {
+
+    /* HERO */
 
     .hero {
         padding: 30px 20px;
@@ -343,21 +439,64 @@ body {
         font-size: 18px;
     }
 
+
+    /* THE IDEA */
+
+    .beginner {
+        padding: 80px 20px;
+    }
+
+    .beginner h2 {
+        font-size: 38px;
+    }
+
+    .beginner-text {
+        font-size: 18px;
+    }
+
+    .beginner-rule {
+        margin-top: 35px;
+        font-size: 21px;
+    }
+
+
+    /* CATEGORIES */
+
     .categories {
-        padding: 60px 20px;
+        padding: 80px 20px;
     }
 
-    .category-list {
-        flex-direction: column;
-        align-items: center;
+    .categories > h2 {
+        margin-bottom: 40px;
+        font-size: 32px;
     }
 
-    .category {
-        width: 100%;
-        max-width: 350px;
-        min-height: auto;
+    .category-grid {
+        display: block;
     }
-        .try-page {
+
+    .category-card {
+        min-height: 210px;
+        margin-bottom: 16px;
+        padding: 25px;
+    }
+
+    .category-card h3 {
+        font-size: 32px;
+    }
+
+    .category-card p {
+        font-size: 16px;
+    }
+
+    .categories .surprise-button {
+        margin-top: 30px;
+    }
+
+
+    /* TRY PAGE */
+
+    .try-page {
         padding: 30px 20px 70px;
     }
 
@@ -385,13 +524,20 @@ body {
     .try-highlight {
         font-size: 22px !important;
     }
-        .need-grid {
+
+
+    /* PRACTICAL CONTENT */
+
+    .need-grid {
         flex-direction: column;
     }
 
     .step {
         gap: 18px;
     }
+
+
+    /* VERDICT */
 
     .verdict-grid {
         flex-direction: column;
@@ -400,7 +546,11 @@ body {
     .verdict-card {
         width: 100%;
     }
-        .suggest {
+
+
+    /* SUGGEST A TRY */
+
+    .suggest {
         padding: 70px 20px;
     }
 
@@ -411,11 +561,7 @@ body {
     .suggest-intro {
         font-size: 18px;
     }
-    .privacy-note {
-    margin-top: 8px;
-    font-size: 11px;
-    opacity: 0.55;
-}
+
     #try-form {
         flex-direction: column;
         gap: 10px;
@@ -423,21 +569,5 @@ body {
 
     #try-form button {
         width: 100%;
-    }
-        .beginner {
-        padding: 80px 20px;
-    }
-
-    .beginner h2 {
-        font-size: 38px;
-    }
-
-    .beginner-text {
-        font-size: 18px;
-    }
-
-    .beginner-rule {
-        margin-top: 35px;
-        font-size: 21px;
     }
 }
