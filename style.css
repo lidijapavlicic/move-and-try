@@ -2,11 +2,18 @@
    GLOBAL
    ========================= */
 
+:root {
+    --ink: #111111;
+    --warm-white: #F7F6F2;
+    --soft-grey: #EAEAE6;
+    --green: #6F7967;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 0;
-    background-color: #ffffff;
-    color: #111111;
+    background-color: var(--warm-white);
+    color: var(--ink);
 }
 
 
@@ -55,7 +62,7 @@ body {
 .beginner {
     padding: 100px 30px;
     text-align: center;
-    background: #ffffff;
+    background: var(--warm-white);
 }
 
 .beginner .section-label {
@@ -93,7 +100,7 @@ body {
 
 .categories {
     padding: 110px 30px;
-    background: #f5f5f5;
+    background: var(--soft-grey);
     text-align: center;
 }
 
@@ -122,7 +129,7 @@ body {
     min-height: 240px;
     padding: 30px;
     box-sizing: border-box;
-    background: #ffffff;
+    background: var(--warm-white);
     color: #111111;
     text-decoration: none;
     display: flex;
@@ -160,6 +167,7 @@ body {
     font-weight: 700;
     letter-spacing: 2px;
     opacity: 0.45;
+    color: var(--green);
 }
 
 .category-card h3 {
@@ -263,6 +271,7 @@ body {
     font-weight: bold;
     letter-spacing: 2px;
     margin-bottom: 10px !important;
+    color: var(--green);
 }
 
 .practical {
