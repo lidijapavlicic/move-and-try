@@ -10,7 +10,7 @@
 }
 
 body {
-    font-family: "Inter", sans-serif;
+    font-family: "Manrope", sans-serif;
     margin: 0;
     background-color: var(--warm-white);
     color: var(--ink);
@@ -40,6 +40,10 @@ body {
 .hero h2 {
     font-size: 32px;
     max-width: 700px;
+}
+.hero h2 {
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
 }
 
 .hero p {
@@ -91,6 +95,10 @@ body {
     margin: 45px 0 0;
     font-size: 24px;
     font-weight: 700;
+}
+.beginner-rule {
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
 }
 
 
