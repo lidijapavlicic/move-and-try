@@ -243,6 +243,53 @@ body {
     font-size: 15px;
     margin: 0;
 }
+/* SUGGEST A TRY */
+
+.suggest {
+    padding: 100px 30px;
+    text-align: center;
+}
+
+.suggest h2 {
+    font-size: 42px;
+    margin: 10px 0 20px;
+}
+
+.suggest-intro {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+#try-form {
+    display: flex;
+    justify-content: center;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+#try-input {
+    flex: 1;
+    padding: 18px;
+    font-size: 17px;
+    border: 1px solid #111111;
+    box-sizing: border-box;
+}
+
+#try-form button {
+    padding: 18px 28px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #111111;
+    color: white;
+    border: 1px solid #111111;
+    cursor: pointer;
+}
+
+.suggest-note {
+    margin-top: 18px;
+    font-size: 14px;
+}
 @media (max-width: 768px) {
 
     .hero {
@@ -316,6 +363,26 @@ body {
     }
 
     .verdict-card {
+        width: 100%;
+    }
+        .suggest {
+        padding: 70px 20px;
+    }
+
+    .suggest h2 {
+        font-size: 32px;
+    }
+
+    .suggest-intro {
+        font-size: 18px;
+    }
+
+    #try-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #try-form button {
         width: 100%;
     }
 }
