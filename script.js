@@ -42,6 +42,54 @@ if (document.getElementById("total-tried")) {
     loadRunningVotes();
 }
 
+async function submitRunningVote(verdict) {
+    const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/try_votes`,
+        {
+            method: "POST",
+            headers: {
+                apikey: SUPABASE_KEY,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                try_slug: "running",
+                verdict: verdict
+            })
+        }
+    );
+
+    if (!response.ok) {
+        console.error("Could not submit vote.");
+        return;
+    }
+
+    await loadRunningVotes();
+}
+
+async function submitRunningVote(verdict) {
+    const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/try_votes`,
+        {
+            method: "POST",
+            headers: {
+                apikey: SUPABASE_KEY,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                try_slug: "running",
+                verdict: verdict
+            })
+        }
+    );
+
+    if (!response.ok) {
+        console.error("Could not submit vote.");
+        return;
+    }
+
+    await loadRunningVotes();
+}
+
 const tries = [
     "running.html"
 ];
