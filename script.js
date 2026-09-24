@@ -1,6 +1,8 @@
 const SUPABASE_URL = "https://pdyngeaykfpybeafjtpw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK";
 
+const RUNNING_VOTE_KEY = "moveandtry_running_vote";
+
 
 /* =========================
    RUNNING — LOAD VOTES
@@ -41,22 +43,16 @@ async function loadRunningVotes() {
         }
     });
 
-    document.getElementById("count-loved").textContent =
-        counts.loved;
-
-    document.getElementById("count-unsure").textContent =
-        counts.unsure;
-
-    document.getElementById("count-hated").textContent =
-        counts.hated;
+    document.getElementById("count-loved").textContent = counts.loved;
+    document.getElementById("count-unsure").textContent = counts.unsure;
+    document.getElementById("count-hated").textContent = counts.hated;
 
     const total =
         counts.loved +
         counts.unsure +
         counts.hated;
 
-    document.getElementById("total-tried").textContent =
-        total;
+    document.getElementById("total-tried").textContent = total;
 }
 
 
@@ -65,6 +61,14 @@ async function loadRunningVotes() {
 ========================= */
 
 async function submitRunningVote(verdict) {
+
+    const existingVote =
+        localStorage.getItem(RUNNING_VOTE_KEY);
+
+    if (existingVote) {
+        return;
+    }
+
     const response = await fetch(
         `${SUPABASE_URL}/rest/v1/try_votes`,
         {
@@ -93,7 +97,35 @@ async function submitRunningVote(verdict) {
         return;
     }
 
+    localStorage.setItem(
+        RUNNING_VOTE_KEY,
+        verdict
+    );
+
+    markSelectedVerdict(verdict);
+
     await loadRunningVotes();
+}
+
+
+/* =========================
+   RUNNING — SELECTED VERDICT
+========================= */
+
+function markSelectedVerdict(verdict) {
+
+    const buttons =
+        document.querySelectorAll(".verdict-card");
+
+    buttons.forEach(button => {
+
+        button.disabled = true;
+
+        if (button.dataset.verdict === verdict) {
+            button.classList.add("selected");
+        }
+
+    });
 }
 
 
@@ -105,11 +137,16 @@ const verdictButtons =
     document.querySelectorAll(".verdict-card");
 
 verdictButtons.forEach(button => {
+
     button.addEventListener("click", async () => {
-        const verdict = button.dataset.verdict;
+
+        const verdict =
+            button.dataset.verdict;
 
         await submitRunningVote(verdict);
+
     });
+
 });
 
 
@@ -118,7 +155,15 @@ verdictButtons.forEach(button => {
 ========================= */
 
 if (document.getElementById("total-tried")) {
+
     loadRunningVotes();
+
+    const existingVote =
+        localStorage.getItem(RUNNING_VOTE_KEY);
+
+    if (existingVote) {
+        markSelectedVerdict(existingVote);
+    }
 }
 
 
@@ -131,11 +176,13 @@ const tries = [
 ];
 
 function surpriseMe() {
+
     const randomIndex =
         Math.floor(Math.random() * tries.length);
 
     const randomTry =
         tries[randomIndex];
 
-    window.location.href = randomTry;
+    window.location.href =
+        randomTry;
 }
