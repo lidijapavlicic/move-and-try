@@ -40,8 +40,6 @@ body {
 .hero h2 {
     font-size: 32px;
     max-width: 700px;
-}
-.hero h2 {
     font-family: "DM Serif Display", serif;
     font-weight: 400;
 }
@@ -51,11 +49,21 @@ body {
     line-height: 1.6;
 }
 
-.hero button {
+.hero button,
+.hero-button {
     margin-top: 20px;
     padding: 16px 28px;
     font-size: 16px;
     cursor: pointer;
+}
+
+.hero-button {
+    display: inline-block;
+    background: var(--ink);
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    font-weight: 700;
 }
 
 
@@ -94,9 +102,6 @@ body {
 .beginner-rule {
     margin: 45px 0 0;
     font-size: 24px;
-    font-weight: 700;
-}
-.beginner-rule {
     font-family: "DM Serif Display", serif;
     font-weight: 400;
 }
