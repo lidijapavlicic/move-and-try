@@ -223,27 +223,35 @@
     <p class="section-label">SO... HOW WAS IT?</p>
     <h2>THE VERDICT</h2>
 
-    <div class="verdict-grid">
+   <div class="verdict-grid">
 
-        <div class="verdict-card">
-            <span>❤️</span>
-            <h3>I LOVED IT</h3>
-            <p>Great. Do it again.</p>
-        </div>
+    <button class="verdict-card" data-verdict="loved">
+        <span class="verdict-icon">❤️</span>
+        <h3>I LOVED IT</h3>
+        <p>Great. Do it again.</p>
+        <span class="verdict-count" id="count-loved">0</span>
+    </button>
 
-        <div class="verdict-card">
-            <span>🤔</span>
-            <h3>I'M NOT SURE</h3>
-            <p>Also normal. Maybe give it another try.</p>
-        </div>
+    <button class="verdict-card" data-verdict="unsure">
+        <span class="verdict-icon">🤔</span>
+        <h3>I'M NOT SURE</h3>
+        <p>Also normal. Maybe give it another try.</p>
+        <span class="verdict-count" id="count-unsure">0</span>
+    </button>
 
-        <div class="verdict-card">
-            <span>😂</span>
-            <h3>I HATED IT</h3>
-            <p>Perfect. Now you know.</p>
-        </div>
+    <button class="verdict-card" data-verdict="hated">
+        <span class="verdict-icon">😂</span>
+        <h3>I HATED IT</h3>
+        <p>Perfect. Now you know.</p>
+        <span class="verdict-count" id="count-hated">0</span>
+    </button>
 
-    </div>
+</div>
+
+<div class="tried-counter">
+    <strong id="total-tried">0</strong>
+    <span>PEOPLE TRIED THIS</span>
+</div>
 
     <p class="try-highlight">
         You tried it.<br>
