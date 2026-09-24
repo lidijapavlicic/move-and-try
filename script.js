@@ -9,6 +9,7 @@ const RUNNING_VOTE_KEY = "moveandtry_running_vote";
 ========================= */
 
 async function loadRunningVotes() {
+
     const response = await fetch(
         `${SUPABASE_URL}/rest/v1/try_votes?try_slug=eq.running&select=verdict`,
         {
@@ -20,12 +21,15 @@ async function loadRunningVotes() {
     );
 
     if (!response.ok) {
+
         const error = await response.text();
+
         console.error(
             "Could not load votes:",
             response.status,
             error
         );
+
         return;
     }
 
@@ -38,21 +42,29 @@ async function loadRunningVotes() {
     };
 
     votes.forEach(vote => {
+
         if (counts[vote.verdict] !== undefined) {
             counts[vote.verdict]++;
         }
+
     });
 
-    document.getElementById("count-loved").textContent = counts.loved;
-    document.getElementById("count-unsure").textContent = counts.unsure;
-    document.getElementById("count-hated").textContent = counts.hated;
+    document.getElementById("count-loved").textContent =
+        counts.loved;
+
+    document.getElementById("count-unsure").textContent =
+        counts.unsure;
+
+    document.getElementById("count-hated").textContent =
+        counts.hated;
 
     const total =
         counts.loved +
         counts.unsure +
         counts.hated;
 
-    document.getElementById("total-tried").textContent = total;
+    document.getElementById("total-tried").textContent =
+        total;
 }
 
 
@@ -86,6 +98,7 @@ async function submitRunningVote(verdict) {
     );
 
     if (!response.ok) {
+
         const error = await response.text();
 
         console.error(
@@ -164,6 +177,7 @@ if (document.getElementById("total-tried")) {
     if (existingVote) {
         markSelectedVerdict(existingVote);
     }
+
 }
 
 
@@ -177,87 +191,6 @@ const tries = [
 
 function surpriseMe() {
 
-   /* =========================
-   WHAT SHOULD WE TRY NEXT?
-========================= */
-
-const tryForm = document.getElementById("try-form");
-
-if (tryForm) {
-
-    tryForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
-
-        const input =
-            document.getElementById("try-input");
-
-        const message =
-            document.getElementById("suggestion-message");
-
-        const suggestion =
-            input.value.trim();
-
-        if (!suggestion) {
-            return;
-        }
-
-        const submitButton =
-            tryForm.querySelector('button[type="submit"]');
-
-        submitButton.disabled = true;
-        submitButton.textContent = "SENDING...";
-
-        const response = await fetch(
-            `${SUPABASE_URL}/rest/v1/try_suggestions`,
-            {
-                method: "POST",
-                headers: {
-                    apikey: SUPABASE_KEY,
-                    Authorization: `Bearer ${SUPABASE_KEY}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    suggestion: suggestion
-                })
-            }
-        );
-
-        if (!response.ok) {
-
-            const error = await response.text();
-
-            console.error(
-                "Could not submit suggestion:",
-                response.status,
-                error
-            );
-
-            message.textContent =
-                "Something went wrong. Please try again.";
-
-            submitButton.disabled = false;
-            submitButton.textContent = "SEND IT →";
-
-            return;
-        }
-
-        input.value = "";
-
-        message.textContent =
-            "Got it. Maybe this will be our next TRY. 👀";
-
-        submitButton.textContent = "SENT ✓";
-
-        setTimeout(() => {
-            submitButton.disabled = false;
-            submitButton.textContent = "SEND IT →";
-        }, 2500);
-
-    });
-
-}
-
     const randomIndex =
         Math.floor(Math.random() * tries.length);
 
@@ -266,4 +199,101 @@ if (tryForm) {
 
     window.location.href =
         randomTry;
+}
+
+
+/* =========================
+   WHAT SHOULD WE TRY NEXT?
+========================= */
+
+const tryForm =
+    document.getElementById("try-form");
+
+if (tryForm) {
+
+    tryForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+            const input =
+                document.getElementById("try-input");
+
+            const message =
+                document.getElementById("suggestion-message");
+
+            const suggestion =
+                input.value.trim();
+
+            if (!suggestion) {
+                return;
+            }
+
+            const submitButton =
+                tryForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+            submitButton.disabled = true;
+            submitButton.textContent =
+                "SENDING...";
+
+            const response = await fetch(
+                `${SUPABASE_URL}/rest/v1/try_suggestions`,
+                {
+                    method: "POST",
+                    headers: {
+                        apikey: SUPABASE_KEY,
+                        Authorization:
+                            `Bearer ${SUPABASE_KEY}`,
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+                        suggestion: suggestion
+                    })
+                }
+            );
+
+            if (!response.ok) {
+
+                const error =
+                    await response.text();
+
+                console.error(
+                    "Could not submit suggestion:",
+                    response.status,
+                    error
+                );
+
+                message.textContent =
+                    "Something went wrong. Please try again.";
+
+                submitButton.disabled = false;
+                submitButton.textContent =
+                    "SEND IT →";
+
+                return;
+            }
+
+            input.value = "";
+
+            message.textContent =
+                "Got it. Maybe this will be our next TRY. 👀";
+
+            submitButton.textContent =
+                "SENT ✓";
+
+            setTimeout(() => {
+
+                submitButton.disabled = false;
+                submitButton.textContent =
+                    "SEND IT →";
+
+            }, 2500);
+
+        }
+    );
+
 }
