@@ -167,7 +167,11 @@ body {
 }
 
 .category-dare {
-    grid-column: 3 / span 8;
+    grid-column: span 6;
+}
+
+.category-care {
+    grid-column: span 6;
 }
 
 .category-number {
