@@ -955,6 +955,137 @@ a.content-card:hover {
 }
 
 /* =========================
+   EXPERIENCE PAGE
+   ========================= */
+
+.experience-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 30px 100px;
+}
+
+.experience-header {
+    padding: 80px 0 90px;
+}
+
+.experience-type {
+    margin: 0 0 15px;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.experience-header h1 {
+    margin: 0 0 20px;
+    font-size: 68px;
+    line-height: 1;
+}
+
+.experience-author {
+    margin: 0 0 35px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.6;
+}
+
+.experience-lead {
+    margin: 0;
+    font-family: "DM Serif Display", serif;
+    font-size: 28px;
+    line-height: 1.5;
+}
+
+.experience-section {
+    max-width: 650px;
+    margin-bottom: 90px;
+}
+
+.experience-section h2 {
+    margin: 0 0 35px;
+    font-size: 30px;
+}
+
+.experience-section p {
+    margin: 0 0 24px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.experience-advice {
+    padding-top: 60px;
+    border-top: 1px solid var(--line);
+}
+
+.experience-highlight {
+    margin-top: 45px !important;
+    padding-left: 25px;
+    border-left: 4px solid var(--ink);
+    font-size: 25px !important;
+    font-weight: 700;
+    line-height: 1.45 !important;
+}
+
+.experience-verdict {
+    padding: 65px 0;
+    border-top: 1px solid var(--line);
+}
+
+.personal-verdict {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-top: 25px;
+    padding: 32px;
+    background: var(--soft-grey);
+}
+
+.personal-verdict-icon {
+    font-size: 34px;
+    line-height: 1;
+}
+
+.personal-verdict h2 {
+    margin: 0 0 10px;
+    font-size: 30px;
+}
+
+.personal-verdict p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.experience-share {
+    padding: 65px 0 20px;
+    border-top: 1px solid var(--line);
+}
+
+.experience-share h2 {
+    margin: 10px 0 20px;
+    font-size: 36px;
+}
+
+.experience-share > p:not(.section-label) {
+    max-width: 600px;
+    margin: 0 0 28px;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.experience-share-link {
+    display: inline-block;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+
+/* =========================
    MOBILE
    ========================= */
 
@@ -1059,25 +1190,6 @@ a.content-card:hover {
 
     .surprise-button {
         margin-top: 30px;
-    }
-
-
-    /* CONTRIBUTE */
-
-    .contribute {
-        padding: 80px 20px 70px;
-    }
-
-    .contribute h2 {
-        font-size: 36px;
-    }
-
-    .contribute-intro {
-        font-size: 17px;
-    }
-
-    .contribute-highlight {
-        font-size: 22px;
     }
 
 
@@ -1307,4 +1419,59 @@ a.content-card:hover {
     font-size: 32px;
 }
    
+
+    /* EXPERIENCE PAGE */
+
+    .experience-page {
+        padding: 30px 20px 70px;
+    }
+
+    .experience-header {
+        padding: 60px 0 70px;
+    }
+
+    .experience-header h1 {
+        font-size: 46px;
+    }
+
+    .experience-lead {
+        font-size: 23px;
+    }
+
+    .experience-section {
+        margin-bottom: 70px;
+    }
+
+    .experience-section h2 {
+        font-size: 26px;
+    }
+
+    .experience-section p {
+        font-size: 17px;
+    }
+
+    .experience-advice {
+        padding-top: 50px;
+    }
+
+    .experience-highlight {
+        font-size: 22px !important;
+    }
+
+    .personal-verdict {
+        padding: 26px;
+    }
+
+    .personal-verdict h2 {
+        font-size: 26px;
+    }
+
+    .experience-share {
+        padding-top: 55px;
+    }
+
+    .experience-share h2 {
+        font-size: 30px;
+    }
+
 }
