@@ -7,6 +7,15 @@
     --warm-white: #F7F6F2;
     --soft-grey: #EAEAE6;
     --green: #6F7967;
+    --line: #D5D5D0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -14,6 +23,14 @@ body {
     margin: 0;
     background-color: var(--warm-white);
     color: var(--ink);
+}
+
+.section-label {
+    margin: 0 0 15px;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
 }
 
 
@@ -28,71 +45,86 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 40px 20px;
 }
 
 .hero h1 {
+    margin: 0 0 10px;
     font-size: 64px;
-    margin-bottom: 10px;
 }
 
 .hero h2 {
-    font-size: 32px;
     max-width: 700px;
+    margin: 15px 0;
     font-family: "DM Serif Display", serif;
+    font-size: 32px;
     font-weight: 400;
 }
 
 .hero p {
+    margin: 15px 0;
     font-size: 20px;
     line-height: 1.6;
-}
-
-.hero button,
-.hero-button {
-    margin-top: 20px;
-    padding: 16px 28px;
-    font-size: 16px;
-    cursor: pointer;
 }
 
 .hero-button {
     display: inline-block;
+    margin-top: 20px;
+    padding: 16px 28px;
     background: var(--ink);
-    color: #ffffff;
-    text-decoration: none;
     border: 1px solid var(--ink);
+    color: #ffffff;
+    font-size: 16px;
     font-weight: 700;
+    text-decoration: none;
 }
 
 
 /* =========================
-   THE IDEA
+   HOME — IDEA + WHAT'S NEW
    ========================= */
 
-.beginner {
-    padding: 100px 30px;
-    text-align: center;
+.home-discovery {
+    padding: 110px 30px;
     background: var(--warm-white);
 }
 
-.beginner .section-label {
-    margin: 0 0 18px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 3px;
+.home-discovery-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
 }
 
-.beginner h2 {
-    margin: 0 0 40px;
-    font-size: 56px;
-    line-height: 1.05;
+.home-idea,
+.whats-new {
+    padding: 20px 60px;
+}
+
+.home-idea {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.whats-new {
+    padding-right: 0;
+    border-left: 1px solid var(--line);
+}
+
+.home-idea h2,
+.whats-new h2 {
+    margin: 15px 0 35px;
+    font-size: 48px;
+    line-height: 1.08;
 }
 
 .beginner-text {
-    font-size: 20px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.7;
 }
 
 .beginner-text p {
@@ -100,10 +132,50 @@ body {
 }
 
 .beginner-rule {
-    margin: 45px 0 0;
-    font-size: 24px;
+    margin: 40px 0 0;
     font-family: "DM Serif Display", serif;
+    font-size: 24px;
     font-weight: 400;
+}
+
+.new-card {
+    min-height: 285px;
+    padding: 32px;
+    background: var(--soft-grey);
+    color: var(--ink);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.new-card:hover {
+    transform: translateY(-5px);
+}
+
+.new-type {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.new-card h3 {
+    margin: auto 0 14px;
+    font-size: 38px;
+}
+
+.new-card p {
+    max-width: 420px;
+    margin: 0 0 28px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.new-action {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
 
@@ -115,13 +187,6 @@ body {
     padding: 110px 30px;
     background: var(--soft-grey);
     text-align: center;
-}
-
-.categories .section-label {
-    margin: 0 0 15px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 3px;
 }
 
 .categories > h2 {
@@ -141,9 +206,8 @@ body {
 .category-card {
     min-height: 240px;
     padding: 30px;
-    box-sizing: border-box;
     background: var(--warm-white);
-    color: #111111;
+    color: var(--ink);
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -180,11 +244,11 @@ body {
 }
 
 .category-number {
+    color: var(--green);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 2px;
     opacity: 0.45;
-    color: var(--green);
 }
 
 .category-card h3 {
@@ -193,8 +257,8 @@ body {
 }
 
 .category-card p {
-    margin: 0 0 25px;
     max-width: 420px;
+    margin: 0 0 25px;
     font-size: 17px;
     line-height: 1.5;
 }
@@ -213,8 +277,163 @@ body {
 .surprise-button {
     margin-top: 55px;
     padding: 16px 30px;
-    font-size: 16px;
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
+}
+
+
+/* =========================
+   CONTRIBUTE
+   ========================= */
+
+.contribute {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 110px 30px 90px;
+    text-align: left;
+}
+
+.contribute h2 {
+    max-width: 650px;
+    margin: 10px 0 28px;
+    font-size: 44px;
+    line-height: 1.1;
+}
+
+.contribute-intro {
+    max-width: 720px;
+    margin: 0 0 25px;
+    font-size: 18px;
+    line-height: 1.75;
+}
+
+.contribute-highlight {
+    margin: 30px 0 25px;
+    font-family: "DM Serif Display", serif;
+    font-size: 24px;
+}
+
+.contribute-link {
+    display: inline-block;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+.contribute-note {
+    margin: 25px 0 0;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   SUGGEST A TRY
+   ========================= */
+
+.suggest {
+    padding: 100px 30px;
+    background: var(--soft-grey);
+    text-align: center;
+}
+
+.suggest h2 {
+    margin: 10px 0 20px;
+    font-size: 42px;
+}
+
+.suggest-intro {
+    margin-bottom: 40px;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+#try-form {
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+#try-input {
+    flex: 1;
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: 17px;
+}
+
+#try-form button {
+    padding: 18px 28px;
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: var(--ink);
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#suggestion-message {
+    min-height: 24px;
+}
+
+.suggest-note {
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.privacy-note {
+    margin-top: 8px;
+    font-size: 11px;
+    opacity: 0.55;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.site-footer {
+    padding: 50px 30px;
+    background: var(--ink);
+    color: #ffffff;
+    text-align: center;
+}
+
+.site-footer > p:first-child {
+    margin: 0 0 8px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.footer-tagline {
+    margin: 0 0 15px;
+    font-family: "DM Serif Display", serif;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.site-footer a {
+    color: #ffffff;
+    font-size: 13px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 
@@ -229,28 +448,28 @@ body {
 }
 
 .back-link {
-    color: #111111;
+    color: var(--ink);
     text-decoration: none;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .try-number {
     margin-top: 80px;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 2px;
 }
 
 .try-page h1 {
-    font-size: 72px;
     margin: 10px 0 20px;
+    font-size: 72px;
 }
 
 .try-intro {
+    margin-bottom: 100px;
     font-size: 26px;
     line-height: 1.4;
-    margin-bottom: 100px;
 }
 
 .try-section {
@@ -259,37 +478,29 @@ body {
 }
 
 .try-section h2 {
-    font-size: 30px;
     margin-bottom: 35px;
+    font-size: 30px;
 }
 
 .try-section p {
+    margin-bottom: 24px;
     font-size: 18px;
     line-height: 1.7;
-    margin-bottom: 24px;
 }
 
 .try-highlight {
-    font-size: 26px !important;
-    font-weight: bold;
-    line-height: 1.4 !important;
     margin-top: 50px;
     padding-left: 25px;
-    border-left: 4px solid #111111;
+    border-left: 4px solid var(--ink);
+    font-size: 26px !important;
+    font-weight: 700;
+    line-height: 1.4 !important;
 }
 
 
 /* =========================
    PRACTICAL TRY CONTENT
    ========================= */
-
-.section-label {
-    font-size: 13px !important;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 10px !important;
-    color: var(--green);
-}
 
 .practical {
     max-width: 800px;
@@ -304,8 +515,7 @@ body {
 .need-box {
     flex: 1;
     padding: 30px;
-    background-color: #f7f7f7;
-    box-sizing: border-box;
+    background: #f7f7f7;
 }
 
 .need-box h3 {
@@ -314,13 +524,13 @@ body {
 }
 
 .need-box p {
-    font-size: 16px;
     margin-bottom: 12px;
+    font-size: 16px;
 }
 
 .try-note {
     padding: 25px;
-    background-color: #f7f7f7;
+    background: #f7f7f7;
 }
 
 
@@ -335,10 +545,10 @@ body {
 }
 
 .step > span {
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 2px;
     padding-top: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
 .step h3 {
@@ -364,9 +574,11 @@ body {
 .verdict-card {
     flex: 1;
     padding: 25px 20px;
-    background-color: #f7f7f7;
+    border: 0;
+    background: #f7f7f7;
     text-align: center;
-    box-sizing: border-box;
+    font-family: "Manrope", sans-serif;
+    cursor: pointer;
 }
 
 .verdict-card span {
@@ -374,229 +586,16 @@ body {
 }
 
 .verdict-card h3 {
-    font-size: 16px;
     margin: 15px 0 8px;
+    font-size: 16px;
 }
 
 .verdict-card p {
-    font-size: 15px;
     margin: 0;
-}
-
-
-/* =========================
-   SUGGEST A TRY
-   ========================= */
-
-.suggest {
-    padding: 100px 30px;
-    text-align: center;
-}
-
-.suggest h2 {
-    font-size: 42px;
-    margin: 10px 0 20px;
-}
-
-.suggest-intro {
-    font-size: 20px;
-    line-height: 1.6;
-    margin-bottom: 40px;
-}
-
-#try-form {
-    display: flex;
-    justify-content: center;
-    max-width: 650px;
-    margin: 0 auto;
-}
-
-#try-input {
-    flex: 1;
-    padding: 18px;
-    font-size: 17px;
-    border: 1px solid #111111;
-    box-sizing: border-box;
-}
-
-#try-form button {
-    padding: 18px 28px;
     font-size: 15px;
-    font-weight: bold;
-    background-color: #111111;
-    color: #ffffff;
-    border: 1px solid #111111;
-    cursor: pointer;
-}
-
-.suggest-note {
-    margin-top: 18px;
-    font-size: 14px;
-}
-
-.privacy-note {
-    margin-top: 8px;
-    font-size: 11px;
-    opacity: 0.55;
 }
 
 
-/* =========================
-   MOBILE
-   ========================= */
-
-@media (max-width: 768px) {
-
-    /* HERO */
-
-    .hero {
-        padding: 30px 20px;
-    }
-
-    .hero h1 {
-        font-size: 44px;
-    }
-
-    .hero h2 {
-        font-size: 26px;
-    }
-
-    .hero p {
-        font-size: 18px;
-    }
-
-
-    /* THE IDEA */
-
-    .beginner {
-        padding: 80px 20px;
-    }
-
-    .beginner h2 {
-        font-size: 38px;
-    }
-
-    .beginner-text {
-        font-size: 18px;
-    }
-
-    .beginner-rule {
-        margin-top: 35px;
-        font-size: 21px;
-    }
-
-
-    /* CATEGORIES */
-
-    .categories {
-        padding: 80px 20px;
-    }
-
-    .categories > h2 {
-        margin-bottom: 40px;
-        font-size: 32px;
-    }
-
-    .category-grid {
-        display: block;
-    }
-
-    .category-card {
-        min-height: 210px;
-        margin-bottom: 16px;
-        padding: 25px;
-    }
-
-    .category-card h3 {
-        font-size: 32px;
-    }
-
-    .category-card p {
-        font-size: 16px;
-    }
-
-    .categories .surprise-button {
-        margin-top: 30px;
-    }
-
-
-    /* TRY PAGE */
-
-    .try-page {
-        padding: 30px 20px 70px;
-    }
-
-    .try-number {
-        margin-top: 60px;
-    }
-
-    .try-page h1 {
-        font-size: 48px;
-    }
-
-    .try-intro {
-        font-size: 22px;
-        margin-bottom: 70px;
-    }
-
-    .try-section h2 {
-        font-size: 26px;
-    }
-
-    .try-section p {
-        font-size: 17px;
-    }
-
-    .try-highlight {
-        font-size: 22px !important;
-    }
-
-
-    /* PRACTICAL CONTENT */
-
-    .need-grid {
-        flex-direction: column;
-    }
-
-    .step {
-        gap: 18px;
-    }
-
-
-    /* VERDICT */
-
-    .verdict-grid {
-        flex-direction: column;
-    }
-
-    .verdict-card {
-        width: 100%;
-    }
-
-
-    /* SUGGEST A TRY */
-
-    .suggest {
-        padding: 70px 20px;
-    }
-
-    .suggest h2 {
-        font-size: 32px;
-    }
-
-    .suggest-intro {
-        font-size: 18px;
-    }
-
-    #try-form {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    #try-form button {
-        width: 100%;
-    }
-}
 /* =========================
    CATEGORY PAGE
    ========================= */
@@ -634,11 +633,13 @@ body {
 }
 
 
-/* CATEGORY TRIES */
+/* =========================
+   CATEGORY TRIES
+   ========================= */
 
 .category-tries {
     padding: 90px 0;
-    border-top: 1px solid #d5d5d0;
+    border-top: 1px solid var(--line);
 }
 
 .category-tries > h2 {
@@ -655,7 +656,6 @@ body {
 .try-card {
     min-height: 330px;
     padding: 35px;
-    box-sizing: border-box;
     background: var(--soft-grey);
     color: var(--ink);
     text-decoration: none;
@@ -703,7 +703,9 @@ a.try-card:hover {
 }
 
 
-/* CATEGORY SUGGEST */
+/* =========================
+   CATEGORY SUGGEST
+   ========================= */
 
 .category-suggest {
     max-width: 650px;
@@ -723,19 +725,223 @@ a.try-card:hover {
 .category-suggest-link {
     display: inline-block;
     margin-top: 20px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--ink);
     color: var(--ink);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-decoration: none;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 4px;
 }
 
 
-/* CATEGORY PAGE — MOBILE */
+/* =========================
+   MOBILE
+   ========================= */
 
 @media (max-width: 768px) {
+
+    /* HERO */
+
+    .hero {
+        min-height: 70vh;
+        padding: 30px 20px;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+    }
+
+    .hero h2 {
+        font-size: 26px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+
+    /* IDEA + WHAT'S NEW */
+
+    .home-discovery {
+        padding: 80px 20px;
+    }
+
+    .home-discovery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-idea,
+    .whats-new {
+        padding: 0;
+    }
+
+    .home-idea {
+        padding-bottom: 65px;
+    }
+
+    .whats-new {
+        padding-top: 65px;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+    }
+
+    .home-idea h2,
+    .whats-new h2 {
+        font-size: 38px;
+    }
+
+    .beginner-text {
+        font-size: 17px;
+    }
+
+    .beginner-rule {
+        font-size: 21px;
+    }
+
+    .new-card {
+        min-height: 260px;
+        padding: 26px;
+    }
+
+    .new-card h3 {
+        font-size: 34px;
+    }
+
+
+    /* CATEGORIES */
+
+    .categories {
+        padding: 80px 20px;
+    }
+
+    .categories > h2 {
+        margin-bottom: 40px;
+        font-size: 32px;
+    }
+
+    .category-grid {
+        display: block;
+    }
+
+    .category-card {
+        min-height: 210px;
+        margin-bottom: 16px;
+        padding: 25px;
+    }
+
+    .category-card h3 {
+        font-size: 32px;
+    }
+
+    .category-card p {
+        font-size: 16px;
+    }
+
+    .surprise-button {
+        margin-top: 30px;
+    }
+
+
+    /* CONTRIBUTE */
+
+    .contribute {
+        padding: 80px 20px 70px;
+    }
+
+    .contribute h2 {
+        font-size: 36px;
+    }
+
+    .contribute-intro {
+        font-size: 17px;
+    }
+
+    .contribute-highlight {
+        font-size: 22px;
+    }
+
+
+    /* SUGGEST */
+
+    .suggest {
+        padding: 80px 20px;
+    }
+
+    .suggest h2 {
+        font-size: 32px;
+    }
+
+    .suggest-intro {
+        font-size: 18px;
+    }
+
+    #try-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #try-form button {
+        width: 100%;
+    }
+
+
+    /* FOOTER */
+
+    .site-footer {
+        padding: 40px 20px;
+    }
+
+
+    /* TRY PAGE */
+
+    .try-page {
+        padding: 30px 20px 70px;
+    }
+
+    .try-number {
+        margin-top: 60px;
+    }
+
+    .try-page h1 {
+        font-size: 48px;
+    }
+
+    .try-intro {
+        margin-bottom: 70px;
+        font-size: 22px;
+    }
+
+    .try-section h2 {
+        font-size: 26px;
+    }
+
+    .try-section p {
+        font-size: 17px;
+    }
+
+    .try-highlight {
+        font-size: 22px !important;
+    }
+
+    .need-grid {
+        flex-direction: column;
+    }
+
+    .step {
+        gap: 18px;
+    }
+
+    .verdict-grid {
+        flex-direction: column;
+    }
+
+    .verdict-card {
+        width: 100%;
+    }
+
+
+    /* CATEGORY PAGE */
 
     .category-page {
         padding: 30px 20px 80px;
@@ -758,8 +964,8 @@ a.try-card:hover {
     }
 
     .category-tries > h2 {
-        font-size: 32px;
         margin-bottom: 35px;
+        font-size: 32px;
     }
 
     .try-grid {
@@ -781,231 +987,6 @@ a.try-card:hover {
 
     .category-suggest h2 {
         font-size: 30px;
-    }
-}
-/* =========================
-   HOME — IDEA + WHAT'S NEW
-   ========================= */
-
-.home-discovery {
-    padding: 110px 30px;
-    background: var(--warm-white);
-}
-
-.home-discovery-grid {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: stretch;
-}
-
-.home-idea,
-.whats-new {
-    min-width: 0;
-}
-
-.home-idea {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.home-idea h2,
-.whats-new h2 {
-    margin: 15px 0 35px;
-    font-size: 48px;
-    line-height: 1.05;
-}
-
-.home-idea .beginner-rule {
-    margin-top: 40px;
-}
-
-.whats-new {
-    padding-left: 60px;
-    border-left: 1px solid #d5d5d0;
-}
-
-.new-card {
-    min-height: 300px;
-    padding: 35px;
-    box-sizing: border-box;
-    background: var(--soft-grey);
-    color: var(--ink);
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease;
-}
-
-.new-card:hover {
-    transform: translateY(-5px);
-}
-
-.new-type {
-    color: var(--green);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.new-card h3 {
-    margin: auto 0 15px;
-    font-size: 40px;
-}
-
-.new-card p {
-    max-width: 420px;
-    margin: 0 0 30px;
-    font-size: 17px;
-    line-height: 1.6;
-}
-
-.new-action {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-}
-
-
-/* =========================
-   CONTRIBUTE
-   ========================= */
-
-.contribute {
-    padding: 110px 30px;
-    background: var(--ink);
-    color: #ffffff;
-    text-align: center;
-}
-
-.contribute .section-label {
-    color: #aab3a3;
-}
-
-.contribute h2 {
-    margin: 15px 0 30px;
-    font-size: 52px;
-    line-height: 1.05;
-}
-
-.contribute-intro {
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 19px;
-    line-height: 1.8;
-}
-
-.contribute-highlight {
-    margin: 35px 0 25px;
-    font-family: "DM Serif Display", serif;
-    font-size: 25px;
-}
-
-.contribute-link {
-    display: inline-block;
-    padding: 16px 28px;
-    background: var(--warm-white);
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-}
-
-.contribute-note {
-    margin: 25px 0 0;
-    font-size: 12px;
-    letter-spacing: 1px;
-    opacity: 0.6;
-}
-
-
-/* =========================
-   FOOTER
-   ========================= */
-
-.site-footer {
-    padding: 45px 30px;
-    background: var(--ink);
-    color: #ffffff;
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.site-footer > p:first-child {
-    margin: 0 0 8px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.footer-tagline {
-    margin: 0 0 15px;
-    font-family: "DM Serif Display", serif;
-    font-size: 16px;
-    opacity: 0.7;
-}
-
-.site-footer a {
-    color: #ffffff;
-    font-size: 13px;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-
-/* =========================
-   HOME — MOBILE
-   ========================= */
-
-@media (max-width: 768px) {
-
-    .home-discovery {
-        padding: 80px 20px;
-    }
-
-    .home-discovery-grid {
-        grid-template-columns: 1fr;
-        gap: 70px;
-    }
-
-    .home-idea h2,
-    .whats-new h2 {
-        font-size: 38px;
-    }
-
-    .whats-new {
-        padding-left: 0;
-        padding-top: 60px;
-        border-left: 0;
-        border-top: 1px solid #d5d5d0;
-    }
-
-    .new-card {
-        min-height: 270px;
-        padding: 28px;
-    }
-
-    .new-card h3 {
-        font-size: 34px;
-    }
-
-    .contribute {
-        padding: 80px 20px;
-    }
-
-    .contribute h2 {
-        font-size: 38px;
-    }
-
-    .contribute-intro {
-        font-size: 17px;
-    }
-
-    .site-footer {
-        padding: 40px 20px;
     }
 
 }
