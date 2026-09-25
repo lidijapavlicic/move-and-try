@@ -1014,5 +1014,40 @@ a.try-card:hover {
     .category-suggest h2 {
         font-size: 30px;
     }
+/* COMMUNITY */
 
+.community {
+    padding: 65px 20px;
+}
+
+.community-grid {
+    grid-template-columns: 1fr;
+}
+
+.community-panel {
+    min-height: auto;
+    padding: 0;
+}
+
+.contribute-panel {
+    padding-bottom: 55px;
+}
+
+.where-panel {
+    padding-top: 55px;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+}
+
+.community-panel h2 {
+    font-size: 34px;
+}
+
+.community-text {
+    font-size: 16px;
+}
+
+.community-highlight {
+    margin-top: 28px;
+    font-size: 21px;
 }
