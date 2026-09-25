@@ -954,6 +954,148 @@ a.content-card:hover {
     text-decoration: none;
 }
 
+
+
+/* =========================
+   EXPERIENCE PAGE
+   ========================= */
+
+.experience-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 30px 100px;
+}
+
+.experience-header {
+    padding: 80px 0 90px;
+}
+
+.experience-type {
+    margin: 0 0 18px;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.experience-header h1 {
+    margin: 0 0 20px;
+    font-size: 72px;
+    line-height: 1;
+}
+
+.experience-author {
+    margin: 0 0 45px;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.experience-lead {
+    max-width: 620px;
+    margin: 0;
+    font-family: "DM Serif Display", serif;
+    font-size: 28px;
+    line-height: 1.45;
+}
+
+.experience-section {
+    max-width: 650px;
+    margin-bottom: 95px;
+}
+
+.experience-section h2 {
+    margin: 0 0 35px;
+    font-size: 30px;
+    line-height: 1.2;
+}
+
+.experience-section p {
+    margin: 0 0 24px;
+    font-size: 18px;
+    line-height: 1.75;
+}
+
+.experience-advice {
+    max-width: 800px;
+    padding: 55px;
+    background: var(--soft-grey);
+}
+
+.experience-advice h2 {
+    max-width: 650px;
+    margin: 10px 0 30px;
+    font-size: 36px;
+}
+
+.experience-highlight {
+    margin: 40px 0 0 !important;
+    padding-left: 25px;
+    border-left: 4px solid var(--ink);
+    font-family: "DM Serif Display", serif;
+    font-size: 27px !important;
+    line-height: 1.45 !important;
+}
+
+.experience-verdict {
+    padding: 65px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.personal-verdict {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+.personal-verdict-icon {
+    font-size: 34px;
+    line-height: 1;
+}
+
+.personal-verdict h2 {
+    margin: 0 0 10px;
+    font-size: 34px;
+}
+
+.personal-verdict p {
+    max-width: 560px;
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+.experience-share {
+    padding: 75px 0 20px;
+}
+
+.experience-share h2 {
+    margin: 10px 0 20px;
+    font-size: 38px;
+}
+
+.experience-share > p:not(.section-label) {
+    max-width: 600px;
+    margin: 0 0 28px;
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+.experience-share-link {
+    display: inline-block;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+
 /* =========================
    MOBILE
    ========================= */
@@ -1307,4 +1449,72 @@ a.content-card:hover {
     font-size: 32px;
 }
    
+
+
+    /* EXPERIENCE PAGE */
+
+    .experience-page {
+        padding: 30px 20px 70px;
+    }
+
+    .experience-header {
+        padding: 55px 0 65px;
+    }
+
+    .experience-header h1 {
+        font-size: 50px;
+    }
+
+    .experience-author {
+        margin-bottom: 35px;
+    }
+
+    .experience-lead {
+        font-size: 23px;
+    }
+
+    .experience-section {
+        margin-bottom: 70px;
+    }
+
+    .experience-section h2 {
+        font-size: 26px;
+    }
+
+    .experience-section p {
+        font-size: 17px;
+    }
+
+    .experience-advice {
+        padding: 35px 28px;
+    }
+
+    .experience-advice h2 {
+        font-size: 29px;
+    }
+
+    .experience-highlight {
+        font-size: 23px !important;
+    }
+
+    .experience-verdict {
+        padding: 55px 0;
+    }
+
+    .personal-verdict {
+        gap: 18px;
+    }
+
+    .personal-verdict h2 {
+        font-size: 29px;
+    }
+
+    .experience-share {
+        padding-top: 60px;
+    }
+
+    .experience-share h2 {
+        font-size: 32px;
+    }
+
 }
