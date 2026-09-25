@@ -288,38 +288,59 @@ body {
 
 
 /* =========================
-   CONTRIBUTE
+   COMMUNITY
+   CONTRIBUTE + WHERE TO TRY
    ========================= */
 
-.contribute {
+.community {
+    padding: 75px 30px;
+    background: var(--warm-white);
+}
+
+.community-grid {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 75px 30px;
-    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-.contribute h2 {
-    max-width: 650px;
+.community-panel {
+    min-height: 390px;
+    padding: 20px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contribute-panel {
+    padding-left: 0;
+}
+
+.where-panel {
+    padding-right: 0;
+    border-left: 1px solid var(--line);
+}
+
+.community-panel h2 {
     margin: 10px 0 28px;
-    font-size: 44px;
-    line-height: 1.1;
+    font-size: 42px;
+    line-height: 1.12;
 }
 
-.contribute-intro {
-    max-width: 720px;
-    margin: 0 0 25px;
-    font-size: 18px;
-    line-height: 1.75;
+.community-text {
+    margin: 0 0 22px;
+    font-size: 17px;
+    line-height: 1.7;
 }
 
-.contribute-highlight {
-    margin: 30px 0 25px;
+.community-highlight {
+    margin: auto 0 22px;
     font-family: "DM Serif Display", serif;
-    font-size: 24px;
+    font-size: 22px;
+    line-height: 1.4;
 }
 
-.contribute-link {
-    display: inline-block;
+.community-link {
+    width: fit-content;
     padding-bottom: 4px;
     border-bottom: 1px solid var(--ink);
     color: var(--ink);
@@ -329,12 +350,17 @@ body {
     text-decoration: none;
 }
 
-.contribute-note {
-    margin: 25px 0 0;
+.community-note,
+.community-coming {
+    margin-top: 24px;
     color: var(--green);
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.community-coming {
+    opacity: 0.65;
 }
 
 
