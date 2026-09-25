@@ -1869,4 +1869,11 @@ a.content-card:hover {
         margin-top: 50px;
     }
 
+   .share-success {
+    padding: 50px 0;
+   }
+
+.share-success h2 {
+    font-size: 38px;
+   }
 }
