@@ -783,3 +783,229 @@ a.try-card:hover {
         font-size: 30px;
     }
 }
+/* =========================
+   HOME — IDEA + WHAT'S NEW
+   ========================= */
+
+.home-discovery {
+    padding: 110px 30px;
+    background: var(--warm-white);
+}
+
+.home-discovery-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: stretch;
+}
+
+.home-idea,
+.whats-new {
+    min-width: 0;
+}
+
+.home-idea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-idea h2,
+.whats-new h2 {
+    margin: 15px 0 35px;
+    font-size: 48px;
+    line-height: 1.05;
+}
+
+.home-idea .beginner-rule {
+    margin-top: 40px;
+}
+
+.whats-new {
+    padding-left: 60px;
+    border-left: 1px solid #d5d5d0;
+}
+
+.new-card {
+    min-height: 300px;
+    padding: 35px;
+    box-sizing: border-box;
+    background: var(--soft-grey);
+    color: var(--ink);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.new-card:hover {
+    transform: translateY(-5px);
+}
+
+.new-type {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.new-card h3 {
+    margin: auto 0 15px;
+    font-size: 40px;
+}
+
+.new-card p {
+    max-width: 420px;
+    margin: 0 0 30px;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.new-action {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================
+   CONTRIBUTE
+   ========================= */
+
+.contribute {
+    padding: 110px 30px;
+    background: var(--ink);
+    color: #ffffff;
+    text-align: center;
+}
+
+.contribute .section-label {
+    color: #aab3a3;
+}
+
+.contribute h2 {
+    margin: 15px 0 30px;
+    font-size: 52px;
+    line-height: 1.05;
+}
+
+.contribute-intro {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+.contribute-highlight {
+    margin: 35px 0 25px;
+    font-family: "DM Serif Display", serif;
+    font-size: 25px;
+}
+
+.contribute-link {
+    display: inline-block;
+    padding: 16px 28px;
+    background: var(--warm-white);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.contribute-note {
+    margin: 25px 0 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 0.6;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.site-footer {
+    padding: 45px 30px;
+    background: var(--ink);
+    color: #ffffff;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.site-footer > p:first-child {
+    margin: 0 0 8px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.footer-tagline {
+    margin: 0 0 15px;
+    font-family: "DM Serif Display", serif;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.site-footer a {
+    color: #ffffff;
+    font-size: 13px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+
+/* =========================
+   HOME — MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .home-discovery {
+        padding: 80px 20px;
+    }
+
+    .home-discovery-grid {
+        grid-template-columns: 1fr;
+        gap: 70px;
+    }
+
+    .home-idea h2,
+    .whats-new h2 {
+        font-size: 38px;
+    }
+
+    .whats-new {
+        padding-left: 0;
+        padding-top: 60px;
+        border-left: 0;
+        border-top: 1px solid #d5d5d0;
+    }
+
+    .new-card {
+        min-height: 270px;
+        padding: 28px;
+    }
+
+    .new-card h3 {
+        font-size: 34px;
+    }
+
+    .contribute {
+        padding: 80px 20px;
+    }
+
+    .contribute h2 {
+        font-size: 38px;
+    }
+
+    .contribute-intro {
+        font-size: 17px;
+    }
+
+    .site-footer {
+        padding: 40px 20px;
+    }
+
+}
