@@ -1347,6 +1347,43 @@ a.content-card:hover {
     font-size: 14px;
 }
 
+/* SHARE SUCCESS */
+
+.share-success {
+    padding: 70px 0;
+    text-align: center;
+}
+
+.share-success h2 {
+    margin: 12px 0 30px;
+    font-size: 52px;
+    line-height: 1.05;
+}
+
+.share-success > p:not(.section-label) {
+    max-width: 520px;
+    margin: 0 auto 15px;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.share-success-link {
+    display: inline-block;
+    margin-top: 35px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+.share-submit:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
 /* =========================
    MOBILE
    ========================= */
