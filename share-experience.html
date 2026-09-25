@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Share Your Experience | Move & Try</title>
+
+    <meta
+        name="description"
+        content="Tried something? Share your real experience with Move & Try and help someone else take their first step."
+    >
+
+    <link rel="canonical" href="https://moveandtry.com/share-experience.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="share-page">
+
+    <a href="javascript:history.back()" class="back-link">
+        ← BACK
+    </a>
+
+
+    <!-- INTRO -->
+
+    <header class="share-header">
+
+        <p class="section-label">
+            REAL EXPERIENCES
+        </p>
+
+        <h1>
+            SHARE YOUR<br>
+            EXPERIENCE.
+        </h1>
+
+        <p class="share-lead">
+            You don't have to be an expert.<br>
+            <strong>You just have to have tried it.</strong>
+        </p>
+
+        <p class="share-intro">
+            Real experiences are a big part of Move & Try.
+            Tell us what you tried, what it was actually like
+            and what you'd tell someone thinking about trying it.
+        </p>
+
+        <a href="running-lidija.html" class="share-example-link">
+            SEE AN EXAMPLE →
+        </a>
+
+    </header>
+
+
+    <!-- FORM -->
+
+    <section class="share-form-section">
+
+        <p class="section-label">
+            YOUR EXPERIENCE
+        </p>
+
+        <h2>LET'S START.</h2>
+
+        <form id="experience-form">
+
+
+            <!-- 01 -->
+
+            <div class="share-question">
+
+                <label for="experience-activity">
+                    <span>01</span>
+                    WHAT DID YOU TRY?
+                </label>
+
+                <p>
+                    Running, pottery, therapy, climbing, learning Italian...
+                    whatever you tried.
+                </p>
+
+                <input
+                    type="text"
+                    id="experience-activity"
+                    name="activity"
+                    placeholder="I tried..."
+                    required
+                >
+
+            </div>
+
+
+            <!-- 02 -->
+
+            <div class="share-question">
+
+                <label for="experience-why">
+                    <span>02</span>
+                    WHY DID YOU TRY IT?
+                </label>
+
+                <p>
+                    What made you curious enough to give it a go?
+                </p>
+
+                <textarea
+                    id="experience-why"
+                    name="why"
+                    rows="5"
+                    placeholder="It started when..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- 03 -->
+
+            <div class="share-question">
+
+                <label for="experience-first">
+                    <span>03</span>
+                    WHAT WAS YOUR FIRST TRY ACTUALLY LIKE?
+                </label>
+
+                <p>
+                    What surprised you? What was difficult, fun, awkward
+                    or completely different from what you expected?
+                </p>
+
+                <textarea
+                    id="experience-first"
+                    name="first_try"
+                    rows="7"
+                    placeholder="The first time..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- 04 -->
+
+            <div class="share-question">
+
+                <label for="experience-after">
+                    <span>04</span>
+                    WHAT HAPPENED AFTERWARDS?
+                </label>
+
+                <p>
+                    Did you continue? Stop? Come back later?
+                    Was one try enough?
+                </p>
+
+                <textarea
+                    id="experience-after"
+                    name="afterwards"
+                    rows="6"
+                    placeholder="After that..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- 05 -->
+
+            <div class="share-question">
+
+                <label for="experience-advice">
+                    <span>05</span>
+                    WHAT WOULD YOU TELL SOMEONE THINKING ABOUT TRYING IT?
+                </label>
+
+                <p>
+                    Not expert advice. Just what you wish someone had told you.
+                </p>
+
+                <textarea
+                    id="experience-advice"
+                    name="advice"
+                    rows="6"
+                    placeholder="I'd tell them..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- VERDICT -->
+
+            <fieldset class="share-verdict">
+
+                <legend>YOUR VERDICT</legend>
+
+                <p>
+                    No right answer. How did you feel about it?
+                </p>
+
+                <div class="share-verdict-grid">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="verdict"
+                            value="loved"
+                            required
+                        >
+                        <span>❤️</span>
+                        <strong>I LOVED IT</strong>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="verdict"
+                            value="unsure"
+                        >
+                        <span>🤔</span>
+                        <strong>I'M NOT SURE</strong>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="verdict"
+                            value="hated"
+                        >
+                        <span>😂</span>
+                        <strong>I HATED IT</strong>
+                    </label>
+
+                </div>
+
+            </fieldset>
+
+
+            <!-- ABOUT YOU -->
+
+            <div class="share-person">
+
+                <p class="section-label">
+                    ABOUT YOU
+                </p>
+
+                <h2>HOW SHOULD WE CREDIT YOU?</h2>
+
+                <label for="experience-name">
+                    Name or nickname
+                </label>
+
+                <input
+                    type="text"
+                    id="experience-name"
+                    name="name"
+                    placeholder="How you'd like your name to appear"
+                    required
+                >
+
+                <label for="experience-email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="experience-email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                >
+
+                <p class="share-privacy">
+                    Your email is for contact only. It won't be published.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT HAPPENS NEXT -->
+
+            <div class="share-next">
+
+                <p class="section-label">
+                    WHAT HAPPENS NEXT?
+                </p>
+
+                <p>
+                    We'll read your submission before anything is published.
+                    We may lightly edit it for clarity, length and Move & Try style,
+                    but we won't change the meaning of your experience.
+                </p>
+
+                <p>
+                    Submitting an experience doesn't guarantee publication.
+                    If we'd like to publish your story, we'll contact you first.
+                </p>
+
+            </div>
+
+
+            <button type="submit" class="share-submit">
+                SHARE MY EXPERIENCE →
+            </button>
+
+            <p class="share-form-status" id="experience-form-status"></p>
+
+        </form>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
