@@ -1768,4 +1768,68 @@ a.content-card:hover {
         font-size: 32px;
     }
 
+       /* SHARE EXPERIENCE */
+
+    .share-page {
+        padding: 30px 20px 70px;
+    }
+
+    .share-header {
+        padding: 55px 0 65px;
+    }
+
+    .share-header h1 {
+        font-size: 50px;
+    }
+
+    .share-lead {
+        font-size: 23px;
+    }
+
+    .share-intro {
+        font-size: 17px;
+    }
+
+    .share-form-section {
+        padding-top: 50px;
+    }
+
+    .share-form-section > h2 {
+        margin-bottom: 35px;
+        font-size: 32px;
+    }
+
+    .share-question {
+        padding: 35px 0;
+    }
+
+    .share-question label {
+        line-height: 1.45;
+    }
+
+    .share-question > p {
+        margin-left: 0;
+    }
+
+    .share-verdict-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .share-verdict-grid label {
+        min-height: 115px;
+    }
+
+    .share-person {
+        margin-top: 55px;
+        padding: 35px 25px;
+    }
+
+    .share-person h2 {
+        font-size: 28px;
+    }
+
+    .share-next {
+        margin-top: 50px;
+    }
+
 }
