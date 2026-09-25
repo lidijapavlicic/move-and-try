@@ -1095,6 +1095,257 @@ a.content-card:hover {
     text-decoration: none;
 }
 
+/* =========================
+   SHARE EXPERIENCE PAGE
+   ========================= */
+
+.share-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 30px 100px;
+}
+
+
+/* HEADER */
+
+.share-header {
+    max-width: 760px;
+    padding: 80px 0 90px;
+}
+
+.share-header h1 {
+    margin: 10px 0 25px;
+    font-size: 72px;
+    line-height: 1;
+}
+
+.share-lead {
+    margin: 0 0 30px;
+    font-family: "DM Serif Display", serif;
+    font-size: 28px;
+    line-height: 1.45;
+}
+
+.share-intro {
+    max-width: 650px;
+    margin: 0 0 30px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.share-example-link {
+    display: inline-block;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+
+/* FORM */
+
+.share-form-section {
+    padding-top: 70px;
+    border-top: 1px solid var(--line);
+}
+
+.share-form-section > h2 {
+    margin: 10px 0 55px;
+    font-size: 42px;
+}
+
+.share-question {
+    padding: 45px 0;
+    border-top: 1px solid var(--line);
+}
+
+.share-question label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.share-question label span {
+    display: inline-block;
+    width: 38px;
+    color: var(--green);
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.share-question > p {
+    max-width: 650px;
+    margin: 0 0 22px 38px;
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.7;
+}
+
+
+/* INPUTS */
+
+.share-question input,
+.share-question textarea,
+.share-person input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    padding: 16px 18px;
+    background: var(--white);
+    color: var(--ink);
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+}
+
+.share-question textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.share-question input:focus,
+.share-question textarea:focus,
+.share-person input:focus {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+}
+
+
+/* VERDICT */
+
+.share-verdict {
+    margin: 55px 0;
+    padding: 0;
+    border: 0;
+}
+
+.share-verdict legend {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.share-verdict > p {
+    margin: 0 0 25px;
+    font-size: 15px;
+    opacity: 0.7;
+}
+
+.share-verdict-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.share-verdict-grid label {
+    min-height: 150px;
+    padding: 25px 18px;
+    border: 1px solid var(--line);
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    text-align: center;
+    transition: transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease;
+}
+
+.share-verdict-grid label:hover {
+    transform: translateY(-3px);
+    border-color: var(--green);
+}
+
+.share-verdict-grid input {
+    accent-color: var(--green);
+}
+
+.share-verdict-grid label > span {
+    font-size: 28px;
+}
+
+.share-verdict-grid strong {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+
+/* ABOUT YOU */
+
+.share-person {
+    margin-top: 70px;
+    padding: 50px;
+    background: var(--soft-grey);
+}
+
+.share-person h2 {
+    margin: 10px 0 35px;
+    font-size: 32px;
+}
+
+.share-person > label {
+    display: block;
+    margin: 25px 0 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.share-privacy {
+    margin: 12px 0 0;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+
+/* WHAT HAPPENS NEXT */
+
+.share-next {
+    margin-top: 60px;
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+}
+
+.share-next > p:not(.section-label) {
+    max-width: 650px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* SUBMIT */
+
+.share-submit {
+    width: 100%;
+    margin-top: 15px;
+    padding: 20px 30px;
+    border: none;
+    background: var(--ink);
+    color: var(--white);
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.share-submit:hover {
+    transform: translateY(-2px);
+}
+
+.share-form-status {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
 
 /* =========================
    MOBILE
