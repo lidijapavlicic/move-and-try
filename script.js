@@ -297,3 +297,85 @@ if (tryForm) {
     );
 
 }
+// =========================
+// SHARE EXPERIENCE FORM
+// =========================
+
+const experienceForm = document.getElementById("experience-form");
+
+if (experienceForm) {
+
+    experienceForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const submitButton = experienceForm.querySelector(".share-submit");
+        const status = document.getElementById("experience-form-status");
+
+        submitButton.disabled = true;
+        submitButton.textContent = "SHARING...";
+
+        try {
+
+            const response = await fetch(experienceForm.action, {
+                method: "POST",
+                body: new FormData(experienceForm),
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
+
+            if (response.ok) {
+
+                experienceForm.innerHTML = `
+                    <div class="share-success">
+
+                        <p class="section-label">
+                            EXPERIENCE SHARED
+                        </p>
+
+                        <h2>
+                            THANK YOU<br>
+                            FOR SHARING.
+                        </h2>
+
+                        <p>
+                            You tried it. You shared it.
+                        </p>
+
+                        <p>
+                            Maybe your experience will help
+                            someone else take their first step.
+                        </p>
+
+                        <a href="index.html" class="share-success-link">
+                            BACK TO MOVE & TRY →
+                        </a>
+
+                    </div>
+                `;
+
+                window.scrollTo({
+                    top: experienceForm.offsetTop - 80,
+                    behavior: "smooth"
+                });
+
+            } else {
+
+                throw new Error("Submission failed");
+
+            }
+
+        } catch (error) {
+
+            status.textContent =
+                "Something went wrong. Please try again.";
+
+            submitButton.disabled = false;
+            submitButton.textContent = "SHARE MY EXPERIENCE →";
+
+        }
+
+    });
+
+}
