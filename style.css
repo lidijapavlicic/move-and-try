@@ -1001,28 +1001,6 @@ a.activity-card:hover {
         font-size: 23px;
     }
 
-    .category-tries {
-        padding: 70px 0;
-    }
-
-    .category-tries > h2 {
-        margin-bottom: 35px;
-        font-size: 32px;
-    }
-
-    .try-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .try-card {
-        min-height: 280px;
-        padding: 28px;
-    }
-
-    .try-card h3 {
-        font-size: 36px;
-    }
-
     .category-suggest {
         padding-top: 70px;
     }
