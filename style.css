@@ -597,3 +597,189 @@ body {
         width: 100%;
     }
 }
+/* =========================
+   CATEGORY PAGE
+   ========================= */
+
+.category-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 30px 120px;
+}
+
+.category-header {
+    max-width: 760px;
+    padding: 80px 0 110px;
+}
+
+.category-page-number {
+    margin: 0 0 15px;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.category-header h1 {
+    margin: 0 0 25px;
+    font-size: 82px;
+    line-height: 1;
+}
+
+.category-page-intro {
+    margin: 0;
+    font-family: "DM Serif Display", serif;
+    font-size: 28px;
+    line-height: 1.5;
+}
+
+
+/* CATEGORY TRIES */
+
+.category-tries {
+    padding: 90px 0;
+    border-top: 1px solid #d5d5d0;
+}
+
+.category-tries > h2 {
+    margin: 10px 0 50px;
+    font-size: 42px;
+}
+
+.try-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.try-card {
+    min-height: 330px;
+    padding: 35px;
+    box-sizing: border-box;
+    background: var(--soft-grey);
+    color: var(--ink);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+a.try-card:hover {
+    transform: translateY(-5px);
+}
+
+.try-card-number {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.try-card h3 {
+    margin: auto 0 15px;
+    font-size: 42px;
+}
+
+.try-card p {
+    max-width: 420px;
+    margin: 0 0 30px;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.try-card-action,
+.try-card-status {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.try-card-status {
+    opacity: 0.4;
+}
+
+.try-card-coming {
+    opacity: 0.7;
+}
+
+
+/* CATEGORY SUGGEST */
+
+.category-suggest {
+    max-width: 650px;
+    padding: 90px 0 20px;
+}
+
+.category-suggest h2 {
+    margin: 10px 0 20px;
+    font-size: 36px;
+}
+
+.category-suggest > p:not(.section-label) {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.category-suggest-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 4px;
+}
+
+
+/* CATEGORY PAGE — MOBILE */
+
+@media (max-width: 768px) {
+
+    .category-page {
+        padding: 30px 20px 80px;
+    }
+
+    .category-header {
+        padding: 60px 0 80px;
+    }
+
+    .category-header h1 {
+        font-size: 56px;
+    }
+
+    .category-page-intro {
+        font-size: 23px;
+    }
+
+    .category-tries {
+        padding: 70px 0;
+    }
+
+    .category-tries > h2 {
+        font-size: 32px;
+        margin-bottom: 35px;
+    }
+
+    .try-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .try-card {
+        min-height: 280px;
+        padding: 28px;
+    }
+
+    .try-card h3 {
+        font-size: 36px;
+    }
+
+    .category-suggest {
+        padding-top: 70px;
+    }
+
+    .category-suggest h2 {
+        font-size: 30px;
+    }
+}
