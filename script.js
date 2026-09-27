@@ -1,3 +1,67 @@
+/* =========================
+   LANGUAGE
+========================= */
+
+const LANGUAGE_KEY = "moveandtry_language";
+
+function setLanguage(language) {
+
+    localStorage.setItem(LANGUAGE_KEY, language);
+
+}
+
+function handleLanguage() {
+
+    const savedLanguage =
+        localStorage.getItem(LANGUAGE_KEY);
+
+    const path =
+        window.location.pathname;
+
+    const isCroatianPage =
+        path === "/hr/" ||
+        path.endsWith("/hr/index.html");
+
+    /*
+       User has already chosen a language.
+       Their choice always wins.
+    */
+
+    if (savedLanguage === "hr" && !isCroatianPage) {
+        window.location.replace("/hr/");
+        return;
+    }
+
+    if (savedLanguage === "en" && isCroatianPage) {
+        window.location.replace("/");
+        return;
+    }
+
+    /*
+       No saved choice yet.
+       Use browser language.
+    */
+
+    if (!savedLanguage) {
+
+        const browserLanguage =
+            navigator.language ||
+            navigator.userLanguage ||
+            "en";
+
+        if (
+            browserLanguage
+                .toLowerCase()
+                .startsWith("hr") &&
+            !isCroatianPage
+        ) {
+            window.location.replace("/hr/");
+        }
+    }
+}
+
+handleLanguage();
+
 const SUPABASE_URL = "https://pdyngeaykfpybeafjtpw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK";
 
