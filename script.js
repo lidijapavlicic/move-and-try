@@ -5,13 +5,38 @@ const RUNNING_VOTE_KEY = "moveandtry_running_vote";
 
 
 /* =========================
-   RUNNING — LOAD VOTES
+   TRY VERDICT
 ========================= */
 
-async function loadRunningVotes() {
+function getTrySlug() {
+
+    const path = window.location.pathname.toLowerCase();
+
+    if (path.includes("try-running")) {
+        return "running";
+    }
+
+    if (path.includes("try-pole-dance")) {
+        return "pole-dance";
+    }
+
+    return null;
+}
+
+
+function getVoteKey(trySlug) {
+    return `moveandtry_vote_${trySlug}`;
+}
+
+
+/* =========================
+   LOAD VOTES
+========================= */
+
+async function loadTryVotes(trySlug) {
 
     const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/try_votes?try_slug=eq.running&select=verdict`,
+        `${SUPABASE_URL}/rest/v1/try_votes?try_slug=eq.${trySlug}&select=verdict`,
         {
             headers: {
                 apikey: SUPABASE_KEY,
@@ -49,33 +74,52 @@ async function loadRunningVotes() {
 
     });
 
-    document.getElementById("count-loved").textContent =
-        counts.loved;
+    const lovedCount =
+        document.getElementById("count-loved");
 
-    document.getElementById("count-unsure").textContent =
-        counts.unsure;
+    const unsureCount =
+        document.getElementById("count-unsure");
 
-    document.getElementById("count-hated").textContent =
-        counts.hated;
+    const hatedCount =
+        document.getElementById("count-hated");
 
-    const total =
-        counts.loved +
-        counts.unsure +
-        counts.hated;
+    const totalTried =
+        document.getElementById("total-tried");
 
-    document.getElementById("total-tried").textContent =
-        total;
+    if (lovedCount) {
+        lovedCount.textContent = counts.loved;
+    }
+
+    if (unsureCount) {
+        unsureCount.textContent = counts.unsure;
+    }
+
+    if (hatedCount) {
+        hatedCount.textContent = counts.hated;
+    }
+
+    if (totalTried) {
+
+        totalTried.textContent =
+            counts.loved +
+            counts.unsure +
+            counts.hated;
+
+    }
 }
 
 
 /* =========================
-   RUNNING — SUBMIT VOTE
+   SUBMIT VOTE
 ========================= */
 
-async function submitRunningVote(verdict) {
+async function submitTryVote(trySlug, verdict) {
+
+    const voteKey =
+        getVoteKey(trySlug);
 
     const existingVote =
-        localStorage.getItem(RUNNING_VOTE_KEY);
+        localStorage.getItem(voteKey);
 
     if (existingVote) {
         return;
@@ -91,7 +135,7 @@ async function submitRunningVote(verdict) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                try_slug: "running",
+                try_slug: trySlug,
                 verdict: verdict
             })
         }
@@ -111,18 +155,18 @@ async function submitRunningVote(verdict) {
     }
 
     localStorage.setItem(
-        RUNNING_VOTE_KEY,
+        voteKey,
         verdict
     );
 
     markSelectedVerdict(verdict);
 
-    await loadRunningVotes();
+    await loadTryVotes(trySlug);
 }
 
 
 /* =========================
-   RUNNING — SELECTED VERDICT
+   SELECTED VERDICT
 ========================= */
 
 function markSelectedVerdict(verdict) {
@@ -143,36 +187,52 @@ function markSelectedVerdict(verdict) {
 
 
 /* =========================
-   RUNNING — VERDICT BUTTONS
+   VERDICT BUTTONS
 ========================= */
 
 const verdictButtons =
     document.querySelectorAll(".verdict-card");
 
-verdictButtons.forEach(button => {
+const currentTrySlug =
+    getTrySlug();
 
-    button.addEventListener("click", async () => {
+if (currentTrySlug) {
 
-        const verdict =
-            button.dataset.verdict;
+    verdictButtons.forEach(button => {
 
-        await submitRunningVote(verdict);
+        button.addEventListener("click", async () => {
+
+            const verdict =
+                button.dataset.verdict;
+
+            await submitTryVote(
+                currentTrySlug,
+                verdict
+            );
+
+        });
 
     });
 
-});
+}
 
 
 /* =========================
-   RUNNING — INITIAL LOAD
+   INITIAL LOAD
 ========================= */
 
-if (document.getElementById("total-tried")) {
+if (
+    currentTrySlug &&
+    document.getElementById("total-tried")
+) {
 
-    loadRunningVotes();
+    loadTryVotes(currentTrySlug);
+
+    const voteKey =
+        getVoteKey(currentTrySlug);
 
     const existingVote =
-        localStorage.getItem(RUNNING_VOTE_KEY);
+        localStorage.getItem(voteKey);
 
     if (existingVote) {
         markSelectedVerdict(existingVote);
