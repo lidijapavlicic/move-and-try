@@ -578,7 +578,7 @@ const moveAndTryUpdates = {
         {
             type: "TRY #002 · KRETANJE",
             title: "POLE DANCE",
-            text: "Ne moraš biti snažan/na. Ne moraš biti fleksibilan/na. Samo trebaš biti dovoljno znatiželjan/na da probaš.",
+            text: "Ne treba ti snaga. Ne treba ti fleksibilnost. Samo malo znatiželje da probaš.",
             link: "pole-dance.html",
             action: "ISTRAŽI →"
         },
