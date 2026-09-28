@@ -1877,3 +1877,42 @@ a.content-card:hover {
     font-size: 38px;
    }
 }
+/* =========================
+   LANGUAGE SWITCHER
+========================= */
+
+.language-switcher {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    z-index: 100;
+}
+
+.language-switcher a {
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.45;
+}
+
+.language-switcher a:hover {
+    opacity: 1;
+}
+
+.language-switcher .language-active {
+    color: var(--green);
+}
+
+.language-separator {
+    margin: 0 8px;
+    opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+    .language-switcher {
+        top: 20px;
+        right: 20px;
+    }
+}
