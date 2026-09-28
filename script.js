@@ -546,3 +546,92 @@ function setLanguage(language) {
     );
 
 }
+
+/* =========================
+   WHAT'S NEW
+========================= */
+
+const moveAndTryUpdates = {
+
+    en: [
+
+        {
+            type: "TRY #002 · MOVE",
+            title: "POLE DANCE",
+            text: "You don't need to be strong. You don't need to be flexible. You just need to be curious enough to try.",
+            link: "pole-dance.html",
+            action: "DISCOVER THIS TRY →"
+        },
+
+        {
+            type: "TRY #001 · MOVE",
+            title: "RUNNING",
+            text: "You don't need to become a runner. Let's just see if you like running.",
+            link: "running.html",
+            action: "DISCOVER THIS TRY →"
+        }
+
+    ],
+
+    hr: [
+
+        {
+            type: "TRY #002 · KRETANJE",
+            title: "POLE DANCE",
+            text: "Ne moraš biti snažan/na. Ne moraš biti fleksibilan/na. Samo trebaš biti dovoljno znatiželjan/na da probaš.",
+            link: "pole-dance.html",
+            action: "ISTRAŽI →"
+        },
+
+        {
+            type: "TRY #001 · KRETANJE",
+            title: "TRČANJE",
+            text: "Ne moraš postati trkač. Samo ćemo vidjeti sviđa li ti se trčanje.",
+            link: "running.html",
+            action: "ISTRAŽI →"
+        }
+
+    ]
+
+};
+
+
+function loadLatestUpdate() {
+
+    const card =
+        document.getElementById("latest-update");
+
+    if (!card) {
+        return;
+    }
+
+    const language =
+        document.documentElement.lang === "hr"
+            ? "hr"
+            : "en";
+
+    const latestUpdate =
+        moveAndTryUpdates[language][0];
+
+    document.getElementById(
+        "latest-update-type"
+    ).textContent = latestUpdate.type;
+
+    document.getElementById(
+        "latest-update-title"
+    ).textContent = latestUpdate.title;
+
+    document.getElementById(
+        "latest-update-text"
+    ).textContent = latestUpdate.text;
+
+    document.getElementById(
+        "latest-update-action"
+    ).textContent = latestUpdate.action;
+
+    card.href =
+        latestUpdate.link;
+}
+
+
+loadLatestUpdate();
