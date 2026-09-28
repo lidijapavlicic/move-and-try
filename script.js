@@ -1,67 +1,3 @@
-/* =========================
-   LANGUAGE
-========================= */
-
-const LANGUAGE_KEY = "moveandtry_language";
-
-function setLanguage(language) {
-
-    localStorage.setItem(LANGUAGE_KEY, language);
-
-}
-
-function handleLanguage() {
-
-    const savedLanguage =
-        localStorage.getItem(LANGUAGE_KEY);
-
-    const path =
-        window.location.pathname;
-
-    const isCroatianPage =
-        path === "/hr/" ||
-        path.endsWith("/hr/index.html");
-
-    /*
-       User has already chosen a language.
-       Their choice always wins.
-    */
-
-    if (savedLanguage === "hr" && !isCroatianPage) {
-        window.location.replace("/hr/");
-        return;
-    }
-
-    if (savedLanguage === "en" && isCroatianPage) {
-        window.location.replace("/");
-        return;
-    }
-
-    /*
-       No saved choice yet.
-       Use browser language.
-    */
-
-    if (!savedLanguage) {
-
-        const browserLanguage =
-            navigator.language ||
-            navigator.userLanguage ||
-            "en";
-
-        if (
-            browserLanguage
-                .toLowerCase()
-                .startsWith("hr") &&
-            !isCroatianPage
-        ) {
-            window.location.replace("/hr/");
-        }
-    }
-}
-
-handleLanguage();
-
 const SUPABASE_URL = "https://pdyngeaykfpybeafjtpw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK";
 
@@ -361,96 +297,121 @@ if (tryForm) {
     );
 
 }
-// =========================
-// SHARE EXPERIENCE FORM
-// =========================
 
-const experienceForm = document.getElementById("experience-form");
+
+/* =========================
+   SHARE EXPERIENCE FORM
+========================= */
+
+const experienceForm =
+    document.getElementById("experience-form");
 
 if (experienceForm) {
 
-    experienceForm.addEventListener("submit", async function (event) {
+    experienceForm.addEventListener(
+        "submit",
+        async function (event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        const submitButton = experienceForm.querySelector(".share-submit");
-        const status = document.getElementById("experience-form-status");
+            const submitButton =
+                experienceForm.querySelector(".share-submit");
 
-        submitButton.disabled = true;
-        submitButton.textContent = "SHARING...";
+            const status =
+                document.getElementById("experience-form-status");
 
-        try {
+            submitButton.disabled = true;
+            submitButton.textContent =
+                "SHARING...";
 
-            const response = await fetch(experienceForm.action, {
-                method: "POST",
-                body: new FormData(experienceForm),
-                headers: {
-                    "Accept": "application/json"
+            try {
+
+                const response =
+                    await fetch(
+                        experienceForm.action,
+                        {
+                            method: "POST",
+                            body: new FormData(experienceForm),
+                            headers: {
+                                "Accept": "application/json"
+                            }
+                        }
+                    );
+
+                if (response.ok) {
+
+                    experienceForm.innerHTML = `
+                        <div class="share-success">
+
+                            <p class="section-label">
+                                EXPERIENCE SHARED
+                            </p>
+
+                            <h2>
+                                THANK YOU<br>
+                                FOR SHARING.
+                            </h2>
+
+                            <p>
+                                You tried it. You shared it.
+                            </p>
+
+                            <p>
+                                Maybe your experience will help
+                                someone else take their first step.
+                            </p>
+
+                            <a
+                                href="index.html"
+                                class="share-success-link"
+                            >
+                                BACK TO MOVE & TRY →
+                            </a>
+
+                        </div>
+                    `;
+
+                    window.scrollTo({
+                        top: experienceForm.offsetTop - 80,
+                        behavior: "smooth"
+                    });
+
+                } else {
+
+                    throw new Error(
+                        "Submission failed"
+                    );
+
                 }
-            });
 
-            if (response.ok) {
+            } catch (error) {
 
-                experienceForm.innerHTML = `
-                    <div class="share-success">
+                status.textContent =
+                    "Something went wrong. Please try again.";
 
-                        <p class="section-label">
-                            EXPERIENCE SHARED
-                        </p>
-
-                        <h2>
-                            THANK YOU<br>
-                            FOR SHARING.
-                        </h2>
-
-                        <p>
-                            You tried it. You shared it.
-                        </p>
-
-                        <p>
-                            Maybe your experience will help
-                            someone else take their first step.
-                        </p>
-
-                        <a href="index.html" class="share-success-link">
-                            BACK TO MOVE & TRY →
-                        </a>
-
-                    </div>
-                `;
-
-                window.scrollTo({
-                    top: experienceForm.offsetTop - 80,
-                    behavior: "smooth"
-                });
-
-            } else {
-
-                throw new Error("Submission failed");
+                submitButton.disabled = false;
+                submitButton.textContent =
+                    "SHARE MY EXPERIENCE →";
 
             }
 
-        } catch (error) {
-
-            status.textContent =
-                "Something went wrong. Please try again.";
-
-            submitButton.disabled = false;
-            submitButton.textContent = "SHARE MY EXPERIENCE →";
-
         }
+    );
 
-    });
+}
 
-   /* =========================
+
+/* =========================
    LANGUAGE
 ========================= */
 
-const LANGUAGE_KEY = "moveandtry_language";
+const LANGUAGE_KEY =
+    "moveandtry_language";
 
 function getPreferredLanguage() {
 
-    const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
+    const savedLanguage =
+        localStorage.getItem(LANGUAGE_KEY);
 
     if (savedLanguage) {
         return savedLanguage;
@@ -461,7 +422,9 @@ function getPreferredLanguage() {
         navigator.userLanguage ||
         "en";
 
-    return browserLanguage.toLowerCase().startsWith("hr")
+    return browserLanguage
+        .toLowerCase()
+        .startsWith("hr")
         ? "hr"
         : "en";
 }
@@ -473,6 +436,5 @@ function setLanguage(language) {
         LANGUAGE_KEY,
         language
     );
-}
 
 }
