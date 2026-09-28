@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Probaj trčanje prvi put | Move & Try</title>
+
+    <meta
+        name="description"
+        content="Želiš probati trčanje? Kreni bez skupe opreme, pritiska i ciljeva. Jednostavan vodič za tvoj prvi pokušaj trčanja."
+    >
+
+    <link rel="canonical" href="https://moveandtry.com/hr/try-running.html">
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <main class="try-page">
+
+        <div class="language-switcher">
+            <a href="../try-running.html" onclick="setLanguage('en')">EN</a>
+            <span class="language-separator">|</span>
+            <span class="language-active">HR</span>
+        </div>
+
+        <a href="running.html" class="back-link">
+            ← TRČANJE
+        </a>
+
+        <p class="try-number">
+            TRY #001 · KRETANJE
+        </p>
+
+        <h1>TRČANJE</h1>
+
+        <p class="try-intro">
+            Ne moraš postati trkač.<br>
+            Samo ćemo vidjeti sviđa li ti se trčanje.
+        </p>
+
+
+        <!-- =========================
+             PRACTICAL
+        ========================= -->
+
+        <section class="try-section practical">
+
+            <p class="section-label">
+                OK, ŽELIM PROBATI
+            </p>
+
+            <h2>PRIJE NEGO ŠTO IŠTA KUPIŠ</h2>
+
+            <p>
+                Nemoj još kupovati opremu za trčanje.
+                Prvo saznaj sviđa li ti se uopće trčanje.
+            </p>
+
+            <div class="need-grid">
+
+                <div class="need-box">
+
+                    <h3>TREBA TI</h3>
+
+                    <p>✓ Udobna odjeća u kojoj se možeš kretati</p>
+                    <p>✓ Tenisice prikladne za trčanje ili sličnu sportsku aktivnost</p>
+                    <p>✓ Čvrsto zavezane tenisice</p>
+                    <p>✓ Malo vremena</p>
+
+                </div>
+
+                <div class="need-box">
+
+                    <h3>JOŠ TI NE TREBA</h3>
+
+                    <p>✕ Sat za trčanje</p>
+                    <p>✕ Prsluk za trčanje</p>
+                    <p>✕ Skupa odjeća za trčanje</p>
+                    <p>✕ Posebne čarape za trčanje</p>
+                    <p>✕ Tenisice za trčanje od 200 €</p>
+
+                </div>
+
+            </div>
+
+            <p class="try-note">
+                Već imaš hudicu ili prsluk s džepovima? Super.
+                Koristi to umjesto da kupuješ prsluk za trčanje.
+                I da, tvoje čarape s malim cvjetićima sasvim sigurno mogu biti čarape za trčanje.
+            </p>
+
+            <p class="try-highlight">
+                Prvo probaj.<br>
+                Kupi kasnije.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             FIRST TRY
+        ========================= -->
+
+        <section class="try-section">
+
+            <p class="section-label">
+                TVOJ PRVI POKUŠAJ
+            </p>
+
+            <h2>SAMO OTIĐI TRČATI</h2>
+
+            <div class="step">
+
+                <span>01</span>
+
+                <div>
+                    <h3>ZAGRIJ SE</h3>
+
+                    <p>
+                        Odvoji nekoliko minuta za zagrijavanje prije nego što kreneš.
+                        Isprobavaš trčanje — ne pokušavaš si zagorčati sutrašnji dan.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="step">
+
+                <span>02</span>
+
+                <div>
+                    <h3>KRENI LAGANO</h3>
+
+                    <p>
+                        Ne brini o tempu ni udaljenosti.
+                        Trči polako. Hodaj ako trebaš.
+                        Ponovno potrči ako ti se trči.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="step">
+
+                <span>03</span>
+
+                <div>
+                    <h3>STANI KAD TI JE DOSTA</h3>
+
+                    <p>
+                        Tvoje prvo trčanje ne mora ništa dokazati.
+                        Pet minuta se računa. Dvadeset minuta se računa.
+                        Kombinacija trčanja i hodanja se računa.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="step">
+
+                <span>04</span>
+
+                <div>
+                    <h3>SMIRI TEMPO</h3>
+
+                    <p>
+                        Hodaj nekoliko minuta i daj tijelu vremena da se smiri.
+                        Lagano istezanje nakon toga može dobro doći.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             VERDICT
+        ========================= -->
+
+        <section class="try-section verdict">
+
+            <p class="section-label">
+                I... KAKO JE BILO?
+            </p>
+
+            <h2>VERDIKT</h2>
+
+            <div class="verdict-grid">
+
+                <button
+                    class="verdict-card"
+                    data-verdict="loved"
+                >
+                    <span class="verdict-icon">❤️</span>
+
+                    <h3>ODUŠEVILO ME</h3>
+
+                    <p>
+                        Super. Ponovi.
+                    </p>
+
+                    <span
+                        class="verdict-count"
+                        id="count-loved"
+                    >
+                        0
+                    </span>
+                </button>
+
+
+                <button
+                    class="verdict-card"
+                    data-verdict="unsure"
+                >
+                    <span class="verdict-icon">🤔</span>
+
+                    <h3>NISAM SIGURAN/NA</h3>
+
+                    <p>
+                        I to je normalno. Možda probaj još jednom.
+                    </p>
+
+                    <span
+                        class="verdict-count"
+                        id="count-unsure"
+                    >
+                        0
+                    </span>
+                </button>
+
+
+                <button
+                    class="verdict-card"
+                    data-verdict="hated"
+                >
+                    <span class="verdict-icon">😂</span>
+
+                    <h3>UŽAS.</h3>
+
+                    <p>
+                        Savršeno. Sad znaš.
+                    </p>
+
+                    <span
+                        class="verdict-count"
+                        id="count-hated"
+                    >
+                        0
+                    </span>
+                </button>
+
+            </div>
+
+
+            <div class="tried-counter">
+
+                <strong id="total-tried">
+                    0
+                </strong>
+
+                <span>
+                    LJUDI JE OVO PROBALO
+                </span>
+
+            </div>
+
+
+            <p class="try-highlight">
+                Probao si.<br>
+                To je cijela poanta.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="../script.js"></script>
+
+</body>
+
+</html>
