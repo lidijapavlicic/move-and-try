@@ -1328,7 +1328,7 @@ a.content-card:hover {
     padding: 20px 30px;
     border: none;
     background: var(--ink);
-    color: var(--white);
+    color: #ffffff;
     font-family: "Manrope", sans-serif;
     font-size: 12px;
     font-weight: 800;
@@ -1339,6 +1339,8 @@ a.content-card:hover {
 
 .share-submit:hover {
     transform: translateY(-2px);
+    background: var(--green);
+    color: #ffffff;
 }
 
 .share-form-status {
