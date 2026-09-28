@@ -1,8 +1,6 @@
 const SUPABASE_URL = "https://pdyngeaykfpybeafjtpw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK";
 
-const RUNNING_VOTE_KEY = "moveandtry_running_vote";
-
 
 /* =========================
    TRY VERDICT
@@ -246,7 +244,8 @@ if (
 ========================= */
 
 const tries = [
-    "running.html"
+    "running.html",
+    "pole-dance.html"
 ];
 
 function surpriseMe() {
@@ -546,6 +545,7 @@ function setLanguage(language) {
     );
 
 }
+
 
 /* =========================
    WHAT'S NEW
