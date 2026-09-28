@@ -442,4 +442,37 @@ if (experienceForm) {
 
     });
 
+   /* =========================
+   LANGUAGE
+========================= */
+
+const LANGUAGE_KEY = "moveandtry_language";
+
+function getPreferredLanguage() {
+
+    const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
+
+    if (savedLanguage) {
+        return savedLanguage;
+    }
+
+    const browserLanguage =
+        navigator.language ||
+        navigator.userLanguage ||
+        "en";
+
+    return browserLanguage.toLowerCase().startsWith("hr")
+        ? "hr"
+        : "en";
+}
+
+
+function setLanguage(language) {
+
+    localStorage.setItem(
+        LANGUAGE_KEY,
+        language
+    );
+}
+
 }
