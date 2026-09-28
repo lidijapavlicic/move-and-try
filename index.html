@@ -77,6 +77,9 @@
 
     <div class="home-discovery-grid">
 
+
+        <!-- THE IDEA -->
+
         <div class="home-idea">
 
             <p class="section-label">
@@ -103,30 +106,40 @@
 
         <!-- WHAT'S NEW -->
 
-<div class="whats-new">
+        <div class="whats-new">
 
-    <p class="section-label">
-        WHAT'S NEW
-    </p>
+            <p class="section-label">
+                WHAT'S NEW
+            </p>
 
-    <h2>
-        SOMETHING NEW<br>
-        TO DISCOVER.
-    </h2>
+            <h2>
+                SOMETHING NEW<br>
+                TO DISCOVER.
+            </h2>
 
-    <a href="#" class="new-card" id="latest-update">
+            <a href="#" class="new-card" id="latest-update">
 
-        <span class="new-type" id="latest-update-type"></span>
+                <span
+                    class="new-type"
+                    id="latest-update-type"
+                ></span>
 
-        <h3 id="latest-update-title"></h3>
+                <h3 id="latest-update-title"></h3>
 
-        <p id="latest-update-text"></p>
+                <p id="latest-update-text"></p>
 
-        <span class="new-action" id="latest-update-action"></span>
+                <span
+                    class="new-action"
+                    id="latest-update-action"
+                ></span>
 
-    </a>
+            </a>
 
-</div>
+        </div>
+
+    </div>
+
+</section>
 
 
 <!-- =========================
@@ -146,9 +159,13 @@
     <div class="category-grid">
 
 
+        <!-- MOVE -->
+
         <a href="move.html" class="category-card category-move">
 
-            <span class="category-number">01</span>
+            <span class="category-number">
+                01
+            </span>
 
             <h3>MOVE</h3>
 
@@ -163,9 +180,13 @@
         </a>
 
 
+        <!-- LEARN -->
+
         <div class="category-card category-learn">
 
-            <span class="category-number">02</span>
+            <span class="category-number">
+                02
+            </span>
 
             <h3>LEARN</h3>
 
@@ -180,9 +201,13 @@
         </div>
 
 
+        <!-- CREATE -->
+
         <div class="category-card category-create">
 
-            <span class="category-number">03</span>
+            <span class="category-number">
+                03
+            </span>
 
             <h3>CREATE</h3>
 
@@ -197,9 +222,13 @@
         </div>
 
 
+        <!-- EXPLORE -->
+
         <div class="category-card category-explore">
 
-            <span class="category-number">04</span>
+            <span class="category-number">
+                04
+            </span>
 
             <h3>EXPLORE</h3>
 
@@ -214,9 +243,13 @@
         </div>
 
 
+        <!-- DARE -->
+
         <div class="category-card category-dare">
 
-            <span class="category-number">05</span>
+            <span class="category-number">
+                05
+            </span>
 
             <h3>DARE</h3>
 
@@ -231,9 +264,13 @@
         </div>
 
 
+        <!-- CARE -->
+
         <div class="category-card category-care">
 
-            <span class="category-number">06</span>
+            <span class="category-number">
+                06
+            </span>
 
             <h3>CARE</h3>
 
@@ -268,6 +305,9 @@
 
     <div class="community-grid">
 
+
+        <!-- CONTRIBUTE -->
+
         <div class="community-panel contribute-panel">
 
             <p class="section-label">
@@ -289,7 +329,10 @@
                 We'd like to hear from you.
             </p>
 
-            <a href="mailto:hello@moveandtry.com" class="community-link">
+            <a
+                href="mailto:hello@moveandtry.com"
+                class="community-link"
+            >
                 LET'S TALK →
             </a>
 
@@ -299,6 +342,8 @@
 
         </div>
 
+
+        <!-- WHERE TO TRY -->
 
         <div class="community-panel where-panel">
 
@@ -406,14 +451,21 @@
 </footer>
 
 
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script src="script.js"></script>
 
 <script>
-    const preferredLanguage = getPreferredLanguage();
+
+    const preferredLanguage =
+        getPreferredLanguage();
 
     if (preferredLanguage === "hr") {
         window.location.replace("/hr/");
     }
+
 </script>
 
 </body>
