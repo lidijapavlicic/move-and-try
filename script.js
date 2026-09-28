@@ -314,6 +314,9 @@ if (experienceForm) {
 
             event.preventDefault();
 
+            const isCroatian =
+                window.location.pathname.startsWith("/hr/");
+
             const submitButton =
                 experienceForm.querySelector(".share-submit");
 
@@ -321,8 +324,11 @@ if (experienceForm) {
                 document.getElementById("experience-form-status");
 
             submitButton.disabled = true;
+
             submitButton.textContent =
-                "SHARING...";
+                isCroatian
+                    ? "ŠALJEM..."
+                    : "SHARING...";
 
             try {
 
@@ -340,36 +346,73 @@ if (experienceForm) {
 
                 if (response.ok) {
 
-                    experienceForm.innerHTML = `
-                        <div class="share-success">
+                    if (isCroatian) {
 
-                            <p class="section-label">
-                                EXPERIENCE SHARED
-                            </p>
+                        experienceForm.innerHTML = `
+                            <div class="share-success">
 
-                            <h2>
-                                THANK YOU<br>
-                                FOR SHARING.
-                            </h2>
+                                <p class="section-label">
+                                    ISKUSTVO POSLANO
+                                </p>
 
-                            <p>
-                                You tried it. You shared it.
-                            </p>
+                                <h2>
+                                    HVALA TI<br>
+                                    ŠTO SI GA PODIJELIO/LA.
+                                </h2>
 
-                            <p>
-                                Maybe your experience will help
-                                someone else take their first step.
-                            </p>
+                                <p>
+                                    Probao/la si. Podijelio/la si.
+                                </p>
 
-                            <a
-                                href="index.html"
-                                class="share-success-link"
-                            >
-                                BACK TO MOVE & TRY →
-                            </a>
+                                <p>
+                                    Možda će tvoje iskustvo pomoći
+                                    nekome drugome da napravi prvi korak.
+                                </p>
 
-                        </div>
-                    `;
+                                <a
+                                    href="/hr/"
+                                    class="share-success-link"
+                                >
+                                    NATRAG NA MOVE & TRY →
+                                </a>
+
+                            </div>
+                        `;
+
+                    } else {
+
+                        experienceForm.innerHTML = `
+                            <div class="share-success">
+
+                                <p class="section-label">
+                                    EXPERIENCE SHARED
+                                </p>
+
+                                <h2>
+                                    THANK YOU<br>
+                                    FOR SHARING.
+                                </h2>
+
+                                <p>
+                                    You tried it. You shared it.
+                                </p>
+
+                                <p>
+                                    Maybe your experience will help
+                                    someone else take their first step.
+                                </p>
+
+                                <a
+                                    href="/"
+                                    class="share-success-link"
+                                >
+                                    BACK TO MOVE & TRY →
+                                </a>
+
+                            </div>
+                        `;
+
+                    }
 
                     window.scrollTo({
                         top: experienceForm.offsetTop - 80,
@@ -387,11 +430,16 @@ if (experienceForm) {
             } catch (error) {
 
                 status.textContent =
-                    "Something went wrong. Please try again.";
+                    isCroatian
+                        ? "Nešto je pošlo po zlu. Pokušaj ponovno."
+                        : "Something went wrong. Please try again.";
 
                 submitButton.disabled = false;
+
                 submitButton.textContent =
-                    "SHARE MY EXPERIENCE →";
+                    isCroatian
+                        ? "PODIJELI SVOJE ISKUSTVO →"
+                        : "SHARE MY EXPERIENCE →";
 
             }
 
