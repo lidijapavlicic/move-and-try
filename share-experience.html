@@ -27,6 +27,120 @@
 
 <body>
 
+
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <span class="language-active">
+                EN
+            </span>
+
+            <span>|</span>
+
+            <a
+                href="/hr/share-experience.html"
+                onclick="setLanguage('hr')"
+            >
+                HR
+            </a>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <span class="language-active">
+            EN
+        </span>
+
+        <span>|</span>
+
+        <a
+            href="/hr/share-experience.html"
+            onclick="setLanguage('hr')"
+        >
+            HR
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SHARE EXPERIENCE PAGE
+========================= -->
+
 <main class="share-page">
 
     <a href="javascript:history.back()" class="back-link">
@@ -34,7 +148,9 @@
     </a>
 
 
-    <!-- INTRO -->
+    <!-- =========================
+         INTRO
+    ========================= -->
 
     <header class="share-header">
 
@@ -58,14 +174,19 @@
             and what you'd tell someone thinking about trying it.
         </p>
 
-        <a href="running-lidija.html" class="share-example-link">
+        <a
+            href="/running-lidija.html"
+            class="share-example-link"
+        >
             SEE AN EXAMPLE →
         </a>
 
     </header>
 
 
-    <!-- FORM -->
+    <!-- =========================
+         FORM
+    ========================= -->
 
     <section class="share-form-section">
 
@@ -73,13 +194,16 @@
             YOUR EXPERIENCE
         </p>
 
-        <h2>LET'S START.</h2>
+        <h2>
+            LET'S START.
+        </h2>
 
         <form
-    id="experience-form"
-    action="https://formspree.io/f/mppwjdan"
-    method="POST"
->
+            id="experience-form"
+            action="https://formspree.io/f/mppwjdan"
+            method="POST"
+        >
+
 
             <!-- 01 -->
 
@@ -204,11 +328,15 @@
             </div>
 
 
-            <!-- VERDICT -->
+            <!-- =========================
+                 VERDICT
+            ========================= -->
 
             <fieldset class="share-verdict">
 
-                <legend>YOUR VERDICT</legend>
+                <legend>
+                    YOUR VERDICT
+                </legend>
 
                 <p>
                     No right answer. How did you feel about it?
@@ -217,34 +345,54 @@
                 <div class="share-verdict-grid">
 
                     <label>
+
                         <input
                             type="radio"
                             name="verdict"
                             value="loved"
                             required
                         >
+
                         <span>❤️</span>
-                        <strong>I LOVED IT</strong>
+
+                        <strong>
+                            I LOVED IT
+                        </strong>
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="radio"
                             name="verdict"
                             value="unsure"
                         >
+
                         <span>🤔</span>
-                        <strong>I'M NOT SURE</strong>
+
+                        <strong>
+                            I'M NOT SURE
+                        </strong>
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="radio"
                             name="verdict"
                             value="hated"
                         >
+
                         <span>😂</span>
-                        <strong>I HATED IT</strong>
+
+                        <strong>
+                            I HATED IT
+                        </strong>
+
                     </label>
 
                 </div>
@@ -252,7 +400,9 @@
             </fieldset>
 
 
-            <!-- ABOUT YOU -->
+            <!-- =========================
+                 ABOUT YOU
+            ========================= -->
 
             <div class="share-person">
 
@@ -260,7 +410,9 @@
                     ABOUT YOU
                 </p>
 
-                <h2>HOW SHOULD WE CREDIT YOU?</h2>
+                <h2>
+                    HOW SHOULD WE CREDIT YOU?
+                </h2>
 
                 <label for="experience-name">
                     Name or nickname
@@ -293,7 +445,9 @@
             </div>
 
 
-            <!-- WHAT HAPPENS NEXT -->
+            <!-- =========================
+                 WHAT HAPPENS NEXT
+            ========================= -->
 
             <div class="share-next">
 
@@ -315,11 +469,21 @@
             </div>
 
 
-            <button type="submit" class="share-submit">
+            <!-- =========================
+                 SUBMIT
+            ========================= -->
+
+            <button
+                type="submit"
+                class="share-submit"
+            >
                 SHARE MY EXPERIENCE →
             </button>
 
-            <p class="share-form-status" id="experience-form-status"></p>
+            <p
+                class="share-form-status"
+                id="experience-form-status"
+            ></p>
 
         </form>
 
@@ -327,7 +491,13 @@
 
 </main>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script src="script.js"></script>
 
 </body>
+
 </html>
