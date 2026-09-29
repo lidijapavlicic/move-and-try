@@ -55,11 +55,111 @@
 
 <body>
 
-    <div class="language-switcher">
-        <a href="/" onclick="setLanguage('en')">EN</a>
-        <span class="language-separator">|</span>
-        <span class="language-active">HR</span>
+   <!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/hr/" class="site-logo">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="#where-to-try">
+            GDJE PROBATI
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <a
+                href="/"
+                onclick="setLanguage('en')"
+            >
+                EN
+            </a>
+
+            <span>|</span>
+
+            <span class="language-active">
+                HR
+            </span>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
     </div>
+
+</header>
+
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <a
+            href="/"
+            onclick="setLanguage('en')"
+        >
+            EN
+        </a>
+
+        <span>|</span>
+
+        <span class="language-active">
+            HR
+        </span>
+
+    </div>
+
+</div>
 
 
     <!-- =========================
@@ -310,7 +410,7 @@
         <div class="community-grid">
 
 
-            <div class="community-panel contribute-panel">
+            <div class="community-panel contribute-panel" id="be-part-of-it">
 
                 <p class="section-label">
                     BUDI DIO PRIČE
@@ -345,7 +445,7 @@
             </div>
 
 
-            <div class="community-panel where-panel">
+            <div class="community-panel where-panel" id="where-to-try">
 
                 <p class="section-label">
                     GDJE PROBATI
