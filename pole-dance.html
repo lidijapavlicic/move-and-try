@@ -14,20 +14,136 @@
 
     <link rel="canonical" href="https://moveandtry.com/pole-dance.html">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<main class="activity-page">
 
-    <div class="language-switcher">
-        <span class="language-active">EN</span>
-        <span class="language-separator">|</span>
-        <a href="hr/pole-dance.html" onclick="setLanguage('hr')">HR</a>
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <span class="language-active">
+                EN
+            </span>
+
+            <span>|</span>
+
+            <a
+                href="/hr/pole-dance.html"
+                onclick="setLanguage('hr')"
+            >
+                HR
+            </a>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
     </div>
 
-    <a href="move.html" class="back-link">
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <span class="language-active">
+            EN
+        </span>
+
+        <span>|</span>
+
+        <a
+            href="/hr/pole-dance.html"
+            onclick="setLanguage('hr')"
+        >
+            HR
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ACTIVITY PAGE
+========================= -->
+
+<main class="activity-page">
+
+    <a href="/move.html" class="back-link">
         ← MOVE
     </a>
 
@@ -42,7 +158,9 @@
             MOVE · POLE DANCE
         </p>
 
-        <h1>POLE DANCE</h1>
+        <h1>
+            POLE DANCE
+        </h1>
 
         <p class="activity-page-intro">
             You don't need to be strong.<br>
@@ -52,10 +170,23 @@
         </p>
 
         <div class="activity-nav">
-            <span class="activity-nav-active">GUIDE</span>
-            <span>EXPERIENCES</span>
-            <span>EXPERIENCED PERSPECTIVE</span>
-            <span>WHERE TO TRY</span>
+
+            <span class="activity-nav-active">
+                GUIDE
+            </span>
+
+            <span>
+                EXPERIENCES
+            </span>
+
+            <span>
+                EXPERIENCED PERSPECTIVE
+            </span>
+
+            <span>
+                WHERE TO TRY
+            </span>
+
         </div>
 
     </header>
@@ -71,20 +202,27 @@
             EXPLORE POLE DANCE
         </p>
 
-        <h2>START SOMEWHERE.</h2>
+        <h2>
+            START SOMEWHERE.
+        </h2>
 
         <div class="activity-content-grid">
 
 
             <!-- GUIDE -->
 
-            <a href="try-pole-dance.html" class="content-card">
+            <a
+                href="/try-pole-dance.html"
+                class="content-card"
+            >
 
                 <span class="content-card-type">
                     START HERE · GUIDE
                 </span>
 
-                <h3>TRY POLE DANCE</h3>
+                <h3>
+                    TRY POLE DANCE
+                </h3>
 
                 <p>
                     What to expect from your first class, what to wear,
@@ -107,7 +245,9 @@
                     REAL EXPERIENCE
                 </span>
 
-                <h3>WHAT IS IT REALLY LIKE TO START?</h3>
+                <h3>
+                    WHAT IS IT REALLY LIKE TO START?
+                </h3>
 
                 <p>
                     A real experience from someone who decided
@@ -129,7 +269,9 @@
                     EXPERIENCED PERSPECTIVE
                 </span>
 
-                <h3>WHAT SHOULD A BEGINNER KNOW?</h3>
+                <h3>
+                    WHAT SHOULD A BEGINNER KNOW?
+                </h3>
 
                 <p>
                     Practical perspective from someone
@@ -151,7 +293,9 @@
                     WHERE TO TRY
                 </span>
 
-                <h3>FIND YOUR FIRST CLASS.</h3>
+                <h3>
+                    FIND YOUR FIRST CLASS.
+                </h3>
 
                 <p>
                     Studios, instructors and beginner classes
@@ -179,7 +323,9 @@
             YOUR EXPERIENCE
         </p>
 
-        <h2>TRIED POLE DANCE?</h2>
+        <h2>
+            TRIED POLE DANCE?
+        </h2>
 
         <p>
             Loved it, hated it or still not sure?
@@ -187,7 +333,7 @@
         </p>
 
         <a
-            href="share-experience.html"
+            href="/share-experience.html"
             class="activity-contribute-link"
         >
             SHARE YOUR EXPERIENCE →
@@ -197,6 +343,10 @@
 
 </main>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script src="script.js"></script>
 
