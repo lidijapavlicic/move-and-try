@@ -635,3 +635,62 @@ function loadLatestUpdate() {
 
 
 loadLatestUpdate();
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuToggle =
+    document.querySelector(".menu-toggle");
+
+const mobileMenu =
+    document.querySelector(".mobile-menu");
+
+if (menuToggle && mobileMenu) {
+
+    menuToggle.addEventListener("click", () => {
+
+        const isOpen =
+            mobileMenu.classList.toggle("is-open");
+
+        menuToggle.classList.toggle(
+            "is-open",
+            isOpen
+        );
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+        document.body.style.overflow =
+            isOpen ? "hidden" : "";
+
+    });
+
+
+    /* CLOSE MENU AFTER CLICKING A LINK */
+
+    const mobileMenuLinks =
+        mobileMenu.querySelectorAll("a");
+
+    mobileMenuLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            mobileMenu.classList.remove("is-open");
+
+            menuToggle.classList.remove("is-open");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            document.body.style.overflow = "";
+
+        });
+
+    });
+
+}
