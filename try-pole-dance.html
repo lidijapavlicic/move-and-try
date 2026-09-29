@@ -14,20 +14,136 @@
 
     <link rel="canonical" href="https://moveandtry.com/try-pole-dance.html">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<main class="try-page">
 
-    <div class="language-switcher">
-        <span class="language-active">EN</span>
-        <span class="language-separator">|</span>
-        <a href="hr/try-pole-dance.html" onclick="setLanguage('hr')">HR</a>
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <span class="language-active">
+                EN
+            </span>
+
+            <span>|</span>
+
+            <a
+                href="/hr/try-pole-dance.html"
+                onclick="setLanguage('hr')"
+            >
+                HR
+            </a>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
     </div>
 
-    <a href="pole-dance.html" class="back-link">
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <span class="language-active">
+            EN
+        </span>
+
+        <span>|</span>
+
+        <a
+            href="/hr/try-pole-dance.html"
+            onclick="setLanguage('hr')"
+        >
+            HR
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TRY PAGE
+========================= -->
+
+<main class="try-page">
+
+    <a href="/pole-dance.html" class="back-link">
         ← POLE DANCE
     </a>
 
@@ -54,7 +170,9 @@
             OK, I WANT TO TRY
         </p>
 
-        <h2>BEFORE YOUR FIRST CLASS</h2>
+        <h2>
+            BEFORE YOUR FIRST CLASS
+        </h2>
 
         <p>
             You don't prepare for your first pole class by learning pole.
@@ -114,8 +232,9 @@
             YOUR FIRST TRY
         </p>
 
-        <h2>WHAT YOUR FIRST CLASS MAY LOOK LIKE</h2>
-
+        <h2>
+            WHAT YOUR FIRST CLASS MAY LOOK LIKE
+        </h2>
 
         <div class="step">
 
@@ -208,7 +327,9 @@
             GOOD TO KNOW
         </p>
 
-        <h2>A FEW THINGS NOBODY TELLS YOU</h2>
+        <h2>
+            A FEW THINGS NOBODY TELLS YOU
+        </h2>
 
 
         <div class="step">
@@ -335,37 +456,83 @@
             SO... HOW WAS IT?
         </p>
 
-        <h2>THE VERDICT</h2>
+        <h2>
+            THE VERDICT
+        </h2>
 
         <div class="verdict-grid">
 
-            <button class="verdict-card" data-verdict="loved">
+            <button
+                class="verdict-card"
+                data-verdict="loved"
+            >
                 <span class="verdict-icon">❤️</span>
+
                 <h3>I LOVED IT</h3>
+
                 <p>Great. Do it again.</p>
-                <span class="verdict-count" id="count-loved">0</span>
+
+                <span
+                    class="verdict-count"
+                    id="count-loved"
+                >
+                    0
+                </span>
             </button>
 
-            <button class="verdict-card" data-verdict="unsure">
+
+            <button
+                class="verdict-card"
+                data-verdict="unsure"
+            >
                 <span class="verdict-icon">🤔</span>
+
                 <h3>I'M NOT SURE</h3>
+
                 <p>Also normal. Maybe give it another try.</p>
-                <span class="verdict-count" id="count-unsure">0</span>
+
+                <span
+                    class="verdict-count"
+                    id="count-unsure"
+                >
+                    0
+                </span>
             </button>
 
-            <button class="verdict-card" data-verdict="hated">
+
+            <button
+                class="verdict-card"
+                data-verdict="hated"
+            >
                 <span class="verdict-icon">😂</span>
+
                 <h3>I HATED IT</h3>
+
                 <p>Perfect. Now you know.</p>
-                <span class="verdict-count" id="count-hated">0</span>
+
+                <span
+                    class="verdict-count"
+                    id="count-hated"
+                >
+                    0
+                </span>
             </button>
 
         </div>
+
 
         <div class="tried-counter">
-            <strong id="total-tried">0</strong>
-            <span>PEOPLE TRIED THIS</span>
+
+            <strong id="total-tried">
+                0
+            </strong>
+
+            <span>
+                PEOPLE TRIED THIS
+            </span>
+
         </div>
+
 
         <p class="try-highlight">
             You tried it.<br>
@@ -376,6 +543,10 @@
 
 </main>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script src="script.js"></script>
 
