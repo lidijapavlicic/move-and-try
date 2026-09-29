@@ -14,19 +14,136 @@
 
     <link rel="canonical" href="https://moveandtry.com/running-lidija.html">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<main class="experience-page">
-    <div class="language-switcher">
-    <span class="language-active">EN</span>
-    <span class="language-separator">|</span>
-    <a href="hr/running-lidija.html">HR</a>
+
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <span class="language-active">
+                EN
+            </span>
+
+            <span>|</span>
+
+            <a
+                href="/hr/running-lidija.html"
+                onclick="setLanguage('hr')"
+            >
+                HR
+            </a>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <span class="language-active">
+            EN
+        </span>
+
+        <span>|</span>
+
+        <a
+            href="/hr/running-lidija.html"
+            onclick="setLanguage('hr')"
+        >
+            HR
+        </a>
+
+    </div>
+
 </div>
 
-    <a href="running.html" class="back-link">
+
+<!-- =========================
+     EXPERIENCE PAGE
+========================= -->
+
+<main class="experience-page">
+
+    <a href="/running.html" class="back-link">
         ← RUNNING
     </a>
 
@@ -64,7 +181,9 @@
 
     <section class="experience-section">
 
-        <h2>HOW IT STARTED</h2>
+        <h2>
+            HOW IT STARTED
+        </h2>
 
         <p>
             I started running when I was a teenager.
@@ -111,7 +230,9 @@
 
     <section class="experience-section">
 
-        <h2>20 YEARS LATER</h2>
+        <h2>
+            20 YEARS LATER
+        </h2>
 
         <p>
             I've had breaks. I haven't been running continuously for twenty years.
@@ -152,7 +273,9 @@
             WHAT I'D TELL SOMEONE THINKING ABOUT TRYING IT
         </p>
 
-        <h2>YOU DON'T HAVE TO BECOME A RUNNER.</h2>
+        <h2>
+            YOU DON'T HAVE TO BECOME A RUNNER.
+        </h2>
 
         <p>
             You don't need to know your pace.
@@ -180,16 +303,24 @@
         </p>
 
         <div class="personal-verdict">
-            <span class="personal-verdict-icon">❤️</span>
+
+            <span class="personal-verdict-icon">
+                ❤️
+            </span>
 
             <div>
-                <h2>I LOVE IT.</h2>
+
+                <h2>
+                    I LOVE IT.
+                </h2>
 
                 <p>
                     Twenty years later, I'm still not trying to become a runner.
                     I just like running.
                 </p>
+
             </div>
+
         </div>
 
     </section>
@@ -205,7 +336,9 @@
             WHAT ABOUT YOU?
         </p>
 
-        <h2>TRIED RUNNING TOO?</h2>
+        <h2>
+            TRIED RUNNING TOO?
+        </h2>
 
         <p>
             Loved it, hated it or still not sure?
@@ -213,15 +346,22 @@
         </p>
 
         <a
-    href="share-experience.html"
-    class="experience-share-link"
->
-    SHARE YOUR EXPERIENCE →
-</a>
+            href="/share-experience.html"
+            class="experience-share-link"
+        >
+            SHARE YOUR EXPERIENCE →
+        </a>
 
     </section>
 
 </main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="script.js"></script>
 
 </body>
 
