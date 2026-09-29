@@ -14,170 +14,413 @@
 
     <link rel="canonical" href="https://moveandtry.com/try-running.html">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main class="try-page">
 
-        <a href="index.html" class="back-link">← RUNNING</a>
+<!-- =========================
+     SITE HEADER
+========================= -->
 
-        <p class="try-number">TRY #001 · MOVE</p>
+<header class="site-header">
 
-        <h1>RUNNING</h1>
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
 
-        <p class="try-intro">
-            You don't need to become a runner.<br>
-            Let's just see if you like running.
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <span class="language-active">
+                EN
+            </span>
+
+            <span>|</span>
+
+            <a
+                href="/hr/try-running.html"
+                onclick="setLanguage('hr')"
+            >
+                HR
+            </a>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <span class="language-active">
+            EN
+        </span>
+
+        <span>|</span>
+
+        <a
+            href="/hr/try-running.html"
+            onclick="setLanguage('hr')"
+        >
+            HR
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TRY PAGE
+========================= -->
+
+<main class="try-page">
+
+    <a href="/running.html" class="back-link">
+        ← RUNNING
+    </a>
+
+    <p class="try-number">
+        TRY #001 · MOVE
+    </p>
+
+    <h1>RUNNING</h1>
+
+    <p class="try-intro">
+        You don't need to become a runner.<br>
+        Let's just see if you like running.
+    </p>
+
+
+    <!-- =========================
+         PRACTICAL
+    ========================= -->
+
+    <section class="try-section practical">
+
+        <p class="section-label">
+            OK, I WANT TO TRY
         </p>
 
-        <section class="try-section practical">
+        <h2>
+            BEFORE YOU BUY ANYTHING
+        </h2>
 
-    <p class="section-label">OK, I WANT TO TRY</p>
-    <h2>BEFORE YOU BUY ANYTHING</h2>
+        <p>
+            Don't buy running gear yet.
+            First, find out whether you actually like running.
+        </p>
 
-    <p>
-        Don't buy running gear yet.
-        First, find out whether you actually like running.
-    </p>
+        <div class="need-grid">
 
-    <div class="need-grid">
+            <div class="need-box">
 
-        <div class="need-box">
-            <h3>YOU NEED</h3>
+                <h3>YOU NEED</h3>
 
-            <p>✓ Comfortable clothes you can move in</p>
-            <p>✓ Shoes suitable for running or a similar sports activity</p>
-            <p>✓ Your shoes firmly tied</p>
-            <p>✓ A little bit of time</p>
+                <p>✓ Comfortable clothes you can move in</p>
+                <p>✓ Shoes suitable for running or a similar sports activity</p>
+                <p>✓ Your shoes firmly tied</p>
+                <p>✓ A little bit of time</p>
+
+            </div>
+
+            <div class="need-box">
+
+                <h3>YOU DON'T NEED YET</h3>
+
+                <p>✕ A running watch</p>
+                <p>✕ A running vest</p>
+                <p>✕ Expensive running clothes</p>
+                <p>✕ Special running socks</p>
+                <p>✕ €200 running shoes</p>
+
+            </div>
+
         </div>
 
-        <div class="need-box">
-            <h3>YOU DON'T NEED YET</h3>
+        <p class="try-note">
+            Already have a hoodie or vest with pockets? Great.
+            Use that instead of buying a running vest.
+            And yes, your socks with little flowers can absolutely be running socks.
+        </p>
 
-            <p>✕ A running watch</p>
-            <p>✕ A running vest</p>
-            <p>✕ Expensive running clothes</p>
-            <p>✕ Special running socks</p>
-            <p>✕ €200 running shoes</p>
+        <p class="try-highlight">
+            Try first.<br>
+            Buy later.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FIRST TRY
+    ========================= -->
+
+    <section class="try-section">
+
+        <p class="section-label">
+            YOUR FIRST TRY
+        </p>
+
+        <h2>
+            JUST GO RUNNING
+        </h2>
+
+        <div class="step">
+
+            <span>01</span>
+
+            <div>
+
+                <h3>WARM UP</h3>
+
+                <p>
+                    Take a few minutes to warm up before you start.
+                    You're trying running — not trying to make tomorrow miserable.
+                </p>
+
+            </div>
+
         </div>
 
-    </div>
+        <div class="step">
 
-    <p class="try-note">
-        Already have a hoodie or vest with pockets? Great.
-        Use that instead of buying a running vest.
-        And yes, your socks with little flowers can absolutely be running socks.
-    </p>
+            <span>02</span>
 
-    <p class="try-highlight">
-        Try first.<br>
-        Buy later.
-    </p>
+            <div>
 
-</section>
+                <h3>START EASY</h3>
 
+                <p>
+                    Don't worry about pace or distance.
+                    Run slowly. Walk if you need to. Run again if you feel like it.
+                </p>
 
-        <section class="try-section">
+            </div>
 
-    <p class="section-label">YOUR FIRST TRY</p>
-    <h2>JUST GO RUNNING</h2>
-
-    <div class="step">
-        <span>01</span>
-        <div>
-            <h3>WARM UP</h3>
-            <p>
-                Take a few minutes to warm up before you start.
-                You're trying running — not trying to make tomorrow miserable.
-            </p>
         </div>
-    </div>
 
-    <div class="step">
-        <span>02</span>
-        <div>
-            <h3>START EASY</h3>
-            <p>
-                Don't worry about pace or distance.
-                Run slowly. Walk if you need to. Run again if you feel like it.
-            </p>
+        <div class="step">
+
+            <span>03</span>
+
+            <div>
+
+                <h3>STOP WHEN YOU'VE HAD ENOUGH</h3>
+
+                <p>
+                    Your first run doesn't have to prove anything.
+                    Five minutes counts. Twenty minutes counts.
+                    Running and walking counts.
+                </p>
+
+            </div>
+
         </div>
-    </div>
 
-    <div class="step">
-        <span>03</span>
-        <div>
-            <h3>STOP WHEN YOU'VE HAD ENOUGH</h3>
-            <p>
-                Your first run doesn't have to prove anything.
-                Five minutes counts. Twenty minutes counts.
-                Running and walking counts.
-            </p>
+        <div class="step">
+
+            <span>04</span>
+
+            <div>
+
+                <h3>COOL DOWN</h3>
+
+                <p>
+                    Walk for a few minutes and give yourself some time to cool down.
+                    Gentle stretching can feel good afterwards.
+                </p>
+
+            </div>
+
         </div>
-    </div>
 
-    <div class="step">
-        <span>04</span>
-        <div>
-            <h3>COOL DOWN</h3>
-            <p>
-                Walk for a few minutes and give yourself some time to cool down.
-                Gentle stretching can feel good afterwards.
-            </p>
+    </section>
+
+
+    <!-- =========================
+         VERDICT
+    ========================= -->
+
+    <section class="try-section verdict">
+
+        <p class="section-label">
+            SO... HOW WAS IT?
+        </p>
+
+        <h2>
+            THE VERDICT
+        </h2>
+
+        <div class="verdict-grid">
+
+            <button
+                class="verdict-card"
+                data-verdict="loved"
+            >
+
+                <span class="verdict-icon">❤️</span>
+
+                <h3>I LOVED IT</h3>
+
+                <p>
+                    Great. Do it again.
+                </p>
+
+                <span
+                    class="verdict-count"
+                    id="count-loved"
+                >
+                    0
+                </span>
+
+            </button>
+
+
+            <button
+                class="verdict-card"
+                data-verdict="unsure"
+            >
+
+                <span class="verdict-icon">🤔</span>
+
+                <h3>I'M NOT SURE</h3>
+
+                <p>
+                    Also normal. Maybe give it another try.
+                </p>
+
+                <span
+                    class="verdict-count"
+                    id="count-unsure"
+                >
+                    0
+                </span>
+
+            </button>
+
+
+            <button
+                class="verdict-card"
+                data-verdict="hated"
+            >
+
+                <span class="verdict-icon">😂</span>
+
+                <h3>I HATED IT</h3>
+
+                <p>
+                    Perfect. Now you know.
+                </p>
+
+                <span
+                    class="verdict-count"
+                    id="count-hated"
+                >
+                    0
+                </span>
+
+            </button>
+
         </div>
-    </div>
-
-</section>
 
 
-        <section class="try-section verdict">
+        <div class="tried-counter">
 
-    <p class="section-label">SO... HOW WAS IT?</p>
-    <h2>THE VERDICT</h2>
+            <strong id="total-tried">
+                0
+            </strong>
 
-   <div class="verdict-grid">
+            <span>
+                PEOPLE TRIED THIS
+            </span>
 
-    <button class="verdict-card" data-verdict="loved">
-        <span class="verdict-icon">❤️</span>
-        <h3>I LOVED IT</h3>
-        <p>Great. Do it again.</p>
-        <span class="verdict-count" id="count-loved">0</span>
-    </button>
+        </div>
 
-    <button class="verdict-card" data-verdict="unsure">
-        <span class="verdict-icon">🤔</span>
-        <h3>I'M NOT SURE</h3>
-        <p>Also normal. Maybe give it another try.</p>
-        <span class="verdict-count" id="count-unsure">0</span>
-    </button>
 
-    <button class="verdict-card" data-verdict="hated">
-        <span class="verdict-icon">😂</span>
-        <h3>I HATED IT</h3>
-        <p>Perfect. Now you know.</p>
-        <span class="verdict-count" id="count-hated">0</span>
-    </button>
+        <p class="try-highlight">
+            You tried it.<br>
+            That's the whole point.
+        </p>
 
-</div>
+    </section>
 
-<div class="tried-counter">
-    <strong id="total-tried">0</strong>
-    <span>PEOPLE TRIED THIS</span>
-</div>
+</main>
 
-    <p class="try-highlight">
-        You tried it.<br>
-        That's the whole point.
-    </p>
 
-</section>
-        
-    </main>
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
-    <script src="script.js"></script>
-    
+<script src="script.js"></script>
+
 </body>
 
 </html>
