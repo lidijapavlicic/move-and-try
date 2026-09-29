@@ -1878,7 +1878,52 @@ a.content-card:hover {
 .share-success h2 {
     font-size: 38px;
    }
+   
 }
+
+/* =========================
+   HOME HERO IMAGE
+========================= */
+
+.home-hero-image {
+    width: 100%;
+    padding: 28px 28px 0;
+    background: var(--warm-white);
+}
+
+.home-hero-image img {
+    display: block;
+    width: 100%;
+    height: clamp(430px, 56vw, 680px);
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 2px;
+}
+
+
+/* =========================
+   HOME HERO IMAGE — MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .home-hero-image {
+        padding: 16px 14px 0;
+    }
+
+    .home-hero-image img {
+        height: 62vh;
+        min-height: 440px;
+        max-height: 620px;
+
+        object-fit: cover;
+        object-position: center;
+    }
+
+}
+
 /* =========================
    SITE HEADER
 ========================= */
