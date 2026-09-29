@@ -2260,3 +2260,293 @@ a.content-card:hover {
     }
 
 }
+
+/* =========================
+   BEHIND MOVE & TRY
+========================= */
+
+.behind-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 90px 40px 120px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.behind-hero {
+    max-width: 920px;
+    padding: 55px 0 120px;
+}
+
+.behind-hero h1 {
+    margin: 18px 0 50px;
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(54px, 7vw, 96px);
+    line-height: 0.98;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+}
+
+.behind-intro {
+    max-width: 680px;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.behind-intro p {
+    margin: 0 0 22px;
+}
+
+
+/* =========================
+   STANDARD SECTIONS
+========================= */
+
+.behind-section {
+    max-width: 920px;
+    padding: 105px 0;
+    border-top: 1px solid #d8d8d0;
+}
+
+.behind-section h2 {
+    max-width: 780px;
+    margin: 16px 0 45px;
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.02;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.behind-copy {
+    max-width: 680px;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.behind-copy p {
+    margin: 0 0 22px;
+}
+
+
+/* =========================
+   HIGHLIGHTS
+========================= */
+
+.behind-highlight {
+    margin: 38px 0 !important;
+    font-family: "DM Serif Display", serif;
+    font-size: 30px;
+    line-height: 1.25;
+}
+
+
+/* =========================
+   PERSON
+========================= */
+
+.behind-person {
+    margin-left: auto;
+}
+
+.behind-person .behind-copy {
+    max-width: 700px;
+}
+
+
+/* =========================
+   BIGGEST TRY
+========================= */
+
+.behind-statement {
+    margin: 70px 0;
+    padding: 110px 80px;
+    background: #f1f0e9;
+}
+
+.behind-statement h2 {
+    margin: 10px 0 55px;
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(100px, 16vw, 190px);
+    line-height: 0.82;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+}
+
+.behind-statement-copy {
+    max-width: 680px;
+    margin-left: auto;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.behind-statement-copy p {
+    margin: 0 0 22px;
+}
+
+
+/* =========================
+   WHAT MOVE & TRY IS
+========================= */
+
+.behind-what {
+    max-width: 1000px;
+}
+
+.behind-what .behind-copy {
+    max-width: 760px;
+}
+
+
+/* =========================
+   ENDING
+========================= */
+
+.behind-ending {
+    margin-top: 50px;
+    padding: 120px 0 40px;
+    border-top: 1px solid #d8d8d0;
+}
+
+.behind-ending h2 {
+    max-width: 850px;
+    margin: 16px 0 50px;
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(52px, 7vw, 90px);
+    line-height: 0.98;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+}
+
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.behind-cta {
+    margin-top: 90px;
+    padding-top: 45px;
+    border-top: 1px solid #d8d8d0;
+}
+
+.behind-cta p {
+    margin: 0 0 28px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.behind-cta a {
+    display: block;
+    width: fit-content;
+    margin: 16px 0;
+    color: inherit;
+    font-size: 17px;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+}
+
+.behind-cta a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   BEHIND — TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .behind-page {
+        padding: 65px 28px 100px;
+    }
+
+    .behind-hero {
+        padding: 35px 0 90px;
+    }
+
+    .behind-section {
+        padding: 80px 0;
+    }
+
+    .behind-statement {
+        padding: 80px 45px;
+    }
+
+}
+
+
+/* =========================
+   BEHIND — MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .behind-page {
+        padding: 40px 20px 80px;
+    }
+
+    .behind-hero {
+        padding: 30px 0 70px;
+    }
+
+    .behind-hero h1 {
+        margin: 14px 0 38px;
+        font-size: 48px;
+        line-height: 1;
+    }
+
+    .behind-intro,
+    .behind-copy,
+    .behind-statement-copy {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+
+    .behind-section {
+        padding: 65px 0;
+    }
+
+    .behind-section h2 {
+        margin-bottom: 35px;
+        font-size: 39px;
+    }
+
+    .behind-highlight {
+        margin: 30px 0 !important;
+        font-size: 26px;
+    }
+
+    .behind-statement {
+        width: calc(100% + 40px);
+        margin: 35px 0 35px -20px;
+        padding: 70px 20px;
+    }
+
+    .behind-statement h2 {
+        margin-bottom: 45px;
+        font-size: 105px;
+    }
+
+    .behind-ending {
+        padding-top: 75px;
+    }
+
+    .behind-ending h2 {
+        font-size: 47px;
+    }
+
+    .behind-cta {
+        margin-top: 65px;
+    }
+
+    .behind-cta a {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+}
