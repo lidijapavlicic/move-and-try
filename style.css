@@ -1925,9 +1925,9 @@ a.content-card:hover {
 
 .home-visual {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 0 60px 90px;
+    padding: 70px 40px 55px;
 }
 
 .home-visual img {
@@ -1936,10 +1936,13 @@ a.content-card:hover {
     height: auto;
 }
 
+
+/* HOME VISUAL — MOBILE */
+
 @media (max-width: 768px) {
 
     .home-visual {
-        padding: 0 24px 60px;
+        padding: 45px 20px 40px;
     }
 
 }
