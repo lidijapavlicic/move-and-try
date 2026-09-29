@@ -9,7 +9,7 @@
 
     <meta
         name="description"
-        content="Otkrij nešto novo kroz kretanje. Trčanje, pole dance i još mnogo toga — bez pritiska, rezultata i potrebe da odmah budeš dobar u tome."
+        content="Otkrij nešto fizičko što možeš probati. Trčanje, pole dance i još mnogo toga — bez pritiska, ciljeva i potrebe da budeš dobar u tome."
     >
 
     <link rel="canonical" href="https://moveandtry.com/hr/move.html">
@@ -27,17 +27,115 @@
 
 <body>
 
-<main class="category-page">
 
-    <div class="language-switcher">
-        <a href="../move.html" onclick="setLanguage('en')">EN</a>
-        <span class="language-separator">|</span>
-        <span class="language-active">HR</span>
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <a href="/move.html" onclick="setLanguage('en')">
+                EN
+            </a>
+
+            <span>|</span>
+
+            <span class="language-active">
+                HR
+            </span>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
     </div>
 
-    <a href="index.html" class="back-link">
-        ← MOVE & TRY
-    </a>
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <a href="/move.html" onclick="setLanguage('en')">
+            EN
+        </a>
+
+        <span>|</span>
+
+        <span class="language-active">
+            HR
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     CATEGORY PAGE
+========================= -->
+
+<main class="category-page">
 
 
     <!-- =========================
@@ -47,10 +145,10 @@
     <header class="category-header">
 
         <p class="category-page-number">
-            01 · KRETANJE
+            01 · MOVE
         </p>
 
-        <h1>KRETANJE</h1>
+        <h1>MOVE</h1>
 
         <p class="category-page-intro">
             Ne moraš trenirati.<br>
@@ -68,13 +166,12 @@
     <section class="category-activities">
 
         <p class="section-label">
-            ISTRAŽI KRETANJE
+            ISTRAŽI MOVE
         </p>
 
         <h2>
-            ŠTO BI HTIO/HTJELA PROBATI?
+            ŠTO BI ŽELIO PROBATI?
         </h2>
-
 
         <div class="activity-grid">
 
@@ -93,7 +190,7 @@
 
                     <p class="activity-description">
                         Kreni jednostavno. Vidi kakav je osjećaj trčati
-                        prije nego što počneš razmišljati o tempu, udaljenosti ili opremi.
+                        prije nego počneš razmišljati o tempu, udaljenosti ili opremi.
                     </p>
 
                     <div class="activity-available">
@@ -115,34 +212,38 @@
 
             <!-- POLE DANCE -->
 
-<a href="pole-dance.html" class="activity-card">
+            <a href="pole-dance.html" class="activity-card">
 
-    <span class="activity-number">
-        02
-    </span>
+                <span class="activity-number">
+                    02
+                </span>
 
-    <div class="activity-content">
+                <div class="activity-content">
 
-        <h3>POLE DANCE</h3>
+                    <h3>POLE DANCE</h3>
 
-        <p class="activity-description">
-            Snaga, pokret i sasvim drukčije
-            iskustvo prvog pokušaja.
-        </p>
+                    <p class="activity-description">
+                        Snaga, pokret i sasvim drugačiji
+                        prvi pokušaj.
+                    </p>
 
-        <div class="activity-available">
+                    <div class="activity-available">
 
-            <span>VODIČ ✓</span>
+                        <span>VODIČ ✓</span>
+
+                    </div>
+
+                </div>
+
+                <span class="activity-action">
+                    ISTRAŽI POLE DANCE →
+                </span>
+
+            </a>
 
         </div>
 
-    </div>
-
-    <span class="activity-action">
-        ISTRAŽI POLE DANCE →
-    </span>
-
-</a>
+    </section>
 
 
     <!-- =========================
@@ -160,18 +261,22 @@
         </h2>
 
         <p>
-            Želiš probati neku aktivnost iz kategorije KRETANJE
-            koje još nema ovdje? Reci nam što nedostaje.
+            Želiš probati neku MOVE aktivnost koje još nema ovdje?
+            Reci nam što nedostaje.
         </p>
 
-        <a href="index.html#try-form" class="category-suggest-link">
-            PREDLOŽI ŠTO DA PROBAMO →
+        <a href="/hr/#try-form" class="category-suggest-link">
+            PREDLOŽI TRY →
         </a>
 
     </section>
 
 </main>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script src="../script.js"></script>
 
