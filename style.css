@@ -1918,3 +1918,28 @@ a.content-card:hover {
         right: 20px;
     }
 }
+
+/* =========================
+   HOME VISUAL
+========================= */
+
+.home-visual {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px 90px;
+}
+
+.home-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+
+    .home-visual {
+        padding: 0 24px 60px;
+    }
+
+}
