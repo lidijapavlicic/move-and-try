@@ -27,17 +27,115 @@
 
 <body>
 
-<main class="category-page">
 
-    <div class="language-switcher">
-    <span class="language-active">EN</span>
-    <span class="language-separator">|</span>
-    <a href="hr/move.html">HR</a>
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <span class="language-active">
+                EN
+            </span>
+
+            <span>|</span>
+
+            <a href="/hr/move.html" onclick="setLanguage('hr')">
+                HR
+            </a>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <span class="language-active">
+            EN
+        </span>
+
+        <span>|</span>
+
+        <a href="/hr/move.html" onclick="setLanguage('hr')">
+            HR
+        </a>
+
+    </div>
+
 </div>
 
-    <a href="index.html" class="back-link">
-        ← MOVE & TRY
-    </a>
+
+<!-- =========================
+     CATEGORY PAGE
+========================= -->
+
+<main class="category-page">
 
 
     <!-- =========================
@@ -74,7 +172,6 @@
         <h2>
             WHAT WOULD YOU LIKE TO TRY?
         </h2>
-
 
         <div class="activity-grid">
 
@@ -115,34 +212,38 @@
 
             <!-- POLE DANCE -->
 
-<a href="pole-dance.html" class="activity-card">
+            <a href="pole-dance.html" class="activity-card">
 
-    <span class="activity-number">
-        02
-    </span>
+                <span class="activity-number">
+                    02
+                </span>
 
-    <div class="activity-content">
+                <div class="activity-content">
 
-        <h3>POLE DANCE</h3>
+                    <h3>POLE DANCE</h3>
 
-        <p class="activity-description">
-            Strength, movement and a very different
-            kind of first try.
-        </p>
+                    <p class="activity-description">
+                        Strength, movement and a very different
+                        kind of first try.
+                    </p>
 
-        <div class="activity-available">
+                    <div class="activity-available">
 
-            <span>GUIDE ✓</span>
+                        <span>GUIDE ✓</span>
+
+                    </div>
+
+                </div>
+
+                <span class="activity-action">
+                    EXPLORE POLE DANCE →
+                </span>
+
+            </a>
 
         </div>
 
-    </div>
-
-    <span class="activity-action">
-        EXPLORE POLE DANCE →
-    </span>
-
-</a>
+    </section>
 
 
     <!-- =========================
@@ -164,13 +265,20 @@
             Tell us what's missing.
         </p>
 
-        <a href="index.html#try-form" class="category-suggest-link">
+        <a href="/#try-form" class="category-suggest-link">
             SUGGEST A TRY →
         </a>
 
     </section>
 
 </main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="script.js"></script>
 
 </body>
 
