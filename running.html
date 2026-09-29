@@ -14,20 +14,139 @@
 
     <link rel="canonical" href="https://moveandtry.com/running.html">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<main class="activity-page">
 
-    <div class="language-switcher">
-    <span class="language-active">EN</span>
-    <span class="language-separator">|</span>
-    <a href="hr/running.html">HR</a>
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <span class="language-active">
+                EN
+            </span>
+
+            <span>|</span>
+
+            <a
+                href="/hr/running.html"
+                onclick="setLanguage('hr')"
+            >
+                HR
+            </a>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <span class="language-active">
+            EN
+        </span>
+
+        <span>|</span>
+
+        <a
+            href="/hr/running.html"
+            onclick="setLanguage('hr')"
+        >
+            HR
+        </a>
+
+    </div>
+
 </div>
 
-    <a href="move.html" class="back-link">
+
+<!-- =========================
+     ACTIVITY PAGE
+========================= -->
+
+<main class="activity-page">
+
+
+    <!-- BACK TO MOVE -->
+
+    <a href="/move.html" class="back-link">
         ← MOVE
     </a>
 
@@ -50,10 +169,23 @@
         </p>
 
         <div class="activity-nav">
-            <span class="activity-nav-active">GUIDE</span>
-            <span class="activity-nav-active">EXPERIENCES</span>
-            <span>EXPERTS</span>
-            <span>WHERE TO TRY</span>
+
+            <span class="activity-nav-active">
+                GUIDE
+            </span>
+
+            <span class="activity-nav-active">
+                EXPERIENCES
+            </span>
+
+            <span>
+                EXPERTS
+            </span>
+
+            <span>
+                WHERE TO TRY
+            </span>
+
         </div>
 
     </header>
@@ -69,20 +201,24 @@
             EXPLORE RUNNING
         </p>
 
-        <h2>START SOMEWHERE.</h2>
+        <h2>
+            START SOMEWHERE.
+        </h2>
 
         <div class="activity-content-grid">
 
 
             <!-- GUIDE -->
 
-            <a href="try-running.html" class="content-card">
+            <a href="/try-running.html" class="content-card">
 
                 <span class="content-card-type">
                     START HERE · GUIDE
                 </span>
 
-                <h3>TRY RUNNING</h3>
+                <h3>
+                    TRY RUNNING
+                </h3>
 
                 <p>
                     What you need, what you don't need,
@@ -98,13 +234,15 @@
 
             <!-- EXPERIENCE -->
 
-            <a href="running-lidija.html" class="content-card">
+            <a href="/running-lidija.html" class="content-card">
 
                 <span class="content-card-type">
                     REAL EXPERIENCE
                 </span>
 
-                <h3>I JUST WENT RUNNING.</h3>
+                <h3>
+                    I JUST WENT RUNNING.
+                </h3>
 
                 <p>
                     Lidija started running as a teenager
@@ -126,7 +264,9 @@
                     EXPERT PERSPECTIVE
                 </span>
 
-                <h3>WHAT SHOULD A BEGINNER KNOW?</h3>
+                <h3>
+                    WHAT SHOULD A BEGINNER KNOW?
+                </h3>
 
                 <p>
                     Advice and perspective from someone
@@ -148,7 +288,9 @@
                     WHERE TO TRY
                 </span>
 
-                <h3>FIND SOMEONE TO HELP YOU START.</h3>
+                <h3>
+                    FIND SOMEONE TO HELP YOU START.
+                </h3>
 
                 <p>
                     Trainers, running groups and people
@@ -176,25 +318,32 @@
             YOUR EXPERIENCE
         </p>
 
-        <h2>TRIED RUNNING?</h2>
+        <h2>
+            TRIED RUNNING?
+        </h2>
 
         <p>
             Loved it, hated it or still not sure?
             Your experience might help someone else decide to try.
         </p>
 
-       <a
-    href="share-experience.html"
-    class="activity-contribute-link"
->
-    SHARE YOUR EXPERIENCE →
-</a>
+        <a
+            href="/share-experience.html"
+            class="activity-contribute-link"
+        >
+            SHARE YOUR EXPERIENCE →
+        </a>
 
     </section>
 
 </main>
 
-    <script src="script.js"></script>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="script.js"></script>
 
 </body>
 
