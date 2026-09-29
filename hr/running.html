@@ -9,26 +9,145 @@
 
     <meta
         name="description"
-        content="Razmišljaš o tome da probaš trčanje? Istraži vodič za početnike, stvarna iskustva, stručne savjete i, uskoro, mjesta i ljude koji ti mogu pomoći da kreneš."
+        content="Razmišljaš o tome da probaš trčanje? Istraži vodič za početnike, stvarna iskustva, stručne perspektive i, u budućnosti, mjesta i ljude koji ti mogu pomoći da počneš."
     >
 
     <link rel="canonical" href="https://moveandtry.com/hr/running.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
 
-<main class="activity-page">
 
-    <div class="language-switcher">
-        <a href="../running.html" onclick="setLanguage('en')">EN</a>
-        <span class="language-separator">|</span>
-        <span class="language-active">HR</span>
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <a
+                href="/running.html"
+                onclick="setLanguage('en')"
+            >
+                EN
+            </a>
+
+            <span>|</span>
+
+            <span class="language-active">
+                HR
+            </span>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
     </div>
 
-    <a href="move.html" class="back-link">
-        ← KRETANJE
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <a
+            href="/running.html"
+            onclick="setLanguage('en')"
+        >
+            EN
+        </a>
+
+        <span>|</span>
+
+        <span class="language-active">
+            HR
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ACTIVITY PAGE
+========================= -->
+
+<main class="activity-page">
+
+
+    <!-- BACK TO MOVE -->
+
+    <a href="/hr/move.html" class="back-link">
+        ← MOVE
     </a>
 
 
@@ -39,7 +158,7 @@
     <header class="activity-header">
 
         <p class="activity-page-type">
-            KRETANJE · TRČANJE
+            MOVE · TRČANJE
         </p>
 
         <h1>TRČANJE</h1>
@@ -50,10 +169,23 @@
         </p>
 
         <div class="activity-nav">
-            <span class="activity-nav-active">VODIČ</span>
-            <span class="activity-nav-active">ISKUSTVA</span>
-            <span>STRUČNJACI</span>
-            <span>GDJE PROBATI</span>
+
+            <span class="activity-nav-active">
+                VODIČ
+            </span>
+
+            <span class="activity-nav-active">
+                ISKUSTVA
+            </span>
+
+            <span>
+                STRUČNJACI
+            </span>
+
+            <span>
+                GDJE PROBATI
+            </span>
+
         </div>
 
     </header>
@@ -69,20 +201,24 @@
             ISTRAŽI TRČANJE
         </p>
 
-        <h2>KRENI ODNEKUD.</h2>
+        <h2>
+            KRENI ODNEKUD.
+        </h2>
 
         <div class="activity-content-grid">
 
 
             <!-- GUIDE -->
 
-            <a href="try-running.html" class="content-card">
+            <a href="/hr/try-running.html" class="content-card">
 
                 <span class="content-card-type">
                     KRENI OVDJE · VODIČ
                 </span>
 
-                <h3>PROBAJ TRČANJE</h3>
+                <h3>
+                    PROBAJ TRČANJE
+                </h3>
 
                 <p>
                     Što ti treba, što ti ne treba
@@ -98,17 +234,19 @@
 
             <!-- EXPERIENCE -->
 
-            <a href="running-lidija.html" class="content-card">
+            <a href="/hr/running-lidija.html" class="content-card">
 
                 <span class="content-card-type">
                     STVARNO ISKUSTVO
                 </span>
 
-                <h3>SAMO SAM OTIŠLA TRČATI.</h3>
+                <h3>
+                    SAMO SAM OTIŠLA TRČATI.
+                </h3>
 
                 <p>
                     Lidija je počela trčati kao tinejdžerica,
-                    bez plana, sata ili ikakve ideje kako se postaje trkač.
+                    bez plana, sata ili ideje kako se postaje trkač.
                 </p>
 
                 <span class="content-card-action">
@@ -123,14 +261,16 @@
             <div class="content-card content-card-coming">
 
                 <span class="content-card-type">
-                    STRUČNI POGLED
+                    STRUČNA PERSPEKTIVA
                 </span>
 
-                <h3>ŠTO BI POČETNIK TREBAO ZNATI?</h3>
+                <h3>
+                    ŠTO BI POČETNIK TREBAO ZNATI?
+                </h3>
 
                 <p>
                     Savjeti i perspektiva nekoga
-                    tko se trčanjem bavi profesionalno.
+                    tko se profesionalno bavi trčanjem.
                 </p>
 
                 <span class="content-card-status">
@@ -148,7 +288,9 @@
                     GDJE PROBATI
                 </span>
 
-                <h3>PRONAĐI NEKOGA TKO ĆE TI POMOĆI DA KRENEŠ.</h3>
+                <h3>
+                    PRONAĐI NEKOGA TKO TI MOŽE POMOĆI DA KRENEŠ.
+                </h3>
 
                 <p>
                     Treneri, trkačke grupe i ljudi
@@ -176,15 +318,17 @@
             TVOJE ISKUSTVO
         </p>
 
-        <h2>PROBAO/LA SI TRČANJE?</h2>
+        <h2>
+            PROBAO SI TRČATI?
+        </h2>
 
         <p>
-            Oduševilo te, nije ti sjelo ili još nisi siguran/na?
+            Svidjelo ti se, nije ti se svidjelo ili još nisi siguran?
             Tvoje iskustvo možda pomogne nekome drugome da odluči probati.
         </p>
 
         <a
-            href="share-experience.html"
+            href="/hr/share-experience.html"
             class="activity-contribute-link"
         >
             PODIJELI SVOJE ISKUSTVO →
@@ -194,6 +338,10 @@
 
 </main>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script src="../script.js"></script>
 
