@@ -9,7 +9,7 @@
 
     <meta
         name="description"
-        content="Probao/la si nešto novo? Podijeli svoje stvarno iskustvo s Move & Try i pomozi nekome drugome da napravi prvi korak."
+        content="Probao si nešto? Podijeli svoje stvarno iskustvo s Move & Try i pomozi nekome drugome napraviti prvi korak."
     >
 
     <link rel="canonical" href="https://moveandtry.com/hr/share-experience.html">
@@ -27,13 +27,121 @@
 
 <body>
 
-<main class="share-page">
 
-    <div class="language-switcher">
-        <a href="../share-experience.html" onclick="setLanguage('en')">EN</a>
-        <span class="language-separator">|</span>
-        <span class="language-active">HR</span>
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <a
+                href="/share-experience.html"
+                onclick="setLanguage('en')"
+            >
+                EN
+            </a>
+
+            <span>|</span>
+
+            <span class="language-active">
+                HR
+            </span>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
     </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <a
+            href="/share-experience.html"
+            onclick="setLanguage('en')"
+        >
+            EN
+        </a>
+
+        <span>|</span>
+
+        <span class="language-active">
+            HR
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SHARE EXPERIENCE PAGE
+========================= -->
+
+<main class="share-page">
 
     <a href="javascript:history.back()" class="back-link">
         ← NATRAG
@@ -57,16 +165,19 @@
 
         <p class="share-lead">
             Ne moraš biti stručnjak.<br>
-            <strong>Samo trebaš imati vlastito iskustvo.</strong>
+            <strong>Samo trebaš biti netko tko je probao.</strong>
         </p>
 
         <p class="share-intro">
-            Stvarna iskustva važan su dio Move & Try.
-            Ispričaj nam što si probao/la, kako je to stvarno izgledalo
-            i što bi rekao/la nekome tko razmišlja o tome da proba.
+            Stvarna iskustva važan su dio Move & Trya.
+            Ispričaj nam što si probao, kako je to stvarno izgledalo
+            i što bi rekao nekome tko razmišlja o tome da proba.
         </p>
 
-        <a href="running-lidija.html" class="share-example-link">
+        <a
+            href="/hr/running-lidija.html"
+            class="share-example-link"
+        >
             POGLEDAJ PRIMJER →
         </a>
 
@@ -83,7 +194,9 @@
             TVOJE ISKUSTVO
         </p>
 
-        <h2>KRENIMO.</h2>
+        <h2>
+            KRENIMO.
+        </h2>
 
         <form
             id="experience-form"
@@ -91,25 +204,26 @@
             method="POST"
         >
 
+
             <!-- 01 -->
 
             <div class="share-question">
 
                 <label for="experience-activity">
                     <span>01</span>
-                    ŠTO SI PROBAO/LA?
+                    ŠTO SI PROBAO?
                 </label>
 
                 <p>
-                    Trčanje, keramiku, terapiju, penjanje, učenje talijanskog...
-                    što god da si probao/la.
+                    Trčanje, lončarstvo, terapiju, penjanje, učenje talijanskog...
+                    bilo što što si probao.
                 </p>
 
                 <input
                     type="text"
                     id="experience-activity"
                     name="activity"
-                    placeholder="Probao/la sam..."
+                    placeholder="Probao sam..."
                     required
                 >
 
@@ -122,11 +236,11 @@
 
                 <label for="experience-why">
                     <span>02</span>
-                    ZAŠTO SI TO PROBAO/LA?
+                    ZAŠTO SI TO PROBAO?
                 </label>
 
                 <p>
-                    Što te dovoljno zainteresiralo da odlučiš probati?
+                    Što te dovoljno zainteresiralo da odlučiš pokušati?
                 </p>
 
                 <textarea
@@ -150,8 +264,8 @@
                 </label>
 
                 <p>
-                    Što te iznenadilo? Što je bilo teško, zabavno, neugodno
-                    ili potpuno drukčije od onoga što si očekivao/la?
+                    Što te iznenadilo? Što je bilo teško, zabavno,
+                    neugodno ili potpuno drugačije od onoga što si očekivao?
                 </p>
 
                 <textarea
@@ -175,7 +289,7 @@
                 </label>
 
                 <p>
-                    Jesi li nastavio/la? Odustao/la? Vratio/la se tome kasnije?
+                    Jesi li nastavio? Odustao? Vratio se kasnije?
                     Je li jedan pokušaj bio dovoljan?
                 </p>
 
@@ -196,19 +310,18 @@
 
                 <label for="experience-advice">
                     <span>05</span>
-                    ŠTO BI REKAO/LA NEKOME TKO RAZMIŠLJA O TOME DA PROBA?
+                    ŠTO BI REKAO NEKOME TKO RAZMIŠLJA O TOME DA PROBA?
                 </label>
 
                 <p>
-                    Ne stručni savjet. Samo ono što bi volio/voljela
-                    da je netko rekao tebi.
+                    Ne stručni savjet. Samo ono što bi volio da je netko rekao tebi.
                 </p>
 
                 <textarea
                     id="experience-advice"
                     name="advice"
                     rows="6"
-                    placeholder="Rekao/la bih..."
+                    placeholder="Rekao bih..."
                     required
                 ></textarea>
 
@@ -221,43 +334,65 @@
 
             <fieldset class="share-verdict">
 
-                <legend>TVOJ VERDIKT</legend>
+                <legend>
+                    TVOJA PRESUDA
+                </legend>
 
                 <p>
-                    Nema točnog odgovora. Kako je tebi bilo?
+                    Nema točnog odgovora. Kako si se osjećao?
                 </p>
 
                 <div class="share-verdict-grid">
 
                     <label>
+
                         <input
                             type="radio"
                             name="verdict"
                             value="loved"
                             required
                         >
+
                         <span>❤️</span>
-                        <strong>ODUŠEVILO ME</strong>
+
+                        <strong>
+                            ODUŠEVILO ME
+                        </strong>
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="radio"
                             name="verdict"
                             value="unsure"
                         >
+
                         <span>🤔</span>
-                        <strong>NISAM SIGURAN/NA</strong>
+
+                        <strong>
+                            NISAM SIGURAN
+                        </strong>
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="radio"
                             name="verdict"
                             value="hated"
                         >
+
                         <span>😂</span>
-                        <strong>UŽAS.</strong>
+
+                        <strong>
+                            NIJE ZA MENE
+                        </strong>
+
                     </label>
 
                 </div>
@@ -275,7 +410,9 @@
                     O TEBI
                 </p>
 
-                <h2>KAKO DA TE POTPIŠEMO?</h2>
+                <h2>
+                    KAKO DA TE POTPIŠEMO?
+                </h2>
 
                 <label for="experience-name">
                     Ime ili nadimak
@@ -285,24 +422,25 @@
                     type="text"
                     id="experience-name"
                     name="name"
-                    placeholder="Ime pod kojim želiš da objavimo iskustvo"
+                    placeholder="Kako želiš da tvoje ime bude prikazano"
                     required
                 >
 
                 <label for="experience-email">
-                    E-mail
+                    Email
                 </label>
 
                 <input
                     type="email"
                     id="experience-email"
                     name="email"
-                    placeholder="ti@primjer.com"
+                    placeholder="ti@example.com"
                     required
                 >
 
                 <p class="share-privacy">
-                    Tvoj e-mail koristimo samo za kontakt. Nećemo ga objaviti.
+                    Tvoj email koristit ćemo samo za kontakt.
+                    Neće biti javno objavljen.
                 </p>
 
             </div>
@@ -319,20 +457,27 @@
                 </p>
 
                 <p>
-                    Pročitat ćemo tvoje iskustvo prije bilo kakve objave.
-                    Možemo ga malo urediti radi jasnoće, duljine i Move & Try stila,
-                    ali nećemo mijenjati smisao tvog iskustva.
+                    Pročitat ćemo tvoje iskustvo prije nego što bilo što objavimo.
+                    Možemo ga blago urediti radi jasnoće, duljine i Move & Try stila,
+                    ali nećemo mijenjati značenje tvog iskustva.
                 </p>
 
                 <p>
-                    Slanje iskustva ne znači automatski da će biti objavljeno.
+                    Slanje iskustva ne znači automatski da će ono biti objavljeno.
                     Ako ga budemo željeli objaviti, prvo ćemo ti se javiti.
                 </p>
 
             </div>
 
 
-            <button type="submit" class="share-submit">
+            <!-- =========================
+                 SUBMIT
+            ========================= -->
+
+            <button
+                type="submit"
+                class="share-submit"
+            >
                 PODIJELI SVOJE ISKUSTVO →
             </button>
 
@@ -347,6 +492,10 @@
 
 </main>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script src="../script.js"></script>
 
