@@ -404,7 +404,7 @@ if (experienceForm) {
             event.preventDefault();
 
             const isCroatian =
-                window.location.pathname.startsWith("/hr/");
+               document.documentElement.lang === "hr";
 
             const submitButton =
                 experienceForm.querySelector(".share-submit");
