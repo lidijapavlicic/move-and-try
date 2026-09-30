@@ -1,12 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+    <!-- ENGLISH -->
+
     <url>
         <loc>https://moveandtry.com/</loc>
     </url>
 
     <url>
+        <loc>https://moveandtry.com/move.html</loc>
+    </url>
+
+    <url>
         <loc>https://moveandtry.com/running.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/try-running.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/running-lidija.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/pole-dance.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/try-pole-dance.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/share-experience.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/behind-move-and-try.html</loc>
+    </url>
+
+
+    <!-- CROATIAN -->
+
+    <url>
+        <loc>https://moveandtry.com/hr/</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/move.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/running.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/try-running.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/running-lidija.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/pole-dance.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/try-pole-dance.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/share-experience.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/behind-move-and-try.html</loc>
     </url>
 
 </urlset>
