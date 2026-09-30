@@ -123,6 +123,12 @@ async function submitTryVote(trySlug, verdict) {
         return;
     }
 
+    const message =
+        document.getElementById("verdict-message");
+
+    const isCroatian =
+        document.documentElement.lang === "hr";
+
     const response = await fetch(
         `${SUPABASE_URL}/rest/v1/try_votes`,
         {
@@ -149,6 +155,13 @@ async function submitTryVote(trySlug, verdict) {
             error
         );
 
+        if (message) {
+            message.textContent =
+                isCroatian
+                    ? "Nešto je pošlo po zlu. Pokušaj ponovno."
+                    : "Something went wrong. Please try again.";
+        }
+
         return;
     }
 
@@ -160,8 +173,25 @@ async function submitTryVote(trySlug, verdict) {
     markSelectedVerdict(verdict);
 
     await loadTryVotes(trySlug);
-}
 
+    if (message) {
+
+        const messages = isCroatian
+            ? {
+                loved: "❤️ Ovaj TRY ti je bio pun pogodak.",
+                unsure: "🤔 I to je odgovor. Možda vrijedi probati još jednom.",
+                hated: "😂 Savršeno. Sad znaš."
+            }
+            : {
+                loved: "❤️ Looks like this TRY was worth it.",
+                unsure: "🤔 That's an answer too. Maybe it's worth another try.",
+                hated: "😂 Perfect. Now you know."
+            };
+
+        message.textContent =
+            messages[verdict] || "";
+    }
+}
 
 /* =========================
    SELECTED VERDICT
