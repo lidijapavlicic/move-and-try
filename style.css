@@ -2550,3 +2550,60 @@ a.content-card:hover {
     }
 
 }
+/* =========================
+   404 PAGE
+========================= */
+
+.error-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 40px;
+}
+
+.error-page h1 {
+    margin: 20px 0 28px;
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(56px, 9vw, 120px);
+    line-height: 0.9;
+    font-weight: 400;
+}
+
+.error-text {
+    max-width: 600px;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+}
+
+.error-link {
+    display: inline-block;
+    width: fit-content;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.error-language {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+
+    .error-page {
+        padding: 60px 24px;
+    }
+
+    .error-page h1 {
+        font-size: clamp(48px, 16vw, 76px);
+    }
+
+}
