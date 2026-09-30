@@ -166,14 +166,28 @@ async function submitTryVote(trySlug, verdict) {
     }
 
     localStorage.setItem(
-        voteKey,
-        verdict
-    );
+    voteKey,
+    verdict
+);
 
-    markSelectedVerdict(verdict);
+/* =========================
+   GOOGLE ANALYTICS — VERDICT
+========================= */
 
-    await loadTryVotes(trySlug);
+if (typeof gtag === "function") {
 
+    gtag("event", "try_verdict", {
+        try_name: trySlug,
+        verdict: verdict,
+        language: isCroatian ? "hr" : "en"
+    });
+
+}
+
+markSelectedVerdict(verdict);
+
+await loadTryVotes(trySlug);
+   
     if (message) {
 
         const messages = isCroatian
