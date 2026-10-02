@@ -199,23 +199,43 @@
 
         <div class="where-category-grid">
 
-            <button type="button" class="where-category">
+            <button
+                type="button"
+                class="where-category"
+                data-category="move"
+            >
                 MOVE
             </button>
 
-            <button type="button" class="where-category">
+            <button
+                type="button"
+                class="where-category"
+                data-category="create"
+            >
                 CREATE
             </button>
 
-            <button type="button" class="where-category">
+            <button
+                type="button"
+                class="where-category"
+                data-category="learn"
+            >
                 LEARN
             </button>
 
-            <button type="button" class="where-category">
+            <button
+                type="button"
+                class="where-category"
+                data-category="dare"
+            >
                 DARE
             </button>
 
-            <button type="button" class="where-category">
+            <button
+                type="button"
+                class="where-category"
+                data-category="care"
+            >
                 CARE
             </button>
 
@@ -231,13 +251,15 @@
     <section
         class="where-section where-category-results"
         id="category-results"
+        hidden
     >
 
         <div class="where-category-heading">
 
-            <p class="section-label">
-                CARE
-            </p>
+            <p
+                class="section-label"
+                id="selected-category"
+            ></p>
 
             <h2>
                 WHAT WOULD YOU LIKE TO TRY?
@@ -245,29 +267,10 @@
 
         </div>
 
-        <div class="where-activity-grid">
-
-            <a
-                href="/where-to-try.html?activity=child-adolescent-psychotherapy"
-                class="where-activity-card"
-            >
-
-                <span class="where-activity-card-category">
-                    CARE
-                </span>
-
-                <h3>
-                    CHILD &amp; ADOLESCENT<br>
-                    PSYCHOTHERAPY
-                </h3>
-
-                <span class="where-activity-card-action">
-                    FIND WHERE TO TRY →
-                </span>
-
-            </a>
-
-        </div>
+        <div
+            class="where-activity-grid"
+            id="where-activity-grid"
+        ></div>
 
     </section>
 
@@ -298,7 +301,7 @@
 
 
     <!-- =========================
-         ADD A PLACE
+         BE PART OF IT
     ========================= -->
 
     <section class="where-section where-contribute">
