@@ -739,3 +739,131 @@ if (menuToggle && mobileMenu) {
     });
 
 }
+
+/* =========================
+   WHERE TO TRY — CATEGORIES
+========================= */
+
+const whereToTryActivities = {
+
+    care: [
+        {
+            title: "CHILD & ADOLESCENT PSYCHOTHERAPY",
+            slug: "child-adolescent-psychotherapy"
+        },
+        {
+            title: "PSYCHOTHERAPY",
+            slug: "psychotherapy"
+        }
+    ],
+
+    create: [
+        {
+            title: "CALLIGRAPHY",
+            slug: "calligraphy"
+        }
+    ],
+
+    move: [],
+
+    learn: [],
+
+    dare: []
+};
+
+
+/* =========================
+   WHERE TO TRY — ELEMENTS
+========================= */
+
+const categoryButtons =
+    document.querySelectorAll(".where-category");
+
+const categoryResults =
+    document.getElementById("category-results");
+
+const selectedCategory =
+    document.getElementById("selected-category");
+
+const activityGrid =
+    document.getElementById("where-activity-grid");
+
+
+/* =========================
+   WHERE TO TRY — CATEGORY CLICK
+========================= */
+
+categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const category =
+            button.dataset.category;
+
+        const activities =
+            whereToTryActivities[category] || [];
+
+
+        /* ACTIVE CATEGORY */
+
+        categoryButtons.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+
+        /* SHOW RESULTS */
+
+        categoryResults.hidden = false;
+
+        selectedCategory.textContent =
+            category.toUpperCase();
+
+        activityGrid.innerHTML = "";
+
+
+        /* EMPTY CATEGORY */
+
+        if (activities.length === 0) {
+
+            activityGrid.innerHTML = `
+                <p class="where-empty-category">
+                    Nothing here yet.
+                </p>
+            `;
+
+            return;
+        }
+
+
+        /* CREATE ACTIVITY CARDS */
+
+        activities.forEach(activity => {
+
+            const card =
+                document.createElement("a");
+
+            card.className =
+                "where-activity-card";
+
+            card.href =
+                `/where-to-try.html?activity=${activity.slug}`;
+
+            card.innerHTML = `
+                <h3>
+                    ${activity.title}
+                </h3>
+
+                <span class="where-activity-card-action">
+                    FIND WHERE TO TRY →
+                </span>
+            `;
+
+            activityGrid.appendChild(card);
+
+        });
+
+    });
+
+});
