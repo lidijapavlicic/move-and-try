@@ -2671,8 +2671,9 @@ a.content-card:hover {
 .where-category-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 45px;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 50px;
 }
 
 .where-category {
@@ -2681,18 +2682,31 @@ a.content-card:hover {
     background: transparent;
     color: #1f2a18;
 
-    padding: 14px 24px;
+    min-width: 150px;
+    padding: 20px 30px;
 
     font-family: "Manrope", sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
 
     cursor: pointer;
 
     transition:
         background 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.where-category:hover {
+    background: #1f2a18;
+    color: #f7f6f1;
+    transform: translateY(-2px);
+}
+
+.where-category.active {
+    background: #1f2a18;
+    color: #f7f6f1;
 }
 
 .where-category:hover,
