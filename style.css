@@ -2607,3 +2607,311 @@ a.content-card:hover {
     }
 
 }
+
+/* =========================
+   WHERE TO TRY
+========================= */
+
+.where-page {
+    background: #f7f6f1;
+    min-height: 100vh;
+}
+
+.where-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 110px 40px 90px;
+    text-align: center;
+}
+
+.where-header h1 {
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 0.95;
+    margin: 20px 0 30px;
+}
+
+.where-intro {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+
+/* =========================
+   GENERAL WHERE SECTION
+========================= */
+
+.where-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 90px 40px;
+}
+
+.where-section > h2 {
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(2.3rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1;
+    margin: 15px 0 30px;
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+#where-categories {
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.where-category-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 45px;
+}
+
+.where-category {
+    appearance: none;
+    border: 1px solid #1f2a18;
+    background: transparent;
+    color: #1f2a18;
+
+    padding: 14px 24px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.where-category:hover,
+.where-category.active {
+    background: #1f2a18;
+    color: #f7f6f1;
+}
+
+
+/* =========================
+   ACTIVITY
+========================= */
+
+.where-activity {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.where-activity-intro {
+    max-width: 600px;
+    margin-bottom: 45px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   PLACE LIST
+========================= */
+
+.where-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+
+/* =========================
+   PLACE CARD
+========================= */
+
+.where-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+
+    padding: 34px;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 320px;
+}
+
+.where-card-location {
+    margin: 0 0 18px;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+
+    color: #78856a;
+}
+
+.where-card h3 {
+    font-family: "DM Serif Display", serif;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.1;
+
+    margin: 0 0 20px;
+}
+
+.where-card > p:not(.where-card-location) {
+    line-height: 1.7;
+    margin: 0 0 24px;
+}
+
+.where-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-bottom: 30px;
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.where-card-link {
+    margin-top: auto;
+
+    color: #1f2a18;
+    text-decoration: none;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.where-card-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   KEEP EXPLORING
+========================= */
+
+.where-more {
+    text-align: center;
+}
+
+.where-more > p:not(.section-label) {
+    max-width: 550px;
+    margin: 0 auto 30px;
+
+    line-height: 1.7;
+}
+
+.where-more-link {
+    display: inline-block;
+
+    color: #1f2a18;
+    text-decoration: none;
+
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.where-more-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   CONTRIBUTE
+========================= */
+
+.where-contribute {
+    max-width: none;
+
+    padding: 100px 40px;
+
+    text-align: center;
+
+    background: #1f2a18;
+    color: #f7f6f1;
+}
+
+.where-contribute > * {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.where-contribute > p:not(.section-label) {
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.where-contribute-link {
+    display: inline-block;
+
+    border: 1px solid #f7f6f1;
+
+    padding: 15px 24px;
+
+    color: #f7f6f1;
+    text-decoration: none;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.where-contribute-link:hover {
+    background: #f7f6f1;
+    color: #1f2a18;
+}
+
+
+/* =========================
+   WHERE TO TRY — MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .where-header {
+        padding: 80px 22px 65px;
+    }
+
+    .where-section {
+        padding: 65px 22px;
+    }
+
+    .where-category-grid {
+        gap: 8px;
+    }
+
+    .where-category {
+        padding: 12px 16px;
+        font-size: 0.7rem;
+    }
+
+    .where-list {
+        grid-template-columns: 1fr;
+    }
+
+    .where-card {
+        min-height: auto;
+        padding: 26px;
+    }
+
+    .where-contribute {
+        padding: 75px 22px;
+    }
+
+}
