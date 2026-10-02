@@ -167,28 +167,29 @@ async function submitTryVote(trySlug, verdict) {
     }
 
     localStorage.setItem(
-    voteKey,
-    verdict
-);
+        voteKey,
+        verdict
+    );
 
-/* =========================
-   GOOGLE ANALYTICS — VERDICT
-========================= */
 
-if (typeof gtag === "function") {
+    /* =========================
+       GOOGLE ANALYTICS — VERDICT
+    ========================= */
 
-    gtag("event", "try_verdict", {
-        try_name: trySlug,
-        verdict: verdict,
-        language: isCroatian ? "hr" : "en"
-    });
+    if (typeof gtag === "function") {
 
-}
+        gtag("event", "try_verdict", {
+            try_name: trySlug,
+            verdict: verdict,
+            language: isCroatian ? "hr" : "en"
+        });
 
-markSelectedVerdict(verdict);
+    }
 
-await loadTryVotes(trySlug);
-   
+    markSelectedVerdict(verdict);
+
+    await loadTryVotes(trySlug);
+
     if (message) {
 
         const messages = isCroatian
@@ -207,6 +208,7 @@ await loadTryVotes(trySlug);
             messages[verdict] || "";
     }
 }
+
 
 /* =========================
    SELECTED VERDICT
@@ -419,7 +421,7 @@ if (experienceForm) {
             event.preventDefault();
 
             const isCroatian =
-               document.documentElement.lang === "hr";
+                document.documentElement.lang === "hr";
 
             const submitButton =
                 experienceForm.querySelector(".share-submit");
@@ -681,6 +683,7 @@ function loadLatestUpdate() {
 
 loadLatestUpdate();
 
+
 /* =========================
    MOBILE MENU
 ========================= */
@@ -740,6 +743,7 @@ if (menuToggle && mobileMenu) {
 
 }
 
+
 /* =========================
    WHERE TO TRY — CATEGORIES
 ========================= */
@@ -773,6 +777,42 @@ const whereToTryActivities = {
 
 
 /* =========================
+   WHERE TO TRY — PROVIDERS
+========================= */
+
+const whereToTryProviders = {
+
+    "child-adolescent-psychotherapy": [
+        {
+            name: "ORDINACIJA NIKOLINA ĐURIĆ",
+            officialName:
+                "Lumos | Nikolina Đurić, dječji i adolescentni psihoterapeut",
+
+            city: "ZAGREB",
+            area: "SESVETE",
+
+            address: "Sesvetska cesta 3",
+            postalCode: "10360 Sesvete",
+
+            description:
+                "Privatna psihoterapijska praksa za individualni terapijski rad s djecom i adolescentima.",
+
+            tags: [
+                "INDIVIDUAL",
+                "IN PERSON"
+            ],
+
+            website: "https://www.lumosfera.hr/"
+        }
+    ],
+
+    psychotherapy: [],
+
+    calligraphy: []
+};
+
+
+/* =========================
    WHERE TO TRY — ELEMENTS
 ========================= */
 
@@ -787,6 +827,18 @@ const selectedCategory =
 
 const activityGrid =
     document.getElementById("where-activity-grid");
+
+const providerResults =
+    document.getElementById("provider-results");
+
+const providerActivityTitle =
+    document.getElementById("provider-activity-title");
+
+const providerList =
+    document.getElementById("where-provider-list");
+
+const providerBack =
+    document.getElementById("provider-back");
 
 
 /* =========================
@@ -813,7 +865,18 @@ categoryButtons.forEach(button => {
         button.classList.add("active");
 
 
+        /* HIDE PROVIDERS IF OPEN */
+
+        if (providerResults) {
+            providerResults.hidden = true;
+        }
+
+
         /* SHOW RESULTS */
+
+        if (!categoryResults || !selectedCategory || !activityGrid) {
+            return;
+        }
 
         categoryResults.hidden = false;
 
@@ -847,8 +910,15 @@ categoryButtons.forEach(button => {
             card.className =
                 "where-activity-card";
 
-            card.href =
-                `/where-to-try.html?activity=${activity.slug}`;
+            card.href = "#";
+
+            card.addEventListener("click", event => {
+
+                event.preventDefault();
+
+                showProviders(activity);
+
+            });
 
             card.innerHTML = `
                 <h3>
@@ -867,3 +937,131 @@ categoryButtons.forEach(button => {
     });
 
 });
+
+
+/* =========================
+   WHERE TO TRY — SHOW PROVIDERS
+========================= */
+
+function showProviders(activity) {
+
+    if (
+        !providerResults ||
+        !providerActivityTitle ||
+        !providerList
+    ) {
+        return;
+    }
+
+    const providers =
+        whereToTryProviders[activity.slug] || [];
+
+    if (categoryResults) {
+        categoryResults.hidden = true;
+    }
+
+    providerResults.hidden = false;
+
+    providerActivityTitle.textContent =
+        activity.title;
+
+    providerList.innerHTML = "";
+
+
+    /* NO PROVIDERS */
+
+    if (providers.length === 0) {
+
+        providerList.innerHTML = `
+            <p class="where-empty-category">
+                No places available yet.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    /* PROVIDER CARDS */
+
+    providers.forEach(provider => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "where-provider-card";
+
+        const location =
+            [provider.city, provider.area]
+                .filter(Boolean)
+                .join(" · ");
+
+        const address =
+            [provider.address, provider.postalCode]
+                .filter(Boolean)
+                .join("<br>");
+
+        const tags =
+            (provider.tags || [])
+                .map(
+                    tag => `<span>${tag}</span>`
+                )
+                .join("");
+
+        card.innerHTML = `
+
+            <p class="where-provider-location">
+                ${location}
+            </p>
+
+            <h3>
+                ${provider.name}
+            </h3>
+
+            <p class="where-provider-address">
+                ${address}
+            </p>
+
+            <p class="where-provider-description">
+                ${provider.description}
+            </p>
+
+            <div class="where-provider-tags">
+                ${tags}
+            </div>
+
+            <a
+                href="${provider.website}"
+                class="where-provider-link"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                VISIT WEBSITE →
+            </a>
+        `;
+
+        providerList.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   WHERE TO TRY — BACK TO ACTIVITIES
+========================= */
+
+if (providerBack) {
+
+    providerBack.addEventListener("click", () => {
+
+        providerResults.hidden = true;
+
+        if (categoryResults) {
+            categoryResults.hidden = false;
+        }
+
+    });
+
+}
