@@ -791,6 +791,8 @@ const whereToTryProviders = {
             city: "ZAGREB",
             area: "SESVETE",
 
+           image: "",
+
             address: "Sesvetska cesta 3",
             postalCode: "10360 Sesvete",
 
@@ -1009,44 +1011,21 @@ function showProviders(activity) {
                 )
                 .join("");
 
-        card.innerHTML = `
-
-            <p class="where-provider-location">
-                ${location}
-            </p>
-
-            <h3>
-                ${provider.name}
-            </h3>
-
-            <p class="where-provider-address">
-                ${address}
-            </p>
-
-            <p class="where-provider-description">
-                ${provider.description}
-            </p>
-
-            <div class="where-provider-tags">
-                ${tags}
-            </div>
-
-            <a
-                href="${provider.website}"
-                class="where-provider-link"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                VISIT WEBSITE →
-            </a>
-        `;
-
-        providerList.appendChild(card);
-
-    });
-
-}
-
+const visual = provider.image
+    ? `
+        <img
+            src="${provider.image}"
+            alt="${provider.name}"
+            class="where-provider-image"
+        >
+    `
+    : `
+        <div class="where-provider-placeholder">
+            <span>M&amp;T</span>
+        </div>
+    `;
+       
+        
 
 /* =========================
    WHERE TO TRY — BACK TO ACTIVITIES
@@ -1054,7 +1033,45 @@ function showProviders(activity) {
 
 if (providerBack) {
 
-    providerBack.addEventListener("click", () => {
+    providerBack.addEventListener("click", () => {card.innerHTML = `
+
+    <div class="where-provider-visual">
+        ${visual}
+    </div>
+
+    <div class="where-provider-content">
+
+        <p class="where-provider-location">
+            ${location}
+        </p>
+
+        <h3>
+            ${provider.name}
+        </h3>
+
+        <p class="where-provider-address">
+            ${address}
+        </p>
+
+        <p class="where-provider-description">
+            ${provider.description}
+        </p>
+
+        <div class="where-provider-tags">
+            ${tags}
+        </div>
+
+        <a
+            href="${provider.website}"
+            class="where-provider-link"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            VISIT WEBSITE →
+        </a>
+
+    </div>
+`;
 
         providerResults.hidden = true;
 
