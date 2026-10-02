@@ -10,15 +10,16 @@ function getTrySlug() {
 
     const path = window.location.pathname.toLowerCase();
 
-    if (path.includes("try-running")) {
-        return "running";
+    const fileName =
+        path.split("/").pop();
+
+    if (!fileName || !fileName.startsWith("try-")) {
+        return null;
     }
 
-    if (path.includes("try-pole-dance")) {
-        return "pole-dance";
-    }
-
-    return null;
+    return fileName
+        .replace("try-", "")
+        .replace(".html", "");
 }
 
 
