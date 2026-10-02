@@ -3010,3 +3010,14 @@ a.content-card:hover {
     }
 
 }
+
+.where-category.active {
+    background: #1f2a18;
+    color: #f7f6f1;
+}
+
+.where-empty-category {
+    grid-column: 1 / -1;
+    margin: 0;
+    opacity: 0.6;
+}
