@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ==========================================
+         TEMPLATE:
+         Replace all [PLACEHOLDERS] before publishing.
+    =========================================== -->
+
+    <title>[ACTIVITY NAME] | Move & Try</title>
+
+    <meta
+        name="description"
+        content="[SHORT SEO DESCRIPTION OF THE ACTIVITY]"
+    >
+
+    <!-- TEMPLATE MUST NOT BE INDEXED -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!--
+    WHEN CREATING A REAL PAGE, ADD:
+
+    <link rel="canonical" href="https://moveandtry.com/[activity-slug].html">
+
+    <link rel="alternate" hreflang="en" href="https://moveandtry.com/[activity-slug].html">
+    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/[activity-slug].html">
+    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/[activity-slug].html">
+    -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <span class="language-active">
+                EN
+            </span>
+
+            <span>|</span>
+
+            <!--
+            REPLACE WITH:
+            /hr/[activity-slug].html
+            -->
+            <a
+                href="/hr/[activity-slug].html"
+                onclick="setLanguage('hr')"
+            >
+                HR
+            </a>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <span class="language-active">
+            EN
+        </span>
+
+        <span>|</span>
+
+        <a
+            href="/hr/[activity-slug].html"
+            onclick="setLanguage('hr')"
+        >
+            HR
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ACTIVITY PAGE
+========================= -->
+
+<main class="activity-page">
+
+
+    <!-- =========================
+         BACK TO CATEGORY
+
+         EXAMPLES:
+         MOVE    → /move.html
+         CREATE  → /create.html
+         LEARN   → /learn.html
+         DARE    → /dare.html
+         CARE    → /care.html
+    ========================= -->
+
+    <a href="/[category-slug].html" class="back-link">
+        ← [CATEGORY]
+    </a>
+
+
+    <!-- =========================
+         ACTIVITY HEADER
+    ========================= -->
+
+    <header class="activity-header">
+
+        <p class="activity-page-type">
+            [CATEGORY] · [ACTIVITY NAME]
+        </p>
+
+        <h1>
+            [ACTIVITY NAME]
+        </h1>
+
+        <p class="activity-page-intro">
+            [SHORT INTRO / HOOK]<br>
+            <strong>[MAIN MOVE & TRY MESSAGE FOR THIS ACTIVITY]</strong>
+        </p>
+
+
+        <!-- ==========================================
+             ACTIVITY NAVIGATION
+
+             These are destinations, not individual
+             contributors.
+
+             GUIDE       → practical first-try guide
+             EXPERIENCES → collection of experiences
+             EXPERTS     → collection of expert perspectives
+             WHERE       → places/people for this activity
+        =========================================== -->
+
+        <nav class="activity-nav">
+
+            <a href="/try-[activity-slug].html">
+                GUIDE
+            </a>
+
+            <a href="/[activity-slug]-experiences.html">
+                EXPERIENCES
+            </a>
+
+            <a href="/[activity-slug]-experts.html">
+                EXPERTS
+            </a>
+
+            <a href="/where-to-try.html#[activity-slug]">
+                WHERE TO TRY
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         EXPLORE ACTIVITY
+    ========================= -->
+
+    <section class="activity-content-section">
+
+        <p class="section-label">
+            EXPLORE [ACTIVITY NAME]
+        </p>
+
+        <h2>
+            START SOMEWHERE.
+        </h2>
+
+        <div class="activity-content-grid">
+
+
+            <!-- =========================
+                 CORE: GUIDE
+
+                 Required for every activity.
+            ========================= -->
+
+            <a
+                href="/try-[activity-slug].html"
+                class="content-card"
+            >
+
+                <span class="content-card-type">
+                    START HERE · GUIDE
+                </span>
+
+                <h3>
+                    TRY [ACTIVITY NAME]
+                </h3>
+
+                <p>
+                    [SHORT DESCRIPTION OF WHAT THE
+                    FIRST-TRY GUIDE WILL HELP WITH.]
+                </p>
+
+                <span class="content-card-action">
+                    READ THE GUIDE →
+                </span>
+
+            </a>
+
+
+            <!-- =========================
+                 MODULE: REAL EXPERIENCES
+
+                 IMPORTANT:
+                 This card links to the EXPERIENCE LIST,
+                 never directly to one person's story.
+
+                 The list may contain:
+                 1 experience
+                 10 experiences
+                 100 experiences
+            ========================= -->
+
+            <a
+                href="/[activity-slug]-experiences.html"
+                class="content-card"
+            >
+
+                <span class="content-card-type">
+                    REAL EXPERIENCES
+                </span>
+
+                <h3>
+                    WHAT WAS IT ACTUALLY LIKE?
+                </h3>
+
+                <p>
+                    Real experiences from people
+                    who actually tried [ACTIVITY NAME].
+                </p>
+
+                <span class="content-card-action">
+                    EXPLORE EXPERIENCES →
+                </span>
+
+            </a>
+
+
+            <!-- =========================
+                 MODULE: EXPERT PERSPECTIVES
+
+                 IMPORTANT:
+                 This card links to the EXPERT LIST,
+                 never directly to one expert.
+
+                 More than one expert can contribute
+                 to the same activity.
+            ========================= -->
+
+            <a
+                href="/[activity-slug]-experts.html"
+                class="content-card"
+            >
+
+                <span class="content-card-type">
+                    EXPERT PERSPECTIVES
+                </span>
+
+                <h3>
+                    WHAT SHOULD YOU KNOW?
+                </h3>
+
+                <p>
+                    Knowledge and perspective from people
+                    who know [ACTIVITY NAME] professionally.
+                </p>
+
+                <span class="content-card-action">
+                    HEAR FROM THE EXPERTS →
+                </span>
+
+            </a>
+
+
+            <!-- =========================
+                 MODULE: WHERE TO TRY
+
+                 One activity can have many places,
+                 professionals, studios, clubs,
+                 workshops, groups, etc.
+
+                 This links into the central
+                 WHERE TO TRY system.
+            ========================= -->
+
+            <a
+                href="/where-to-try.html#[activity-slug]"
+                class="content-card"
+            >
+
+                <span class="content-card-type">
+                    WHERE TO TRY
+                </span>
+
+                <h3>
+                    READY TO TRY IT?
+                </h3>
+
+                <p>
+                    Find places and people who can help
+                    you try [ACTIVITY NAME] for real.
+                </p>
+
+                <span class="content-card-action">
+                    FIND WHERE TO TRY →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTRIBUTE
+    ========================= -->
+
+    <section class="activity-contribute">
+
+        <p class="section-label">
+            YOUR EXPERIENCE
+        </p>
+
+        <h2>
+            TRIED [ACTIVITY NAME]?
+        </h2>
+
+        <p>
+            Loved it, hated it or still not sure?
+            Your experience might help someone else decide to try.
+        </p>
+
+        <a
+            href="/share-experience.html"
+            class="activity-contribute-link"
+        >
+            SHARE YOUR EXPERIENCE →
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="/script.js"></script>
+
+</body>
+
+</html>
