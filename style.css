@@ -2929,3 +2929,84 @@ a.content-card:hover {
     }
 
 }
+
+/* =========================
+   WHERE TO TRY — ACTIVITIES
+========================= */
+
+.where-category-results {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.where-category-heading {
+    margin-bottom: 45px;
+}
+
+.where-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.where-activity-card {
+    min-height: 230px;
+    padding: 30px;
+
+    border: 1px solid rgba(31, 42, 24, 0.35);
+
+    color: #1f2a18;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.where-activity-card:hover {
+    background: #1f2a18;
+    color: #f7f6f1;
+    transform: translateY(-3px);
+}
+
+.where-activity-card-category {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    opacity: 0.7;
+}
+
+.where-activity-card h3 {
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(1.7rem, 2.5vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.05;
+
+    margin: 28px 0;
+}
+
+.where-activity-card-action {
+    margin-top: auto;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .where-activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .where-activity-card {
+        min-height: 200px;
+    }
+
+}
