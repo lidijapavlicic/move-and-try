@@ -31,15 +31,32 @@
     <meta name="twitter:description" content="Discover something new to try. You don't have to be good at it. You just have to try.">
     <meta name="twitter:image" content="https://moveandtry.com/images/move-and-try-share.png">
 
-    <link rel="icon" type="image/png" href="/images/favicon.png">
-
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Move & Try",
-        "url": "https://moveandtry.com/",
-        "description": "Move & Try is a place to discover something new to try. Move, learn, create, explore, dare or care. You don't have to be good at it. You just have to try."
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://moveandtry.com/#website",
+                "url": "https://moveandtry.com/",
+                "name": "Move & Try",
+                "alternateName": "MOVE & TRY",
+                "description": "Move & Try is a place to discover something new to try. Move, learn, create, explore, dare or care. You don't have to be good at it. You just have to try.",
+                "publisher": {
+                    "@id": "https://moveandtry.com/#organization"
+                }
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://moveandtry.com/#organization",
+                "name": "Move & Try",
+                "url": "https://moveandtry.com/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://moveandtry.com/images/move-and-try-logo.png"
+                }
+            }
+        ]
     }
     </script>
 
@@ -50,26 +67,28 @@
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-<script>
-    window.dataLayer = window.dataLayer || [];
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('js', new Date());
-    gtag('config', 'G-PREYRXPPN8');
-</script>
-    
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
+
+<!-- =========================
      SITE HEADER
 ========================= -->
 
@@ -84,35 +103,41 @@
 
     <nav class="desktop-nav">
 
-    <a href="#find-your-try">
-        DISCOVER
-    </a>
+        <a href="#find-your-try">
+            DISCOVER
+        </a>
 
-    <a href="#be-part-of-it">
-        BE PART OF IT
-    </a>
+        <a href="#be-part-of-it">
+            BE PART OF IT
+        </a>
 
-    <a href="#where-to-try">
-        WHERE TO TRY
-    </a>
+        <a href="#where-to-try">
+            WHERE TO TRY
+        </a>
 
-    <a href="behind-move-and-try.html">
-        BEHIND MOVE & TRY
-    </a>
+        <a href="behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
 
-</nav>
+    </nav>
 
     <div class="header-actions">
 
         <div class="header-language">
-            <span class="language-active">EN</span>
+
+            <span class="language-active">
+                EN
+            </span>
+
             <span>|</span>
+
             <a
                 href="/hr/"
                 onclick="setLanguage('hr')"
             >
                 HR
             </a>
+
         </div>
 
         <button
@@ -130,7 +155,9 @@
 </header>
 
 
-<!-- MOBILE MENU -->
+<!-- =========================
+     MOBILE MENU
+========================= -->
 
 <div class="mobile-menu">
 
@@ -174,7 +201,7 @@
 </div>
 
 
-    <!-- =========================
+<!-- =========================
      HERO IMAGE
 ========================= -->
 
@@ -187,381 +214,388 @@
 
 </section>
 
- <!-- =========================
-         CATEGORIES
-    ========================= -->
 
-    <section class="categories" id="find-your-try">
+<!-- =========================
+     CATEGORIES
+========================= -->
 
-        <p class="section-label">
-            FIND YOUR NEXT TRY
-        </p>
+<section class="categories" id="find-your-try">
 
-        <h2>
-            WHAT DO YOU FEEL LIKE?
-        </h2>
+    <p class="section-label">
+        FIND YOUR NEXT TRY
+    </p>
 
-        <div class="category-grid">
+    <h2>
+        WHAT DO YOU FEEL LIKE?
+    </h2>
 
-
-            <a href="move.html" class="category-card category-move">
-
-                <span class="category-number">01</span>
-
-                <h3>MOVE</h3>
-
-                <p>
-                    Run. Climb. Dance. Hike. Ride.
-                </p>
-
-                <span class="category-action">
-                    TRY SOMETHING PHYSICAL →
-                </span>
-
-            </a>
+    <div class="category-grid">
 
 
-            <div class="category-card category-learn">
+        <a href="move.html" class="category-card category-move">
 
-                <span class="category-number">02</span>
+            <span class="category-number">01</span>
 
-                <h3>LEARN</h3>
+            <h3>MOVE</h3>
 
-                <p>
-                    Code. Cook. Speak. Build. Understand.
-                </p>
+            <p>
+                Run. Climb. Dance. Hike. Ride.
+            </p>
 
-                <span class="category-status">
-                    COMING SOON
-                </span>
+            <span class="category-action">
+                TRY SOMETHING PHYSICAL →
+            </span>
 
-            </div>
-
-
-            <div class="category-card category-create">
-
-                <span class="category-number">03</span>
-
-                <h3>CREATE</h3>
-
-                <p>
-                    Write. Paint. Photograph. Make.
-                </p>
-
-                <span class="category-status">
-                    COMING SOON
-                </span>
-
-            </div>
+        </a>
 
 
-            <div class="category-card category-explore">
+        <div class="category-card category-learn">
 
-                <span class="category-number">04</span>
+            <span class="category-number">02</span>
 
-                <h3>EXPLORE</h3>
+            <h3>LEARN</h3>
 
-                <p>
-                    Go somewhere. Take another route. Get curious.
-                </p>
+            <p>
+                Code. Cook. Speak. Build. Understand.
+            </p>
 
-                <span class="category-status">
-                    COMING SOON
-                </span>
-
-            </div>
-
-
-            <div class="category-card category-dare">
-
-                <span class="category-number">05</span>
-
-                <h3>DARE</h3>
-
-                <p>
-                    Do the thing you've been talking yourself out of.
-                </p>
-
-                <span class="category-status">
-                    COMING SOON
-                </span>
-
-            </div>
-
-
-            <div class="category-card category-care">
-
-                <span class="category-number">06</span>
-
-                <h3>CARE</h3>
-
-                <p>
-                    Pause. Talk. Rest. Recover. Take care of yourself.
-                </p>
-
-                <span class="category-status">
-                    COMING SOON
-                </span>
-
-            </div>
+            <span class="category-status">
+                COMING SOON
+            </span>
 
         </div>
 
 
-        <button
-            class="surprise-button"
-            onclick="surpriseMe()"
-        >
-            🎲 SURPRISE ME
-        </button>
+        <div class="category-card category-create">
 
-    </section>
+            <span class="category-number">03</span>
 
-    
-    <!-- =========================
-         IDEA + WHAT'S NEW
-    ========================= -->
+            <h3>CREATE</h3>
 
-    <section class="home-discovery">
+            <p>
+                Write. Paint. Photograph. Make.
+            </p>
 
-        <div class="home-discovery-grid">
+            <span class="category-status">
+                COMING SOON
+            </span>
 
-            <div class="home-idea">
+        </div>
 
-                <p class="section-label">
-                    THE IDEA
-                </p>
 
-                <h2>
-                    YOU'RE ALLOWED<br>
-                    TO BE A BEGINNER.
-                </h2>
+        <div class="category-card category-explore">
 
-               <div class="beginner-text">
-    <p>You don't need the right gear.</p>
-    <p>You don't need experience.</p>
-    <p>You don't even need to know if you'll like it.</p>
-    <p>You don't have to keep doing it.</p>
-</div>
+            <span class="category-number">04</span>
 
-<p class="beginner-rule">
-    Try first. Decide later.
-</p>
+            <h3>EXPLORE</h3>
 
+            <p>
+                Go somewhere. Take another route. Get curious.
+            </p>
+
+            <span class="category-status">
+                COMING SOON
+            </span>
+
+        </div>
+
+
+        <div class="category-card category-dare">
+
+            <span class="category-number">05</span>
+
+            <h3>DARE</h3>
+
+            <p>
+                Do the thing you've been talking yourself out of.
+            </p>
+
+            <span class="category-status">
+                COMING SOON
+            </span>
+
+        </div>
+
+
+        <div class="category-card category-care">
+
+            <span class="category-number">06</span>
+
+            <h3>CARE</h3>
+
+            <p>
+                Pause. Talk. Rest. Recover. Take care of yourself.
+            </p>
+
+            <span class="category-status">
+                COMING SOON
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="surprise-button"
+        onclick="surpriseMe()"
+    >
+        🎲 SURPRISE ME
+    </button>
+
+</section>
+
+
+<!-- =========================
+     IDEA + WHAT'S NEW
+========================= -->
+
+<section class="home-discovery">
+
+    <div class="home-discovery-grid">
+
+        <div class="home-idea">
+
+            <p class="section-label">
+                THE IDEA
+            </p>
+
+            <h2>
+                YOU'RE ALLOWED<br>
+                TO BE A BEGINNER.
+            </h2>
+
+            <div class="beginner-text">
+                <p>You don't need the right gear.</p>
+                <p>You don't need experience.</p>
+                <p>You don't even need to know if you'll like it.</p>
+                <p>You don't have to keep doing it.</p>
             </div>
 
+            <p class="beginner-rule">
+                Try first. Decide later.
+            </p>
 
-            <div class="whats-new">
+        </div>
 
-                <p class="section-label">
-                    WHAT'S NEW
-                </p>
 
-                <h2>
-                    SOMETHING NEW<br>
-                    TO DISCOVER.
-                </h2>
+        <div class="whats-new">
 
-                <a href="#" class="new-card" id="latest-update">
+            <p class="section-label">
+                WHAT'S NEW
+            </p>
 
-                    <span
-                        class="new-type"
-                        id="latest-update-type"
-                    ></span>
+            <h2>
+                SOMETHING NEW<br>
+                TO DISCOVER.
+            </h2>
 
-                    <h3 id="latest-update-title"></h3>
+            <a href="#" class="new-card" id="latest-update">
 
-                    <p id="latest-update-text"></p>
+                <span
+                    class="new-type"
+                    id="latest-update-type"
+                ></span>
 
-                    <span
-                        class="new-action"
-                        id="latest-update-action"
-                    ></span>
+                <h3 id="latest-update-title"></h3>
 
+                <p id="latest-update-text"></p>
+
+                <span
+                    class="new-action"
+                    id="latest-update-action"
+                ></span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BE PART OF IT + WHERE TO TRY
+========================= -->
+
+<section class="community">
+
+    <div class="community-grid">
+
+
+        <div
+            class="community-panel contribute-panel"
+            id="be-part-of-it"
+        >
+
+            <p class="section-label">
+                BE PART OF IT
+            </p>
+
+            <h2>
+                THERE ARE A HUNDRED WAYS<br>
+                TO BE PART OF MOVE & TRY.
+            </h2>
+
+            <p class="community-text">
+                Share an experience. Share what you know.<br>
+                Send us a photograph. Suggest something worth discovering.<br>
+                Teach something. Create something. Show us something you love.
+            </p>
+
+            <p class="community-highlight">
+                Move & Try is built with people, not just for them.
+            </p>
+
+            <div class="community-actions">
+
+                <a
+                    href="/share-experience.html"
+                    class="community-link"
+                >
+                    SHARE YOUR EXPERIENCE →
+                </a>
+
+                <a
+                    href="mailto:hello@moveandtry.com"
+                    class="community-link"
+                >
+                    GET IN TOUCH →
                 </a>
 
             </div>
 
+            <p class="community-note">
+                Stories · Knowledge · Photography · Ideas · Places · People
+            </p>
+
         </div>
 
-    </section>
 
-
-    <!-- =========================
-         BE PART OF IT + WHERE TO TRY
-    ========================= -->
-
-    <section class="community">
-
-        <div class="community-grid">
-
-
-           <div class="community-panel contribute-panel" id="be-part-of-it"> 
-
-    <p class="section-label">
-        BE PART OF IT
-    </p>
-
-    <h2>
-        THERE ARE A HUNDRED WAYS<br>
-        TO BE PART OF MOVE & TRY.
-    </h2>
-
-    <p class="community-text">
-        Share an experience. Share what you know.<br>
-        Send us a photograph. Suggest something worth discovering.<br>
-        Teach something. Create something. Show us something you love.
-    </p>
-
-    <p class="community-highlight">
-        Move & Try is built with people, not just for them.
-    </p>
-
-    <div class="community-actions">
-
-        <a
-            href="/share-experience.html"
-            class="community-link"
+        <div
+            class="community-panel where-panel"
+            id="where-to-try"
         >
-            SHARE YOUR EXPERIENCE →
-        </a>
 
-        <a
-            href="mailto:hello@moveandtry.com"
-            class="community-link"
-        >
-            GET IN TOUCH →
-        </a>
+            <p class="section-label">
+                WHERE TO TRY
+            </p>
+
+            <h2>
+                FOUND SOMETHING<br>
+                YOU WANT TO TRY?
+            </h2>
+
+            <p class="community-text">
+                We're building a place where you'll be able to find
+                the people and places that can help you experience it for real.
+                <br><br>
+                Trainers. Studios. Teachers. Guides. Workshops. Groups.
+            </p>
+
+            <p class="community-highlight">
+                Discover it here. Try it out there.
+            </p>
+
+            <span class="community-coming">
+                COMING SOON
+            </span>
+
+        </div>
 
     </div>
 
-    <p class="community-note">
-        Stories · Knowledge · Photography · Ideas · Places · People
+</section>
+
+
+<!-- =========================
+     SUGGEST A TRY
+========================= -->
+
+<section class="suggest">
+
+    <p class="section-label">
+        YOUR TURN
     </p>
 
-</div>
+    <h2>
+        WHAT SHOULD WE TRY NEXT?
+    </h2>
+
+    <p class="suggest-intro">
+        Is there something you've been thinking about trying?<br>
+        Something you're curious about, but haven't taken the first step yet?
+        <br><br>
+
+        <strong>Tell us.</strong><br>
+        Your idea might become our next TRY.
+    </p>
 
 
-            <div class="community-panel where-panel" id="where-to-try">
+    <form id="try-form">
 
-                <p class="section-label">
-                    WHERE TO TRY
-                </p>
+        <input
+            type="text"
+            id="try-input"
+            name="try"
+            placeholder="I'd like to try..."
+            required
+        >
 
-                <h2>
-                    FOUND SOMETHING<br>
-                    YOU WANT TO TRY?
-                </h2>
+        <button type="submit">
+            SEND IT →
+        </button>
 
-                <p class="community-text">
-                    We're building a place where you'll be able to find
-                    the people and places that can help you experience it for real.
-                    <br><br>
-                    Trainers. Studios. Teachers. Guides. Workshops. Groups.
-                </p>
-
-                <p class="community-highlight">
-                    Discover it here. Try it out there.
-                </p>
-
-                <span class="community-coming">
-                    COMING SOON
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
+    </form>
 
 
-    <!-- =========================
-         SUGGEST A TRY
-    ========================= -->
+    <p id="suggestion-message"></p>
 
-    <section class="suggest">
+    <p class="suggest-note">
+        You suggest. We explore. Together we build Move & Try.
+    </p>
 
-        <p class="section-label">
-            YOUR TURN
-        </p>
+    <p class="privacy-note">
+        We don't ask for your name or email.
+    </p>
 
-        <h2>
-            WHAT SHOULD WE TRY NEXT?
-        </h2>
-
-        <p class="suggest-intro">
-            Is there something you've been thinking about trying?<br>
-            Something you're curious about, but haven't taken the first step yet?
-            <br><br>
-
-            <strong>Tell us.</strong><br>
-            Your idea might become our next TRY.
-        </p>
+</section>
 
 
-        <form id="try-form">
+<!-- =========================
+     FOOTER
+========================= -->
 
-            <input
-                type="text"
-                id="try-input"
-                name="try"
-                placeholder="I'd like to try..."
-                required
-            >
+<footer class="site-footer">
 
-            <button type="submit">
-                SEND IT →
-            </button>
+    <p>
+        MOVE & TRY
+    </p>
 
-        </form>
+    <p class="footer-tagline">
+        You don't have to be good at it. You just have to try.
+    </p>
 
+    <a href="mailto:hello@moveandtry.com">
+        hello@moveandtry.com
+    </a>
 
-        <p id="suggestion-message"></p>
-
-        <p class="suggest-note">
-            You suggest. We explore. Together we build Move & Try.
-        </p>
-
-        <p class="privacy-note">
-            We don't ask for your name or email.
-        </p>
-
-    </section>
+</footer>
 
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
+<script src="script.js"></script>
 
-    <footer class="site-footer">
+<script>
 
-        <p>
-            MOVE & TRY
-        </p>
+    const preferredLanguage =
+        getPreferredLanguage();
 
-        <p class="footer-tagline">
-            You don't have to be good at it. You just have to try.
-        </p>
+    if (preferredLanguage === "hr") {
+        window.location.replace("/hr/");
+    }
 
-        <a href="mailto:hello@moveandtry.com">
-            hello@moveandtry.com
-        </a>
-
-    </footer>
-
-
-    <script src="script.js"></script>
-
-    <script>
-
-        const preferredLanguage =
-            getPreferredLanguage();
-
-        if (preferredLanguage === "hr") {
-            window.location.replace("/hr/");
-        }
-
-    </script>
+</script>
 
 </body>
 
