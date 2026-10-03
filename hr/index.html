@@ -22,25 +22,42 @@
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Move & Try">
-    <meta property="og:title" content="Move & Try | You Don't Have to Be Good at It. Just Try.">
-    <meta property="og:description" content="Discover something new to try. You don't have to be good at it. You just have to try.">
-    <meta property="og:url" content="https://moveandtry.com/">
+    <meta property="og:title" content="Move & Try | Ne moraš biti dobar u tome. Samo probaj.">
+    <meta property="og:description" content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj.">
+    <meta property="og:url" content="https://moveandtry.com/hr/">
     <meta property="og:image" content="https://moveandtry.com/images/move-and-try-share.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Move & Try | You Don't Have to Be Good at It. Just Try.">
-    <meta name="twitter:description" content="Discover something new to try. You don't have to be good at it. You just have to try.">
+    <meta name="twitter:title" content="Move & Try | Ne moraš biti dobar u tome. Samo probaj.">
+    <meta name="twitter:description" content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj.">
     <meta name="twitter:image" content="https://moveandtry.com/images/move-and-try-share.png">
-
-    <link rel="icon" type="image/png" href="/images/favicon.png">
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Move & Try",
-        "url": "https://moveandtry.com/",
-        "description": "Move & Try je mjesto za otkrivanje nečeg novog što možeš probati. Ne moraš biti dobar u tome. Samo probaj."
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://moveandtry.com/#website",
+                "url": "https://moveandtry.com/",
+                "name": "Move & Try",
+                "alternateName": "MOVE & TRY",
+                "description": "Move & Try je mjesto za otkrivanje nečeg novog što možeš probati. Ne moraš biti dobar u tome. Samo probaj.",
+                "publisher": {
+                    "@id": "https://moveandtry.com/#organization"
+                }
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://moveandtry.com/#organization",
+                "name": "Move & Try",
+                "url": "https://moveandtry.com/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://moveandtry.com/images/move-and-try-logo.png"
+                }
+            }
+        ]
     }
     </script>
 
@@ -53,23 +70,24 @@
     >
 
     <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-<script>
-    window.dataLayer = window.dataLayer || [];
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-    gtag('js', new Date());
-    gtag('config', 'G-PREYRXPPN8');
-</script>
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
 
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
+
 
 <!-- =========================
      SITE HEADER
@@ -84,25 +102,25 @@
         >
     </a>
 
- <nav class="desktop-nav">
+    <nav class="desktop-nav">
 
-    <a href="#find-your-try">
-        OTKRIJ
-    </a>
+        <a href="#find-your-try">
+            OTKRIJ
+        </a>
 
-    <a href="#be-part-of-it">
-        BUDI DIO PRIČE
-    </a>
+        <a href="#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
 
-    <a href="#where-to-try">
-        GDJE PROBATI
-    </a>
+        <a href="#where-to-try">
+            GDJE PROBATI
+        </a>
 
-    <a href="behind-move-and-try.html">
-        IZA MOVE & TRY
-    </a>
+        <a href="behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
 
-</nav>
+    </nav>
 
     <div class="header-actions">
 
@@ -433,7 +451,10 @@
 
         <!-- BE PART OF IT -->
 
-        <div class="community-panel contribute-panel" id="be-part-of-it">
+        <div
+            class="community-panel contribute-panel"
+            id="be-part-of-it"
+        >
 
             <p class="section-label">
                 BUDI DIO PRIČE
@@ -481,7 +502,10 @@
 
         <!-- WHERE TO TRY -->
 
-        <div class="community-panel where-panel" id="where-to-try">
+        <div
+            class="community-panel where-panel"
+            id="where-to-try"
+        >
 
             <p class="section-label">
                 GDJE PROBATI
