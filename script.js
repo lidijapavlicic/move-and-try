@@ -800,7 +800,7 @@ const whereToTryActivities = {
         {
             title: {
                 en: "CHILD & ADOLESCENT PSYCHOTHERAPY",
-                hr: "PSIHOTERAPIJA DJECE I ADOLESCENATA"
+                hr: "DJEČJA I ADOLESCENTSKA PSIHOTERAPIJA"
             },
             slug: "child-adolescent-psychotherapy"
         },
