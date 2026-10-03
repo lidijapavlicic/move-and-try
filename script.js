@@ -745,6 +745,52 @@ if (menuToggle && mobileMenu) {
 
 
 /* =========================
+   WHERE TO TRY — LANGUAGE
+========================= */
+
+const whereToTryIsCroatian =
+    document.documentElement.lang.toLowerCase() === "hr";
+
+
+/* =========================
+   WHERE TO TRY — TEXT
+========================= */
+
+const whereToTryText = {
+
+    emptyCategory: {
+        en: "Nothing here yet.",
+        hr: "Ovdje još nema aktivnosti."
+    },
+
+    findWhereToTry: {
+        en: "FIND WHERE TO TRY →",
+        hr: "PRONAĐI GDJE PROBATI →"
+    },
+
+    noProviders: {
+        en: "No places available yet.",
+        hr: "Još nema dostupnih mjesta."
+    },
+
+    visitWebsite: {
+        en: "VISIT WEBSITE →",
+        hr: "POSJETI WEB STRANICU →"
+    }
+
+};
+
+
+function getWhereToTryText(key) {
+
+    return whereToTryIsCroatian
+        ? whereToTryText[key].hr
+        : whereToTryText[key].en;
+
+}
+
+
+/* =========================
    WHERE TO TRY — CATEGORIES
 ========================= */
 
@@ -752,18 +798,27 @@ const whereToTryActivities = {
 
     care: [
         {
-            title: "CHILD & ADOLESCENT PSYCHOTHERAPY",
+            title: {
+                en: "CHILD & ADOLESCENT PSYCHOTHERAPY",
+                hr: "PSIHOTERAPIJA DJECE I ADOLESCENATA"
+            },
             slug: "child-adolescent-psychotherapy"
         },
         {
-            title: "PSYCHOTHERAPY",
+            title: {
+                en: "PSYCHOTHERAPY",
+                hr: "PSIHOTERAPIJA"
+            },
             slug: "psychotherapy"
         }
     ],
 
     create: [
         {
-            title: "CALLIGRAPHY",
+            title: {
+                en: "CALLIGRAPHY",
+                hr: "KALIGRAFIJA"
+            },
             slug: "calligraphy"
         }
     ],
@@ -785,24 +840,33 @@ const whereToTryProviders = {
     "child-adolescent-psychotherapy": [
         {
             name: "ORDINACIJA NIKOLINA ĐURIĆ",
+
             officialName:
                 "Lumos | Nikolina Đurić, dječji i adolescentni psihoterapeut",
 
             city: "ZAGREB",
             area: "SESVETE",
 
-           image: "",
+            image: "",
 
             address: "Sesvetska cesta 3",
             postalCode: "10360 Sesvete",
 
-            description:
-                "Privatna psihoterapijska praksa za individualni terapijski rad s djecom i adolescentima.",
+            description: {
+                en: "Private psychotherapy practice offering individual therapeutic work with children and adolescents.",
+                hr: "Privatna psihoterapijska praksa za individualni terapijski rad s djecom i adolescentima."
+            },
 
-            tags: [
-                "INDIVIDUAL",
-                "IN PERSON"
-            ],
+            tags: {
+                en: [
+                    "INDIVIDUAL",
+                    "IN PERSON"
+                ],
+                hr: [
+                    "INDIVIDUALNO",
+                    "UŽIVO"
+                ]
+            },
 
             website: "https://www.lumosfera.hr/"
         }
@@ -812,6 +876,49 @@ const whereToTryProviders = {
 
     calligraphy: []
 };
+
+
+/* =========================
+   WHERE TO TRY — HELPERS
+========================= */
+
+function getActivityTitle(activity) {
+
+    if (!activity || !activity.title) {
+        return "";
+    }
+
+    return whereToTryIsCroatian
+        ? activity.title.hr
+        : activity.title.en;
+
+}
+
+
+function getProviderDescription(provider) {
+
+    if (!provider || !provider.description) {
+        return "";
+    }
+
+    return whereToTryIsCroatian
+        ? provider.description.hr
+        : provider.description.en;
+
+}
+
+
+function getProviderTags(provider) {
+
+    if (!provider || !provider.tags) {
+        return [];
+    }
+
+    return whereToTryIsCroatian
+        ? provider.tags.hr
+        : provider.tags.en;
+
+}
 
 
 /* =========================
@@ -894,7 +1001,7 @@ categoryButtons.forEach(button => {
 
             activityGrid.innerHTML = `
                 <p class="where-empty-category">
-                    Nothing here yet.
+                    ${getWhereToTryText("emptyCategory")}
                 </p>
             `;
 
@@ -924,11 +1031,11 @@ categoryButtons.forEach(button => {
 
             card.innerHTML = `
                 <h3>
-                    ${activity.title}
+                    ${getActivityTitle(activity)}
                 </h3>
 
                 <span class="where-activity-card-action">
-                    FIND WHERE TO TRY →
+                    ${getWhereToTryText("findWhereToTry")}
                 </span>
             `;
 
@@ -940,10 +1047,6 @@ categoryButtons.forEach(button => {
 
 });
 
-
-/* =========================
-   WHERE TO TRY — SHOW PROVIDERS
-========================= */
 
 /* =========================
    WHERE TO TRY — SHOW PROVIDERS
@@ -969,7 +1072,7 @@ function showProviders(activity) {
     providerResults.hidden = false;
 
     providerActivityTitle.textContent =
-        activity.title;
+        getActivityTitle(activity);
 
     providerList.innerHTML = "";
 
@@ -980,7 +1083,7 @@ function showProviders(activity) {
 
         providerList.innerHTML = `
             <p class="where-empty-category">
-                No places available yet.
+                ${getWhereToTryText("noProviders")}
             </p>
         `;
 
@@ -1009,7 +1112,7 @@ function showProviders(activity) {
                 .join("<br>");
 
         const tags =
-            (provider.tags || [])
+            getProviderTags(provider)
                 .map(
                     tag => `<span>${tag}</span>`
                 )
@@ -1050,7 +1153,7 @@ function showProviders(activity) {
                 </p>
 
                 <p class="where-provider-description">
-                    ${provider.description}
+                    ${getProviderDescription(provider)}
                 </p>
 
                 <div class="where-provider-tags">
@@ -1063,7 +1166,7 @@ function showProviders(activity) {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    VISIT WEBSITE →
+                    ${getWhereToTryText("visitWebsite")}
                 </a>
 
             </div>
