@@ -39,6 +39,10 @@
         <loc>https://moveandtry.com/behind-move-and-try.html</loc>
     </url>
 
+    <url>
+        <loc>https://moveandtry.com/be-part-of-where-to-try.html</loc>
+    </url>
+
 
     <!-- CROATIAN -->
 
@@ -76,6 +80,10 @@
 
     <url>
         <loc>https://moveandtry.com/hr/behind-move-and-try.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/be-part-of-where-to-try.html</loc>
     </url>
 
 </urlset>
