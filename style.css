@@ -3365,3 +3365,173 @@ a.content-card:hover {
     }
 
 }
+
+/* =========================================
+   MOVE — CATEGORY APP LAYOUT
+   ========================================= */
+
+.category-page.move-app-page {
+    max-width: 1240px;
+    padding-top: 75px;
+}
+
+/* TWO-COLUMN LAYOUT */
+
+.move-app-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(40px, 6vw, 90px);
+    align-items: start;
+}
+
+.move-app-intro,
+.move-app-discover {
+    min-width: 0;
+}
+
+/* LEFT COLUMN */
+
+.move-app-intro {
+    position: sticky;
+    top: 120px;
+}
+
+.move-app-intro h1 {
+    margin: 18px 0 34px;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(65px, 7vw, 94px);
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    line-height: 1;
+}
+
+.move-app-intro h2 {
+    margin: 0 0 30px;
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(30px, 3vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+.move-app-intro > p:not(.category-page-number) {
+    margin: 0 0 20px;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.move-app-intro .move-app-highlight {
+    margin-top: 32px !important;
+    font-weight: 700;
+}
+
+/* RIGHT COLUMN */
+
+.move-app-discover {
+    padding-top: 8px;
+}
+
+.move-app-discover > h2 {
+    margin: 14px 0 30px;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(25px, 3vw, 34px);
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+}
+
+.move-app-discover .activity-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+}
+
+.move-app-discover .activity-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 245px;
+    padding: 28px 30px;
+}
+
+.move-app-discover .activity-card h3 {
+    font-size: clamp(29px, 3vw, 36px);
+    margin-bottom: 12px;
+}
+
+.move-app-discover .activity-description {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+}
+
+.move-app-discover .activity-available {
+    font-size: 10px;
+}
+
+.move-app-more {
+    margin: 25px 0 0;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* SUGGEST SECTION */
+
+.move-app-page > .category-suggest {
+    max-width: 100%;
+    margin-top: 90px;
+    border-top: 1px solid var(--line);
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+    .move-app-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 60px;
+    }
+
+    .move-app-intro {
+        position: static;
+    }
+
+    .move-app-discover {
+        padding-top: 0;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+    .category-page.move-app-page {
+        padding: 40px 20px 80px;
+    }
+
+    .move-app-layout {
+        gap: 45px;
+    }
+
+    .move-app-intro h1 {
+        font-size: 65px;
+        margin-bottom: 24px;
+    }
+
+    .move-app-intro h2 {
+        font-size: 31px;
+    }
+
+    .move-app-intro > p:not(.category-page-number) {
+        font-size: 15px;
+    }
+
+    .move-app-discover > h2 {
+        font-size: 27px;
+    }
+
+    .move-app-discover .activity-card {
+        min-height: 235px;
+        padding: 26px;
+    }
+
+    .move-app-page > .category-suggest {
+        margin-top: 65px;
+    }
+}
