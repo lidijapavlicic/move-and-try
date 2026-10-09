@@ -3535,3 +3535,69 @@ a.content-card:hover {
         margin-top: 65px;
     }
 }
+
+/* =========================================
+   MOVE & TRY — UPCOMING CATEGORY ACTIVITIES
+   LEARN / CREATE / EXPLORE / DARE / CARE
+   ========================================= */
+
+.move-app-discover .category-coming-card {
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    min-height: 245px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* No hover movement for placeholder cards */
+.move-app-discover .category-coming-card:hover {
+    transform: none;
+}
+
+/* Category label */
+.category-coming-card .activity-number {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.75;
+}
+
+/* Main content */
+.category-coming-card .activity-content {
+    position: relative;
+    z-index: 1;
+}
+
+.category-coming-card .activity-content h3 {
+    margin-bottom: 14px;
+}
+
+.category-coming-card .activity-description {
+    max-width: 480px;
+    line-height: 1.8;
+}
+
+/* Footer label */
+.category-coming-card .activity-available {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .move-app-discover .category-coming-card {
+        min-height: 220px;
+    }
+
+    .category-coming-card .activity-description {
+        line-height: 1.7;
+    }
+}
