@@ -3601,3 +3601,254 @@ a.content-card:hover {
         line-height: 1.7;
     }
 }
+
+/* =========================================
+   MOVE & TRY — HOW IT WORKS
+   ========================================= */
+
+.how-it-works {
+    padding: 95px 30px 100px;
+    background: var(--warm-white);
+}
+
+.how-it-works-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.how-it-works .section-label {
+    text-align: center;
+}
+
+.how-it-works h2 {
+    margin: 15px 0 65px;
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 400;
+    line-height: 1.12;
+    text-align: center;
+}
+
+.how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+}
+
+.how-step {
+    min-width: 0;
+    padding: 15px 35px 20px;
+    border-left: 1px solid var(--line);
+}
+
+.how-step:first-child {
+    padding-left: 0;
+    border-left: 0;
+}
+
+.how-step:last-child {
+    padding-right: 0;
+}
+
+.how-step-number {
+    display: block;
+    margin-bottom: 45px;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.how-step h3 {
+    margin: 0 0 18px;
+    font-size: clamp(23px, 2.5vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.how-step p {
+    max-width: 300px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.how-it-works-ending {
+    margin: 65px 0 0;
+    font-family: "DM Serif Display", serif;
+    font-size: 25px;
+    text-align: center;
+}
+
+
+/* =========================================
+   MOVE & TRY — MICROINTERACTIONS
+   ========================================= */
+
+/* Smoother interactive cards */
+
+a.category-card,
+a.new-card,
+a.activity-card,
+a.content-card {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    a.category-card:hover,
+    a.new-card:hover,
+    a.activity-card:hover,
+    a.content-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(17, 17, 17, 0.07);
+    }
+
+    /* Slight movement of card action labels */
+
+    .category-card .category-action,
+    .new-card .new-action,
+    .activity-card .activity-action,
+    .content-card .content-card-action {
+        display: inline-block;
+        transition: transform 0.25s ease;
+    }
+
+    .category-card:hover .category-action,
+    .new-card:hover .new-action,
+    .activity-card:hover .activity-action,
+    .content-card:hover .content-card-action {
+        transform: translateX(4px);
+    }
+}
+
+/* Buttons */
+
+.surprise-button,
+#try-form button,
+.hero-button {
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .surprise-button:hover {
+        background: var(--ink);
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    #try-form button:hover,
+    .hero-button:hover {
+        background: var(--green);
+        border-color: var(--green);
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+}
+
+/* Text links */
+
+.community-link,
+.category-suggest-link,
+.activity-contribute-link,
+.experience-share-link,
+.back-link {
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .community-link:hover,
+    .category-suggest-link:hover,
+    .activity-contribute-link:hover,
+    .experience-share-link:hover,
+    .back-link:hover {
+        color: var(--green);
+        border-color: var(--green);
+    }
+}
+
+/* Keyboard accessibility */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 4px;
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* =========================================
+   HOW IT WORKS — MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .how-it-works {
+        padding: 75px 20px 80px;
+    }
+
+    .how-it-works h2 {
+        margin-bottom: 45px;
+        font-size: clamp(32px, 8vw, 42px);
+    }
+
+    .how-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .how-step,
+    .how-step:first-child,
+    .how-step:last-child {
+        padding: 28px 0;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+    }
+
+    .how-step-number {
+        margin-bottom: 20px;
+    }
+
+    .how-step h3 {
+        font-size: 26px;
+    }
+
+    .how-step p {
+        max-width: 480px;
+        font-size: 15px;
+    }
+
+    .how-it-works-ending {
+        margin-top: 40px;
+        font-size: 22px;
+    }
+}
