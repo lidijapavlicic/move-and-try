@@ -1,16 +1,40 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <!-- ENGLISH -->
 
+    <!-- HOMEPAGE -->
     <url>
         <loc>https://moveandtry.com/</loc>
     </url>
 
+    <!-- CATEGORIES -->
     <url>
         <loc>https://moveandtry.com/move.html</loc>
     </url>
 
+    <url>
+        <loc>https://moveandtry.com/learn.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/create.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/explore.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/dare.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/care.html</loc>
+    </url>
+
+    <!-- RUNNING -->
     <url>
         <loc>https://moveandtry.com/running.html</loc>
     </url>
@@ -23,6 +47,7 @@
         <loc>https://moveandtry.com/running-lidija.html</loc>
     </url>
 
+    <!-- POLE DANCE -->
     <url>
         <loc>https://moveandtry.com/pole-dance.html</loc>
     </url>
@@ -31,6 +56,7 @@
         <loc>https://moveandtry.com/try-pole-dance.html</loc>
     </url>
 
+    <!-- COMMUNITY -->
     <url>
         <loc>https://moveandtry.com/share-experience.html</loc>
     </url>
@@ -46,14 +72,37 @@
 
     <!-- CROATIAN -->
 
+    <!-- HOMEPAGE -->
     <url>
         <loc>https://moveandtry.com/hr/</loc>
     </url>
 
+    <!-- CATEGORIES -->
     <url>
         <loc>https://moveandtry.com/hr/move.html</loc>
     </url>
 
+    <url>
+        <loc>https://moveandtry.com/hr/learn.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/create.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/explore.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/dare.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/care.html</loc>
+    </url>
+
+    <!-- RUNNING -->
     <url>
         <loc>https://moveandtry.com/hr/running.html</loc>
     </url>
@@ -66,6 +115,7 @@
         <loc>https://moveandtry.com/hr/running-lidija.html</loc>
     </url>
 
+    <!-- POLE DANCE -->
     <url>
         <loc>https://moveandtry.com/hr/pole-dance.html</loc>
     </url>
@@ -74,6 +124,7 @@
         <loc>https://moveandtry.com/hr/try-pole-dance.html</loc>
     </url>
 
+    <!-- COMMUNITY -->
     <url>
         <loc>https://moveandtry.com/hr/share-experience.html</loc>
     </url>
