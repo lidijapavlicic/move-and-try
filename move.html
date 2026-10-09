@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
 
     <meta
         name="description"
-        content="Discover something physical to try. Running, pole dance and more — without pressure, performance goals or needing to be good at it."
+        content="Discover new ways to move. From running and dancing to activities you've never tried before. You don't have to be good at it. Just try."
     >
 
     <link rel="canonical" href="https://moveandtry.com/move.html">
@@ -27,25 +28,25 @@
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-<script>
-    window.dataLayer = window.dataLayer || [];
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('js', new Date());
-    gtag('config', 'G-PREYRXPPN8');
-</script>
-    
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
 
 <!-- =========================
      SITE HEADER
@@ -151,122 +152,144 @@
 
 
 <!-- =========================
-     CATEGORY PAGE
+     CATEGORY PAGE — APP LAYOUT
 ========================= -->
 
-<main class="category-page">
+<main class="category-page move-app-page">
+
+    <div class="move-app-layout">
+
+        <!-- =========================
+             LEFT — CATEGORY INTRO
+        ========================= -->
+
+        <section class="move-app-intro" aria-labelledby="move-title">
+
+            <p class="category-page-number">
+                01 · MOVE
+            </p>
+
+            <h1 id="move-title">MOVE</h1>
+
+            <h2>
+                Get moving.<br>
+                Your own way.
+            </h2>
+
+            <p>
+                Movement isn't just about workouts, fitness or results.
+                It's a way to feel better, find new energy and discover
+                what your body is capable of.
+            </p>
+
+            <p>
+                You don't have to be an athlete or have any experience.
+                There are so many ways to move — from running and dancing
+                to climbing, cycling and completely new challenges.
+            </p>
+
+            <p class="move-app-highlight">
+                Find something that sparks your curiosity.
+                You don't have to be good at it. Just try.
+            </p>
+
+        </section>
 
 
-    <!-- =========================
-         CATEGORY HEADER
-    ========================= -->
+        <!-- =========================
+             RIGHT — DISCOVER ACTIVITIES
+        ========================= -->
 
-    <header class="category-header">
+        <section class="move-app-discover" aria-labelledby="move-discover-title">
 
-        <p class="category-page-number">
-            01 · MOVE
-        </p>
+            <p class="section-label">
+                EXPLORE MOVE
+            </p>
 
-        <h1>MOVE</h1>
+            <h2 id="move-discover-title">
+                WHAT WOULD YOU LIKE TO TRY?
+            </h2>
 
-        <p class="category-page-intro">
-            You don't have to train.<br>
-            You don't need a goal.<br>
-            <strong>Maybe you just want to see what something feels like.</strong>
-        </p>
+            <div class="activity-grid">
 
-    </header>
+                <!-- RUNNING -->
 
+                <a href="running.html" class="activity-card">
 
-    <!-- =========================
-         ACTIVITIES
-    ========================= -->
+                    <span class="activity-number">
+                        01
+                    </span>
 
-    <section class="category-activities">
+                    <div class="activity-content">
 
-        <p class="section-label">
-            EXPLORE MOVE
-        </p>
+                        <h3>RUNNING</h3>
 
-        <h2>
-            WHAT WOULD YOU LIKE TO TRY?
-        </h2>
+                        <p class="activity-description">
+                            Start simple. See what running feels like
+                            before worrying about pace, distance or gear.
+                        </p>
 
-        <div class="activity-grid">
+                        <div class="activity-available">
 
+                            <span>GUIDE ✓</span>
 
-            <!-- RUNNING -->
+                            <span>EXPERIENCES</span>
 
-            <a href="running.html" class="activity-card">
-
-                <span class="activity-number">
-                    01
-                </span>
-
-                <div class="activity-content">
-
-                    <h3>RUNNING</h3>
-
-                    <p class="activity-description">
-                        Start simple. See what running feels like
-                        before worrying about pace, distance or gear.
-                    </p>
-
-                    <div class="activity-available">
-
-                        <span>GUIDE ✓</span>
-
-                        <span>EXPERIENCES</span>
-
-                    </div>
-
-                </div>
-
-                <span class="activity-action">
-                    EXPLORE RUNNING →
-                </span>
-
-            </a>
-
-
-            <!-- POLE DANCE -->
-
-            <a href="pole-dance.html" class="activity-card">
-
-                <span class="activity-number">
-                    02
-                </span>
-
-                <div class="activity-content">
-
-                    <h3>POLE DANCE</h3>
-
-                    <p class="activity-description">
-                        Strength, movement and a very different
-                        kind of first try.
-                    </p>
-
-                    <div class="activity-available">
-
-                        <span>GUIDE ✓</span>
+                        </div>
 
                     </div>
 
-                </div>
+                    <span class="activity-action">
+                        EXPLORE RUNNING →
+                    </span>
 
-                <span class="activity-action">
-                    EXPLORE POLE DANCE →
-                </span>
+                </a>
 
-            </a>
 
-        </div>
+                <!-- POLE DANCE -->
 
-    </section>
+                <a href="pole-dance.html" class="activity-card">
+
+                    <span class="activity-number">
+                        02
+                    </span>
+
+                    <div class="activity-content">
+
+                        <h3>POLE DANCE</h3>
+
+                        <p class="activity-description">
+                            Strength, movement and a very different
+                            kind of first try.
+                        </p>
+
+                        <div class="activity-available">
+
+                            <span>GUIDE ✓</span>
+
+                        </div>
+
+                    </div>
+
+                    <span class="activity-action">
+                        EXPLORE POLE DANCE →
+                    </span>
+
+                </a>
+
+            </div>
+
+            <p class="move-app-more">
+                MORE ACTIVITIES COMING SOON
+            </p>
+
+        </section>
+
+    </div>
 
 
     <!-- =========================
-         SUGGEST
+         SUGGEST AN ACTIVITY
     ========================= -->
 
     <section class="category-suggest">
