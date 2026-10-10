@@ -1,3 +1,4 @@
+
 const SUPABASE_URL = "https://pdyngeaykfpybeafjtpw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK";
 
@@ -645,10 +646,10 @@ const moveAndTryUpdates = {
 
 function loadLatestUpdate() {
 
-    const card =
+    const firstCard =
         document.getElementById("latest-update");
 
-    if (!card) {
+    if (!firstCard) {
         return;
     }
 
@@ -657,27 +658,66 @@ function loadLatestUpdate() {
             ? "hr"
             : "en";
 
-    const latestUpdate =
-        moveAndTryUpdates[language][0];
+    // Newest TRY number first, regardless of the order in the list.
+    // Only the two newest published entries are displayed.
+    const latestUpdates = [...moveAndTryUpdates[language]]
+        .sort((a, b) => {
+            const getNumber = update => {
+                const match = update.type.match(/TRY\s*#(\d+)/i);
+                return match ? Number(match[1]) : 0;
+            };
 
-    document.getElementById(
-        "latest-update-type"
-    ).textContent = latestUpdate.type;
+            return getNumber(b) - getNumber(a);
+        })
+        .slice(0, 2);
 
-    document.getElementById(
-        "latest-update-title"
-    ).textContent = latestUpdate.title;
+    // Remove only cards previously created by this function.
+    firstCard.parentElement
+        .querySelectorAll(".latest-update-generated")
+        .forEach(card => card.remove());
 
-    document.getElementById(
-        "latest-update-text"
-    ).textContent = latestUpdate.text;
+    latestUpdates.forEach((update, index) => {
 
-    document.getElementById(
-        "latest-update-action"
-    ).textContent = latestUpdate.action;
+        const card = index === 0
+            ? firstCard
+            : document.createElement("a");
 
-    card.href =
-        latestUpdate.link;
+        if (index > 0) {
+            card.className = "new-card latest-update-generated";
+            card.innerHTML = `
+                <span class="new-type"></span>
+                <h3></h3>
+                <p></p>
+                <span class="new-action"></span>
+            `;
+            firstCard.parentElement.appendChild(card);
+        }
+
+        const slug = update.link
+            .split("/").pop()
+            .replace(/\.html(?:[?#].*)?$/i, "");
+
+        card.classList.add("latest-update-card");
+        card.classList.remove(
+            "latest-update-pole-dance",
+            "latest-update-running"
+        );
+        card.classList.add(`latest-update-${slug}`);
+        card.dataset.try = slug;
+        card.href = update.link;
+
+        card.querySelector(".new-type").textContent =
+            update.type;
+
+        card.querySelector("h3").textContent =
+            update.title;
+
+        card.querySelector("p").textContent =
+            update.text;
+
+        card.querySelector(".new-action").textContent =
+            update.action;
+    });
 }
 
 
