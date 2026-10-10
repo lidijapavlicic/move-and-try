@@ -1,13 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" type="image/png" href="/favicon.png">
-
     <title>LEARN | Discover Something New | Move & Try</title>
     <meta name="description" content="Discover new skills, explore your interests and learn something just for yourself. You don't have to know where to start. Just try.">
 
@@ -20,13 +18,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-PREYRXPPN8');
     </script>
@@ -34,118 +29,92 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* =========================
-           LEARN — MEDIATION CARD
-           Existing category layout preserved
-        ========================= */
+        /* SAME PHOTO CARD STRUCTURE AS MOVE */
 
-        .move-app-page .activity-card.learn-mediation-card {
+        .move-app-page .activity-card.mediation-photo-card {
             position: relative;
             isolation: isolate;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 360px;
-            background: #17191a;
+            min-height: 285px;
             color: #ffffff;
-            text-decoration: none;
+            background: #17191a;
         }
 
-        .learn-mediation-card .learn-mediation-photos {
+        .mediation-photo-card .mediation-card-photos {
             position: absolute;
             inset: 0;
-            z-index: -2;
+            z-index: 0;
             overflow: hidden;
             pointer-events: none;
         }
 
-        .learn-mediation-card .learn-mediation-photo {
+        .mediation-photo-card .mediation-card-photo {
             position: absolute;
             inset: 0;
+            display: block;
             width: 100%;
             height: 100%;
-            display: block;
             object-fit: cover;
-            animation: learnMediationFade 12s ease-in-out infinite;
+            animation: mediationCardFade 12s ease-in-out infinite;
         }
 
-        .learn-mediation-card .learn-mediation-photo:first-child {
+        .mediation-photo-card .mediation-card-photo:first-child {
             object-position: center 54%;
             animation-delay: 0s;
         }
 
-        .learn-mediation-card .learn-mediation-photo:last-child {
+        .mediation-photo-card .mediation-card-photo:last-child {
             object-position: center 62%;
             animation-delay: -6s;
         }
 
-        .learn-mediation-card::before {
+        .mediation-photo-card::before {
             content: "";
             position: absolute;
             inset: 0;
-            z-index: -1;
+            z-index: 1;
             background: linear-gradient(
                 180deg,
-                rgba(9, 11, 13, 0.35) 0%,
-                rgba(9, 11, 13, 0.48) 40%,
+                rgba(9, 11, 13, 0.46) 0%,
+                rgba(9, 11, 13, 0.60) 48%,
                 rgba(9, 11, 13, 0.88) 100%
             );
             pointer-events: none;
         }
 
-        .move-app-page .learn-mediation-card .activity-number,
-        .move-app-page .learn-mediation-card .activity-content,
-        .move-app-page .learn-mediation-card h3,
-        .move-app-page .learn-mediation-card .activity-description,
-        .move-app-page .learn-mediation-card .activity-available {
+        .mediation-photo-card .activity-number,
+        .mediation-photo-card .activity-content,
+        .mediation-photo-card .activity-content h3,
+        .mediation-photo-card .activity-description,
+        .mediation-photo-card .activity-available,
+        .mediation-photo-card .activity-available span,
+        .mediation-photo-card .activity-action {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             color: #ffffff;
         }
 
-        .move-app-page .learn-mediation-card .activity-number {
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: .14em;
-            color: rgba(255, 255, 255, .78);
+        .mediation-photo-card .activity-description {
+            color: rgba(255, 255, 255, 0.88);
         }
 
-        .move-app-page .learn-mediation-card .activity-description {
-            color: rgba(255, 255, 255, .88);
+        .mediation-photo-card .activity-available span {
+            border-color: rgba(255, 255, 255, 0.42);
         }
 
-        .move-app-page .learn-mediation-card .activity-available {
-            display: inline-block;
-            color: #d4e6d1;
-        }
-
-        .move-app-page .learn-mediation-card:focus-visible {
-            outline: 3px solid #ffffff;
-            outline-offset: 4px;
-        }
-
-        @keyframes learnMediationFade {
-            0%, 42% {
-                opacity: 1;
-            }
-
-            50%, 92% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
+        @keyframes mediationCardFade {
+            0%, 42% { opacity: 1; }
+            50%, 92% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .learn-mediation-card .learn-mediation-photo {
+            .mediation-photo-card .mediation-card-photo {
                 animation: none;
                 opacity: 0;
             }
 
-            .learn-mediation-card .learn-mediation-photo:first-child {
+            .mediation-photo-card .mediation-card-photo:first-child {
                 opacity: 1;
             }
         }
@@ -169,7 +138,6 @@
         </nav>
 
         <div class="header-actions">
-
             <div class="header-language">
                 <span class="language-active">EN</span>
                 <span>|</span>
@@ -180,14 +148,12 @@
                 <span></span>
                 <span></span>
             </button>
-
         </div>
 
     </header>
 
     <!-- MOBILE MENU -->
     <div class="mobile-menu">
-
         <nav>
             <a href="/#find-your-try">DISCOVER</a>
             <a href="/#be-part-of-it">BE PART OF IT</a>
@@ -200,7 +166,6 @@
             <span>|</span>
             <a href="/hr/learn.html" onclick="setLanguage('hr')">HR</a>
         </div>
-
     </div>
 
     <!-- LEARN CATEGORY -->
@@ -246,52 +211,57 @@
 
                 <div class="activity-grid">
 
-                    <!-- MEDIATION — GUIDE AVAILABLE -->
-                    <a
-                        href="/mediation.html"
-                        class="activity-card learn-mediation-card"
-                        aria-label="Explore mediation"
-                    >
+                    <!-- MEDIATION -->
+                    <a href="/mediation.html" class="activity-card mediation-photo-card">
 
-                        <div class="learn-mediation-photos" aria-hidden="true">
+                        <div class="mediation-card-photos" aria-hidden="true">
+
                             <img
-                                class="learn-mediation-photo"
+                                class="mediation-card-photo"
                                 src="/images/learn-mediation-connection.jpg"
                                 alt=""
-                                loading="eager"
+                                loading="lazy"
                             >
+
                             <img
-                                class="learn-mediation-photo"
+                                class="mediation-card-photo"
                                 src="/images/learn-mediation-handshake.jpg"
                                 alt=""
                                 loading="lazy"
                             >
-                        </div>
 
-                        <span class="activity-number">
-                            LEARN · COMMUNICATION
-                        </span>
+                        </div>
 
                         <div class="activity-content">
 
                             <h3>MEDIATION</h3>
 
                             <p class="activity-description">
-                                What if a difficult conversation
-                                didn't have to end with someone winning
-                                and someone losing?
-                                Discover another way forward.
+                                A different way to approach conflict,
+                                understand each other and find
+                                a way forward.
                             </p>
 
-                            <span class="activity-available">
-                                GUIDE ✓
-                            </span>
+                            <div class="activity-available">
+                                <span>GUIDE ✓</span>
+                                <span>EXPERIENCES</span>
+                                <span>EXPERTS</span>
+                                <span>WHERE TO TRY</span>
+                            </div>
 
                         </div>
+
+                        <span class="activity-action">
+                            EXPLORE MEDIATION →
+                        </span>
 
                     </a>
 
                 </div>
+
+                <p class="move-app-more">
+                    MORE ACTIVITIES COMING SOON
+                </p>
 
             </section>
 
