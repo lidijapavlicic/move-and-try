@@ -57,15 +57,11 @@
             background: #151417;
             color: #ffffff;
             margin-top: 28px;
-            padding: clamp(36px, 5vw, 76px) 0;
+            padding: clamp(30px, 3.5vw, 48px) 0 24px;
             overflow: visible;
         }
 
-        /*
-         Extend the dark background to the
-         edges of the browser viewport without
-         changing the site's main container.
-        */
+        /* Full-width dark background */
 
         .pole-dark-hero::before {
             content: "";
@@ -82,9 +78,9 @@
 
         .pole-dark-hero .pole-hero-layout {
             display: grid;
-            grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
             align-items: center;
-            gap: clamp(18px, 3vw, 46px);
+            gap: clamp(18px, 2.5vw, 40px);
             width: 100%;
         }
 
@@ -110,41 +106,52 @@
         }
 
         /*
-         Both photos keep their natural proportions.
-         Only the male image is enlarged.
-         The stage remains stable during transitions.
+         Shared photographic stage.
+         No cropping or distortion.
         */
 
         .pole-dark-hero .pole-hero-stage {
             position: relative;
-            display: grid;
-            place-items: center;
             width: 100%;
+            height: clamp(340px, 32vw, 470px);
             min-width: 0;
-            height: clamp(340px, 35vw, 500px);
-            background: transparent;
             isolation: isolate;
         }
 
         .pole-dark-hero .pole-hero-stage img {
             position: absolute;
+            top: 50%;
+            left: 50%;
             display: block;
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 100%;
             object-fit: contain;
+            transform: translate(-50%, -50%);
             opacity: 0;
             animation: poleDarkHeroFade 12s ease-in-out infinite;
         }
 
+        /*
+         MALE PHOTO
+         Maximum available width.
+         Height adjusts naturally.
+        */
+
         .pole-dark-hero .pole-hero-stage img:first-child {
-            max-width: 112%;
-            max-height: 112%;
+            width: 100%;
+            height: auto;
+            max-height: 100%;
             animation-delay: 0s;
         }
 
+        /*
+         FEMALE PHOTO
+         Maximum available height.
+         Width adjusts naturally.
+        */
+
         .pole-dark-hero .pole-hero-stage img:last-child {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
             animation-delay: -6s;
         }
 
@@ -162,10 +169,14 @@
             }
         }
 
+        /*
+         Compact navigation spacing
+        */
+
         .pole-dark-hero .activity-nav {
-            margin-top: clamp(30px, 4vw, 56px);
+            margin-top: 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.24);
-            padding-top: 24px;
+            padding-top: 22px;
         }
 
         .pole-dark-hero .activity-nav span {
@@ -178,42 +189,33 @@
 
         @media (max-width: 900px) {
             .pole-dark-hero .pole-hero-layout {
-                grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-                gap: 20px;
+                grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+                gap: 18px;
             }
 
             .pole-dark-hero .pole-hero-stage {
-                height: 360px;
-            }
-
-            .pole-dark-hero .pole-hero-stage img:first-child {
-                max-width: 108%;
-                max-height: 108%;
+                height: 350px;
             }
         }
 
         @media (max-width: 700px) {
             .pole-dark-hero {
-                padding: 34px 0;
+                padding: 30px 0 22px;
                 margin-top: 22px;
             }
 
             .pole-dark-hero .pole-hero-layout {
                 grid-template-columns: 1fr;
-                gap: 22px;
+                gap: 18px;
             }
 
             .pole-dark-hero .pole-hero-stage {
-                height: min(105vw, 430px);
-            }
-
-            .pole-dark-hero .pole-hero-stage img:first-child {
-                max-width: 100%;
-                max-height: 100%;
+                height: min(100vw, 420px);
             }
 
             .pole-dark-hero .activity-nav {
-                margin-top: 26px;
+                margin-top: 20px;
+                padding-top: 20px;
             }
         }
 
@@ -231,7 +233,6 @@
 </head>
 
 <body>
-
 
 <!-- =========================
      SITE HEADER
