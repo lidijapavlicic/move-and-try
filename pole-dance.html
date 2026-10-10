@@ -46,59 +46,86 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- =========================
-         POLE DANCE HERO
-         Page-specific styles only
+         POLE DANCE — DARK EDITORIAL HERO
+         Styles isolated to this page
     ========================= -->
 
     <style>
-        .pole-hero-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.85fr);
-            align-items: center;
-            gap: clamp(28px, 4vw, 70px);
-            width: 100%;
+        .pole-dark-hero {
+            background: #151417;
+            color: #ffffff;
+            margin-top: 28px;
+            padding: clamp(36px, 5vw, 76px);
+            overflow: hidden;
         }
 
-        .pole-hero-copy {
+        .pole-dark-hero .pole-hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+            align-items: center;
+            gap: clamp(24px, 4vw, 64px);
+        }
+
+        .pole-dark-hero .pole-hero-copy {
             min-width: 0;
         }
 
-        .pole-hero-copy .activity-page-intro {
+        .pole-dark-hero .activity-page-type {
+            color: #b9b4a5;
+        }
+
+        .pole-dark-hero h1 {
+            color: #ffffff;
+        }
+
+        .pole-dark-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 0;
         }
 
-        .pole-hero-visual {
+        .pole-dark-hero .activity-page-intro strong {
+            color: #ffffff;
+        }
+
+        /*
+         Natural proportions:
+         The image is never cropped or stretched.
+         A stable stage prevents the layout from
+         jumping as the photographs alternate.
+        */
+
+        .pole-dark-hero .pole-hero-stage {
             position: relative;
+            display: grid;
+            place-items: center;
+            width: 100%;
+            min-width: 0;
+            height: clamp(320px, 34vw, 490px);
+            background: transparent;
             isolation: isolate;
-            width: 100%;
-            max-width: 450px;
-            aspect-ratio: 4 / 5;
-            justify-self: end;
-            overflow: hidden;
-            background: #19151c;
         }
 
-        .pole-hero-visual img {
+        .pole-dark-hero .pole-hero-stage img {
             position: absolute;
-            inset: 0;
             display: block;
-            width: 100%;
-            height: 100%;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
-            object-position: center;
             opacity: 0;
-            animation: poleHeroFade 12s ease-in-out infinite;
+            animation: poleDarkHeroFade 12s ease-in-out infinite;
         }
 
-        .pole-hero-visual img:first-child {
+        .pole-dark-hero .pole-hero-stage img:first-child {
             animation-delay: 0s;
         }
 
-        .pole-hero-visual img:last-child {
+        .pole-dark-hero .pole-hero-stage img:last-child {
             animation-delay: -6s;
         }
 
-        @keyframes poleHeroFade {
+        @keyframes poleDarkHeroFade {
             0%, 42% {
                 opacity: 1;
             }
@@ -112,50 +139,58 @@
             }
         }
 
-        .activity-header.pole-activity-header {
-            width: 100%;
+        .pole-dark-hero .activity-nav {
+            margin-top: clamp(30px, 4vw, 56px);
+            border-top: 1px solid rgba(255, 255, 255, 0.24);
+            padding-top: 24px;
         }
 
-        .pole-activity-header .activity-nav {
-            margin-top: clamp(32px, 4vw, 56px);
+        .pole-dark-hero .activity-nav span {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .pole-dark-hero .activity-nav .activity-nav-active {
+            color: #ffffff;
         }
 
         @media (max-width: 900px) {
-            .pole-hero-layout {
-                grid-template-columns: minmax(0, 1fr) minmax(230px, 0.8fr);
+            .pole-dark-hero .pole-hero-layout {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
                 gap: 24px;
             }
 
-            .pole-hero-visual {
-                aspect-ratio: 3 / 4;
+            .pole-dark-hero .pole-hero-stage {
+                height: 360px;
             }
         }
 
         @media (max-width: 700px) {
-            .pole-hero-layout {
+            .pole-dark-hero {
+                padding: 32px 22px;
+                margin-top: 22px;
+            }
+
+            .pole-dark-hero .pole-hero-layout {
                 grid-template-columns: 1fr;
-                gap: 28px;
+                gap: 24px;
             }
 
-            .pole-hero-visual {
-                width: 100%;
-                max-width: 450px;
-                aspect-ratio: 4 / 5;
-                justify-self: center;
+            .pole-dark-hero .pole-hero-stage {
+                height: min(105vw, 430px);
             }
 
-            .pole-activity-header .activity-nav {
-                margin-top: 30px;
+            .pole-dark-hero .activity-nav {
+                margin-top: 26px;
             }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .pole-hero-visual img {
+            .pole-dark-hero .pole-hero-stage img {
                 animation: none;
                 opacity: 0;
             }
 
-            .pole-hero-visual img:first-child {
+            .pole-dark-hero .pole-hero-stage img:first-child {
                 opacity: 1;
             }
         }
@@ -286,14 +321,14 @@
 
 
     <!-- =========================
-         ACTIVITY HEADER
+         DARK EDITORIAL HERO
     ========================= -->
 
-    <header class="activity-header pole-activity-header">
+    <header class="activity-header pole-dark-hero">
 
         <div class="pole-hero-layout">
 
-            <!-- LEFT: EDITORIAL COPY -->
+            <!-- LEFT: INTRO -->
 
             <div class="pole-hero-copy">
 
@@ -315,12 +350,12 @@
             </div>
 
 
-            <!-- RIGHT: ALTERNATING PHOTOGRAPHY -->
+            <!-- RIGHT: NATURAL-SIZE PHOTOGRAPHY -->
 
             <div
-                class="pole-hero-visual"
+                class="pole-hero-stage"
                 role="img"
-                aria-label="Two pole dancers performing expressive movements, shown alternately"
+                aria-label="Alternating photographs of two pole dancers"
             >
 
                 <img
@@ -341,7 +376,7 @@
         </div>
 
 
-        <!-- ACTIVITY NAVIGATION -->
+        <!-- NAVIGATION -->
 
         <div class="activity-nav">
 
