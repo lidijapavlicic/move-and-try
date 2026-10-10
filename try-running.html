@@ -477,6 +477,39 @@
             text-align: center;
         }
 
+        /* FINAL NAVIGATION — BACK TO RUNNING */
+
+        .mt-editorial-try .guide-footer-nav {
+            display: block;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 36px 24px;
+            background: var(--try-paper);
+            text-align: center;
+        }
+
+        .mt-editorial-try .guide-footer-nav a,
+        .mt-editorial-try .guide-footer-nav a:visited {
+            display: inline-block;
+            color: var(--try-green);
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1.6;
+            letter-spacing: .10em;
+            text-decoration: none;
+        }
+
+        .mt-editorial-try .guide-footer-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .mt-editorial-try .guide-footer-nav a:focus-visible {
+            outline: 2px solid var(--try-green);
+            outline-offset: 5px;
+        }
+
         /* MOBILE */
 
         @media (max-width: 700px) {
@@ -845,6 +878,14 @@
         </div>
 
     </section>
+
+    <!-- FINAL NAVIGATION — BACK TO ACTIVITY -->
+
+    <div class="guide-footer-nav">
+        <a href="/running.html">
+            ← BACK TO RUNNING
+        </a>
+    </div>
 
 </main>
 
