@@ -602,6 +602,16 @@ function setLanguage(language) {
 const moveAndTryUpdates = {
     en: [
         {
+            category: "LEARN",
+            activity: "mediation",
+            contentType: "GUIDE",
+            order: 3,
+            title: "MEDIATION",
+            text: "When talking gets you nowhere, discover a different way to resolve conflict.",
+            link: "mediation-guide.html",
+            action: "READ THE GUIDE →"
+        },
+        {
             category: "MOVE",
             activity: "pole-dance",
             contentType: "GUIDE",
@@ -624,6 +634,16 @@ const moveAndTryUpdates = {
     ],
 
     hr: [
+        {
+            category: "UČENJE",
+            activity: "mediation",
+            contentType: "VODIČ",
+            order: 3,
+            title: "MEDIJACIJA",
+            text: "Kad razgovor više ne vodi nikamo, otkrij drukčiji način rješavanja sukoba.",
+            link: "mediation-guide.html",
+            action: "PROČITAJ VODIČ →"
+        },
         {
             category: "KRETANJE",
             activity: "pole-dance",
@@ -651,38 +671,9 @@ const moveAndTryUpdates = {
 /*
    PUBLISHING RULE
 
-   Each newly published guide, experience, expert contribution
-   or where-to-try page is a separate entry.
-
-   Add an entry only when its content is publicly available.
-   Increase order for each new publication.
+   Each published entry has its own order.
    Only the two newest entries are displayed.
-
-   The activity field controls the existing photo styling.
-   The link field points directly to the newly published content.
-
-   When mediation is published, add a new entry to the
-   appropriate language array.
-
-   Example for EN:
-
-   {
-       category: "LEARN",
-       activity: "mediation",
-       contentType: "GUIDE",
-       order: 3,
-       title: "MEDIATION",
-       text: "...",
-       link: "mediation-guide.html",
-       action: "READ THE GUIDE →"
-   }
-
-   For HR use:
-       category: "UČENJE"
-       contentType: "VODIČ"
-       link: "mediation-guide.html"
-
-   Also verify photo styling for .latest-update-mediation.
+   The activity field controls the photo styling.
 */
 
 
