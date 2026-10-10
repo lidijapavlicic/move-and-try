@@ -1,60 +1,38 @@
 
 <!DOCTYPE html>
 <html lang="hr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <title>Trčanje | Move & Try</title>
-
-    <meta
-        name="description"
-        content="Razmišljaš o tome da probaš trčanje? Istraži vodič za početnike, stvarna iskustva, stručne perspektive i, u budućnosti, mjesta i ljude koji ti mogu pomoći da počneš."
-    >
+    <meta name="description" content="Razmišljaš o tome da probaš trčanje? Istraži vodič za početnike, stvarna iskustva, stručne perspektive i, u budućnosti, mjesta i ljude koji ti mogu pomoći da počneš.">
 
     <link rel="canonical" href="https://moveandtry.com/hr/running.html">
-
     <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/running.html">
     <link rel="alternate" hreflang="en" href="https://moveandtry.com/running.html">
     <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/running.html">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
-
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
-
         gtag('js', new Date());
         gtag('config', 'G-PREYRXPPN8');
     </script>
 
     <link rel="stylesheet" href="../style.css">
 
-    <!-- =========================
-         TRČANJE — FOTOGRAFSKI HERO
-         Dvije fotografije s animacijom
-    ========================= -->
-
     <style>
-
-        /* =========================
-           GLAVNO ZAGLAVLJE
-        ========================= */
+        /* RUNNING — PHOTO HERO */
 
         .activity-page .activity-header.running-photo-hero {
             position: relative;
@@ -68,10 +46,6 @@
             color: #ffffff;
             padding: 60px 48px;
         }
-
-        /* =========================
-           FOTOGRAFIJE
-        ========================= */
 
         .running-photo-hero .running-hero-photos {
             position: absolute;
@@ -100,10 +74,6 @@
             animation-delay: -6s;
         }
 
-        /* =========================
-           TAMNI SLOJ PREKO FOTOGRAFIJA
-        ========================= */
-
         .running-photo-hero::before {
             content: "";
             position: absolute;
@@ -118,16 +88,11 @@
             pointer-events: none;
         }
 
-        /* =========================
-           TEKST I NAVIGACIJA
-        ========================= */
-
         .activity-page .running-photo-hero .activity-page-type,
         .activity-page .running-photo-hero h1,
         .activity-page .running-photo-hero .activity-page-intro,
         .activity-page .running-photo-hero .activity-page-intro strong,
-        .activity-page .running-photo-hero .activity-nav,
-        .activity-page .running-photo-hero .activity-nav span {
+        .activity-page .running-photo-hero .activity-nav {
             position: relative;
             z-index: 1;
             color: #ffffff;
@@ -141,216 +106,112 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        .activity-page .running-photo-hero .activity-nav span {
-            border-color: rgba(255, 255, 255, 0.42);
-        }
+        /* ALL NAVIGATION LABELS HAVE THE SAME MUTED STYLE */
 
-        /* =========================
-           ANIMACIJA — 6 SEKUNDI
-        ========================= */
+        .activity-page .running-photo-hero .activity-nav span,
+        .activity-page .running-photo-hero .activity-nav span.activity-nav-active {
+            position: relative;
+            z-index: 1;
+            color: rgba(255, 255, 255, 0.65);
+            border-color: rgba(255, 255, 255, 0.30);
+            opacity: 1;
+        }
 
         @keyframes runningHeroFade {
             0%, 42% {
                 opacity: 1;
             }
-
             50%, 92% {
                 opacity: 0;
             }
-
             100% {
                 opacity: 1;
             }
         }
 
-        /* =========================
-           MOBILNI PRIKAZ
-        ========================= */
-
         @media (max-width: 900px) {
-
             .activity-page .activity-header.running-photo-hero {
                 min-height: 380px;
                 padding: 48px 24px;
             }
-
         }
 
-        /* =========================
-           PRISTUPAČNOST
-        ========================= */
-
         @media (prefers-reduced-motion: reduce) {
-
             .running-photo-hero .running-hero-photo {
                 animation: none;
                 opacity: 0;
             }
-
             .running-photo-hero .running-hero-photo:first-child {
                 opacity: 1;
             }
-
         }
-
     </style>
-
 </head>
 
 <body>
 
-
-<!-- =========================
-     SITE HEADER
-========================= -->
-
 <header class="site-header">
-
     <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
-        <img
-            src="/images/move-and-try-logo.png"
-            alt="Move & Try"
-        >
+        <img src="/images/move-and-try-logo.png" alt="Move & Try">
     </a>
 
     <nav class="desktop-nav">
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/#where-to-try">
-            GDJE PROBATI
-        </a>
-
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/#where-to-try">GDJE PROBATI</a>
     </nav>
 
     <div class="header-actions">
-
         <div class="header-language">
-
-            <a
-                href="/running.html"
-                onclick="setLanguage('en')"
-            >
-                EN
-            </a>
-
+            <a href="/running.html" onclick="setLanguage('en')">EN</a>
             <span>|</span>
-
-            <span class="language-active">
-                HR
-            </span>
-
+            <span class="language-active">HR</span>
         </div>
 
-        <button
-            class="menu-toggle"
-            type="button"
-            aria-label="Otvori izbornik"
-            aria-expanded="false"
-        >
+        <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
             <span></span>
             <span></span>
         </button>
-
     </div>
-
 </header>
 
-
-<!-- =========================
-     MOBILE MENU
-========================= -->
-
 <div class="mobile-menu">
-
     <nav>
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/#where-to-try">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/behind-move-and-try.html">
-            IZA MOVE & TRY
-        </a>
-
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
 
     <div class="mobile-menu-language">
-
-        <a
-            href="/running.html"
-            onclick="setLanguage('en')"
-        >
-            EN
-        </a>
-
+        <a href="/running.html" onclick="setLanguage('en')">EN</a>
         <span>|</span>
-
-        <span class="language-active">
-            HR
-        </span>
-
+        <span class="language-active">HR</span>
     </div>
-
 </div>
-
-
-<!-- =========================
-     STRANICA AKTIVNOSTI
-========================= -->
 
 <main class="activity-page">
 
-
-    <!-- POVRATAK NA MOVE -->
-
-    <a href="/hr/move.html" class="back-link">
-        ← MOVE
-    </a>
-
-
-    <!-- =========================
-         ZAGLAVLJE AKTIVNOSTI
-         S FOTOGRAFIJAMA TRČANJA
-    ========================= -->
+    <a href="/hr/move.html" class="back-link">← MOVE</a>
 
     <header class="activity-header running-photo-hero">
 
         <div class="running-hero-photos" aria-hidden="true">
-
             <img
                 class="running-hero-photo"
                 src="/images/running-forest.jpg"
                 alt=""
                 loading="eager"
             >
-
             <img
                 class="running-hero-photo"
                 src="/images/running-blue.jpg"
                 alt=""
                 loading="eager"
             >
-
         </div>
 
-        <p class="activity-page-type">
-            MOVE · TRČANJE
-        </p>
+        <p class="activity-page-type">MOVE · TRČANJE</p>
 
         <h1>TRČANJE</h1>
 
@@ -360,182 +221,82 @@
         </p>
 
         <div class="activity-nav">
-
-            <span class="activity-nav-active">
-                VODIČ
-            </span>
-
-            <span class="activity-nav-active">
-                ISKUSTVA
-            </span>
-
-            <span>
-                STRUČNJACI
-            </span>
-
-            <span>
-                GDJE PROBATI
-            </span>
-
+            <span>VODIČ</span>
+            <span>ISKUSTVA</span>
+            <span>STRUČNJACI</span>
+            <span>GDJE PROBATI</span>
         </div>
 
     </header>
 
-
-    <!-- =========================
-         DOSTUPAN SADRŽAJ
-    ========================= -->
-
     <section class="activity-content-section">
 
-        <p class="section-label">
-            ISTRAŽI TRČANJE
-        </p>
-
-        <h2>
-            KRENI ODNEKUD.
-        </h2>
+        <p class="section-label">ISTRAŽI TRČANJE</p>
+        <h2>KRENI ODNEKUD.</h2>
 
         <div class="activity-content-grid">
 
-
             <!-- VODIČ -->
-
             <a href="/hr/try-running.html" class="content-card">
-
-                <span class="content-card-type">
-                    KRENI OVDJE · VODIČ
-                </span>
-
-                <h3>
-                    PROBAJ TRČANJE
-                </h3>
-
+                <span class="content-card-type">KRENI OVDJE · VODIČ</span>
+                <h3>PROBAJ TRČANJE</h3>
                 <p>
                     Što ti treba, što ti ne treba
                     i jednostavan način da pristupiš svom prvom trčanju.
                 </p>
-
-                <span class="content-card-action">
-                    PROČITAJ VODIČ →
-                </span>
-
+                <span class="content-card-action">PROČITAJ VODIČ →</span>
             </a>
 
-
             <!-- ISKUSTVO -->
-
             <a href="/hr/running-lidija.html" class="content-card">
-
-                <span class="content-card-type">
-                    STVARNO ISKUSTVO
-                </span>
-
-                <h3>
-                    SAMO SAM OTIŠLA TRČATI.
-                </h3>
-
+                <span class="content-card-type">STVARNO ISKUSTVO</span>
+                <h3>SAMO SAM OTIŠLA TRČATI.</h3>
                 <p>
                     Lidija je počela trčati kao tinejdžerica,
                     bez plana, sata ili ideje kako se postaje trkač.
                 </p>
-
-                <span class="content-card-action">
-                    PROČITAJ ISKUSTVO →
-                </span>
-
+                <span class="content-card-action">PROČITAJ ISKUSTVO →</span>
             </a>
 
-
             <!-- STRUČNJAK -->
-
             <div class="content-card content-card-coming">
-
-                <span class="content-card-type">
-                    STRUČNA PERSPEKTIVA
-                </span>
-
-                <h3>
-                    ŠTO BI POČETNIK TREBAO ZNATI?
-                </h3>
-
+                <span class="content-card-type">STRUČNA PERSPEKTIVA</span>
+                <h3>ŠTO BI POČETNIK TREBAO ZNATI?</h3>
                 <p>
                     Savjeti i perspektiva nekoga
                     tko se profesionalno bavi trčanjem.
                 </p>
-
-                <span class="content-card-status">
-                    USKORO
-                </span>
-
+                <span class="content-card-status">USKORO</span>
             </div>
 
-
             <!-- GDJE PROBATI -->
-
             <div class="content-card content-card-coming">
-
-                <span class="content-card-type">
-                    GDJE PROBATI
-                </span>
-
-                <h3>
-                    PRONAĐI NEKOGA TKO TI MOŽE POMOĆI DA KRENEŠ.
-                </h3>
-
+                <span class="content-card-type">GDJE PROBATI</span>
+                <h3>PRONAĐI NEKOGA TKO TI MOŽE POMOĆI DA KRENEŠ.</h3>
                 <p>
                     Treneri, trkačke grupe i ljudi
                     koji ti mogu olakšati prvi korak.
                 </p>
-
-                <span class="content-card-status">
-                    USKORO
-                </span>
-
+                <span class="content-card-status">USKORO</span>
             </div>
 
         </div>
-
     </section>
 
-
-    <!-- =========================
-         PODIJELI ISKUSTVO
-    ========================= -->
-
     <section class="activity-contribute">
-
-        <p class="section-label">
-            TVOJE ISKUSTVO
-        </p>
-
-        <h2>
-            PROBAO SI TRČATI?
-        </h2>
-
+        <p class="section-label">TVOJE ISKUSTVO</p>
+        <h2>PROBAO SI TRČATI?</h2>
         <p>
             Svidjelo ti se, nije ti se svidjelo ili još nisi siguran?
             Tvoje iskustvo možda pomogne nekome drugome da odluči probati.
         </p>
-
-        <a
-            href="/hr/share-experience.html"
-            class="activity-contribute-link"
-        >
+        <a href="/hr/share-experience.html" class="activity-contribute-link">
             PODIJELI SVOJE ISKUSTVO →
         </a>
-
     </section>
 
 </main>
 
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script src="../script.js"></script>
-
 </body>
-
 </html>
