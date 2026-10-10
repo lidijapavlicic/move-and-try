@@ -45,12 +45,13 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- POLE DANCE CARD — PAGE-SPECIFIC STYLES -->
+    <!-- POLE DANCE CARD — SHARED VISUAL BEHAVIOUR -->
     <style>
-        .activity-card.pole-dance-photo-card {
+        .move-app-page .activity-card.pole-dance-photo-card {
             position: relative;
             isolation: isolate;
             overflow: hidden;
+            min-height: 285px;
             background: #18151d;
             color: #ffffff;
         }
@@ -58,7 +59,7 @@
         .pole-dance-photo-card .pole-card-photos {
             position: absolute;
             inset: 0;
-            z-index: -2;
+            z-index: 0;
             overflow: hidden;
             pointer-events: none;
         }
@@ -66,16 +67,15 @@
         .pole-dance-photo-card .pole-card-photo {
             position: absolute;
             inset: 0;
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center 35%;
-            opacity: 0;
             animation: poleCardFade 12s ease-in-out infinite;
         }
 
         .pole-dance-photo-card .pole-card-photo:first-child {
-            opacity: 1;
             animation-delay: 0s;
         }
 
@@ -87,7 +87,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            z-index: -1;
+            z-index: 1;
             background: linear-gradient(
                 180deg,
                 rgba(12, 10, 17, 0.46) 0%,
@@ -105,7 +105,7 @@
         .pole-dance-photo-card .activity-available span,
         .pole-dance-photo-card .activity-action {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             color: #ffffff;
         }
 
@@ -118,17 +118,9 @@
         }
 
         @keyframes poleCardFade {
-            0%, 42% {
-                opacity: 1;
-            }
-
-            50%, 92% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
+            0%, 42% { opacity: 1; }
+            50%, 92% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         @media (prefers-reduced-motion: reduce) {
