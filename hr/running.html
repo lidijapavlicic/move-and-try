@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hr">
 
@@ -29,20 +30,171 @@
     >
 
     <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-<script>
-    window.dataLayer = window.dataLayer || [];
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-    gtag('js', new Date());
-    gtag('config', 'G-PREYRXPPN8');
-</script>
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
 
     <link rel="stylesheet" href="../style.css">
+
+    <!-- =========================
+         TRČANJE — FOTOGRAFSKI HERO
+         Dvije fotografije s animacijom
+    ========================= -->
+
+    <style>
+
+        /* =========================
+           GLAVNO ZAGLAVLJE
+        ========================= */
+
+        .activity-page .activity-header.running-photo-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #101b20;
+            color: #ffffff;
+            padding: 60px 48px;
+        }
+
+        /* =========================
+           FOTOGRAFIJE
+        ========================= */
+
+        .running-photo-hero .running-hero-photos {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .running-photo-hero .running-hero-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center 48%;
+            animation: runningHeroFade 12s ease-in-out infinite;
+        }
+
+        .running-photo-hero .running-hero-photo:first-child {
+            animation-delay: 0s;
+        }
+
+        .running-photo-hero .running-hero-photo:last-child {
+            animation-delay: -6s;
+        }
+
+        /* =========================
+           TAMNI SLOJ PREKO FOTOGRAFIJA
+        ========================= */
+
+        .running-photo-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(7, 19, 25, 0.46) 0%,
+                rgba(7, 19, 25, 0.62) 48%,
+                rgba(7, 19, 25, 0.88) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* =========================
+           TEKST I NAVIGACIJA
+        ========================= */
+
+        .activity-page .running-photo-hero .activity-page-type,
+        .activity-page .running-photo-hero h1,
+        .activity-page .running-photo-hero .activity-page-intro,
+        .activity-page .running-photo-hero .activity-page-intro strong,
+        .activity-page .running-photo-hero .activity-nav,
+        .activity-page .running-photo-hero .activity-nav span {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .activity-page .running-photo-hero .activity-page-type {
+            color: #d4c8ae;
+        }
+
+        .activity-page .running-photo-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .activity-page .running-photo-hero .activity-nav span {
+            border-color: rgba(255, 255, 255, 0.42);
+        }
+
+        /* =========================
+           ANIMACIJA — 6 SEKUNDI
+        ========================= */
+
+        @keyframes runningHeroFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           MOBILNI PRIKAZ
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .activity-page .activity-header.running-photo-hero {
+                min-height: 380px;
+                padding: 48px 24px;
+            }
+
+        }
+
+        /* =========================
+           PRISTUPAČNOST
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .running-photo-hero .running-hero-photo {
+                animation: none;
+                opacity: 0;
+            }
+
+            .running-photo-hero .running-hero-photo:first-child {
+                opacity: 1;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -158,13 +310,13 @@
 
 
 <!-- =========================
-     ACTIVITY PAGE
+     STRANICA AKTIVNOSTI
 ========================= -->
 
 <main class="activity-page">
 
 
-    <!-- BACK TO MOVE -->
+    <!-- POVRATAK NA MOVE -->
 
     <a href="/hr/move.html" class="back-link">
         ← MOVE
@@ -172,10 +324,29 @@
 
 
     <!-- =========================
-         ACTIVITY HEADER
+         ZAGLAVLJE AKTIVNOSTI
+         S FOTOGRAFIJAMA TRČANJA
     ========================= -->
 
-    <header class="activity-header">
+    <header class="activity-header running-photo-hero">
+
+        <div class="running-hero-photos" aria-hidden="true">
+
+            <img
+                class="running-hero-photo"
+                src="/images/running-forest.jpg"
+                alt=""
+                loading="eager"
+            >
+
+            <img
+                class="running-hero-photo"
+                src="/images/running-blue.jpg"
+                alt=""
+                loading="eager"
+            >
+
+        </div>
 
         <p class="activity-page-type">
             MOVE · TRČANJE
@@ -212,7 +383,7 @@
 
 
     <!-- =========================
-         AVAILABLE CONTENT
+         DOSTUPAN SADRŽAJ
     ========================= -->
 
     <section class="activity-content-section">
@@ -228,7 +399,7 @@
         <div class="activity-content-grid">
 
 
-            <!-- GUIDE -->
+            <!-- VODIČ -->
 
             <a href="/hr/try-running.html" class="content-card">
 
@@ -252,7 +423,7 @@
             </a>
 
 
-            <!-- EXPERIENCE -->
+            <!-- ISKUSTVO -->
 
             <a href="/hr/running-lidija.html" class="content-card">
 
@@ -276,7 +447,7 @@
             </a>
 
 
-            <!-- EXPERT -->
+            <!-- STRUČNJAK -->
 
             <div class="content-card content-card-coming">
 
@@ -300,7 +471,7 @@
             </div>
 
 
-            <!-- WHERE TO TRY -->
+            <!-- GDJE PROBATI -->
 
             <div class="content-card content-card-coming">
 
@@ -329,7 +500,7 @@
 
 
     <!-- =========================
-         CONTRIBUTE
+         PODIJELI ISKUSTVO
     ========================= -->
 
     <section class="activity-contribute">
