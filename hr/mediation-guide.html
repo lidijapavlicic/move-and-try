@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Što je medijacija? Vodič za početnike | Move & Try</title>
+  <meta name="description" content="Što je medijacija, kako izgleda i kada može pomoći? MOVE & TRY vodič za sve koji žele upoznati drukčiji način rješavanja sukoba.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PREYRXPPN8');
+  </script>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .mediation-guide {
+      background: #f7f7f5;
+      color: #202020;
+      min-height: 100vh;
+    }
+
+    .mediation-guide * {
+      box-sizing: border-box;
+    }
+
+    .mediation-guide .guide-back {
+      display: inline-block;
+      margin: 32px max(24px, calc((100% - 1100px) / 2));
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .mediation-guide .guide-back:hover {
+      text-decoration: underline;
+    }
+
+    .mediation-guide .guide-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 470px;
+      padding: 80px max(28px, calc((100% - 1100px) / 2));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #17191a;
+      color: #fff;
+    }
+
+    .mediation-guide .guide-hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      z-index: -2;
+    }
+
+    .mediation-guide .guide-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        90deg,
+        rgba(10, 12, 14, .88) 0%,
+        rgba(10, 12, 14, .70) 50%,
+        rgba(10, 12, 14, .48) 100%
+      );
+    }
+
+    .mediation-guide .guide-eyebrow {
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #d8c5b6;
+      margin: 0 0 22px;
+    }
+
+    .mediation-guide .guide-hero h1 {
+      max-width: 820px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 1.04;
+      letter-spacing: -.025em;
+      font-weight: 400;
+      margin: 0 0 24px;
+      color: #fff;
+    }
+
+    .mediation-guide .guide-hero-lead {
+      max-width: 660px;
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(16px, 2vw, 19px);
+      line-height: 1.8;
+      color: rgba(255,255,255,.88);
+      margin: 0;
+    }
+
+    .mediation-guide .guide-article {
+      width: min(100% - 48px, 760px);
+      margin: 0 auto;
+      padding: 76px 0 90px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      line-height: 1.95;
+    }
+
+    .mediation-guide .guide-article p {
+      margin: 0 0 24px;
+      color: #414141;
+    }
+
+    .mediation-guide .guide-article h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 43px);
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      color: #171717;
+      margin: 66px 0 24px;
+    }
+
+    .mediation-guide .guide-article h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.5;
+      margin: 30px 0 12px;
+      color: #1c1c1c;
+    }
+
+    .mediation-guide .guide-article strong {
+      color: #181818;
+      font-weight: 800;
+    }
+
+    .mediation-guide .guide-article ul,
+    .mediation-guide .guide-article ol {
+      padding-left: 24px;
+      margin: 0 0 30px;
+    }
+
+    .mediation-guide .guide-article li {
+      margin-bottom: 14px;
+      padding-left: 4px;
+      color: #414141;
+    }
+
+    .mediation-guide .guide-article li::marker {
+      color: #7c6a5f;
+    }
+
+    .mediation-guide .guide-pullquote {
+      border-left: 3px solid #a18b7c;
+      margin: 48px 0;
+      padding: 12px 0 12px 26px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(25px, 3vw, 34px);
+      line-height: 1.45;
+      color: #262626;
+    }
+
+    .mediation-guide .guide-note {
+      background: #eeece8;
+      border-radius: 2px;
+      padding: 30px 34px;
+      margin: 42px 0;
+    }
+
+    .mediation-guide .guide-note h3 {
+      margin-top: 0;
+    }
+
+    .mediation-guide .guide-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .mediation-guide .guide-step {
+      padding: 23px 0;
+      border-bottom: 1px solid #dedbd6;
+    }
+
+    .mediation-guide .guide-step:first-of-type {
+      border-top: 1px solid #dedbd6;
+    }
+
+    .mediation-guide .guide-step h3 {
+      margin-top: 0;
+    }
+
+    .mediation-guide .guide-step p {
+      margin-bottom: 0;
+    }
+
+    .mediation-guide .guide-step-number {
+      display: inline-block;
+      margin-right: 10px;
+      color: #8e7769;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .mediation-guide .guide-ending {
+      background: #191b1c;
+      color: #fff;
+      text-align: center;
+      padding: 84px 24px 92px;
+    }
+
+    .mediation-guide .guide-ending .guide-eyebrow {
+      color: #cdb9a8;
+    }
+
+    .mediation-guide .guide-ending h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(35px, 5vw, 58px);
+      line-height: 1.18;
+      font-weight: 400;
+      max-width: 760px;
+      margin: 0 auto 25px;
+      color: #fff;
+    }
+
+    .mediation-guide .guide-ending p {
+      max-width: 620px;
+      margin: 0 auto 24px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      line-height: 1.9;
+      color: rgba(255,255,255,.8);
+    }
+
+    .mediation-guide .guide-ending .guide-signoff {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 23px;
+      font-style: italic;
+      color: #fff;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 700px) {
+      .mediation-guide .guide-back {
+        margin: 24px;
+      }
+
+      .mediation-guide .guide-hero {
+        min-height: 410px;
+        padding: 65px 24px;
+      }
+
+      .mediation-guide .guide-hero-image {
+        object-position: center 52%;
+      }
+
+      .mediation-guide .guide-hero::before {
+        background: linear-gradient(
+          180deg,
+          rgba(10,12,14,.60),
+          rgba(10,12,14,.88)
+        );
+      }
+
+      .mediation-guide .guide-article {
+        width: min(100% - 40px, 760px);
+        padding: 52px 0 70px;
+        font-size: 15px;
+      }
+
+      .mediation-guide .guide-article h2 {
+        margin-top: 52px;
+      }
+
+      .mediation-guide .guide-note {
+        padding: 24px;
+      }
+
+      .mediation-guide .guide-pullquote {
+        padding-left: 20px;
+      }
+
+      .mediation-guide .guide-ending {
+        padding: 68px 24px 76px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+    <img src="/images/move-and-try-logo.png" alt="Move & Try">
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/#where-to-try">GDJE PROBATI</a>
+  </nav>
+
+  <div class="header-actions">
+    <div class="header-language">
+      <span class="language-active">HR</span>
+    </div>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Otvori izbornik"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <nav>
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/#where-to-try">GDJE PROBATI</a>
+    <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+  </nav>
+
+  <div class="mobile-menu-language">
+    <span class="language-active">HR</span>
+  </div>
+</div>
+
+<main class="mediation-guide">
+
+  <a href="/hr/mediation.html" class="guide-back">
+    ← MEDIJACIJA
+  </a>
+
+  <header class="guide-hero">
+    <img
+      class="guide-hero-image"
+      src="/images/learn-mediation-connection.jpg"
+      alt="Ruke koje se drže kao simbol podrške i međusobnog razumijevanja"
+      loading="eager"
+      fetchpriority="high"
+    >
+
+    <p class="guide-eyebrow">LEARN · VODIČ</p>
+
+    <h1>ŠTO JE MEDIJACIJA?</h1>
+
+    <p class="guide-hero-lead">
+      Kada razgovor više ne vodi nikamo, možda je vrijeme
+      da otkriješ drukčiji način rješavanja sukoba.
+    </p>
+  </header>
+
+  <article class="guide-article">
+
+    <p class="guide-eyebrow">KRENI OVDJE</p>
+
+    <h2>Kad razgovor više ne vodi nikamo.</h2>
+
+    <p>
+      Svi smo se barem jednom našli u situaciji u kojoj
+      razgovor jednostavno više nije funkcionirao.
+    </p>
+
+    <p>
+      Možda je riječ o nesporazumu s članom obitelji,
+      sukobu na poslu, narušenom odnosu sa susjedom
+      ili problemu koji traje toliko dugo da se više
+      ni ne sjećamo kako je počeo.
+    </p>
+
+    <p>
+      Pokušali smo objasniti svoju stranu priče.
+      Možda i više puta. Ali druga osoba kao da nas
+      ne čuje. S vremenom razgovori postaju rasprave,
+      rasprave prerastaju u svađe, a ono što je nekada
+      bio jednostavan nesporazum postaje problem
+      iz kojeg ne vidimo izlaz.
+    </p>
+
+    <p>
+      I što onda?
+    </p>
+
+    <p>
+      Najčešće mislimo da postoje samo dvije mogućnosti:
+      nastaviti se boriti za svoje ili odustati.
+    </p>
+
+    <div class="guide-pullquote">
+      Ali što ako postoji i treći put?
+    </div>
+
+    <h2>Što je zapravo medijacija?</h2>
+
+    <p>
+      Medijacija je način rješavanja sukoba u kojem
+      osobama koje su u sukobu pomaže neutralna
+      i nepristrana treća osoba — medijator.
+    </p>
+
+    <p>
+      Za razliku od suca, medijator ne donosi odluku
+      o tome tko je u pravu, a tko nije.
+      Njegova je uloga pomoći sudionicima da razgovaraju,
+      bolje razumiju međusobne potrebe i interese
+      te pokušaju pronaći rješenje koje im je prihvatljivo.
+    </p>
+
+    <p>
+      Jednostavnije rečeno, medijacija stvara prostor
+      za razgovor koji možda sami više ne uspijevamo voditi.
+    </p>
+
+    <p>
+      To ne znači da se moramo složiti oko svega.
+      Ne znači ni da trebamo zaboraviti što se dogodilo.
+    </p>
+
+    <p>
+      <strong>
+        Znači da dobivamo priliku pokušati riješiti
+        problem na drukčiji način.
+      </strong>
+    </p>
+
+    <h2>Zašto je medijacija drukčija?</h2>
+
+    <p>
+      Kada se sukob rješava na sudu, odluku u pravilu
+      donosi sud na temelju prava i utvrđenih činjenica.
+    </p>
+
+    <p>
+      U medijaciji je pristup drukčiji.
+    </p>
+
+    <div class="guide-pullquote">
+      Sudionici sami odlučuju žele li postići dogovor
+      i kakav će taj dogovor biti.
+    </div>
+
+    <p>
+      Medijator vodi postupak, postavlja pitanja,
+      pomaže razjasniti nesporazume i potiče
+      konstruktivnu komunikaciju.
+      Ne nameće rješenje i ne zastupa jednu stranu.
+    </p>
+
+    <p>
+      Pritom je važno razumjeti da medijacija nije
+      natjecanje u kojem netko mora pobijediti.
+    </p>
+
+    <p>
+      Ponekad je najveći pomak već to što dvije osobe
+      prvi put nakon dugo vremena uspiju čuti jedna drugu.
+    </p>
+
+    <h2>Što možeš dobiti medijacijom?</h2>
+
+    <p>
+      Medijacija može otvoriti mogućnosti koje
+      u uobičajenoj raspravi možda ne vidimo.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Priliku da budeš saslušan.</strong>
+        Da objasniš što ti je važno i kako ti vidiš problem.
+      </li>
+
+      <li>
+        <strong>Aktivnu ulogu u traženju rješenja.</strong>
+        Umjesto da netko drugi odluči umjesto tebe,
+        sudjeluješ u oblikovanju mogućeg dogovora.
+      </li>
+
+      <li>
+        <strong>Bolje razumijevanje druge strane.</strong>
+        Ne moraš se slagati s njom da bi razumio
+        njezinu perspektivu.
+      </li>
+
+      <li>
+        <strong>Mogućnost uštede vremena i troškova.</strong>
+        U određenim situacijama medijacija može biti
+        brža i povoljnija od dugotrajnog sudskog postupka.
+      </li>
+
+      <li>
+        <strong>Priliku za očuvanje ili poboljšanje odnosa.</strong>
+        Osobito kada će osobe i nakon sukoba
+        ostati povezane.
+      </li>
+    </ul>
+
+    <div class="guide-note">
+      <h3>Važno je znati</h3>
+
+      <p>
+        Medijacija ne završava uvijek dogovorom.
+        Njezina vrijednost nije u obećanju da će
+        svaki sukob biti riješen, nego u prilici
+        da se rješenje pokuša pronaći razgovorom.
+      </p>
+    </div>
+
+    <h2>Kako izgleda medijacija?</h2>
+
+    <p>
+      Postupak može izgledati različito,
+      ovisno o vrsti sukoba i okolnostima.
+      Najčešće uključuje sljedeće korake.
+    </p>
+
+    <div class="guide-step">
+      <h3><span class="guide-step-number">01</span> Prvi kontakt</h3>
+      <p>
+        Jedna ili više osoba obraćaju se medijatoru
+        ili organizaciji koja pruža usluge medijacije.
+        Dobivaju informacije o postupku, pravilima
+        i mogućim troškovima.
+      </p>
+    </div>
+
+    <div class="guide-step">
+      <h3><span class="guide-step-number">02</span> Dogovor o sudjelovanju</h3>
+      <p>
+        Medijacija se temelji na dobrovoljnom sudjelovanju.
+        Sudionici trebaju razumjeti postupak
+        i pristati na njega.
+      </p>
+    </div>
+
+    <div class="guide-step">
+      <h3><span class="guide-step-number">03</span> Razgovor</h3>
+      <p>
+        Svaka strana dobiva priliku iznijeti
+        svoje viđenje situacije.
+        Medijator pomaže da razgovor bude strukturiran
+        i usmjeren na ono što je sudionicima važno.
+      </p>
+    </div>
+
+    <div class="guide-step">
+      <h3><span class="guide-step-number">04</span> Istraživanje mogućnosti</h3>
+      <p>
+        Sudionici uz pomoć medijatora razmatraju
+        moguća rješenja i istražuju postoji li
+        dogovor koji odgovara njihovim potrebama.
+      </p>
+    </div>
+
+    <div class="guide-step">
+      <h3><span class="guide-step-number">05</span> Dogovor, ako je moguć</h3>
+      <p>
+        Ako sudionici postignu dogovor,
+        on se može oblikovati u pisanom obliku.
+        Njegovi pravni učinci ovise o sadržaju
+        i ispunjenju odgovarajućih zakonskih uvjeta.
+      </p>
+    </div>
+
+    <h2>Kada medijacija može pomoći?</h2>
+
+    <p>
+      Medijacija se može primjenjivati u različitim
+      vrstama sukoba, primjerice u obiteljskim,
+      susjedskim, radnim, poslovnim i određenim
+      drugim građanskopravnim odnosima.
+    </p>
+
+    <p>
+      Posebno može biti korisna kada sudionici
+      žele pronaći praktično rješenje ili očuvati
+      odnos koji će se nastaviti i nakon sukoba.
+    </p>
+
+    <div class="guide-note">
+      <h3>Je li medijacija uvijek pravi izbor?</h3>
+
+      <p>
+        Nije. U situacijama nasilja, prijetnji,
+        prisile ili ozbiljne neravnoteže moći
+        potrebno je posebno procijeniti može li
+        se postupak provesti sigurno, slobodno
+        i ravnopravno.
+      </p>
+
+      <p>
+        U nekim okolnostima drugi oblici zaštite
+        i pravne pomoći imaju prednost.
+        Nitko ne bi trebao pristati na medijaciju
+        samo zato što osjeća pritisak da se mora dogovoriti.
+      </p>
+    </div>
+
+    <h2>Kako napraviti prvi korak?</h2>
+
+    <p>
+      Ne moraš odmah odlučiti želiš li
+      sudjelovati u medijaciji.
+    </p>
+
+    <p>
+      Za početak možeš istražiti tko pruža
+      takve usluge, kako se postupak provodi
+      i je li prikladan za tvoju situaciju.
+    </p>
+
+    <p>
+      Prije odluke korisno je pitati medijatora:
+    </p>
+
+    <ul>
+      <li>
+        Kakvo iskustvo ima s vrstom sukoba
+        o kojoj je riječ?
+      </li>
+      <li>
+        Kako izgleda postupak i koliko okvirno traje?
+      </li>
+      <li>
+        Koliki su troškovi?
+      </li>
+      <li>
+        Kako se štiti povjerljivost razgovora
+        i koje su njezine granice?
+      </li>
+      <li>
+        Što se događa ako ne postignemo dogovor?
+      </li>
+    </ul>
+
+    <p>
+      Dobar prvi korak nije nužno pokretanje postupka.
+      Ponekad je dovoljno informirati se i otkriti
+      koje mogućnosti postoje.
+    </p>
+
+  </article>
+
+  <section class="guide-ending">
+    <p class="guide-eyebrow">MOVE & TRY · LEARN</p>
+
+    <h2>
+      A što ako samo probaš
+      drukčije pogledati na sukob?
+    </h2>
+
+    <p>
+      Možda trenutačno ne možeš promijeniti drugu osobu.
+      Možda ne možeš promijeniti ni ono što se dogodilo.
+      Ali možeš istražiti postoji li drukčiji način
+      da se o tome razgovara.
+    </p>
+
+    <p>
+      Ne mora svaki sukob završiti
+      pobjednikom i gubitnikom.
+    </p>
+
+    <p class="guide-signoff">
+      You don't have to be good at it. Just try.
+    </p>
+  </section>
+
+</main>
+
+<script src="../script.js"></script>
+
+</body>
+</html>
