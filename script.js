@@ -604,7 +604,8 @@ const moveAndTryUpdates = {
     en: [
 
         {
-            type: "TRY #002 · MOVE",
+            type: "TRY · MOVE",
+            order: 2,
             title: "POLE DANCE",
             text: "You don't need to be strong. You don't need to be flexible. You just need to be curious enough to try.",
             link: "pole-dance.html",
@@ -612,7 +613,8 @@ const moveAndTryUpdates = {
         },
 
         {
-            type: "TRY #001 · MOVE",
+            type: "TRY · MOVE",
+            order: 1,
             title: "RUNNING",
             text: "You don't need to become a runner. Let's just see if you like running.",
             link: "running.html",
@@ -624,7 +626,8 @@ const moveAndTryUpdates = {
     hr: [
 
         {
-            type: "TRY #002 · KRETANJE",
+            type: "TRY · KRETANJE",
+            order: 2,
             title: "POLE DANCE",
             text: "Ne treba ti snaga. Ne treba ti fleksibilnost. Samo malo znatiželje da probaš.",
             link: "pole-dance.html",
@@ -632,7 +635,8 @@ const moveAndTryUpdates = {
         },
 
         {
-            type: "TRY #001 · KRETANJE",
+            type: "TRY · KRETANJE",
+            order: 1,
             title: "TRČANJE",
             text: "Ne moraš postati trkač. Samo ćemo vidjeti sviđa li ti se trčanje.",
             link: "running.html",
@@ -658,17 +662,10 @@ function loadLatestUpdate() {
             ? "hr"
             : "en";
 
-    // Newest TRY number first, regardless of the order in the list.
+    // Newest published TRY first. Keep order separate from the visible label.
     // Only the two newest published entries are displayed.
     const latestUpdates = [...moveAndTryUpdates[language]]
-        .sort((a, b) => {
-            const getNumber = update => {
-                const match = update.type.match(/TRY\s*#(\d+)/i);
-                return match ? Number(match[1]) : 0;
-            };
-
-            return getNumber(b) - getNumber(a);
-        })
+        .sort((a, b) => b.order - a.order)
         .slice(0, 2);
 
     // Remove only cards previously created by this function.
