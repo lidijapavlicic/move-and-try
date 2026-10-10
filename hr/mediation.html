@@ -15,8 +15,11 @@
         content="Otkrij medijaciju uz MOVE & TRY. Upoznaj drukčiji pristup sukobima, razgovoru i traženju zajedničkih rješenja."
     >
 
-    <!-- Stranica je u pripremi. -->
-    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://moveandtry.com/hr/mediation.html">
+
+    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/mediation.html">
+    <link rel="alternate" hreflang="en" href="https://moveandtry.com/mediation.html">
+    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/mediation.html">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -281,7 +284,6 @@
 
 <body>
 
-
 <!-- =========================
      SITE HEADER
 ========================= -->
@@ -318,7 +320,20 @@
     <div class="header-actions">
 
         <div class="header-language">
-            <span class="language-active">HR</span>
+
+            <a
+                href="/mediation.html"
+                onclick="setLanguage('en')"
+            >
+                EN
+            </a>
+
+            <span>|</span>
+
+            <span class="language-active">
+                HR
+            </span>
+
         </div>
 
         <button
@@ -334,7 +349,6 @@
     </div>
 
 </header>
-
 
 <!-- =========================
      MOBILE MENU
@@ -363,11 +377,23 @@
     </nav>
 
     <div class="mobile-menu-language">
-        <span class="language-active">HR</span>
+
+        <a
+            href="/mediation.html"
+            onclick="setLanguage('en')"
+        >
+            EN
+        </a>
+
+        <span>|</span>
+
+        <span class="language-active">
+            HR
+        </span>
+
     </div>
 
 </div>
-
 
 <!-- =========================
      STRANICA AKTIVNOSTI
@@ -375,13 +401,11 @@
 
 <main class="activity-page">
 
-
     <!-- POVRATAK NA LEARN -->
 
     <a href="/hr/learn.html" class="back-link">
         ← LEARN
     </a>
-
 
     <!-- =========================
          HERO
@@ -437,7 +461,6 @@
 
     </header>
 
-
     <!-- =========================
          SADRŽAJ
     ========================= -->
@@ -453,7 +476,6 @@
         </h2>
 
         <div class="activity-content-grid">
-
 
             <!-- VODIČ — AKTIVNA KARTICA -->
 
@@ -486,7 +508,6 @@
 
             </a>
 
-
             <!-- ISKUSTVA -->
 
             <div class="content-card content-card-coming">
@@ -513,7 +534,6 @@
 
             </div>
 
-
             <!-- STRUČNJACI -->
 
             <div class="content-card content-card-coming">
@@ -539,7 +559,6 @@
                 </span>
 
             </div>
-
 
             <!-- GDJE PROBATI -->
 
@@ -570,7 +589,6 @@
         </div>
 
     </section>
-
 
     <!-- =========================
          PODIJELI ISKUSTVO
@@ -607,7 +625,6 @@
 
 </main>
 
-
 <!-- =========================
      JAVASCRIPT
 ========================= -->
@@ -615,5 +632,4 @@
 <script src="../script.js"></script>
 
 </body>
-
 </html>
