@@ -46,24 +46,46 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- =========================
-         POLE DANCE — DARK EDITORIAL HERO
-         Styles isolated to this page
+         POLE DANCE — FULL-WIDTH HERO
+         Page-specific styles only
     ========================= -->
 
     <style>
         .pole-dark-hero {
+            position: relative;
+            isolation: isolate;
             background: #151417;
             color: #ffffff;
             margin-top: 28px;
-            padding: clamp(36px, 5vw, 76px);
-            overflow: hidden;
+            padding: clamp(36px, 5vw, 76px) 0;
+            overflow: visible;
+        }
+
+        /*
+         Extend the dark background to the
+         edges of the browser viewport without
+         changing the site's main container.
+        */
+
+        .pole-dark-hero::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 100vw;
+            transform: translateX(-50%);
+            background: #151417;
+            pointer-events: none;
         }
 
         .pole-dark-hero .pole-hero-layout {
             display: grid;
-            grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+            grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
             align-items: center;
-            gap: clamp(24px, 4vw, 64px);
+            gap: clamp(18px, 3vw, 46px);
+            width: 100%;
         }
 
         .pole-dark-hero .pole-hero-copy {
@@ -88,10 +110,9 @@
         }
 
         /*
-         Natural proportions:
-         The image is never cropped or stretched.
-         A stable stage prevents the layout from
-         jumping as the photographs alternate.
+         Both photos keep their natural proportions.
+         Only the male image is enlarged.
+         The stage remains stable during transitions.
         */
 
         .pole-dark-hero .pole-hero-stage {
@@ -100,7 +121,7 @@
             place-items: center;
             width: 100%;
             min-width: 0;
-            height: clamp(320px, 34vw, 490px);
+            height: clamp(340px, 35vw, 500px);
             background: transparent;
             isolation: isolate;
         }
@@ -118,6 +139,8 @@
         }
 
         .pole-dark-hero .pole-hero-stage img:first-child {
+            max-width: 112%;
+            max-height: 112%;
             animation-delay: 0s;
         }
 
@@ -155,28 +178,38 @@
 
         @media (max-width: 900px) {
             .pole-dark-hero .pole-hero-layout {
-                grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
-                gap: 24px;
+                grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+                gap: 20px;
             }
 
             .pole-dark-hero .pole-hero-stage {
                 height: 360px;
             }
+
+            .pole-dark-hero .pole-hero-stage img:first-child {
+                max-width: 108%;
+                max-height: 108%;
+            }
         }
 
         @media (max-width: 700px) {
             .pole-dark-hero {
-                padding: 32px 22px;
+                padding: 34px 0;
                 margin-top: 22px;
             }
 
             .pole-dark-hero .pole-hero-layout {
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 22px;
             }
 
             .pole-dark-hero .pole-hero-stage {
                 height: min(105vw, 430px);
+            }
+
+            .pole-dark-hero .pole-hero-stage img:first-child {
+                max-width: 100%;
+                max-height: 100%;
             }
 
             .pole-dark-hero .activity-nav {
@@ -321,7 +354,7 @@
 
 
     <!-- =========================
-         DARK EDITORIAL HERO
+         FULL-WIDTH DARK HERO
     ========================= -->
 
     <header class="activity-header pole-dark-hero">
@@ -350,7 +383,7 @@
             </div>
 
 
-            <!-- RIGHT: NATURAL-SIZE PHOTOGRAPHY -->
+            <!-- RIGHT: ALTERNATING PHOTOGRAPHY -->
 
             <div
                 class="pole-hero-stage"
@@ -376,7 +409,7 @@
         </div>
 
 
-        <!-- NAVIGATION -->
+        <!-- ACTIVITY NAVIGATION -->
 
         <div class="activity-nav">
 
