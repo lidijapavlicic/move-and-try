@@ -1,4 +1,3 @@
-
 const SUPABASE_URL = "https://pdyngeaykfpybeafjtpw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK";
 
@@ -740,6 +739,12 @@ function loadLatestUpdate() {
             `latest-update-${update.activity}`
         );
 
+        // Mediation uses the same two photographs as the LEARN card.
+        // The animation and overlay are scoped to this WHAT'S NEW card.
+        if (update.activity === "mediation") {
+            card.classList.add("latest-update-mediation");
+        }
+
         card.dataset.try =
             update.activity;
 
@@ -766,6 +771,64 @@ function loadLatestUpdate() {
 
 
 loadLatestUpdate();
+
+// WHAT'S NEW — MEDIATION: same 12-second photo cycle as LEARN.
+(function setupMediationLatestUpdatePhotos() {
+    if (document.getElementById("mediation-latest-update-style")) return;
+
+    const style = document.createElement("style");
+    style.id = "mediation-latest-update-style";
+    style.textContent = `
+        .new-card.latest-update-mediation {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background: #17191a;
+            color: #fff;
+        }
+        .new-card.latest-update-mediation::before,
+        .new-card.latest-update-mediation::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .new-card.latest-update-mediation::before {
+            background:
+                linear-gradient(180deg, rgba(9,11,13,.46) 0%, rgba(9,11,13,.60) 48%, rgba(9,11,13,.88) 100%),
+                url("/images/learn-mediation-connection.jpg") center 54% / cover no-repeat;
+            animation: mediationLatestPhotoFirst 12s ease-in-out infinite;
+        }
+        .new-card.latest-update-mediation::after {
+            background:
+                linear-gradient(180deg, rgba(9,11,13,.46) 0%, rgba(9,11,13,.60) 48%, rgba(9,11,13,.88) 100%),
+                url("/images/learn-mediation-handshake.jpg") center 62% / cover no-repeat;
+            animation: mediationLatestPhotoSecond 12s ease-in-out infinite;
+        }
+        .new-card.latest-update-mediation .new-type,
+        .new-card.latest-update-mediation h3,
+        .new-card.latest-update-mediation p,
+        .new-card.latest-update-mediation .new-action {
+            color: #fff;
+        }
+        @keyframes mediationLatestPhotoFirst {
+            0%, 42% { opacity: 1; }
+            50%, 92% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes mediationLatestPhotoSecond {
+            0%, 42% { opacity: 0; }
+            50%, 92% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .new-card.latest-update-mediation::before { animation: none; opacity: 1; }
+            .new-card.latest-update-mediation::after { animation: none; opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+})();
 
 
 /* =========================
