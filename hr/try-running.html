@@ -475,6 +475,42 @@
             text-align: center;
         }
 
+        /* ==========================================
+           FOOTER NAVIGATION — BACK TO RUNNING
+           Same editorial style as mediation
+        ========================================== */
+
+        .mt-editorial-try .guide-footer-nav {
+            display: block;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 36px 24px;
+            background: var(--try-paper);
+            text-align: center;
+        }
+
+        .mt-editorial-try .guide-footer-nav a,
+        .mt-editorial-try .guide-footer-nav a:visited {
+            display: inline-block;
+            color: var(--try-green);
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1.6;
+            letter-spacing: .10em;
+            text-decoration: none;
+        }
+
+        .mt-editorial-try .guide-footer-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .mt-editorial-try .guide-footer-nav a:focus-visible {
+            outline: 2px solid var(--try-green);
+            outline-offset: 5px;
+        }
+
         /* MOBILE */
 
         @media (max-width: 700px) {
@@ -844,12 +880,14 @@
 
     </section>
 
-<div class="guide-footer-nav">
-    <a href="/hr/running.html">
-        ← NATRAG NA TRČANJE
-    </a>
-</div>
-    
+    <!-- FINAL NAVIGATION — BACK TO ACTIVITY -->
+
+    <div class="guide-footer-nav">
+        <a href="/hr/running.html">
+            ← NATRAG NA TRČANJE
+        </a>
+    </div>
+
 </main>
 
 <script src="../script.js"></script>
