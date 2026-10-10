@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <title>CrossFit | Move & Try</title>
+
+    <meta
+        name="description"
+        content="Razmišljaš o tome da probaš CrossFit? Otkrij kako izgledaju treninzi, što početnici trebaju znati i gdje možeš pronaći podršku za prvi korak."
+    >
+
+    <!-- Stranica je u pripremi. -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- =========================
+         CROSSFIT — FOTOGRAFSKI HERO
+         Dvije fotografije s animacijom
+    ========================= -->
+
+    <style>
+
+        /* =========================
+           GLAVNO ZAGLAVLJE
+        ========================= */
+
+        .activity-page .activity-header.crossfit-photo-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #15191b;
+            color: #ffffff;
+            padding: 60px 48px;
+        }
+
+        /* =========================
+           FOTOGRAFIJE
+        ========================= */
+
+        .crossfit-photo-hero .crossfit-hero-photos {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .crossfit-photo-hero .crossfit-hero-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            animation: crossfitHeroFade 12s ease-in-out infinite;
+        }
+
+        /*
+           Žena s utegom:
+           naglasak na sportašici i utegu.
+        */
+        .crossfit-photo-hero .crossfit-hero-photo:first-child {
+            object-position: center 48%;
+            animation-delay: 0s;
+        }
+
+        /*
+           Muškarac u skoku:
+           naglasak na pokretu i prepreci.
+        */
+        .crossfit-photo-hero .crossfit-hero-photo:last-child {
+            object-position: center 48%;
+            animation-delay: -6s;
+        }
+
+        /* =========================
+           TAMNI SLOJ PREKO FOTOGRAFIJA
+        ========================= */
+
+        .crossfit-photo-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(9, 14, 17, 0.46) 0%,
+                rgba(9, 14, 17, 0.62) 48%,
+                rgba(9, 14, 17, 0.90) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* =========================
+           TEKST I NAVIGACIJA
+        ========================= */
+
+        .activity-page .crossfit-photo-hero .activity-page-type,
+        .activity-page .crossfit-photo-hero h1,
+        .activity-page .crossfit-photo-hero .activity-page-intro,
+        .activity-page .crossfit-photo-hero .activity-page-intro strong,
+        .activity-page .crossfit-photo-hero .activity-nav,
+        .activity-page .crossfit-photo-hero .activity-nav span {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .activity-page .crossfit-photo-hero .activity-page-type {
+            color: #e2c4a8;
+        }
+
+        .activity-page .crossfit-photo-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.90);
+        }
+
+        .activity-page .crossfit-photo-hero .activity-page-intro strong {
+            color: #ffffff;
+        }
+
+        .activity-page .crossfit-photo-hero .activity-nav span {
+            border-color: rgba(255, 255, 255, 0.42);
+        }
+
+        /* =========================
+           ANIMACIJA — 6 SEKUNDI
+        ========================= */
+
+        @keyframes crossfitHeroFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           MOBILNI PRIKAZ
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .activity-page .activity-header.crossfit-photo-hero {
+                min-height: 380px;
+                padding: 48px 24px;
+            }
+
+        }
+
+        /* =========================
+           PRISTUPAČNOST
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .crossfit-photo-hero .crossfit-hero-photo {
+                animation: none;
+                opacity: 0;
+            }
+
+            .crossfit-photo-hero .crossfit-hero-photo:first-child {
+                opacity: 1;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+            <span class="language-active">HR</span>
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+        <span class="language-active">HR</span>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     STRANICA AKTIVNOSTI
+========================= -->
+
+<main class="activity-page">
+
+
+    <!-- POVRATAK NA MOVE -->
+
+    <a href="/hr/move.html" class="back-link">
+        ← MOVE
+    </a>
+
+
+    <!-- =========================
+         ZAGLAVLJE AKTIVNOSTI
+         S DVIJE FOTOGRAFIJE
+    ========================= -->
+
+    <header class="activity-header crossfit-photo-hero">
+
+        <div class="crossfit-hero-photos" aria-hidden="true">
+
+            <img
+                class="crossfit-hero-photo"
+                src="/images/move-crossfit-lift.jpg"
+                alt=""
+                loading="eager"
+                fetchpriority="high"
+            >
+
+            <img
+                class="crossfit-hero-photo"
+                src="/images/move-crossfit-jump.jpg"
+                alt=""
+                loading="eager"
+            >
+
+        </div>
+
+        <p class="activity-page-type">
+            MOVE · CROSSFIT
+        </p>
+
+        <h1>CROSSFIT</h1>
+
+        <p class="activity-page-intro">
+            Ne moraš biti u vrhunskoj formi da bi počeo.<br>
+            <strong>Samo trebaš biti spreman probati nešto novo.</strong>
+        </p>
+
+        <div class="activity-nav">
+
+            <span>
+                VODIČ
+            </span>
+
+            <span>
+                ISKUSTVA
+            </span>
+
+            <span>
+                STRUČNJACI
+            </span>
+
+            <span>
+                GDJE PROBATI
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         SADRŽAJ U PRIPREMI
+    ========================= -->
+
+    <section class="activity-content-section">
+
+        <p class="section-label">
+            ISTRAŽI CROSSFIT
+        </p>
+
+        <h2>
+            KRENI ODNEKUD.
+        </h2>
+
+        <div class="activity-content-grid">
+
+
+            <!-- VODIČ -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    KRENI OVDJE · VODIČ
+                </span>
+
+                <h3>
+                    PROBAJ CROSSFIT.
+                </h3>
+
+                <p>
+                    Kako izgleda prvi trening,
+                    što ponijeti i zašto ne moraš
+                    unaprijed znati izvoditi sve vježbe.
+                    Upoznaj CrossFit korak po korak.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- ISKUSTVA -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    STVARNA ISKUSTVA
+                </span>
+
+                <h3>
+                    KAKO IZGLEDA PRVI CROSSFIT TRENING?
+                </h3>
+
+                <p>
+                    Prvi dojmovi, izazovi,
+                    iznenađenja i osjećaj
+                    nakon što napraviš nešto
+                    što prije nisi probao.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- STRUČNJACI -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    STRUČNA PERSPEKTIVA
+                </span>
+
+                <h3>
+                    ŠTO BI POČETNIK TREBAO ZNATI?
+                </h3>
+
+                <p>
+                    Trenerski pogled na pravilnu
+                    tehniku, prilagodbu intenziteta,
+                    sigurnost i postupno
+                    napredovanje u treningu.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- GDJE PROBATI -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    GDJE PROBATI
+                </span>
+
+                <h3>
+                    PRONAĐI SVOJ PRVI TRENING.
+                </h3>
+
+                <p>
+                    Upoznaj trenere i mjesta
+                    na kojima možeš isprobati
+                    CrossFit uz stručno vodstvo
+                    i podršku grupe.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PODIJELI ISKUSTVO
+    ========================= -->
+
+    <section class="activity-contribute">
+
+        <p class="section-label">
+            TVOJE ISKUSTVO
+        </p>
+
+        <h2>
+            PROBAO SI CROSSFIT?
+        </h2>
+
+        <p>
+            Kakav je bio tvoj prvi trening?
+            Što te iznenadilo, što ti je bilo teško,
+            a što te potaknulo da nastaviš?
+            Tvoje iskustvo možda pomogne
+            nekome drugome da se odvaži probati.
+        </p>
+
+        <a
+            href="/hr/share-experience.html"
+            class="activity-contribute-link"
+        >
+            PODIJELI SVOJE ISKUSTVO →
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="../script.js"></script>
+
+</body>
+
+</html>
