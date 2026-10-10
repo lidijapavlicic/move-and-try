@@ -156,6 +156,59 @@
         }
 
         /* =========================
+           AKTIVNA KARTICA — VODIČ
+        ========================= */
+
+        .activity-page .mediation-guide-card {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            min-width: 0;
+            background: #ffffff;
+            color: #202820;
+            text-decoration: none;
+            border: 1px solid #dce4da;
+            transition:
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .activity-page .mediation-guide-card .content-card-type {
+            color: #617a65;
+        }
+
+        .activity-page .mediation-guide-card h3 {
+            color: #17251e;
+        }
+
+        .activity-page .mediation-guide-card p {
+            color: #505a50;
+        }
+
+        .activity-page .mediation-guide-card .content-card-status {
+            display: inline-block;
+            margin-top: auto;
+            padding-top: 24px;
+            color: #315b3b;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .activity-page .mediation-guide-card:hover {
+            background: #f3f7f1;
+            border-color: #8ca48e;
+            box-shadow: 0 12px 32px rgba(23, 37, 30, 0.10);
+            transform: translateY(-3px);
+        }
+
+        .activity-page .mediation-guide-card:focus-visible {
+            outline: 3px solid #547c5d;
+            outline-offset: 4px;
+        }
+
+        /* =========================
            IZMJENA FOTOGRAFIJA
            SVAKIH 6 SEKUNDI
         ========================= */
@@ -210,6 +263,14 @@
 
             .mediation-photo-hero .mediation-hero-photo:first-child {
                 opacity: 1;
+            }
+
+            .activity-page .mediation-guide-card {
+                transition: none;
+            }
+
+            .activity-page .mediation-guide-card:hover {
+                transform: none;
             }
 
         }
@@ -394,9 +455,13 @@
         <div class="activity-content-grid">
 
 
-            <!-- VODIČ -->
+            <!-- VODIČ — AKTIVNA KARTICA -->
 
-            <div class="content-card content-card-coming">
+            <a
+                href="/hr/mediation-guide.html"
+                class="content-card mediation-guide-card"
+                aria-label="Otvori vodič Što je medijacija?"
+            >
 
                 <span class="content-card-type">
                     KRENI OVDJE · VODIČ
@@ -416,10 +481,10 @@
                 </p>
 
                 <span class="content-card-status">
-                    USKORO
+                    OTVORI VODIČ →
                 </span>
 
-            </div>
+            </a>
 
 
             <!-- ISKUSTVA -->
