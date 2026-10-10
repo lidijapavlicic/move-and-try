@@ -600,52 +600,90 @@ function setLanguage(language) {
 ========================= */
 
 const moveAndTryUpdates = {
-
     en: [
-
         {
-            type: "TRY · MOVE",
+            category: "MOVE",
+            activity: "pole-dance",
+            contentType: "GUIDE",
             order: 2,
             title: "POLE DANCE",
             text: "You don't need to be strong. You don't need to be flexible. You just need to be curious enough to try.",
-            link: "pole-dance.html",
-            action: "DISCOVER THIS TRY →"
+            link: "try-pole-dance.html",
+            action: "READ THE GUIDE →"
         },
-
         {
-            type: "TRY · MOVE",
+            category: "MOVE",
+            activity: "running",
+            contentType: "GUIDE",
             order: 1,
             title: "RUNNING",
             text: "You don't need to become a runner. Let's just see if you like running.",
-            link: "running.html",
-            action: "DISCOVER THIS TRY →"
+            link: "try-running.html",
+            action: "READ THE GUIDE →"
         }
-
     ],
 
     hr: [
-
         {
-            type: "TRY · KRETANJE",
+            category: "KRETANJE",
+            activity: "pole-dance",
+            contentType: "VODIČ",
             order: 2,
             title: "POLE DANCE",
             text: "Ne treba ti snaga. Ne treba ti fleksibilnost. Samo malo znatiželje da probaš.",
-            link: "pole-dance.html",
-            action: "ISTRAŽI →"
+            link: "try-pole-dance.html",
+            action: "PROČITAJ VODIČ →"
         },
-
         {
-            type: "TRY · KRETANJE",
+            category: "KRETANJE",
+            activity: "running",
+            contentType: "VODIČ",
             order: 1,
             title: "TRČANJE",
             text: "Ne moraš postati trkač. Samo ćemo vidjeti sviđa li ti se trčanje.",
-            link: "running.html",
-            action: "ISTRAŽI →"
+            link: "try-running.html",
+            action: "PROČITAJ VODIČ →"
         }
-
     ]
-
 };
+
+
+/*
+   PUBLISHING RULE
+
+   Each newly published guide, experience, expert contribution
+   or where-to-try page is a separate entry.
+
+   Add an entry only when its content is publicly available.
+   Increase order for each new publication.
+   Only the two newest entries are displayed.
+
+   The activity field controls the existing photo styling.
+   The link field points directly to the newly published content.
+
+   When mediation is published, add a new entry to the
+   appropriate language array.
+
+   Example for EN:
+
+   {
+       category: "LEARN",
+       activity: "mediation",
+       contentType: "GUIDE",
+       order: 3,
+       title: "MEDIATION",
+       text: "...",
+       link: "mediation-guide.html",
+       action: "READ THE GUIDE →"
+   }
+
+   For HR use:
+       category: "UČENJE"
+       contentType: "VODIČ"
+       link: "mediation-guide.html"
+
+   Also verify photo styling for .latest-update-mediation.
+*/
 
 
 function loadLatestUpdate() {
@@ -662,13 +700,11 @@ function loadLatestUpdate() {
             ? "hr"
             : "en";
 
-    // Newest published TRY first. Keep order separate from the visible label.
-    // Only the two newest published entries are displayed.
-    const latestUpdates = [...moveAndTryUpdates[language]]
-        .sort((a, b) => b.order - a.order)
-        .slice(0, 2);
+    const latestUpdates =
+        [...moveAndTryUpdates[language]]
+            .sort((a, b) => b.order - a.order)
+            .slice(0, 2);
 
-    // Remove only cards previously created by this function.
     firstCard.parentElement
         .querySelectorAll(".latest-update-generated")
         .forEach(card => card.remove());
@@ -680,31 +716,50 @@ function loadLatestUpdate() {
             : document.createElement("a");
 
         if (index > 0) {
-            card.className = "new-card latest-update-generated";
+
+            card.className =
+                "new-card latest-update-generated";
+
             card.innerHTML = `
                 <span class="new-type"></span>
                 <h3></h3>
                 <p></p>
                 <span class="new-action"></span>
             `;
+
             firstCard.parentElement.appendChild(card);
         }
 
-        const slug = update.link
-            .split("/").pop()
-            .replace(/\.html(?:[?#].*)?$/i, "");
+        /*
+           Keep photo classes tied to the activity,
+           not to the guide or experience URL.
+        */
 
         card.classList.add("latest-update-card");
-        card.classList.remove(
-            "latest-update-pole-dance",
-            "latest-update-running"
+
+        [...card.classList]
+            .filter(name =>
+                name.startsWith("latest-update-") &&
+                name !== "latest-update-card" &&
+                name !== "latest-update-generated"
+            )
+            .forEach(name => card.classList.remove(name));
+
+        card.classList.add(
+            `latest-update-${update.activity}`
         );
-        card.classList.add(`latest-update-${slug}`);
-        card.dataset.try = slug;
-        card.href = update.link;
+
+        card.dataset.try =
+            update.activity;
+
+        card.dataset.contentType =
+            update.contentType;
+
+        card.href =
+            update.link;
 
         card.querySelector(".new-type").textContent =
-            update.type;
+            `TRY · ${update.category} · ${update.contentType}`;
 
         card.querySelector("h3").textContent =
             update.title;
@@ -714,6 +769,7 @@ function loadLatestUpdate() {
 
         card.querySelector(".new-action").textContent =
             update.action;
+
     });
 }
 
