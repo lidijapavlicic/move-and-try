@@ -87,69 +87,148 @@
     <link rel="stylesheet" href="../style.css">
 
     <!-- =========================
-         ŠTO JE NOVO — POLE DANCE
-         Stilovi samo za ovu karticu
+         ŠTO JE NOVO
+         DVIJE NAJNOVIJE TRY OBJAVE
+         Stilovi samo za početnu stranicu
     ========================= -->
 
     <style>
-        .home-intro .new-card#latest-update {
+
+        /* =========================
+           ZAJEDNIČKI IZGLED KARTICA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-card {
             position: relative;
             isolation: isolate;
             overflow: hidden;
-            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            min-height: 285px;
+            margin-top: 18px;
             background: #151417;
             color: #ffffff;
+            text-decoration: none;
         }
 
-        .home-intro .new-card#latest-update::before,
-        .home-intro .new-card#latest-update::after {
+        .home-intro .whats-new .new-card.latest-update-card:first-of-type {
+            margin-top: 0;
+        }
+
+        /* =========================
+           FOTOGRAFIJE I ANIMACIJA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-card::before,
+        .home-intro .whats-new .new-card.latest-update-card::after {
             content: "";
             position: absolute;
             inset: 0;
-            z-index: -1;
-            background-position: center;
+            z-index: 0;
             background-repeat: no-repeat;
             background-size: cover;
+            background-position: center;
             pointer-events: none;
-            animation: latestPoleFade 12s ease-in-out infinite;
+            animation: latestPhotoFade 12s ease-in-out infinite;
         }
 
-        .home-intro .new-card#latest-update::before {
-            background-image:
-                linear-gradient(
-                    90deg,
-                    rgba(0, 0, 0, 0.82),
-                    rgba(0, 0, 0, 0.38)
-                ),
-                url('/images/pole-dance-man.jpg');
+        .home-intro .whats-new .new-card.latest-update-card::before {
+            animation-delay: 0s;
         }
 
-        .home-intro .new-card#latest-update::after {
-            background-image:
-                linear-gradient(
-                    90deg,
-                    rgba(0, 0, 0, 0.82),
-                    rgba(0, 0, 0, 0.38)
-                ),
-                url('/images/pole-dance-woman.jpg');
-
+        .home-intro .whats-new .new-card.latest-update-card::after {
             animation-delay: -6s;
         }
 
-        .home-intro .new-card#latest-update .new-type,
-        .home-intro .new-card#latest-update h3,
-        .home-intro .new-card#latest-update p,
-        .home-intro .new-card#latest-update .new-action {
+        /* =========================
+           POLE DANCE
+           TAMNA LJUBIČASTO-CRNA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-pole-dance {
+            background: #18151d;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-pole-dance::before {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(12, 10, 17, 0.46) 0%,
+                    rgba(12, 10, 17, 0.60) 48%,
+                    rgba(12, 10, 17, 0.88) 100%
+                ),
+                url('/images/pole-dance-man.jpg');
+            background-position: center 35%;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-pole-dance::after {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(12, 10, 17, 0.46) 0%,
+                    rgba(12, 10, 17, 0.60) 48%,
+                    rgba(12, 10, 17, 0.88) 100%
+                ),
+                url('/images/pole-dance-woman.jpg');
+            background-position: center 35%;
+        }
+
+        /* =========================
+           TRČANJE
+           TAMNA ŠUMSKO-PLAVA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-running {
+            background: #101b20;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-running::before {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(7, 19, 25, 0.56) 0%,
+                    rgba(7, 19, 25, 0.66) 48%,
+                    rgba(7, 19, 25, 0.88) 100%
+                ),
+                url('/images/running-forest.jpg');
+            background-position: center 48%;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-running::after {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(7, 19, 25, 0.56) 0%,
+                    rgba(7, 19, 25, 0.66) 48%,
+                    rgba(7, 19, 25, 0.88) 100%
+                ),
+                url('/images/running-blue.jpg');
+            background-position: center 48%;
+        }
+
+        /* =========================
+           BIJELI TEKST IZNAD SLIKA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-card .new-type,
+        .home-intro .whats-new .new-card.latest-update-card h3,
+        .home-intro .whats-new .new-card.latest-update-card p,
+        .home-intro .whats-new .new-card.latest-update-card .new-action {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             color: #ffffff;
         }
 
-        .home-intro .new-card#latest-update .new-type {
+        .home-intro .whats-new .new-card.latest-update-card .new-type {
             color: #d4c8ae;
         }
 
-        @keyframes latestPoleFade {
+        /* =========================
+           IZMJENA FOTOGRAFIJA
+           SVAKIH 6 SEKUNDI
+        ========================= */
+
+        @keyframes latestPhotoFade {
             0%, 42% {
                 opacity: 1;
             }
@@ -163,20 +242,27 @@
             }
         }
 
+        /* =========================
+           PRISTUPAČNOST
+        ========================= */
+
         @media (prefers-reduced-motion: reduce) {
-            .home-intro .new-card#latest-update::before,
-            .home-intro .new-card#latest-update::after {
+
+            .home-intro .whats-new .new-card.latest-update-card::before,
+            .home-intro .whats-new .new-card.latest-update-card::after {
                 animation: none;
             }
 
-            .home-intro .new-card#latest-update::before {
+            .home-intro .whats-new .new-card.latest-update-card::before {
+                opacity: 1;
+            }
+
+            .home-intro .whats-new .new-card.latest-update-card::after {
                 opacity: 0;
             }
 
-            .home-intro .new-card#latest-update::after {
-                opacity: 1;
-            }
         }
+
     </style>
 
 </head>
@@ -385,7 +471,11 @@
         </div>
 
 
-        <!-- ŠTO JE NOVO -->
+        <!-- =========================
+             ŠTO JE NOVO
+             script.js popunjava prvu
+             i dodaje drugu karticu
+        ========================= -->
 
         <div class="home-intro-news">
 
