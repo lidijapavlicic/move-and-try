@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <title>Kayaking | Move & Try</title>
+
+    <meta
+        name="description"
+        content="Otkrij kayaking uz MOVE & TRY. Saznaj kako izgleda prvi izlazak na vodu, što trebaš znati prije početka i gdje možeš isprobati ovu aktivnost."
+    >
+
+    <!-- Stranica je u pripremi. -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- =========================
+         KAYAKING — FOTOGRAFSKI HERO
+         Dvije fotografije s animacijom
+    ========================= -->
+
+    <style>
+
+        /* =========================
+           GLAVNO ZAGLAVLJE
+        ========================= */
+
+        .activity-page .activity-header.kayaking-photo-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #07191a;
+            color: #ffffff;
+            padding: 60px 48px;
+        }
+
+        /* =========================
+           FOTOGRAFIJE
+        ========================= */
+
+        .kayaking-photo-hero .kayaking-hero-photos {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .kayaking-photo-hero .kayaking-hero-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            animation: kayakingHeroFade 12s ease-in-out infinite;
+        }
+
+        /*
+           Pogled iz zraka:
+           zadržavamo tamno more i kajake u kadru.
+        */
+        .kayaking-photo-hero .kayaking-hero-photo:first-child {
+            object-position: center 48%;
+            animation-delay: 0s;
+        }
+
+        /*
+           Crno-bijela silueta:
+           naglasak na osobi u kajaku.
+        */
+        .kayaking-photo-hero .kayaking-hero-photo:last-child {
+            object-position: center 50%;
+            animation-delay: -6s;
+        }
+
+        /* =========================
+           TAMNI SLOJ PREKO FOTOGRAFIJA
+        ========================= */
+
+        .kayaking-photo-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(4, 17, 18, 0.42) 0%,
+                rgba(4, 17, 18, 0.62) 48%,
+                rgba(4, 17, 18, 0.90) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* =========================
+           TEKST I NAVIGACIJA
+        ========================= */
+
+        .activity-page .kayaking-photo-hero .activity-page-type,
+        .activity-page .kayaking-photo-hero h1,
+        .activity-page .kayaking-photo-hero .activity-page-intro,
+        .activity-page .kayaking-photo-hero .activity-page-intro strong,
+        .activity-page .kayaking-photo-hero .activity-nav,
+        .activity-page .kayaking-photo-hero .activity-nav span {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .activity-page .kayaking-photo-hero .activity-page-type {
+            color: #b9d8d0;
+        }
+
+        .activity-page .kayaking-photo-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.90);
+        }
+
+        .activity-page .kayaking-photo-hero .activity-page-intro strong {
+            color: #ffffff;
+        }
+
+        .activity-page .kayaking-photo-hero .activity-nav span {
+            border-color: rgba(255, 255, 255, 0.42);
+        }
+
+        /* =========================
+           ANIMACIJA — 6 SEKUNDI
+        ========================= */
+
+        @keyframes kayakingHeroFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           MOBILNI PRIKAZ
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .activity-page .activity-header.kayaking-photo-hero {
+                min-height: 380px;
+                padding: 48px 24px;
+            }
+
+        }
+
+        /* =========================
+           PRISTUPAČNOST
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .kayaking-photo-hero .kayaking-hero-photo {
+                animation: none;
+                opacity: 0;
+            }
+
+            .kayaking-photo-hero .kayaking-hero-photo:first-child {
+                opacity: 1;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+            <span class="language-active">HR</span>
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+        <span class="language-active">HR</span>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     STRANICA AKTIVNOSTI
+========================= -->
+
+<main class="activity-page">
+
+
+    <!-- POVRATAK NA EXPLORE -->
+
+    <a href="/hr/explore.html" class="back-link">
+        ← EXPLORE
+    </a>
+
+
+    <!-- =========================
+         ZAGLAVLJE AKTIVNOSTI
+         S DVIJE FOTOGRAFIJE
+    ========================= -->
+
+    <header class="activity-header kayaking-photo-hero">
+
+        <div class="kayaking-hero-photos" aria-hidden="true">
+
+            <img
+                class="kayaking-hero-photo"
+                src="/images/explore-kayaking-aerial.jpg"
+                alt=""
+                loading="eager"
+                fetchpriority="high"
+            >
+
+            <img
+                class="kayaking-hero-photo"
+                src="/images/explore-kayaking-silhouette.jpg"
+                alt=""
+                loading="eager"
+            >
+
+        </div>
+
+        <p class="activity-page-type">
+            EXPLORE · KAYAKING
+        </p>
+
+        <h1>KAYAKING</h1>
+
+        <p class="activity-page-intro">
+            Ne moraš znati kamo te voda vodi.<br>
+            <strong>Ponekad je dovoljno odgurnuti se od obale i krenuti.</strong>
+        </p>
+
+        <div class="activity-nav">
+
+            <span>
+                VODIČ
+            </span>
+
+            <span>
+                ISKUSTVA
+            </span>
+
+            <span>
+                STRUČNJACI
+            </span>
+
+            <span>
+                GDJE PROBATI
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         SADRŽAJ U PRIPREMI
+    ========================= -->
+
+    <section class="activity-content-section">
+
+        <p class="section-label">
+            ISTRAŽI KAYAKING
+        </p>
+
+        <h2>
+            PRONAĐI SVOJU AVANTURU.
+        </h2>
+
+        <div class="activity-content-grid">
+
+
+            <!-- VODIČ -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    KRENI OVDJE · VODIČ
+                </span>
+
+                <h3>
+                    PROBAJ KAYAKING.
+                </h3>
+
+                <p>
+                    Što trebaš znati prije prvog izlaska na vodu,
+                    kakvu opremu odabrati i zašto je najbolje
+                    započeti uz iskusnog vodiča.
+                    Upoznaj osnove korak po korak.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- ISKUSTVA -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    STVARNA ISKUSTVA
+                </span>
+
+                <h3>
+                    KAKAV JE OSJEĆAJ PRVI PUT SJESTI U KAJAK?
+                </h3>
+
+                <p>
+                    Prvi zaveslaji, nesigurnost,
+                    otkrivanje novih mjesta i osjećaj
+                    slobode koji dolazi s boravkom na vodi.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- STRUČNJACI -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    STRUČNA PERSPEKTIVA
+                </span>
+
+                <h3>
+                    ŠTO BI POČETNIK TREBAO ZNATI?
+                </h3>
+
+                <p>
+                    Savjeti iskusnih kajakaša i vodiča
+                    o tehnici veslanja, sigurnosti na vodi,
+                    vremenskim uvjetima i odabiru
+                    odgovarajuće rute.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- GDJE PROBATI -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    GDJE PROBATI
+                </span>
+
+                <h3>
+                    PRONAĐI SVOJ PRVI IZLET.
+                </h3>
+
+                <p>
+                    Upoznaj mjesta, klubove i organizatore
+                    koji nude vođene kajakaške izlete,
+                    najam opreme i iskustva
+                    prilagođena početnicima.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PODIJELI ISKUSTVO
+    ========================= -->
+
+    <section class="activity-contribute">
+
+        <p class="section-label">
+            TVOJE ISKUSTVO
+        </p>
+
+        <h2>
+            PROBAO SI KAYAKING?
+        </h2>
+
+        <p>
+            Gdje si prvi put zaveslao?
+            Što te iznenadilo, a što ti je
+            ostalo u najljepšem sjećanju?
+            Tvoja priča možda potakne
+            nekoga drugoga da otkrije
+            svoju prvu avanturu na vodi.
+        </p>
+
+        <a
+            href="/hr/share-experience.html"
+            class="activity-contribute-link"
+        >
+            PODIJELI SVOJE ISKUSTVO →
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="../script.js"></script>
+
+</body>
+
+</html>
