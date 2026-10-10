@@ -85,6 +85,100 @@
     </script>
 
     <link rel="stylesheet" href="../style.css">
+
+    <!-- =========================
+         ŠTO JE NOVO — POLE DANCE
+         Stilovi samo za ovu karticu
+    ========================= -->
+
+    <style>
+        .home-intro .new-card#latest-update {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 320px;
+            background: #151417;
+            color: #ffffff;
+        }
+
+        .home-intro .new-card#latest-update::before,
+        .home-intro .new-card#latest-update::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            pointer-events: none;
+            animation: latestPoleFade 12s ease-in-out infinite;
+        }
+
+        .home-intro .new-card#latest-update::before {
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.82),
+                    rgba(0, 0, 0, 0.38)
+                ),
+                url('/images/pole-dance-man.jpg');
+        }
+
+        .home-intro .new-card#latest-update::after {
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.82),
+                    rgba(0, 0, 0, 0.38)
+                ),
+                url('/images/pole-dance-woman.jpg');
+
+            animation-delay: -6s;
+        }
+
+        .home-intro .new-card#latest-update .new-type,
+        .home-intro .new-card#latest-update h3,
+        .home-intro .new-card#latest-update p,
+        .home-intro .new-card#latest-update .new-action {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .home-intro .new-card#latest-update .new-type {
+            color: #d4c8ae;
+        }
+
+        @keyframes latestPoleFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .home-intro .new-card#latest-update::before,
+            .home-intro .new-card#latest-update::after {
+                animation: none;
+            }
+
+            .home-intro .new-card#latest-update::before {
+                opacity: 0;
+            }
+
+            .home-intro .new-card#latest-update::after {
+                opacity: 1;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
