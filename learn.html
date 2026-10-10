@@ -32,6 +32,124 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================
+           LEARN — MEDIATION CARD
+           Existing category layout preserved
+        ========================= */
+
+        .move-app-page .activity-card.learn-mediation-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 360px;
+            background: #17191a;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .learn-mediation-card .learn-mediation-photos {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .learn-mediation-card .learn-mediation-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            animation: learnMediationFade 12s ease-in-out infinite;
+        }
+
+        .learn-mediation-card .learn-mediation-photo:first-child {
+            object-position: center 54%;
+            animation-delay: 0s;
+        }
+
+        .learn-mediation-card .learn-mediation-photo:last-child {
+            object-position: center 62%;
+            animation-delay: -6s;
+        }
+
+        .learn-mediation-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(9, 11, 13, 0.35) 0%,
+                rgba(9, 11, 13, 0.48) 40%,
+                rgba(9, 11, 13, 0.88) 100%
+            );
+            pointer-events: none;
+        }
+
+        .move-app-page .learn-mediation-card .activity-number,
+        .move-app-page .learn-mediation-card .activity-content,
+        .move-app-page .learn-mediation-card h3,
+        .move-app-page .learn-mediation-card .activity-description,
+        .move-app-page .learn-mediation-card .activity-available {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .move-app-page .learn-mediation-card .activity-number {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .14em;
+            color: rgba(255, 255, 255, .78);
+        }
+
+        .move-app-page .learn-mediation-card .activity-description {
+            color: rgba(255, 255, 255, .88);
+        }
+
+        .move-app-page .learn-mediation-card .activity-available {
+            display: inline-block;
+            color: #d4e6d1;
+        }
+
+        .move-app-page .learn-mediation-card:focus-visible {
+            outline: 3px solid #ffffff;
+            outline-offset: 4px;
+        }
+
+        @keyframes learnMediationFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .learn-mediation-card .learn-mediation-photo {
+                animation: none;
+                opacity: 0;
+            }
+
+            .learn-mediation-card .learn-mediation-photo:first-child {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -128,30 +246,50 @@
 
                 <div class="activity-grid">
 
-                    <div class="activity-card category-coming-card">
+                    <!-- MEDIATION — GUIDE AVAILABLE -->
+                    <a
+                        href="/mediation.html"
+                        class="activity-card learn-mediation-card"
+                        aria-label="Explore mediation"
+                    >
+
+                        <div class="learn-mediation-photos" aria-hidden="true">
+                            <img
+                                class="learn-mediation-photo"
+                                src="/images/learn-mediation-connection.jpg"
+                                alt=""
+                                loading="eager"
+                            >
+                            <img
+                                class="learn-mediation-photo"
+                                src="/images/learn-mediation-handshake.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
+                        </div>
 
                         <span class="activity-number">
-                            COMING SOON IN THIS CATEGORY
+                            LEARN · COMMUNICATION
                         </span>
 
                         <div class="activity-content">
 
-                            <h3>NEW ACTIVITIES ARE ON THE WAY.</h3>
+                            <h3>MEDIATION</h3>
 
                             <p class="activity-description">
-                                We're preparing ideas, guides and experiences
-                                for you to explore. In the meantime,
-                                maybe you have a suggestion for
-                                what we should add next.
+                                What if a difficult conversation
+                                didn't have to end with someone winning
+                                and someone losing?
+                                Discover another way forward.
                             </p>
 
                             <span class="activity-available">
-                                MOVE &amp; TRY · LEARN
+                                GUIDE ✓
                             </span>
 
                         </div>
 
-                    </div>
+                    </a>
 
                 </div>
 
