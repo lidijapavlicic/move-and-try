@@ -8,12 +8,15 @@
 
     <link rel="icon" type="image/png" href="/favicon.png">
 
-    <title>Kretanje | Move & Try</title>
+    <title>Move | Move & Try</title>
 
-    <meta name="description"
-          content="Otkrij različite načine kretanja. Od trčanja i plesa do aktivnosti koje još nisi probao. Ne moraš biti dobar u tome. Samo probaj.">
+    <meta
+        name="description"
+        content="Otkrij nove načine kretanja. Od trčanja i plesa do aktivnosti koje još nisi probao. Ne moraš biti dobar u tome. Samo probaj."
+    >
 
     <link rel="canonical" href="https://moveandtry.com/hr/move.html">
+
     <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/move.html">
     <link rel="alternate" hreflang="en" href="https://moveandtry.com/move.html">
     <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/move.html">
@@ -21,131 +24,322 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
+
         function gtag() {
             dataLayer.push(arguments);
         }
+
         gtag('js', new Date());
         gtag('config', 'G-PREYRXPPN8');
     </script>
 
     <link rel="stylesheet" href="../style.css">
+
+    <!-- POLE DANCE KARTICA — HR -->
+    <style>
+        .move-app-page .activity-card.pole-feature-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background: #151417;
+            color: #ffffff;
+            min-height: 285px;
+        }
+
+        .pole-feature-card::before,
+        .pole-feature-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+
+        .pole-feature-card::before {
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.82),
+                    rgba(0, 0, 0, 0.24)
+                ),
+                url('/images/pole-dance-woman.jpg');
+        }
+
+        .pole-feature-card::after {
+            display: none;
+        }
+
+        .move-app-page .pole-feature-card .activity-number,
+        .move-app-page .pole-feature-card h3,
+        .move-app-page .pole-feature-card .activity-description,
+        .move-app-page .pole-feature-card .activity-available,
+        .move-app-page .pole-feature-card .activity-action {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .move-app-page .pole-feature-card .activity-available span {
+            color: #ffffff;
+        }
+
+        @media (max-width: 767px) {
+            .pole-feature-card::before {
+                animation: poleWomanFade 12s ease-in-out infinite;
+            }
+
+            .pole-feature-card::after {
+                display: block;
+                background-image:
+                    linear-gradient(
+                        90deg,
+                        rgba(0, 0, 0, 0.82),
+                        rgba(0, 0, 0, 0.24)
+                    ),
+                    url('/images/pole-dance-man.jpg');
+                animation: poleManFade 12s ease-in-out infinite;
+            }
+
+            @keyframes poleWomanFade {
+                0%, 42% {
+                    opacity: 1;
+                }
+                50%, 92% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes poleManFade {
+                0%, 42% {
+                    opacity: 0;
+                }
+                50%, 92% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .pole-feature-card::before,
+            .pole-feature-card::after {
+                animation: none !important;
+            }
+
+            .pole-feature-card::after {
+                display: none;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
 
-<!-- SITE HEADER -->
+<!-- =========================
+     SITE HEADER
+========================= -->
+
 <header class="site-header">
 
-    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
-        <img src="/images/move-and-try-logo.png" alt="Move & Try">
+    <a href="/hr/" class="site-logo" aria-label="Move & Try početna">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
     </a>
 
     <nav class="desktop-nav">
-        <a href="/hr/#find-your-try">OTKRIJ</a>
-        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-        <a href="/hr/#where-to-try">GDJE PROBATI</a>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
     </nav>
 
     <div class="header-actions">
+
         <div class="header-language">
-            <a href="/move.html" onclick="setLanguage('en')">EN</a>
+
+            <a href="/move.html" onclick="setLanguage('en')">
+                EN
+            </a>
+
             <span>|</span>
-            <span class="language-active">HR</span>
+
+            <span class="language-active">
+                HR
+            </span>
+
         </div>
 
-        <button class="menu-toggle"
-                type="button"
-                aria-label="Otvori izbornik"
-                aria-expanded="false">
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
             <span></span>
             <span></span>
         </button>
+
     </div>
+
 </header>
 
-<!-- MOBILE MENU -->
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
 <div class="mobile-menu">
+
     <nav>
-        <a href="/hr/#find-your-try">OTKRIJ</a>
-        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-        <a href="/hr/#where-to-try">GDJE PROBATI</a>
-        <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
     </nav>
 
     <div class="mobile-menu-language">
-        <a href="/move.html" onclick="setLanguage('en')">EN</a>
+
+        <a href="/move.html" onclick="setLanguage('en')">
+            EN
+        </a>
+
         <span>|</span>
-        <span class="language-active">HR</span>
+
+        <span class="language-active">
+            HR
+        </span>
+
     </div>
+
 </div>
+
+
+<!-- =========================
+     CATEGORY PAGE — APP LAYOUT
+========================= -->
 
 <main class="category-page move-app-page">
 
-    <!-- TWO-COLUMN CATEGORY EXPERIENCE -->
     <div class="move-app-layout">
 
-        <!-- LEFT: CATEGORY INTRO -->
+        <!-- LEFT — CATEGORY INTRO -->
+
         <section class="move-app-intro" aria-labelledby="move-title">
 
-            <p class="category-page-number">01 · MOVE</p>
+            <p class="category-page-number">
+                01 · MOVE
+            </p>
 
             <h1 id="move-title">MOVE</h1>
 
-            <h2>Pokreni se.<br>Na svoj način.</h2>
+            <h2>
+                Pokreni se.<br>
+                Na svoj način.
+            </h2>
 
             <p>
-                Kretanje nije samo trening, kondicija ili rezultat.
-                Ono je način da se osjećaš bolje, pronađeš energiju
-                i otkriješ koliko tvoje tijelo može.
+                Kretanje nisu samo treninzi, kondicija ili rezultati.
+                To je način da se osjećaš bolje, pronađeš novu energiju
+                i otkriješ što sve tvoje tijelo može.
             </p>
 
             <p>
                 Ne moraš biti sportaš niti imati iskustva.
-                Postoji toliko načina da se pokreneš — od trčanja
-                i plesa do penjanja, bicikliranja i sasvim novih izazova.
+                Postoji toliko načina za kretanje — od trčanja i plesa
+                do penjanja, vožnje bicikla i sasvim novih izazova.
             </p>
 
             <p class="move-app-highlight">
-                Pronađi nešto što te privlači.
+                Pronađi nešto što budi tvoju znatiželju.
                 Ne moraš biti dobar u tome. Samo probaj.
             </p>
 
         </section>
 
-        <!-- RIGHT: ACTIVITY DISCOVERY -->
+
+        <!-- RIGHT — DISCOVER ACTIVITIES -->
+
         <section class="move-app-discover" aria-labelledby="move-discover-title">
 
-            <p class="section-label">ISTRAŽI MOVE</p>
+            <p class="section-label">
+                ISTRAŽI MOVE
+            </p>
 
-            <h2 id="move-discover-title">ŠTO BI ŽELIO PROBATI?</h2>
+            <h2 id="move-discover-title">
+                ŠTO BI VOLIO PROBATI?
+            </h2>
 
             <div class="activity-grid">
 
                 <!-- RUNNING -->
+
                 <a href="running.html" class="activity-card">
 
-                    <span class="activity-number">01</span>
+                    <span class="activity-number">
+                        01
+                    </span>
 
                     <div class="activity-content">
+
                         <h3>TRČANJE</h3>
 
                         <p class="activity-description">
-                            Kreni jednostavno. Vidi kakav je osjećaj trčati
-                            prije nego počneš razmišljati o tempu,
+                            Kreni jednostavno. Otkrij kako je to trčati
+                            prije nego što počneš razmišljati o tempu,
                             udaljenosti ili opremi.
                         </p>
 
                         <div class="activity-available">
+
                             <span>VODIČ ✓</span>
+
                             <span>ISKUSTVA</span>
+
                         </div>
+
                     </div>
 
                     <span class="activity-action">
@@ -154,21 +348,29 @@
 
                 </a>
 
-                <!-- POLE DANCE -->
-                <a href="pole-dance.html" class="activity-card">
 
-                    <span class="activity-number">02</span>
+                <!-- POLE DANCE -->
+
+                <a href="pole-dance.html" class="activity-card pole-feature-card">
+
+                    <span class="activity-number">
+                        02
+                    </span>
 
                     <div class="activity-content">
+
                         <h3>POLE DANCE</h3>
 
                         <p class="activity-description">
-                            Snaga, pokret i sasvim drugačiji prvi pokušaj.
+                            Snaga, pokret i sasvim drugačije prvo iskustvo.
                         </p>
 
                         <div class="activity-available">
+
                             <span>VODIČ ✓</span>
+
                         </div>
+
                     </div>
 
                     <span class="activity-action">
@@ -180,22 +382,30 @@
             </div>
 
             <p class="move-app-more">
-                JOŠ AKTIVNOSTI USKORO
+                USKORO JOŠ AKTIVNOSTI
             </p>
 
         </section>
 
     </div>
 
-    <!-- SUGGEST AN ACTIVITY -->
+
+    <!-- =========================
+         SUGGEST AN ACTIVITY
+    ========================= -->
+
     <section class="category-suggest">
 
-        <p class="section-label">NEŠTO NEDOSTAJE?</p>
+        <p class="section-label">
+            NEŠTO NEDOSTAJE?
+        </p>
 
-        <h2>IMAŠ DRUGU IDEJU?</h2>
+        <h2>
+            IMAŠ DRUGU IDEJU?
+        </h2>
 
         <p>
-            Želiš probati neku MOVE aktivnost koje još nema ovdje?
+            Želiš probati neku MOVE aktivnost koju još nismo predstavili?
             Reci nam što nedostaje.
         </p>
 
@@ -207,7 +417,13 @@
 
 </main>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script src="../script.js"></script>
 
 </body>
+
 </html>
