@@ -45,17 +45,46 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- POLE DANCE CARD — SHARED VISUAL BEHAVIOUR -->
+    <!-- =========================
+         ACTIVITY PHOTO CARDS
+         RUNNING + POLE DANCE
+         Page-specific CSS
+    ========================= -->
+
     <style>
+
+        /* =========================
+           SHARED CARD DIMENSIONS
+        ========================= */
+
+        .move-app-page .activity-card.running-photo-card,
         .move-app-page .activity-card.pole-dance-photo-card {
             position: relative;
             isolation: isolate;
             overflow: hidden;
             min-height: 285px;
-            background: #18151d;
             color: #ffffff;
         }
 
+
+        /* =========================
+           INDIVIDUAL BACKGROUNDS
+        ========================= */
+
+        .move-app-page .activity-card.running-photo-card {
+            background: #101b20;
+        }
+
+        .move-app-page .activity-card.pole-dance-photo-card {
+            background: #18151d;
+        }
+
+
+        /* =========================
+           SHARED PHOTO CONTAINERS
+        ========================= */
+
+        .running-photo-card .running-card-photos,
         .pole-dance-photo-card .pole-card-photos {
             position: absolute;
             inset: 0;
@@ -63,6 +92,36 @@
             overflow: hidden;
             pointer-events: none;
         }
+
+
+        /* =========================
+           RUNNING PHOTOGRAPHS
+        ========================= */
+
+        .running-photo-card .running-card-photo {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 48%;
+            animation: runningCardFade 12s ease-in-out infinite;
+        }
+
+        .running-photo-card .running-card-photo:first-child {
+            animation-delay: 0s;
+        }
+
+        .running-photo-card .running-card-photo:last-child {
+            animation-delay: -6s;
+        }
+
+
+        /* =========================
+           POLE DANCE PHOTOGRAPHS
+           Original behaviour preserved
+        ========================= */
 
         .pole-dance-photo-card .pole-card-photo {
             position: absolute;
@@ -83,6 +142,32 @@
             animation-delay: -6s;
         }
 
+
+        /* =========================
+           RUNNING DARK OVERLAY
+           Forest-blue tones
+        ========================= */
+
+        .running-photo-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                180deg,
+                rgba(7, 19, 25, 0.56) 0%,
+                rgba(7, 19, 25, 0.66) 48%,
+                rgba(7, 19, 25, 0.88) 100%
+            );
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           POLE DANCE DARK OVERLAY
+           Original gradient preserved
+        ========================= */
+
         .pole-dance-photo-card::before {
             content: "";
             position: absolute;
@@ -97,6 +182,18 @@
             pointer-events: none;
         }
 
+
+        /* =========================
+           WHITE TEXT ON BOTH CARDS
+        ========================= */
+
+        .running-photo-card .activity-number,
+        .running-photo-card .activity-content,
+        .running-photo-card .activity-content h3,
+        .running-photo-card .activity-description,
+        .running-photo-card .activity-available,
+        .running-photo-card .activity-available span,
+        .running-photo-card .activity-action,
         .pole-dance-photo-card .activity-number,
         .pole-dance-photo-card .activity-content,
         .pole-dance-photo-card .activity-content h3,
@@ -109,31 +206,79 @@
             color: #ffffff;
         }
 
+        .running-photo-card .activity-description,
         .pole-dance-photo-card .activity-description {
             color: rgba(255, 255, 255, 0.88);
         }
 
+        .running-photo-card .activity-available span,
         .pole-dance-photo-card .activity-available span {
             border-color: rgba(255, 255, 255, 0.42);
         }
 
-        @keyframes poleCardFade {
-            0%, 42% { opacity: 1; }
-            50%, 92% { opacity: 0; }
-            100% { opacity: 1; }
+
+        /* =========================
+           RUNNING ANIMATION
+           12-second cycle
+        ========================= */
+
+        @keyframes runningCardFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
+
+        /* =========================
+           POLE DANCE ANIMATION
+           Original animation preserved
+        ========================= */
+
+        @keyframes poleCardFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+        /* =========================
+           ACCESSIBILITY
+           REDUCED MOTION
+        ========================= */
+
         @media (prefers-reduced-motion: reduce) {
+
+            .running-photo-card .running-card-photo,
             .pole-dance-photo-card .pole-card-photo {
                 animation: none;
                 opacity: 0;
             }
 
+            .running-photo-card .running-card-photo:first-child,
             .pole-dance-photo-card .pole-card-photo:first-child {
                 opacity: 1;
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
@@ -302,9 +447,32 @@
 
             <div class="activity-grid">
 
-                <!-- RUNNING -->
+                <!-- =========================
+                     RUNNING
+                ========================= -->
 
-                <a href="running.html" class="activity-card">
+                <a
+                    href="running.html"
+                    class="activity-card running-photo-card"
+                >
+
+                    <div class="running-card-photos" aria-hidden="true">
+
+                        <img
+                            class="running-card-photo"
+                            src="/images/running-forest.jpg"
+                            alt=""
+                            loading="lazy"
+                        >
+
+                        <img
+                            class="running-card-photo"
+                            src="/images/running-blue.jpg"
+                            alt=""
+                            loading="lazy"
+                        >
+
+                    </div>
 
                     <span class="activity-number">
                         01
@@ -336,7 +504,9 @@
                 </a>
 
 
-                <!-- POLE DANCE -->
+                <!-- =========================
+                     POLE DANCE
+                ========================= -->
 
                 <a
                     href="pole-dance.html"
@@ -344,6 +514,7 @@
                 >
 
                     <div class="pole-card-photos" aria-hidden="true">
+
                         <img
                             class="pole-card-photo"
                             src="/images/pole-dance-man.jpg"
@@ -357,6 +528,7 @@
                             alt=""
                             loading="lazy"
                         >
+
                     </div>
 
                     <span class="activity-number">
