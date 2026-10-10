@@ -45,17 +45,14 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- =========================
-         ACTIVITY PHOTO CARDS
-         RUNNING + POLE DANCE
-         Page-specific CSS
-    ========================= -->
-
     <style>
+        /* ==========================================
+           MOVE & TRY — ACTIVITY PHOTO CARDS
+           RUNNING + POLE DANCE
+           PAGE-SPECIFIC CSS
+        ========================================== */
 
-        /* =========================
-           SHARED CARD DIMENSIONS
-        ========================= */
+        /* SHARED CARD DIMENSIONS */
 
         .move-app-page .activity-card.running-photo-card,
         .move-app-page .activity-card.pole-dance-photo-card {
@@ -66,10 +63,7 @@
             color: #ffffff;
         }
 
-
-        /* =========================
-           INDIVIDUAL BACKGROUNDS
-        ========================= */
+        /* INDIVIDUAL BACKGROUNDS */
 
         .move-app-page .activity-card.running-photo-card {
             background: #101b20;
@@ -79,10 +73,7 @@
             background: #18151d;
         }
 
-
-        /* =========================
-           SHARED PHOTO CONTAINERS
-        ========================= */
+        /* SHARED PHOTO CONTAINERS */
 
         .running-photo-card .running-card-photos,
         .pole-dance-photo-card .pole-card-photos {
@@ -93,10 +84,7 @@
             pointer-events: none;
         }
 
-
-        /* =========================
-           RUNNING PHOTOGRAPHS
-        ========================= */
+        /* RUNNING PHOTOGRAPHS */
 
         .running-photo-card .running-card-photo {
             position: absolute;
@@ -117,11 +105,7 @@
             animation-delay: -6s;
         }
 
-
-        /* =========================
-           POLE DANCE PHOTOGRAPHS
-           Original behaviour preserved
-        ========================= */
+        /* POLE DANCE PHOTOGRAPHS */
 
         .pole-dance-photo-card .pole-card-photo {
             position: absolute;
@@ -142,11 +126,7 @@
             animation-delay: -6s;
         }
 
-
-        /* =========================
-           RUNNING DARK OVERLAY
-           Forest-blue tones
-        ========================= */
+        /* RUNNING DARK OVERLAY */
 
         .running-photo-card::before {
             content: "";
@@ -162,11 +142,7 @@
             pointer-events: none;
         }
 
-
-        /* =========================
-           POLE DANCE DARK OVERLAY
-           Original gradient preserved
-        ========================= */
+        /* POLE DANCE DARK OVERLAY */
 
         .pole-dance-photo-card::before {
             content: "";
@@ -182,10 +158,7 @@
             pointer-events: none;
         }
 
-
-        /* =========================
-           WHITE TEXT ON BOTH CARDS
-        ========================= */
+        /* WHITE TEXT ON BOTH CARDS */
 
         .running-photo-card .activity-number,
         .running-photo-card .activity-content,
@@ -216,11 +189,7 @@
             border-color: rgba(255, 255, 255, 0.42);
         }
 
-
-        /* =========================
-           RUNNING ANIMATION
-           12-second cycle
-        ========================= */
+        /* RUNNING ANIMATION */
 
         @keyframes runningCardFade {
             0%, 42% {
@@ -236,11 +205,7 @@
             }
         }
 
-
-        /* =========================
-           POLE DANCE ANIMATION
-           Original animation preserved
-        ========================= */
+        /* POLE DANCE ANIMATION */
 
         @keyframes poleCardFade {
             0%, 42% {
@@ -256,14 +221,9 @@
             }
         }
 
-
-        /* =========================
-           ACCESSIBILITY
-           REDUCED MOTION
-        ========================= */
+        /* ACCESSIBILITY */
 
         @media (prefers-reduced-motion: reduce) {
-
             .running-photo-card .running-card-photo,
             .pole-dance-photo-card .pole-card-photo {
                 animation: none;
@@ -274,9 +234,7 @@
             .pole-dance-photo-card .pole-card-photo:first-child {
                 opacity: 1;
             }
-
         }
-
     </style>
 
 </head>
@@ -342,7 +300,6 @@
 
 </header>
 
-
 <!-- =========================
      MOBILE MENU
 ========================= -->
@@ -385,7 +342,6 @@
 
 </div>
 
-
 <!-- =========================
      CATEGORY PAGE — APP LAYOUT
 ========================= -->
@@ -394,9 +350,7 @@
 
     <div class="move-app-layout">
 
-        <!-- =========================
-             LEFT — CATEGORY INTRO
-        ========================= -->
+        <!-- LEFT — CATEGORY INTRO -->
 
         <section class="move-app-intro" aria-labelledby="move-title">
 
@@ -430,10 +384,7 @@
 
         </section>
 
-
-        <!-- =========================
-             RIGHT — DISCOVER ACTIVITIES
-        ========================= -->
+        <!-- RIGHT — DISCOVER ACTIVITIES -->
 
         <section class="move-app-discover" aria-labelledby="move-discover-title">
 
@@ -447,9 +398,7 @@
 
             <div class="activity-grid">
 
-                <!-- =========================
-                     RUNNING
-                ========================= -->
+                <!-- RUNNING -->
 
                 <a
                     href="running.html"
@@ -473,10 +422,6 @@
                         >
 
                     </div>
-
-                    <span class="activity-number">
-                        01
-                    </span>
 
                     <div class="activity-content">
 
@@ -503,10 +448,7 @@
 
                 </a>
 
-
-                <!-- =========================
-                     POLE DANCE
-                ========================= -->
+                <!-- POLE DANCE -->
 
                 <a
                     href="pole-dance.html"
@@ -530,10 +472,6 @@
                         >
 
                     </div>
-
-                    <span class="activity-number">
-                        02
-                    </span>
 
                     <div class="activity-content">
 
@@ -568,10 +506,7 @@
 
     </div>
 
-
-    <!-- =========================
-         SUGGEST AN ACTIVITY
-    ========================= -->
+    <!-- SUGGEST AN ACTIVITY -->
 
     <section class="category-suggest">
 
@@ -595,7 +530,6 @@
     </section>
 
 </main>
-
 
 <!-- =========================
      JAVASCRIPT
