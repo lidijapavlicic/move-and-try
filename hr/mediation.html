@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <title>Medijacija | Move & Try</title>
+
+    <meta
+        name="description"
+        content="Otkrij medijaciju uz MOVE & TRY. Upoznaj drukčiji pristup sukobima, razgovoru i traženju zajedničkih rješenja."
+    >
+
+    <!-- Stranica je u pripremi. -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+
+        /* =========================
+           MEDIJACIJA — FOTOGRAFSKI HERO
+        ========================= */
+
+        .activity-page .activity-header.mediation-photo-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #17191a;
+            color: #ffffff;
+            padding: 60px 48px;
+        }
+
+        /* =========================
+           FOTOGRAFIJE
+        ========================= */
+
+        .mediation-photo-hero .mediation-hero-photos {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .mediation-photo-hero .mediation-hero-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            animation: mediationHeroFade 12s ease-in-out infinite;
+        }
+
+        /*
+           PRVA FOTOGRAFIJA
+           Ruke koje se drže.
+           Naglasak na kontaktu i povjerenju.
+        */
+
+        .mediation-photo-hero .mediation-hero-photo:first-child {
+            object-position: center 54%;
+            animation-delay: 0s;
+        }
+
+        /*
+           DRUGA FOTOGRAFIJA
+           Rukovanje.
+           Kadar je usmjeren prema rukama,
+           a ne prema licima.
+        */
+
+        .mediation-photo-hero .mediation-hero-photo:last-child {
+            object-position: center 62%;
+            animation-delay: -6s;
+        }
+
+        /* =========================
+           TAMNI SLOJ
+        ========================= */
+
+        .mediation-photo-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(9, 11, 13, 0.45) 0%,
+                rgba(9, 11, 13, 0.63) 48%,
+                rgba(9, 11, 13, 0.91) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* =========================
+           TEKST I NAVIGACIJA
+        ========================= */
+
+        .activity-page .mediation-photo-hero .activity-page-type,
+        .activity-page .mediation-photo-hero h1,
+        .activity-page .mediation-photo-hero .activity-page-intro,
+        .activity-page .mediation-photo-hero .activity-page-intro strong,
+        .activity-page .mediation-photo-hero .activity-nav,
+        .activity-page .mediation-photo-hero .activity-nav span {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .activity-page .mediation-photo-hero .activity-page-type {
+            color: #d9c8bc;
+        }
+
+        .activity-page .mediation-photo-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.90);
+        }
+
+        .activity-page .mediation-photo-hero .activity-page-intro strong {
+            color: #ffffff;
+        }
+
+        .activity-page .mediation-photo-hero .activity-nav span {
+            border-color: rgba(255, 255, 255, 0.42);
+        }
+
+        /* =========================
+           IZMJENA FOTOGRAFIJA
+           SVAKIH 6 SEKUNDI
+        ========================= */
+
+        @keyframes mediationHeroFade {
+
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+        /* =========================
+           MOBILNI PRIKAZ
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .activity-page .activity-header.mediation-photo-hero {
+                min-height: 380px;
+                padding: 48px 24px;
+            }
+
+            .mediation-photo-hero .mediation-hero-photo:first-child {
+                object-position: center 54%;
+            }
+
+            .mediation-photo-hero .mediation-hero-photo:last-child {
+                object-position: 52% 60%;
+            }
+
+        }
+
+        /* =========================
+           PRISTUPAČNOST
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .mediation-photo-hero .mediation-hero-photo {
+                animation: none;
+                opacity: 0;
+            }
+
+            .mediation-photo-hero .mediation-hero-photo:first-child {
+                opacity: 1;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a
+        href="/hr/"
+        class="site-logo"
+        aria-label="Move & Try – početna"
+    >
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+            <span class="language-active">HR</span>
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+        <span class="language-active">HR</span>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     STRANICA AKTIVNOSTI
+========================= -->
+
+<main class="activity-page">
+
+
+    <!-- POVRATAK NA LEARN -->
+
+    <a href="/hr/learn.html" class="back-link">
+        ← LEARN
+    </a>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="activity-header mediation-photo-hero">
+
+        <div class="mediation-hero-photos" aria-hidden="true">
+
+            <img
+                class="mediation-hero-photo"
+                src="/images/learn-mediation-connection.jpg"
+                alt=""
+                loading="eager"
+                fetchpriority="high"
+            >
+
+            <img
+                class="mediation-hero-photo"
+                src="/images/learn-mediation-handshake.jpg"
+                alt=""
+                loading="eager"
+            >
+
+        </div>
+
+        <p class="activity-page-type">
+            LEARN · MEDIJACIJA
+        </p>
+
+        <h1>
+            MEDIJACIJA
+        </h1>
+
+        <p class="activity-page-intro">
+            Ne mora svaki sukob završiti pobjednikom i gubitnikom.<br>
+            <strong>
+                Ponekad je najveći korak naprijed — početi razgovarati.
+            </strong>
+        </p>
+
+        <div class="activity-nav">
+
+            <span>VODIČ</span>
+
+            <span>ISKUSTVA</span>
+
+            <span>STRUČNJACI</span>
+
+            <span>GDJE PROBATI</span>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         SADRŽAJ
+    ========================= -->
+
+    <section class="activity-content-section">
+
+        <p class="section-label">
+            ISTRAŽI MEDIJACIJU
+        </p>
+
+        <h2>
+            POSTOJI I DRUGI PUT.
+        </h2>
+
+        <div class="activity-content-grid">
+
+
+            <!-- VODIČ -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    KRENI OVDJE · VODIČ
+                </span>
+
+                <h3>
+                    ŠTO JE MEDIJACIJA?
+                </h3>
+
+                <p>
+                    Kako izgleda razgovor uz pomoć
+                    neutralne treće osobe?
+                    Kada medijacija može biti korisna
+                    i što možeš očekivati od samog postupka?
+                    Upoznaj medijaciju na jednostavan
+                    i razumljiv način.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- ISKUSTVA -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    STVARNA ISKUSTVA
+                </span>
+
+                <h3>
+                    KADA RAZGOVOR PROMIJENI PERSPEKTIVU.
+                </h3>
+
+                <p>
+                    Različiti pogledi, teški razgovori
+                    i pokušaji pronalaska zajedničkog jezika.
+                    Iskustva koja pokazuju kako
+                    pristup sukobu može izgledati drukčije,
+                    uz poštovanje privatnosti sudionika.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- STRUČNJACI -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    STRUČNA PERSPEKTIVA
+                </span>
+
+                <h3>
+                    ZAŠTO JE VAŽNO ZNATI RAZGOVARATI?
+                </h3>
+
+                <p>
+                    Pogled stručnjaka na sukobe,
+                    komunikaciju, međusobno razumijevanje
+                    i mogućnosti koje medijacija
+                    otvara ljudima u različitim
+                    životnim situacijama.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- GDJE PROBATI -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    GDJE PROBATI
+                </span>
+
+                <h3>
+                    KOME SE MOŽEŠ OBRATITI?
+                </h3>
+
+                <p>
+                    Saznaj gdje možeš potražiti
+                    informacije o medijaciji,
+                    kako pronaći odgovarajućeg
+                    medijatora i što provjeriti
+                    prije odluke o sudjelovanju.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PODIJELI ISKUSTVO
+    ========================= -->
+
+    <section class="activity-contribute">
+
+        <p class="section-label">
+            TVOJA PERSPEKTIVA
+        </p>
+
+        <h2>
+            VJERUJEŠ U SNAGU RAZGOVORA?
+        </h2>
+
+        <p>
+            Imaš iskustvo s medijacijom ili želiš
+            podijeliti što si naučio o komunikaciji
+            i rješavanju sukoba?
+            Tvoja perspektiva može nekoga potaknuti
+            da razmotri drukčiji pristup.
+            Podijeli samo ono što smiješ i želiš,
+            uz poštovanje privatnosti svih uključenih.
+        </p>
+
+        <a
+            href="/hr/share-experience.html"
+            class="activity-contribute-link"
+        >
+            PODIJELI SVOJE ISKUSTVO →
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="../script.js"></script>
+
+</body>
+
+</html>
