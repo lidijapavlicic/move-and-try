@@ -45,39 +45,122 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- POLE DANCE EDITORIAL PHOTOGRAPHY -->
+    <!-- =========================
+         POLE DANCE HERO
+         Page-specific styles only
+    ========================= -->
+
     <style>
-        .pole-dance-gallery {
+        .pole-hero-layout {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin: 36px 0 10px;
+            grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.8fr);
+            align-items: center;
+            gap: clamp(32px, 5vw, 90px);
+            width: 100%;
         }
 
-        .pole-dance-gallery figure {
-            margin: 0;
+        .pole-hero-copy {
             min-width: 0;
-            overflow: hidden;
-            background: #211b26;
-            aspect-ratio: 4 / 5;
         }
 
-        .pole-dance-gallery img {
+        .pole-hero-copy .activity-page-intro {
+            margin-bottom: 0;
+        }
+
+        .pole-hero-visual {
+            position: relative;
+            isolation: isolate;
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 4 / 4.2;
+            justify-self: end;
+            overflow: hidden;
+            background: #19151c;
+        }
+
+        .pole-hero-visual img {
+            position: absolute;
+            inset: 0;
             display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: center 38%;
+            opacity: 0;
+            animation: poleHeroFade 12s ease-in-out infinite;
         }
 
-        @media (max-width: 640px) {
-            .pole-dance-gallery {
-                gap: 8px;
-                margin-top: 28px;
+        .pole-hero-visual img:first-child {
+            animation-delay: 0s;
+        }
+
+        .pole-hero-visual img:last-child {
+            animation-delay: -6s;
+        }
+
+        @keyframes poleHeroFade {
+            0%, 42% {
+                opacity: 1;
             }
 
-            .pole-dance-gallery figure {
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .activity-header.pole-activity-header {
+            width: 100%;
+        }
+
+        .pole-activity-header .activity-nav {
+            margin-top: clamp(32px, 4vw, 56px);
+        }
+
+        @media (max-width: 900px) {
+            .pole-hero-layout {
+                grid-template-columns: minmax(0, 1fr) minmax(230px, 0.7fr);
+                gap: 28px;
+            }
+
+            .pole-hero-visual {
                 aspect-ratio: 3 / 4;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .pole-hero-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .pole-hero-visual {
+                width: 100%;
+                max-width: none;
+                aspect-ratio: 4 / 3;
+                justify-self: stretch;
+            }
+
+            .pole-hero-visual img {
+                object-position: center 35%;
+            }
+
+            .pole-activity-header .activity-nav {
+                margin-top: 30px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .pole-hero-visual img {
+                animation: none;
+                opacity: 0;
+            }
+
+            .pole-hero-visual img:first-child {
+                opacity: 1;
             }
         }
     </style>
@@ -210,22 +293,59 @@
          ACTIVITY HEADER
     ========================= -->
 
-    <header class="activity-header">
+    <header class="activity-header pole-activity-header">
 
-        <p class="activity-page-type">
-            MOVE · POLE DANCE
-        </p>
+        <div class="pole-hero-layout">
 
-        <h1>
-            POLE DANCE
-        </h1>
+            <!-- LEFT: EDITORIAL COPY -->
 
-        <p class="activity-page-intro">
-            You don't need to be strong.<br>
-            You don't need to be flexible.<br>
-            <strong>You don't need to know if pole dance is for you.</strong><br>
-            That's what trying it is for.
-        </p>
+            <div class="pole-hero-copy">
+
+                <p class="activity-page-type">
+                    MOVE · POLE DANCE
+                </p>
+
+                <h1>
+                    POLE DANCE
+                </h1>
+
+                <p class="activity-page-intro">
+                    You don't need to be strong.<br>
+                    You don't need to be flexible.<br>
+                    <strong>You don't need to know if pole dance is for you.</strong><br>
+                    That's what trying it is for.
+                </p>
+
+            </div>
+
+
+            <!-- RIGHT: ALTERNATING PHOTOGRAPHY -->
+
+            <div
+                class="pole-hero-visual"
+                role="img"
+                aria-label="Two pole dancers performing expressive movements, shown alternately"
+            >
+
+                <img
+                    src="/images/pole-dance-man.jpg"
+                    alt=""
+                    loading="eager"
+                    fetchpriority="high"
+                >
+
+                <img
+                    src="/images/pole-dance-woman.jpg"
+                    alt=""
+                    loading="eager"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIVITY NAVIGATION -->
 
         <div class="activity-nav">
 
@@ -248,34 +368,6 @@
         </div>
 
     </header>
-
-
-    <!-- =========================
-         POLE DANCE PHOTOGRAPHY
-    ========================= -->
-
-    <div
-        class="pole-dance-gallery"
-        aria-label="Pole dance photography"
-    >
-
-        <figure>
-            <img
-                src="/images/pole-dance-man.jpg"
-                alt="Male pole dancer performing an inverted pose on a pole"
-                loading="eager"
-            >
-        </figure>
-
-        <figure>
-            <img
-                src="/images/pole-dance-woman.jpg"
-                alt="Female pole dancer in a flowing white dress performing on a pole"
-                loading="eager"
-            >
-        </figure>
-
-    </div>
 
 
     <!-- =========================
