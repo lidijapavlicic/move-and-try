@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <title>Mediation | Move & Try</title>
+
+    <meta
+        name="description"
+        content="Discover mediation with MOVE & TRY. Explore a different way to approach conflict, communicate and find solutions together."
+    >
+
+    <!-- SEO -->
+    <link
+        rel="canonical"
+        href="https://moveandtry.com/mediation.html"
+    >
+
+    <link
+        rel="alternate"
+        hreflang="en"
+        href="https://moveandtry.com/mediation.html"
+    >
+
+    <link
+        rel="alternate"
+        hreflang="hr"
+        href="https://moveandtry.com/hr/mediation.html"
+    >
+
+    <link
+        rel="alternate"
+        hreflang="x-default"
+        href="https://moveandtry.com/mediation.html"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================
+           MEDIATION — PHOTO HERO
+        ========================= */
+
+        .activity-page .activity-header.mediation-photo-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #17191a;
+            color: #ffffff;
+            padding: 60px 48px;
+        }
+
+        /* =========================
+           PHOTOGRAPHS
+        ========================= */
+
+        .mediation-photo-hero .mediation-hero-photos {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .mediation-photo-hero .mediation-hero-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            animation: mediationHeroFade 12s ease-in-out infinite;
+        }
+
+        /*
+           FIRST PHOTO
+           Hands holding each other.
+           Focus on connection and trust.
+        */
+
+        .mediation-photo-hero .mediation-hero-photo:first-child {
+            object-position: center 54%;
+            animation-delay: 0s;
+        }
+
+        /*
+           SECOND PHOTO
+           A handshake.
+           Focus on hands rather than faces.
+        */
+
+        .mediation-photo-hero .mediation-hero-photo:last-child {
+            object-position: center 62%;
+            animation-delay: -6s;
+        }
+
+        /* =========================
+           DARK OVERLAY
+        ========================= */
+
+        .mediation-photo-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(9, 11, 13, 0.45) 0%,
+                rgba(9, 11, 13, 0.63) 48%,
+                rgba(9, 11, 13, 0.91) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* =========================
+           TEXT AND NAVIGATION
+        ========================= */
+
+        .activity-page .mediation-photo-hero .activity-page-type,
+        .activity-page .mediation-photo-hero h1,
+        .activity-page .mediation-photo-hero .activity-page-intro,
+        .activity-page .mediation-photo-hero .activity-page-intro strong,
+        .activity-page .mediation-photo-hero .activity-nav,
+        .activity-page .mediation-photo-hero .activity-nav span {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .activity-page .mediation-photo-hero .activity-page-type {
+            color: #d9c8bc;
+        }
+
+        .activity-page .mediation-photo-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.90);
+        }
+
+        .activity-page .mediation-photo-hero .activity-page-intro strong {
+            color: #ffffff;
+        }
+
+        .activity-page .mediation-photo-hero .activity-nav span {
+            border-color: rgba(255, 255, 255, 0.42);
+        }
+
+        /* =========================
+           ACTIVE GUIDE CARD
+        ========================= */
+
+        .activity-page .mediation-guide-card {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            min-width: 0;
+            background: #ffffff;
+            color: #202820;
+            text-decoration: none;
+            border: 1px solid #dce4da;
+            transition:
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .activity-page .mediation-guide-card .content-card-type {
+            color: #617a65;
+        }
+
+        .activity-page .mediation-guide-card h3 {
+            color: #17251e;
+        }
+
+        .activity-page .mediation-guide-card p {
+            color: #505a50;
+        }
+
+        .activity-page .mediation-guide-card .content-card-status {
+            display: inline-block;
+            margin-top: auto;
+            padding-top: 24px;
+            color: #315b3b;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .activity-page .mediation-guide-card:hover {
+            background: #f3f7f1;
+            border-color: #8ca48e;
+            box-shadow: 0 12px 32px rgba(23, 37, 30, 0.10);
+            transform: translateY(-3px);
+        }
+
+        .activity-page .mediation-guide-card:focus-visible {
+            outline: 3px solid #547c5d;
+            outline-offset: 4px;
+        }
+
+        /* =========================
+           PHOTO TRANSITION
+           EVERY 6 SECONDS
+        ========================= */
+
+        @keyframes mediationHeroFade {
+
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .activity-page .activity-header.mediation-photo-hero {
+                min-height: 380px;
+                padding: 48px 24px;
+            }
+
+            .mediation-photo-hero .mediation-hero-photo:first-child {
+                object-position: center 54%;
+            }
+
+            .mediation-photo-hero .mediation-hero-photo:last-child {
+                object-position: 52% 60%;
+            }
+
+        }
+
+        /* =========================
+           ACCESSIBILITY
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .mediation-photo-hero .mediation-hero-photo {
+                animation: none;
+                opacity: 0;
+            }
+
+            .mediation-photo-hero .mediation-hero-photo:first-child {
+                opacity: 1;
+            }
+
+            .activity-page .mediation-guide-card {
+                transition: none;
+            }
+
+            .activity-page .mediation-guide-card:hover {
+                transform: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a
+        href="/"
+        class="site-logo"
+        aria-label="Move & Try – home"
+    >
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+            <a
+                href="/hr/mediation.html"
+                onclick="setLanguage('hr')"
+                aria-label="Switch to Croatian"
+            >
+                HR
+            </a>
+
+            <span class="language-active">EN</span>
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <a
+            href="/hr/mediation.html"
+            onclick="setLanguage('hr')"
+            aria-label="Switch to Croatian"
+        >
+            HR
+        </a>
+
+        <span class="language-active">EN</span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ACTIVITY PAGE
+========================= -->
+
+<main class="activity-page">
+
+
+    <!-- BACK TO LEARN -->
+
+    <a href="/learn.html" class="back-link">
+        ← LEARN
+    </a>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="activity-header mediation-photo-hero">
+
+        <div class="mediation-hero-photos" aria-hidden="true">
+
+            <img
+                class="mediation-hero-photo"
+                src="/images/learn-mediation-connection.jpg"
+                alt=""
+                loading="eager"
+                fetchpriority="high"
+            >
+
+            <img
+                class="mediation-hero-photo"
+                src="/images/learn-mediation-handshake.jpg"
+                alt=""
+                loading="eager"
+            >
+
+        </div>
+
+        <p class="activity-page-type">
+            LEARN · MEDIATION
+        </p>
+
+        <h1>
+            MEDIATION
+        </h1>
+
+        <p class="activity-page-intro">
+            Not every conflict has to end with a winner and a loser.<br>
+            <strong>
+                Sometimes the biggest step forward is simply starting a conversation.
+            </strong>
+        </p>
+
+        <div class="activity-nav">
+
+            <span>GUIDE</span>
+
+            <span>EXPERIENCES</span>
+
+            <span>EXPERTS</span>
+
+            <span>WHERE TO TRY</span>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         CONTENT
+    ========================= -->
+
+    <section class="activity-content-section">
+
+        <p class="section-label">
+            EXPLORE MEDIATION
+        </p>
+
+        <h2>
+            THERE IS ANOTHER WAY.
+        </h2>
+
+        <div class="activity-content-grid">
+
+
+            <!-- GUIDE — ACTIVE CARD -->
+
+            <a
+                href="/mediation-guide.html"
+                class="content-card mediation-guide-card"
+                aria-label="Open the What Is Mediation? guide"
+            >
+
+                <span class="content-card-type">
+                    START HERE · GUIDE
+                </span>
+
+                <h3>
+                    WHAT IS MEDIATION?
+                </h3>
+
+                <p>
+                    What does a conversation supported by
+                    an impartial third party actually look like?
+                    When can mediation help, and what should
+                    you expect from the process?
+                    Discover the basics in a clear,
+                    approachable way.
+                </p>
+
+                <span class="content-card-status">
+                    READ THE GUIDE →
+                </span>
+
+            </a>
+
+
+            <!-- EXPERIENCES -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    REAL EXPERIENCES
+                </span>
+
+                <h3>
+                    WHEN A CONVERSATION CHANGES YOUR PERSPECTIVE.
+                </h3>
+
+                <p>
+                    Different points of view, difficult conversations
+                    and attempts to find common ground.
+                    Stories that show how approaching conflict
+                    differently can make a difference,
+                    while respecting everyone's privacy.
+                </p>
+
+                <span class="content-card-status">
+                    COMING SOON
+                </span>
+
+            </div>
+
+
+            <!-- EXPERTS -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    EXPERT INSIGHTS
+                </span>
+
+                <h3>
+                    WHY DOES KNOWING HOW TO TALK MATTER?
+                </h3>
+
+                <p>
+                    An expert perspective on conflict,
+                    communication, mutual understanding
+                    and the possibilities mediation can open up
+                    in different situations.
+                </p>
+
+                <span class="content-card-status">
+                    COMING SOON
+                </span>
+
+            </div>
+
+
+            <!-- WHERE TO TRY -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    WHERE TO TRY
+                </span>
+
+                <h3>
+                    WHO CAN YOU TURN TO?
+                </h3>
+
+                <p>
+                    Find out where to learn more about mediation,
+                    how to look for a suitable mediator
+                    and what to consider before deciding
+                    whether to take part.
+                </p>
+
+                <span class="content-card-status">
+                    COMING SOON
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SHARE YOUR EXPERIENCE
+    ========================= -->
+
+    <section class="activity-contribute">
+
+        <p class="section-label">
+            YOUR PERSPECTIVE
+        </p>
+
+        <h2>
+            BELIEVE IN THE POWER OF CONVERSATION?
+        </h2>
+
+        <p>
+            Have you experienced mediation, or would you like
+            to share something you've learned about communication
+            and resolving conflict?
+            Your perspective might encourage someone else
+            to consider a different approach.
+            Share only what you're comfortable and entitled
+            to share, while respecting the privacy
+            of everyone involved.
+        </p>
+
+        <a
+            href="/share-experience.html"
+            class="activity-contribute-link"
+        >
+            SHARE YOUR EXPERIENCE →
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
