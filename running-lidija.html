@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,24 +30,59 @@
     >
 
     <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-<script>
-    window.dataLayer = window.dataLayer || [];
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-    gtag('js', new Date());
-    gtag('config', 'G-PREYRXPPN8');
-</script>
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* FINAL NAVIGATION — BACK TO ACTIVITY */
+
+        .experience-page .guide-footer-nav {
+            display: block;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 36px 24px;
+            background: #F7F7F4;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .experience-page .guide-footer-nav a,
+        .experience-page .guide-footer-nav a:visited {
+            display: inline-block;
+            color: #17251E;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1.6;
+            letter-spacing: .10em;
+            text-decoration: none;
+        }
+
+        .experience-page .guide-footer-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .experience-page .guide-footer-nav a:focus-visible {
+            outline: 2px solid #17251E;
+            outline-offset: 5px;
+        }
+    </style>
 </head>
 
 <body>
-
 
 <!-- =========================
      SITE HEADER
@@ -110,7 +146,6 @@
 
 </header>
 
-
 <!-- =========================
      MOBILE MENU
 ========================= -->
@@ -156,7 +191,6 @@
 
 </div>
 
-
 <!-- =========================
      EXPERIENCE PAGE
 ========================= -->
@@ -166,7 +200,6 @@
     <a href="/running.html" class="back-link">
         ← RUNNING
     </a>
-
 
     <!-- =========================
          EXPERIENCE HEADER
@@ -193,7 +226,6 @@
         </p>
 
     </header>
-
 
     <!-- =========================
          HOW IT STARTED
@@ -243,7 +275,6 @@
 
     </section>
 
-
     <!-- =========================
          20 YEARS LATER
     ========================= -->
@@ -282,7 +313,6 @@
 
     </section>
 
-
     <!-- =========================
          WHAT I'D TELL YOU
     ========================= -->
@@ -310,7 +340,6 @@
         </p>
 
     </section>
-
 
     <!-- =========================
          PERSONAL VERDICT
@@ -345,7 +374,6 @@
 
     </section>
 
-
     <!-- =========================
          SHARE YOUR EXPERIENCE
     ========================= -->
@@ -374,8 +402,17 @@
 
     </section>
 
-</main>
+    <!-- =========================
+         FINAL NAVIGATION
+    ========================= -->
 
+    <div class="guide-footer-nav">
+        <a href="/running.html">
+            ← BACK TO RUNNING
+        </a>
+    </div>
+
+</main>
 
 <!-- =========================
      JAVASCRIPT
