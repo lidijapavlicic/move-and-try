@@ -126,7 +126,6 @@
             object-fit: contain;
             transform: translate(-50%, -50%);
             opacity: 0;
-            animation: poleDarkHeroFade 12s ease-in-out infinite;
         }
 
         /*
@@ -139,7 +138,6 @@
             width: 100%;
             height: auto;
             max-height: 100%;
-            animation-delay: 0s;
         }
 
         /*
@@ -152,7 +150,42 @@
             width: auto;
             height: 100%;
             max-width: 100%;
-            animation-delay: -6s;
+        }
+
+        /*
+         DESKTOP: static female photo.
+         No animation.
+        */
+
+        @media (min-width: 901px) {
+            .pole-dark-hero .pole-hero-stage img:first-child {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .pole-dark-hero .pole-hero-stage img:last-child {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /*
+         TABLET + MOBILE:
+         Alternating photographs.
+        */
+
+        @media (max-width: 900px) {
+            .pole-dark-hero .pole-hero-stage img {
+                animation: poleDarkHeroFade 12s ease-in-out infinite;
+            }
+
+            .pole-dark-hero .pole-hero-stage img:first-child {
+                animation-delay: 0s;
+            }
+
+            .pole-dark-hero .pole-hero-stage img:last-child {
+                animation-delay: -6s;
+            }
         }
 
         @keyframes poleDarkHeroFade {
@@ -227,6 +260,20 @@
 
             .pole-dark-hero .pole-hero-stage img:first-child {
                 opacity: 1;
+            }
+
+            .pole-dark-hero .pole-hero-stage img:last-child {
+                opacity: 0;
+            }
+
+            @media (min-width: 901px) {
+                .pole-dark-hero .pole-hero-stage img:first-child {
+                    opacity: 0;
+                }
+
+                .pole-dark-hero .pole-hero-stage img:last-child {
+                    opacity: 1;
+                }
             }
         }
     </style>
@@ -384,12 +431,12 @@
             </div>
 
 
-            <!-- RIGHT: ALTERNATING PHOTOGRAPHY -->
+            <!-- RIGHT: PHOTOGRAPHY -->
 
             <div
                 class="pole-hero-stage"
                 role="img"
-                aria-label="Alternating photographs of two pole dancers"
+                aria-label="Pole dance photography"
             >
 
                 <img
