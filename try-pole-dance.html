@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,24 +30,559 @@
     >
 
     <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-<script>
-    window.dataLayer = window.dataLayer || [];
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-    gtag('js', new Date());
-    gtag('config', 'G-PREYRXPPN8');
-</script>
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ==========================================
+           MOVE & TRY — EDITORIAL TRY GUIDE
+           POLE DANCE / EN
+           Matches TRY RUNNING and HR POLE DANCE
+        ========================================== */
+
+        .try-page.mt-editorial-try {
+            --try-green: #17251E;
+            --try-green-soft: #B7C5B3;
+            --try-paper: #F7F7F4;
+            --try-ink: #202420;
+            --try-border: #D9DDD5;
+
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 0;
+            background: var(--try-paper);
+            color: var(--try-ink);
+        }
+
+        .mt-editorial-try,
+        .mt-editorial-try * {
+            box-sizing: border-box;
+        }
+
+        /* BACK LINK */
+
+        .mt-editorial-try .try-back-wrap {
+            background: var(--try-paper);
+        }
+
+        .mt-editorial-try .try-back {
+            display: block;
+            width: min(100% - 48px, 1100px);
+            margin: 0 auto;
+            padding: 29px 0;
+            color: #17251E;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .10em;
+            text-decoration: none;
+        }
+
+        .mt-editorial-try .try-back:hover {
+            text-decoration: underline;
+        }
+
+        .mt-editorial-try .try-back:focus-visible {
+            outline: 3px solid #547C5D;
+            outline-offset: 4px;
+        }
+
+        /* DARK GREEN HERO */
+
+        .mt-editorial-try .try-editorial-hero {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 76px 24px 84px;
+            background: var(--try-green);
+            color: #FFFFFF;
+        }
+
+        .mt-editorial-try .try-editorial-hero-inner {
+            width: min(100%, 1100px);
+            margin: 0 auto;
+        }
+
+        .mt-editorial-try .try-editorial-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .22);
+        }
+
+        .mt-editorial-try .try-editorial-top span {
+            color: var(--try-green-soft);
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .15em;
+        }
+
+        .mt-editorial-try .try-editorial-category {
+            margin: 43px 0 18px;
+            color: #C9D6C4;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .17em;
+        }
+
+        .mt-editorial-try .try-editorial-hero h1 {
+            max-width: 980px;
+            margin: 0 0 26px;
+            color: #FFFFFF;
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(48px, 7vw, 88px);
+            font-weight: 400;
+            line-height: 1.06;
+            letter-spacing: -.025em;
+        }
+
+        .mt-editorial-try .try-editorial-intro {
+            max-width: 720px;
+            margin: 0 0 36px;
+            color: rgba(255, 255, 255, .88);
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(16px, 1.8vw, 19px);
+            line-height: 1.85;
+        }
+
+        .mt-editorial-try .try-editorial-intro strong {
+            color: #FFFFFF;
+            font-weight: 800;
+        }
+
+        .mt-editorial-try .try-editorial-scroll {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            color: #C9D6C4;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-decoration: none;
+        }
+
+        .mt-editorial-try .try-editorial-scroll::before {
+            content: "";
+            width: 34px;
+            height: 2px;
+            background: #A5B9A3;
+        }
+
+        .mt-editorial-try .try-editorial-scroll:focus-visible {
+            outline: 3px solid #C9D6C4;
+            outline-offset: 6px;
+        }
+
+        /* EDITORIAL ARTICLE */
+
+        .mt-editorial-try .try-editorial-article {
+            width: min(100% - 48px, 760px);
+            margin: 0 auto;
+            padding: 78px 0 96px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 16px;
+            line-height: 1.95;
+        }
+
+        .mt-editorial-try .try-section {
+            width: 100%;
+            max-width: none;
+            margin: 0 0 76px;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+        }
+
+        .mt-editorial-try .try-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .mt-editorial-try .try-section .section-label {
+            display: block;
+            margin: 0 0 14px;
+            color: #607665;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .17em;
+            line-height: 1.6;
+            text-transform: uppercase;
+        }
+
+        .mt-editorial-try .try-section h2 {
+            margin: 0 0 26px;
+            color: #18231B;
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(31px, 4vw, 43px);
+            font-weight: 400;
+            line-height: 1.22;
+            letter-spacing: -.02em;
+        }
+
+        .mt-editorial-try .try-section h3 {
+            color: #1D281F;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+
+        .mt-editorial-try .try-section p {
+            color: #414941;
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.9;
+        }
+
+        .mt-editorial-try .try-section strong {
+            color: #203326;
+        }
+
+        /* EQUIPMENT CARDS */
+
+        .mt-editorial-try .need-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin: 32px 0;
+        }
+
+        .mt-editorial-try .need-box {
+            min-width: 0;
+            margin: 0;
+            padding: 27px 25px;
+            background: #E9EDE6;
+            border: 1px solid #D9E0D6;
+            box-shadow: none;
+        }
+
+        .mt-editorial-try .need-box:nth-child(2) {
+            background: #F0F0EC;
+            border-color: #E0E0DB;
+        }
+
+        .mt-editorial-try .need-box h3 {
+            margin: 0 0 18px;
+            font-size: 13px;
+            letter-spacing: .10em;
+        }
+
+        .mt-editorial-try .need-box p {
+            margin: 0 0 13px;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .mt-editorial-try .need-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* NOTES AND PULL QUOTES */
+
+        .mt-editorial-try .try-note {
+            margin: 30px 0;
+            padding: 28px 30px;
+            background: #E9EDE6;
+            border: 0;
+            border-left: 3px solid #78927B;
+            border-radius: 0;
+            color: #414941;
+            font-size: 15px;
+            line-height: 1.85;
+            box-shadow: none;
+        }
+
+        .mt-editorial-try .try-highlight {
+            margin: 40px 0 0;
+            padding: 10px 0 10px 26px;
+            background: transparent;
+            border: 0;
+            border-left: 3px solid #819B83;
+            color: #203326;
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(27px, 3vw, 36px);
+            font-weight: 400;
+            line-height: 1.45;
+        }
+
+        /* NUMBERED STEPS */
+
+        .mt-editorial-try .step {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            align-items: start;
+            gap: 14px;
+            margin: 0;
+            padding: 26px 0;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid var(--try-border);
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .mt-editorial-try .step:first-of-type {
+            border-top: 1px solid var(--try-border);
+        }
+
+        .mt-editorial-try .step > span {
+            color: #65816B;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .08em;
+        }
+
+        .mt-editorial-try .step h3 {
+            margin: 0 0 9px;
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        .mt-editorial-try .step p {
+            margin: 0 0 12px;
+        }
+
+        .mt-editorial-try .step p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* VERDICT — FULL WIDTH DARK GREEN */
+
+        .mt-editorial-try .try-section.verdict {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 85px 24px 92px;
+            background: var(--try-green);
+            color: #FFFFFF;
+            border: 0;
+        }
+
+        .mt-editorial-try .try-verdict-inner {
+            width: min(100%, 900px);
+            margin: 0 auto;
+        }
+
+        .mt-editorial-try .try-section.verdict .section-label {
+            margin-bottom: 24px;
+            color: #B7C5B3;
+        }
+
+        .mt-editorial-try .try-section.verdict h2 {
+            margin: 0 0 27px;
+            color: #FFFFFF;
+            font-size: clamp(36px, 5vw, 60px);
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-prompt {
+            margin: 0 0 28px;
+            color: rgba(255, 255, 255, .84);
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin: 34px 0;
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            min-width: 0;
+            min-height: 218px;
+            margin: 0;
+            padding: 25px 14px 19px;
+            background: rgba(255, 255, 255, .09);
+            border: 1px solid rgba(255, 255, 255, .28);
+            border-radius: 0;
+            box-shadow: none;
+            color: #FFFFFF;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color .2s ease, border-color .2s ease;
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-card:hover {
+            background: rgba(255, 255, 255, .16);
+            border-color: rgba(255, 255, 255, .65);
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-card:focus-visible {
+            outline: 3px solid #C9D6C4;
+            outline-offset: 4px;
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-card .verdict-icon {
+            display: block;
+            margin: 0 0 13px;
+            font-size: 27px;
+            line-height: 1.3;
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-card h3 {
+            margin: 0 0 12px;
+            color: #FFFFFF;
+            font-size: 13px;
+            line-height: 1.5;
+            letter-spacing: .03em;
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-card p {
+            margin: 0 0 14px;
+            color: rgba(255, 255, 255, .80);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-card .verdict-count {
+            display: block;
+            margin-top: auto;
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .mt-editorial-try .try-section.verdict .tried-counter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            margin: 40px 0 20px;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            color: #FFFFFF;
+            text-align: center;
+        }
+
+        .mt-editorial-try .try-section.verdict .tried-counter strong {
+            color: #FFFFFF;
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 54px;
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .mt-editorial-try .try-section.verdict .tried-counter span {
+            color: #B7C5B3;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .15em;
+        }
+
+        .mt-editorial-try .try-section.verdict .verdict-message {
+            min-height: 24px;
+            margin: 16px auto;
+            color: #E2E9DF;
+            text-align: center;
+        }
+
+        .mt-editorial-try .try-section.verdict .try-highlight {
+            margin: 42px 0 0;
+            padding: 0;
+            border: 0;
+            color: #FFFFFF;
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(30px, 4vw, 48px);
+            line-height: 1.25;
+            text-align: center;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .mt-editorial-try .try-back {
+                width: calc(100% - 40px);
+                padding: 24px 0;
+            }
+
+            .mt-editorial-try .try-editorial-hero {
+                padding: 52px 20px 64px;
+            }
+
+            .mt-editorial-try .try-editorial-top {
+                gap: 10px;
+            }
+
+            .mt-editorial-try .try-editorial-top span {
+                font-size: 10px;
+            }
+
+            .mt-editorial-try .try-editorial-category {
+                margin-top: 35px;
+            }
+
+            .mt-editorial-try .try-editorial-hero h1 {
+                font-size: clamp(43px, 11vw, 64px);
+            }
+
+            .mt-editorial-try .try-editorial-article {
+                width: calc(100% - 40px);
+                padding: 56px 0 75px;
+                font-size: 15px;
+            }
+
+            .mt-editorial-try .try-section {
+                margin-bottom: 56px;
+            }
+
+            .mt-editorial-try .need-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mt-editorial-try .step {
+                grid-template-columns: 34px minmax(0, 1fr);
+                gap: 10px;
+            }
+
+            .mt-editorial-try .try-section.verdict {
+                padding: 67px 20px 76px;
+            }
+
+            .mt-editorial-try .try-section.verdict .verdict-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mt-editorial-try .try-section.verdict .verdict-card {
+                min-height: 0;
+                padding: 23px 18px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .mt-editorial-try .verdict-card {
+                transition: none;
+            }
+        }
+
+    </style>
+
 </head>
 
 <body>
-
 
 <!-- =========================
      SITE HEADER
@@ -110,7 +646,6 @@
 
 </header>
 
-
 <!-- =========================
      MOBILE MENU
 ========================= -->
@@ -156,418 +691,490 @@
 
 </div>
 
-
 <!-- =========================
-     TRY PAGE
+     EDITORIAL TRY GUIDE
 ========================= -->
 
-<main class="try-page">
+<main class="try-page mt-editorial-try">
 
-    <a href="/pole-dance.html" class="back-link">
-        ← POLE DANCE
-    </a>
+    <!-- BACK TO ACTIVITY -->
 
-    <p class="try-number">
-        TRY #002 · MOVE
-    </p>
+    <div class="try-back-wrap">
 
-    <h1>POLE DANCE</h1>
+        <a href="/pole-dance.html" class="try-back">
+            ← POLE DANCE
+        </a>
 
-    <p class="try-intro">
-        You don't need to be strong.<br>
-        You don't need to be flexible.<br>
-        <strong>You just need to be curious enough to try.</strong>
-    </p>
-
+    </div>
 
     <!-- =========================
-         BEFORE YOUR FIRST CLASS
+         DARK GREEN HERO
     ========================= -->
 
-    <section class="try-section practical">
+    <header class="try-editorial-hero">
 
-        <p class="section-label">
-            OK, I WANT TO TRY
-        </p>
+        <div class="try-editorial-hero-inner">
 
-        <h2>
-            BEFORE YOUR FIRST CLASS
-        </h2>
+            <div class="try-editorial-top">
 
-        <p>
-            You don't prepare for your first pole class by learning pole.
-            That's what the class is for.
-        </p>
+                <span>MOVE & TRY / THE GUIDE</span>
 
-        <div class="need-grid">
-
-            <div class="need-box">
-
-                <h3>YOU NEED</h3>
-
-                <p>✓ Comfortable clothes you can move in</p>
-                <p>✓ Shorts — depending on what your studio recommends for beginners</p>
-                <p>✓ Water</p>
-                <p>✓ A beginner or intro class</p>
-                <p>✓ That's pretty much it</p>
+                <span>MOVE · POLE DANCE</span>
 
             </div>
 
-            <div class="need-box">
+            <p class="try-editorial-category">
+                TRY · MOVE
+            </p>
 
-                <h3>YOU DON'T NEED</h3>
+            <h1>POLE DANCE</h1>
 
-                <p>✕ To be strong</p>
-                <p>✕ To be flexible</p>
-                <p>✕ To know how to dance</p>
-                <p>✕ Pole shoes</p>
-                <p>✕ Your own pole</p>
-                <p>✕ Expensive pole wear</p>
-                <p>✕ Any idea what you're doing</p>
+            <p class="try-editorial-intro">
+                You don't need to be strong.<br>
+                You don't need to be flexible.<br>
+                <strong>
+                    You just need to be curious enough to try.
+                </strong>
+            </p>
 
-            </div>
+            <a href="#first-step" class="try-editorial-scroll">
+                EXPLORE THE GUIDE ↓
+            </a>
 
         </div>
 
-        <p class="try-note">
-            One useful thing: skip body lotion or oils before class.
-            Skin grip matters in pole, and slippery skin doesn't help.
-        </p>
-
-        <p class="try-highlight">
-            You don't need to get ready for pole.<br>
-            You just need to show up.
-        </p>
-
-    </section>
-
+    </header>
 
     <!-- =========================
-         YOUR FIRST TRY
+         ARTICLE CONTENT
     ========================= -->
 
-    <section class="try-section">
+    <div class="try-editorial-article">
 
-        <p class="section-label">
-            YOUR FIRST TRY
-        </p>
+        <!-- =========================
+             01 / BEFORE YOUR FIRST CLASS
+        ========================= -->
 
-        <h2>
-            WHAT YOUR FIRST CLASS MAY LOOK LIKE
-        </h2>
+        <section
+            class="try-section practical"
+            id="first-step"
+        >
 
-        <div class="step">
+            <p class="section-label">
+                01 / OK, I WANT TO TRY
+            </p>
 
-            <span>01</span>
+            <h2>
+                BEFORE YOUR FIRST CLASS
+            </h2>
 
-            <div>
-                <h3>START WITH THE BASICS</h3>
+            <p>
+                You don't prepare for your first pole class by learning pole.
+                That's what the class is for.
+            </p>
 
-                <p>
-                    Your first class is usually about getting familiar
-                    with the pole, the space and a completely new way of moving.
-                    Depending on the class, you may learn basic positions,
-                    grips, steps or simple movements.
-                </p>
+            <div class="need-grid">
+
+                <div class="need-box">
+
+                    <h3>YOU NEED</h3>
+
+                    <p>✓ Comfortable clothes you can move in</p>
+                    <p>✓ Shorts — depending on what your studio recommends for beginners</p>
+                    <p>✓ Water</p>
+                    <p>✓ A beginner or intro class</p>
+                    <p>✓ That's pretty much it</p>
+
+                </div>
+
+                <div class="need-box">
+
+                    <h3>YOU DON'T NEED</h3>
+
+                    <p>✕ To be strong</p>
+                    <p>✕ To be flexible</p>
+                    <p>✕ To know how to dance</p>
+                    <p>✕ Pole shoes</p>
+                    <p>✕ Your own pole</p>
+                    <p>✕ Expensive pole wear</p>
+                    <p>✕ Any idea what you're doing</p>
+
+                </div>
+
             </div>
 
-        </div>
+            <p class="try-note">
+                One useful thing: skip body lotion or oils before class.
+                Skin grip matters in pole, and slippery skin doesn't help.
+            </p>
 
+            <p class="try-highlight">
+                You don't need to get ready for pole.<br>
+                You just need to show up.
+            </p>
 
-        <div class="step">
+        </section>
 
-            <span>02</span>
+        <!-- =========================
+             02 / YOUR FIRST TRY
+        ========================= -->
 
-            <div>
-                <h3>YOU PROBABLY WON'T BE CLIMBING</h3>
+        <section class="try-section">
 
-                <p>
-                    You don't need to climb, go upside down or do anything
-                    that looks impressive on Instagram.
-                    A beginner class starts where beginners actually are.
-                </p>
+            <p class="section-label">
+                02 / YOUR FIRST TRY
+            </p>
+
+            <h2>
+                WHAT YOUR FIRST CLASS MAY LOOK LIKE
+            </h2>
+
+            <div class="step">
+
+                <span>01</span>
+
+                <div>
+
+                    <h3>START WITH THE BASICS</h3>
+
+                    <p>
+                        Your first class is usually about getting familiar
+                        with the pole, the space and a completely new way of moving.
+                        Depending on the class, you may learn basic positions,
+                        grips, steps or simple movements.
+                    </p>
+
+                </div>
+
             </div>
 
-        </div>
+            <div class="step">
 
+                <span>02</span>
 
-        <div class="step">
+                <div>
 
-            <span>03</span>
+                    <h3>YOU PROBABLY WON'T BE CLIMBING</h3>
 
-            <div>
-                <h3>SOME THINGS WILL FEEL STRANGE</h3>
+                    <p>
+                        You don't need to climb, go upside down or do anything
+                        that looks impressive on Instagram.
+                        A beginner class starts where beginners actually are.
+                    </p>
 
-                <p>
-                    The pole is new. The movements are new.
-                    Even figuring out where to put your hands and feet
-                    can take a moment. That's completely normal.
-                </p>
+                </div>
+
             </div>
 
-        </div>
+            <div class="step">
 
+                <span>03</span>
 
-        <div class="step">
+                <div>
 
-            <span>04</span>
+                    <h3>SOME THINGS WILL FEEL STRANGE</h3>
 
-            <div>
-                <h3>DON'T MEASURE THE CLASS BY WHAT YOU COULD DO</h3>
+                    <p>
+                        The pole is new. The movements are new.
+                        Even figuring out where to put your hands and feet
+                        can take a moment. That's completely normal.
+                    </p>
 
-                <p>
-                    The question after your first class isn't:
-                    “Was I good at pole dance?”
-                </p>
+                </div>
 
-                <p>
-                    It's much simpler:
-                    <strong>Did I enjoy this enough to try it again?</strong>
-                </p>
             </div>
 
-        </div>
+            <div class="step">
 
-        <p class="try-highlight">
-            You went to a pole class.<br>
-            You tried something new.<br>
-            That's already enough.
-        </p>
+                <span>04</span>
 
-    </section>
+                <div>
 
+                    <h3>
+                        DON'T MEASURE THE CLASS BY WHAT YOU COULD DO
+                    </h3>
+
+                    <p>
+                        The question after your first class isn't:
+                        “Was I good at pole dance?”
+                    </p>
+
+                    <p>
+                        It's much simpler:
+                        <strong>
+                            Did I enjoy this enough to try it again?
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p class="try-highlight">
+                You went to a pole class.<br>
+                You tried something new.<br>
+                That's already enough.
+            </p>
+
+        </section>
+
+        <!-- =========================
+             03 / GOOD TO KNOW
+        ========================= -->
+
+        <section class="try-section">
+
+            <p class="section-label">
+                03 / GOOD TO KNOW
+            </p>
+
+            <h2>
+                A FEW THINGS NOBODY TELLS YOU
+            </h2>
+
+            <div class="step">
+
+                <span>01</span>
+
+                <div>
+
+                    <h3>YES, YOU MAY GET BRUISES</h3>
+
+                    <p>
+                        Pole bruises happen. Some people get a lot of them,
+                        some very few — every body and every skin reacts differently.
+                    </p>
+
+                    <p>
+                        They're not a sign that you're bad at pole.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="step">
+
+                <span>02</span>
+
+                <div>
+
+                    <h3>IT'S NOT ALL ABOUT THE POLE</h3>
+
+                    <p>
+                        Pole dance doesn't necessarily mean spending an entire
+                        class on the pole.
+                    </p>
+
+                    <p>
+                        Depending on the style and class, movement can include
+                        floorwork and elements using a chair, an armchair
+                        or other props.
+                    </p>
+
+                    <p>
+                        Knee pads can become a very useful thing to have,
+                        especially once you start doing more floorwork.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="step">
+
+                <span>03</span>
+
+                <div>
+
+                    <h3>ABOUT THE SHORTS. AND YOUR BODY.</h3>
+
+                    <p>
+                        At some point, you may find yourself training in much
+                        less clothing than you're used to.
+                    </p>
+
+                    <p>
+                        Not because pole dance requires you to look a certain way,
+                        but because skin grip is part of how you stay on the pole.
+                    </p>
+
+                    <p>
+                        Give yourself time to feel comfortable with that.
+                        There is absolutely no rush.
+                    </p>
+
+                    <p>
+                        And here's something you might not expect:
+                        nobody is standing there examining somebody else's stomach,
+                        stretch marks or cellulite.
+                    </p>
+
+                    <p>
+                        There are different bodies everywhere.
+                        <strong>
+                            And somehow, it all just becomes normal. And beautiful.
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="step">
+
+                <span>04</span>
+
+                <div>
+
+                    <h3>IT'S PHYSICAL. BUT IT'S NOT ONLY PHYSICAL.</h3>
+
+                    <p>
+                        Pole dance builds strength, coordination and body awareness.
+                        But for many people, something else happens too.
+                    </p>
+
+                    <p>
+                        You become a little braver.
+                        You discover sensuality in your own way.
+                        You start trusting your body to do things
+                        you didn't think it could do.
+                    </p>
+
+                    <p>
+                        And sometimes you walk out of class feeling
+                        just a little more beautiful than when you walked in.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
 
     <!-- =========================
-         GOOD TO KNOW
-    ========================= -->
-
-    <section class="try-section">
-
-        <p class="section-label">
-            GOOD TO KNOW
-        </p>
-
-        <h2>
-            A FEW THINGS NOBODY TELLS YOU
-        </h2>
-
-
-        <div class="step">
-
-            <span>01</span>
-
-            <div>
-                <h3>YES, YOU MAY GET BRUISES</h3>
-
-                <p>
-                    Pole bruises happen. Some people get a lot of them,
-                    some very few — every body and every skin reacts differently.
-                </p>
-
-                <p>
-                    They're not a sign that you're bad at pole.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="step">
-
-            <span>02</span>
-
-            <div>
-                <h3>IT'S NOT ALL ABOUT THE POLE</h3>
-
-                <p>
-                    Pole dance doesn't necessarily mean spending an entire
-                    class on the pole.
-                </p>
-
-                <p>
-                    Depending on the style and class, movement can include
-                    floorwork and elements using a chair, an armchair
-                    or other props.
-                </p>
-
-                <p>
-                    Knee pads can become a very useful thing to have,
-                    especially once you start doing more floorwork.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="step">
-
-            <span>03</span>
-
-            <div>
-                <h3>ABOUT THE SHORTS. AND YOUR BODY.</h3>
-
-                <p>
-                    At some point, you may find yourself training in much
-                    less clothing than you're used to.
-                </p>
-
-                <p>
-                    Not because pole dance requires you to look a certain way,
-                    but because skin grip is part of how you stay on the pole.
-                </p>
-
-                <p>
-                    Give yourself time to feel comfortable with that.
-                    There is absolutely no rush.
-                </p>
-
-                <p>
-                    And here's something you might not expect:
-                    nobody is standing there examining somebody else's stomach,
-                    stretch marks or cellulite.
-                </p>
-
-                <p>
-                    There are different bodies everywhere.
-                    <strong>And somehow, it all just becomes normal. And beautiful.</strong>
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="step">
-
-            <span>04</span>
-
-            <div>
-                <h3>IT'S PHYSICAL. BUT IT'S NOT ONLY PHYSICAL.</h3>
-
-                <p>
-                    Pole dance builds strength, coordination and body awareness.
-                    But for many people, something else happens too.
-                </p>
-
-                <p>
-                    You become a little braver.
-                    You discover sensuality in your own way.
-                    You start trusting your body to do things
-                    you didn't think it could do.
-                </p>
-
-                <p>
-                    And sometimes you walk out of class feeling
-                    just a little more beautiful than when you walked in.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         VERDICT
+         04 / THE VERDICT
     ========================= -->
 
     <section class="try-section verdict">
 
-        <p class="section-label">
-            SO... HOW WAS IT?
-        </p>
+        <div class="try-verdict-inner">
 
-        <h2>
-            THE VERDICT
-        </h2>
+            <p class="section-label">
+                04 / THE VERDICT
+            </p>
 
-        <div class="verdict-grid">
+            <h2>
+                THE VERDICT
+            </h2>
 
-            <button
-                class="verdict-card"
-                data-verdict="loved"
-            >
-                <span class="verdict-icon">❤️</span>
+            <p class="verdict-prompt">
+                So... how was it?
+            </p>
 
-                <h3>I LOVED IT</h3>
+            <div class="verdict-grid">
 
-                <p>Great. Do it again.</p>
-
-                <span
-                    class="verdict-count"
-                    id="count-loved"
+                <button
+                    type="button"
+                    class="verdict-card"
+                    data-verdict="loved"
                 >
-                    0
-                </span>
-            </button>
 
+                    <span class="verdict-icon">❤️</span>
 
-            <button
-                class="verdict-card"
-                data-verdict="unsure"
-            >
-                <span class="verdict-icon">🤔</span>
+                    <h3>I LOVED IT</h3>
 
-                <h3>I'M NOT SURE</h3>
+                    <p>
+                        Great. Do it again.
+                    </p>
 
-                <p>Also normal. Maybe give it another try.</p>
+                    <span
+                        class="verdict-count"
+                        id="count-loved"
+                    >
+                        0
+                    </span>
 
-                <span
-                    class="verdict-count"
-                    id="count-unsure"
+                </button>
+
+                <button
+                    type="button"
+                    class="verdict-card"
+                    data-verdict="unsure"
                 >
-                    0
-                </span>
-            </button>
 
+                    <span class="verdict-icon">🤔</span>
 
-            <button
-                class="verdict-card"
-                data-verdict="hated"
-            >
-                <span class="verdict-icon">😂</span>
+                    <h3>I'M NOT SURE</h3>
 
-                <h3>I HATED IT</h3>
+                    <p>
+                        Also normal. Maybe give it another try.
+                    </p>
 
-                <p>Perfect. Now you know.</p>
+                    <span
+                        class="verdict-count"
+                        id="count-unsure"
+                    >
+                        0
+                    </span>
 
-                <span
-                    class="verdict-count"
-                    id="count-hated"
+                </button>
+
+                <button
+                    type="button"
+                    class="verdict-card"
+                    data-verdict="hated"
                 >
+
+                    <span class="verdict-icon">😂</span>
+
+                    <h3>I HATED IT</h3>
+
+                    <p>
+                        Perfect. Now you know.
+                    </p>
+
+                    <span
+                        class="verdict-count"
+                        id="count-hated"
+                    >
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+            <div class="tried-counter">
+
+                <strong id="total-tried">
                     0
+                </strong>
+
+                <span>
+                    PEOPLE TRIED THIS
                 </span>
-            </button>
+
+            </div>
+
+            <p
+                class="verdict-message"
+                id="verdict-message"
+                aria-live="polite"
+            ></p>
+
+            <p class="try-highlight">
+                You tried it.<br>
+                That's the whole point.
+            </p>
 
         </div>
-
-
-        <div class="tried-counter">
-
-            <strong id="total-tried">
-                0
-            </strong>
-
-            <span>
-                PEOPLE TRIED THIS
-            </span>
-
-        </div>
-
-        <p
-    class="verdict-message"
-    id="verdict-message"
-    aria-live="polite"
-></p>
-
-        <p class="try-highlight">
-            You tried it.<br>
-            That's the whole point.
-        </p>
 
     </section>
 
 </main>
-
 
 <!-- =========================
      JAVASCRIPT
@@ -576,5 +1183,4 @@
 <script src="script.js"></script>
 
 </body>
-
 </html>
