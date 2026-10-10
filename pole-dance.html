@@ -46,149 +46,116 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- =========================
-         POLE DANCE — FULL-WIDTH HERO
-         Page-specific styles only
+         POLE DANCE PHOTO HERO
+         Same layout concept as RUNNING
     ========================= -->
 
     <style>
-        .pole-dark-hero {
+
+        /* =========================
+           HERO CONTAINER
+        ========================= */
+
+        .activity-page .activity-header.pole-photo-hero {
             position: relative;
             isolation: isolate;
-            background: #151417;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #18151d;
             color: #ffffff;
-            margin-top: 28px;
-            padding: clamp(30px, 3.5vw, 48px) 0 24px;
-            overflow: visible;
+            padding: 60px 48px;
         }
 
-        /* Full-width dark background */
+        /* =========================
+           BACKGROUND PHOTOGRAPHS
+        ========================= */
 
-        .pole-dark-hero::before {
-            content: "";
+        .pole-photo-hero .pole-hero-photos {
             position: absolute;
-            z-index: -1;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 100vw;
-            transform: translateX(-50%);
-            background: #151417;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
             pointer-events: none;
         }
 
-        .pole-dark-hero .pole-hero-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-            align-items: center;
-            gap: clamp(18px, 2.5vw, 40px);
-            width: 100%;
-        }
-
-        .pole-dark-hero .pole-hero-copy {
-            min-width: 0;
-        }
-
-        .pole-dark-hero .activity-page-type {
-            color: #b9b4a5;
-        }
-
-        .pole-dark-hero h1 {
-            color: #ffffff;
-        }
-
-        .pole-dark-hero .activity-page-intro {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 0;
-        }
-
-        .pole-dark-hero .activity-page-intro strong {
-            color: #ffffff;
-        }
-
-        /*
-         Shared photographic stage.
-         No cropping or distortion.
-        */
-
-        .pole-dark-hero .pole-hero-stage {
-            position: relative;
-            width: 100%;
-            height: clamp(340px, 32vw, 470px);
-            min-width: 0;
-            isolation: isolate;
-        }
-
-        .pole-dark-hero .pole-hero-stage img {
+        .pole-photo-hero .pole-hero-photo {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            display: block;
-            object-fit: contain;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-        }
-
-        /*
-         MALE PHOTO
-         Maximum available width.
-         Height adjusts naturally.
-        */
-
-        .pole-dark-hero .pole-hero-stage img:first-child {
+            inset: 0;
             width: 100%;
-            height: auto;
-            max-height: 100%;
-        }
-
-        /*
-         FEMALE PHOTO
-         Maximum available height.
-         Width adjusts naturally.
-        */
-
-        .pole-dark-hero .pole-hero-stage img:last-child {
-            width: auto;
             height: 100%;
-            max-width: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center 48%;
+            animation: poleHeroFade 12s ease-in-out infinite;
         }
 
-        /*
-         DESKTOP: static female photo.
-         No animation.
-        */
-
-        @media (min-width: 901px) {
-            .pole-dark-hero .pole-hero-stage img:first-child {
-                opacity: 0;
-                visibility: hidden;
-            }
-
-            .pole-dark-hero .pole-hero-stage img:last-child {
-                opacity: 1;
-                visibility: visible;
-            }
+        .pole-photo-hero .pole-hero-photo:first-child {
+            animation-delay: 0s;
         }
 
-        /*
-         TABLET + MOBILE:
-         Alternating photographs.
-        */
-
-        @media (max-width: 900px) {
-            .pole-dark-hero .pole-hero-stage img {
-                animation: poleDarkHeroFade 12s ease-in-out infinite;
-            }
-
-            .pole-dark-hero .pole-hero-stage img:first-child {
-                animation-delay: 0s;
-            }
-
-            .pole-dark-hero .pole-hero-stage img:last-child {
-                animation-delay: -6s;
-            }
+        .pole-photo-hero .pole-hero-photo:last-child {
+            animation-delay: -6s;
         }
 
-        @keyframes poleDarkHeroFade {
+        /* =========================
+           DARK PURPLE-BLACK OVERLAY
+        ========================= */
+
+        .pole-photo-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(20, 12, 24, 0.48) 0%,
+                rgba(20, 12, 24, 0.64) 48%,
+                rgba(15, 10, 19, 0.90) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* =========================
+           TEXT AND NAVIGATION
+        ========================= */
+
+        .activity-page .pole-photo-hero .activity-page-type,
+        .activity-page .pole-photo-hero h1,
+        .activity-page .pole-photo-hero .activity-page-intro,
+        .activity-page .pole-photo-hero .activity-page-intro strong,
+        .activity-page .pole-photo-hero .activity-nav,
+        .activity-page .pole-photo-hero .activity-nav span {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .activity-page .pole-photo-hero .activity-page-type {
+            color: #d4c5cf;
+        }
+
+        .activity-page .pole-photo-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.90);
+        }
+
+        .activity-page .pole-photo-hero .activity-page-intro strong {
+            color: #ffffff;
+        }
+
+        .activity-page .pole-photo-hero .activity-nav span {
+            border-color: rgba(255, 255, 255, 0.42);
+        }
+
+        /* =========================
+           PHOTO TRANSITION
+           12-second cycle
+           6-second offset
+        ========================= */
+
+        @keyframes poleHeroFade {
             0%, 42% {
                 opacity: 1;
             }
@@ -202,84 +169,42 @@
             }
         }
 
-        /*
-         Compact navigation spacing
-        */
-
-        .pole-dark-hero .activity-nav {
-            margin-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.24);
-            padding-top: 22px;
-        }
-
-        .pole-dark-hero .activity-nav span {
-            color: rgba(255, 255, 255, 0.55);
-        }
-
-        .pole-dark-hero .activity-nav .activity-nav-active {
-            color: #ffffff;
-        }
+        /* =========================
+           TABLET AND MOBILE
+        ========================= */
 
         @media (max-width: 900px) {
-            .pole-dark-hero .pole-hero-layout {
-                grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-                gap: 18px;
+
+            .activity-page .activity-header.pole-photo-hero {
+                min-height: 380px;
+                padding: 48px 24px;
             }
 
-            .pole-dark-hero .pole-hero-stage {
-                height: 350px;
-            }
         }
 
-        @media (max-width: 700px) {
-            .pole-dark-hero {
-                padding: 30px 0 22px;
-                margin-top: 22px;
-            }
-
-            .pole-dark-hero .pole-hero-layout {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
-
-            .pole-dark-hero .pole-hero-stage {
-                height: min(100vw, 420px);
-            }
-
-            .pole-dark-hero .activity-nav {
-                margin-top: 20px;
-                padding-top: 20px;
-            }
-        }
+        /* =========================
+           REDUCED MOTION
+        ========================= */
 
         @media (prefers-reduced-motion: reduce) {
-            .pole-dark-hero .pole-hero-stage img {
+
+            .pole-photo-hero .pole-hero-photo {
                 animation: none;
                 opacity: 0;
             }
 
-            .pole-dark-hero .pole-hero-stage img:first-child {
+            .pole-photo-hero .pole-hero-photo:first-child {
                 opacity: 1;
             }
 
-            .pole-dark-hero .pole-hero-stage img:last-child {
-                opacity: 0;
-            }
-
-            @media (min-width: 901px) {
-                .pole-dark-hero .pole-hero-stage img:first-child {
-                    opacity: 0;
-                }
-
-                .pole-dark-hero .pole-hero-stage img:last-child {
-                    opacity: 1;
-                }
-            }
         }
+
     </style>
+
 </head>
 
 <body>
+
 
 <!-- =========================
      SITE HEADER
@@ -396,68 +321,53 @@
 
 <main class="activity-page">
 
+
+    <!-- BACK TO MOVE -->
+
     <a href="/move.html" class="back-link">
         ← MOVE
     </a>
 
 
     <!-- =========================
-         FULL-WIDTH DARK HERO
+         POLE DANCE PHOTO HERO
     ========================= -->
 
-    <header class="activity-header pole-dark-hero">
+    <header class="activity-header pole-photo-hero">
 
-        <div class="pole-hero-layout">
+        <div class="pole-hero-photos" aria-hidden="true">
 
-            <!-- LEFT: INTRO -->
-
-            <div class="pole-hero-copy">
-
-                <p class="activity-page-type">
-                    MOVE · POLE DANCE
-                </p>
-
-                <h1>
-                    POLE DANCE
-                </h1>
-
-                <p class="activity-page-intro">
-                    You don't need to be strong.<br>
-                    You don't need to be flexible.<br>
-                    <strong>You don't need to know if pole dance is for you.</strong><br>
-                    That's what trying it is for.
-                </p>
-
-            </div>
-
-
-            <!-- RIGHT: PHOTOGRAPHY -->
-
-            <div
-                class="pole-hero-stage"
-                role="img"
-                aria-label="Pole dance photography"
+            <img
+                class="pole-hero-photo"
+                src="/images/pole-dance-man.jpg"
+                alt=""
+                loading="eager"
+                fetchpriority="high"
             >
 
-                <img
-                    src="/images/pole-dance-man.jpg"
-                    alt=""
-                    loading="eager"
-                    fetchpriority="high"
-                >
-
-                <img
-                    src="/images/pole-dance-woman.jpg"
-                    alt=""
-                    loading="eager"
-                >
-
-            </div>
+            <img
+                class="pole-hero-photo"
+                src="/images/pole-dance-woman.jpg"
+                alt=""
+                loading="eager"
+            >
 
         </div>
 
+        <p class="activity-page-type">
+            MOVE · POLE DANCE
+        </p>
 
-        <!-- ACTIVITY NAVIGATION -->
+        <h1>
+            POLE DANCE
+        </h1>
+
+        <p class="activity-page-intro">
+            You don't need to be strong.<br>
+            You don't need to be flexible.<br>
+            <strong>You don't need to know if pole dance is for you.</strong><br>
+            That's what trying it is for.
+        </p>
 
         <div class="activity-nav">
 
