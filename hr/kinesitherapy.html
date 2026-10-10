@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <title>Kineziterapija | Move & Try</title>
+
+    <meta
+        name="description"
+        content="Što je kineziterapija i kome može pomoći? Upoznaj pristup pokretu, tijelu i brizi o sebi kroz MOVE & TRY."
+    >
+
+    <!-- Stranica je u pripremi i nije namijenjena indeksiranju. -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- =========================
+         KINEZITERAPIJA — FOTOGRAFSKI HERO
+         Dvije fotografije s animacijom
+    ========================= -->
+
+    <style>
+
+        /* =========================
+           GLAVNO ZAGLAVLJE
+        ========================= */
+
+        .activity-page .activity-header.kinesitherapy-photo-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #171717;
+            color: #ffffff;
+            padding: 60px 48px;
+        }
+
+        /* =========================
+           FOTOGRAFIJE
+        ========================= */
+
+        .kinesitherapy-photo-hero .kinesitherapy-hero-photos {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .kinesitherapy-photo-hero .kinesitherapy-hero-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            animation: kinesitherapyHeroFade 12s ease-in-out infinite;
+        }
+
+        /* Tretman leđa — naglasak na rukama i donjem dijelu fotografije. */
+        .kinesitherapy-photo-hero .kinesitherapy-hero-photo:first-child {
+            object-position: center 75%;
+            animation-delay: 0s;
+        }
+
+        /* Tretman stopala. */
+        .kinesitherapy-photo-hero .kinesitherapy-hero-photo:last-child {
+            object-position: center center;
+            animation-delay: -6s;
+        }
+
+        /* =========================
+           TAMNI SLOJ PREKO FOTOGRAFIJA
+        ========================= */
+
+        .kinesitherapy-photo-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(10, 10, 10, 0.42) 0%,
+                rgba(10, 10, 10, 0.58) 48%,
+                rgba(10, 10, 10, 0.86) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* =========================
+           TEKST I NAVIGACIJA
+        ========================= */
+
+        .activity-page .kinesitherapy-photo-hero .activity-page-type,
+        .activity-page .kinesitherapy-photo-hero h1,
+        .activity-page .kinesitherapy-photo-hero .activity-page-intro,
+        .activity-page .kinesitherapy-photo-hero .activity-page-intro strong,
+        .activity-page .kinesitherapy-photo-hero .activity-nav,
+        .activity-page .kinesitherapy-photo-hero .activity-nav span {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .activity-page .kinesitherapy-photo-hero .activity-page-type {
+            color: #d4c8ae;
+        }
+
+        .activity-page .kinesitherapy-photo-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .activity-page .kinesitherapy-photo-hero .activity-nav span {
+            border-color: rgba(255, 255, 255, 0.42);
+        }
+
+        /* =========================
+           ANIMACIJA — 6 SEKUNDI
+        ========================= */
+
+        @keyframes kinesitherapyHeroFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           MOBILNI PRIKAZ
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .activity-page .activity-header.kinesitherapy-photo-hero {
+                min-height: 380px;
+                padding: 48px 24px;
+            }
+
+        }
+
+        /* =========================
+           PRISTUPAČNOST
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .kinesitherapy-photo-hero .kinesitherapy-hero-photo {
+                animation: none;
+                opacity: 0;
+            }
+
+            .kinesitherapy-photo-hero .kinesitherapy-hero-photo:first-child {
+                opacity: 1;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+
+    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="Move & Try"
+        >
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <div class="header-language">
+
+            <span class="language-active">
+                HR
+            </span>
+
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+        <span class="language-active">HR</span>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     STRANICA AKTIVNOSTI
+========================= -->
+
+<main class="activity-page">
+
+
+    <!-- POVRATAK NA CARE -->
+
+    <a href="/hr/care.html" class="back-link">
+        ← CARE
+    </a>
+
+
+    <!-- =========================
+         ZAGLAVLJE AKTIVNOSTI
+         S FOTOGRAFIJAMA KINEZITERAPIJE
+    ========================= -->
+
+    <header class="activity-header kinesitherapy-photo-hero">
+
+        <div class="kinesitherapy-hero-photos" aria-hidden="true">
+
+            <img
+                class="kinesitherapy-hero-photo"
+                src="/images/care-kinezitherapy-back.jpg"
+                alt=""
+                loading="eager"
+            >
+
+            <img
+                class="kinesitherapy-hero-photo"
+                src="/images/care-kinezitherapy-foot.jpg"
+                alt=""
+                loading="eager"
+            >
+
+        </div>
+
+        <p class="activity-page-type">
+            CARE · KINEZITERAPIJA
+        </p>
+
+        <h1>KINEZITERAPIJA</h1>
+
+        <p class="activity-page-intro">
+            Pokret nije samo trening.<br>
+            <strong>Ponekad je to način da se ponovno povežeš sa svojim tijelom.</strong>
+        </p>
+
+        <div class="activity-nav">
+
+            <span>
+                VODIČ
+            </span>
+
+            <span>
+                ISKUSTVA
+            </span>
+
+            <span>
+                STRUČNJACI
+            </span>
+
+            <span>
+                GDJE PROBATI
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         SADRŽAJ U PRIPREMI
+    ========================= -->
+
+    <section class="activity-content-section">
+
+        <p class="section-label">
+            ISTRAŽI KINEZITERAPIJU
+        </p>
+
+        <h2>
+            UPOZNAJ SVOJE TIJELO.
+        </h2>
+
+        <div class="activity-content-grid">
+
+
+            <!-- VODIČ -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    KRENI OVDJE · VODIČ
+                </span>
+
+                <h3>
+                    ŠTO JE KINEZITERAPIJA?
+                </h3>
+
+                <p>
+                    Kako se terapijski pokret koristi za poboljšanje
+                    funkcije tijela, pokretljivosti i svakodnevnog
+                    osjećaja ugode? Upoznaj osnovne principe
+                    i saznaj što možeš očekivati.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- ISKUSTVO -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    STVARNO ISKUSTVO
+                </span>
+
+                <h3>
+                    KAKO IZGLEDA PRVI SUSRET?
+                </h3>
+
+                <p>
+                    Kako izgleda upoznavanje s kineziterapijom,
+                    što te može iznenaditi i kako izgleda
+                    iskustvo iz perspektive osobe koja je probala?
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- STRUČNJAK -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    STRUČNA PERSPEKTIVA
+                </span>
+
+                <h3>
+                    ŠTO NAM TIJELO GOVORI KROZ POKRET?
+                </h3>
+
+                <p>
+                    Stručni pogled na kineziterapiju,
+                    individualan pristup i važnost
+                    pravilno odabranog pokreta.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+
+            <!-- GDJE PROBATI -->
+
+            <div class="content-card content-card-coming">
+
+                <span class="content-card-type">
+                    GDJE PROBATI
+                </span>
+
+                <h3>
+                    PRONAĐI STRUČNU PODRŠKU.
+                </h3>
+
+                <p>
+                    Upoznaj stručnjake i mjesta na kojima
+                    možeš saznati više o kineziterapiji
+                    i mogućnostima individualnog pristupa.
+                </p>
+
+                <span class="content-card-status">
+                    USKORO
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PODIJELI ISKUSTVO
+    ========================= -->
+
+    <section class="activity-contribute">
+
+        <p class="section-label">
+            TVOJE ISKUSTVO
+        </p>
+
+        <h2>
+            PROBAO SI KINEZITERAPIJU?
+        </h2>
+
+        <p>
+            Kako je izgledalo tvoje iskustvo?
+            Što si naučio o vlastitom tijelu i pokretu?
+            Tvoja priča možda pomogne nekome drugome
+            da napravi prvi korak.
+        </p>
+
+        <a
+            href="/hr/share-experience.html"
+            class="activity-contribute-link"
+        >
+            PODIJELI SVOJE ISKUSTVO →
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="../script.js"></script>
+
+</body>
+
+</html>
