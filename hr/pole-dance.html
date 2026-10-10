@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hr">
 
@@ -11,7 +12,7 @@
 
     <meta
         name="description"
-        content="Razmišljaš o tome da probaš pole dance? Istraži vodič za početnike, stvarna iskustva, perspektive iskusnih osoba i mjesta na kojima možeš probati."
+        content="Razmišljaš o tome da probaš pole dance? Otkrij vodič za početnike, stvarna iskustva, savjete iskusnih i mjesta na kojima možeš napraviti prvi korak."
     >
 
     <link rel="canonical" href="https://moveandtry.com/hr/pole-dance.html">
@@ -28,21 +29,236 @@
         rel="stylesheet"
     >
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-<script>
-    window.dataLayer = window.dataLayer || [];
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-    gtag('js', new Date());
-    gtag('config', 'G-PREYRXPPN8');
-</script>
-    
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
     <link rel="stylesheet" href="../style.css">
+
+    <!-- =========================
+         POLE DANCE — FULL-WIDTH HERO
+         Page-specific styles only
+    ========================= -->
+
+    <style>
+        .pole-dark-hero {
+            position: relative;
+            isolation: isolate;
+            background: #151417;
+            color: #ffffff;
+            margin-top: 28px;
+            padding: clamp(30px, 3.5vw, 48px) 0 24px;
+            overflow: visible;
+        }
+
+        .pole-dark-hero::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 100vw;
+            transform: translateX(-50%);
+            background: #151417;
+            pointer-events: none;
+        }
+
+        .pole-dark-hero .pole-hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+            align-items: center;
+            gap: clamp(18px, 2.5vw, 40px);
+            width: 100%;
+        }
+
+        .pole-dark-hero .pole-hero-copy {
+            min-width: 0;
+        }
+
+        .pole-dark-hero .activity-page-type {
+            color: #b9b4a5;
+        }
+
+        .pole-dark-hero h1 {
+            color: #ffffff;
+        }
+
+        .pole-dark-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+        }
+
+        .pole-dark-hero .activity-page-intro strong {
+            color: #ffffff;
+        }
+
+        /*
+         Shared photographic stage.
+         No cropping or distortion.
+        */
+
+        .pole-dark-hero .pole-hero-stage {
+            position: relative;
+            width: 100%;
+            height: clamp(340px, 32vw, 470px);
+            min-width: 0;
+            isolation: isolate;
+        }
+
+        .pole-dark-hero .pole-hero-stage img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            object-fit: contain;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        /*
+         MALE PHOTO
+         Maximum available width.
+        */
+
+        .pole-dark-hero .pole-hero-stage img:first-child {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+        }
+
+        /*
+         FEMALE PHOTO
+         Maximum available height.
+        */
+
+        .pole-dark-hero .pole-hero-stage img:last-child {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+        }
+
+        /*
+         DESKTOP: static female photo.
+        */
+
+        @media (min-width: 901px) {
+            .pole-dark-hero .pole-hero-stage img:first-child {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .pole-dark-hero .pole-hero-stage img:last-child {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /*
+         TABLET + MOBILE:
+         Alternating photographs.
+        */
+
+        @media (max-width: 900px) {
+            .pole-dark-hero .pole-hero-stage img {
+                animation: poleDarkHeroFade 12s ease-in-out infinite;
+            }
+
+            .pole-dark-hero .pole-hero-stage img:first-child {
+                animation-delay: 0s;
+            }
+
+            .pole-dark-hero .pole-hero-stage img:last-child {
+                animation-delay: -6s;
+            }
+        }
+
+        @keyframes poleDarkHeroFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .pole-dark-hero .activity-nav {
+            margin-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.24);
+            padding-top: 22px;
+        }
+
+        .pole-dark-hero .activity-nav span {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .pole-dark-hero .activity-nav .activity-nav-active {
+            color: #ffffff;
+        }
+
+        @media (max-width: 900px) {
+            .pole-dark-hero .pole-hero-layout {
+                grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+                gap: 18px;
+            }
+
+            .pole-dark-hero .pole-hero-stage {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .pole-dark-hero {
+                padding: 30px 0 22px;
+                margin-top: 22px;
+            }
+
+            .pole-dark-hero .pole-hero-layout {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .pole-dark-hero .pole-hero-stage {
+                height: min(100vw, 420px);
+            }
+
+            .pole-dark-hero .activity-nav {
+                margin-top: 20px;
+                padding-top: 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .pole-dark-hero .pole-hero-stage img {
+                animation: none;
+                opacity: 0;
+            }
+
+            .pole-dark-hero .pole-hero-stage img:first-child {
+                opacity: 0;
+            }
+
+            .pole-dark-hero .pole-hero-stage img:last-child {
+                opacity: 1;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -54,7 +270,7 @@
 
 <header class="site-header">
 
-    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+    <a href="/hr/" class="site-logo" aria-label="Move & Try početna">
         <img
             src="/images/move-and-try-logo.png"
             alt="Move & Try"
@@ -169,25 +385,62 @@
 
 
     <!-- =========================
-         ACTIVITY HEADER
+         FULL-WIDTH DARK HERO
     ========================= -->
 
-    <header class="activity-header">
+    <header class="activity-header pole-dark-hero">
 
-        <p class="activity-page-type">
-            MOVE · POLE DANCE
-        </p>
+        <div class="pole-hero-layout">
 
-        <h1>
-            POLE DANCE
-        </h1>
+            <!-- LEFT: INTRO -->
 
-        <p class="activity-page-intro">
-            Ne moraš biti snažan.<br>
-            Ne moraš biti fleksibilan.<br>
-            <strong>Ne moraš znati je li pole dance za tebe.</strong><br>
-            Zato ga i ideš probati.
-        </p>
+            <div class="pole-hero-copy">
+
+                <p class="activity-page-type">
+                    MOVE · POLE DANCE
+                </p>
+
+                <h1>
+                    POLE DANCE
+                </h1>
+
+                <p class="activity-page-intro">
+                    Ne moraš biti snažan.<br>
+                    Ne moraš biti fleksibilan.<br>
+                    <strong>Ne moraš znati je li pole dance za tebe.</strong><br>
+                    Zato postoji isprobavanje.
+                </p>
+
+            </div>
+
+
+            <!-- RIGHT: PHOTOGRAPHY -->
+
+            <div
+                class="pole-hero-stage"
+                role="img"
+                aria-label="Fotografije dvoje plesača na šipci"
+            >
+
+                <img
+                    src="/images/pole-dance-man.jpg"
+                    alt=""
+                    loading="eager"
+                    fetchpriority="high"
+                >
+
+                <img
+                    src="/images/pole-dance-woman.jpg"
+                    alt=""
+                    loading="eager"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
 
         <div class="activity-nav">
 
@@ -200,7 +453,7 @@
             </span>
 
             <span>
-                ISKUSNA PERSPEKTIVA
+                POGLED ISKUSNIH
             </span>
 
             <span>
@@ -223,7 +476,7 @@
         </p>
 
         <h2>
-            KRENI ODNEKUD.
+            KRENI OD NEČEGA.
         </h2>
 
         <div class="activity-content-grid">
@@ -245,9 +498,9 @@
                 </h3>
 
                 <p>
-                    Što očekivati od prvog treninga, što odjenuti,
-                    što ti zapravo treba — i što definitivno još
-                    ne moraš znati raditi.
+                    Što očekivati na prvom treningu, što odjenuti,
+                    što ti zapravo treba — i što definitivno
+                    još ne moraš znati raditi.
                 </p>
 
                 <span class="content-card-action">
@@ -266,11 +519,11 @@
                 </span>
 
                 <h3>
-                    KAKO STVARNO IZGLEDA POČETAK?
+                    KAKO JE ZAPRAVO POČETI?
                 </h3>
 
                 <p>
-                    Stvarno iskustvo nekoga tko je odlučio
+                    Stvarno iskustvo osobe koja je odlučila
                     prvi put probati pole dance.
                 </p>
 
@@ -286,16 +539,16 @@
             <div class="content-card content-card-coming">
 
                 <span class="content-card-type">
-                    ISKUSNA PERSPEKTIVA
+                    POGLED ISKUSNIH
                 </span>
 
                 <h3>
-                    ŠTO BI POČETNIK TREBAO ZNATI?
+                    ŠTO POČETNIK TREBA ZNATI?
                 </h3>
 
                 <p>
-                    Praktična perspektiva nekoga
-                    tko već godinama trenira pole dance.
+                    Praktični savjeti osobe koja već godinama
+                    trenira pole dance.
                 </p>
 
                 <span class="content-card-status">
@@ -349,7 +602,7 @@
 
         <p>
             Oduševio te, nije ti se svidio ili još nisi siguran?
-            Tvoje iskustvo možda pomogne nekome drugome da odluči probati.
+            Tvoje iskustvo možda nekome pomogne da se odluči probati.
         </p>
 
         <a
