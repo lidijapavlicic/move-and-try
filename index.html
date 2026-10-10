@@ -62,6 +62,59 @@
     }
     </script>
 
+    <!-- =========================
+         LANGUAGE DETECTION
+         Saved manual choice takes priority.
+         Croatian browsers open /hr/.
+         All other browsers stay on /.
+         Runs only on the English homepage.
+    ========================= -->
+
+    <script>
+        (function () {
+            "use strict";
+
+            var path = window.location.pathname;
+
+            if (path !== "/" && path !== "/index.html") {
+                return;
+            }
+
+            var savedLanguage = null;
+
+            try {
+                savedLanguage = localStorage.getItem("moveandtry_language");
+            } catch (error) {
+                savedLanguage = null;
+            }
+
+            var preferredLanguage;
+
+            if (savedLanguage === "hr" || savedLanguage === "en") {
+                preferredLanguage = savedLanguage;
+            } else {
+                var browserLanguage =
+                    (navigator.languages && navigator.languages.length
+                        ? navigator.languages[0]
+                        : navigator.language || "en"
+                    ).toLowerCase();
+
+                preferredLanguage =
+                    browserLanguage.startsWith("hr")
+                        ? "hr"
+                        : "en";
+            }
+
+            if (preferredLanguage === "hr") {
+                window.location.replace(
+                    "/hr/" +
+                    window.location.search +
+                    window.location.hash
+                );
+            }
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
