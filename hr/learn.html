@@ -32,6 +32,124 @@
     </script>
 
     <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* =========================
+           LEARN — MEDIJACIJA
+           Postojeći raspored kategorije ostaje isti
+        ========================= */
+
+        .move-app-page .activity-card.learn-mediation-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 360px;
+            background: #17191a;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .learn-mediation-card .learn-mediation-photos {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .learn-mediation-card .learn-mediation-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            animation: learnMediationFade 12s ease-in-out infinite;
+        }
+
+        .learn-mediation-card .learn-mediation-photo:first-child {
+            object-position: center 54%;
+            animation-delay: 0s;
+        }
+
+        .learn-mediation-card .learn-mediation-photo:last-child {
+            object-position: center 62%;
+            animation-delay: -6s;
+        }
+
+        .learn-mediation-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(9, 11, 13, 0.35) 0%,
+                rgba(9, 11, 13, 0.48) 40%,
+                rgba(9, 11, 13, 0.88) 100%
+            );
+            pointer-events: none;
+        }
+
+        .move-app-page .learn-mediation-card .activity-number,
+        .move-app-page .learn-mediation-card .activity-content,
+        .move-app-page .learn-mediation-card h3,
+        .move-app-page .learn-mediation-card .activity-description,
+        .move-app-page .learn-mediation-card .activity-available {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .move-app-page .learn-mediation-card .activity-number {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .14em;
+            color: rgba(255, 255, 255, .78);
+        }
+
+        .move-app-page .learn-mediation-card .activity-description {
+            color: rgba(255, 255, 255, .88);
+        }
+
+        .move-app-page .learn-mediation-card .activity-available {
+            display: inline-block;
+            color: #d4e6d1;
+        }
+
+        .move-app-page .learn-mediation-card:focus-visible {
+            outline: 3px solid #ffffff;
+            outline-offset: 4px;
+        }
+
+        @keyframes learnMediationFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .learn-mediation-card .learn-mediation-photo {
+                animation: none;
+                opacity: 0;
+            }
+
+            .learn-mediation-card .learn-mediation-photo:first-child {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -121,27 +239,49 @@
 
                 <div class="activity-grid">
 
-                    <div class="activity-card category-coming-card">
+                    <!-- MEDIJACIJA — VODIČ DOSTUPAN -->
+                    <a
+                        href="/hr/mediation.html"
+                        class="activity-card learn-mediation-card"
+                        aria-label="Istraži medijaciju"
+                    >
 
-                        <span class="activity-number">USKORO U OVOJ KATEGORIJI</span>
+                        <div class="learn-mediation-photos" aria-hidden="true">
+                            <img
+                                class="learn-mediation-photo"
+                                src="/images/learn-mediation-connection.jpg"
+                                alt=""
+                                loading="eager"
+                            >
+                            <img
+                                class="learn-mediation-photo"
+                                src="/images/learn-mediation-handshake.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <span class="activity-number">
+                            LEARN · KOMUNIKACIJA
+                        </span>
 
                         <div class="activity-content">
 
-                            <h3>NOVE AKTIVNOSTI STIŽU.</h3>
+                            <h3>MEDIJACIJA</h3>
 
                             <p class="activity-description">
-                                Pripremamo ideje, vodiče i iskustva koja ćeš
-                                moći istražiti. U međuvremenu, možda baš ti
-                                imaš prijedlog što bismo trebali dodati.
+                                Što ako težak razgovor ne mora završiti
+                                tako da netko pobijedi, a netko izgubi?
+                                Otkrij drukčiji put prema rješenju.
                             </p>
 
                             <span class="activity-available">
-                                MOVE &amp; TRY · LEARN
+                                VODIČ ✓
                             </span>
 
                         </div>
 
-                    </div>
+                    </a>
 
                 </div>
 
