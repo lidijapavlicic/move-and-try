@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,21 +28,59 @@
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-<script>
-    window.dataLayer = window.dataLayer || [];
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('js', new Date());
-    gtag('config', 'G-PREYRXPPN8');
-</script>
-    
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- POLE DANCE EDITORIAL PHOTOGRAPHY -->
+    <style>
+        .pole-dance-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 36px 0 10px;
+        }
+
+        .pole-dance-gallery figure {
+            margin: 0;
+            min-width: 0;
+            overflow: hidden;
+            background: #211b26;
+            aspect-ratio: 4 / 5;
+        }
+
+        .pole-dance-gallery img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        @media (max-width: 640px) {
+            .pole-dance-gallery {
+                gap: 8px;
+                margin-top: 28px;
+            }
+
+            .pole-dance-gallery figure {
+                aspect-ratio: 3 / 4;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -209,6 +248,34 @@
         </div>
 
     </header>
+
+
+    <!-- =========================
+         POLE DANCE PHOTOGRAPHY
+    ========================= -->
+
+    <div
+        class="pole-dance-gallery"
+        aria-label="Pole dance photography"
+    >
+
+        <figure>
+            <img
+                src="/images/pole-dance-man.jpg"
+                alt="Male pole dancer performing an inverted pose on a pole"
+                loading="eager"
+            >
+        </figure>
+
+        <figure>
+            <img
+                src="/images/pole-dance-woman.jpg"
+                alt="Female pole dancer in a flowing white dress performing on a pole"
+                loading="eager"
+            >
+        </figure>
+
+    </div>
 
 
     <!-- =========================
