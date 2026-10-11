@@ -1,22 +1,15 @@
 
 <!DOCTYPE html>
 <html lang="hr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <title>Move & Try | Ne moraš biti dobar u tome. Samo probaj.</title>
-
-    <meta
-        name="description"
-        content="Move & Try je mjesto za otkrivanje nečeg novog što možeš probati. Kreći se, uči, stvaraj, istražuj, usudi se ili brini o sebi. Ne moraš biti dobar u tome. Samo probaj."
-    >
+    <meta name="description" content="Move & Try je mjesto za otkrivanje nečeg novog što možeš probati. Kreći se, uči, stvaraj, istražuj, usudi se ili brini o sebi. Ne moraš biti dobar u tome. Samo probaj.">
 
     <link rel="canonical" href="https://moveandtry.com/hr/">
-
     <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/">
     <link rel="alternate" hreflang="en" href="https://moveandtry.com/">
     <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/">
@@ -64,22 +57,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
-
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
-
         gtag('js', new Date());
         gtag('config', 'G-PREYRXPPN8');
     </script>
@@ -93,7 +79,6 @@
     ========================= -->
 
     <style>
-
         /* =========================
            ZAJEDNIČKI IZGLED KARTICA
         ========================= */
@@ -265,11 +250,9 @@
             0%, 42% {
                 opacity: 1;
             }
-
             50%, 92% {
                 opacity: 0;
             }
-
             100% {
                 opacity: 1;
             }
@@ -280,7 +263,6 @@
         ========================= */
 
         @media (prefers-reduced-motion: reduce) {
-
             .home-intro .whats-new .new-card.latest-update-card::before,
             .home-intro .whats-new .new-card.latest-update-card::after {
                 animation: none;
@@ -293,66 +275,107 @@
             .home-intro .whats-new .new-card.latest-update-card::after {
                 opacity: 0;
             }
-
         }
 
-    </style>
+        /* =========================
+           HOME — CATEGORY ILLUSTRATIONS
+           Ilustracije su dekorativne.
+           Tekst ostaje potpuno vidljiv.
+        ========================= */
 
+        #find-your-try .category-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        #find-your-try .category-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: cover;
+            opacity: 0.40;
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #find-your-try .category-move::before {
+            background-image: url('/images/category-move.webp');
+        }
+
+        #find-your-try .category-learn::before {
+            background-image: url('/images/category-learn.webp');
+        }
+
+        #find-your-try .category-create::before {
+            background-image: url('/images/category-create.webp');
+        }
+
+        #find-your-try .category-explore::before {
+            background-image: url('/images/category-explore.webp');
+        }
+
+        #find-your-try .category-dare::before {
+            background-image: url('/images/category-dare.webp');
+        }
+
+        #find-your-try .category-care::before {
+            background-image: url('/images/category-care.webp');
+        }
+
+        #find-your-try .category-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            #find-your-try .category-card:hover::before {
+                opacity: 0.65;
+                transform: scale(1.035);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #find-your-try .category-card::before {
+                opacity: 0.30;
+                background-position: right center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #find-your-try .category-card::before {
+                transition: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
 
 <!-- =========================
      SITE HEADER
 ========================= -->
 
 <header class="site-header">
-
     <a href="/hr/" class="site-logo">
-        <img
-            src="/images/move-and-try-logo.png"
-            alt="Move & Try"
-        >
+        <img src="/images/move-and-try-logo.png" alt="Move & Try">
     </a>
 
     <nav class="desktop-nav">
-
-        <a href="#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="#where-to-try">
-            GDJE PROBATI
-        </a>
-
-        <a href="behind-move-and-try.html">
-            IZA MOVE & TRY
-        </a>
-
+        <a href="#find-your-try">OTKRIJ</a>
+        <a href="#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="#where-to-try">GDJE PROBATI</a>
+        <a href="behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
 
     <div class="header-actions">
-
         <div class="header-language">
-
-            <a
-                href="/"
-                onclick="setLanguage('en')"
-            >
-                EN
-            </a>
-
+            <a href="/" onclick="setLanguage('en')">EN</a>
             <span>|</span>
-
-            <span class="language-active">
-                HR
-            </span>
-
+            <span class="language-active">HR</span>
         </div>
 
         <button
@@ -364,82 +387,47 @@
             <span></span>
             <span></span>
         </button>
-
     </div>
-
 </header>
-
 
 <!-- =========================
      MOBILE MENU
 ========================= -->
 
 <div class="mobile-menu">
-
     <nav>
-
-        <a href="#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="#where-to-try">
-            GDJE PROBATI
-        </a>
-
-        <a href="behind-move-and-try.html">
-            IZA MOVE & TRY
-        </a>
-
+        <a href="#find-your-try">OTKRIJ</a>
+        <a href="#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="#where-to-try">GDJE PROBATI</a>
+        <a href="behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
 
     <div class="mobile-menu-language">
-
-        <a
-            href="/"
-            onclick="setLanguage('en')"
-        >
-            EN
-        </a>
-
+        <a href="/" onclick="setLanguage('en')">EN</a>
         <span>|</span>
-
-        <span class="language-active">
-            HR
-        </span>
-
+        <span class="language-active">HR</span>
     </div>
-
 </div>
-
 
 <!-- =========================
      HERO IMAGE
 ========================= -->
 
 <section class="home-hero-image">
-
     <img
         src="/images/home-discover.png"
         alt="Zaigrani prikaz različitih aktivnosti i stvari koje možemo otkriti"
     >
-
 </section>
-
 
 <!-- =========================
      KAKO FUNKCIONIRA + ŠTO JE NOVO
 ========================= -->
 
 <section class="home-intro" aria-label="Kako funkcionira i što je novo">
-
     <div class="home-intro-grid">
 
         <div class="how-it-works" aria-labelledby="how-it-works-title">
-
             <div class="how-it-works-inner">
 
                 <p class="section-label">KAKO FUNKCIONIRA</p>
@@ -450,7 +438,6 @@
                 </h2>
 
                 <div class="how-steps">
-
                     <div class="how-step">
                         <span class="how-step-number">01</span>
                         <h3>OTKRIJ</h3>
@@ -492,17 +479,13 @@
                             PODIJELI SVOJU PRIČU →
                         </a>
                     </div>
-
                 </div>
 
                 <p class="how-it-works-ending">
                     Ne treba ti iskustvo. Samo znatiželja.
                 </p>
-
             </div>
-
         </div>
-
 
         <!-- =========================
              ŠTO JE NOVO
@@ -511,12 +494,9 @@
         ========================= -->
 
         <div class="home-intro-news">
-
             <div class="whats-new">
 
-                <p class="section-label">
-                    ŠTO JE NOVO
-                </p>
+                <p class="section-label">ŠTO JE NOVO</p>
 
                 <h2>
                     NEŠTO NOVO<br>
@@ -524,31 +504,24 @@
                 </h2>
 
                 <a href="#" class="new-card" id="latest-update">
-
                     <span
                         class="new-type"
                         id="latest-update-type"
                     ></span>
 
                     <h3 id="latest-update-title"></h3>
-
                     <p id="latest-update-text"></p>
 
                     <span
                         class="new-action"
                         id="latest-update-action"
                     ></span>
-
                 </a>
 
             </div>
-
         </div>
-
     </div>
-
 </section>
-
 
 <!-- =========================
      CATEGORIES
@@ -624,25 +597,20 @@
     >
         🎲 IZNENADI ME
     </button>
-
 </section>
-
 
 <!-- =========================
      BE PART OF IT + WHERE TO TRY
 ========================= -->
 
 <section class="community">
-
     <div class="community-grid">
 
         <!-- BE PART OF IT -->
-
         <div
             class="community-panel contribute-panel"
             id="be-part-of-it"
         >
-
             <p class="section-label">
                 BUDI DIO PRIČE
             </p>
@@ -663,7 +631,6 @@
             </p>
 
             <div class="community-actions">
-
                 <a
                     href="/hr/share-experience.html"
                     class="community-link"
@@ -684,23 +651,18 @@
                 >
                     JAVI NAM SE →
                 </a>
-
             </div>
 
             <p class="community-note">
                 Priče · Znanje · Fotografije · Ideje · Mjesta · Ljudi
             </p>
-
         </div>
 
-
         <!-- WHERE TO TRY -->
-
         <div
             class="community-panel where-panel"
             id="where-to-try"
         >
-
             <p class="section-label">
                 GDJE PROBATI
             </p>
@@ -724,13 +686,10 @@
             <span class="community-coming">
                 USKORO
             </span>
-
         </div>
 
     </div>
-
 </section>
-
 
 <!-- =========================
      SUGGEST A TRY
@@ -755,7 +714,6 @@
     </p>
 
     <form id="try-form">
-
         <input
             type="text"
             id="try-input"
@@ -767,7 +725,6 @@
         <button type="submit">
             POŠALJI →
         </button>
-
     </form>
 
     <p id="suggestion-message"></p>
@@ -782,16 +739,12 @@
 
 </section>
 
-
 <!-- =========================
      FOOTER
 ========================= -->
 
 <footer class="site-footer">
-
-    <p>
-        MOVE & TRY
-    </p>
+    <p>MOVE & TRY</p>
 
     <p class="footer-tagline">
         Ne moraš biti dobar u tome. Samo trebaš probati.
@@ -800,9 +753,7 @@
     <a href="mailto:hello@moveandtry.com">
         hello@moveandtry.com
     </a>
-
 </footer>
-
 
 <!-- =========================
      JAVASCRIPT
@@ -811,5 +762,4 @@
 <script src="../script.js"></script>
 
 </body>
-
 </html>
