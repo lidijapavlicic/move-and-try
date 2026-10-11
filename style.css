@@ -3958,7 +3958,7 @@ select:focus-visible {
     }
 }
 @media (max-width: 768px) {
-    .home-intro { padding: 55px 20px 70px; }
+    .home-intro { padding: 20px 20px 70px; }
     .home-intro .how-it-works h2,
     .home-intro .whats-new h2 { font-size: clamp(30px, 8vw, 40px); }
     .home-intro .how-step,
