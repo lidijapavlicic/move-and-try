@@ -1909,15 +1909,15 @@ a.content-card:hover {
 
 @media (max-width: 768px) {
 
-    .home-hero-image {
-        height: clamp(230px, 48vw, 340px);
-        padding: 0;
-        overflow: hidden;
-    }
+   .home-hero-image {
+    height: auto;
+    padding: 0;
+    overflow: hidden;
+}
 
     .home-hero-image img {
         width: 100%;
-        height: 100%;
+        height: auto;
         min-height: 0;
         max-height: none;
         object-fit: cover;
