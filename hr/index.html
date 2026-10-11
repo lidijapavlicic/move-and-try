@@ -1,5 +1,834 @@
 
 <!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <title>Move & Try | Ne moraš biti dobar u tome. Samo probaj.</title>
+    <meta name="description" content="Move & Try je mjesto za otkrivanje nečeg novog što možeš probati. Kreći se, uči, stvaraj, istražuj, usudi se ili brini o sebi. Ne moraš biti dobar u tome. Samo probaj.">
+
+    <link rel="canonical" href="https://moveandtry.com/hr/">
+    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/">
+    <link rel="alternate" hreflang="en" href="https://moveandtry.com/">
+    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Move & Try">
+    <meta property="og:title" content="Move & Try | Ne moraš biti dobar u tome. Samo probaj.">
+    <meta property="og:description" content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj.">
+    <meta property="og:url" content="https://moveandtry.com/hr/">
+    <meta property="og:image" content="https://moveandtry.com/images/move-and-try-share.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Move & Try | Ne moraš biti dobar u tome. Samo probaj.">
+    <meta name="twitter:description" content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj.">
+    <meta name="twitter:image" content="https://moveandtry.com/images/move-and-try-share.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://moveandtry.com/#website",
+                "url": "https://moveandtry.com/",
+                "name": "Move & Try",
+                "alternateName": "MOVE & TRY",
+                "description": "Move & Try je mjesto za otkrivanje nečeg novog što možeš probati. Ne moraš biti dobar u tome. Samo probaj.",
+                "publisher": {
+                    "@id": "https://moveandtry.com/#organization"
+                }
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://moveandtry.com/#organization",
+                "name": "Move & Try",
+                "url": "https://moveandtry.com/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://moveandtry.com/images/move-and-try-logo.png"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- =========================
+         ŠTO JE NOVO
+         DVIJE NAJNOVIJE TRY OBJAVE
+         Stilovi samo za početnu stranicu
+    ========================= -->
+
+    <style>
+        /* =========================
+           ZAJEDNIČKI IZGLED KARTICA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 285px;
+            margin-top: 18px;
+            background: #151417;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-card:first-of-type {
+            margin-top: 0;
+        }
+
+        /* =========================
+           FOTOGRAFIJE I ANIMACIJA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-card::before,
+        .home-intro .whats-new .new-card.latest-update-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            pointer-events: none;
+            animation: latestPhotoFade 12s ease-in-out infinite;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-card::before {
+            animation-delay: 0s;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-card::after {
+            animation-delay: -6s;
+        }
+
+        /* =========================
+           POLE DANCE
+           TAMNA LJUBIČASTO-CRNA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-pole-dance {
+            background: #18151d;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-pole-dance::before {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(12, 10, 17, 0.46) 0%,
+                    rgba(12, 10, 17, 0.60) 48%,
+                    rgba(12, 10, 17, 0.88) 100%
+                ),
+                url('/images/pole-dance-man.jpg');
+            background-position: center 35%;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-pole-dance::after {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(12, 10, 17, 0.46) 0%,
+                    rgba(12, 10, 17, 0.60) 48%,
+                    rgba(12, 10, 17, 0.88) 100%
+                ),
+                url('/images/pole-dance-woman.jpg');
+            background-position: center 35%;
+        }
+
+        /* =========================
+           TRČANJE
+           TAMNA ŠUMSKO-PLAVA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-running {
+            background: #101b20;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-running::before {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(7, 19, 25, 0.56) 0%,
+                    rgba(7, 19, 25, 0.66) 48%,
+                    rgba(7, 19, 25, 0.88) 100%
+                ),
+                url('/images/running-forest.jpg');
+            background-position: center 48%;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-running::after {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(7, 19, 25, 0.56) 0%,
+                    rgba(7, 19, 25, 0.66) 48%,
+                    rgba(7, 19, 25, 0.88) 100%
+                ),
+                url('/images/running-blue.jpg');
+            background-position: center 48%;
+        }
+
+        /* =========================
+           MEDIJACIJA
+           FOTOGRAFIJE IZ LEARN KATEGORIJE
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-mediation {
+            background: #17191a;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-mediation::before {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(9, 11, 13, 0.46) 0%,
+                    rgba(9, 11, 13, 0.60) 48%,
+                    rgba(9, 11, 13, 0.88) 100%
+                ),
+                url('/images/learn-mediation-connection.jpg');
+            background-position: center 54%;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-mediation::after {
+            background-image:
+                linear-gradient(
+                    180deg,
+                    rgba(9, 11, 13, 0.46) 0%,
+                    rgba(9, 11, 13, 0.60) 48%,
+                    rgba(9, 11, 13, 0.88) 100%
+                ),
+                url('/images/learn-mediation-handshake.jpg');
+            background-position: center 62%;
+        }
+
+        /* =========================
+           BIJELI TEKST IZNAD SLIKA
+        ========================= */
+
+        .home-intro .whats-new .new-card.latest-update-card .new-type,
+        .home-intro .whats-new .new-card.latest-update-card h3,
+        .home-intro .whats-new .new-card.latest-update-card p,
+        .home-intro .whats-new .new-card.latest-update-card .new-action {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+        }
+
+        .home-intro .whats-new .new-card.latest-update-card .new-type {
+            color: #d4c8ae;
+        }
+
+        /* =========================
+           IZMJENA FOTOGRAFIJA
+           SVAKIH 6 SEKUNDI
+        ========================= */
+
+        @keyframes latestPhotoFade {
+            0%, 42% {
+                opacity: 1;
+            }
+            50%, 92% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           PRISTUPAČNOST
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+            .home-intro .whats-new .new-card.latest-update-card::before,
+            .home-intro .whats-new .new-card.latest-update-card::after {
+                animation: none;
+            }
+
+            .home-intro .whats-new .new-card.latest-update-card::before {
+                opacity: 1;
+            }
+
+            .home-intro .whats-new .new-card.latest-update-card::after {
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           HOME — CATEGORY ILLUSTRATIONS
+           Ilustracije su dekorativne.
+           Tekst ostaje potpuno vidljiv.
+        ========================= */
+
+        #find-your-try .category-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        #find-your-try .category-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: cover;
+            opacity: 0.40;
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #find-your-try .category-move::before {
+            background-image: url('/images/category-move.webp');
+        }
+
+        #find-your-try .category-learn::before {
+            background-image: url('/images/category-learn.webp');
+        }
+
+        #find-your-try .category-create::before {
+            background-image: url('/images/category-create.webp');
+        }
+
+        #find-your-try .category-explore::before {
+            background-image: url('/images/category-explore.webp');
+        }
+
+        #find-your-try .category-dare::before {
+            background-image: url('/images/category-dare.webp');
+        }
+
+        #find-your-try .category-care::before {
+            background-image: url('/images/category-care.webp');
+        }
+
+        #find-your-try .category-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            #find-your-try .category-card:hover::before {
+                opacity: 0.65;
+                transform: scale(1.035);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #find-your-try .category-card::before {
+                opacity: 0.30;
+                background-position: right center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #find-your-try .category-card::before {
+                transition: none;
+            }
+        }
+
+        /* =========================
+           HOME — FINAL PHOTO SECTION
+           TVOJ RED
+           Malo svjetlija verzija
+        ========================= */
+
+        section.suggest {
+            position: relative;
+            isolation: isolate;
+            background-color: #17251d;
+            background-image:
+                linear-gradient(
+                    rgba(9, 19, 15, 0.40),
+                    rgba(9, 19, 15, 0.50)
+                ),
+                url('/images/home-final-background.jpg');
+            background-size: cover;
+            background-position: center 50%;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+        section.suggest > .section-label {
+            color: #e3dfc8;
+        }
+
+        section.suggest > h2,
+        section.suggest .suggest-intro,
+        section.suggest .suggest-intro strong,
+        section.suggest .suggest-note {
+            color: #fff;
+        }
+
+        section.suggest .privacy-note {
+            color: rgba(255, 255, 255, 0.90);
+        }
+
+        section.suggest #suggestion-message {
+            color: #fff;
+        }
+
+        section.suggest #try-form input {
+            background: #fff;
+            color: #171717;
+        }
+
+        section.suggest #try-form button {
+            background: #171717;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            section.suggest {
+                background-position: center center;
+                background-image:
+                    linear-gradient(
+                        rgba(9, 19, 15, 0.64),
+                        rgba(9, 19, 15, 0.73)
+                    ),
+                    url('/images/home-final-background.jpg');
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     SITE HEADER
+========================= -->
+
+<header class="site-header">
+    <a href="/hr/" class="site-logo">
+        <img src="/images/move-and-try-logo.png" alt="Move & Try">
+    </a>
+
+    <nav class="desktop-nav">
+        <a href="#find-your-try">OTKRIJ</a>
+        <a href="#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="#where-to-try">GDJE PROBATI</a>
+        <a href="behind-move-and-try.html">IZA MOVE & TRY</a>
+    </nav>
+
+    <div class="header-actions">
+        <div class="header-language">
+            <a href="/" onclick="setLanguage('en')">EN</a>
+            <span>|</span>
+            <span class="language-active">HR</span>
+        </div>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+    <nav>
+        <a href="#find-your-try">OTKRIJ</a>
+        <a href="#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="#where-to-try">GDJE PROBATI</a>
+        <a href="behind-move-and-try.html">IZA MOVE & TRY</a>
+    </nav>
+
+    <div class="mobile-menu-language">
+        <a href="/" onclick="setLanguage('en')">EN</a>
+        <span>|</span>
+        <span class="language-active">HR</span>
+    </div>
+</div>
+
+<!-- =========================
+     HERO IMAGE
+========================= -->
+
+<section class="home-hero-image">
+    <img
+        src="/images/home-discover.png"
+        alt="Zaigrani prikaz različitih aktivnosti i stvari koje možemo otkriti"
+    >
+</section>
+
+<!-- =========================
+     KAKO FUNKCIONIRA + ŠTO JE NOVO
+========================= -->
+
+<section class="home-intro" aria-label="Kako funkcionira i što je novo">
+    <div class="home-intro-grid">
+
+        <div class="how-it-works" aria-labelledby="how-it-works-title">
+            <div class="how-it-works-inner">
+
+                <p class="section-label">KAKO FUNKCIONIRA</p>
+
+                <h2 id="how-it-works-title">
+                    MALO ZNATIŽELJE.<br>
+                    NOVO ISKUSTVO.
+                </h2>
+
+                <div class="how-steps">
+                    <div class="how-step">
+                        <span class="how-step-number">01</span>
+                        <h3>OTKRIJ</h3>
+                        <p>Istraži aktivnosti i pronađi nešto što te zanima.</p>
+                        <a class="how-step-link" href="#find-your-try">
+                            ISTRAŽI AKTIVNOSTI →
+                        </a>
+                    </div>
+
+                    <div class="how-step">
+                        <span class="how-step-number">02</span>
+                        <h3>INSPIRIRAJ SE</h3>
+                        <p>Pročitaj iskustva, savjete i priče drugih.</p>
+                    </div>
+
+                    <div class="how-step">
+                        <span class="how-step-number">03</span>
+                        <h3>PRONAĐI MJESTO</h3>
+                        <p>
+                            Pronađi gdje svoju ideju možeš pretvoriti u iskustvo.
+                            <span class="how-coming">USKORO</span>
+                        </p>
+                        <a class="how-step-link" href="#where-to-try">
+                            GDJE PROBATI →
+                        </a>
+                    </div>
+
+                    <div class="how-step">
+                        <span class="how-step-number">04</span>
+                        <h3>ISPROBAJ</h3>
+                        <p>Napravi prvi korak. Ne moraš biti dobar u tome.</p>
+                    </div>
+
+                    <div class="how-step">
+                        <span class="how-step-number">05</span>
+                        <h3>PODIJELI ISKUSTVO</h3>
+                        <p>Tvoja priča možda nekoga potakne da i sam proba.</p>
+                        <a class="how-step-link" href="/hr/share-experience.html">
+                            PODIJELI SVOJU PRIČU →
+                        </a>
+                    </div>
+                </div>
+
+                <p class="how-it-works-ending">
+                    Ne treba ti iskustvo. Samo znatiželja.
+                </p>
+            </div>
+        </div>
+
+        <!-- =========================
+             ŠTO JE NOVO
+             script.js popunjava prvu
+             i dodaje drugu karticu
+        ========================= -->
+
+        <div class="home-intro-news">
+            <div class="whats-new">
+
+                <p class="section-label">ŠTO JE NOVO</p>
+
+                <h2>
+                    NEŠTO NOVO<br>
+                    ZA OTKRITI.
+                </h2>
+
+                <a href="#" class="new-card" id="latest-update">
+                    <span
+                        class="new-type"
+                        id="latest-update-type"
+                    ></span>
+
+                    <h3 id="latest-update-title"></h3>
+                    <p id="latest-update-text"></p>
+
+                    <span
+                        class="new-action"
+                        id="latest-update-action"
+                    ></span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section class="categories" id="find-your-try">
+
+    <p class="section-label">
+        PRONAĐI SVOJ SLJEDEĆI TRY
+    </p>
+
+    <h2>
+        ŠTO TI SE DANAS RADI?
+    </h2>
+
+    <div class="category-grid">
+
+        <!-- MOVE -->
+        <a href="move.html" class="category-card category-move">
+            <span class="category-number">01</span>
+            <h3>MOVE</h3>
+            <p>Trči. Penji se. Pleši. Planinari. Vozi.</p>
+            <span class="category-action">
+                ISTRAŽI MOVE →
+            </span>
+        </a>
+
+        <!-- LEARN -->
+        <a href="learn.html" class="category-card category-learn">
+            <span class="category-number">02</span>
+            <h3>LEARN</h3>
+            <p>Kodiraj. Kuhaj. Govori. Gradi. Razumij.</p>
+            <span class="category-action">ISTRAŽI LEARN →</span>
+        </a>
+
+        <!-- CREATE -->
+        <a href="create.html" class="category-card category-create">
+            <span class="category-number">03</span>
+            <h3>CREATE</h3>
+            <p>Piši. Slikaj. Fotografiraj. Stvaraj.</p>
+            <span class="category-action">ISTRAŽI CREATE →</span>
+        </a>
+
+        <!-- EXPLORE -->
+        <a href="explore.html" class="category-card category-explore">
+            <span class="category-number">04</span>
+            <h3>EXPLORE</h3>
+            <p>Otiđi nekamo. Kreni drugim putem. Budi znatiželjan.</p>
+            <span class="category-action">ISTRAŽI EXPLORE →</span>
+        </a>
+
+        <!-- DARE -->
+        <a href="dare.html" class="category-card category-dare">
+            <span class="category-number">05</span>
+            <h3>DARE</h3>
+            <p>Napravi ono od čega se već neko vrijeme odgovaraš.</p>
+            <span class="category-action">ISTRAŽI DARE →</span>
+        </a>
+
+        <!-- CARE -->
+        <a href="care.html" class="category-card category-care">
+            <span class="category-number">06</span>
+            <h3>CARE</h3>
+            <p>Stani. Razgovaraj. Odmori. Oporavi se. Brini o sebi.</p>
+            <span class="category-action">ISTRAŽI CARE →</span>
+        </a>
+
+    </div>
+
+    <button
+        class="surprise-button"
+        onclick="surpriseMe()"
+    >
+        🎲 IZNENADI ME
+    </button>
+</section>
+
+<!-- =========================
+     BE PART OF IT + WHERE TO TRY
+========================= -->
+
+<section class="community">
+    <div class="community-grid">
+
+        <!-- BE PART OF IT -->
+        <div
+            class="community-panel contribute-panel"
+            id="be-part-of-it"
+        >
+            <p class="section-label">
+                BUDI DIO PRIČE
+            </p>
+
+            <h2>
+                POSTOJI STO NAČINA<br>
+                DA BUDEŠ DIO MOVE & TRY.
+            </h2>
+
+            <p class="community-text">
+                Podijeli iskustvo. Podijeli ono što znaš.<br>
+                Pošalji nam fotografiju. Predloži nešto vrijedno otkrivanja.<br>
+                Podučavaj. Stvaraj. Pokaži nam nešto što voliš.
+            </p>
+
+            <p class="community-highlight">
+                Move & Try ne gradimo samo za ljude, nego zajedno s njima.
+            </p>
+
+            <div class="community-actions">
+                <a
+                    href="/hr/share-experience.html"
+                    class="community-link"
+                >
+                    PODIJELI SVOJE ISKUSTVO →
+                </a>
+
+                <a
+                    href="/hr/be-part-of-where-to-try.html"
+                    class="community-link"
+                >
+                    PONUDI NEŠTO ZA PROBATI →
+                </a>
+
+                <a
+                    href="mailto:hello@moveandtry.com"
+                    class="community-link"
+                >
+                    JAVI NAM SE →
+                </a>
+            </div>
+
+            <p class="community-note">
+                Priče · Znanje · Fotografije · Ideje · Mjesta · Ljudi
+            </p>
+        </div>
+
+        <!-- WHERE TO TRY -->
+        <div
+            class="community-panel where-panel"
+            id="where-to-try"
+        >
+            <p class="section-label">
+                GDJE PROBATI
+            </p>
+
+            <h2>
+                PRONAŠAO SI NEŠTO<br>
+                ŠTO ŽELIŠ PROBATI?
+            </h2>
+
+            <p class="community-text">
+                Gradimo mjesto na kojem ćeš moći pronaći
+                ljude i mjesta koji ti mogu pomoći da to doživiš i u stvarnom svijetu.
+                <br><br>
+                Treneri. Studiji. Učitelji. Vodiči. Radionice. Grupe.
+            </p>
+
+            <p class="community-highlight">
+                Otkrij ovdje. Probaj tamo.
+            </p>
+
+            <span class="community-coming">
+                USKORO
+            </span>
+        </div>
+
+    </div>
+</section>
+
+<!-- =========================
+     SUGGEST A TRY
+========================= -->
+
+<section class="suggest">
+
+    <p class="section-label">
+        TVOJ RED
+    </p>
+
+    <h2>
+        ŠTO BISMO SLJEDEĆE TREBALI PROBATI?
+    </h2>
+
+    <p class="suggest-intro">
+        Postoji li nešto o čemu već neko vrijeme razmišljaš?<br>
+        Nešto što te zanima, ali još nisi napravio prvi korak?
+        <br><br>
+        <strong>Reci nam.</strong><br>
+        Tvoja ideja možda postane naš sljedeći TRY.
+    </p>
+
+    <form id="try-form">
+        <input
+            type="text"
+            id="try-input"
+            name="try"
+            placeholder="Volio bih probati..."
+            required
+        >
+
+        <button type="submit">
+            POŠALJI →
+        </button>
+    </form>
+
+    <p id="suggestion-message"></p>
+
+    <p class="suggest-note">
+        Ti predlažeš. Mi istražujemo. Zajedno gradimo Move & Try.
+    </p>
+
+    <p class="privacy-note">
+        Ne tražimo tvoje ime ni e-mail.
+    </p>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="site-footer">
+    <p>MOVE & TRY</p>
+
+    <p class="footer-tagline">
+        Ne moraš biti dobar u tome. Samo trebaš probati.
+    </p>
+
+    <a href="mailto:hello@moveandtry.com">
+        hello@moveandtry.com
+    </a>
+</footer>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="../script.js"></script>
+
+</body>
+</html>
+
 <html lang="hr">
 <head>
     <meta charset="UTF-8">
