@@ -166,11 +166,11 @@
         }
 
         /*
-          The first card keeps its original
-          #latest-update ID.
+         The first card keeps its original
+         #latest-update ID.
 
-          The second card is created by
-          script.js inside .whats-new.
+         The second card is created by
+         script.js inside .whats-new.
         */
 
         .home-intro .whats-new .new-card.latest-update-card:first-of-type {
@@ -358,8 +358,6 @@
 
         /* =========================
            HOME — CATEGORY ILLUSTRATIONS
-           Same appearance as HR homepage.
-           Decorative images remain behind text.
         ========================= */
 
         #find-your-try .category-card {
@@ -430,11 +428,75 @@
             }
         }
 
+        /* =========================
+           HOME — FINAL PHOTO SECTION
+           YOUR TURN
+           Same brightness as HR
+        ========================= */
+
+        section.suggest {
+            position: relative;
+            isolation: isolate;
+            background-color: #17251d;
+            background-image:
+                linear-gradient(
+                    rgba(9, 19, 15, 0.40),
+                    rgba(9, 19, 15, 0.50)
+                ),
+                url('/images/home-final-background.jpg');
+            background-size: cover;
+            background-position: center 50%;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+        section.suggest > .section-label {
+            color: #e3dfc8;
+        }
+
+        section.suggest > h2,
+        section.suggest .suggest-intro,
+        section.suggest .suggest-intro strong,
+        section.suggest .suggest-note {
+            color: #fff;
+        }
+
+        section.suggest .privacy-note {
+            color: rgba(255, 255, 255, 0.90);
+        }
+
+        section.suggest #suggestion-message {
+            color: #fff;
+        }
+
+        section.suggest #try-form input {
+            background: #fff;
+            color: #171717;
+        }
+
+        section.suggest #try-form button {
+            background: #171717;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            section.suggest {
+                background-position: center center;
+                background-image:
+                    linear-gradient(
+                        rgba(9, 19, 15, 0.64),
+                        rgba(9, 19, 15, 0.73)
+                    ),
+                    url('/images/home-final-background.jpg');
+            }
+        }
+
     </style>
 
 </head>
 
 <body>
+
 
 <!-- =========================
      SITE HEADER
@@ -502,6 +564,7 @@
 
 </header>
 
+
 <!-- =========================
      MOBILE MENU
 ========================= -->
@@ -547,6 +610,7 @@
 
 </div>
 
+
 <!-- =========================
      HERO IMAGE
 ========================= -->
@@ -560,6 +624,7 @@
 
 </section>
 
+
 <!-- =========================
      HOW IT WORKS + WHAT'S NEW
 ========================= -->
@@ -572,7 +637,9 @@
 
             <div class="how-it-works-inner">
 
-                <p class="section-label">HOW IT WORKS</p>
+                <p class="section-label">
+                    HOW IT WORKS
+                </p>
 
                 <h2 id="how-it-works-title">
                     A LITTLE CURIOSITY.<br>
@@ -633,6 +700,7 @@
 
         </div>
 
+
         <!-- =========================
              WHAT'S NEW
              The shared script.js fills
@@ -678,6 +746,7 @@
     </div>
 
 </section>
+
 
 <!-- =========================
      CATEGORIES
@@ -756,6 +825,7 @@
 
 </section>
 
+
 <!-- =========================
      BE PART OF IT + WHERE TO TRY
 ========================= -->
@@ -821,6 +891,7 @@
 
         </div>
 
+
         <!-- WHERE TO TRY -->
 
         <div
@@ -857,6 +928,7 @@
     </div>
 
 </section>
+
 
 <!-- =========================
      SUGGEST A TRY
@@ -908,6 +980,7 @@
 
 </section>
 
+
 <!-- =========================
      FOOTER
 ========================= -->
@@ -927,6 +1000,7 @@
     </a>
 
 </footer>
+
 
 <!-- =========================
      JAVASCRIPT
