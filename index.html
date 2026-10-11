@@ -166,11 +166,11 @@
         }
 
         /*
-         The first card keeps its original
-         #latest-update ID.
+          The first card keeps its original
+          #latest-update ID.
 
-         The second card is created by
-         script.js inside .whats-new.
+          The second card is created by
+          script.js inside .whats-new.
         */
 
         .home-intro .whats-new .new-card.latest-update-card:first-of-type {
@@ -356,12 +356,85 @@
 
         }
 
+        /* =========================
+           HOME — CATEGORY ILLUSTRATIONS
+           Same appearance as HR homepage.
+           Decorative images remain behind text.
+        ========================= */
+
+        #find-your-try .category-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        #find-your-try .category-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: cover;
+            opacity: 0.40;
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #find-your-try .category-move::before {
+            background-image: url('/images/category-move.webp');
+        }
+
+        #find-your-try .category-learn::before {
+            background-image: url('/images/category-learn.webp');
+        }
+
+        #find-your-try .category-create::before {
+            background-image: url('/images/category-create.webp');
+        }
+
+        #find-your-try .category-explore::before {
+            background-image: url('/images/category-explore.webp');
+        }
+
+        #find-your-try .category-dare::before {
+            background-image: url('/images/category-dare.webp');
+        }
+
+        #find-your-try .category-care::before {
+            background-image: url('/images/category-care.webp');
+        }
+
+        #find-your-try .category-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            #find-your-try .category-card:hover::before {
+                opacity: 0.65;
+                transform: scale(1.035);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #find-your-try .category-card::before {
+                opacity: 0.30;
+                background-position: right center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #find-your-try .category-card::before {
+                transition: none;
+            }
+        }
+
     </style>
 
 </head>
 
 <body>
-
 
 <!-- =========================
      SITE HEADER
@@ -429,7 +502,6 @@
 
 </header>
 
-
 <!-- =========================
      MOBILE MENU
 ========================= -->
@@ -475,7 +547,6 @@
 
 </div>
 
-
 <!-- =========================
      HERO IMAGE
 ========================= -->
@@ -488,7 +559,6 @@
     >
 
 </section>
-
 
 <!-- =========================
      HOW IT WORKS + WHAT'S NEW
@@ -563,7 +633,6 @@
 
         </div>
 
-
         <!-- =========================
              WHAT'S NEW
              The shared script.js fills
@@ -609,7 +678,6 @@
     </div>
 
 </section>
-
 
 <!-- =========================
      CATEGORIES
@@ -688,7 +756,6 @@
 
 </section>
 
-
 <!-- =========================
      BE PART OF IT + WHERE TO TRY
 ========================= -->
@@ -754,7 +821,6 @@
 
         </div>
 
-
         <!-- WHERE TO TRY -->
 
         <div
@@ -791,7 +857,6 @@
     </div>
 
 </section>
-
 
 <!-- =========================
      SUGGEST A TRY
@@ -843,7 +908,6 @@
 
 </section>
 
-
 <!-- =========================
      FOOTER
 ========================= -->
@@ -863,7 +927,6 @@
     </a>
 
 </footer>
-
 
 <!-- =========================
      JAVASCRIPT
