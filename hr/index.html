@@ -350,6 +350,69 @@
                 transition: none;
             }
         }
+
+        /* =========================
+           HOME — FINAL PHOTO SECTION
+           TVOJ RED
+        ========================= */
+
+        section.suggest {
+            position: relative;
+            isolation: isolate;
+            background-color: #17251d;
+            background-image:
+                linear-gradient(
+                    rgba(9, 19, 15, 0.53),
+                    rgba(9, 19, 15, 0.65)
+                ),
+                url('/images/home-final-background.jpg');
+            background-size: cover;
+            background-position: center 50%;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+        section.suggest > .section-label {
+            color: #e3dfc8;
+        }
+
+        section.suggest > h2,
+        section.suggest .suggest-intro,
+        section.suggest .suggest-intro strong,
+        section.suggest .suggest-note {
+            color: #fff;
+        }
+
+        section.suggest .privacy-note {
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        section.suggest #suggestion-message {
+            color: #fff;
+        }
+
+        section.suggest #try-form input {
+            background: #fff;
+            color: #171717;
+        }
+
+        section.suggest #try-form button {
+            background: #171717;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            section.suggest {
+                background-position: center center;
+                background-image:
+                    linear-gradient(
+                        rgba(9, 19, 15, 0.64),
+                        rgba(9, 19, 15, 0.73)
+                    ),
+                    url('/images/home-final-background.jpg');
+            }
+        }
+
     </style>
 </head>
 
