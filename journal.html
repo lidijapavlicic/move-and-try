@@ -8,18 +8,18 @@
     <title>The Journal | Move & Try</title>
 
     <meta name="description"
-          content="THE JOURNAL by MOVE & TRY. Stories, reflections, personal columns, inspiration and updates from the community.">
+          content="THE JOURNAL by MOVE & TRY. Stories, reflections, personal columns, inspiration and news from the community.">
 
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="canonical"
           href="https://moveandtry.com/journal.html">
 
-    <link rel="alternate" hreflang="hr"
-          href="https://moveandtry.com/hr/journal.html">
-
     <link rel="alternate" hreflang="en"
           href="https://moveandtry.com/journal.html">
+
+    <link rel="alternate" hreflang="hr"
+          href="https://moveandtry.com/hr/journal.html">
 
     <link rel="alternate" hreflang="x-default"
           href="https://moveandtry.com/journal.html">
@@ -93,12 +93,34 @@
         }
 
         /* =====================================
-           FULL-WIDTH BEIGE HERO
+           HERO — PHOTO BACKGROUND
            ===================================== */
 
         .journal-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
             width: 100%;
             background: #F1F0E9;
+            margin-bottom: -65px;
+            padding-bottom: 65px;
+        }
+
+        .journal-hero::before {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            z-index: -2;
+            background: url('/images/journal.jpg') center center / cover no-repeat;
+            filter: blur(4px);
+        }
+
+        .journal-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: rgba(247, 246, 242, 0.35);
         }
 
         .journal-intro {
@@ -144,9 +166,11 @@
            ===================================== */
 
         .journal-category-wrap {
-            max-width: 1280px;
-            margin: 0 auto;
+            position: relative;
+            max-width: none;
+            margin: 0;
             padding: 65px 48px 0;
+            background: transparent;
         }
 
         .journal-categories {
@@ -155,6 +179,8 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 14px 34px;
+            max-width: 1184px;
+            margin: 0 auto;
             padding: 28px 0;
             border-top: 1px solid #D5D5D0;
             border-bottom: 1px solid #D5D5D0;
@@ -523,7 +549,7 @@
 
 <main>
 
-    <!-- FULL-WIDTH BEIGE HERO -->
+    <!-- HERO WITH BACKGROUND PHOTO -->
 
     <section class="journal-hero">
 
@@ -538,7 +564,7 @@
             </h1>
 
             <p class="journal-subtitle">
-                Stories, thoughts, experiences and everything in between.
+                Stories, reflections, experiences and everything in between.
                 A space for people, ideas, new beginnings
                 and moments worth sharing.
             </p>
@@ -588,7 +614,7 @@
                     type="button"
                     data-category="news"
                     aria-pressed="false">
-                NEWS & UPDATES
+                NEWS
             </button>
 
             <button class="journal-category"
@@ -626,14 +652,14 @@
         <!-- =====================================
              FUTURE JOURNAL POSTS
 
-             Each future post may include:
-             - a dedicated HTML page
+             Each future post can have:
+             - a separate HTML page
              - category
              - title
              - short description
              - author
-             - publication date
-             - cover image
+             - date
+             - cover photograph
 
              Categories:
              editorial
@@ -642,7 +668,7 @@
              news
              inspiration
 
-             Author signatures:
+             Signatures:
              Lidija
              MOVE & TRY
              Contributor's name
@@ -650,12 +676,12 @@
              Example future post card:
 
              <a class="journal-post"
-                href="/journal/post-slug.html"
+                href="/journal/post-name.html"
                 data-category="personal">
 
                  <img class="journal-post-image"
-                      src="/images/post-cover.jpg"
-                      alt="Image description"
+                      src="/images/post-photo.jpg"
+                      alt="Photo description"
                       loading="lazy">
 
                  <span class="journal-post-category">
@@ -676,8 +702,8 @@
 
              </a>
 
-             This is an HTML comment only.
-             It does not appear on the page.
+             This is an example inside a comment.
+             It is not displayed on the page.
              ===================================== -->
 
         <div class="journal-posts"
@@ -697,7 +723,7 @@
 
             <p class="journal-empty-text">
                 Soon, this space will be home to stories,
-                reflections, inspiration and updates
+                reflections, inspiration and news
                 from the world of MOVE & TRY.
                 No rush. One story at a time.
             </p>
@@ -750,16 +776,12 @@
             editorial: 'EDITORIALS',
             personal: 'PERSONAL COLUMNS',
             guest: 'GUEST STORIES',
-            news: 'NEWS & UPDATES',
+            news: 'NEWS',
             inspiration: 'INSPIRATION'
         };
 
         function countLabel(number) {
-
-            return number === 1
-                ? '1 POST'
-                : number + ' POSTS';
-
+            return number + (number === 1 ? ' POST' : ' POSTS');
         }
 
         function filterPosts(category) {
