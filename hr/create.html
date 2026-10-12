@@ -1,185 +1,142 @@
 
 <!DOCTYPE html>
 <html lang="hr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>CREATE | Otkrij svoju kreativnost | Move & Try</title>
+  <meta name="description" content="Otkrij nove načine izražavanja kroz slikanje, fotografiju, pisanje, glazbu i kreativne aktivnosti. Ne mora biti savršeno. Samo probaj.">
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="canonical" href="https://moveandtry.com/hr/create.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/create.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/create.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/create.html">
 
-    <title>CREATE | Otkrij svoju kreativnost | Move & Try</title>
-    <meta name="description" content="Otkrij nove načine izražavanja kroz slikanje, fotografiju, pisanje, glazbu i kreativne aktivnosti. Ne mora biti savršeno. Samo probaj.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="canonical" href="https://moveandtry.com/hr/create.html">
-    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/create.html">
-    <link rel="alternate" hreflang="en" href="https://moveandtry.com/create.html">
-    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/create.html">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PREYRXPPN8');
+  </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-PREYRXPPN8');
-    </script>
-
-    <link rel="stylesheet" href="../style.css">
+  <style>
+    .header-behind-link {
+      color:#555; font-family:'Manrope',sans-serif; font-size:11px;
+      font-weight:700; letter-spacing:.04em; text-decoration:none;
+      white-space:nowrap; transition:opacity .2s ease;
+    }
+    .header-behind-link:hover { opacity:.55; }
+  </style>
 </head>
 
 <body>
 
-    <!-- SITE HEADER -->
-    <header class="site-header">
+<!-- SITE HEADER -->
+<header class="site-header">
+  <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+    <img src="/images/move-and-try-logo.png" alt="Move & Try">
+  </a>
 
-        <a href="/hr/" class="site-logo">
-            <img src="/images/move-and-try-logo.png" alt="Move & Try">
-        </a>
+  <nav class="desktop-nav">
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/#where-to-try">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+  </nav>
 
-        <nav class="desktop-nav">
-            <a href="/hr/#find-your-try">OTKRIJ</a>
-            <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-            <a href="/hr/#where-to-try">GDJE PROBATI</a>
-            <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
-        </nav>
+  <div class="header-actions">
+    <a href="/hr/behind-move-and-try.html" class="header-behind-link">IZA MOVE & TRY</a>
 
-        <div class="header-actions">
-            <div class="header-language">
-                <a href="/create.html" onclick="setLanguage('en')">EN</a>
-                <span>|</span>
-                <span class="language-active">HR</span>
-            </div>
-
-            <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-
-    </header>
-
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu">
-        <nav>
-            <a href="/hr/#find-your-try">OTKRIJ</a>
-            <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-            <a href="/hr/#where-to-try">GDJE PROBATI</a>
-            <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
-        </nav>
-
-        <div class="mobile-menu-language">
-            <a href="/create.html" onclick="setLanguage('en')">EN</a>
-            <span>|</span>
-            <span class="language-active">HR</span>
-        </div>
+    <div class="header-language">
+      <a href="/create.html" onclick="setLanguage('en')">EN</a>
+      <span>|</span>
+      <span class="language-active">HR</span>
     </div>
 
-    <!-- CREATE CATEGORY -->
-    <main class="category-page move-app-page">
+    <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
 
-        <div class="move-app-layout">
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <nav>
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/#where-to-try">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+    <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+  </nav>
 
-            <!-- LEFT: INTRODUCTION -->
-            <section class="move-app-intro" aria-labelledby="create-title">
+  <div class="mobile-menu-language">
+    <a href="/create.html" onclick="setLanguage('en')">EN</a>
+    <span>|</span>
+    <span class="language-active">HR</span>
+  </div>
+</div>
 
-                <p class="category-page-number">03 · CREATE</p>
+<!-- CREATE CATEGORY -->
+<main class="category-page move-app-page">
+  <div class="move-app-layout">
 
-                <h1 id="create-title">CREATE</h1>
+    <!-- UVOD -->
+    <section class="move-app-intro" aria-labelledby="create-title">
+      <p class="category-page-number">03 · CREATE</p>
+      <h1 id="create-title">CREATE</h1>
+      <h2>Stvori nešto.<br>Samo za sebe.</h2>
 
-                <h2>Stvori nešto.<br>Samo za sebe.</h2>
+      <p>Kreativnost nije rezervirana za umjetnike. Ne moraš znati crtati, svirati ili izrađivati savršene stvari. Ponekad je dovoljno prepustiti se ideji, raditi rukama i vidjeti što će nastati.</p>
 
-                <p>
-                    Kreativnost nije rezervirana za umjetnike.
-                    Ne moraš znati crtati, svirati ili izrađivati
-                    savršene stvari. Ponekad je dovoljno prepustiti
-                    se ideji, raditi rukama i vidjeti što će nastati.
-                </p>
+      <p>Postoji toliko načina da izraziš svoju kreativnost — od slikanja i keramike do fotografije, pisanja i glazbe.</p>
 
-                <p>
-                    Postoji toliko načina da izraziš svoju kreativnost —
-                    od slikanja i keramike do fotografije, pisanja i glazbe.
-                </p>
+      <p class="move-app-highlight">Ne mora biti savršeno. Važno je da je tvoje.</p>
+    </section>
 
-                <p class="move-app-highlight">
-                    Ne mora biti savršeno. Važno je da je tvoje.
-                </p>
+    <!-- AKTIVNOSTI -->
+    <section class="move-app-discover" aria-labelledby="create-discover-title">
+      <p class="section-label">ISTRAŽI CREATE</p>
+      <h2 id="create-discover-title">ŠTO BI ŽELIO PROBATI?</h2>
 
-            </section>
+      <div class="activity-grid">
+        <div class="activity-card category-coming-card">
+          <span class="activity-number">USKORO U OVOJ KATEGORIJI</span>
 
-            <!-- RIGHT: ACTIVITIES -->
-            <section class="move-app-discover" aria-labelledby="create-discover-title">
-
-                <p class="section-label">ISTRAŽI CREATE</p>
-
-                <h2 id="create-discover-title">ŠTO BI ŽELIO PROBATI?</h2>
-
-                <div class="activity-grid">
-
-                    <div class="activity-card category-coming-card">
-
-                        <span class="activity-number">USKORO U OVOJ KATEGORIJI</span>
-
-                        <div class="activity-content">
-
-                            <h3>NOVE AKTIVNOSTI STIŽU.</h3>
-
-                            <p class="activity-description">
-                                Pripremamo ideje, vodiče i kreativna iskustva
-                                koja ćeš moći istražiti. U međuvremenu,
-                                možda baš ti imaš prijedlog što bismo
-                                trebali dodati.
-                            </p>
-
-                            <span class="activity-available">
-                                MOVE &amp; TRY · CREATE
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
+          <div class="activity-content">
+            <h3>NOVE AKTIVNOSTI STIŽU.</h3>
+            <p class="activity-description">Pripremamo ideje, vodiče i kreativna iskustva koja ćeš moći istražiti. U međuvremenu, možda baš ti imaš prijedlog što bismo trebali dodati.</p>
+            <span class="activity-available">MOVE &amp; TRY · CREATE</span>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- SUGGEST AN ACTIVITY -->
-        <section class="category-suggest">
+  </div>
 
-            <p class="section-label">NEŠTO NEDOSTAJE?</p>
+  <!-- PREDLOŽI AKTIVNOST -->
+  <section class="category-suggest">
+    <p class="section-label">NEŠTO NEDOSTAJE?</p>
+    <h2>IMAŠ DRUGU IDEJU?</h2>
+    <p>Postoji nešto što bi volio stvoriti ili isprobati, a još ga nema na Move &amp; Try? Reci nam što bi želio vidjeti.</p>
+    <a href="/hr/#try-form" class="category-suggest-link">PREDLOŽI TRY →</a>
+  </section>
 
-            <h2>IMAŠ DRUGU IDEJU?</h2>
+  <!-- OSTALE KATEGORIJE -->
+  <div class="category-other-categories" style="text-align: center; padding: 24px 20px 48px;">
+    <a href="/hr/#find-your-try" class="category-suggest-link">ISTRAŽI OSTALE KATEGORIJE →</a>
+  </div>
+</main>
 
-            <p>
-                Postoji nešto što bi volio stvoriti ili isprobati,
-                a još ga nema na Move &amp; Try?
-                Reci nam što bi želio vidjeti.
-            </p>
-
-            <a href="/hr/#try-form" class="category-suggest-link">
-                PREDLOŽI TRY →
-            </a>
-
-        </section>
-
-        <!-- EXPLORE OTHER CATEGORIES -->
-        <div class="category-other-categories" style="text-align: center; padding: 24px 20px 48px;">
-            <a href="/hr/#find-your-try" class="category-suggest-link">
-                ISTRAŽI OSTALE KATEGORIJE →
-            </a>
-        </div>
-
-    </main>
-
-    <script src="../script.js"></script>
-
+<script src="../script.js"></script>
 </body>
 </html>
