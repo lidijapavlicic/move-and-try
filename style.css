@@ -3968,3 +3968,18 @@ select:focus-visible {
     .home-intro .how-step p { font-size: 14px; }
     .home-intro .how-it-works-ending { font-size: 20px; }
 }
+
+/* =========================
+   HEADER — BEHIND LINK (GLOBAL)
+   ========================= */
+
+.header-actions .header-behind-link {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .site-header .header-behind-link,
+    .header-actions .header-behind-link {
+        display: none !important;
+    }
+}
