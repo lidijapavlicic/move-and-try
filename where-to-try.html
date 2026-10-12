@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,6 +44,31 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* DESKTOP — BEHIND MOVE & TRY */
+
+        .header-actions .header-behind-link {
+            color: #555;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity .2s ease;
+        }
+
+        .header-actions .header-behind-link:hover {
+            opacity: .55;
+        }
+
+        @media (max-width: 768px) {
+            .site-header .header-behind-link {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -75,13 +101,17 @@
             WHERE TO TRY
         </a>
 
-        <a href="/behind-move-and-try.html">
-            BEHIND MOVE & TRY
+        <a href="/journal.html">
+            THE JOURNAL
         </a>
 
     </nav>
 
     <div class="header-actions">
+
+        <a href="/behind-move-and-try.html" class="header-behind-link">
+            BEHIND MOVE & TRY
+        </a>
 
         <div class="header-language">
 
@@ -91,7 +121,6 @@
 
             <span>|</span>
 
-            <!-- HR page will be created later -->
             <a href="/hr/where-to-try.html">
                 HR
             </a>
@@ -131,6 +160,10 @@
 
         <a href="/where-to-try.html">
             WHERE TO TRY
+        </a>
+
+        <a href="/journal.html">
+            THE JOURNAL
         </a>
 
         <a href="/behind-move-and-try.html">
@@ -362,11 +395,11 @@
         </p>
 
         <a
-    href="mailto:hello@moveandtry.com?subject=Where%20to%20Try%20-%20Add%20a%20Place"
-    class="where-contribute-link"
->
-    ADD A PLACE →
-</a>
+            href="mailto:hello@moveandtry.com?subject=Where%20to%20Try%20-%20Add%20a%20Place"
+            class="where-contribute-link"
+        >
+            ADD A PLACE →
+        </a>
 
     </section>
 
