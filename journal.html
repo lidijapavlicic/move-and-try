@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Journal | Move & Try</title>
+
+    <meta name="description"
+          content="THE JOURNAL by MOVE & TRY. Stories, reflections, personal columns, inspiration and updates from the community.">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="canonical"
+          href="https://moveandtry.com/journal.html">
+
+    <link rel="alternate" hreflang="hr"
+          href="https://moveandtry.com/hr/journal.html">
+
+    <link rel="alternate" hreflang="en"
+          href="https://moveandtry.com/journal.html">
+
+    <link rel="alternate" hreflang="x-default"
+          href="https://moveandtry.com/journal.html">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =====================================
+           THE JOURNAL — EN
+           ===================================== */
+
+        .journal-page {
+            background: #F7F6F2;
+            color: #111111;
+            min-height: 100vh;
+        }
+
+        /* =====================================
+           HEADER
+           ===================================== */
+
+        .journal-page .site-header {
+            position: sticky;
+            top: 0;
+        }
+
+        .journal-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+        }
+
+        .journal-behind-link {
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            color: #555555;
+            white-space: nowrap;
+            transition: opacity 0.2s ease;
+        }
+
+        .journal-behind-link:hover {
+            opacity: 0.55;
+        }
+
+        /* =====================================
+           FULL-WIDTH BEIGE HERO
+           ===================================== */
+
+        .journal-hero {
+            width: 100%;
+            background: #F1F0E9;
+        }
+
+        .journal-intro {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 115px 48px 105px;
+            text-align: center;
+        }
+
+        .journal-eyebrow {
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: #6F7967;
+            margin: 0 0 25px;
+        }
+
+        .journal-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(64px, 10vw, 148px);
+            font-weight: 400;
+            line-height: 0.95;
+            letter-spacing: -0.045em;
+            color: #111111;
+            margin: 0;
+        }
+
+        .journal-subtitle {
+            font-family: 'Manrope', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.9;
+            color: #555550;
+            max-width: 620px;
+            margin: 36px auto 0;
+        }
+
+        /* =====================================
+           CATEGORY NAVIGATION
+           ===================================== */
+
+        .journal-category-wrap {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 65px 48px 0;
+        }
+
+        .journal-categories {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px 34px;
+            padding: 28px 0;
+            border-top: 1px solid #D5D5D0;
+            border-bottom: 1px solid #D5D5D0;
+        }
+
+        .journal-category {
+            appearance: none;
+            border: 0;
+            border-bottom: 1px solid transparent;
+            border-radius: 0;
+            background: transparent;
+            padding: 8px 0;
+            cursor: pointer;
+
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            color: #777777;
+
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .journal-category:hover {
+            color: #111111;
+        }
+
+        .journal-category.active {
+            color: #111111;
+            border-bottom-color: #6F7967;
+        }
+
+        /* =====================================
+           CONTENT
+           ===================================== */
+
+        .journal-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 75px 48px 140px;
+        }
+
+        .journal-content-heading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 45px;
+        }
+
+        .journal-section-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .journal-count {
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            color: #888888;
+        }
+
+        /* =====================================
+           FUTURE POST GRID
+           ===================================== */
+
+        .journal-posts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 48px 28px;
+        }
+
+        .journal-post {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .journal-post[hidden] {
+            display: none;
+        }
+
+        .journal-post-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+            background: #EAEAE6;
+            margin-bottom: 20px;
+        }
+
+        .journal-post-category {
+            display: block;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: #6F7967;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .journal-post-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 29px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin: 0 0 14px;
+        }
+
+        .journal-post-description {
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #666666;
+            margin: 0 0 18px;
+        }
+
+        .journal-post-author {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: #777777;
+        }
+
+        /* =====================================
+           EMPTY STATE
+           ===================================== */
+
+        .journal-empty {
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .journal-empty[hidden] {
+            display: none;
+        }
+
+        .journal-empty-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 400;
+            line-height: 1.2;
+            margin: 0 0 18px;
+        }
+
+        .journal-empty-text {
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            line-height: 1.9;
+            color: #777777;
+            max-width: 470px;
+            margin: 0;
+        }
+
+        .journal-empty-signature {
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            margin-top: 35px;
+            color: #6F7967;
+        }
+
+        /* =====================================
+           TABLET
+           ===================================== */
+
+        @media (max-width: 1100px) {
+
+            .journal-behind-link {
+                display: none;
+            }
+
+            .journal-posts {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        /* =====================================
+           MOBILE
+           ===================================== */
+
+        @media (max-width: 700px) {
+
+            .journal-intro {
+                padding: 80px 24px 75px;
+            }
+
+            .journal-title {
+                font-size: clamp(56px, 13vw, 85px);
+            }
+
+            .journal-subtitle {
+                font-size: 14px;
+                margin-top: 25px;
+            }
+
+            .journal-category-wrap {
+                padding: 45px 24px 0;
+            }
+
+            .journal-categories {
+                justify-content: flex-start;
+                gap: 12px 23px;
+                padding: 20px 0;
+            }
+
+            .journal-category {
+                font-size: 10px;
+            }
+
+            .journal-content {
+                padding: 55px 24px 100px;
+            }
+
+            .journal-posts {
+                grid-template-columns: 1fr;
+            }
+
+            .journal-empty {
+                min-height: 300px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body class="journal-page">
+
+<!-- =====================================
+     HEADER
+     ===================================== -->
+
+<header class="site-header">
+
+    <a href="/"
+       class="site-logo"
+       aria-label="Move & Try – home">
+
+        <img src="/images/move-and-try-logo.png"
+             alt="Move & Try">
+
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/journal.html"
+           aria-current="page">
+            THE JOURNAL
+        </a>
+
+    </nav>
+
+    <div class="header-actions journal-header-actions">
+
+        <a href="/behind-move-and-try.html"
+           class="journal-behind-link">
+            BEHIND MOVE & TRY
+        </a>
+
+        <div class="header-language">
+
+            <span class="language-active">
+                EN
+            </span>
+
+            <span>|</span>
+
+            <a href="/hr/journal.html"
+               onclick="setLanguage('hr')">
+                HR
+            </a>
+
+        </div>
+
+        <button class="menu-toggle"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false">
+
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+</header>
+
+<!-- =====================================
+     MOBILE MENU
+     ===================================== -->
+
+<div class="mobile-menu">
+
+    <nav>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/#where-to-try">
+            WHERE TO TRY
+        </a>
+
+        <a href="/journal.html">
+            THE JOURNAL
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
+    </nav>
+
+    <div class="mobile-menu-language">
+
+        <span class="language-active">
+            EN
+        </span>
+
+        <span>|</span>
+
+        <a href="/hr/journal.html"
+           onclick="setLanguage('hr')">
+            HR
+        </a>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+     THE JOURNAL
+     ===================================== -->
+
+<main>
+
+    <!-- FULL-WIDTH BEIGE HERO -->
+
+    <section class="journal-hero">
+
+        <div class="journal-intro">
+
+            <p class="journal-eyebrow">
+                MOVE & TRY PRESENTS
+            </p>
+
+            <h1 class="journal-title">
+                THE JOURNAL.
+            </h1>
+
+            <p class="journal-subtitle">
+                Stories, thoughts, experiences and everything in between.
+                A space for people, ideas, new beginnings
+                and moments worth sharing.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================
+         CATEGORIES
+         ===================================== -->
+
+    <div class="journal-category-wrap">
+
+        <nav class="journal-categories"
+             aria-label="Journal categories">
+
+            <button class="journal-category active"
+                    type="button"
+                    data-category="all"
+                    aria-pressed="true">
+                ALL
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="editorial"
+                    aria-pressed="false">
+                EDITORIALS
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="personal"
+                    aria-pressed="false">
+                PERSONAL COLUMNS
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="guest"
+                    aria-pressed="false">
+                GUEST STORIES
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="news"
+                    aria-pressed="false">
+                NEWS & UPDATES
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="inspiration"
+                    aria-pressed="false">
+                INSPIRATION
+            </button>
+
+        </nav>
+
+    </div>
+
+    <!-- =====================================
+         ARTICLES
+         ===================================== -->
+
+    <section class="journal-content"
+             aria-labelledby="journal-section-heading">
+
+        <div class="journal-content-heading">
+
+            <h2 class="journal-section-title"
+                id="journal-section-heading">
+                ALL POSTS
+            </h2>
+
+            <span class="journal-count"
+                  id="journal-count">
+                0 POSTS
+            </span>
+
+        </div>
+
+        <!-- =====================================
+             FUTURE JOURNAL POSTS
+
+             Each future post may include:
+             - a dedicated HTML page
+             - category
+             - title
+             - short description
+             - author
+             - publication date
+             - cover image
+
+             Categories:
+             editorial
+             personal
+             guest
+             news
+             inspiration
+
+             Author signatures:
+             Lidija
+             MOVE & TRY
+             Contributor's name
+
+             Example future post card:
+
+             <a class="journal-post"
+                href="/journal/post-slug.html"
+                data-category="personal">
+
+                 <img class="journal-post-image"
+                      src="/images/post-cover.jpg"
+                      alt="Image description"
+                      loading="lazy">
+
+                 <span class="journal-post-category">
+                     PERSONAL COLUMNS
+                 </span>
+
+                 <h3 class="journal-post-title">
+                     Post title
+                 </h3>
+
+                 <p class="journal-post-description">
+                     A short introduction to the story.
+                 </p>
+
+                 <span class="journal-post-author">
+                     LIDIJA
+                 </span>
+
+             </a>
+
+             This is an HTML comment only.
+             It does not appear on the page.
+             ===================================== -->
+
+        <div class="journal-posts"
+             id="journal-posts">
+        </div>
+
+        <!-- =====================================
+             EMPTY STATE
+             ===================================== -->
+
+        <div class="journal-empty"
+             id="journal-empty">
+
+            <h3 class="journal-empty-title">
+                Every story starts somewhere.
+            </h3>
+
+            <p class="journal-empty-text">
+                Soon, this space will be home to stories,
+                reflections, inspiration and updates
+                from the world of MOVE & TRY.
+                No rush. One story at a time.
+            </p>
+
+            <span class="journal-empty-signature">
+                MOVE & TRY
+            </span>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- =====================================
+     EXISTING SITE SCRIPT
+     ===================================== -->
+
+<script src="script.js"></script>
+
+<!-- =====================================
+     JOURNAL CATEGORY FILTER
+     ===================================== -->
+
+<script>
+    (function () {
+
+        const buttons = document.querySelectorAll(
+            '.journal-category'
+        );
+
+        const posts = document.querySelectorAll(
+            '.journal-post'
+        );
+
+        const emptyState = document.getElementById(
+            'journal-empty'
+        );
+
+        const heading = document.getElementById(
+            'journal-section-heading'
+        );
+
+        const count = document.getElementById(
+            'journal-count'
+        );
+
+        const labels = {
+            all: 'ALL POSTS',
+            editorial: 'EDITORIALS',
+            personal: 'PERSONAL COLUMNS',
+            guest: 'GUEST STORIES',
+            news: 'NEWS & UPDATES',
+            inspiration: 'INSPIRATION'
+        };
+
+        function countLabel(number) {
+
+            return number === 1
+                ? '1 POST'
+                : number + ' POSTS';
+
+        }
+
+        function filterPosts(category) {
+
+            let visibleCount = 0;
+
+            buttons.forEach(function (button) {
+
+                const selected =
+                    button.dataset.category === category;
+
+                button.classList.toggle(
+                    'active',
+                    selected
+                );
+
+                button.setAttribute(
+                    'aria-pressed',
+                    String(selected)
+                );
+
+            });
+
+            posts.forEach(function (post) {
+
+                const matches =
+                    category === 'all' ||
+                    post.dataset.category === category;
+
+                post.hidden = !matches;
+
+                if (matches) {
+                    visibleCount++;
+                }
+
+            });
+
+            heading.textContent = labels[category];
+
+            count.textContent = countLabel(
+                visibleCount
+            );
+
+            emptyState.hidden = visibleCount > 0;
+
+        }
+
+        buttons.forEach(function (button) {
+
+            button.addEventListener(
+                'click',
+                function () {
+
+                    filterPosts(
+                        button.dataset.category
+                    );
+
+                }
+            );
+
+        });
+
+        filterPosts('all');
+
+    })();
+</script>
+
+</body>
+</html>
