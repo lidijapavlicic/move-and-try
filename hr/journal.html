@@ -53,19 +53,22 @@
     <style>
 
         /* =====================================
-           THE JOURNAL
+           THE JOURNAL — HR
            ===================================== */
 
         .journal-page {
-            background: #ffffff;
-            color: #171717;
+            background: #F7F6F2;
+            color: #111111;
             min-height: 100vh;
         }
 
-        /* HEADER NAVIGATION */
+        /* =====================================
+           HEADER
+           ===================================== */
 
         .journal-page .site-header {
-            position: relative;
+            position: sticky;
+            top: 0;
         }
 
         .journal-header-actions {
@@ -89,12 +92,20 @@
             opacity: 0.55;
         }
 
-        /* INTRO */
+        /* =====================================
+           FULL-WIDTH BEIGE HERO
+           ===================================== */
+
+        .journal-hero {
+            width: 100%;
+            background: #F1F0E9;
+        }
 
         .journal-intro {
+            width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 115px 48px 70px;
+            padding: 115px 48px 105px;
             text-align: center;
         }
 
@@ -104,8 +115,8 @@
             font-weight: 700;
             letter-spacing: 0.24em;
             text-transform: uppercase;
-            color: #777777;
-            margin-bottom: 25px;
+            color: #6F7967;
+            margin: 0 0 25px;
         }
 
         .journal-title {
@@ -114,6 +125,7 @@
             font-weight: 400;
             line-height: 0.95;
             letter-spacing: -0.045em;
+            color: #111111;
             margin: 0;
         }
 
@@ -122,17 +134,19 @@
             font-size: 16px;
             font-weight: 400;
             line-height: 1.9;
-            color: #666666;
+            color: #555550;
             max-width: 620px;
             margin: 36px auto 0;
         }
 
-        /* CATEGORY NAVIGATION */
+        /* =====================================
+           CATEGORY NAVIGATION
+           ===================================== */
 
         .journal-category-wrap {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 48px;
+            padding: 65px 48px 0;
         }
 
         .journal-categories {
@@ -142,13 +156,15 @@
             flex-wrap: wrap;
             gap: 14px 34px;
             padding: 28px 0;
-            border-top: 1px solid #dddddd;
-            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #D5D5D0;
+            border-bottom: 1px solid #D5D5D0;
         }
 
         .journal-category {
             appearance: none;
             border: 0;
+            border-bottom: 1px solid transparent;
+            border-radius: 0;
             background: transparent;
             padding: 8px 0;
             cursor: pointer;
@@ -157,9 +173,11 @@
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.07em;
-            color: #888888;
+            color: #777777;
 
-            transition: color 0.2s ease;
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease;
         }
 
         .journal-category:hover {
@@ -168,10 +186,12 @@
 
         .journal-category.active {
             color: #111111;
-            border-bottom: 1px solid #111111;
+            border-bottom-color: #6F7967;
         }
 
-        /* CONTENT */
+        /* =====================================
+           CONTENT
+           ===================================== */
 
         .journal-content {
             max-width: 1280px;
@@ -199,10 +219,12 @@
         .journal-count {
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
-            color: #999999;
+            color: #888888;
         }
 
-        /* POST GRID */
+        /* =====================================
+           FUTURE POST GRID
+           ===================================== */
 
         .journal-posts {
             display: grid;
@@ -225,7 +247,7 @@
             aspect-ratio: 4 / 3;
             object-fit: cover;
             display: block;
-            background: #eeeeee;
+            background: #EAEAE6;
             margin-bottom: 20px;
         }
 
@@ -235,7 +257,7 @@
             font-size: 10px;
             font-weight: 800;
             letter-spacing: 0.12em;
-            color: #777777;
+            color: #6F7967;
             text-transform: uppercase;
             margin-bottom: 12px;
         }
@@ -264,7 +286,9 @@
             color: #777777;
         }
 
-        /* EMPTY STATE */
+        /* =====================================
+           EMPTY STATE
+           ===================================== */
 
         .journal-empty {
             min-height: 320px;
@@ -274,6 +298,10 @@
             align-items: center;
             text-align: center;
             padding: 50px 20px;
+        }
+
+        .journal-empty[hidden] {
+            display: none;
         }
 
         .journal-empty-title {
@@ -299,10 +327,12 @@
             font-weight: 700;
             letter-spacing: 0.16em;
             margin-top: 35px;
-            color: #222222;
+            color: #6F7967;
         }
 
-        /* MOBILE */
+        /* =====================================
+           TABLET
+           ===================================== */
 
         @media (max-width: 1100px) {
 
@@ -316,10 +346,14 @@
 
         }
 
+        /* =====================================
+           MOBILE
+           ===================================== */
+
         @media (max-width: 700px) {
 
             .journal-intro {
-                padding: 80px 24px 55px;
+                padding: 80px 24px 75px;
             }
 
             .journal-title {
@@ -332,7 +366,7 @@
             }
 
             .journal-category-wrap {
-                padding: 0 24px;
+                padding: 45px 24px 0;
             }
 
             .journal-categories {
@@ -364,7 +398,9 @@
 
 <body class="journal-page">
 
-<!-- HEADER -->
+<!-- =====================================
+     HEADER
+     ===================================== -->
 
 <header class="site-header">
 
@@ -379,14 +415,22 @@
 
     <nav class="desktop-nav">
 
-        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
 
-        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
 
-        <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
 
         <a href="/hr/journal.html"
-           aria-current="page">THE JOURNAL</a>
+           aria-current="page">
+            THE JOURNAL
+        </a>
 
     </nav>
 
@@ -400,11 +444,15 @@
         <div class="header-language">
 
             <a href="/journal.html"
-               onclick="setLanguage('en')">EN</a>
+               onclick="setLanguage('en')">
+                EN
+            </a>
 
             <span>|</span>
 
-            <span class="language-active">HR</span>
+            <span class="language-active">
+                HR
+            </span>
 
         </div>
 
@@ -422,19 +470,29 @@
 
 </header>
 
-<!-- MOBILE MENU -->
+<!-- =====================================
+     MOBILE MENU
+     ===================================== -->
 
 <div class="mobile-menu">
 
     <nav>
 
-        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
 
-        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
 
-        <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/#where-to-try">
+            GDJE PROBATI
+        </a>
 
-        <a href="/hr/journal.html">THE JOURNAL</a>
+        <a href="/hr/journal.html">
+            THE JOURNAL
+        </a>
 
         <a href="/hr/behind-move-and-try.html">
             IZA MOVE & TRY
@@ -445,44 +503,58 @@
     <div class="mobile-menu-language">
 
         <a href="/journal.html"
-           onclick="setLanguage('en')">EN</a>
+           onclick="setLanguage('en')">
+            EN
+        </a>
 
         <span>|</span>
 
-        <span class="language-active">HR</span>
+        <span class="language-active">
+            HR
+        </span>
 
     </div>
 
 </div>
 
-<!-- THE JOURNAL -->
+<!-- =====================================
+     THE JOURNAL
+     ===================================== -->
 
 <main>
 
-    <section class="journal-intro">
+    <!-- FULL-WIDTH BEIGE HERO -->
 
-        <p class="journal-eyebrow">
-            MOVE & TRY PRESENTS
-        </p>
+    <section class="journal-hero">
 
-        <h1 class="journal-title">
-            THE JOURNAL.
-        </h1>
+        <div class="journal-intro">
 
-        <p class="journal-subtitle">
-            Priče, razmišljanja, iskustva i sve ono između.
-            Prostor za ljude, ideje, nove početke
-            i trenutke koje vrijedi podijeliti.
-        </p>
+            <p class="journal-eyebrow">
+                MOVE & TRY PRESENTS
+            </p>
+
+            <h1 class="journal-title">
+                THE JOURNAL.
+            </h1>
+
+            <p class="journal-subtitle">
+                Priče, razmišljanja, iskustva i sve ono između.
+                Prostor za ljude, ideje, nove početke
+                i trenutke koje vrijedi podijeliti.
+            </p>
+
+        </div>
 
     </section>
 
-    <!-- CATEGORIES -->
+    <!-- =====================================
+         CATEGORIES
+         ===================================== -->
 
     <div class="journal-category-wrap">
 
         <nav class="journal-categories"
-             aria-label="Kategorije Dnevnika">
+             aria-label="Kategorije Journala">
 
             <button class="journal-category active"
                     type="button"
@@ -530,7 +602,9 @@
 
     </div>
 
-    <!-- ARTICLES -->
+    <!-- =====================================
+         ARTICLES
+         ===================================== -->
 
     <section class="journal-content"
              aria-labelledby="journal-section-heading">
@@ -549,68 +623,70 @@
 
         </div>
 
-        <!--
-            FUTURE JOURNAL POSTS
+        <!-- =====================================
+             FUTURE JOURNAL POSTS
 
-            Svaka objava imat će:
-            - zasebnu HTML stranicu
-            - kategoriju
-            - naslov
-            - kratak opis
-            - autora
-            - datum objave
-            - opcionalnu naslovnu fotografiju
+             Svaka buduća objava može imati:
+             - zasebnu HTML stranicu
+             - kategoriju
+             - naslov
+             - kratak opis
+             - autora
+             - datum
+             - naslovnu fotografiju
 
-            Kategorije:
-            editorial
-            personal
-            guest
-            news
-            inspiration
+             Kategorije:
+             editorial
+             personal
+             guest
+             news
+             inspiration
 
-            Potpisi:
-            Lidija
-            MOVE & TRY
-            Ime suradnika
+             Potpisi:
+             Lidija
+             MOVE & TRY
+             Ime suradnika
 
-            Primjer buduće kartice:
+             Primjer buduće kartice:
 
-            <a class="journal-post"
-               href="/hr/journal/naziv-objave.html"
-               data-category="personal">
+             <a class="journal-post"
+                href="/hr/journal/naziv-objave.html"
+                data-category="personal">
 
-                <img class="journal-post-image"
-                     src="/images/naziv-fotografije.jpg"
-                     alt="Opis fotografije"
-                     loading="lazy">
+                 <img class="journal-post-image"
+                      src="/images/naziv-fotografije.jpg"
+                      alt="Opis fotografije"
+                      loading="lazy">
 
-                <span class="journal-post-category">
-                    OSOBNE KOLUMNE
-                </span>
+                 <span class="journal-post-category">
+                     OSOBNE KOLUMNE
+                 </span>
 
-                <h3 class="journal-post-title">
-                    Naslov objave
-                </h3>
+                 <h3 class="journal-post-title">
+                     Naslov objave
+                 </h3>
 
-                <p class="journal-post-description">
-                    Kratki uvod u priču.
-                </p>
+                 <p class="journal-post-description">
+                     Kratki uvod u priču.
+                 </p>
 
-                <span class="journal-post-author">
-                    LIDIJA
-                </span>
+                 <span class="journal-post-author">
+                     LIDIJA
+                 </span>
 
-            </a>
+             </a>
 
-            Primjer je samo komentar,
-            ne prikazuje se na stranici.
-        -->
+             Ovo je samo primjer u komentaru.
+             Ne prikazuje se na stranici.
+             ===================================== -->
 
         <div class="journal-posts"
              id="journal-posts">
         </div>
 
-        <!-- EMPTY STATE -->
+        <!-- =====================================
+             EMPTY STATE
+             ===================================== -->
 
         <div class="journal-empty"
              id="journal-empty">
@@ -636,13 +712,17 @@
 
 </main>
 
+<!-- =====================================
+     EXISTING SITE SCRIPT
+     ===================================== -->
+
 <script src="../script.js"></script>
 
-<script>
-    /* =====================================
-       JOURNAL CATEGORY FILTER
-       ===================================== */
+<!-- =====================================
+     JOURNAL CATEGORY FILTER
+     ===================================== -->
 
+<script>
     (function () {
 
         const buttons = document.querySelectorAll(
@@ -675,12 +755,19 @@
         };
 
         function countLabel(number) {
-            if (number === 1) return '1 OBJAVA';
 
-            if (number % 10 >= 2 &&
+            if (number === 1) {
+                return '1 OBJAVA';
+            }
+
+            if (
+                number % 10 >= 2 &&
                 number % 10 <= 4 &&
-                (number % 100 < 12 ||
-                 number % 100 > 14)) {
+                (
+                    number % 100 < 12 ||
+                    number % 100 > 14
+                )
+            ) {
                 return number + ' OBJAVE';
             }
 
@@ -723,7 +810,10 @@
             });
 
             heading.textContent = labels[category];
-            count.textContent = countLabel(visibleCount);
+
+            count.textContent = countLabel(
+                visibleCount
+            );
 
             emptyState.hidden = visibleCount > 0;
 
@@ -734,9 +824,11 @@
             button.addEventListener(
                 'click',
                 function () {
+
                     filterPosts(
                         button.dataset.category
                     );
+
                 }
             );
 
