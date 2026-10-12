@@ -16,7 +16,6 @@
     >
 
     <link rel="canonical" href="https://moveandtry.com/hr/mediation.html">
-
     <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/mediation.html">
     <link rel="alternate" hreflang="en" href="https://moveandtry.com/mediation.html">
     <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/mediation.html">
@@ -278,6 +277,31 @@
 
         }
 
+        /* =========================
+           DESKTOP — IZA MOVE & TRY
+        ========================= */
+
+        .header-behind-link {
+            color: #555;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity .2s ease;
+        }
+
+        .header-behind-link:hover {
+            opacity: .55;
+        }
+
+        @media (max-width: 768px) {
+            .site-header .header-behind-link {
+                display: none !important;
+            }
+        }
+
     </style>
 
 </head>
@@ -315,9 +339,20 @@
             GDJE PROBATI
         </a>
 
+        <a href="/hr/journal.html">
+            THE JOURNAL
+        </a>
+
     </nav>
 
     <div class="header-actions">
+
+        <a
+            href="/hr/behind-move-and-try.html"
+            class="header-behind-link"
+        >
+            IZA MOVE & TRY
+        </a>
 
         <div class="header-language">
 
@@ -368,6 +403,10 @@
 
         <a href="/hr/#where-to-try">
             GDJE PROBATI
+        </a>
+
+        <a href="/hr/journal.html">
+            THE JOURNAL
         </a>
 
         <a href="/hr/behind-move-and-try.html">
