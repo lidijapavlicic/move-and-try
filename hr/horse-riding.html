@@ -11,6 +11,8 @@
 
     <link rel="canonical" href="https://moveandtry.com/hr/horse-riding.html">
     <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/horse-riding.html">
+    <link rel="alternate" hreflang="en" href="https://moveandtry.com/horse-riding.html">
+    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/horse-riding.html">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,7 +67,7 @@
         }
 
         .horse-riding-photo-hero .horse-riding-hero-photo:first-child {
-             object-position: center 65%;
+            object-position: center 65%;
             animation-delay: 0s;
         }
 
@@ -144,6 +146,22 @@
                 opacity: 1;
             }
         }
+
+        /* DESKTOP HEADER LINK */
+        .header-behind-link {
+            color: #555;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity .2s ease;
+        }
+
+        .header-behind-link:hover {
+            opacity: .55;
+        }
     </style>
 </head>
 
@@ -158,11 +176,16 @@
         <a href="/hr/#find-your-try">OTKRIJ</a>
         <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
         <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
     </nav>
 
     <div class="header-actions">
+        <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+            IZA MOVE & TRY
+        </a>
+
         <div class="header-language">
-            <a href="/" onclick="setLanguage('en')">EN</a>
+            <a href="/horse-riding.html" onclick="setLanguage('en')">EN</a>
             <span>|</span>
             <span class="language-active">HR</span>
         </div>
@@ -179,11 +202,12 @@
         <a href="/hr/#find-your-try">OTKRIJ</a>
         <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
         <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
         <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
 
     <div class="mobile-menu-language">
-        <a href="/" onclick="setLanguage('en')">EN</a>
+        <a href="/horse-riding.html" onclick="setLanguage('en')">EN</a>
         <span>|</span>
         <span class="language-active">HR</span>
     </div>
