@@ -93,12 +93,32 @@
         }
 
         /* =====================================
-           FULL-WIDTH BEIGE HERO
+           HERO — BLURRED PHOTO BACKGROUND
            ===================================== */
 
         .journal-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
             width: 100%;
             background: #F1F0E9;
+        }
+
+        .journal-hero::before {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            z-index: -2;
+            background: url('/images/journal.jpg') center center / cover no-repeat;
+            filter: blur(4px);
+        }
+
+        .journal-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: rgba(247, 246, 242, 0.70);
         }
 
         .journal-intro {
@@ -523,7 +543,7 @@
 
 <main>
 
-    <!-- FULL-WIDTH BEIGE HERO -->
+    <!-- HERO WITH BACKGROUND PHOTO -->
 
     <section class="journal-hero">
 
