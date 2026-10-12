@@ -93,7 +93,7 @@
         }
 
         /* =====================================
-           HERO — BLURRED PHOTO BACKGROUND
+           HERO — PHOTO BACKGROUND
            ===================================== */
 
         .journal-hero {
@@ -118,7 +118,7 @@
             position: absolute;
             inset: 0;
             z-index: -1;
-            background: rgba(247, 246, 242, 0.70);
+            background: rgba(247, 246, 242, 0.35);
         }
 
         .journal-intro {
@@ -164,9 +164,11 @@
            ===================================== */
 
         .journal-category-wrap {
-            max-width: 1280px;
-            margin: 0 auto;
+            position: relative;
+            max-width: none;
+            margin: 0;
             padding: 65px 48px 0;
+            background: #F7F6F2;
         }
 
         .journal-categories {
@@ -175,6 +177,8 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 14px 34px;
+            max-width: 1184px;
+            margin: 0 auto;
             padding: 28px 0;
             border-top: 1px solid #D5D5D0;
             border-bottom: 1px solid #D5D5D0;
