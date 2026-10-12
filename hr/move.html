@@ -378,34 +378,59 @@
         }
 
         /* =========================
-   COMING SOON CARD
-========================= */
+           COMING SOON CARD
+        ========================= */
 
-.move-app-page .activity-card.move-coming-soon-card {
-    background: #080808;
-    color: #ffffff;
-    min-height: 285px;
-    box-sizing: border-box;
-    cursor: default;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+        .move-app-page .activity-card.move-coming-soon-card {
+            background: #080808;
+            color: #ffffff;
+            min-height: 285px;
+            box-sizing: border-box;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-.move-coming-soon-card .activity-content,
-.move-coming-soon-card .activity-content h3,
-.move-coming-soon-card .activity-description,
-.move-coming-soon-card .activity-action {
-    color: #ffffff;
-}
+        .move-coming-soon-card .activity-content,
+        .move-coming-soon-card .activity-content h3,
+        .move-coming-soon-card .activity-description,
+        .move-coming-soon-card .activity-action {
+            color: #ffffff;
+        }
 
-.move-coming-soon-card .activity-description {
-    color: rgba(255, 255, 255, 0.75);
-}
+        .move-coming-soon-card .activity-description {
+            color: rgba(255, 255, 255, 0.75);
+        }
 
-.move-coming-soon-card .activity-number {
-    color: rgba(255, 255, 255, 0.55);
-}
+        .move-coming-soon-card .activity-number {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        /* =========================
+           DESKTOP — IZA MOVE & TRY
+        ========================= */
+
+        .header-behind-link {
+            color: #555;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity .2s ease;
+        }
+
+        .header-behind-link:hover {
+            opacity: .55;
+        }
+
+        @media (max-width: 768px) {
+            .site-header .header-behind-link {
+                display: none !important;
+            }
+        }
 
     </style>
 
@@ -440,13 +465,20 @@
             GDJE PROBATI
         </a>
 
-        <a href="/hr/behind-move-and-try.html">
-            IZA MOVE & TRY
+        <a href="/hr/journal.html">
+            THE JOURNAL
         </a>
 
     </nav>
 
     <div class="header-actions">
+
+        <a
+            href="/hr/behind-move-and-try.html"
+            class="header-behind-link"
+        >
+            IZA MOVE & TRY
+        </a>
 
         <div class="header-language">
 
@@ -476,7 +508,6 @@
 
 </header>
 
-
 <!-- =========================
      MOBILE MENU
 ========================= -->
@@ -495,6 +526,10 @@
 
         <a href="/hr/#where-to-try">
             GDJE PROBATI
+        </a>
+
+        <a href="/hr/journal.html">
+            THE JOURNAL
         </a>
 
         <a href="/hr/behind-move-and-try.html">
@@ -518,7 +553,6 @@
     </div>
 
 </div>
-
 
 <!-- =========================
      CATEGORY PAGE — APP LAYOUT
@@ -562,7 +596,6 @@
 
         </section>
 
-
         <!-- RIGHT — DISCOVER ACTIVITIES -->
 
         <section class="move-app-discover" aria-labelledby="move-discover-title">
@@ -577,7 +610,11 @@
 
             <!-- SCROLLABLE ACTIVITY CARDS -->
 
-            <div class="move-activity-scroll" tabindex="0" aria-label="Popis MOVE aktivnosti">
+            <div
+                class="move-activity-scroll"
+                tabindex="0"
+                aria-label="Popis MOVE aktivnosti"
+            >
 
                 <div class="activity-grid">
 
@@ -634,7 +671,6 @@
 
                     </a>
 
-
                     <!-- =========================
                          POLE DANCE
                     ========================= -->
@@ -684,7 +720,6 @@
 
                     </a>
 
-
                     <!-- =========================
                          HORSE RIDING
                     ========================= -->
@@ -730,29 +765,29 @@
 
                     </a>
 
-<!-- =========================
-     COMING SOON
-========================= -->
+                    <!-- =========================
+                         COMING SOON
+                    ========================= -->
 
-<div class="activity-card move-coming-soon-card">
+                    <div class="activity-card move-coming-soon-card">
 
-    <div class="activity-content">
+                        <div class="activity-content">
 
-        <h3>ŠTO JE SLJEDEĆE?</h3>
+                            <h3>ŠTO JE SLJEDEĆE?</h3>
 
-        <p class="activity-description">
-            Još aktivnosti, još iskustava,
-            još razloga da probaš nešto novo.
-        </p>
+                            <p class="activity-description">
+                                Još aktivnosti, još iskustava,
+                                još razloga da probaš nešto novo.
+                            </p>
 
-    </div>
+                        </div>
 
-    <span class="activity-action">
-        USKORO
-    </span>
+                        <span class="activity-action">
+                            USKORO
+                        </span>
 
-</div>
-                    
+                    </div>
+
                 </div>
 
             </div>
@@ -767,7 +802,6 @@
         </section>
 
     </div>
-
 
     <!-- =========================
          SUGGEST AN ACTIVITY
@@ -798,14 +832,18 @@
          EXPLORE OTHER CATEGORIES
     ========================= -->
 
-    <div class="category-other-categories" style="text-align: center; padding: 24px 20px 48px;">
+    <div
+        class="category-other-categories"
+        style="text-align: center; padding: 24px 20px 48px;"
+    >
+
         <a href="/hr/#find-your-try" class="category-suggest-link">
             ISTRAŽI OSTALE KATEGORIJE →
         </a>
+
     </div>
 
 </main>
-
 
 <!-- =========================
      JAVASCRIPT
