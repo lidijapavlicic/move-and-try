@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,14 +23,33 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
+
         function gtag() {
             dataLayer.push(arguments);
         }
+
         gtag('js', new Date());
         gtag('config', 'G-PREYRXPPN8');
     </script>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .header-behind-link {
+            color: #555;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity .2s ease;
+        }
+
+        .header-behind-link:hover {
+            opacity: .55;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,7 +57,7 @@
     <!-- SITE HEADER -->
     <header class="site-header">
 
-        <a href="/" class="site-logo">
+        <a href="/" class="site-logo" aria-label="Move & Try home">
             <img src="/images/move-and-try-logo.png" alt="Move & Try">
         </a>
 
@@ -47,10 +65,14 @@
             <a href="/#find-your-try">DISCOVER</a>
             <a href="/#be-part-of-it">BE PART OF IT</a>
             <a href="/#where-to-try">WHERE TO TRY</a>
-            <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
+            <a href="/journal.html">THE JOURNAL</a>
         </nav>
 
         <div class="header-actions">
+
+            <a href="/behind-move-and-try.html" class="header-behind-link">
+                BEHIND MOVE & TRY
+            </a>
 
             <div class="header-language">
                 <span class="language-active">EN</span>
@@ -58,7 +80,12 @@
                 <a href="/hr/create.html" onclick="setLanguage('hr')">HR</a>
             </div>
 
-            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
                 <span></span>
                 <span></span>
             </button>
@@ -74,6 +101,7 @@
             <a href="/#find-your-try">DISCOVER</a>
             <a href="/#be-part-of-it">BE PART OF IT</a>
             <a href="/#where-to-try">WHERE TO TRY</a>
+            <a href="/journal.html">THE JOURNAL</a>
             <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
         </nav>
 
@@ -180,7 +208,10 @@
         </section>
 
         <!-- EXPLORE OTHER CATEGORIES -->
-        <div class="category-other-categories" style="text-align: center; padding: 24px 20px 48px;">
+        <div
+            class="category-other-categories"
+            style="text-align: center; padding: 24px 20px 48px;"
+        >
             <a href="/#find-your-try" class="category-suggest-link">
                 EXPLORE OTHER CATEGORIES →
             </a>
