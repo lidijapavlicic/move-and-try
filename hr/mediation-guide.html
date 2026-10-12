@@ -1,62 +1,30 @@
 
 <!DOCTYPE html>
 <html lang="hr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <title>Što je medijacija? Vodič za početnike | Move & Try</title>
+    <meta name="description" content="Što je medijacija, kako izgleda i kada može pomoći? MOVE & TRY vodič za sve koji žele upoznati drukčiji način rješavanja sukoba.">
 
-    <meta
-        name="description"
-        content="Što je medijacija, kako izgleda i kada može pomoći? MOVE & TRY vodič za sve koji žele upoznati drukčiji način rješavanja sukoba."
-    >
-
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://moveandtry.com/hr/mediation-guide.html"
-    >
-
-    <link
-        rel="alternate"
-        hreflang="hr"
-        href="https://moveandtry.com/hr/mediation-guide.html"
-    >
-
-    <link
-        rel="alternate"
-        hreflang="en"
-        href="https://moveandtry.com/mediation-guide.html"
-    >
-
-    <link
-        rel="alternate"
-        hreflang="x-default"
-        href="https://moveandtry.com/mediation-guide.html"
-    >
+    <link rel="canonical" href="https://moveandtry.com/hr/mediation-guide.html">
+    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/mediation-guide.html">
+    <link rel="alternate" hreflang="en" href="https://moveandtry.com/mediation-guide.html">
+    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/mediation-guide.html">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
-
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
-
         gtag('js', new Date());
         gtag('config', 'G-PREYRXPPN8');
     </script>
@@ -64,11 +32,7 @@
     <link rel="stylesheet" href="../style.css">
 
     <style>
-
-        /* =========================
-           MOVE & TRY — THE GUIDE
-           ZAJEDNIČKI VIZUALNI SMJER
-        ========================= */
+        /* MOVE & TRY — THE GUIDE */
 
         .mt-guide {
             --guide-green: #17251E;
@@ -77,7 +41,6 @@
             --guide-ink: #202420;
             --guide-muted: #535A53;
             --guide-border: #D9DDD5;
-
             min-height: 100vh;
             background: var(--guide-cream);
             color: var(--guide-ink);
@@ -88,9 +51,7 @@
             box-sizing: border-box;
         }
 
-        /* =========================
-           POVRATAK NA AKTIVNOST
-        ========================= */
+        /* POVRATAK NA AKTIVNOST */
 
         .mt-guide .guide-back-wrap {
             background: var(--guide-cream);
@@ -113,9 +74,7 @@
             text-decoration: underline;
         }
 
-        /* =========================
-           TAMNOZELENI HERO
-        ========================= */
+        /* TAMNOZELENI HERO */
 
         .mt-guide .guide-hero {
             background: var(--guide-green);
@@ -194,9 +153,7 @@
             background: #A5B9A3;
         }
 
-        /* =========================
-           SADRŽAJ VODIČA
-        ========================= */
+        /* SADRŽAJ VODIČA */
 
         .mt-guide .guide-article {
             width: min(100% - 48px, 760px);
@@ -270,9 +227,7 @@
             color: #68806B;
         }
 
-        /* =========================
-           ISTAKNUTA MISAO
-        ========================= */
+        /* ISTAKNUTA MISAO */
 
         .mt-guide .guide-pullquote {
             margin: 42px 0;
@@ -284,9 +239,7 @@
             color: #203326;
         }
 
-        /* =========================
-           GOOD TO KNOW
-        ========================= */
+        /* GOOD TO KNOW */
 
         .mt-guide .guide-note {
             margin: 36px 0;
@@ -312,9 +265,7 @@
             margin-bottom: 0;
         }
 
-        /* =========================
-           KORACI
-        ========================= */
+        /* KORACI */
 
         .mt-guide .guide-step {
             padding: 25px 0;
@@ -343,9 +294,7 @@
             letter-spacing: .08em;
         }
 
-        /* =========================
-           THE VERDICT
-        ========================= */
+        /* THE VERDICT */
 
         .mt-guide .guide-verdict {
             background: var(--guide-green);
@@ -410,9 +359,7 @@
             color: #FFFFFF !important;
         }
 
-        /* =========================
-           DONJA NAVIGACIJA
-        ========================= */
+        /* DONJA NAVIGACIJA */
 
         .mt-guide .guide-footer-nav {
             background: var(--guide-cream);
@@ -433,12 +380,9 @@
             text-decoration: underline;
         }
 
-        /* =========================
-           MOBILNI PRIKAZ
-        ========================= */
+        /* MOBILNI PRIKAZ */
 
         @media (max-width: 700px) {
-
             .mt-guide .guide-back {
                 width: calc(100% - 40px);
                 padding: 24px 0;
@@ -489,17 +433,30 @@
             .mt-guide .guide-verdict p {
                 font-size: 15px;
             }
-
         }
 
+        /* DESKTOP — IZA MOVE & TRY */
+
+        .header-behind-link {
+            color: #555;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity .2s ease;
+        }
+
+        .header-behind-link:hover {
+            opacity: .55;
+        }
     </style>
 </head>
 
 <body>
 
-<!-- =========================
-     SITE HEADER
-========================= -->
+<!-- SITE HEADER -->
 
 <header class="site-header">
 
@@ -511,12 +468,16 @@
         <a href="/hr/#find-your-try">OTKRIJ</a>
         <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
         <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
     </nav>
 
     <div class="header-actions">
 
-        <div class="header-language">
+        <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+            IZA MOVE & TRY
+        </a>
 
+        <div class="header-language">
             <a
                 href="/mediation-guide.html"
                 onclick="setLanguage('en')"
@@ -526,9 +487,7 @@
             </a>
 
             <span>|</span>
-
             <span class="language-active">HR</span>
-
         </div>
 
         <button
@@ -545,9 +504,7 @@
 
 </header>
 
-<!-- =========================
-     MOBILE MENU
-========================= -->
+<!-- MOBILE MENU -->
 
 <div class="mobile-menu">
 
@@ -555,11 +512,11 @@
         <a href="/hr/#find-your-try">OTKRIJ</a>
         <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
         <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
         <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
 
     <div class="mobile-menu-language">
-
         <a
             href="/mediation-guide.html"
             onclick="setLanguage('en')"
@@ -569,16 +526,12 @@
         </a>
 
         <span>|</span>
-
         <span class="language-active">HR</span>
-
     </div>
 
 </div>
 
-<!-- =========================
-     GUIDE
-========================= -->
+<!-- GUIDE -->
 
 <main class="mt-guide">
 
@@ -772,7 +725,6 @@
             </p>
 
             <ul>
-
                 <li>
                     <strong>Priliku da budeš saslušan.</strong>
                     Da objasniš što ti je važno
@@ -802,7 +754,6 @@
                     Osobito kada će osobe i nakon sukoba
                     ostati povezane.
                 </li>
-
             </ul>
 
             <div class="guide-note">
@@ -845,7 +796,6 @@
             </p>
 
             <div class="guide-step">
-
                 <h3>
                     <span class="guide-step-number">01</span>
                     Prvi kontakt
@@ -857,11 +807,9 @@
                     Dobivaju informacije o postupku,
                     pravilima i mogućim troškovima.
                 </p>
-
             </div>
 
             <div class="guide-step">
-
                 <h3>
                     <span class="guide-step-number">02</span>
                     Dogovor o sudjelovanju
@@ -872,11 +820,9 @@
                     Sudionici trebaju razumjeti postupak
                     i pristati na njega.
                 </p>
-
             </div>
 
             <div class="guide-step">
-
                 <h3>
                     <span class="guide-step-number">03</span>
                     Razgovor
@@ -888,11 +834,9 @@
                     Medijator pomaže da razgovor bude strukturiran
                     i usmjeren na ono što je sudionicima važno.
                 </p>
-
             </div>
 
             <div class="guide-step">
-
                 <h3>
                     <span class="guide-step-number">04</span>
                     Istraživanje mogućnosti
@@ -904,11 +848,9 @@
                     i istražuju postoji li dogovor
                     koji odgovara njihovim potrebama.
                 </p>
-
             </div>
 
             <div class="guide-step">
-
                 <h3>
                     <span class="guide-step-number">05</span>
                     Dogovor, ako je moguć
@@ -920,7 +862,6 @@
                     Njegovi pravni učinci ovise o sadržaju
                     i ispunjenju odgovarajućih zakonskih uvjeta.
                 </p>
-
             </div>
 
         </section>
@@ -1011,7 +952,6 @@
             </p>
 
             <ul>
-
                 <li>
                     Kakvo iskustvo ima s vrstom sukoba
                     o kojoj je riječ?
@@ -1034,7 +974,6 @@
                 <li>
                     Što se događa ako ne postignemo dogovor?
                 </li>
-
             </ul>
 
             <p>
@@ -1047,9 +986,7 @@
 
     </article>
 
-    <!-- =========================
-         THE VERDICT
-    ========================= -->
+    <!-- THE VERDICT -->
 
     <section class="guide-verdict">
 
@@ -1102,11 +1039,9 @@
     <!-- DONJA NAVIGACIJA -->
 
     <div class="guide-footer-nav">
-
         <a href="/hr/mediation.html">
             ← NATRAG NA MEDIJACIJU
         </a>
-
     </div>
 
 </main>
