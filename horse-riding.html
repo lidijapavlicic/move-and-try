@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <title>Horse Riding | Move & Try</title>
+    <meta name="description" content="Thinking about trying horse riding? Discover what to expect, upcoming beginner guides, real experiences and places to meet horses for the first time.">
+
+    <link rel="canonical" href="https://moveandtry.com/horse-riding.html">
+    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/horse-riding.html">
+    <link rel="alternate" hreflang="en" href="https://moveandtry.com/horse-riding.html">
+    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/horse-riding.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-PREYRXPPN8');
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* HORSE RIDING — PHOTO HERO */
+
+        .activity-page .activity-header.horse-riding-photo-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #101b20;
+            color: #ffffff;
+            padding: 60px 48px;
+        }
+
+        .horse-riding-photo-hero .horse-riding-hero-photos {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .horse-riding-photo-hero .horse-riding-hero-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center 85%;
+            animation: horseRidingHeroFade 12s ease-in-out infinite;
+        }
+
+        .horse-riding-photo-hero .horse-riding-hero-photo:first-child {
+            object-position: center 65%;
+            animation-delay: 0s;
+        }
+
+        .horse-riding-photo-hero .horse-riding-hero-photo:last-child {
+            animation-delay: -6s;
+        }
+
+        .horse-riding-photo-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(7, 19, 25, 0.46) 0%,
+                rgba(7, 19, 25, 0.62) 48%,
+                rgba(7, 19, 25, 0.88) 100%
+            );
+            pointer-events: none;
+        }
+
+        .activity-page .horse-riding-photo-hero .activity-page-type,
+        .activity-page .horse-riding-photo-hero h1,
+        .activity-page .horse-riding-photo-hero .activity-page-intro,
+        .activity-page .horse-riding-photo-hero .activity-page-intro strong,
+        .activity-page .horse-riding-photo-hero .activity-nav {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+        .activity-page .horse-riding-photo-hero .activity-page-type {
+            color: #d4c8ae;
+        }
+
+        .activity-page .horse-riding-photo-hero .activity-page-intro {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* ALL NAVIGATION LABELS HAVE THE SAME MUTED STYLE */
+
+        .activity-page .horse-riding-photo-hero .activity-nav span,
+        .activity-page .horse-riding-photo-hero .activity-nav span.activity-nav-active {
+            position: relative;
+            z-index: 1;
+            color: rgba(255, 255, 255, 0.65);
+            border-color: rgba(255, 255, 255, 0.30);
+            opacity: 1;
+        }
+
+        @keyframes horseRidingHeroFade {
+            0%, 42% {
+                opacity: 1;
+            }
+            50%, 92% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .activity-page .activity-header.horse-riding-photo-hero {
+                min-height: 380px;
+                padding: 48px 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .horse-riding-photo-hero .horse-riding-hero-photo {
+                animation: none;
+                opacity: 0;
+            }
+            .horse-riding-photo-hero .horse-riding-hero-photo:first-child {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <a href="/" class="site-logo" aria-label="Move & Try – home">
+        <img src="/images/move-and-try-logo.png" alt="Move & Try">
+    </a>
+
+    <nav class="desktop-nav">
+        <a href="/#find-your-try">DISCOVER</a>
+        <a href="/#be-part-of-it">BE PART OF IT</a>
+        <a href="/#where-to-try">WHERE TO TRY</a>
+    </nav>
+
+    <div class="header-actions">
+        <div class="header-language">
+            <span class="language-active">EN</span>
+            <span>|</span>
+            <a href="/hr/horse-riding.html" onclick="setLanguage('hr')">HR</a>
+        </div>
+
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<div class="mobile-menu">
+    <nav>
+        <a href="/#find-your-try">DISCOVER</a>
+        <a href="/#be-part-of-it">BE PART OF IT</a>
+        <a href="/#where-to-try">WHERE TO TRY</a>
+        <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
+    </nav>
+
+    <div class="mobile-menu-language">
+        <span class="language-active">EN</span>
+        <span>|</span>
+        <a href="/hr/horse-riding.html" onclick="setLanguage('hr')">HR</a>
+    </div>
+</div>
+
+<main class="activity-page">
+
+    <a href="/move.html" class="back-link">← MOVE</a>
+
+    <header class="activity-header horse-riding-photo-hero">
+
+        <div class="horse-riding-hero-photos" aria-hidden="true">
+            <img
+                class="horse-riding-hero-photo"
+                src="/images/horse-riding-1.jpg"
+                alt=""
+                loading="eager"
+            >
+            <img
+                class="horse-riding-hero-photo"
+                src="/images/horse-riding-2.jpg"
+                alt=""
+                loading="eager"
+            >
+        </div>
+
+        <p class="activity-page-type">MOVE · HORSE RIDING</p>
+
+        <h1>HORSE RIDING</h1>
+
+        <p class="activity-page-intro">
+            You don't need to know how to ride.<br>
+            <strong>You just need to be curious enough to get in the saddle.</strong>
+        </p>
+
+        <div class="activity-nav">
+            <span>GUIDE</span>
+            <span>EXPERIENCES</span>
+            <span>EXPERTS</span>
+            <span>WHERE TO TRY</span>
+        </div>
+
+    </header>
+
+    <section class="activity-content-section">
+
+        <p class="section-label">EXPLORE HORSE RIDING</p>
+        <h2>START SOMEWHERE.</h2>
+
+        <div class="activity-content-grid">
+
+            <!-- GUIDE — COMING SOON -->
+            <div class="content-card content-card-coming">
+                <span class="content-card-type">START HERE · GUIDE</span>
+                <h3>GIVE HORSE RIDING A TRY</h3>
+                <p>
+                    What it's like to meet a horse for the first time,
+                    what to expect from your first lesson and how to prepare.
+                </p>
+                <span class="content-card-status">COMING SOON</span>
+            </div>
+
+            <!-- EXPERIENCES — COMING SOON -->
+            <div class="content-card content-card-coming">
+                <span class="content-card-type">REAL EXPERIENCES</span>
+                <h3>WHAT'S IT LIKE TO GET IN THE SADDLE FOR THE FIRST TIME?</h3>
+                <p>
+                    Stories from people who've tried horse riding,
+                    their first impressions and experiences with horses.
+                </p>
+                <span class="content-card-status">COMING SOON</span>
+            </div>
+
+            <!-- EXPERTS — COMING SOON -->
+            <div class="content-card content-card-coming">
+                <span class="content-card-type">EXPERT PERSPECTIVE</span>
+                <h3>WHAT SHOULD A BEGINNER KNOW?</h3>
+                <p>
+                    Advice and insights from someone who works
+                    professionally with horses and riders.
+                </p>
+                <span class="content-card-status">COMING SOON</span>
+            </div>
+
+            <!-- WHERE TO TRY — COMING SOON -->
+            <div class="content-card content-card-coming">
+                <span class="content-card-type">WHERE TO TRY</span>
+                <h3>FIND YOUR FIRST RIDING LESSON.</h3>
+                <p>
+                    Riding schools, equestrian clubs and places
+                    where you can take your first step.
+                </p>
+                <span class="content-card-status">COMING SOON</span>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="activity-contribute">
+        <p class="section-label">YOUR EXPERIENCE</p>
+        <h2>HAVE YOU TRIED HORSE RIDING?</h2>
+        <p>
+            Loved it, didn't love it or still not sure?
+            Your experience might help someone else decide to give it a try.
+        </p>
+        <a href="/share-experience.html" class="activity-contribute-link">
+            SHARE YOUR EXPERIENCE →
+        </a>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
