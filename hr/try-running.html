@@ -577,6 +577,29 @@
                 transition: none;
             }
         }
+
+        /* DESKTOP — IZA MOVE & TRY */
+
+        .header-actions .header-behind-link {
+            color: #555;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity .2s ease;
+        }
+
+        .header-actions .header-behind-link:hover {
+            opacity: .55;
+        }
+
+        @media (max-width: 768px) {
+            .site-header .header-behind-link {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -594,9 +617,15 @@
         <a href="/hr/#find-your-try">OTKRIJ</a>
         <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
         <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
     </nav>
 
     <div class="header-actions">
+
+        <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+            IZA MOVE & TRY
+        </a>
+
         <div class="header-language">
             <a href="/try-running.html" onclick="setLanguage('en')">EN</a>
             <span>|</span>
@@ -624,6 +653,7 @@
         <a href="/hr/#find-your-try">OTKRIJ</a>
         <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
         <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
         <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
 
