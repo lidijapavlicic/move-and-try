@@ -23,11 +23,8 @@
     <link rel="alternate" hreflang="x-default"
           href="https://moveandtry.com/journal.html">
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
           rel="stylesheet">
@@ -193,16 +190,12 @@
             background: transparent;
             padding: 8px 0;
             cursor: pointer;
-
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.07em;
             color: #777777;
-
-            transition:
-                color 0.2s ease,
-                border-color 0.2s ease;
+            transition: color 0.2s ease, border-color 0.2s ease;
         }
 
         .journal-category:hover {
@@ -248,7 +241,7 @@
         }
 
         /* =====================================
-           FUTURE POST GRID
+           JOURNAL POST GRID
            ===================================== */
 
         .journal-posts {
@@ -480,6 +473,7 @@
         }
 
         @media (max-width: 700px) {
+
             .journal-contribute {
                 padding: 0 24px 75px;
             }
@@ -487,6 +481,7 @@
             .journal-contribute-inner {
                 padding: 60px 0 0;
             }
+
         }
 
     </style>
@@ -714,88 +709,65 @@
 
             <span class="journal-count"
                   id="journal-count">
-                0 OBJAVA
+                1 OBJAVA
             </span>
 
         </div>
 
         <!-- =====================================
-             FUTURE JOURNAL POSTS
-
-             Svaka buduća objava može imati:
-             - zasebnu HTML stranicu
-             - kategoriju
-             - naslov
-             - kratak opis
-             - autora
-             - datum
-             - naslovnu fotografiju
-
-             Kategorije:
-             editorial
-             personal
-             guest
-             news
-             inspiration
-
-             Potpisi:
-             Lidija
-             MOVE & TRY
-             Ime suradnika
-
-             Primjer buduće kartice:
-
-             <a class="journal-post"
-                href="/hr/journal/naziv-objave.html"
-                data-category="personal">
-
-                 <img class="journal-post-image"
-                      src="/images/naziv-fotografije.jpg"
-                      alt="Opis fotografije"
-                      loading="lazy">
-
-                 <span class="journal-post-category">
-                     OSOBNE KOLUMNE
-                 </span>
-
-                 <h3 class="journal-post-title">
-                     Naslov objave
-                 </h3>
-
-                 <p class="journal-post-description">
-                     Kratki uvod u priču.
-                 </p>
-
-                 <span class="journal-post-author">
-                     LIDIJA
-                 </span>
-
-             </a>
-
-             Ovo je samo primjer u komentaru.
-             Ne prikazuje se na stranici.
+             JOURNAL POSTS
              ===================================== -->
 
         <div class="journal-posts"
              id="journal-posts">
+
+            <!-- FIRST EDITORIAL ARTICLE -->
+
+            <a class="journal-post"
+               href="/hr/why-adults-find-it-harder-to-try-new-things.html"
+               data-category="editorial">
+
+                <img class="journal-post-image"
+                     src="/images/journal-first-try.jpg"
+                     alt="Odrasla osoba uči oblikovati glinu u keramičkoj radionici"
+                     loading="lazy">
+
+                <span class="journal-post-category">
+                    UREDNIČKI TEKSTOVI
+                </span>
+
+                <h3 class="journal-post-title">
+                    Zašto je odraslima teže isprobati nešto novo?
+                </h3>
+
+                <p class="journal-post-description">
+                    O znatiželji koju nismo nužno izgubili,
+                    strahu od neuspjeha i životu u kojem
+                    ponekad zaboravimo kako je to biti početnik.
+                </p>
+
+                <span class="journal-post-author">
+                    MOVE&TRY Editorial
+                </span>
+
+            </a>
+
         </div>
 
         <!-- =====================================
-             EMPTY STATE
+             EMPTY STATE FOR OTHER CATEGORIES
              ===================================== -->
 
         <div class="journal-empty"
-             id="journal-empty">
+             id="journal-empty"
+             hidden>
 
             <h3 class="journal-empty-title">
-                Svaka priča negdje počinje.
+                U ovoj kategoriji još nema objava.
             </h3>
 
             <p class="journal-empty-text">
-                Ovdje će uskoro živjeti priče,
-                razmišljanja, inspiracija i novosti
-                iz svijeta MOVE & TRY.
-                Bez žurbe. Jedna po jedna.
+                Istraži druge kategorije ili nam se vrati uskoro.
             </p>
 
             <span class="journal-empty-signature">
@@ -810,19 +782,34 @@
          POZIV NA SUDJELOVANJE
          ===================================== -->
 
-    <section class="journal-contribute" aria-labelledby="journal-contribute-title">
+    <section class="journal-contribute"
+             aria-labelledby="journal-contribute-title">
+
         <div class="journal-contribute-inner">
-            <p class="journal-contribute-label">BUDI DIO THE JOURNALA</p>
-            <h2 class="journal-contribute-title" id="journal-contribute-title">Imaš priču koju vrijedi podijeliti?</h2>
-            <p class="journal-contribute-text">
-                Ne moraš biti profesionalni pisac. Možda imaš iskustvo, ideju ili
-                perspektivu koja zaslužuje prostor. Voljeli bismo je čuti.
+
+            <p class="journal-contribute-label">
+                BUDI DIO THE JOURNALA
             </p>
+
+            <h2 class="journal-contribute-title"
+                id="journal-contribute-title">
+                Imaš priču koju vrijedi podijeliti?
+            </h2>
+
+            <p class="journal-contribute-text">
+                Ne moraš biti profesionalni pisac.
+                Možda imaš iskustvo, ideju ili
+                perspektivu koja zaslužuje prostor.
+                Voljeli bismo je čuti.
+            </p>
+
             <a class="journal-contribute-link"
                href="/hr/write-for-the-journal.html">
                 PIŠI ZA THE JOURNAL &rarr;
             </a>
+
         </div>
+
     </section>
 
 </main>
