@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Write for The Journal | Move & Try</title>
+    <title>The Journal | Move & Try</title>
 
     <meta name="description"
-          content="Have a story, experience or perspective worth sharing? Discover how you can contribute to The Journal by MOVE & TRY.">
+          content="THE JOURNAL by MOVE & TRY. Stories, reflections, personal columns, inspiration and news from the community.">
 
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="canonical"
-          href="https://moveandtry.com/write-for-the-journal.html">
+          href="https://moveandtry.com/journal.html">
 
     <link rel="alternate" hreflang="en"
-          href="https://moveandtry.com/write-for-the-journal.html">
+          href="https://moveandtry.com/journal.html">
 
     <link rel="alternate" hreflang="hr"
-          href="https://moveandtry.com/hr/write-for-the-journal.html">
+          href="https://moveandtry.com/hr/journal.html">
 
     <link rel="alternate" hreflang="x-default"
-          href="https://moveandtry.com/write-for-the-journal.html">
+          href="https://moveandtry.com/journal.html">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,9 +29,9 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
           rel="stylesheet">
 
-    <!-- GOOGLE ANALYTICS -->
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <!-- Google Analytics -->
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -49,10 +49,10 @@
     <style>
 
         /* =====================================
-           THE JOURNAL — WRITE FOR US — EN
+           THE JOURNAL — EN
            ===================================== */
 
-        .journal-write-page {
+        .journal-page {
             background: #F7F6F2;
             color: #111111;
             min-height: 100vh;
@@ -62,24 +62,18 @@
            HEADER
            ===================================== */
 
-        .journal-write-page .site-header {
+        .journal-page .site-header {
             position: sticky;
             top: 0;
-            z-index: 100;
         }
 
-        .journal-write-page .site-logo img {
-            max-width: 130px;
-            height: auto;
-        }
-
-        .journal-write-header-actions {
+        .journal-header-actions {
             display: flex;
             align-items: center;
             gap: 26px;
         }
 
-        .journal-write-behind-link {
+        .journal-behind-link {
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
             font-weight: 700;
@@ -90,296 +84,351 @@
             transition: opacity 0.2s ease;
         }
 
-        .journal-write-behind-link:hover {
+        .journal-behind-link:hover {
             opacity: 0.55;
         }
 
         /* =====================================
-           PAGE LAYOUT
+           HERO — PHOTO BACKGROUND
            ===================================== */
 
-        .journal-write-main {
-            width: 100%;
+        .journal-hero {
+            position: relative;
+            isolation: isolate;
             overflow: hidden;
+            width: 100%;
+            background: #F1F0E9;
+            margin-bottom: -65px;
+            padding-bottom: 65px;
         }
 
-        /* =====================================
-           INTRODUCTION
-           ===================================== */
+        .journal-hero::before {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            z-index: -2;
+            background: url('/images/journal.jpg') center center / cover no-repeat;
+            filter: blur(4px);
+        }
 
-        .journal-write-hero {
-            background: #F1F0E9;
-            padding: 125px 48px 115px;
+        .journal-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: rgba(247, 246, 242, 0.35);
+        }
+
+        .journal-intro {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 115px 48px 105px;
             text-align: center;
         }
 
-        .journal-write-hero-inner {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .journal-write-eyebrow {
-            margin: 0 0 32px;
+        .journal-eyebrow {
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.22em;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
             color: #6F7967;
+            margin: 0 0 25px;
         }
 
-        .journal-write-title {
-            margin: 0;
+        .journal-title {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(52px, 7vw, 105px);
+            font-size: clamp(64px, 10vw, 148px);
             font-weight: 400;
-            line-height: 1.05;
-            letter-spacing: -0.035em;
+            line-height: 0.95;
+            letter-spacing: -0.045em;
             color: #111111;
+            margin: 0;
         }
 
-        .journal-write-lead {
-            max-width: 640px;
-            margin: 40px auto 0;
+        .journal-subtitle {
             font-family: 'Manrope', sans-serif;
             font-size: 16px;
             font-weight: 400;
-            line-height: 2;
+            line-height: 1.9;
             color: #555550;
-        }
-
-        .journal-write-lead strong {
-            font-weight: 700;
-            color: #242424;
+            max-width: 620px;
+            margin: 36px auto 0;
         }
 
         /* =====================================
-           EDITORIAL CONTENT
+           CATEGORY NAVIGATION
            ===================================== */
 
-        .journal-write-content {
-            max-width: 950px;
+        .journal-category-wrap {
+            position: relative;
+            max-width: none;
+            margin: 0;
+            padding: 65px 48px 0;
+            background: transparent;
+        }
+
+        .journal-categories {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px 34px;
+            max-width: 1184px;
             margin: 0 auto;
-            padding: 95px 48px 60px;
+            padding: 28px 0;
+            border-top: 1px solid #D5D5D0;
+            border-bottom: 1px solid #D5D5D0;
         }
 
-        .journal-write-section {
-            padding: 0 0 75px;
-            margin: 0 0 75px;
-            border-bottom: 1px solid #D9D9D2;
-        }
-
-        .journal-write-section:last-child {
-            border-bottom: 0;
-            margin-bottom: 0;
-            padding-bottom: 25px;
-        }
-
-        .journal-write-section-label {
-            margin: 0 0 20px;
+        .journal-category {
+            appearance: none;
+            border: 0;
+            border-bottom: 1px solid transparent;
+            border-radius: 0;
+            background: transparent;
+            padding: 8px 0;
+            cursor: pointer;
             font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: #6F7967;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            color: #777777;
+            transition: color 0.2s ease, border-color 0.2s ease;
         }
 
-        .journal-write-section-title {
-            margin: 0 0 25px;
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(34px, 4.5vw, 52px);
-            font-weight: 400;
-            line-height: 1.17;
-            letter-spacing: -0.015em;
+        .journal-category:hover {
             color: #111111;
         }
 
-        .journal-write-text {
-            margin: 0 0 22px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 2;
-            color: #5D5D58;
-        }
-
-        .journal-write-text:last-child {
-            margin-bottom: 0;
-        }
-
-        .journal-write-text strong {
-            color: #222222;
-            font-weight: 700;
+        .journal-category.active {
+            color: #111111;
+            border-bottom-color: #6F7967;
         }
 
         /* =====================================
-           TYPES OF STORIES
+           CONTENT
            ===================================== */
 
-        .journal-write-story-grid {
+        .journal-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 75px 48px 100px;
+        }
+
+        .journal-content-heading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 45px;
+        }
+
+        .journal-section-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .journal-count {
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            color: #888888;
+        }
+
+        /* =====================================
+           JOURNAL POST GRID
+           ===================================== */
+
+        .journal-posts {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 30px 45px;
-            margin-top: 42px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 48px 28px;
         }
 
-        .journal-write-story {
-            padding-top: 22px;
-            border-top: 1px solid #D9D9D2;
-        }
-
-        .journal-write-story-number {
+        .journal-post {
             display: block;
-            margin-bottom: 16px;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .journal-post[hidden] {
+            display: none;
+        }
+
+        .journal-post-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+            background: #EAEAE6;
+            margin-bottom: 20px;
+        }
+
+        .journal-post-category {
+            display: block;
             font-family: 'Manrope', sans-serif;
             font-size: 10px;
             font-weight: 800;
             letter-spacing: 0.12em;
             color: #6F7967;
+            text-transform: uppercase;
+            margin-bottom: 12px;
         }
 
-        .journal-write-story h3 {
-            margin: 0 0 14px;
-            font-family: 'DM Serif Display', serif;
-            font-size: 27px;
-            font-weight: 400;
-            line-height: 1.25;
-            color: #111111;
-        }
-
-        .journal-write-story p {
-            margin: 0;
-            font-family: 'Manrope', sans-serif;
-            font-size: 13px;
-            line-height: 1.9;
-            color: #666660;
-        }
-
-        /* =====================================
-           EDITORIAL PRINCIPLES
-           ===================================== */
-
-        .journal-write-principles {
-            margin-top: 36px;
-        }
-
-        .journal-write-principle {
-            display: grid;
-            grid-template-columns: 30px minmax(0, 1fr);
-            gap: 20px;
-            padding: 22px 0;
-            border-bottom: 1px solid #E2E2DC;
-        }
-
-        .journal-write-principle:last-child {
-            border-bottom: 0;
-        }
-
-        .journal-write-principle-number {
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 800;
-            color: #6F7967;
-            padding-top: 4px;
-        }
-
-        .journal-write-principle h3 {
-            margin: 0 0 8px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 13px;
-            font-weight: 800;
-            line-height: 1.6;
-            color: #222222;
-        }
-
-        .journal-write-principle p {
-            margin: 0;
-            font-family: 'Manrope', sans-serif;
-            font-size: 13px;
-            line-height: 1.9;
-            color: #666660;
-        }
-
-        /* =====================================
-           HOW TO CONTRIBUTE
-           ===================================== */
-
-        .journal-write-steps {
-            margin: 38px 0 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .journal-write-step {
-            display: grid;
-            grid-template-columns: 48px minmax(0, 1fr);
-            gap: 20px;
-            margin-bottom: 32px;
-        }
-
-        .journal-write-step:last-child {
-            margin-bottom: 0;
-        }
-
-        .journal-write-step-number {
+        .journal-post-title {
             font-family: 'DM Serif Display', serif;
             font-size: 29px;
+            font-weight: 400;
             line-height: 1.2;
+            margin: 0 0 14px;
+        }
+
+        .journal-post-description {
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #666666;
+            margin: 0 0 18px;
+        }
+
+        .journal-post-author {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: #777777;
+        }
+
+        /* =====================================
+           EMPTY STATE
+           ===================================== */
+
+        .journal-empty {
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .journal-empty[hidden] {
+            display: none;
+        }
+
+        .journal-empty-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 400;
+            line-height: 1.2;
+            margin: 0 0 18px;
+        }
+
+        .journal-empty-text {
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            line-height: 1.9;
+            color: #777777;
+            max-width: 470px;
+            margin: 0;
+        }
+
+        .journal-empty-signature {
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            margin-top: 35px;
             color: #6F7967;
         }
 
-        .journal-write-step h3 {
-            margin: 0 0 9px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 13px;
-            font-weight: 800;
-            color: #222222;
-        }
+        /* =====================================
+           TABLET
+           ===================================== */
 
-        .journal-write-step p {
-            margin: 0;
-            font-family: 'Manrope', sans-serif;
-            font-size: 13px;
-            line-height: 1.9;
-            color: #666660;
+        @media (max-width: 1100px) {
+
+            .journal-behind-link {
+                display: none;
+            }
+
+            .journal-posts {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
         }
 
         /* =====================================
-           EDITORIAL NOTE
+           MOBILE
            ===================================== */
 
-        .journal-write-note {
-            margin-top: 36px;
-            padding: 26px 30px;
-            background: #EEEDE6;
-            border-left: 2px solid #6F7967;
-        }
+        @media (max-width: 700px) {
 
-        .journal-write-note p {
-            margin: 0;
-            font-family: 'Manrope', sans-serif;
-            font-size: 12px;
-            line-height: 1.95;
-            color: #5D5D58;
+            .journal-intro {
+                padding: 80px 24px 75px;
+            }
+
+            .journal-title {
+                font-size: clamp(56px, 13vw, 85px);
+            }
+
+            .journal-subtitle {
+                font-size: 14px;
+                margin-top: 25px;
+            }
+
+            .journal-category-wrap {
+                padding: 45px 24px 0;
+            }
+
+            .journal-categories {
+                justify-content: flex-start;
+                gap: 12px 23px;
+                padding: 20px 0;
+            }
+
+            .journal-category {
+                font-size: 10px;
+            }
+
+            .journal-content {
+                padding: 55px 24px 80px;
+            }
+
+            .journal-posts {
+                grid-template-columns: 1fr;
+            }
+
+            .journal-empty {
+                min-height: 300px;
+            }
+
         }
 
         /* =====================================
-           FINAL INVITATION
+           INVITATION TO CONTRIBUTE
            ===================================== */
 
-        .journal-write-contact {
-            background: #EEEDE6;
-            padding: 95px 48px 105px;
+        .journal-contribute {
+            max-width: 1184px;
+            margin: 0 auto;
+            padding: 0 48px 105px;
             text-align: center;
         }
 
-        .journal-write-contact-inner {
-            max-width: 680px;
-            margin: 0 auto;
+        .journal-contribute-inner {
+            border-top: 1px solid #D5D5D0;
+            padding: 78px 20px 0;
         }
 
-        .journal-write-contact-label {
-            margin: 0 0 25px;
+        .journal-contribute-label {
+            margin: 0 0 22px;
             font-family: 'Manrope', sans-serif;
             font-size: 10px;
             font-weight: 800;
@@ -387,167 +436,50 @@
             color: #6F7967;
         }
 
-        .journal-write-contact-title {
-            margin: 0 0 25px;
+        .journal-contribute-title {
+            margin: 0 0 20px;
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(37px, 5vw, 62px);
+            font-size: clamp(32px, 4.5vw, 52px);
             font-weight: 400;
-            line-height: 1.13;
-            color: #111111;
+            line-height: 1.12;
         }
 
-        .journal-write-contact-text {
-            margin: 0 auto 38px;
-            max-width: 520px;
+        .journal-contribute-text {
+            max-width: 570px;
+            margin: 0 auto 28px;
             font-family: 'Manrope', sans-serif;
             font-size: 14px;
             line-height: 1.9;
-            color: #666660;
+            color: #666666;
         }
 
-        .journal-write-contact-link {
+        .journal-contribute-link {
             display: inline-block;
-            padding: 16px 26px;
-            background: #17251E;
-            color: #FFFFFF;
+            padding: 10px 0;
+            border-bottom: 1px solid #6F7967;
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
             font-weight: 800;
-            letter-spacing: 0.10em;
+            letter-spacing: 0.12em;
+            color: #111111;
             text-decoration: none;
-            transition:
-                background 0.2s ease,
-                transform 0.2s ease;
+            transition: color 0.2s ease, border-color 0.2s ease;
         }
 
-        .journal-write-contact-link:hover {
-            background: #35493A;
-            transform: translateY(-2px);
-        }
-
-        .journal-write-contact-link:focus-visible {
-            outline: 2px solid #17251E;
-            outline-offset: 4px;
-        }
-
-        .journal-write-email {
-            display: block;
-            margin-top: 25px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 12px;
-            color: #777770;
-            text-decoration: none;
-        }
-
-        .journal-write-email:hover {
-            text-decoration: underline;
-        }
-
-        /* =====================================
-           BACK TO JOURNAL
-           ===================================== */
-
-        .journal-write-back {
-            padding: 38px 24px;
-            text-align: center;
-            background: #F7F6F2;
-        }
-
-        .journal-write-back a {
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.10em;
-            color: #17251E;
-            text-decoration: none;
-        }
-
-        .journal-write-back a:hover {
-            text-decoration: underline;
-        }
-
-        /* =====================================
-           RESPONSIVE
-           ===================================== */
-
-        @media (max-width: 1100px) {
-
-            .journal-write-behind-link {
-                display: none;
-            }
-
+        .journal-contribute-link:hover,
+        .journal-contribute-link:focus-visible {
+            color: #6F7967;
+            border-bottom-color: #111111;
         }
 
         @media (max-width: 700px) {
 
-            .journal-write-hero {
-                padding: 85px 24px 80px;
+            .journal-contribute {
+                padding: 0 24px 75px;
             }
 
-            .journal-write-eyebrow {
-                margin-bottom: 26px;
-                font-size: 10px;
-            }
-
-            .journal-write-title {
-                font-size: clamp(47px, 11vw, 76px);
-            }
-
-            .journal-write-lead {
-                font-size: 14px;
-                line-height: 1.9;
-                margin-top: 30px;
-            }
-
-            .journal-write-content {
-                padding: 65px 24px 35px;
-            }
-
-            .journal-write-section {
-                padding-bottom: 55px;
-                margin-bottom: 55px;
-            }
-
-            .journal-write-section-title {
-                font-size: clamp(32px, 8vw, 44px);
-            }
-
-            .journal-write-story-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .journal-write-story h3 {
-                font-size: 25px;
-            }
-
-            .journal-write-principle {
-                gap: 12px;
-            }
-
-            .journal-write-step {
-                grid-template-columns: 35px minmax(0, 1fr);
-                gap: 15px;
-            }
-
-            .journal-write-note {
-                padding: 24px 20px;
-            }
-
-            .journal-write-contact {
-                padding: 75px 24px 85px;
-            }
-
-            .journal-write-contact-title {
-                font-size: clamp(37px, 9vw, 52px);
-            }
-
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            .journal-write-contact-link {
-                transition: none;
+            .journal-contribute-inner {
+                padding: 60px 0 0;
             }
 
         }
@@ -555,7 +487,7 @@
     </style>
 </head>
 
-<body class="journal-write-page">
+<body class="journal-page">
 
 <!-- =====================================
      HEADER
@@ -593,10 +525,10 @@
 
     </nav>
 
-    <div class="header-actions journal-write-header-actions">
+    <div class="header-actions journal-header-actions">
 
         <a href="/behind-move-and-try.html"
-           class="journal-write-behind-link">
+           class="journal-behind-link">
             BEHIND MOVE & TRY
         </a>
 
@@ -608,7 +540,7 @@
 
             <span>|</span>
 
-            <a href="/hr/write-for-the-journal.html"
+            <a href="/hr/journal.html"
                onclick="setLanguage('hr')">
                 HR
             </a>
@@ -667,7 +599,7 @@
 
         <span>|</span>
 
-        <a href="/hr/write-for-the-journal.html"
+        <a href="/hr/journal.html"
            onclick="setLanguage('hr')">
             HR
         </a>
@@ -677,43 +609,29 @@
 </div>
 
 <!-- =====================================
-     WRITE FOR THE JOURNAL
+     THE JOURNAL
      ===================================== -->
 
-<main class="journal-write-main">
+<main>
 
-    <!-- =====================================
-         INTRODUCTION
-         ===================================== -->
+    <!-- HERO WITH BACKGROUND PHOTO -->
 
-    <section class="journal-write-hero">
+    <section class="journal-hero">
 
-        <div class="journal-write-hero-inner">
+        <div class="journal-intro">
 
-            <p class="journal-write-eyebrow">
-                THE JOURNAL · MOVE & TRY
+            <p class="journal-eyebrow">
+                MOVE & TRY PRESENTS
             </p>
 
-            <h1 class="journal-write-title">
-                Every story<br>
-                has its worth.
+            <h1 class="journal-title">
+                THE JOURNAL.
             </h1>
 
-            <p class="journal-write-lead">
-                Sometimes, someone else's experience inspires us
-                to try something new.
-                Sometimes, a different perspective helps us
-                understand something better.
-                And sometimes, all it takes is reading a story
-                in which we recognise ourselves.
-
-                <br><br>
-
-                <strong>
-                    If you have something worth sharing,
-                    The Journal might be the right place
-                    for your story.
-                </strong>
+            <p class="journal-subtitle">
+                Stories, reflections, experiences and everything in between.
+                A space for people, ideas, new beginnings
+                and moments worth sharing.
             </p>
 
         </div>
@@ -721,589 +639,291 @@
     </section>
 
     <!-- =====================================
-         EDITORIAL CONTENT
+         CATEGORIES
          ===================================== -->
 
-    <div class="journal-write-content">
-
-        <!-- =====================================
-             WHAT IS THE JOURNAL?
-             ===================================== -->
-
-        <section class="journal-write-section">
-
-            <p class="journal-write-section-label">
-                01 · ABOUT THE JOURNAL
-            </p>
-
-            <h2 class="journal-write-section-title">
-                A space for stories that stay with us.
-            </h2>
-
-            <p class="journal-write-text">
-                The Journal is MOVE & TRY's editorial space
-                dedicated to people, experiences, ideas
-                and different ways of seeing the world.
-            </p>
-
-            <p class="journal-write-text">
-                We're interested in real stories.
-                Stories that make us think, open up new conversations,
-                introduce us to something unfamiliar or simply
-                show us how someone else experiences the world.
-            </p>
-
-            <p class="journal-write-text">
-                We're not looking for perfect life stories
-                or extraordinary achievements.
-                We're equally interested in attempts, mistakes,
-                changes, unusual experiences, small decisions
-                and the things we learn along the way.
-            </p>
-
-            <p class="journal-write-text">
-                <strong>
-                    You don't have to be a professional writer
-                    to have something worth saying.
-                </strong>
-            </p>
-
-        </section>
-
-        <!-- =====================================
-             WHAT WE ARE LOOKING FOR
-             ===================================== -->
-
-        <section class="journal-write-section">
-
-            <p class="journal-write-section-label">
-                02 · TOPICS & STORIES
-            </p>
-
-            <h2 class="journal-write-section-title">
-                What can you write about?
-            </h2>
-
-            <p class="journal-write-text">
-                The Journal isn't limited to the activities
-                featured on MOVE & TRY.
-                We love curiosity, new experiences,
-                personal perspectives and subjects
-                worth exploring.
-            </p>
-
-            <p class="journal-write-text">
-                We're particularly interested in:
-            </p>
-
-            <div class="journal-write-story-grid">
-
-                <div class="journal-write-story">
-
-                    <span class="journal-write-story-number">
-                        01
-                    </span>
-
-                    <h3>
-                        Personal stories
-                    </h3>
-
-                    <p>
-                        Experiences, decisions, turning points,
-                        attempts, discoveries and anything
-                        that has changed you or taught you
-                        something along the way.
-                    </p>
-
-                </div>
-
-                <div class="journal-write-story">
-
-                    <span class="journal-write-story-number">
-                        02
-                    </span>
-
-                    <h3>
-                        Different perspectives
-                    </h3>
-
-                    <p>
-                        Your thoughts on subjects that matter to you,
-                        questions you've been asking yourself
-                        and perspectives that might spark
-                        a different kind of conversation.
-                    </p>
-
-                </div>
-
-                <div class="journal-write-story">
-
-                    <span class="journal-write-story-number">
-                        03
-                    </span>
-
-                    <h3>
-                        People & ideas
-                    </h3>
-
-                    <p>
-                        Interesting projects, initiatives,
-                        professions, hobbies or people
-                        whose stories and knowledge
-                        deserve to be shared.
-                    </p>
-
-                </div>
-
-                <div class="journal-write-story">
-
-                    <span class="journal-write-story-number">
-                        04
-                    </span>
-
-                    <h3>
-                        New experiences
-                    </h3>
-
-                    <p>
-                        Something you tried, learned, explored
-                        or experienced for the first time.
-                        What did you expect?
-                        What surprised you?
-                        And what did you take away from it?
-                    </p>
-
-                </div>
-
-            </div>
-
-            <p class="journal-write-text"
-               style="margin-top: 38px;">
-
-                Have an idea that doesn't quite fit
-                any of these categories?
-                We'd still love to hear about it.
-
-                <strong>
-                    A good story matters more to us
-                    than fitting into a predefined category.
-                </strong>
-
-            </p>
-
-        </section>
-
-        <!-- =====================================
-             EDITORIAL GUIDELINES
-             ===================================== -->
-
-        <section class="journal-write-section">
-
-            <p class="journal-write-section-label">
-                03 · EDITORIAL GUIDELINES
-            </p>
-
-            <h2 class="journal-write-section-title">
-                What matters to us?
-            </h2>
-
-            <p class="journal-write-text">
-                We want The Journal to be a place
-                readers return to for its quality,
-                honesty and interesting perspectives.
-            </p>
-
-            <p class="journal-write-text">
-                That's why we follow a few simple
-                editorial principles.
-            </p>
-
-            <div class="journal-write-principles">
-
-                <div class="journal-write-principle">
-
-                    <span class="journal-write-principle-number">
-                        01
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Authenticity over perfection
-                        </h3>
-
-                        <p>
-                            Write in your own voice.
-                            You don't need to sound like
-                            a journalist or an expert if you're not one.
-                            We're interested in real experiences
-                            and honest reflections.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="journal-write-principle">
-
-                    <span class="journal-write-principle-number">
-                        02
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Substance over promotion
-                        </h3>
-
-                        <p>
-                            The Journal isn't a space
-                            for disguised advertising
-                            or promotional articles.
-                            You're welcome to introduce your own
-                            project, work or initiative,
-                            but the story should offer
-                            something valuable to readers,
-                            not just to its author.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="journal-write-principle">
-
-                    <span class="journal-write-principle-number">
-                        03
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Respect for different perspectives
-                        </h3>
-
-                        <p>
-                            We don't all have to agree.
-                            Different opinions can lead
-                            to meaningful conversations,
-                            but we expect thoughtful arguments,
-                            courtesy and respect for others.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="journal-write-principle">
-
-                    <span class="journal-write-principle-number">
-                        04
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Accuracy and responsibility
-                        </h3>
-
-                        <p>
-                            Personal experiences should be presented
-                            as personal experiences,
-                            while facts and expert claims
-                            should be verifiable.
-                            If you use someone else's materials,
-                            photographs or quotations,
-                            you must have the appropriate permission
-                            and credit the source.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="journal-write-principle">
-
-                    <span class="journal-write-principle-number">
-                        05
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Editorial selection
-                        </h3>
-
-                        <p>
-                            Every submission is reviewed
-                            from an editorial perspective.
-                            We reserve the right to select topics,
-                            edit texts in consultation with the author
-                            and make the final decision
-                            about publication.
-                            Submitting a story does not
-                            guarantee publication.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- =====================================
-             HOW TO SEND A STORY
-             ===================================== -->
-
-        <section class="journal-write-section">
-
-            <p class="journal-write-section-label">
-                04 · HOW TO CONTRIBUTE
-            </p>
-
-            <h2 class="journal-write-section-title">
-                How can you share your story?
-            </h2>
-
-            <p class="journal-write-text">
-                You don't need to have a finished article.
-                You're welcome to reach out with just an idea.
-                If we see potential in your topic,
-                we can work together to find
-                the best way to tell the story.
-            </p>
-
-            <ol class="journal-write-steps">
-
-                <li class="journal-write-step">
-
-                    <span class="journal-write-step-number">
-                        01
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Tell us about your idea
-                        </h3>
-
-                        <p>
-                            Briefly explain what you'd like to write about,
-                            why the topic matters to you
-                            and what you'd like to share
-                            with readers.
-                            If you already have a finished piece,
-                            feel free to send it.
-                        </p>
-
-                    </div>
-
-                </li>
-
-                <li class="journal-write-step">
-
-                    <span class="journal-write-step-number">
-                        02
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Introduce yourself
-                        </h3>
-
-                        <p>
-                            A few sentences are enough.
-                            Who are you, what do you do
-                            and how are you connected
-                            to the subject you'd like to write about?
-                            You can also suggest how you'd
-                            like to be credited.
-                        </p>
-
-                    </div>
-
-                </li>
-
-                <li class="journal-write-step">
-
-                    <span class="journal-write-step-number">
-                        03
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Send us an email
-                        </h3>
-
-                        <p>
-                            Send your idea or article to
-                            journal@moveandtry.com.
-                            You're welcome to suggest photographs
-                            or additional materials,
-                            but they're not necessary
-                            for the first contact.
-                        </p>
-
-                    </div>
-
-                </li>
-
-                <li class="journal-write-step">
-
-                    <span class="journal-write-step-number">
-                        04
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Let's discuss the next step
-                        </h3>
-
-                        <p>
-                            If your proposal fits
-                            The Journal's editorial direction,
-                            we'll get in touch to discuss
-                            the content, any possible revisions
-                            and how best to present your story.
-                        </p>
-
-                    </div>
-
-                </li>
-
-            </ol>
-
-        </section>
-
-        <!-- =====================================
-             AUTHORSHIP AND PUBLICATION
-             ===================================== -->
-
-        <section class="journal-write-section">
-
-            <p class="journal-write-section-label">
-                05 · AUTHORSHIP & PUBLICATION
-            </p>
-
-            <h2 class="journal-write-section-title">
-                Your story. Your voice.
-            </h2>
-
-            <p class="journal-write-text">
-                Guest stories are published
-                with clear author attribution,
-                as agreed with the contributor.
-                We want readers to know
-                whose perspective they're reading
-                and who is behind each piece.
-            </p>
-
-            <p class="journal-write-text">
-                Sometimes, the best way to collaborate
-                is through a guest article.
-                Other times, an interview or an editorial
-                story based on a conversation
-                might be a better fit.
-                We'll decide together,
-                depending on the topic
-                and how best to present it.
-            </p>
-
-            <p class="journal-write-text">
-                Before publication, we agree
-                on the final version of the text,
-                author attribution and the use
-                of any accompanying photographs.
-            </p>
-
-            <div class="journal-write-note">
-
-                <p>
-                    <strong>Please note:</strong>
-                    submitting a proposal does not automatically
-                    transfer your copyright to MOVE & TRY
-                    or grant permission for publication.
-                    Any publication and use of materials
-                    will be agreed upon separately.
-                    Published texts must be original
-                    or used with the appropriate rights
-                    and permissions.
-                </p>
-
-            </div>
-
-        </section>
+    <div class="journal-category-wrap">
+
+        <nav class="journal-categories"
+             aria-label="Journal categories">
+
+            <button class="journal-category active"
+                    type="button"
+                    data-category="all"
+                    aria-pressed="true">
+                ALL
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="editorial"
+                    aria-pressed="false">
+                EDITORIALS
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="personal"
+                    aria-pressed="false">
+                PERSONAL COLUMNS
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="guest"
+                    aria-pressed="false">
+                GUEST STORIES
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="news"
+                    aria-pressed="false">
+                NEWS
+            </button>
+
+            <button class="journal-category"
+                    type="button"
+                    data-category="inspiration"
+                    aria-pressed="false">
+                INSPIRATION
+            </button>
+
+        </nav>
 
     </div>
 
     <!-- =====================================
-         FINAL CONTACT CTA
+         ARTICLES
          ===================================== -->
 
-    <section class="journal-write-contact"
-             aria-labelledby="journal-write-contact-title">
+    <section class="journal-content"
+             aria-labelledby="journal-section-heading">
 
-        <div class="journal-write-contact-inner">
+        <div class="journal-content-heading">
 
-            <p class="journal-write-contact-label">
-                YOUR STORY COULD BE NEXT
-            </p>
-
-            <h2 class="journal-write-contact-title"
-                id="journal-write-contact-title">
-                Have something worth sharing?
+            <h2 class="journal-section-title"
+                id="journal-section-heading">
+                ALL POSTS
             </h2>
 
-            <p class="journal-write-contact-text">
-                You don't need the perfect headline,
-                a finished article or all the answers.
+            <span class="journal-count"
+                  id="journal-count">
+                1 POST
+            </span>
 
-                <br><br>
+        </div>
 
-                Sometimes, a good idea
-                is all it takes to begin.
-                We'd love to hear yours.
+        <!-- =====================================
+             JOURNAL POSTS
+             ===================================== -->
+
+        <div class="journal-posts"
+             id="journal-posts">
+
+            <!-- FIRST EDITORIAL ARTICLE -->
+
+            <a class="journal-post"
+               href="/why-adults-find-it-harder-to-try-new-things.html"
+               data-category="editorial">
+
+                <img class="journal-post-image"
+                     src="/images/journal-first-try.jpg"
+                     alt="An adult learning a new skill in a pottery workshop"
+                     loading="lazy">
+
+                <span class="journal-post-category">
+                    EDITORIALS
+                </span>
+
+                <h3 class="journal-post-title">
+                    Why Is It Harder to Try Something New as an Adult?
+                </h3>
+
+                <p class="journal-post-description">
+                    On the curiosity we haven't necessarily lost,
+                    the fear of failure, and a life in which
+                    we sometimes forget what it feels like to be a beginner.
+                </p>
+
+                <span class="journal-post-author">
+                    MOVE&TRY Editorial
+                </span>
+
+            </a>
+
+        </div>
+
+        <!-- =====================================
+             EMPTY STATE FOR OTHER CATEGORIES
+             ===================================== -->
+
+        <div class="journal-empty"
+             id="journal-empty"
+             hidden>
+
+            <h3 class="journal-empty-title">
+                No posts in this category yet.
+            </h3>
+
+            <p class="journal-empty-text">
+                Explore another category or check back soon.
             </p>
 
-            <a class="journal-write-contact-link"
-               href="mailto:journal@moveandtry.com?subject=My%20Story%20for%20The%20Journal">
-                SEND YOUR STORY &rarr;
-            </a>
-
-            <a class="journal-write-email"
-               href="mailto:journal@moveandtry.com">
-                journal@moveandtry.com
-            </a>
+            <span class="journal-empty-signature">
+                MOVE & TRY
+            </span>
 
         </div>
 
     </section>
 
     <!-- =====================================
-         BACK TO JOURNAL
+         INVITATION TO CONTRIBUTE
          ===================================== -->
 
-    <nav class="journal-write-back"
-         aria-label="Back to The Journal">
+    <section class="journal-contribute"
+             aria-labelledby="journal-contribute-title">
 
-        <a href="/journal.html">
-            &larr; BACK TO THE JOURNAL
-        </a>
+        <div class="journal-contribute-inner">
 
-    </nav>
+            <p class="journal-contribute-label">
+                BE PART OF THE JOURNAL
+            </p>
+
+            <h2 class="journal-contribute-title"
+                id="journal-contribute-title">
+                Have a story worth sharing?
+            </h2>
+
+            <p class="journal-contribute-text">
+                You don't have to be a professional writer.
+                Maybe you have an experience, an idea
+                or a perspective worth sharing.
+                We'd love to hear from you.
+            </p>
+
+            <a class="journal-contribute-link"
+               href="/write-for-the-journal.html">
+                WRITE FOR THE JOURNAL &rarr;
+            </a>
+
+        </div>
+
+    </section>
 
 </main>
 
 <!-- =====================================
-     EXISTING SITE JAVASCRIPT
+     EXISTING SITE SCRIPT
      ===================================== -->
 
 <script src="script.js"></script>
+
+<!-- =====================================
+     JOURNAL CATEGORY FILTER
+     ===================================== -->
+
+<script>
+    (function () {
+
+        const buttons = document.querySelectorAll(
+            '.journal-category'
+        );
+
+        const posts = document.querySelectorAll(
+            '.journal-post'
+        );
+
+        const emptyState = document.getElementById(
+            'journal-empty'
+        );
+
+        const heading = document.getElementById(
+            'journal-section-heading'
+        );
+
+        const count = document.getElementById(
+            'journal-count'
+        );
+
+        const labels = {
+            all: 'ALL POSTS',
+            editorial: 'EDITORIALS',
+            personal: 'PERSONAL COLUMNS',
+            guest: 'GUEST STORIES',
+            news: 'NEWS',
+            inspiration: 'INSPIRATION'
+        };
+
+        function countLabel(number) {
+            return number + (number === 1 ? ' POST' : ' POSTS');
+        }
+
+        function filterPosts(category) {
+
+            let visibleCount = 0;
+
+            buttons.forEach(function (button) {
+
+                const selected =
+                    button.dataset.category === category;
+
+                button.classList.toggle(
+                    'active',
+                    selected
+                );
+
+                button.setAttribute(
+                    'aria-pressed',
+                    String(selected)
+                );
+
+            });
+
+            posts.forEach(function (post) {
+
+                const matches =
+                    category === 'all' ||
+                    post.dataset.category === category;
+
+                post.hidden = !matches;
+
+                if (matches) {
+                    visibleCount++;
+                }
+
+            });
+
+            heading.textContent = labels[category];
+
+            count.textContent = countLabel(
+                visibleCount
+            );
+
+            emptyState.hidden = visibleCount > 0;
+
+        }
+
+        buttons.forEach(function (button) {
+
+            button.addEventListener(
+                'click',
+                function () {
+
+                    filterPosts(
+                        button.dataset.category
+                    );
+
+                }
+            );
+
+        });
+
+        filterPosts('all');
+
+    })();
+</script>
 
 </body>
 </html>
