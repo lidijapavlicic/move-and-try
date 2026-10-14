@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -96,15 +95,15 @@
            HERO — PHOTO BACKGROUND
            ===================================== */
 
-     .journal-hero {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    width: 100%;
-    background: #F1F0E9;
-    margin-bottom: -65px;
-    padding-bottom: 65px;
-}
+        .journal-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            width: 100%;
+            background: #F1F0E9;
+            margin-bottom: -65px;
+            padding-bottom: 65px;
+        }
 
         .journal-hero::before {
             content: "";
@@ -165,13 +164,13 @@
            CATEGORY NAVIGATION
            ===================================== */
 
-     .journal-category-wrap {
-    position: relative;
-    max-width: none;
-    margin: 0;
-    padding: 65px 48px 0;
-    background: transparent;
-}
+        .journal-category-wrap {
+            position: relative;
+            max-width: none;
+            margin: 0;
+            padding: 65px 48px 0;
+            background: transparent;
+        }
 
         .journal-categories {
             display: flex;
@@ -222,7 +221,7 @@
         .journal-content {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 75px 48px 140px;
+            padding: 75px 48px 100px;
         }
 
         .journal-content-heading {
@@ -406,7 +405,7 @@
             }
 
             .journal-content {
-                padding: 55px 24px 100px;
+                padding: 55px 24px 80px;
             }
 
             .journal-posts {
@@ -417,6 +416,77 @@
                 min-height: 300px;
             }
 
+        }
+
+        /* =====================================
+           INVITATION TO CONTRIBUTE
+           ===================================== */
+
+        .journal-contribute {
+            max-width: 1184px;
+            margin: 0 auto;
+            padding: 0 48px 105px;
+            text-align: center;
+        }
+
+        .journal-contribute-inner {
+            border-top: 1px solid #D5D5D0;
+            padding: 78px 20px 0;
+        }
+
+        .journal-contribute-label {
+            margin: 0 0 22px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            color: #6F7967;
+        }
+
+        .journal-contribute-title {
+            margin: 0 0 20px;
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(32px, 4.5vw, 52px);
+            font-weight: 400;
+            line-height: 1.12;
+        }
+
+        .journal-contribute-text {
+            max-width: 570px;
+            margin: 0 auto 28px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            line-height: 1.9;
+            color: #666666;
+        }
+
+        .journal-contribute-link {
+            display: inline-block;
+            padding: 10px 0;
+            border-bottom: 1px solid #6F7967;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: #111111;
+            text-decoration: none;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .journal-contribute-link:hover,
+        .journal-contribute-link:focus-visible {
+            color: #6F7967;
+            border-bottom-color: #111111;
+        }
+
+        @media (max-width: 700px) {
+            .journal-contribute {
+                padding: 0 24px 75px;
+            }
+
+            .journal-contribute-inner {
+                padding: 60px 0 0;
+            }
         }
 
     </style>
@@ -734,6 +804,25 @@
 
         </div>
 
+    </section>
+
+    <!-- =====================================
+         POZIV NA SUDJELOVANJE
+         ===================================== -->
+
+    <section class="journal-contribute" aria-labelledby="journal-contribute-title">
+        <div class="journal-contribute-inner">
+            <p class="journal-contribute-label">BUDI DIO THE JOURNALA</p>
+            <h2 class="journal-contribute-title" id="journal-contribute-title">Imaš priču koju vrijedi podijeliti?</h2>
+            <p class="journal-contribute-text">
+                Ne moraš biti profesionalni pisac. Možda imaš iskustvo, ideju ili
+                perspektivu koja zaslužuje prostor. Voljeli bismo je čuti.
+            </p>
+            <a class="journal-contribute-link"
+               href="mailto:journal@moveandtry.com?subject=Pri%C4%8Da%20za%20The%20Journal">
+                PIŠI ZA THE JOURNAL &rarr;
+            </a>
+        </div>
     </section>
 
 </main>
