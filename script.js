@@ -1,3 +1,4 @@
+
 const SUPABASE_URL = "https://pdyngeaykfpybeafjtpw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK";
 
@@ -317,91 +318,65 @@ const tryForm =
 
 if (tryForm) {
 
-    tryForm.addEventListener(
-        "submit",
-        async (event) => {
+    tryForm.addEventListener("submit", async (event) => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const input =
-                document.getElementById("try-input");
+        const input = document.getElementById("try-input");
+        const message = document.getElementById("suggestion-message");
+        const submitButton = tryForm.querySelector('button[type="submit"]');
+        const suggestion = input.value.trim();
+        const isCroatian = document.documentElement.lang.toLowerCase() === "hr";
+        const defaultLabel = isCroatian ? "POŠALJI →" : "SEND →";
 
-            const message =
-                document.getElementById("suggestion-message");
+        if (!suggestion || submitButton.disabled) {
+            return;
+        }
 
-            const suggestion =
-                input.value.trim();
+        submitButton.disabled = true;
+        submitButton.textContent = isCroatian ? "ŠALJE SE..." : "SENDING...";
+        message.textContent = "";
 
-            if (!suggestion) {
-                return;
-            }
-
-            const submitButton =
-                tryForm.querySelector(
-                    'button[type="submit"]'
-                );
-
-            submitButton.disabled = true;
-            submitButton.textContent =
-                "SENDING...";
-
+        try {
             const response = await fetch(
                 `${SUPABASE_URL}/rest/v1/try_suggestions`,
                 {
                     method: "POST",
                     headers: {
                         apikey: SUPABASE_KEY,
-                        Authorization:
-                            `Bearer ${SUPABASE_KEY}`,
-                        "Content-Type":
-                            "application/json"
+                        Authorization: `Bearer ${SUPABASE_KEY}`,
+                        "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({
-                        suggestion: suggestion
-                    })
+                    body: JSON.stringify({ suggestion: suggestion })
                 }
             );
 
             if (!response.ok) {
-
-                const error =
-                    await response.text();
-
-                console.error(
-                    "Could not submit suggestion:",
-                    response.status,
-                    error
-                );
-
-                message.textContent =
-                    "Something went wrong. Please try again.";
-
-                submitButton.disabled = false;
-                submitButton.textContent =
-                    "SEND IT →";
-
-                return;
+                const error = await response.text();
+                console.error("Could not submit suggestion:", response.status, error);
+                throw new Error(`Submission failed (${response.status})`);
             }
 
             input.value = "";
-
-            message.textContent =
-                "Got it. Maybe this will be our next TRY. 👀";
-
-            submitButton.textContent =
-                "SENT ✓";
+            message.textContent = isCroatian
+                ? "Primljeno! Možda baš ovo postane naš sljedeći TRY. 👀"
+                : "Got it. Maybe this will be our next TRY. 👀";
+            submitButton.textContent = isCroatian ? "POSLANO ✓" : "SENT ✓";
 
             setTimeout(() => {
-
                 submitButton.disabled = false;
-                submitButton.textContent =
-                    "SEND IT →";
-
+                submitButton.textContent = defaultLabel;
             }, 2500);
 
+        } catch (error) {
+            console.error("Suggestion submission failed:", error);
+            message.textContent = isCroatian
+                ? "Nešto je pošlo po zlu. Pokušaj ponovno."
+                : "Something went wrong. Please try again.";
+            submitButton.disabled = false;
+            submitButton.textContent = defaultLabel;
         }
-    );
-
+    });
 }
 
 
