@@ -576,6 +576,16 @@ function setLanguage(language) {
 const moveAndTryUpdates = {
     en: [
         {
+            category: "MOVE",
+            activity: "horse-riding",
+            contentType: "EXPERIENCE",
+            order: 4,
+            title: "HORSE RIDING",
+            text: "From her first encounters with horses in Maksimir Park to a lifelong love that began in childhood. Read Kristina’s story.",
+            link: "horse-riding-experience-kristina.html",
+            action: "READ THE EXPERIENCE →"
+        },
+        {
             category: "LEARN",
             activity: "mediation",
             contentType: "GUIDE",
@@ -608,6 +618,16 @@ const moveAndTryUpdates = {
     ],
 
     hr: [
+        {
+            category: "KRETANJE",
+            activity: "horse-riding",
+            contentType: "ISKUSTVO",
+            order: 4,
+            title: "JAHANJE",
+            text: "Od prvih susreta s konjima u Maksimiru do ljubavi koja traje od djetinjstva. Pročitaj Kristininu priču.",
+            link: "horse-riding-experience-kristina.html",
+            action: "PROČITAJ ISKUSTVO →"
+        },
         {
             category: "UČENJE",
             activity: "mediation",
