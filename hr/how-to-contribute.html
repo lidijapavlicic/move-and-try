@@ -1,0 +1,956 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Kako postati dio MOVE & TRY | MOVE & TRY</title>
+  <meta name="description" content="Želiš biti dio MOVE & TRY? Podijeli iskustvo, napiši vodič, predstavi svoje znanje ili ponudi mjesto na kojem ljudi mogu isprobati nešto novo. Saznaj kako sudjelovati.">
+
+  <link rel="canonical" href="https://moveandtry.com/hr/how-to-contribute.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/how-to-contribute.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PREYRXPPN8');
+  </script>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* NAVIGACIJA */
+    .header-behind-link {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
+    }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
+    @media (min-width: 769px) {
+      .site-header {
+        grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+        gap: 16px;
+      }
+
+      .desktop-nav {
+        gap: clamp(12px, 2vw, 38px);
+      }
+
+      .desktop-nav a {
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 1250px) and (min-width: 769px) {
+      .header-behind-link {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-behind-link {
+        display: none;
+      }
+    }
+
+    /* SAMO STRANICA HOW TO CONTRIBUTE */
+    .contribute-guide {
+      --cg-bg: #f7f6f1;
+      --cg-dark: #1f2a18;
+      --cg-ink: #252923;
+      --cg-muted: #62675f;
+      --cg-line: #dcded5;
+
+      background: var(--cg-bg);
+      color: var(--cg-ink);
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .contribute-guide *,
+    .contribute-guide *::before,
+    .contribute-guide *::after {
+      box-sizing: border-box;
+    }
+
+    .cg-container {
+      width: min(1120px, calc(100% - 80px));
+      margin: 0 auto;
+    }
+
+    .cg-hero {
+      padding: 112px 0 100px;
+      text-align: center;
+      border-bottom: 1px solid var(--cg-line);
+    }
+
+    .cg-eyebrow {
+      margin: 0 0 25px;
+      color: #6f7967;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .cg-hero h1 {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(3.3rem, 7vw, 6.6rem);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -.045em;
+    }
+
+    .cg-lead {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--cg-muted);
+      font-size: clamp(15px, 1.5vw, 18px);
+      line-height: 1.9;
+    }
+
+    .cg-intro {
+      padding: 75px 0 45px;
+      text-align: center;
+    }
+
+    .cg-intro h2,
+    .cg-rules h2 {
+      margin: 0 0 18px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .cg-intro p:last-child {
+      max-width: 640px;
+      margin: 0 auto;
+      color: var(--cg-muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    /* ČETIRI ODJELJKA */
+    .cg-options {
+      padding: 0 0 105px;
+    }
+
+    .cg-option {
+      margin: 0 0 16px;
+      border: 1px solid var(--cg-line);
+      background: #fff;
+      transition: border-color .25s ease;
+    }
+
+    .cg-option[open] {
+      border-color: #aeb8a7;
+    }
+
+    .cg-option summary {
+      display: grid;
+      grid-template-columns: 55px minmax(0, 1fr) 42px;
+      align-items: center;
+      gap: 20px;
+      min-height: 146px;
+      padding: 28px 36px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .cg-option summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .cg-option summary:focus-visible {
+      outline: 3px solid #6f7967;
+      outline-offset: -4px;
+    }
+
+    .cg-number {
+      align-self: start;
+      padding-top: 8px;
+      color: #8b9585;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+
+    .cg-option-heading {
+      display: block;
+      min-width: 0;
+    }
+
+    .cg-option-title {
+      display: block;
+      margin-bottom: 10px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(1.7rem, 3vw, 2.7rem);
+      line-height: 1.15;
+      font-weight: 400;
+    }
+
+    .cg-option-subtitle {
+      display: block;
+      color: var(--cg-muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .cg-plus {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--cg-line);
+      border-radius: 50%;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1;
+      transition: transform .25s ease;
+    }
+
+    .cg-option[open] .cg-plus {
+      transform: rotate(45deg);
+    }
+
+    .cg-option-body {
+      padding: 0 36px 44px 111px;
+    }
+
+    .cg-option-body-inner {
+      padding-top: 34px;
+      border-top: 1px solid var(--cg-line);
+    }
+
+    .cg-option-body h3 {
+      margin: 35px 0 16px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 25px;
+      font-weight: 400;
+    }
+
+    .cg-option-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .cg-option-body p,
+    .cg-option-body li {
+      color: #50564e;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .cg-option-body ol,
+    .cg-option-body ul {
+      margin: 0 0 25px;
+      padding-left: 23px;
+    }
+
+    .cg-option-body li {
+      padding-left: 5px;
+      margin-bottom: 9px;
+    }
+
+    .cg-option-body li::marker {
+      color: #6f7967;
+      font-weight: 700;
+    }
+
+    .cg-info {
+      margin: 30px 0;
+      padding: 24px 28px;
+      background: #f7f6f1;
+      border-left: 3px solid #83917a;
+    }
+
+    .cg-info p {
+      margin: 0;
+    }
+
+    .cg-info p + p {
+      margin-top: 10px;
+    }
+
+    .cg-info strong {
+      color: var(--cg-ink);
+    }
+
+    .cg-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      min-height: 50px;
+      padding: 15px 25px;
+      margin-top: 12px;
+      background: var(--cg-dark);
+      border: 1px solid var(--cg-dark);
+      color: #fff !important;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .cg-action:hover {
+      background: transparent;
+      color: var(--cg-dark) !important;
+    }
+
+    .cg-action:focus-visible {
+      outline: 3px solid #6f7967;
+      outline-offset: 3px;
+    }
+
+    .cg-secondary-link {
+      display: inline-block;
+      margin: 18px 0 0;
+      color: var(--cg-dark);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* ZAJEDNIČKE SMJERNICE */
+    .cg-rules {
+      padding: 90px 0 100px;
+      border-top: 1px solid var(--cg-line);
+    }
+
+    .cg-rules-heading {
+      max-width: 730px;
+      margin-bottom: 48px;
+    }
+
+    .cg-rules-heading > p:last-child {
+      color: var(--cg-muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .cg-rules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .cg-rule {
+      padding: 35px;
+      background: #fff;
+      border: 1px solid var(--cg-line);
+    }
+
+    .cg-rule-number {
+      display: block;
+      margin-bottom: 25px;
+      color: #84917d;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+    }
+
+    .cg-rule h3 {
+      margin: 0 0 15px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 400;
+    }
+
+    .cg-rule p {
+      margin: 0;
+      color: var(--cg-muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* ZAVRŠNI POZIV */
+    .cg-ending {
+      padding: 95px 30px 105px;
+      background: var(--cg-dark);
+      color: #fff;
+      text-align: center;
+    }
+
+    .cg-ending .cg-eyebrow {
+      color: #d2dbc9;
+    }
+
+    .cg-ending h2 {
+      max-width: 750px;
+      margin: 0 auto 25px;
+      color: #fff;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .cg-ending p:not(.cg-eyebrow) {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: rgba(255, 255, 255, .82);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .cg-ending .cg-action {
+      background: #fff;
+      border-color: #fff;
+      color: var(--cg-dark) !important;
+    }
+
+    .cg-ending .cg-action:hover {
+      background: transparent;
+      color: #fff !important;
+    }
+
+    @media (max-width: 768px) {
+      .cg-container {
+        width: calc(100% - 36px);
+      }
+
+      .cg-hero {
+        padding: 80px 0 75px;
+      }
+
+      .cg-intro {
+        padding: 65px 0 35px;
+      }
+
+      .cg-options {
+        padding-bottom: 75px;
+      }
+
+      .cg-option summary {
+        grid-template-columns: 30px minmax(0, 1fr) 34px;
+        gap: 12px;
+        min-height: 125px;
+        padding: 23px 18px;
+      }
+
+      .cg-number {
+        font-size: 10px;
+      }
+
+      .cg-option-title {
+        font-size: clamp(1.45rem, 6vw, 2rem);
+      }
+
+      .cg-option-subtitle {
+        font-size: 12px;
+      }
+
+      .cg-plus {
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+      }
+
+      .cg-option-body {
+        padding: 0 20px 35px;
+      }
+
+      .cg-option-body-inner {
+        padding-top: 26px;
+      }
+
+      .cg-option-body h3 {
+        font-size: 23px;
+      }
+
+      .cg-info {
+        padding: 20px;
+      }
+
+      .cg-rules {
+        padding: 70px 0;
+      }
+
+      .cg-rules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cg-rule {
+        padding: 27px;
+      }
+
+      .cg-ending {
+        padding: 75px 22px 85px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cg-option,
+      .cg-plus,
+      .cg-action {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/hr/" class="site-logo" aria-label="MOVE & TRY početna">
+    <img src="/images/move-and-try-logo.png" alt="MOVE & TRY">
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/#where-to-try">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="/hr/behind-move-and-try.html" class="header-behind-link">IZA MOVE & TRY</a>
+
+    <div class="header-language">
+      <span class="language-active">HR</span>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <nav>
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/#where-to-try">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+    <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+  </nav>
+
+  <div class="mobile-menu-language">
+    <span class="language-active">HR</span>
+  </div>
+</div>
+
+<main class="contribute-guide">
+
+  <!-- UVOD -->
+  <section class="cg-hero">
+    <div class="cg-container">
+      <p class="cg-eyebrow">BUDI DIO PRIČE</p>
+      <h1>I TVOJA PRIČA MOŽE NEKOGA POKRENUTI.</h1>
+      <p class="cg-lead">
+        Postoji mnogo načina da budeš dio MOVE & TRY.
+        Podijeli ono što si doživio, pokaži što znaš
+        ili pomozi nekome pronaći mjesto na kojem može probati nešto novo.
+      </p>
+    </div>
+  </section>
+
+  <!-- ODABIR -->
+  <section class="cg-container" aria-labelledby="cg-options-title">
+    <div class="cg-intro">
+      <p class="cg-eyebrow">ČETIRI NAČINA SUDJELOVANJA</p>
+      <h2 id="cg-options-title">KAKO ŽELIŠ SUDJELOVATI?</h2>
+      <p>
+        Odaberi ono što ti najviše odgovara.
+        Otvori odjeljak, pogledaj što nam treba i pošalji nam svoje materijale.
+        Ne moraš imati iskustva u pisanju — važna nam je tvoja perspektiva.
+      </p>
+    </div>
+
+    <div class="cg-options">
+
+      <!-- 01 ISKUSTVO -->
+      <details class="cg-option" id="iskustvo">
+        <summary>
+          <span class="cg-number">01</span>
+          <span class="cg-option-heading">
+            <span class="cg-option-title">PODIJELI ISKUSTVO</span>
+            <span class="cg-option-subtitle">
+              Isprobao si nešto novo? Ispričaj nam kako je bilo.
+            </span>
+          </span>
+          <span class="cg-plus" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="cg-option-body">
+          <div class="cg-option-body-inner">
+            <h3>Tvoja priča, tvojim riječima.</h3>
+            <p>
+              Prvi pokušaji ne moraju biti savršeni.
+              Zanimaju nas stvarni doživljaji, iznenađenja,
+              izazovi i sve ono što si naučio usput.
+            </p>
+
+            <h3>O čemu možeš pisati?</h3>
+            <ol>
+              <li>Što si odlučio ili odlučila isprobati?</li>
+              <li>Zašto baš tu aktivnost?</li>
+              <li>Jesi li imao ili imala strahove, očekivanja ili predrasude?</li>
+              <li>Kako je izgledao prvi pokušaj?</li>
+              <li>Što te iznenadilo, nasmijalo ili ti bilo teško?</li>
+              <li>Što si naučio ili naučila o aktivnosti ili o sebi?</li>
+              <li>Bi li to ponovno napravio ili napravila?</li>
+              <li>Što bi poručio ili poručila nekome tko razmišlja o istome?</li>
+            </ol>
+
+            <div class="cg-info">
+              <p><strong>Tekst:</strong> okvirno 350–700 riječi.</p>
+              <p><strong>Fotografije:</strong> 2–5 autentičnih fotografija, ako ih imaš.</p>
+              <p><strong>Potpis:</strong> ime koje želiš objaviti i kratko predstavljanje, po želji.</p>
+            </div>
+
+            <p>
+              Ne moraš odgovoriti na svako pitanje redom.
+              Možeš napisati priču na svoj način, a mi ćemo je
+              urednički pripremiti za objavu.
+            </p>
+
+            <a href="/hr/share-experience.html" class="cg-action">
+              PODIJELI SVOJE ISKUSTVO <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 02 VODIČ -->
+      <details class="cg-option" id="vodic">
+        <summary>
+          <span class="cg-number">02</span>
+          <span class="cg-option-heading">
+            <span class="cg-option-title">NAPIŠI VODIČ</span>
+            <span class="cg-option-subtitle">
+              Poznaješ neku aktivnost? Pomozi drugima napraviti prvi korak.
+            </span>
+          </span>
+          <span class="cg-plus" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="cg-option-body">
+          <div class="cg-option-body-inner">
+            <h3>Pomozi početnicima da znaju što ih očekuje.</h3>
+            <p>
+              Vodiči na MOVE & TRY objašnjavaju aktivnosti
+              jednostavno, razumljivo i praktično.
+              Ne trebamo reklamu, nego korisne informacije
+              iz iskustva osobe koja poznaje ono o čemu govori.
+            </p>
+
+            <h3>Što bismo voljeli saznati?</h3>
+            <ol>
+              <li>Što je ova aktivnost i kako bi je opisao ili opisala početniku?</li>
+              <li>Kome je namijenjena? Postoje li dobna ili druga ograničenja?</li>
+              <li>Što osoba može očekivati na prvom dolasku ili pokušaju?</li>
+              <li>Treba li prethodno iskustvo, posebna oprema ili priprema?</li>
+              <li>Koje su najčešće zablude ili strahovi početnika?</li>
+              <li>Koje su prednosti aktivnosti i što ona može pružiti?</li>
+              <li>Koji bi savjet dao ili dala nekome tko se još dvoumi?</li>
+              <li>Postoje li važne sigurnosne napomene?</li>
+            </ol>
+
+            <div class="cg-info">
+              <p><strong>Tekst:</strong> okvirno 500–900 riječi. Možeš poslati i odgovore u natuknicama.</p>
+              <p><strong>Fotografije:</strong> 3–5 kvalitetnih fotografija aktivnosti.</p>
+              <p><strong>Autor:</strong> ime, stručna titula ili uloga, kratka biografija i poveznica po želji.</p>
+            </div>
+
+            <p>
+              Na temelju dostavljenih odgovora pripremit ćemo
+              vodič u MOVE & TRY formatu i poslati ti ga
+              na pregled prije objave.
+            </p>
+
+            <a
+              href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Prijava%20za%20vodi%C4%8D"
+              class="cg-action"
+            >
+              POŠALJI PRIJAVU ZA VODIČ <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 03 STRUČNJAK -->
+      <details class="cg-option" id="strucnjak">
+        <summary>
+          <span class="cg-number">03</span>
+          <span class="cg-option-heading">
+            <span class="cg-option-title">PREDSTAVI SE KAO STRUČNJAK</span>
+            <span class="cg-option-subtitle">
+              Iza svake aktivnosti stoje ljudi, znanje i iskustvo.
+            </span>
+          </span>
+          <span class="cg-plus" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="cg-option-body">
+          <div class="cg-option-body-inner">
+            <h3>Želimo upoznati osobu iza onoga što radiš.</h3>
+            <p>
+              Zanimaju nas tvoj put, znanje, iskustvo
+              i način na koji pristupaš ljudima.
+              Predstavljanje stručnjaka nije klasičan oglas,
+              nego prilika da čitatelji upoznaju osobu
+              i njezinu perspektivu.
+            </p>
+
+            <h3>Predstavi nam se kroz ova pitanja.</h3>
+            <ol>
+              <li>Kako se zoveš i čime se baviš?</li>
+              <li>Kako je započela tvoja priča s ovom aktivnošću?</li>
+              <li>Koje su tvoje kvalifikacije, edukacije ili relevantno iskustvo?</li>
+              <li>Što te najviše motivira u radu s ljudima?</li>
+              <li>Kako izgleda tvoj pristup početnicima?</li>
+              <li>Što bi volio ili voljela da ljudi znaju prije prvog pokušaja?</li>
+              <li>Koji ti je trenutak u radu posebno ostao u sjećanju?</li>
+              <li>Što bi poručio ili poručila nekome tko želi napraviti prvi korak?</li>
+            </ol>
+
+            <div class="cg-info">
+              <p><strong>Tekst:</strong> okvirno 400–700 riječi.</p>
+              <p><strong>Fotografije:</strong> 3–5 fotografija, uključujući portret i fotografije iz rada.</p>
+              <p><strong>Podaci:</strong> ime i prezime, stručna titula, područje rada i profesionalna poveznica.</p>
+            </div>
+
+            <p>
+              Prije objave šaljemo ti uređeno predstavljanje
+              na pregled, kako bismo potvrdili da su
+              informacije točne i da sadržaj vjerno predstavlja tvoj rad.
+            </p>
+
+            <a
+              href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Predstavljanje%20stru%C4%8Dnjaka"
+              class="cg-action"
+            >
+              POŠALJI PRIJAVU <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 04 GDJE PROBATI -->
+      <details class="cg-option" id="gdje-probati">
+        <summary>
+          <span class="cg-number">04</span>
+          <span class="cg-option-heading">
+            <span class="cg-option-title">PONUDI MJESTO ZA PROBATI</span>
+            <span class="cg-option-subtitle">
+              Vodiš studio, klub, radionicu, tečaj ili drugu aktivnost?
+            </span>
+          </span>
+          <span class="cg-plus" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="cg-option-body">
+          <div class="cg-option-body-inner">
+            <h3>Pomogni ljudima pronaći gdje mogu početi.</h3>
+            <p>
+              Rubrika GDJE PROBATI povezuje zainteresirane
+              posjetitelje s ljudima i mjestima na kojima
+              mogu isprobati određenu aktivnost.
+            </p>
+
+            <h3>Koje informacije trebamo?</h3>
+            <ol>
+              <li>Naziv studija, kluba, obrta ili organizacije.</li>
+              <li>Aktivnost ili aktivnosti koje nudite.</li>
+              <li>Grad, četvrt i adresu, ako primate posjetitelje na fizičkoj lokaciji.</li>
+              <li>Kratko predstavljanje: što nudite, kome i kako to izgleda?</li>
+              <li>Je li aktivnost prikladna za potpune početnike?</li>
+              <li>Kako izgleda prvi dolazak? Treba li rezervacija ili priprema?</li>
+              <li>Za koje je dobne skupine aktivnost namijenjena? Postoje li ograničenja?</li>
+              <li>Web-stranicu ili drugi kontakt putem kojeg primate upite.</li>
+              <li>Ime i e-mail osobe za komunikaciju s MOVE & TRY.</li>
+            </ol>
+
+            <div class="cg-info">
+              <p><strong>Predstavljanje:</strong> okvirno 80–150 riječi.</p>
+              <p><strong>Fotografije:</strong> 3–5 fotografija prostora, aktivnosti ili tima.</p>
+              <p><strong>Kontakt:</strong> poveznica na web-stranicu ili kanal za upite.</p>
+            </div>
+
+            <p>
+              MOVE & TRY priprema prikaz mjesta u skladu
+              s izgledom platforme. Podatke i opis
+              šaljemo na pregled prije objave.
+            </p>
+
+            <a
+              href="/hr/be-part-of-where-to-try.html"
+              class="cg-action"
+            >
+              PRIJAVI SVOJE MJESTO <span aria-hidden="true">→</span>
+            </a>
+
+            <p>
+              <a
+                class="cg-secondary-link"
+                href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Gdje%20probati"
+              >
+                Ili nam se javi izravno e-mailom →
+              </a>
+            </p>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ZAJEDNIČKE SMJERNICE -->
+  <section class="cg-rules" aria-labelledby="cg-rules-title">
+    <div class="cg-container">
+      <div class="cg-rules-heading">
+        <p class="cg-eyebrow">DOBRO JE ZNATI</p>
+        <h2 id="cg-rules-title">NEKOLIKO SMJERNICA PRIJE SLANJA.</h2>
+        <p>
+          Želimo da sudjelovanje bude jednostavno,
+          a objavljeni sadržaj kvalitetan, autentičan i koristan.
+          Evo kako pripremamo materijale.
+        </p>
+      </div>
+
+      <div class="cg-rules-grid">
+        <article class="cg-rule">
+          <span class="cg-rule-number">01 / MATERIJALI</span>
+          <h3>Fotografije i tekst</h3>
+          <p>
+            Fotografije pošalji kao zasebne JPG, PNG ili WebP
+            datoteke, poželjno širine najmanje 1600 px.
+            Izbjegavaj vodene žigove i fotografije umetnute
+            u Word dokument. Tekst možeš poslati
+            u dokumentu ili izravno u poruci.
+          </p>
+        </article>
+
+        <article class="cg-rule">
+          <span class="cg-rule-number">02 / AUTENTIČNOST</span>
+          <h3>Stvarne priče</h3>
+          <p>
+            Prednost dajemo originalnim fotografijama
+            i iskustvima iz stvarnog života.
+            Ne moraš pisati savršeno — važno je
+            da ono što dijeliš bude iskreno i tvoje.
+          </p>
+        </article>
+
+        <article class="cg-rule">
+          <span class="cg-rule-number">03 / PRAVA</span>
+          <h3>Dopuštenja za objavu</h3>
+          <p>
+            Pošalji samo tekstove i fotografije za koje
+            imaš pravo dopustiti objavu na MOVE & TRY.
+            Za prepoznatljive osobe, osobito djecu,
+            potrebno je osigurati odgovarajuća dopuštenja.
+          </p>
+        </article>
+
+        <article class="cg-rule">
+          <span class="cg-rule-number">04 / UREDNIŠTVO</span>
+          <h3>Pregled prije objave</h3>
+          <p>
+            MOVE & TRY uređuje i oblikuje sadržaj,
+            bez mijenjanja njegova smisla.
+            Prije objave šaljemo pripremljenu verziju
+            na pregled. Uključivanje ne znači automatsku
+            objavu ni zasebnu promociju na društvenim mrežama.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZAVRŠNI POZIV -->
+  <section class="cg-ending">
+    <p class="cg-eyebrow">JOŠ IMAŠ PITANJA?</p>
+    <h2>SVAKA DOBRA PRIČA NEGDJE POČINJE.</h2>
+    <p>
+      Nisi siguran ili sigurna kojem formatu pripada tvoja ideja?
+      Javi nam se. Ne moraš imati sve odgovore
+      prije nego što napraviš prvi korak.
+    </p>
+
+    <a
+      href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Upit%20za%20suradnju"
+      class="cg-action"
+    >
+      JAVI NAM SE <span aria-hidden="true">→</span>
+    </a>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>MOVE & TRY</p>
+  <p class="footer-tagline">
+    Ne moraš biti dobar u tome. Samo trebaš probati.
+  </p>
+  <a href="mailto:hello@moveandtry.com">hello@moveandtry.com</a>
+</footer>
+
+<script src="../script.js"></script>
+
+<script>
+  /*
+    Otvaranje točno određenog odjeljka preko poveznice,
+    npr. how-to-contribute.html#vodic
+  */
+  (function () {
+    const sections = document.querySelectorAll('.cg-option');
+
+    function openFromHash() {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+
+      const target = document.getElementById(id);
+
+      if (target && target.classList.contains('cg-option')) {
+        target.open = true;
+      }
+    }
+
+    sections.forEach(function (section) {
+      section.addEventListener('toggle', function () {
+        if (!section.open) return;
+
+        sections.forEach(function (other) {
+          if (other !== section) {
+            other.open = false;
+          }
+        });
+      });
+    });
+
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+  })();
+</script>
+
+</body>
+</html>
