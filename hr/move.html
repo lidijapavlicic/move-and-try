@@ -1,856 +1,483 @@
 
 <!DOCTYPE html>
 <html lang="hr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" type="image/png" href="/favicon.png">
-
-    <title>Move | Move & Try</title>
-
-    <meta
-        name="description"
-        content="Otkrij nove načine kretanja. Od trčanja i plesa do aktivnosti koje još nisi probao. Ne moraš biti dobar u tome. Samo probaj."
-    >
-
-    <link rel="canonical" href="https://moveandtry.com/hr/move.html">
-
-    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/move.html">
-    <link rel="alternate" hreflang="en" href="https://moveandtry.com/move.html">
-    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/move.html">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
-
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-        gtag('config', 'G-PREYRXPPN8');
-    </script>
-
-    <link rel="stylesheet" href="../style.css">
-
-    <style>
-
-        /* =========================
-           SHARED PHOTO CARD DIMENSIONS
-        ========================= */
-
-        .move-app-page .activity-card.running-photo-card,
-        .move-app-page .activity-card.pole-dance-photo-card,
-        .move-app-page .activity-card.horse-riding-photo-card {
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            min-height: 285px;
-            color: #ffffff;
-        }
-
-        /* =========================
-           CARD BACKGROUNDS
-        ========================= */
-
-        .move-app-page .activity-card.running-photo-card {
-            background: #101b20;
-        }
-
-        .move-app-page .activity-card.pole-dance-photo-card {
-            background: #18151d;
-        }
-
-        .move-app-page .activity-card.horse-riding-photo-card {
-            background: #18241e;
-        }
-
-        /* =========================
-           PHOTO CONTAINERS
-        ========================= */
-
-        .running-photo-card .running-card-photos,
-        .pole-dance-photo-card .pole-card-photos,
-        .horse-riding-photo-card .horse-riding-card-photos {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        /* =========================
-           RUNNING PHOTOS
-        ========================= */
-
-        .running-photo-card .running-card-photo {
-            position: absolute;
-            inset: 0;
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 48%;
-            animation: runningCardFade 12s ease-in-out infinite;
-        }
-
-        .running-photo-card .running-card-photo:first-child {
-            animation-delay: 0s;
-        }
-
-        .running-photo-card .running-card-photo:last-child {
-            animation-delay: -6s;
-        }
-
-        /* =========================
-           POLE DANCE PHOTOS
-        ========================= */
-
-        .pole-dance-photo-card .pole-card-photo {
-            position: absolute;
-            inset: 0;
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 35%;
-            animation: poleCardFade 12s ease-in-out infinite;
-        }
-
-        .pole-dance-photo-card .pole-card-photo:first-child {
-            animation-delay: 0s;
-        }
-
-        .pole-dance-photo-card .pole-card-photo:last-child {
-            animation-delay: -6s;
-        }
-
-        /* =========================
-           HORSE RIDING PHOTOS
-        ========================= */
-
-        .horse-riding-photo-card .horse-riding-card-photo {
-            position: absolute;
-            inset: 0;
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 85%;
-            animation: horseRidingCardFade 12s ease-in-out infinite;
-        }
-
-        .horse-riding-photo-card .horse-riding-card-photo:first-child {
-            object-position: center 65%;
-            animation-delay: 0s;
-        }
-
-        .horse-riding-photo-card .horse-riding-card-photo:last-child {
-            animation-delay: -6s;
-        }
-
-        /* =========================
-           DARK OVERLAYS
-        ========================= */
-
-        .running-photo-card::before,
-        .pole-dance-photo-card::before,
-        .horse-riding-photo-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .running-photo-card::before {
-            background: linear-gradient(
-                180deg,
-                rgba(7, 19, 25, 0.56) 0%,
-                rgba(7, 19, 25, 0.66) 48%,
-                rgba(7, 19, 25, 0.88) 100%
-            );
-        }
-
-        .pole-dance-photo-card::before {
-            background: linear-gradient(
-                180deg,
-                rgba(12, 10, 17, 0.46) 0%,
-                rgba(12, 10, 17, 0.60) 48%,
-                rgba(12, 10, 17, 0.88) 100%
-            );
-        }
-
-        .horse-riding-photo-card::before {
-            background: linear-gradient(
-                180deg,
-                rgba(9, 19, 15, 0.46) 0%,
-                rgba(9, 19, 15, 0.62) 48%,
-                rgba(9, 19, 15, 0.88) 100%
-            );
-        }
-
-        /* =========================
-           CARD TEXT
-        ========================= */
-
-        .running-photo-card .activity-number,
-        .running-photo-card .activity-content,
-        .running-photo-card .activity-content h3,
-        .running-photo-card .activity-description,
-        .running-photo-card .activity-available,
-        .running-photo-card .activity-available span,
-        .running-photo-card .activity-action,
-        .pole-dance-photo-card .activity-number,
-        .pole-dance-photo-card .activity-content,
-        .pole-dance-photo-card .activity-content h3,
-        .pole-dance-photo-card .activity-description,
-        .pole-dance-photo-card .activity-available,
-        .pole-dance-photo-card .activity-available span,
-        .pole-dance-photo-card .activity-action,
-        .horse-riding-photo-card .activity-number,
-        .horse-riding-photo-card .activity-content,
-        .horse-riding-photo-card .activity-content h3,
-        .horse-riding-photo-card .activity-description,
-        .horse-riding-photo-card .activity-available,
-        .horse-riding-photo-card .activity-available span,
-        .horse-riding-photo-card .activity-action {
-            position: relative;
-            z-index: 2;
-            color: #ffffff;
-        }
-
-        .running-photo-card .activity-description,
-        .pole-dance-photo-card .activity-description,
-        .horse-riding-photo-card .activity-description {
-            color: rgba(255, 255, 255, 0.88);
-        }
-
-        .running-photo-card .activity-available span,
-        .pole-dance-photo-card .activity-available span,
-        .horse-riding-photo-card .activity-available span {
-            border-color: rgba(255, 255, 255, 0.42);
-        }
-
-        /* =========================
-           PHOTO ANIMATIONS
-        ========================= */
-
-        @keyframes runningCardFade {
-            0%, 42% { opacity: 1; }
-            50%, 92% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes poleCardFade {
-            0%, 42% { opacity: 1; }
-            50%, 92% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes horseRidingCardFade {
-            0%, 42% { opacity: 1; }
-            50%, 92% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* =========================
-           SCROLLABLE ACTIVITY AREA
-           DESKTOP ONLY
-        ========================= */
-
-        @media (min-width: 901px) {
-
-            .move-app-page .move-app-discover {
-                min-width: 0;
-            }
-
-            .move-app-page .move-activity-scroll {
-                height: 910px;
-                overflow-y: auto;
-                overflow-x: hidden;
-                overscroll-behavior-y: auto;
-                scrollbar-width: thin;
-                scrollbar-color: #9caaa1 transparent;
-                padding-right: 8px;
-            }
-
-            .move-app-page .move-activity-scroll::-webkit-scrollbar {
-                width: 5px;
-            }
-
-            .move-app-page .move-activity-scroll::-webkit-scrollbar-track {
-                background: transparent;
-            }
-
-            .move-app-page .move-activity-scroll::-webkit-scrollbar-thumb {
-                background: #9caaa1;
-                border-radius: 20px;
-            }
-
-            .move-app-page .move-activity-scroll .activity-grid {
-                display: grid;
-                grid-template-columns: minmax(0, 1fr);
-                gap: 16px;
-            }
-
-            .move-app-page .move-activity-scroll .activity-card {
-                width: 100%;
-                min-width: 0;
-                box-sizing: border-box;
-            }
-
-        }
-
-        /* =========================
-           SCROLL INDICATOR
-        ========================= */
-
-        .move-scroll-hint {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin: 16px 0 0;
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.13em;
-            color: #17251e;
-            text-align: center;
-        }
-
-        .move-scroll-hint-arrow {
-            font-size: 19px;
-            line-height: 1;
-        }
-
-        /* =========================
-           MOBILE: NORMAL PAGE SCROLL
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .move-app-page .move-activity-scroll {
-                height: auto;
-                max-height: none;
-                overflow: visible;
-                padding-right: 0;
-            }
-
-            .move-app-page .move-scroll-hint {
-                display: none;
-            }
-
-        }
-
-        /* =========================
-           REDUCED MOTION
-        ========================= */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            .running-photo-card .running-card-photo,
-            .pole-dance-photo-card .pole-card-photo,
-            .horse-riding-photo-card .horse-riding-card-photo {
-                animation: none;
-                opacity: 0;
-            }
-
-            .running-photo-card .running-card-photo:first-child,
-            .pole-dance-photo-card .pole-card-photo:first-child,
-            .horse-riding-photo-card .horse-riding-card-photo:first-child {
-                opacity: 1;
-            }
-
-        }
-
-        /* =========================
-           COMING SOON CARD
-        ========================= */
-
-        .move-app-page .activity-card.move-coming-soon-card {
-            background: #080808;
-            color: #ffffff;
-            min-height: 285px;
-            box-sizing: border-box;
-            cursor: default;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .move-coming-soon-card .activity-content,
-        .move-coming-soon-card .activity-content h3,
-        .move-coming-soon-card .activity-description,
-        .move-coming-soon-card .activity-action {
-            color: #ffffff;
-        }
-
-        .move-coming-soon-card .activity-description {
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        .move-coming-soon-card .activity-number {
-            color: rgba(255, 255, 255, 0.55);
-        }
-
-        /* =========================
-           DESKTOP — IZA MOVE & TRY
-        ========================= */
-
-        .header-behind-link {
-            color: #555;
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: .04em;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: opacity .2s ease;
-        }
-
-        .header-behind-link:hover {
-            opacity: .55;
-        }
-
-        @media (max-width: 768px) {
-            .site-header .header-behind-link {
-                display: none !important;
-            }
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
+<title>Move | Move & Try</title>
+<meta name="description" content="Otkrij nove načine kretanja. Od trčanja i plesa do aktivnosti koje još nisi probao. Ne moraš biti dobar u tome. Samo probaj.">
+<link rel="canonical" href="https://moveandtry.com/hr/move.html">
+<link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/move.html">
+<link rel="alternate" hreflang="en" href="https://moveandtry.com/move.html">
+<link rel="alternate" hreflang="x-default" href="https://moveandtry.com/move.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-PREYRXPPN8');
+</script>
+<link rel="stylesheet" href="../style.css">
+<style>
+/* SHARED PHOTO CARD DIMENSIONS */
+.move-app-page .activity-card.running-photo-card,
+.move-app-page .activity-card.pole-dance-photo-card,
+.move-app-page .activity-card.horse-riding-photo-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 285px;
+    color: #ffffff;
+}
+/* CARD BACKGROUNDS */
+.move-app-page .activity-card.running-photo-card {
+    background: #101b20;
+}
+.move-app-page .activity-card.pole-dance-photo-card {
+    background: #18151d;
+}
+.move-app-page .activity-card.horse-riding-photo-card {
+    background: #18241e;
+}
+/* PHOTO CONTAINERS */
+.running-photo-card .running-card-photos,
+.pole-dance-photo-card .pole-card-photos,
+.horse-riding-photo-card .horse-riding-card-photos {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+/* RUNNING PHOTOS */
+.running-photo-card .running-card-photo {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 48%;
+    animation: runningCardFade 12s ease-in-out infinite;
+}
+.running-photo-card .running-card-photo:first-child {
+    animation-delay: 0s;
+}
+.running-photo-card .running-card-photo:last-child {
+    animation-delay: -6s;
+}
+/* POLE DANCE PHOTOS */
+.pole-dance-photo-card .pole-card-photo {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    animation: poleCardFade 12s ease-in-out infinite;
+}
+.pole-dance-photo-card .pole-card-photo:first-child {
+    animation-delay: 0s;
+}
+.pole-dance-photo-card .pole-card-photo:last-child {
+    animation-delay: -6s;
+}
+/* HORSE RIDING PHOTOS */
+.horse-riding-photo-card .horse-riding-card-photo {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 85%;
+    animation: horseRidingCardFade 12s ease-in-out infinite;
+}
+.horse-riding-photo-card .horse-riding-card-photo:first-child {
+    object-position: center 65%;
+    animation-delay: 0s;
+}
+.horse-riding-photo-card .horse-riding-card-photo:last-child {
+    animation-delay: -6s;
+}
+/* DARK OVERLAYS */
+.running-photo-card::before,
+.pole-dance-photo-card::before,
+.horse-riding-photo-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+.running-photo-card::before {
+    background: linear-gradient(
+        180deg,
+        rgba(7, 19, 25, 0.56) 0%,
+        rgba(7, 19, 25, 0.66) 48%,
+        rgba(7, 19, 25, 0.88) 100%
+    );
+}
+.pole-dance-photo-card::before {
+    background: linear-gradient(
+        180deg,
+        rgba(12, 10, 17, 0.46) 0%,
+        rgba(12, 10, 17, 0.60) 48%,
+        rgba(12, 10, 17, 0.88) 100%
+    );
+}
+.horse-riding-photo-card::before {
+    background: linear-gradient(
+        180deg,
+        rgba(9, 19, 15, 0.46) 0%,
+        rgba(9, 19, 15, 0.62) 48%,
+        rgba(9, 19, 15, 0.88) 100%
+    );
+}
+/* CARD TEXT */
+.running-photo-card .activity-number,
+.running-photo-card .activity-content,
+.running-photo-card .activity-content h3,
+.running-photo-card .activity-description,
+.running-photo-card .activity-available,
+.running-photo-card .activity-available span,
+.running-photo-card .activity-action,
+.pole-dance-photo-card .activity-number,
+.pole-dance-photo-card .activity-content,
+.pole-dance-photo-card .activity-content h3,
+.pole-dance-photo-card .activity-description,
+.pole-dance-photo-card .activity-available,
+.pole-dance-photo-card .activity-available span,
+.pole-dance-photo-card .activity-action,
+.horse-riding-photo-card .activity-number,
+.horse-riding-photo-card .activity-content,
+.horse-riding-photo-card .activity-content h3,
+.horse-riding-photo-card .activity-description,
+.horse-riding-photo-card .activity-available,
+.horse-riding-photo-card .activity-available span,
+.horse-riding-photo-card .activity-action {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+}
+.running-photo-card .activity-description,
+.pole-dance-photo-card .activity-description,
+.horse-riding-photo-card .activity-description {
+    color: rgba(255, 255, 255, 0.88);
+}
+.running-photo-card .activity-available span,
+.pole-dance-photo-card .activity-available span,
+.horse-riding-photo-card .activity-available span {
+    border-color: rgba(255, 255, 255, 0.42);
+}
+/* PHOTO ANIMATIONS */
+@keyframes runningCardFade {
+    0%, 42% { opacity: 1; }
+    50%, 92% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes poleCardFade {
+    0%, 42% { opacity: 1; }
+    50%, 92% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes horseRidingCardFade {
+    0%, 42% { opacity: 1; }
+    50%, 92% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/* DESKTOP SCROLLABLE ACTIVITY AREA */
+@media (min-width: 901px) {
+    .move-app-page .move-app-discover {
+        min-width: 0;
+    }
+    .move-app-page .move-activity-scroll {
+        height: 910px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #9caaa1 transparent;
+        padding-right: 8px;
+    }
+    .move-app-page .move-activity-scroll::-webkit-scrollbar {
+        width: 5px;
+    }
+    .move-app-page .move-activity-scroll::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .move-app-page .move-activity-scroll::-webkit-scrollbar-thumb {
+        background: #9caaa1;
+        border-radius: 20px;
+    }
+    .move-app-page .move-activity-scroll .activity-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+    .move-app-page .move-activity-scroll .activity-card {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+}
+/* SCROLL INDICATOR */
+.move-scroll-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 16px 0 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    color: #17251e;
+    text-align: center;
+}
+.move-scroll-hint-arrow {
+    font-size: 19px;
+    line-height: 1;
+}
+/* MOBILE: NORMAL PAGE SCROLL */
+@media (max-width: 900px) {
+    .move-app-page .move-activity-scroll {
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+    }
+    .move-app-page .move-scroll-hint {
+        display: none;
+    }
+}
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    .running-photo-card .running-card-photo,
+    .pole-dance-photo-card .pole-card-photo,
+    .horse-riding-photo-card .horse-riding-card-photo {
+        animation: none;
+        opacity: 0;
+    }
+    .running-photo-card .running-card-photo:first-child,
+    .pole-dance-photo-card .pole-card-photo:first-child,
+    .horse-riding-photo-card .horse-riding-card-photo:first-child {
+        opacity: 1;
+    }
+}
+/* COMING SOON CARD */
+.move-app-page .activity-card.move-coming-soon-card {
+    background: #080808;
+    color: #ffffff;
+    min-height: 285px;
+    box-sizing: border-box;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.move-coming-soon-card .activity-content,
+.move-coming-soon-card .activity-content h3,
+.move-coming-soon-card .activity-description,
+.move-coming-soon-card .activity-action {
+    color: #ffffff;
+}
+.move-coming-soon-card .activity-description {
+    color: rgba(255, 255, 255, 0.75);
+}
+.move-coming-soon-card .activity-number {
+    color: rgba(255, 255, 255, 0.55);
+}
+/* DESKTOP — IZA MOVE & TRY */
+.header-behind-link {
+    color: #555;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity .2s ease;
+}
+.header-behind-link:hover {
+    opacity: .55;
+}
+@media (max-width: 768px) {
+    .site-header .header-behind-link {
+        display: none !important;
+    }
+}
+</style>
 </head>
-
 <body>
-
-<!-- =========================
-     SITE HEADER
-========================= -->
-
 <header class="site-header">
-
     <a href="/hr/" class="site-logo" aria-label="Move & Try početna">
-        <img
-            src="/images/move-and-try-logo.png"
-            alt="Move & Try"
-        >
+        <img src="/images/move-and-try-logo.png" alt="Move & Try">
     </a>
-
     <nav class="desktop-nav">
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/#where-to-try">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
     </nav>
-
     <div class="header-actions">
-
-        <a
-            href="/hr/behind-move-and-try.html"
-            class="header-behind-link"
-        >
+        <a href="/hr/behind-move-and-try.html" class="header-behind-link">
             IZA MOVE & TRY
         </a>
-
         <div class="header-language">
-
-            <a href="/move.html" onclick="setLanguage('en')">
-                EN
-            </a>
-
+            <a href="/move.html" onclick="setLanguage('en')">EN</a>
             <span>|</span>
-
-            <span class="language-active">
-                HR
-            </span>
-
+            <span class="language-active">HR</span>
         </div>
-
-        <button
-            class="menu-toggle"
-            type="button"
-            aria-label="Otvori izbornik"
-            aria-expanded="false"
-        >
+        <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
             <span></span>
             <span></span>
         </button>
-
     </div>
-
 </header>
-
-<!-- =========================
-     MOBILE MENU
-========================= -->
-
 <div class="mobile-menu">
-
     <nav>
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/#where-to-try">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
-        <a href="/hr/behind-move-and-try.html">
-            IZA MOVE & TRY
-        </a>
-
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/#where-to-try">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
+        <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
-
     <div class="mobile-menu-language">
-
-        <a href="/move.html" onclick="setLanguage('en')">
-            EN
-        </a>
-
+        <a href="/move.html" onclick="setLanguage('en')">EN</a>
         <span>|</span>
-
-        <span class="language-active">
-            HR
-        </span>
-
+        <span class="language-active">HR</span>
     </div>
-
 </div>
-
-<!-- =========================
-     CATEGORY PAGE — APP LAYOUT
-========================= -->
-
 <main class="category-page move-app-page">
-
     <div class="move-app-layout">
-
-        <!-- LEFT — CATEGORY INTRO -->
-
         <section class="move-app-intro" aria-labelledby="move-title">
-
-            <p class="category-page-number">
-                01 · MOVE
-            </p>
-
+            <p class="category-page-number">01 · MOVE</p>
             <h1 id="move-title">MOVE</h1>
-
             <h2>
                 Pokreni se.<br>
                 Na svoj način.
             </h2>
-
             <p>
                 Kretanje nisu samo treninzi, kondicija ili rezultati.
                 To je način da se osjećaš bolje, pronađeš novu energiju
                 i otkriješ što sve tvoje tijelo može.
             </p>
-
             <p>
                 Ne moraš biti sportaš niti imati iskustva.
                 Postoji toliko načina za kretanje — od trčanja i plesa
                 do penjanja, vožnje bicikla i sasvim novih izazova.
             </p>
-
             <p class="move-app-highlight">
                 Pronađi nešto što budi tvoju znatiželju.
                 Ne moraš biti dobar u tome. Samo probaj.
             </p>
-
         </section>
-
-        <!-- RIGHT — DISCOVER ACTIVITIES -->
-
         <section class="move-app-discover" aria-labelledby="move-discover-title">
-
-            <p class="section-label">
-                ISTRAŽI MOVE
-            </p>
-
-            <h2 id="move-discover-title">
-                ŠTO BI VOLIO PROBATI?
-            </h2>
-
-            <!-- SCROLLABLE ACTIVITY CARDS -->
-
-            <div
-                class="move-activity-scroll"
-                tabindex="0"
-                aria-label="Popis MOVE aktivnosti"
-            >
-
+            <p class="section-label">ISTRAŽI MOVE</p>
+            <h2 id="move-discover-title">ŠTO BI VOLIO PROBATI?</h2>
+            <div class="move-activity-scroll" tabindex="0" aria-label="Popis MOVE aktivnosti">
                 <div class="activity-grid">
 
-                    <!-- =========================
-                         RUNNING
-                    ========================= -->
-
-                    <a
-                        href="running.html"
-                        class="activity-card running-photo-card"
-                    >
-
+                    <!-- RUNNING -->
+                    <a href="running.html" class="activity-card running-photo-card">
                         <div class="running-card-photos" aria-hidden="true">
-
-                            <img
-                                class="running-card-photo"
-                                src="/images/running-forest.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
-                            <img
-                                class="running-card-photo"
-                                src="/images/running-blue.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
+                            <img class="running-card-photo" src="/images/running-forest.jpg" alt="" loading="lazy">
+                            <img class="running-card-photo" src="/images/running-blue.jpg" alt="" loading="lazy">
                         </div>
-
                         <div class="activity-content">
-
                             <h3>TRČANJE</h3>
-
                             <p class="activity-description">
                                 Kreni jednostavno. Otkrij kako je to trčati
                                 prije nego što počneš razmišljati o tempu,
                                 udaljenosti ili opremi.
                             </p>
-
                             <div class="activity-available">
-
                                 <span>VODIČ ✓</span>
-
                                 <span>ISKUSTVA ✓</span>
-
                             </div>
-
                         </div>
-
-                        <span class="activity-action">
-                            ISTRAŽI TRČANJE →
-                        </span>
-
+                        <span class="activity-action">ISTRAŽI TRČANJE →</span>
                     </a>
 
-                    <!-- =========================
-                         POLE DANCE
-                    ========================= -->
-
-                    <a
-                        href="pole-dance.html"
-                        class="activity-card pole-dance-photo-card"
-                    >
-
+                    <!-- POLE DANCE -->
+                    <a href="pole-dance.html" class="activity-card pole-dance-photo-card">
                         <div class="pole-card-photos" aria-hidden="true">
-
-                            <img
-                                class="pole-card-photo"
-                                src="/images/pole-dance-man.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
-                            <img
-                                class="pole-card-photo"
-                                src="/images/pole-dance-woman.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
+                            <img class="pole-card-photo" src="/images/pole-dance-man.jpg" alt="" loading="lazy">
+                            <img class="pole-card-photo" src="/images/pole-dance-woman.jpg" alt="" loading="lazy">
                         </div>
-
                         <div class="activity-content">
-
                             <h3>POLE DANCE</h3>
-
                             <p class="activity-description">
                                 Snaga, pokret i sasvim drugačije prvo iskustvo.
                             </p>
-
                             <div class="activity-available">
-
                                 <span>VODIČ ✓</span>
-
                             </div>
-
                         </div>
-
-                        <span class="activity-action">
-                            ISTRAŽI POLE DANCE →
-                        </span>
-
+                        <span class="activity-action">ISTRAŽI POLE DANCE →</span>
                     </a>
 
-                    <!-- =========================
-                         HORSE RIDING
-                    ========================= -->
-
-                    <a
-                        href="horse-riding.html"
-                        class="activity-card horse-riding-photo-card"
-                    >
-
+                    <!-- HORSE RIDING -->
+                    <a href="horse-riding.html" class="activity-card horse-riding-photo-card">
                         <div class="horse-riding-card-photos" aria-hidden="true">
-
-                            <img
-                                class="horse-riding-card-photo"
-                                src="/images/horse-riding-1.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
-                            <img
-                                class="horse-riding-card-photo"
-                                src="/images/horse-riding-2.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
+                            <img class="horse-riding-card-photo" src="/images/horse-riding-1.jpg" alt="" loading="lazy">
+                            <img class="horse-riding-card-photo" src="/images/horse-riding-2.jpg" alt="" loading="lazy">
                         </div>
-
                         <div class="activity-content">
-
                             <h3>JAHANJE</h3>
-
                             <p class="activity-description">
                                 Upoznaj konje, sjedni u sedlo i otkrij
                                 sasvim drugačiji način kretanja.
                                 Za početak je dovoljna znatiželja.
                             </p>
-
+                            <div class="activity-available">
+                                <span>ISKUSTVA ✓</span>
+                            </div>
                         </div>
-
-                        <span class="activity-action">
-                            ISTRAŽI JAHANJE →
-                        </span>
-
+                        <span class="activity-action">ISTRAŽI JAHANJE →</span>
                     </a>
 
-                    <!-- =========================
-                         COMING SOON
-                    ========================= -->
-
+                    <!-- COMING SOON -->
                     <div class="activity-card move-coming-soon-card">
-
                         <div class="activity-content">
-
                             <h3>ŠTO JE SLJEDEĆE?</h3>
-
                             <p class="activity-description">
                                 Još aktivnosti, još iskustava,
                                 još razloga da probaš nešto novo.
                             </p>
-
                         </div>
-
-                        <span class="activity-action">
-                            USKORO
-                        </span>
-
+                        <span class="activity-action">USKORO</span>
                     </div>
 
                 </div>
-
             </div>
-
-            <!-- SCROLL HINT — OUTSIDE THE SCROLL AREA -->
-
             <p class="move-scroll-hint">
                 <span class="move-scroll-hint-arrow" aria-hidden="true">↓</span>
                 SKROLAJ ZA VIŠE
             </p>
-
         </section>
-
     </div>
-
-    <!-- =========================
-         SUGGEST AN ACTIVITY
-    ========================= -->
-
     <section class="category-suggest">
-
-        <p class="section-label">
-            NEŠTO NEDOSTAJE?
-        </p>
-
-        <h2>
-            IMAŠ DRUGU IDEJU?
-        </h2>
-
+        <p class="section-label">NEŠTO NEDOSTAJE?</p>
+        <h2>IMAŠ DRUGU IDEJU?</h2>
         <p>
             Želiš probati neku MOVE aktivnost koju još nismo predstavili?
             Reci nam što nedostaje.
         </p>
-
-        <a href="/hr/#try-form" class="category-suggest-link">
-            PREDLOŽI TRY →
-        </a>
-
+        <a href="/hr/#try-form" class="category-suggest-link">PREDLOŽI TRY →</a>
     </section>
-
-    <!-- =========================
-         EXPLORE OTHER CATEGORIES
-    ========================= -->
-
-    <div
-        class="category-other-categories"
-        style="text-align: center; padding: 24px 20px 48px;"
-    >
-
+    <div class="category-other-categories" style="text-align: center; padding: 24px 20px 48px;">
         <a href="/hr/#find-your-try" class="category-suggest-link">
             ISTRAŽI OSTALE KATEGORIJE →
         </a>
-
     </div>
-
 </main>
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script src="../script.js"></script>
-
 </body>
-
 </html>
