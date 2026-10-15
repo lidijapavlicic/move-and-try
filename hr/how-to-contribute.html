@@ -11,6 +11,8 @@
 
   <link rel="canonical" href="https://moveandtry.com/hr/how-to-contribute.html">
   <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/how-to-contribute.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/how-to-contribute.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/how-to-contribute.html">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,7 +80,6 @@
       --cg-ink: #252923;
       --cg-muted: #62675f;
       --cg-line: #dcded5;
-
       background: var(--cg-bg);
       color: var(--cg-ink);
       font-family: 'Manrope', sans-serif;
@@ -531,6 +532,8 @@
     <a href="/hr/behind-move-and-try.html" class="header-behind-link">IZA MOVE & TRY</a>
 
     <div class="header-language">
+      <a href="/how-to-contribute.html" onclick="setLanguage('en')">EN</a>
+      <span>|</span>
       <span class="language-active">HR</span>
     </div>
 
@@ -552,6 +555,8 @@
   </nav>
 
   <div class="mobile-menu-language">
+    <a href="/how-to-contribute.html" onclick="setLanguage('en')">EN</a>
+    <span>|</span>
     <span class="language-active">HR</span>
   </div>
 </div>
@@ -800,10 +805,7 @@
               šaljemo na pregled prije objave.
             </p>
 
-            <a
-              href="/hr/be-part-of-where-to-try.html"
-              class="cg-action"
-            >
+            <a href="/hr/be-part-of-where-to-try.html" class="cg-action">
               PRIJAVI SVOJE MJESTO <span aria-hidden="true">→</span>
             </a>
 
@@ -951,14 +953,6 @@
 <script src="../script.js"></script>
 
 <script>
-  /*
-    Izravne poveznice na pojedine odjeljke:
-    #iskustvo
-    #vodic
-    #strucnjak
-    #gdje-probati
-    #the-journal
-  */
   (function () {
     const sections = document.querySelectorAll('.cg-option');
 
