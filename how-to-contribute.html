@@ -1,0 +1,994 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>How to Be Part of MOVE & TRY | MOVE & TRY</title>
+  <meta name="description" content="There are many ways to be part of MOVE & TRY. Share your experience, write a guide, introduce your expertise, offer a place to try something new, or contribute to The Journal.">
+
+  <link rel="canonical" href="https://moveandtry.com/how-to-contribute.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/how-to-contribute.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/how-to-contribute.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/how-to-contribute.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PREYRXPPN8');
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* NAVIGATION */
+    .header-behind-link {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
+    }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
+    @media (min-width: 769px) {
+      .site-header {
+        grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+        gap: 16px;
+      }
+
+      .desktop-nav {
+        gap: clamp(12px, 2vw, 38px);
+      }
+
+      .desktop-nav a {
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 1250px) and (min-width: 769px) {
+      .header-behind-link {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-behind-link {
+        display: none;
+      }
+    }
+
+    /* HOW TO CONTRIBUTE PAGE ONLY */
+    .contribute-guide {
+      --cg-bg: #f7f6f1;
+      --cg-dark: #1f2a18;
+      --cg-ink: #252923;
+      --cg-muted: #62675f;
+      --cg-line: #dcded5;
+
+      background: var(--cg-bg);
+      color: var(--cg-ink);
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .contribute-guide *,
+    .contribute-guide *::before,
+    .contribute-guide *::after {
+      box-sizing: border-box;
+    }
+
+    .cg-container {
+      width: min(1120px, calc(100% - 80px));
+      margin: 0 auto;
+    }
+
+    .cg-hero {
+      padding: 112px 0 100px;
+      text-align: center;
+      border-bottom: 1px solid var(--cg-line);
+    }
+
+    .cg-eyebrow {
+      margin: 0 0 25px;
+      color: #6f7967;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .cg-hero h1 {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(3.3rem, 7vw, 6.6rem);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -.045em;
+    }
+
+    .cg-lead {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--cg-muted);
+      font-size: clamp(15px, 1.5vw, 18px);
+      line-height: 1.9;
+    }
+
+    .cg-intro {
+      padding: 75px 0 45px;
+      text-align: center;
+    }
+
+    .cg-intro h2,
+    .cg-rules h2 {
+      margin: 0 0 18px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .cg-intro p:last-child {
+      max-width: 640px;
+      margin: 0 auto;
+      color: var(--cg-muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    /* FIVE EXPANDABLE SECTIONS */
+    .cg-options {
+      padding: 0 0 105px;
+    }
+
+    .cg-option {
+      margin: 0 0 16px;
+      border: 1px solid var(--cg-line);
+      background: #fff;
+      transition: border-color .25s ease;
+    }
+
+    .cg-option[open] {
+      border-color: #aeb8a7;
+    }
+
+    .cg-option summary {
+      display: grid;
+      grid-template-columns: 55px minmax(0, 1fr) 42px;
+      align-items: center;
+      gap: 20px;
+      min-height: 146px;
+      padding: 28px 36px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .cg-option summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .cg-option summary:focus-visible {
+      outline: 3px solid #6f7967;
+      outline-offset: -4px;
+    }
+
+    .cg-number {
+      align-self: start;
+      padding-top: 8px;
+      color: #8b9585;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+
+    .cg-option-heading {
+      display: block;
+      min-width: 0;
+    }
+
+    .cg-option-title {
+      display: block;
+      margin-bottom: 10px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(1.7rem, 3vw, 2.7rem);
+      line-height: 1.15;
+      font-weight: 400;
+    }
+
+    .cg-option-subtitle {
+      display: block;
+      color: var(--cg-muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .cg-plus {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--cg-line);
+      border-radius: 50%;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1;
+      transition: transform .25s ease;
+    }
+
+    .cg-option[open] .cg-plus {
+      transform: rotate(45deg);
+    }
+
+    .cg-option-body {
+      padding: 0 36px 44px 111px;
+    }
+
+    .cg-option-body-inner {
+      padding-top: 34px;
+      border-top: 1px solid var(--cg-line);
+    }
+
+    .cg-option-body h3 {
+      margin: 35px 0 16px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 25px;
+      font-weight: 400;
+    }
+
+    .cg-option-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .cg-option-body p,
+    .cg-option-body li {
+      color: #50564e;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .cg-option-body ol,
+    .cg-option-body ul {
+      margin: 0 0 25px;
+      padding-left: 23px;
+    }
+
+    .cg-option-body li {
+      padding-left: 5px;
+      margin-bottom: 9px;
+    }
+
+    .cg-option-body li::marker {
+      color: #6f7967;
+      font-weight: 700;
+    }
+
+    .cg-info {
+      margin: 30px 0;
+      padding: 24px 28px;
+      background: #f7f6f1;
+      border-left: 3px solid #83917a;
+    }
+
+    .cg-info p {
+      margin: 0;
+    }
+
+    .cg-info p + p {
+      margin-top: 10px;
+    }
+
+    .cg-info strong {
+      color: var(--cg-ink);
+    }
+
+    .cg-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      min-height: 50px;
+      padding: 15px 25px;
+      margin-top: 12px;
+      background: var(--cg-dark);
+      border: 1px solid var(--cg-dark);
+      color: #fff !important;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .cg-action:hover {
+      background: transparent;
+      color: var(--cg-dark) !important;
+    }
+
+    .cg-action:focus-visible {
+      outline: 3px solid #6f7967;
+      outline-offset: 3px;
+    }
+
+    .cg-secondary-link {
+      display: inline-block;
+      margin: 18px 0 0;
+      color: var(--cg-dark);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* SHARED GUIDELINES */
+    .cg-rules {
+      padding: 90px 0 100px;
+      border-top: 1px solid var(--cg-line);
+    }
+
+    .cg-rules-heading {
+      max-width: 730px;
+      margin-bottom: 48px;
+    }
+
+    .cg-rules-heading > p:last-child {
+      color: var(--cg-muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .cg-rules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .cg-rule {
+      padding: 35px;
+      background: #fff;
+      border: 1px solid var(--cg-line);
+    }
+
+    .cg-rule-number {
+      display: block;
+      margin-bottom: 25px;
+      color: #84917d;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+    }
+
+    .cg-rule h3 {
+      margin: 0 0 15px;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 400;
+    }
+
+    .cg-rule p {
+      margin: 0;
+      color: var(--cg-muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* FINAL INVITATION */
+    .cg-ending {
+      padding: 95px 30px 105px;
+      background: var(--cg-dark);
+      color: #fff;
+      text-align: center;
+    }
+
+    .cg-ending .cg-eyebrow {
+      color: #d2dbc9;
+    }
+
+    .cg-ending h2 {
+      max-width: 750px;
+      margin: 0 auto 25px;
+      color: #fff;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .cg-ending p:not(.cg-eyebrow) {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: rgba(255, 255, 255, .82);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .cg-ending .cg-action {
+      background: #fff;
+      border-color: #fff;
+      color: var(--cg-dark) !important;
+    }
+
+    .cg-ending .cg-action:hover {
+      background: transparent;
+      color: #fff !important;
+    }
+
+    @media (max-width: 768px) {
+      .cg-container {
+        width: calc(100% - 36px);
+      }
+
+      .cg-hero {
+        padding: 80px 0 75px;
+      }
+
+      .cg-intro {
+        padding: 65px 0 35px;
+      }
+
+      .cg-options {
+        padding-bottom: 75px;
+      }
+
+      .cg-option summary {
+        grid-template-columns: 30px minmax(0, 1fr) 34px;
+        gap: 12px;
+        min-height: 125px;
+        padding: 23px 18px;
+      }
+
+      .cg-number {
+        font-size: 10px;
+      }
+
+      .cg-option-title {
+        font-size: clamp(1.45rem, 6vw, 2rem);
+      }
+
+      .cg-option-subtitle {
+        font-size: 12px;
+      }
+
+      .cg-plus {
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+      }
+
+      .cg-option-body {
+        padding: 0 20px 35px;
+      }
+
+      .cg-option-body-inner {
+        padding-top: 26px;
+      }
+
+      .cg-option-body h3 {
+        font-size: 23px;
+      }
+
+      .cg-info {
+        padding: 20px;
+      }
+
+      .cg-rules {
+        padding: 70px 0;
+      }
+
+      .cg-rules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cg-rule {
+        padding: 27px;
+      }
+
+      .cg-ending {
+        padding: 75px 22px 85px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cg-option,
+      .cg-plus,
+      .cg-action {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/" class="site-logo" aria-label="MOVE & TRY home">
+    <img src="/images/move-and-try-logo.png" alt="MOVE & TRY">
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/#where-to-try">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="/behind-move-and-try.html" class="header-behind-link">BEHIND MOVE & TRY</a>
+
+    <div class="header-language">
+      <span class="language-active">EN</span>
+      <span>|</span>
+      <a href="/hr/how-to-contribute.html" onclick="setLanguage('hr')">HR</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <nav>
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/#where-to-try">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+    <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
+  </nav>
+
+  <div class="mobile-menu-language">
+    <span class="language-active">EN</span>
+    <span>|</span>
+    <a href="/hr/how-to-contribute.html" onclick="setLanguage('hr')">HR</a>
+  </div>
+</div>
+
+<main class="contribute-guide">
+
+  <!-- INTRODUCTION -->
+  <section class="cg-hero">
+    <div class="cg-container">
+      <p class="cg-eyebrow">BE PART OF THE STORY</p>
+      <h1>YOUR STORY COULD INSPIRE SOMEONE TO BEGIN.</h1>
+      <p class="cg-lead">
+        There are many ways to be part of MOVE & TRY.
+        Share what you've experienced, pass on what you know,
+        or help someone find a place to try something new.
+      </p>
+    </div>
+  </section>
+
+  <!-- CHOOSE HOW TO CONTRIBUTE -->
+  <section class="cg-container" aria-labelledby="cg-options-title">
+    <div class="cg-intro">
+      <p class="cg-eyebrow">FIND YOUR WAY TO CONTRIBUTE</p>
+      <h2 id="cg-options-title">HOW WOULD YOU LIKE TO TAKE PART?</h2>
+      <p>
+        Choose what feels right for you.
+        Open a section, see what we're looking for and send us your materials.
+        You don't need writing experience — your perspective is what matters.
+      </p>
+    </div>
+
+    <div class="cg-options">
+
+      <!-- 01 EXPERIENCE -->
+      <details class="cg-option" id="experience">
+        <summary>
+          <span class="cg-number">01</span>
+          <span class="cg-option-heading">
+            <span class="cg-option-title">SHARE YOUR EXPERIENCE</span>
+            <span class="cg-option-subtitle">
+              Tried something new? Tell us what it was really like.
+            </span>
+          </span>
+          <span class="cg-plus" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="cg-option-body">
+          <div class="cg-option-body-inner">
+            <h3>Your story, in your own words.</h3>
+            <p>
+              First attempts don't have to be perfect.
+              We want to hear about real experiences, surprises,
+              challenges and everything you learned along the way.
+            </p>
+
+            <h3>What could you write about?</h3>
+            <ol>
+              <li>What did you decide to try?</li>
+              <li>Why did you choose this particular activity?</li>
+              <li>Did you have any fears, expectations or assumptions?</li>
+              <li>What was your first attempt like?</li>
+              <li>What surprised you, made you laugh or challenged you?</li>
+              <li>What did you learn about the activity or yourself?</li>
+              <li>Would you try it again?</li>
+              <li>What would you say to someone thinking about trying it?</li>
+            </ol>
+
+            <div class="cg-info">
+              <p><strong>Text:</strong> approximately 350–700 words.</p>
+              <p><strong>Photos:</strong> 2–5 authentic photos, if you have them.</p>
+              <p><strong>Byline:</strong> the name you'd like us to publish and a short introduction, if you wish.</p>
+            </div>
+
+            <p>
+              You don't have to answer every question in order.
+              Tell your story your way, and we'll help shape it
+              into a MOVE & TRY feature.
+            </p>
+
+            <a href="/share-experience.html" class="cg-action">
+              SHARE YOUR EXPERIENCE <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 02 GUIDE -->
+      <details class="cg-option" id="guide">
+        <summary>
+          <span class="cg-number">02</span>
+          <span class="cg-option-heading">
+            <span class="cg-option-title">WRITE A GUIDE</span>
+            <span class="cg-option-subtitle">
+              Know an activity well? Help someone take their first step.
+            </span>
+          </span>
+          <span class="cg-plus" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="cg-option-body">
+          <div class="cg-option-body-inner">
+            <h3>Help beginners know what to expect.</h3>
+            <p>
+              MOVE & TRY guides make activities easier to understand,
+              with practical advice and approachable explanations.
+              We're not looking for advertising — we're looking for
+              useful insight from people who know what they're talking about.
+            </p>
+
+            <h3>What would we love to know?</h3>
+            <ol>
+              <li>What is this activity, and how would you explain it to a beginner?</li>
+              <li>Who is it for? Are there any age or other restrictions?</li>
+              <li>What can someone expect on their first visit or attempt?</li>
+              <li>Do they need previous experience, equipment or preparation?</li>
+              <li>What are the most common misconceptions or beginner fears?</li>
+              <li>What benefits can the activity offer?</li>
+              <li>What advice would you give someone who's still unsure?</li>
+              <li>Are there any important safety considerations?</li>
+            </ol>
+
+            <div class="cg-info">
+              <p><strong>Text:</strong> approximately 500–900 words. Bullet-point answers are welcome.</p>
+              <p><strong>Photos:</strong> 3–5 quality photos of the activity.</p>
+              <p><strong>Author:</strong> your name, professional title or role, short bio and an optional link.</p>
+            </div>
+
+            <p>
+              We'll use your answers to prepare a MOVE & TRY guide
+              and send it to you for review before publication.
+            </p>
+
+            <a
+              href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Guide%20contribution"
+              class="cg-action"
+            >
+              SUBMIT A GUIDE PROPOSAL <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 03 EXPERT -->
+      <details class="cg-option" id="expert">
+        <summary>
+          <span class="cg-number">03</span>
+          <span class="cg-option-heading">
+            <span class="cg-option-title">SHARE YOUR EXPERTISE</span>
+            <span class="cg-option-subtitle">
+              Behind every activity are people, knowledge and experience.
+            </span>
+          </span>
+          <span class="cg-plus" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="cg-option-body">
+          <div class="cg-option-body-inner">
+            <h3>We'd love to meet the person behind the work.</h3>
+            <p>
+              Tell us about your journey, your knowledge,
+              your experience and how you work with people.
+              An expert feature isn't a traditional advertisement —
+              it's a chance for readers to discover the person
+              and perspective behind an activity.
+            </p>
+
+            <h3>Introduce yourself through these questions.</h3>
+            <ol>
+              <li>What's your name, and what do you do?</li>
+              <li>How did your journey with this activity begin?</li>
+              <li>What qualifications, training or relevant experience do you have?</li>
+              <li>What motivates you most when working with people?</li>
+              <li>How do you approach beginners?</li>
+              <li>What do you wish people knew before trying this activity?</li>
+              <li>Is there a memorable moment from your work you'd like to share?</li>
+              <li>What would you say to someone ready to take their first step?</li>
+            </ol>
+
+            <div class="cg-info">
+              <p><strong>Text:</strong> approximately 400–700 words.</p>
+              <p><strong>Photos:</strong> 3–5 photos, including a portrait and images of your work.</p>
+              <p><strong>Details:</strong> your name, professional title, field of work and professional link.</p>
+            </div>
+
+            <p>
+              We'll send you the edited feature before publication
+              so you can check the facts and make sure
+              it represents your work accurately.
+            </p>
+
+            <a
+              href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Expert%20feature"
+              class="cg-action"
+            >
+              SUBMIT YOUR INTRODUCTION <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 04 WHERE TO TRY -->
+      <details class="cg-option" id="where-to-try">
+        <summary>
+          <span class="cg-number">04</span>
+          <span class="cg-option-heading">
+            <span class="cg-option-title">OFFER A PLACE TO TRY</span>
+            <span class="cg-option-subtitle">
+              Run a studio, club, workshop, course or other activity?
+            </span>
+          </span>
+          <span class="cg-plus" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="cg-option-body">
+          <div class="cg-option-body-inner">
+            <h3>Help people discover where they can begin.</h3>
+            <p>
+              WHERE TO TRY connects curious visitors
+              with people and places where they can experience
+              an activity for themselves.
+            </p>
+
+            <h3>What information do we need?</h3>
+            <ol>
+              <li>The name of your studio, club, business or organisation.</li>
+              <li>The activity or activities you offer.</li>
+              <li>Your city, neighbourhood and address, if you welcome visitors at a physical location.</li>
+              <li>A short introduction: what do you offer, who is it for and what is it like?</li>
+              <li>Is the activity suitable for complete beginners?</li>
+              <li>What happens on the first visit? Is booking or preparation required?</li>
+              <li>Which age groups is it for? Are there any restrictions?</li>
+              <li>Your website or another way for interested visitors to contact you.</li>
+              <li>The name and email address of your MOVE & TRY contact person.</li>
+            </ol>
+
+            <div class="cg-info">
+              <p><strong>Introduction:</strong> approximately 80–150 words.</p>
+              <p><strong>Photos:</strong> 3–5 photos of your space, activity or team.</p>
+              <p><strong>Contact:</strong> a website or another channel for enquiries.</p>
+            </div>
+
+            <p>
+              MOVE & TRY prepares your listing in the platform's style.
+              We'll send the description and details for your review
+              before publication.
+            </p>
+
+            <a href="/be-part-of-where-to-try.html" class="cg-action">
+              SUBMIT YOUR PLACE <span aria-hidden="true">→</span>
+            </a>
+
+            <p>
+              <a
+                class="cg-secondary-link"
+                href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Where%20to%20Try"
+              >
+                Or contact us directly by email →
+              </a>
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- 05 THE JOURNAL -->
+      <details class="cg-option" id="the-journal">
+        <summary>
+          <span class="cg-number">05</span>
+          <span class="cg-option-heading">
+            <span class="cg-option-title">THE JOURNAL</span>
+            <span class="cg-option-subtitle">
+              Have a story or an idea that deserves its own space?
+            </span>
+          </span>
+          <span class="cg-plus" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="cg-option-body">
+          <div class="cg-option-body-inner">
+            <h3>Have something to share?</h3>
+            <p>
+              Didn't find yourself in the options above,
+              but have a story, an idea or something
+              you'd like to put into words?
+            </p>
+            <p>
+              The Journal might be the right place for you.
+            </p>
+
+            <a href="/write-for-the-journal.html" class="cg-action">
+              WRITE FOR THE JOURNAL <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- SHARED GUIDELINES -->
+  <section class="cg-rules" aria-labelledby="cg-rules-title">
+    <div class="cg-container">
+      <div class="cg-rules-heading">
+        <p class="cg-eyebrow">GOOD TO KNOW</p>
+        <h2 id="cg-rules-title">A FEW THINGS BEFORE YOU SEND.</h2>
+        <p>
+          We want contributing to be simple,
+          and every published feature to be useful,
+          authentic and thoughtfully prepared.
+          Here's how we work with your materials.
+        </p>
+      </div>
+
+      <div class="cg-rules-grid">
+        <article class="cg-rule">
+          <span class="cg-rule-number">01 / MATERIALS</span>
+          <h3>Photos and text</h3>
+          <p>
+            Please send photos as separate JPG, PNG or WebP files,
+            preferably at least 1600 px wide.
+            Avoid watermarks or images embedded in Word documents.
+            You can send your text in a document or directly in an email.
+          </p>
+        </article>
+
+        <article class="cg-rule">
+          <span class="cg-rule-number">02 / AUTHENTICITY</span>
+          <h3>Real stories</h3>
+          <p>
+            We value original photographs and real-life experiences.
+            Your writing doesn't have to be perfect —
+            what matters is that your contribution
+            is honest and genuinely yours.
+          </p>
+        </article>
+
+        <article class="cg-rule">
+          <span class="cg-rule-number">03 / PERMISSIONS</span>
+          <h3>Rights to publish</h3>
+          <p>
+            Please only submit text and images you have the right
+            to authorise for publication on MOVE & TRY.
+            Appropriate permissions are needed for identifiable people,
+            especially children.
+          </p>
+        </article>
+
+        <article class="cg-rule">
+          <span class="cg-rule-number">04 / EDITORIAL</span>
+          <h3>Review before publication</h3>
+          <p>
+            MOVE & TRY edits and formats contributions
+            without changing their meaning.
+            We'll send the prepared version for review
+            before publication. Submitting material doesn't guarantee
+            publication or separate promotion on social media.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL INVITATION -->
+  <section class="cg-ending">
+    <p class="cg-eyebrow">STILL HAVE QUESTIONS?</p>
+    <h2>EVERY GREAT STORY STARTS SOMEWHERE.</h2>
+    <p>
+      Not sure where your idea fits?
+      Get in touch. You don't need to have all the answers
+      before taking the first step.
+    </p>
+
+    <a
+      href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Contribution%20enquiry"
+      class="cg-action"
+    >
+      GET IN TOUCH <span aria-hidden="true">→</span>
+    </a>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>MOVE & TRY</p>
+  <p class="footer-tagline">
+    You don't have to be good at it. You just have to try.
+  </p>
+  <a href="mailto:hello@moveandtry.com">hello@moveandtry.com</a>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+  /*
+    Direct links to individual sections:
+    #experience
+    #guide
+    #expert
+    #where-to-try
+    #the-journal
+  */
+  (function () {
+    const sections = document.querySelectorAll('.cg-option');
+
+    function openFromHash() {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+
+      const target = document.getElementById(id);
+
+      if (target && target.classList.contains('cg-option')) {
+        target.open = true;
+      }
+    }
+
+    sections.forEach(function (section) {
+      section.addEventListener('toggle', function () {
+        if (!section.open) return;
+
+        sections.forEach(function (other) {
+          if (other !== section) {
+            other.open = false;
+          }
+        });
+      });
+    });
+
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+  })();
+</script>
+
+</body>
+</html>
