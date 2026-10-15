@@ -5,29 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>The Journal | Move & Try</title>
-    <meta name="description" content="THE JOURNAL by MOVE & TRY. Priče, razmišljanja, osobne kolumne, inspiracija i novosti iz zajednice.">
+
+    <meta name="description"
+          content="THE JOURNAL by MOVE & TRY. Priče, razmišljanja, osobne kolumne, inspiracija i novosti iz zajednice.">
 
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="canonical" href="https://moveandtry.com/hr/journal.html">
-    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/journal.html">
-    <link rel="alternate" hreflang="en" href="https://moveandtry.com/journal.html">
-    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/journal.html">
+
+    <link rel="canonical"
+          href="https://moveandtry.com/hr/journal.html">
+
+    <link rel="alternate" hreflang="hr"
+          href="https://moveandtry.com/hr/journal.html">
+
+    <link rel="alternate" hreflang="en"
+          href="https://moveandtry.com/journal.html">
+
+    <link rel="alternate" hreflang="x-default"
+          href="https://moveandtry.com/journal.html">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet" href="../style.css">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <!-- Google Analytics -->
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
         gtag('config', 'G-PREYRXPPN8');
     </script>
 
     <style>
+
         /* =====================================
            THE JOURNAL — HR
            ===================================== */
@@ -38,7 +58,9 @@
             min-height: 100vh;
         }
 
-        /* HEADER */
+        /* =====================================
+           HEADER
+           ===================================== */
 
         .journal-page .site-header {
             position: sticky;
@@ -66,7 +88,9 @@
             opacity: 0.55;
         }
 
-        /* HERO */
+        /* =====================================
+           HERO
+           ===================================== */
 
         .journal-hero {
             position: relative;
@@ -133,7 +157,9 @@
             margin: 36px auto 0;
         }
 
-        /* CATEGORIES */
+        /* =====================================
+           CATEGORIES
+           ===================================== */
 
         .journal-category-wrap {
             position: relative;
@@ -181,7 +207,9 @@
             border-bottom-color: #6F7967;
         }
 
-        /* CONTENT */
+        /* =====================================
+           CONTENT
+           ===================================== */
 
         .journal-content {
             max-width: 1280px;
@@ -252,6 +280,50 @@
             margin: 0;
         }
 
+        /* =====================================
+           TYPOGRAPHIC COVER — PERSONAL COLUMNS
+           ===================================== */
+
+        .journal-post-cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            min-width: 0;
+            aspect-ratio: 4 / 3;
+            padding: clamp(22px, 3.5vw, 40px);
+            background: #E9E7DF;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .journal-post-cover-brand {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.17em;
+            color: #6F7967;
+        }
+
+        .journal-post-cover-title {
+            margin: 18px 0;
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(35px, 4.5vw, 66px);
+            font-weight: 400;
+            line-height: 1.08;
+            letter-spacing: -0.035em;
+            color: #20241F;
+            text-wrap: balance;
+        }
+
+        .journal-post-cover-signature {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #6F7967;
+        }
+
         .journal-post-copy {
             min-width: 0;
         }
@@ -291,7 +363,9 @@
             color: #777777;
         }
 
-        /* EMPTY STATE */
+        /* =====================================
+           EMPTY STATE
+           ===================================== */
 
         .journal-empty {
             min-height: 320px;
@@ -333,7 +407,9 @@
             color: #6F7967;
         }
 
-        /* TABLET */
+        /* =====================================
+           TABLET
+           ===================================== */
 
         @media (max-width: 1100px) {
             .journal-behind-link {
@@ -341,7 +417,9 @@
             }
         }
 
-        /* MOBILE */
+        /* =====================================
+           MOBILE
+           ===================================== */
 
         @media (max-width: 700px) {
             .journal-intro {
@@ -382,6 +460,14 @@
                 margin-bottom: 38px;
             }
 
+            .journal-post-cover {
+                padding: 28px;
+            }
+
+            .journal-post-cover-title {
+                font-size: clamp(35px, 9vw, 58px);
+            }
+
             .journal-post-title {
                 font-size: 29px;
             }
@@ -391,7 +477,9 @@
             }
         }
 
-        /* INVITATION TO CONTRIBUTE */
+        /* =====================================
+           INVITATION TO CONTRIBUTE
+           ===================================== */
 
         .journal-contribute {
             max-width: 1184px;
@@ -459,131 +547,266 @@
                 padding: 60px 0 0;
             }
         }
+
     </style>
 </head>
 
 <body class="journal-page">
 
+<!-- =====================================
+     HEADER
+     ===================================== -->
+
 <header class="site-header">
-    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
-        <img src="/images/move-and-try-logo.png" alt="Move & Try">
+
+    <a href="/hr/"
+       class="site-logo"
+       aria-label="Move & Try – početna">
+
+        <img src="/images/move-and-try-logo.png"
+             alt="Move & Try">
+
     </a>
 
     <nav class="desktop-nav">
+
         <a href="/hr/#find-your-try">OTKRIJ</a>
+
         <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+
         <a href="/hr/#where-to-try">GDJE PROBATI</a>
-        <a href="/hr/journal.html" aria-current="page">THE JOURNAL</a>
+
+        <a href="/hr/journal.html"
+           aria-current="page">THE JOURNAL</a>
+
     </nav>
 
     <div class="header-actions journal-header-actions">
-        <a href="/hr/behind-move-and-try.html" class="journal-behind-link">
+
+        <a href="/hr/behind-move-and-try.html"
+           class="journal-behind-link">
             IZA MOVE & TRY
         </a>
 
         <div class="header-language">
-            <a href="/journal.html" onclick="setLanguage('en')">EN</a>
+
+            <a href="/journal.html"
+               onclick="setLanguage('en')">
+                EN
+            </a>
+
             <span>|</span>
+
             <span class="language-active">HR</span>
+
         </div>
 
         <button class="menu-toggle"
                 type="button"
                 aria-label="Otvori izbornik"
                 aria-expanded="false">
+
             <span></span>
             <span></span>
+
         </button>
+
     </div>
+
 </header>
 
+<!-- =====================================
+     MOBILE MENU
+     ===================================== -->
+
 <div class="mobile-menu">
+
     <nav>
+
         <a href="/hr/#find-your-try">OTKRIJ</a>
+
         <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+
         <a href="/hr/#where-to-try">GDJE PROBATI</a>
+
         <a href="/hr/journal.html">THE JOURNAL</a>
-        <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
     </nav>
 
     <div class="mobile-menu-language">
-        <a href="/journal.html" onclick="setLanguage('en')">EN</a>
+
+        <a href="/journal.html"
+           onclick="setLanguage('en')">
+            EN
+        </a>
+
         <span>|</span>
+
         <span class="language-active">HR</span>
+
     </div>
+
 </div>
+
+<!-- =====================================
+     THE JOURNAL
+     ===================================== -->
 
 <main>
 
     <!-- HERO -->
 
     <section class="journal-hero">
-        <div class="journal-intro">
-            <p class="journal-eyebrow">MOVE & TRY PRESENTS</p>
 
-            <h1 class="journal-title">THE JOURNAL.</h1>
+        <div class="journal-intro">
+
+            <p class="journal-eyebrow">
+                MOVE & TRY PRESENTS
+            </p>
+
+            <h1 class="journal-title">
+                THE JOURNAL.
+            </h1>
 
             <p class="journal-subtitle">
                 Priče, razmišljanja, iskustva i sve ono između.
                 Prostor za ljude, ideje, nove početke
                 i trenutke koje vrijedi podijeliti.
             </p>
+
         </div>
+
     </section>
 
-    <!-- CATEGORIES -->
+    <!-- =====================================
+         CATEGORIES
+         ===================================== -->
 
     <div class="journal-category-wrap">
-        <nav class="journal-categories" aria-label="Kategorije Journala">
+
+        <nav class="journal-categories"
+             aria-label="Kategorije Journala">
 
             <button class="journal-category active"
-                    type="button" data-category="all" aria-pressed="true">
+                    type="button"
+                    data-category="all"
+                    aria-pressed="true">
                 SVE
             </button>
 
             <button class="journal-category"
-                    type="button" data-category="editorial" aria-pressed="false">
+                    type="button"
+                    data-category="editorial"
+                    aria-pressed="false">
                 UREDNIČKI TEKSTOVI
             </button>
 
             <button class="journal-category"
-                    type="button" data-category="personal" aria-pressed="false">
+                    type="button"
+                    data-category="personal"
+                    aria-pressed="false">
                 OSOBNE KOLUMNE
             </button>
 
             <button class="journal-category"
-                    type="button" data-category="guest" aria-pressed="false">
+                    type="button"
+                    data-category="guest"
+                    aria-pressed="false">
                 GOSTUJUĆE PRIČE
             </button>
 
             <button class="journal-category"
-                    type="button" data-category="news" aria-pressed="false">
+                    type="button"
+                    data-category="news"
+                    aria-pressed="false">
                 NOVOSTI
             </button>
 
             <button class="journal-category"
-                    type="button" data-category="inspiration" aria-pressed="false">
+                    type="button"
+                    data-category="inspiration"
+                    aria-pressed="false">
                 INSPIRACIJA
             </button>
 
         </nav>
+
     </div>
 
-    <!-- ARTICLES -->
+    <!-- =====================================
+         ARTICLES
+         ===================================== -->
 
-    <section class="journal-content" aria-labelledby="journal-section-heading">
+    <section class="journal-content"
+             aria-labelledby="journal-section-heading">
 
         <div class="journal-content-heading">
-            <h2 class="journal-section-title" id="journal-section-heading">
+
+            <h2 class="journal-section-title"
+                id="journal-section-heading">
                 SVE OBJAVE
             </h2>
 
-            <span class="journal-count" id="journal-count">1 OBJAVA</span>
+            <span class="journal-count"
+                  id="journal-count">
+                2 OBJAVE
+            </span>
+
         </div>
 
-        <div class="journal-posts" id="journal-posts">
+        <div class="journal-posts"
+             id="journal-posts">
 
-            <!-- ARTICLE 1 -->
+            <!-- =====================================
+                 ARTICLE 2 — PERSONAL COLUMN
+                 ===================================== -->
+
+            <a class="journal-post"
+               href="/hr/what-if-i-try.html"
+               data-category="personal">
+
+                <div class="journal-post-cover">
+
+                    <span class="journal-post-cover-brand">
+                        THE JOURNAL.
+                    </span>
+
+                    <h3 class="journal-post-cover-title">
+                        A što ako probam?
+                    </h3>
+
+                    <span class="journal-post-cover-signature">
+                        MOVE&TRY
+                    </span>
+
+                </div>
+
+                <div class="journal-post-copy">
+
+                    <span class="journal-post-category">
+                        OSOBNE KOLUMNE
+                    </span>
+
+                    <p class="journal-post-description">
+                        O poslu, znatiželji, ljudima i jednoj ideji
+                        koja je polako počela dobivati svoj oblik.
+                    </p>
+
+                    <span class="journal-post-author">
+                        Lidija | MOVE&TRY
+                    </span>
+
+                </div>
+
+            </a>
+
+            <!-- =====================================
+                 ARTICLE 1 — EDITORIAL
+                 ===================================== -->
 
             <a class="journal-post"
                href="/hr/why-adults-find-it-harder-to-try-new-things.html"
@@ -620,9 +843,14 @@
 
         </div>
 
-        <!-- EMPTY STATE -->
+        <!-- =====================================
+             EMPTY STATE
+             ===================================== -->
 
-        <div class="journal-empty" id="journal-empty" hidden>
+        <div class="journal-empty"
+             id="journal-empty"
+             hidden>
+
             <h3 class="journal-empty-title">
                 U ovoj kategoriji još nema objava.
             </h3>
@@ -631,17 +859,23 @@
                 Istraži druge kategorije ili nam se vrati uskoro.
             </p>
 
-            <span class="journal-empty-signature">MOVE & TRY</span>
+            <span class="journal-empty-signature">
+                MOVE & TRY
+            </span>
+
         </div>
 
     </section>
 
-    <!-- WRITE FOR THE JOURNAL -->
+    <!-- =====================================
+         WRITE FOR THE JOURNAL
+         ===================================== -->
 
     <section class="journal-contribute"
              aria-labelledby="journal-contribute-title">
 
         <div class="journal-contribute-inner">
+
             <p class="journal-contribute-label">
                 BUDI DIO THE JOURNALA
             </p>
@@ -662,78 +896,130 @@
                href="/hr/write-for-the-journal.html">
                 PIŠI ZA THE JOURNAL &rarr;
             </a>
+
         </div>
 
     </section>
 
 </main>
 
+<!-- =====================================
+     EXISTING SITE SCRIPT
+     ===================================== -->
+
 <script src="../script.js"></script>
 
+<!-- =====================================
+     JOURNAL CATEGORY FILTER
+     ===================================== -->
+
 <script>
-(function () {
-    const buttons = document.querySelectorAll('.journal-category');
-    const posts = document.querySelectorAll('.journal-post');
-    const emptyState = document.getElementById('journal-empty');
-    const heading = document.getElementById('journal-section-heading');
-    const count = document.getElementById('journal-count');
+    (function () {
 
-    const labels = {
-        all: 'SVE OBJAVE',
-        editorial: 'UREĐNIČKI TEKSTOVI',
-        personal: 'OSOBNE KOLUMNE',
-        guest: 'GOSTUJUĆE PRIČE',
-        news: 'NOVOSTI',
-        inspiration: 'INSPIRACIJA'
-    };
+        const buttons = document.querySelectorAll(
+            '.journal-category'
+        );
 
-    function countLabel(number) {
-        if (number === 1) return '1 OBJAVA';
+        const posts = document.querySelectorAll(
+            '.journal-post'
+        );
 
-        if (
-            number % 10 >= 2 &&
-            number % 10 <= 4 &&
-            (number % 100 < 12 || number % 100 > 14)
-        ) {
-            return number + ' OBJAVE';
+        const emptyState = document.getElementById(
+            'journal-empty'
+        );
+
+        const heading = document.getElementById(
+            'journal-section-heading'
+        );
+
+        const count = document.getElementById(
+            'journal-count'
+        );
+
+        const labels = {
+            all: 'SVE OBJAVE',
+            editorial: 'UREĐNIČKI TEKSTOVI',
+            personal: 'OSOBNE KOLUMNE',
+            guest: 'GOSTUJUĆE PRIČE',
+            news: 'NOVOSTI',
+            inspiration: 'INSPIRACIJA'
+        };
+
+        function countLabel(number) {
+
+            if (number === 1) {
+                return '1 OBJAVA';
+            }
+
+            if (
+                number % 10 >= 2 &&
+                number % 10 <= 4 &&
+                (
+                    number % 100 < 12 ||
+                    number % 100 > 14
+                )
+            ) {
+                return number + ' OBJAVE';
+            }
+
+            return number + ' OBJAVA';
         }
 
-        return number + ' OBJAVA';
-    }
+        function filterPosts(category) {
 
-    function filterPosts(category) {
-        let visibleCount = 0;
+            let visibleCount = 0;
+
+            buttons.forEach(function (button) {
+
+                const selected =
+                    button.dataset.category === category;
+
+                button.classList.toggle(
+                    'active',
+                    selected
+                );
+
+                button.setAttribute(
+                    'aria-pressed',
+                    String(selected)
+                );
+
+            });
+
+            posts.forEach(function (post) {
+
+                const matches =
+                    category === 'all' ||
+                    post.dataset.category === category;
+
+                post.hidden = !matches;
+
+                if (matches) {
+                    visibleCount++;
+                }
+
+            });
+
+            heading.textContent = labels[category];
+            count.textContent = countLabel(visibleCount);
+            emptyState.hidden = visibleCount > 0;
+
+        }
 
         buttons.forEach(function (button) {
-            const selected = button.dataset.category === category;
 
-            button.classList.toggle('active', selected);
-            button.setAttribute('aria-pressed', String(selected));
+            button.addEventListener(
+                'click',
+                function () {
+                    filterPosts(button.dataset.category);
+                }
+            );
+
         });
 
-        posts.forEach(function (post) {
-            const matches =
-                category === 'all' ||
-                post.dataset.category === category;
+        filterPosts('all');
 
-            post.hidden = !matches;
-
-            if (matches) visibleCount++;
-        });
-
-        heading.textContent = labels[category];
-        count.textContent = countLabel(visibleCount);
-        emptyState.hidden = visibleCount > 0;
-    }
-
-    buttons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            filterPosts(button.dataset.category);
-        });
-    });
-
-    filterPosts('all');
-})();
+    })();
 </script>
 
 </body>
