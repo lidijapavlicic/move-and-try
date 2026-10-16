@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Ženski boks | Move & Try</title>
+  <meta name="description" content="Otkrij ženski boks kroz MOVE & TRY. Saznaj kako izgleda prvi trening, što ti treba za početak, pročitaj stvarna iskustva i upoznaj savjete trenera.">
+
+  <!-- Stranica je u pripremi -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-PREYRXPPN8');
+  </script>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* ŽENSKI BOKS — FOTOGRAFSKI HERO */
+    .activity-page .activity-header.boxing-photo-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #151416;
+      color: #ffffff;
+      padding: 60px 48px;
+    }
+
+    /* FOTOGRAFIJE */
+    .boxing-photo-hero .boxing-hero-photos {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .boxing-photo-hero .boxing-hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      animation: boxingHeroFade 12s ease-in-out infinite;
+    }
+
+    /* Žena u ringu */
+    .boxing-photo-hero .boxing-hero-photo:first-child {
+      object-position: center 48%;
+      animation-delay: 0s;
+    }
+
+    /* Crno-bijela fotografija treninga */
+    .boxing-photo-hero .boxing-hero-photo:last-child {
+      object-position: center 52%;
+      animation-delay: -6s;
+    }
+
+    /* TAMNI SLOJ PREKO FOTOGRAFIJA */
+    .boxing-photo-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        180deg,
+        rgba(8, 9, 12, 0.43) 0%,
+        rgba(8, 9, 12, 0.60) 48%,
+        rgba(8, 9, 12, 0.90) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* TEKST I NAVIGACIJA U HERO SEKCIJI */
+    .activity-page .boxing-photo-hero .activity-page-type,
+    .activity-page .boxing-photo-hero h1,
+    .activity-page .boxing-photo-hero .activity-page-intro,
+    .activity-page .boxing-photo-hero .activity-page-intro strong,
+    .activity-page .boxing-photo-hero .activity-nav,
+    .activity-page .boxing-photo-hero .activity-nav span {
+      position: relative;
+      z-index: 1;
+      color: #ffffff;
+    }
+
+    .activity-page .boxing-photo-hero .activity-page-type {
+      color: #e2c4a8;
+    }
+
+    .activity-page .boxing-photo-hero .activity-page-intro {
+      color: rgba(255, 255, 255, 0.90);
+    }
+
+    .activity-page .boxing-photo-hero .activity-page-intro strong {
+      color: #ffffff;
+    }
+
+    .activity-page .boxing-photo-hero .activity-nav span {
+      border-color: rgba(255, 255, 255, 0.42);
+    }
+
+    /* ANIMACIJA */
+    @keyframes boxingHeroFade {
+      0%, 42% {
+        opacity: 1;
+      }
+
+      50%, 92% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* MOBILNI PRIKAZ */
+    @media (max-width: 900px) {
+      .activity-page .activity-header.boxing-photo-hero {
+        min-height: 380px;
+        padding: 48px 24px;
+      }
+
+      .boxing-photo-hero .boxing-hero-photo:first-child {
+        object-position: 58% center;
+      }
+
+      .boxing-photo-hero .boxing-hero-photo:last-child {
+        object-position: 75% center;
+      }
+    }
+
+    /* PRISTUPAČNOST */
+    @media (prefers-reduced-motion: reduce) {
+      .boxing-photo-hero .boxing-hero-photo {
+        animation: none;
+        opacity: 0;
+      }
+
+      .boxing-photo-hero .boxing-hero-photo:first-child {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+
+    <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+      <img src="/images/move-and-try-logo.png" alt="Move & Try">
+    </a>
+
+    <nav class="desktop-nav">
+      <a href="/hr/#find-your-try">OTKRIJ</a>
+      <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+      <a href="/hr/#where-to-try">GDJE PROBATI</a>
+      <a href="/hr/journal.html">THE JOURNAL</a>
+    </nav>
+
+    <div class="header-actions">
+
+      <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+        IZA MOVE & TRY
+      </a>
+
+      <div class="header-language">
+        <span class="language-active">HR</span>
+      </div>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Otvori izbornik"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu">
+    <nav>
+      <a href="/hr/#find-your-try">OTKRIJ</a>
+      <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+      <a href="/hr/#where-to-try">GDJE PROBATI</a>
+      <a href="/hr/journal.html">THE JOURNAL</a>
+      <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+    </nav>
+
+    <div class="mobile-menu-language">
+      <span class="language-active">HR</span>
+    </div>
+  </div>
+
+  <!-- ŽENSKI BOKS -->
+  <main class="activity-page">
+
+    <!-- POVRATAK NA MOVE -->
+    <a href="/hr/move.html" class="back-link">
+      ← MOVE
+    </a>
+
+    <!-- FOTOGRAFSKI HERO -->
+    <header class="activity-header boxing-photo-hero">
+
+      <div class="boxing-hero-photos" aria-hidden="true">
+
+        <img
+          class="boxing-hero-photo"
+          src="/images/womens-boxing-hero.jpg"
+          alt=""
+          loading="eager"
+          fetchpriority="high"
+        >
+
+        <img
+          class="boxing-hero-photo"
+          src="/images/womens-boxing-detail.jpg"
+          alt=""
+          loading="eager"
+        >
+
+      </div>
+
+      <p class="activity-page-type">
+        MOVE · ŽENSKI BOKS
+      </p>
+
+      <h1>ŽENSKI BOKS</h1>
+
+      <p class="activity-page-intro">
+        Ne moraš ući u ring da bi otkrila svoju snagu.<br>
+        <strong>Ponekad je prvi udarac samo početak nečeg puno većeg.</strong>
+      </p>
+
+      <div class="activity-nav">
+        <span>VODIČ</span>
+        <span>ISKUSTVA</span>
+        <span>STRUČNJACI</span>
+        <span>GDJE PROBATI</span>
+      </div>
+
+    </header>
+
+    <!-- SADRŽAJ U PRIPREMI -->
+    <section class="activity-content-section">
+
+      <p class="section-label">ISTRAŽI ŽENSKI BOKS</p>
+
+      <h2>SNAGA POČINJE ODLUKOM.</h2>
+
+      <div class="activity-content-grid">
+
+        <!-- VODIČ -->
+        <div class="content-card content-card-coming">
+
+          <span class="content-card-type">
+            KRENI OVDJE · VODIČ
+          </span>
+
+          <h3>PROBAJ BOKS.</h3>
+
+          <p>
+            Kako izgleda prvi trening, što ponijeti,
+            trebaš li vlastite rukavice i zašto
+            ne moraš imati nikakvo prethodno iskustvo.
+            Upoznaj boks korak po korak.
+          </p>
+
+          <span class="content-card-status">
+            USKORO
+          </span>
+
+        </div>
+
+        <!-- ISKUSTVA -->
+        <div class="content-card content-card-coming">
+
+          <span class="content-card-type">
+            STVARNA ISKUSTVA
+          </span>
+
+          <h3>KAKO JE PRVI PUT STATI PRED VREĆU?</h3>
+
+          <p>
+            Prvi udarci, nesigurnost, iznenađenja
+            i osjećaj kada otkriješ koliko
+            energije i samopouzdanja može donijeti
+            jedan trening.
+          </p>
+
+          <span class="content-card-status">
+            USKORO
+          </span>
+
+        </div>
+
+        <!-- STRUČNJACI -->
+        <div class="content-card content-card-coming">
+
+          <span class="content-card-type">
+            STRUČNA PERSPEKTIVA
+          </span>
+
+          <h3>ŠTO BI POČETNICA TREBALA ZNATI?</h3>
+
+          <p>
+            Trenerski pogled na pravilnu tehniku,
+            stav, koordinaciju, sigurnost
+            i postupno napredovanje,
+            bez obzira na početnu kondiciju.
+          </p>
+
+          <span class="content-card-status">
+            USKORO
+          </span>
+
+        </div>
+
+        <!-- GDJE PROBATI -->
+        <div class="content-card content-card-coming">
+
+          <span class="content-card-type">
+            GDJE PROBATI
+          </span>
+
+          <h3>PRONAĐI SVOJ PRVI TRENING.</h3>
+
+          <p>
+            Upoznaj boksačke klubove, trenerice,
+            trenere i programe u kojima
+            žene mogu sigurno isprobati
+            boks uz stručno vodstvo.
+          </p>
+
+          <span class="content-card-status">
+            USKORO
+          </span>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PODIJELI ISKUSTVO -->
+    <section class="activity-contribute">
+
+      <p class="section-label">TVOJE ISKUSTVO</p>
+
+      <h2>PROBALA SI BOKS?</h2>
+
+      <p>
+        Kakav je bio tvoj prvi trening?
+        Jesi li se iznenadila vlastitom snagom,
+        naučila nešto novo ili jednostavno
+        uživala u kretanju?
+        Tvoje iskustvo možda potakne
+        neku drugu ženu da napravi prvi korak.
+      </p>
+
+      <a
+        href="/hr/share-experience.html"
+        class="activity-contribute-link"
+      >
+        PODIJELI SVOJE ISKUSTVO →
+      </a>
+
+    </section>
+
+  </main>
+
+  <script src="../script.js"></script>
+
+</body>
+</html>
