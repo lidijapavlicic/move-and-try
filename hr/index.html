@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -77,9 +76,11 @@
       color: #fff;
       text-decoration: none;
     }
+
     .home-intro .whats-new .new-card.latest-update-card:first-of-type {
       margin-top: 0;
     }
+
     .home-intro .whats-new .new-card.latest-update-card::before,
     .home-intro .whats-new .new-card.latest-update-card::after {
       content: "";
@@ -92,51 +93,62 @@
       pointer-events: none;
       animation: latestPhotoFade 12s ease-in-out infinite;
     }
+
     .home-intro .whats-new .new-card.latest-update-card::before {
       animation-delay: 0s;
     }
+
     .home-intro .whats-new .new-card.latest-update-card::after {
       animation-delay: -6s;
     }
+
     .home-intro .whats-new .new-card.latest-update-pole-dance {
       background: #18151d;
     }
+
     .home-intro .whats-new .new-card.latest-update-pole-dance::before {
       background-image:
         linear-gradient(180deg,rgba(12,10,17,.46) 0%,rgba(12,10,17,.60) 48%,rgba(12,10,17,.88) 100%),
         url('/images/pole-dance-man.jpg');
       background-position: center 35%;
     }
+
     .home-intro .whats-new .new-card.latest-update-pole-dance::after {
       background-image:
         linear-gradient(180deg,rgba(12,10,17,.46) 0%,rgba(12,10,17,.60) 48%,rgba(12,10,17,.88) 100%),
         url('/images/pole-dance-woman.jpg');
       background-position: center 35%;
     }
+
     .home-intro .whats-new .new-card.latest-update-running {
       background: #101b20;
     }
+
     .home-intro .whats-new .new-card.latest-update-running::before {
       background-image:
         linear-gradient(180deg,rgba(7,19,25,.56) 0%,rgba(7,19,25,.66) 48%,rgba(7,19,25,.88) 100%),
         url('/images/running-forest.jpg');
       background-position: center 48%;
     }
+
     .home-intro .whats-new .new-card.latest-update-running::after {
       background-image:
         linear-gradient(180deg,rgba(7,19,25,.56) 0%,rgba(7,19,25,.66) 48%,rgba(7,19,25,.88) 100%),
         url('/images/running-blue.jpg');
       background-position: center 48%;
     }
+
     .home-intro .whats-new .new-card.latest-update-mediation {
       background: #17191a;
     }
+
     .home-intro .whats-new .new-card.latest-update-mediation::before {
       background-image:
         linear-gradient(180deg,rgba(9,11,13,.46) 0%,rgba(9,11,13,.60) 48%,rgba(9,11,13,.88) 100%),
         url('/images/learn-mediation-connection.jpg');
       background-position: center 54%;
     }
+
     .home-intro .whats-new .new-card.latest-update-mediation::after {
       background-image:
         linear-gradient(180deg,rgba(9,11,13,.46) 0%,rgba(9,11,13,.60) 48%,rgba(9,11,13,.88) 100%),
@@ -148,12 +160,14 @@
     .home-intro .whats-new .new-card.latest-update-horse-riding {
       background: #18241e;
     }
+
     .home-intro .whats-new .new-card.latest-update-horse-riding::before {
       background-image:
         linear-gradient(180deg,rgba(9,19,15,.46) 0%,rgba(9,19,15,.62) 48%,rgba(9,19,15,.88) 100%),
         url('/images/horse-riding-1.jpg');
       background-position: center 65%;
     }
+
     .home-intro .whats-new .new-card.latest-update-horse-riding::after {
       background-image:
         linear-gradient(180deg,rgba(9,19,15,.46) 0%,rgba(9,19,15,.62) 48%,rgba(9,19,15,.88) 100%),
@@ -169,22 +183,27 @@
       z-index: 2;
       color: #fff;
     }
+
     .home-intro .whats-new .new-card.latest-update-card .new-type {
       color: #d4c8ae;
     }
+
     @keyframes latestPhotoFade {
       0%,42% { opacity: 1; }
       50%,92% { opacity: 0; }
       100% { opacity: 1; }
     }
+
     @media (prefers-reduced-motion: reduce) {
       .home-intro .whats-new .new-card.latest-update-card::before,
       .home-intro .whats-new .new-card.latest-update-card::after {
         animation: none;
       }
+
       .home-intro .whats-new .new-card.latest-update-card::before {
         opacity: 1;
       }
+
       .home-intro .whats-new .new-card.latest-update-card::after {
         opacity: 0;
       }
@@ -196,6 +215,7 @@
       isolation: isolate;
       overflow: hidden;
     }
+
     #find-your-try .category-card::before {
       content: "";
       position: absolute;
@@ -208,40 +228,50 @@
       pointer-events: none;
       transition: opacity .5s ease, transform .5s ease;
     }
+
     #find-your-try .category-move::before {
       background-image: url('/images/category-move.webp');
     }
+
     #find-your-try .category-learn::before {
       background-image: url('/images/category-learn.webp');
     }
+
     #find-your-try .category-create::before {
       background-image: url('/images/category-create.webp');
     }
+
     #find-your-try .category-explore::before {
       background-image: url('/images/category-explore.webp');
     }
+
     #find-your-try .category-dare::before {
       background-image: url('/images/category-dare.webp');
     }
+
     #find-your-try .category-care::before {
       background-image: url('/images/category-care.webp');
     }
+
     #find-your-try .category-card > * {
       position: relative;
       z-index: 1;
     }
+
     @media (hover: hover) and (pointer: fine) {
       #find-your-try .category-card:hover::before {
         opacity: .65;
         transform: scale(1.035);
       }
     }
+
     @media (max-width: 768px) {
       #find-your-try .category-card::before {
         opacity: .30;
         background-position: right center;
       }
     }
+
     @media (prefers-reduced-motion: reduce) {
       #find-your-try .category-card::before {
         transition: none;
@@ -261,23 +291,36 @@
       background-repeat: no-repeat;
       color: #fff;
     }
-    section.suggest > .section-label { color: #e3dfc8; }
+
+    section.suggest > .section-label {
+      color: #e3dfc8;
+    }
+
     section.suggest > h2,
     section.suggest .suggest-intro,
     section.suggest .suggest-intro strong,
-    section.suggest .suggest-note { color: #fff; }
+    section.suggest .suggest-note {
+      color: #fff;
+    }
+
     section.suggest .privacy-note {
       color: rgba(255,255,255,.90);
     }
-    section.suggest #suggestion-message { color: #fff; }
+
+    section.suggest #suggestion-message {
+      color: #fff;
+    }
+
     section.suggest #try-form input {
       background: #fff;
       color: #171717;
     }
+
     section.suggest #try-form button {
       background: #171717;
       color: #fff;
     }
+
     @media (max-width: 768px) {
       section.suggest {
         background-position: center center;
@@ -298,6 +341,7 @@
       border-radius: 0;
       overflow: hidden;
     }
+
     section.home-hero-image img {
       display: block;
       width: 100%;
@@ -321,20 +365,36 @@
       white-space: nowrap;
       transition: opacity .2s ease;
     }
-    .header-behind-link:hover { opacity: .55; }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
     @media (min-width: 769px) {
       .site-header {
         grid-template-columns: minmax(120px,1fr) auto minmax(120px,1fr);
         gap: 16px;
       }
-      .desktop-nav { gap: clamp(12px,2vw,38px); }
-      .desktop-nav a { white-space: nowrap; }
+
+      .desktop-nav {
+        gap: clamp(12px,2vw,38px);
+      }
+
+      .desktop-nav a {
+        white-space: nowrap;
+      }
     }
+
     @media (max-width: 1250px) and (min-width: 769px) {
-      .header-behind-link { display: none; }
+      .header-behind-link {
+        display: none;
+      }
     }
+
     @media (max-width: 768px) {
-      .header-behind-link { display: none; }
+      .header-behind-link {
+        display: none;
+      }
     }
 
     /* ISTAKNUTI POZIV NA SUDJELOVANJE */
@@ -355,14 +415,38 @@
       text-decoration: none;
       transition: background .2s ease, color .2s ease;
     }
+
     #be-part-of-it .community-actions .community-link-primary:hover {
       background: transparent;
       color: #1f2a18;
+    }
+
+    #be-part-of-it .community-instagram-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: #1f2a18;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      line-height: 1.6;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: opacity .2s ease;
+    }
+
+    #be-part-of-it .community-instagram-link:hover {
+      opacity: .55;
+    }
+
+    .footer-instagram-link {
+      display: block;
+      margin-top: 7px;
     }
   </style>
 </head>
 
 <body>
+
 <header class="site-header">
   <a href="/hr/" class="site-logo">
     <img src="/images/move-and-try-logo.png" alt="Move & Try">
@@ -377,11 +461,13 @@
 
   <div class="header-actions">
     <a href="behind-move-and-try.html" class="header-behind-link">IZA MOVE & TRY</a>
+
     <div class="header-language">
       <a href="/" onclick="setLanguage('en')">EN</a>
       <span>|</span>
       <span class="language-active">HR</span>
     </div>
+
     <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
       <span></span>
       <span></span>
@@ -397,6 +483,7 @@
     <a href="journal.html">THE JOURNAL</a>
     <a href="behind-move-and-try.html">IZA MOVE & TRY</a>
   </nav>
+
   <div class="mobile-menu-language">
     <a href="/" onclick="setLanguage('en')">EN</a>
     <span>|</span>
@@ -422,30 +509,42 @@
             <p>Istraži aktivnosti i pronađi nešto što te zanima.</p>
             <a class="how-step-link" href="#find-your-try">ISTRAŽI AKTIVNOSTI →</a>
           </div>
+
           <div class="how-step">
             <span class="how-step-number">02</span>
             <h3>INSPIRIRAJ SE</h3>
             <p>Pročitaj iskustva, savjete i priče drugih.</p>
           </div>
+
           <div class="how-step">
             <span class="how-step-number">03</span>
             <h3>PRONAĐI MJESTO</h3>
-            <p>Pronađi gdje svoju ideju možeš pretvoriti u iskustvo. <span class="how-coming">USKORO</span></p>
+            <p>
+              Pronađi gdje svoju ideju možeš pretvoriti u iskustvo.
+              <span class="how-coming">USKORO</span>
+            </p>
             <a class="how-step-link" href="#where-to-try">GDJE PROBATI →</a>
           </div>
+
           <div class="how-step">
             <span class="how-step-number">04</span>
             <h3>ISPROBAJ</h3>
             <p>Napravi prvi korak. Ne moraš biti dobar u tome.</p>
           </div>
+
           <div class="how-step">
             <span class="how-step-number">05</span>
             <h3>PODIJELI ISKUSTVO</h3>
             <p>Tvoja priča možda nekoga potakne da i sam proba.</p>
-            <a class="how-step-link" href="/hr/share-experience.html">PODIJELI SVOJU PRIČU →</a>
+            <a class="how-step-link" href="/hr/share-experience.html">
+              PODIJELI SVOJU PRIČU →
+            </a>
           </div>
         </div>
-        <p class="how-it-works-ending">Ne treba ti iskustvo. Samo znatiželja.</p>
+
+        <p class="how-it-works-ending">
+          Ne treba ti iskustvo. Samo znatiželja.
+        </p>
       </div>
     </div>
 
@@ -453,6 +552,7 @@
       <div class="whats-new">
         <p class="section-label">ŠTO JE NOVO</p>
         <h2>NEŠTO NOVO<br>ZA OTKRITI.</h2>
+
         <a href="#" class="new-card" id="latest-update">
           <span class="new-type" id="latest-update-type"></span>
           <h3 id="latest-update-title"></h3>
@@ -467,6 +567,7 @@
 <section class="categories" id="find-your-try">
   <p class="section-label">PRONAĐI SVOJ SLJEDEĆI TRY</p>
   <h2>ŠTO TI SE DANAS RADI?</h2>
+
   <div class="category-grid">
     <a href="move.html" class="category-card category-move">
       <span class="category-number">01</span>
@@ -474,30 +575,35 @@
       <p>Trči. Penji se. Pleši. Planinari. Vozi.</p>
       <span class="category-action">ISTRAŽI MOVE →</span>
     </a>
+
     <a href="learn.html" class="category-card category-learn">
       <span class="category-number">02</span>
       <h3>LEARN</h3>
       <p>Kodiraj. Kuhaj. Govori. Gradi. Razumij.</p>
       <span class="category-action">ISTRAŽI LEARN →</span>
     </a>
+
     <a href="create.html" class="category-card category-create">
       <span class="category-number">03</span>
       <h3>CREATE</h3>
       <p>Piši. Slikaj. Fotografiraj. Stvaraj.</p>
       <span class="category-action">ISTRAŽI CREATE →</span>
     </a>
+
     <a href="explore.html" class="category-card category-explore">
       <span class="category-number">04</span>
       <h3>EXPLORE</h3>
       <p>Otiđi nekamo. Kreni drugim putem. Budi znatiželjan.</p>
       <span class="category-action">ISTRAŽI EXPLORE →</span>
     </a>
+
     <a href="dare.html" class="category-card category-dare">
       <span class="category-number">05</span>
       <h3>DARE</h3>
       <p>Napravi ono od čega se već neko vrijeme odgovaraš.</p>
       <span class="category-action">ISTRAŽI DARE →</span>
     </a>
+
     <a href="care.html" class="category-card category-care">
       <span class="category-number">06</span>
       <h3>CARE</h3>
@@ -505,44 +611,92 @@
       <span class="category-action">ISTRAŽI CARE →</span>
     </a>
   </div>
-  <button class="surprise-button" onclick="surpriseMe()">🎲 IZNENADI ME</button>
+
+  <button class="surprise-button" onclick="surpriseMe()">
+    🎲 IZNENADI ME
+  </button>
 </section>
 
 <section class="community">
   <div class="community-grid">
+
     <div class="community-panel contribute-panel" id="be-part-of-it">
       <p class="section-label">BUDI DIO PRIČE</p>
-      <h2>POSTOJI MNOGO NAČINA<br>DA BUDEŠ DIO MOVE & TRY.</h2>
+
+      <h2>
+        POSTOJI MNOGO NAČINA<br>
+        DA BUDEŠ DIO MOVE & TRY.
+      </h2>
+
       <p class="community-text">
         Podijeli svoje iskustvo. Prenesi znanje. Predloži nešto novo.<br>
         Pokaži nam mjesto koje vrijedi otkriti.<br>
         Svaka priča, ideja i perspektiva može nekoga potaknuti da napravi prvi korak.
       </p>
-      <p class="community-highlight">Move & Try ne gradimo samo za ljude, nego zajedno s njima.</p>
+
+      <p class="community-highlight">
+        Move & Try ne gradimo samo za ljude, nego zajedno s njima.
+      </p>
+
       <div class="community-actions">
-        <a href="/hr/how-to-contribute.html" class="community-link community-link-primary">OTKRIJ KAKO MOŽEŠ SUDJELOVATI →</a>
+        <a
+          href="/hr/how-to-contribute.html"
+          class="community-link community-link-primary"
+        >
+          OTKRIJ KAKO MOŽEŠ SUDJELOVATI →
+        </a>
+
+        <br>
+
+        <a
+          href="https://www.instagram.com/moveandtry/"
+          class="community-instagram-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ILI NAM SE JAVI NA INSTAGRAMU →
+        </a>
       </div>
-      <p class="community-note">Priče · Znanje · Fotografije · Ideje · Mjesta · Ljudi</p>
+
+      <p class="community-note">
+        Priče · Znanje · Fotografije · Ideje · Mjesta · Ljudi
+      </p>
     </div>
 
     <div class="community-panel where-panel" id="where-to-try">
       <p class="section-label">GDJE PROBATI</p>
-      <h2>PRONAŠAO SI NEŠTO<br>ŠTO ŽELIŠ PROBATI?</h2>
+
+      <h2>
+        PRONAŠAO SI NEŠTO<br>
+        ŠTO ŽELIŠ PROBATI?
+      </h2>
+
       <p class="community-text">
         Gradimo mjesto na kojem ćeš moći pronaći
         ljude i mjesta koji ti mogu pomoći da to doživiš i u stvarnom svijetu.
         <br><br>
         Treneri. Studiji. Učitelji. Vodiči. Radionice. Grupe.
       </p>
-      <p class="community-highlight">Otkrij ovdje. Probaj tamo.</p>
-      <span class="community-coming">USKORO</span>
+
+      <p class="community-highlight">
+        Otkrij ovdje. Probaj tamo.
+      </p>
+
+      <span class="community-coming">
+        USKORO
+      </span>
     </div>
+
   </div>
 </section>
 
 <section class="suggest">
   <p class="section-label">TVOJ RED</p>
-  <h2>ŠTO BISMO SLJEDEĆE TREBALI PROBATI?</h2>
+
+  <h2>
+    ŠTO BISMO SLJEDEĆE TREBALI PROBATI?
+  </h2>
+
   <p class="suggest-intro">
     Postoji li nešto o čemu već neko vrijeme razmišljaš?<br>
     Nešto što te zanima, ali još nisi napravio prvi korak?
@@ -550,19 +704,50 @@
     <strong>Reci nam.</strong><br>
     Tvoja ideja možda postane naš sljedeći TRY.
   </p>
+
   <form id="try-form">
-    <input type="text" id="try-input" name="try" placeholder="Volio bih probati..." required>
-    <button type="submit">POŠALJI →</button>
+    <input
+      type="text"
+      id="try-input"
+      name="try"
+      placeholder="Volio bih probati..."
+      required
+    >
+    <button type="submit">
+      POŠALJI →
+    </button>
   </form>
+
   <p id="suggestion-message"></p>
-  <p class="suggest-note">Ti predlažeš. Mi istražujemo. Zajedno gradimo Move & Try.</p>
-  <p class="privacy-note">Ne tražimo tvoje ime ni e-mail.</p>
+
+  <p class="suggest-note">
+    Ti predlažeš. Mi istražujemo. Zajedno gradimo Move & Try.
+  </p>
+
+  <p class="privacy-note">
+    Ne tražimo tvoje ime ni e-mail.
+  </p>
 </section>
 
 <footer class="site-footer">
   <p>MOVE & TRY</p>
-  <p class="footer-tagline">Ne moraš biti dobar u tome. Samo trebaš probati.</p>
-  <a href="mailto:hello@moveandtry.com">hello@moveandtry.com</a>
+
+  <p class="footer-tagline">
+    Ne moraš biti dobar u tome. Samo trebaš probati.
+  </p>
+
+  <a href="mailto:hello@moveandtry.com">
+    hello@moveandtry.com
+  </a>
+
+  <a
+    href="https://www.instagram.com/moveandtry/"
+    class="footer-instagram-link"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Instagram · @moveandtry
+  </a>
 </footer>
 
 <script src="../script.js"></script>
