@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -41,21 +40,55 @@
       white-space: nowrap;
       transition: opacity .2s ease;
     }
-    .header-behind-link:hover { opacity: .55; }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
+    .where-instagram-link {
+      display: block;
+      width: fit-content;
+      margin-top: 18px;
+      color: #1f2a18;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      line-height: 1.6;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: opacity .2s ease;
+    }
+
+    .where-instagram-link:hover {
+      opacity: .55;
+    }
 
     @media (min-width: 769px) {
       .site-header {
         grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
         gap: 16px;
       }
-      .desktop-nav { gap: clamp(12px, 2vw, 38px); }
-      .desktop-nav a { white-space: nowrap; }
+
+      .desktop-nav {
+        gap: clamp(12px, 2vw, 38px);
+      }
+
+      .desktop-nav a {
+        white-space: nowrap;
+      }
     }
+
     @media (max-width: 1250px) and (min-width: 769px) {
-      .header-behind-link { display: none; }
+      .header-behind-link {
+        display: none;
+      }
     }
+
     @media (max-width: 768px) {
-      .header-behind-link { display: none; }
+      .header-behind-link {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -120,8 +153,20 @@
       Pomozi ljudima pronaći mjesto gdje to mogu stvarno probati.
     </p>
 
-    <a href="mailto:hello@moveandtry.com?subject=Gdje%20probati%20-%20Dodaj%20mjesto" class="where-contribute-link">
+    <a
+      href="mailto:hello@moveandtry.com?subject=Gdje%20probati%20-%20Dodaj%20mjesto"
+      class="where-contribute-link"
+    >
       DODAJ MJESTO →
+    </a>
+
+    <a
+      href="https://www.instagram.com/moveandtry/"
+      class="where-instagram-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ILI NAM SE JAVI NA INSTAGRAMU →
     </a>
   </section>
 </main>
