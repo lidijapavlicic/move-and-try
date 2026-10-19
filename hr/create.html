@@ -5,8 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/favicon.png">
+
   <title>CREATE | Otkrij svoju kreativnost | Move & Try</title>
-  <meta name="description" content="Otkrij nove načine izražavanja kroz slikanje, fotografiju, pisanje, glazbu i kreativne aktivnosti. Ne mora biti savršeno. Samo probaj.">
+  <meta name="description" content="Otkrij nove načine izražavanja kroz lončarstvo, slikanje, fotografiju, pisanje, glazbu i kreativne aktivnosti. Ne mora biti savršeno. Samo probaj.">
 
   <link rel="canonical" href="https://moveandtry.com/hr/create.html">
   <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/create.html">
@@ -30,11 +31,78 @@
 
   <style>
     .header-behind-link {
-      color:#555; font-family:'Manrope',sans-serif; font-size:11px;
-      font-weight:700; letter-spacing:.04em; text-decoration:none;
-      white-space:nowrap; transition:opacity .2s ease;
+      color:#555;
+      font-family:'Manrope',sans-serif;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-decoration:none;
+      white-space:nowrap;
+      transition:opacity .2s ease;
     }
-    .header-behind-link:hover { opacity:.55; }
+
+    .header-behind-link:hover {
+      opacity:.55;
+    }
+
+    /* Fotografska kartica lončarstva */
+    .create-pottery-card {
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      background:#211a16;
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .create-pottery-card::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      background-image:url('/images/create-pottery-hands.jpg');
+      background-size:cover;
+      background-position:center 48%;
+      transition:transform .5s ease;
+    }
+
+    .create-pottery-card::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(
+        180deg,
+        rgba(12,10,9,.35) 0%,
+        rgba(12,10,9,.55) 40%,
+        rgba(12,10,9,.88) 100%
+      );
+      pointer-events:none;
+    }
+
+    .create-pottery-card:hover::before {
+      transform:scale(1.04);
+    }
+
+    .create-pottery-card .activity-number,
+    .create-pottery-card .activity-content,
+    .create-pottery-card .activity-content h3,
+    .create-pottery-card .activity-description,
+    .create-pottery-card .activity-available {
+      position:relative;
+      z-index:1;
+      color:#fff;
+    }
+
+    .create-pottery-card .activity-available {
+      color:#e3c9a6;
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .create-pottery-card::before {
+        transition:none;
+      }
+    }
   </style>
 </head>
 
@@ -109,15 +177,37 @@
       <h2 id="create-discover-title">ŠTO BI ŽELIO PROBATI?</h2>
 
       <div class="activity-grid">
+
+        <!-- LONČARSTVO -->
+        <a href="/hr/pottery.html" class="activity-card create-pottery-card">
+          <span class="activity-number">01 · CREATE</span>
+
+          <div class="activity-content">
+            <h3>LONČARSTVO</h3>
+            <p class="activity-description">
+              Glina među prstima, lončarsko kolo i zadovoljstvo
+              stvaranja nečega vlastitim rukama.
+              Otkrij kako izgleda tvoj prvi susret s lončarstvom.
+            </p>
+            <span class="activity-available">ISTRAŽI LONČARSTVO →</span>
+          </div>
+        </a>
+
+        <!-- BUDUĆE AKTIVNOSTI -->
         <div class="activity-card category-coming-card">
           <span class="activity-number">USKORO U OVOJ KATEGORIJI</span>
 
           <div class="activity-content">
             <h3>NOVE AKTIVNOSTI STIŽU.</h3>
-            <p class="activity-description">Pripremamo ideje, vodiče i kreativna iskustva koja ćeš moći istražiti. U međuvremenu, možda baš ti imaš prijedlog što bismo trebali dodati.</p>
+            <p class="activity-description">
+              Pripremamo ideje, vodiče i kreativna iskustva
+              koja ćeš moći istražiti. U međuvremenu, možda baš
+              ti imaš prijedlog što bismo trebali dodati.
+            </p>
             <span class="activity-available">MOVE &amp; TRY · CREATE</span>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -132,7 +222,7 @@
   </section>
 
   <!-- OSTALE KATEGORIJE -->
-  <div class="category-other-categories" style="text-align: center; padding: 24px 20px 48px;">
+  <div class="category-other-categories" style="text-align:center; padding:24px 20px 48px;">
     <a href="/hr/#find-your-try" class="category-suggest-link">ISTRAŽI OSTALE KATEGORIJE →</a>
   </div>
 </main>
