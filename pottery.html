@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Pottery | Move & Try</title>
+  <meta name="description" content="Discover pottery with MOVE & TRY. Explore working with clay, your first steps at the pottery wheel, real experiences and creative workshops.">
+
+  <!-- Public EN page and language versions -->
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://moveandtry.com/pottery.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/pottery.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/pottery.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/pottery.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PREYRXPPN8');
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Header navigation */
+    .header-behind-link,
+    .header-behind-link:visited {
+      color:#555;
+      font-family:'Manrope',sans-serif;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-decoration:none;
+      white-space:nowrap;
+      transition:opacity .2s ease;
+    }
+
+    .header-behind-link:hover { opacity:.55; }
+
+    /* Photographic hero */
+    .activity-page .activity-header.pottery-photo-hero {
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      min-height:420px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:#191613;
+      color:#fff;
+      padding:60px 48px;
+    }
+
+    .pottery-photo-hero .pottery-hero-photos {
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      overflow:hidden;
+      pointer-events:none;
+    }
+
+    .pottery-photo-hero .pottery-hero-photo {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      animation:potteryHeroFade 12s ease-in-out infinite;
+    }
+
+    /* Black-and-white photo of hands shaping clay */
+    .pottery-photo-hero .pottery-hero-photo:first-child {
+      object-position:center 48%;
+      animation-delay:0s;
+    }
+
+    /* Warm-toned pottery wheel photograph */
+    .pottery-photo-hero .pottery-hero-photo:last-child {
+      object-position:center 55%;
+      animation-delay:-6s;
+    }
+
+    /* Dark overlay */
+    .pottery-photo-hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(
+        180deg,
+        rgba(19,14,12,.48) 0%,
+        rgba(19,14,12,.66) 48%,
+        rgba(16,12,10,.91) 100%
+      );
+      pointer-events:none;
+    }
+
+    /* Text over photographs */
+    .activity-page .pottery-photo-hero .activity-page-type,
+    .activity-page .pottery-photo-hero h1,
+    .activity-page .pottery-photo-hero .activity-page-intro,
+    .activity-page .pottery-photo-hero .activity-page-intro strong,
+    .activity-page .pottery-photo-hero .activity-nav,
+    .activity-page .pottery-photo-hero .activity-nav span {
+      position:relative;
+      z-index:1;
+      color:#fff;
+    }
+
+    .activity-page .pottery-photo-hero .activity-page-type {
+      color:#e3c9a6;
+    }
+
+    .activity-page .pottery-photo-hero .activity-page-intro {
+      color:rgba(255,255,255,.90);
+    }
+
+    .activity-page .pottery-photo-hero .activity-page-intro strong {
+      color:#fff;
+    }
+
+    .activity-page .pottery-photo-hero .activity-nav span {
+      border-color:rgba(255,255,255,.42);
+    }
+
+    /* Photo transition */
+    @keyframes potteryHeroFade {
+      0%,42% { opacity:1; }
+      50%,92% { opacity:0; }
+      100% { opacity:1; }
+    }
+
+    @media (max-width:900px) {
+      .activity-page .activity-header.pottery-photo-hero {
+        min-height:380px;
+        padding:48px 24px;
+      }
+
+      .pottery-photo-hero .pottery-hero-photo:first-child {
+        object-position:56% center;
+      }
+
+      .pottery-photo-hero .pottery-hero-photo:last-child {
+        object-position:62% center;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .pottery-photo-hero .pottery-hero-photo {
+        animation:none;
+        opacity:0;
+      }
+
+      .pottery-photo-hero .pottery-hero-photo:first-child {
+        opacity:1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/" class="site-logo" aria-label="Move & Try – home">
+    <img src="/images/move-and-try-logo.png" alt="Move & Try">
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/#where-to-try">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="/behind-move-and-try.html" class="header-behind-link">BEHIND MOVE & TRY</a>
+
+    <div class="header-language">
+      <span class="language-active" aria-current="page">EN</span>
+      <a href="/hr/pottery.html" lang="hr" aria-label="Prijeđi na hrvatski">HR</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <nav>
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/#where-to-try">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+    <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
+  </nav>
+
+  <div class="mobile-menu-language">
+    <span class="language-active" aria-current="page">EN</span>
+    <a href="/hr/pottery.html" lang="hr" aria-label="Prijeđi na hrvatski">HR</a>
+  </div>
+</div>
+
+<!-- POTTERY -->
+<main class="activity-page">
+
+  <a href="/create.html" class="back-link">← CREATE</a>
+
+  <!-- PHOTOGRAPHIC HERO -->
+  <header class="activity-header pottery-photo-hero">
+
+    <div class="pottery-hero-photos" aria-hidden="true">
+      <img
+        class="pottery-hero-photo"
+        src="/images/create-pottery-hands.jpg"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+      >
+
+      <img
+        class="pottery-hero-photo"
+        src="/images/create-pottery-wheel.jpg"
+        alt=""
+        loading="eager"
+      >
+    </div>
+
+    <p class="activity-page-type">CREATE · POTTERY</p>
+
+    <h1>POTTERY</h1>
+
+    <p class="activity-page-intro">
+      A piece of clay, a little water and your hands.<br>
+      <strong>Sometimes, all it takes is touching something new to discover what you can create.</strong>
+    </p>
+
+    <div class="activity-nav">
+      <span>GUIDE</span>
+      <span>EXPERIENCES</span>
+      <span>EXPERTS</span>
+      <span>WHERE TO TRY</span>
+    </div>
+  </header>
+
+  <!-- CONTENT COMING SOON -->
+  <section class="activity-content-section">
+
+    <p class="section-label">EXPLORE POTTERY</p>
+    <h2>EVERY SHAPE BEGINS WITH A TOUCH.</h2>
+
+    <div class="activity-content-grid">
+
+      <!-- GUIDE -->
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">START HERE · GUIDE</span>
+        <h3>GIVE POTTERY A TRY.</h3>
+        <p>
+          What your first experience with clay looks like, how a pottery wheel works,
+          whether you need any previous experience and what to expect
+          at your first workshop.
+        </p>
+        <span class="content-card-status">COMING SOON</span>
+      </div>
+
+      <!-- EXPERIENCES -->
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">REAL EXPERIENCES</span>
+        <h3>WHAT IS IT LIKE TO SHAPE CLAY FOR THE FIRST TIME?</h3>
+        <p>
+          Clumsy first attempts, clay between your fingers, shapes that don't
+          quite turn out as planned and the satisfaction of making
+          something with your own hands.
+        </p>
+        <span class="content-card-status">COMING SOON</span>
+      </div>
+
+      <!-- EXPERTS -->
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">EXPERT PERSPECTIVE</span>
+        <h3>WHAT DOES IT TAKE TO SHAPE CLAY?</h3>
+        <p>
+          Potters and ceramic artists share how to work with clay,
+          why patience and technique matter, and how a piece
+          takes shape from the first idea to the finished creation.
+        </p>
+        <span class="content-card-status">COMING SOON</span>
+      </div>
+
+      <!-- WHERE TO TRY -->
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">WHERE TO TRY</span>
+        <h3>FIND YOUR FIRST POTTERY WORKSHOP.</h3>
+        <p>
+          Discover pottery studios, creative workshops and places
+          where you can sit at a pottery wheel
+          and explore the art of shaping clay.
+        </p>
+        <span class="content-card-status">COMING SOON</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SHARE YOUR EXPERIENCE -->
+  <section class="activity-contribute">
+    <p class="section-label">YOUR EXPERIENCE</p>
+    <h2>HAVE YOU TRIED POTTERY?</h2>
+    <p>
+      Did the clay slip through your fingers? Did your first creation
+      collapse, or did you completely lose yourself in the process?
+      Share your experience. Your story might be exactly what inspires
+      someone else to sit at a pottery wheel for the first time.
+    </p>
+    <a href="/share-experience.html" class="activity-contribute-link">SHARE YOUR EXPERIENCE →</a>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
