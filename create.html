@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <title>CREATE | Discover Your Creativity | Move & Try</title>
-    <meta name="description" content="Explore new ways to express yourself through painting, photography, writing, music and creative activities. It doesn't have to be perfect. Just try.">
+    <meta name="description" content="Explore new ways to express yourself through pottery, painting, photography, writing, music and creative activities. It doesn't have to be perfect. Just try.">
 
     <link rel="canonical" href="https://moveandtry.com/create.html">
     <link rel="alternate" hreflang="en" href="https://moveandtry.com/create.html">
@@ -48,6 +48,65 @@
 
         .header-behind-link:hover {
             opacity: .55;
+        }
+
+        /* Pottery activity card */
+        .create-pottery-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background: #211a16;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .create-pottery-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-image: url('/images/create-pottery-hands.jpg');
+            background-size: cover;
+            background-position: center 48%;
+            transition: transform .5s ease;
+        }
+
+        .create-pottery-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(
+                180deg,
+                rgba(12,10,9,.35) 0%,
+                rgba(12,10,9,.55) 40%,
+                rgba(12,10,9,.88) 100%
+            );
+            pointer-events: none;
+        }
+
+        .create-pottery-card:hover::before {
+            transform: scale(1.04);
+        }
+
+        .create-pottery-card .activity-number,
+        .create-pottery-card .activity-content,
+        .create-pottery-card .activity-content h3,
+        .create-pottery-card .activity-description,
+        .create-pottery-card .activity-available {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+
+        .create-pottery-card .activity-available {
+            color: #e3c9a6;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .create-pottery-card::before {
+                transition: none;
+            }
         }
     </style>
 </head>
@@ -157,6 +216,33 @@
 
                 <div class="activity-grid">
 
+                    <!-- POTTERY -->
+                    <a href="/pottery.html" class="activity-card create-pottery-card">
+
+                        <span class="activity-number">
+                            01 · CREATE
+                        </span>
+
+                        <div class="activity-content">
+
+                            <h3>POTTERY</h3>
+
+                            <p class="activity-description">
+                                Clay between your fingers, a pottery wheel
+                                and the satisfaction of creating something
+                                with your own hands. Discover what your
+                                first pottery experience could look like.
+                            </p>
+
+                            <span class="activity-available">
+                                EXPLORE POTTERY →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <!-- FUTURE ACTIVITIES -->
                     <div class="activity-card category-coming-card">
 
                         <span class="activity-number">
