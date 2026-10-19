@@ -22,7 +22,11 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
     gtag('config', 'G-PREYRXPPN8');
   </script>
@@ -30,7 +34,9 @@
   <link rel="stylesheet" href="../style.css">
 
   <style>
-    .header-behind-link {
+    /* Zaglavlje */
+    .header-behind-link,
+    .header-behind-link:visited {
       color:#555;
       font-family:'Manrope',sans-serif;
       font-size:11px;
@@ -45,7 +51,7 @@
       opacity:.55;
     }
 
-    /* Fotografska kartica lončarstva */
+    /* LONČARSTVO — kartica s izmjenom fotografija */
     .create-pottery-card {
       position:relative;
       isolation:isolate;
@@ -55,17 +61,39 @@
       text-decoration:none;
     }
 
-    .create-pottery-card::before {
-      content:"";
+    /* Fotografski sloj */
+    .create-pottery-card .pottery-card-photos {
       position:absolute;
       inset:0;
       z-index:-2;
-      background-image:url('/images/create-pottery-hands.jpg');
-      background-size:cover;
-      background-position:center 48%;
+      overflow:hidden;
+      pointer-events:none;
+    }
+
+    .create-pottery-card .pottery-card-photo {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      animation:potteryCardFade 12s ease-in-out infinite;
       transition:transform .5s ease;
     }
 
+    /* Prva fotografija — crno-bijela */
+    .create-pottery-card .pottery-card-photo:first-child {
+      object-position:center 48%;
+      animation-delay:0s;
+    }
+
+    /* Druga fotografija — topli tonovi */
+    .create-pottery-card .pottery-card-photo:last-child {
+      object-position:center 55%;
+      animation-delay:-6s;
+    }
+
+    /* Zatamnjenje preko obje fotografije */
     .create-pottery-card::after {
       content:"";
       position:absolute;
@@ -80,10 +108,12 @@
       pointer-events:none;
     }
 
-    .create-pottery-card:hover::before {
+    /* Blago približavanje fotografije na hover */
+    .create-pottery-card:hover .pottery-card-photo {
       transform:scale(1.04);
     }
 
+    /* Tekst uvijek iznad fotografija */
     .create-pottery-card .activity-number,
     .create-pottery-card .activity-content,
     .create-pottery-card .activity-content h3,
@@ -98,9 +128,41 @@
       color:#e3c9a6;
     }
 
+    /* Izmjena fotografija svakih 6 sekundi */
+    @keyframes potteryCardFade {
+      0%,42% {
+        opacity:1;
+      }
+
+      50%,92% {
+        opacity:0;
+      }
+
+      100% {
+        opacity:1;
+      }
+    }
+
+    @media (max-width:900px) {
+      .create-pottery-card .pottery-card-photo:first-child {
+        object-position:56% center;
+      }
+
+      .create-pottery-card .pottery-card-photo:last-child {
+        object-position:62% center;
+      }
+    }
+
+    /* Pristupačnost — bez animacije ako je korisnik isključio pokrete */
     @media (prefers-reduced-motion:reduce) {
-      .create-pottery-card::before {
+      .create-pottery-card .pottery-card-photo {
+        animation:none;
         transition:none;
+        opacity:0;
+      }
+
+      .create-pottery-card .pottery-card-photo:first-child {
+        opacity:1;
       }
     }
   </style>
@@ -164,11 +226,21 @@
       <h1 id="create-title">CREATE</h1>
       <h2>Stvori nešto.<br>Samo za sebe.</h2>
 
-      <p>Kreativnost nije rezervirana za umjetnike. Ne moraš znati crtati, svirati ili izrađivati savršene stvari. Ponekad je dovoljno prepustiti se ideji, raditi rukama i vidjeti što će nastati.</p>
+      <p>
+        Kreativnost nije rezervirana za umjetnike.
+        Ne moraš znati crtati, svirati ili izrađivati savršene stvari.
+        Ponekad je dovoljno prepustiti se ideji, raditi rukama
+        i vidjeti što će nastati.
+      </p>
 
-      <p>Postoji toliko načina da izraziš svoju kreativnost — od slikanja i keramike do fotografije, pisanja i glazbe.</p>
+      <p>
+        Postoji toliko načina da izraziš svoju kreativnost —
+        od slikanja i keramike do fotografije, pisanja i glazbe.
+      </p>
 
-      <p class="move-app-highlight">Ne mora biti savršeno. Važno je da je tvoje.</p>
+      <p class="move-app-highlight">
+        Ne mora biti savršeno. Važno je da je tvoje.
+      </p>
     </section>
 
     <!-- AKTIVNOSTI -->
@@ -180,16 +252,37 @@
 
         <!-- LONČARSTVO -->
         <a href="/hr/pottery.html" class="activity-card create-pottery-card">
+
+          <!-- DVIJE FOTOGRAFIJE -->
+          <div class="pottery-card-photos" aria-hidden="true">
+            <img
+              class="pottery-card-photo"
+              src="/images/create-pottery-hands.jpg"
+              alt=""
+              loading="eager"
+            >
+            <img
+              class="pottery-card-photo"
+              src="/images/create-pottery-wheel.jpg"
+              alt=""
+              loading="eager"
+            >
+          </div>
+
           <span class="activity-number">01 · CREATE</span>
 
           <div class="activity-content">
             <h3>LONČARSTVO</h3>
+
             <p class="activity-description">
               Glina među prstima, lončarsko kolo i zadovoljstvo
               stvaranja nečega vlastitim rukama.
               Otkrij kako izgleda tvoj prvi susret s lončarstvom.
             </p>
-            <span class="activity-available">ISTRAŽI LONČARSTVO →</span>
+
+            <span class="activity-available">
+              ISTRAŽI LONČARSTVO →
+            </span>
           </div>
         </a>
 
@@ -199,31 +292,47 @@
 
           <div class="activity-content">
             <h3>NOVE AKTIVNOSTI STIŽU.</h3>
+
             <p class="activity-description">
               Pripremamo ideje, vodiče i kreativna iskustva
               koja ćeš moći istražiti. U međuvremenu, možda baš
               ti imaš prijedlog što bismo trebali dodati.
             </p>
-            <span class="activity-available">MOVE &amp; TRY · CREATE</span>
+
+            <span class="activity-available">
+              MOVE &amp; TRY · CREATE
+            </span>
           </div>
         </div>
 
       </div>
     </section>
-
   </div>
 
   <!-- PREDLOŽI AKTIVNOST -->
   <section class="category-suggest">
     <p class="section-label">NEŠTO NEDOSTAJE?</p>
     <h2>IMAŠ DRUGU IDEJU?</h2>
-    <p>Postoji nešto što bi volio stvoriti ili isprobati, a još ga nema na Move &amp; Try? Reci nam što bi želio vidjeti.</p>
-    <a href="/hr/#try-form" class="category-suggest-link">PREDLOŽI TRY →</a>
+
+    <p>
+      Postoji nešto što bi volio stvoriti ili isprobati,
+      a još ga nema na Move &amp; Try?
+      Reci nam što bi želio vidjeti.
+    </p>
+
+    <a href="/hr/#try-form" class="category-suggest-link">
+      PREDLOŽI TRY →
+    </a>
   </section>
 
   <!-- OSTALE KATEGORIJE -->
-  <div class="category-other-categories" style="text-align:center; padding:24px 20px 48px;">
-    <a href="/hr/#find-your-try" class="category-suggest-link">ISTRAŽI OSTALE KATEGORIJE →</a>
+  <div
+    class="category-other-categories"
+    style="text-align:center; padding:24px 20px 48px;"
+  >
+    <a href="/hr/#find-your-try" class="category-suggest-link">
+      ISTRAŽI OSTALE KATEGORIJE →
+    </a>
   </div>
 </main>
 
