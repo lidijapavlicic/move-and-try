@@ -35,7 +35,112 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .header-behind-link {
+        /* CREATE — SAME DIMENSIONS AND STRUCTURE AS MOVE AND LEARN */
+
+        .move-app-page .activity-card.pottery-photo-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 285px;
+            color: #ffffff;
+            background: #17191a;
+        }
+
+        /* Photograph layer */
+        .pottery-photo-card .pottery-card-photos {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .pottery-photo-card .pottery-card-photo {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: potteryCardFade 12s ease-in-out infinite;
+        }
+
+        /* First photograph — black and white */
+        .pottery-photo-card .pottery-card-photo:first-child {
+            object-position: center 48%;
+            animation-delay: 0s;
+        }
+
+        /* Second photograph — warm tones */
+        .pottery-photo-card .pottery-card-photo:last-child {
+            object-position: center 55%;
+            animation-delay: -6s;
+        }
+
+        /* Dark overlay — same as LEARN */
+        .pottery-photo-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                180deg,
+                rgba(9, 11, 13, 0.46) 0%,
+                rgba(9, 11, 13, 0.60) 48%,
+                rgba(9, 11, 13, 0.88) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* Text above photographs */
+        .pottery-photo-card .activity-content,
+        .pottery-photo-card .activity-content h3,
+        .pottery-photo-card .activity-description,
+        .pottery-photo-card .activity-available,
+        .pottery-photo-card .activity-available span,
+        .pottery-photo-card .activity-action {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+        }
+
+        .pottery-photo-card .activity-description {
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .pottery-photo-card .activity-available span {
+            border-color: rgba(255, 255, 255, 0.42);
+        }
+
+        /* Alternating photographs every six seconds */
+        @keyframes potteryCardFade {
+            0%, 42% {
+                opacity: 1;
+            }
+
+            50%, 92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .pottery-photo-card .pottery-card-photo {
+                animation: none;
+                opacity: 0;
+            }
+
+            .pottery-photo-card .pottery-card-photo:first-child {
+                opacity: 1;
+            }
+        }
+
+        /* DESKTOP — BEHIND MOVE & TRY */
+        .header-behind-link,
+        .header-behind-link:visited {
             color: #555;
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
@@ -48,65 +153,6 @@
 
         .header-behind-link:hover {
             opacity: .55;
-        }
-
-        /* Pottery activity card */
-        .create-pottery-card {
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            background: #211a16;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .create-pottery-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -2;
-            background-image: url('/images/create-pottery-hands.jpg');
-            background-size: cover;
-            background-position: center 48%;
-            transition: transform .5s ease;
-        }
-
-        .create-pottery-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background: linear-gradient(
-                180deg,
-                rgba(12,10,9,.35) 0%,
-                rgba(12,10,9,.55) 40%,
-                rgba(12,10,9,.88) 100%
-            );
-            pointer-events: none;
-        }
-
-        .create-pottery-card:hover::before {
-            transform: scale(1.04);
-        }
-
-        .create-pottery-card .activity-number,
-        .create-pottery-card .activity-content,
-        .create-pottery-card .activity-content h3,
-        .create-pottery-card .activity-description,
-        .create-pottery-card .activity-available {
-            position: relative;
-            z-index: 1;
-            color: #fff;
-        }
-
-        .create-pottery-card .activity-available {
-            color: #e3c9a6;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .create-pottery-card::before {
-                transition: none;
-            }
         }
     </style>
 </head>
@@ -217,11 +263,26 @@
                 <div class="activity-grid">
 
                     <!-- POTTERY -->
-                    <a href="/pottery.html" class="activity-card create-pottery-card">
+                    <a href="/pottery.html" class="activity-card pottery-photo-card">
 
-                        <span class="activity-number">
-                            01 · CREATE
-                        </span>
+                        <!-- TWO ALTERNATING PHOTOGRAPHS -->
+                        <div class="pottery-card-photos" aria-hidden="true">
+
+                            <img
+                                class="pottery-card-photo"
+                                src="/images/create-pottery-hands.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
+
+                            <img
+                                class="pottery-card-photo"
+                                src="/images/create-pottery-wheel.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
+
+                        </div>
 
                         <div class="activity-content">
 
@@ -230,45 +291,32 @@
                             <p class="activity-description">
                                 Clay between your fingers, a pottery wheel
                                 and the satisfaction of creating something
-                                with your own hands. Discover what your
-                                first pottery experience could look like.
+                                with your own hands.
+                                Discover what your first pottery
+                                experience could look like.
                             </p>
 
-                            <span class="activity-available">
-                                EXPLORE POTTERY →
-                            </span>
+                            <div class="activity-available">
+                                <span>GUIDE</span>
+                                <span>EXPERIENCES</span>
+                                <span>EXPERTS</span>
+                                <span>WHERE TO TRY</span>
+                            </div>
 
                         </div>
+
+                        <span class="activity-action">
+                            EXPLORE POTTERY →
+                        </span>
 
                     </a>
 
-                    <!-- FUTURE ACTIVITIES -->
-                    <div class="activity-card category-coming-card">
-
-                        <span class="activity-number">
-                            COMING SOON IN THIS CATEGORY
-                        </span>
-
-                        <div class="activity-content">
-
-                            <h3>NEW ACTIVITIES ARE ON THE WAY.</h3>
-
-                            <p class="activity-description">
-                                We're preparing ideas, guides and creative
-                                experiences for you to explore.
-                                In the meantime, maybe you have
-                                a suggestion for what we should add next.
-                            </p>
-
-                            <span class="activity-available">
-                                MOVE &amp; TRY · CREATE
-                            </span>
-
-                        </div>
-
-                    </div>
-
                 </div>
+
+                <!-- SUBTLE COMING SOON LABEL -->
+                <p class="move-app-more">
+                    MORE ACTIVITIES COMING SOON
+                </p>
 
             </section>
 
