@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Urednički prostor | MOVE&TRY</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --ink: #171916;
+      --muted: #6d716a;
+      --line: #dcded6;
+      --green: #687b61;
+      --white: #fff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Manrope, sans-serif;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .topbar {
+      padding: 22px clamp(20px, 5vw, 70px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .07em;
+    }
+
+    .topbar-note {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: var(--green);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 60px 24px 110px;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    h1, h2 {
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      margin: 10px 0 18px;
+      line-height: 1.05;
+    }
+
+    h2 {
+      font-size: 31px;
+      margin: 0 0 20px;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .auth-card {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: clamp(25px, 5vw, 48px);
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+
+    input, textarea, select {
+      display: block;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      padding: 13px 15px;
+      background: var(--white);
+      color: var(--ink);
+      outline-offset: 3px;
+    }
+
+    textarea {
+      min-height: 260px;
+      resize: vertical;
+      line-height: 1.8;
+    }
+
+    .btn {
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--white);
+      padding: 13px 20px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn.green {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 22px;
+    }
+
+    .dashboard-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .section {
+      margin-top: 55px;
+    }
+
+    .article-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .article-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .article-title {
+      margin: 0 0 5px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .article-meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .status {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .editor-panel {
+      margin-top: 35px;
+      padding: clamp(22px, 4vw, 40px);
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .message {
+      margin-top: 18px;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--green);
+      white-space: pre-wrap;
+    }
+
+    .message.error {
+      color: #a13d3d;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) {
+      .article-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .container {
+        padding-top: 35px;
+      }
+
+      .topbar {
+        padding: 18px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="/hr/journal.html" class="brand">MOVE&TRY / THE JOURNAL</a>
+  <div class="topbar-note">UREDNIČKI PROSTOR</div>
+</header>
+
+<main class="container">
+
+  <section id="loading-view">
+    <p class="eyebrow">THE JOURNAL</p>
+    <h1>Pripremamo tvoj prostor...</h1>
+  </section>
+
+  <section id="login-view" hidden>
+    <div class="auth-card">
+      <p class="eyebrow">PRIVATNI PRISTUP</p>
+      <h1>Dobro došla.</h1>
+      <p class="muted">
+        Prijavi se svojim uredničkim računom.
+      </p>
+
+      <form id="login-form">
+        <div class="field">
+          <label for="login-email">E-mail</label>
+          <input id="login-email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="login-password">Lozinka</label>
+          <input id="login-password" type="password" required autocomplete="current-password">
+        </div>
+
+        <button class="btn" type="submit">PRIJAVI SE →</button>
+      </form>
+
+      <div class="actions">
+        <button class="btn secondary" id="forgot-password" type="button">
+          ZABORAVILA SAM LOZINKU
+        </button>
+      </div>
+
+      <p class="message" id="login-message" role="status"></p>
+    </div>
+  </section>
+
+  <section id="password-view" hidden>
+    <div class="auth-card">
+      <p class="eyebrow">POSTAVLJANJE PRISTUPA</p>
+      <h1>Postavi lozinku.</h1>
+      <p class="muted">
+        Odaberi novu lozinku za svoj urednički račun.
+      </p>
+
+      <form id="password-form">
+        <div class="field">
+          <label for="new-password">Nova lozinka</label>
+          <input id="new-password" type="password" minlength="12" required autocomplete="new-password">
+        </div>
+
+        <div class="field">
+          <label for="confirm-password">Ponovi lozinku</label>
+          <input id="confirm-password" type="password" minlength="12" required autocomplete="new-password">
+        </div>
+
+        <button class="btn" type="submit">SPREMI LOZINKU →</button>
+      </form>
+
+      <p class="message" id="password-message" role="status"></p>
+    </div>
+  </section>
+
+  <section id="dashboard-view" hidden>
+
+    <div class="dashboard-head">
+      <div>
+        <p class="eyebrow">THE JOURNAL · UREDNIŠTVO</p>
+        <h1 id="welcome-title">Moji članci.</h1>
+        <p class="muted" id="user-description"></p>
+      </div>
+
+      <div class="top-actions">
+        <button class="btn secondary" id="logout-btn" type="button">
+          ODJAVA
+        </button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn green" id="new-article-btn" type="button">
+        + NOVI ČLANAK
+      </button>
+    </div>
+
+    <section class="section">
+      <p class="eyebrow">MOJI TEKSTOVI</p>
+      <h2>Moji članci</h2>
+      <div id="my-articles" class="article-list"></div>
+    </section>
+
+    <section class="section" id="admin-section" hidden>
+      <p class="eyebrow">ADMINISTRACIJA</p>
+      <h2>Čekaju tvoje odobrenje</h2>
+      <div id="pending-articles" class="article-list"></div>
+    </section>
+
+    <section id="editor-panel" class="editor-panel" hidden>
+      <p class="eyebrow">UREĐIVANJE ČLANKA</p>
+      <h2 id="editor-heading">Novi članak</h2>
+
+      <form id="article-form">
+        <div class="field">
+          <label for="article-title">Naslov</label>
+          <input id="article-title" type="text" maxlength="180">
+        </div>
+
+        <div class="field">
+          <label for="article-excerpt">Kratki opis</label>
+          <textarea id="article-excerpt" style="min-height:100px"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="article-category">Kategorija</label>
+          <select id="article-category">
+            <option value="personal">Osobne kolumne</option>
+            <option value="editorial">Urednički tekstovi</option>
+            <option value="guest">Gostujuće priče</option>
+            <option value="news">Novosti</option>
+            <option value="inspiration">Inspiracija</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="article-content">Tekst članka</label>
+          <textarea id="article-content" placeholder="Ovdje počinje tvoja priča..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="article-cover">Poveznica na naslovnu fotografiju (opcionalno)</label>
+          <input id="article-cover" type="url" placeholder="https://...">
+        </div>
+
+        <div class="actions">
+          <button class="btn secondary" type="submit">
+            SPREMI SKICU
+          </button>
+
+          <button class="btn green" id="submit-article-btn" type="button" disabled>
+            POŠALJI NA OBJAVU →
+          </button>
+
+          <button class="btn secondary" id="close-editor-btn" type="button">
+            ZATVORI
+          </button>
+        </div>
+      </form>
+
+      <p class="message" id="editor-message" role="status"></p>
+    </section>
+
+    <p class="message" id="dashboard-message" role="status"></p>
+
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  const SUPABASE_URL = 'https://pdyngeaykfpybeafjtpw.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK';
+
+  const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const views = {
+    loading: document.getElementById('loading-view'),
+    login: document.getElementById('login-view'),
+    password: document.getElementById('password-view'),
+    dashboard: document.getElementById('dashboard-view')
+  };
+
+  let currentUser = null;
+  let currentProfile = null;
+  let currentArticleId = null;
+  let currentArticleStatus = null;
+  let myArticles = [];
+  let pendingArticles = [];
+  let passwordFlow = false;
+
+  function showView(name) {
+    Object.entries(views).forEach(([key, element]) => {
+      element.hidden = key !== name;
+    });
+  }
+
+  function setMessage(id, text, error = false) {
+    const element = document.getElementById(id);
+    element.textContent = text || '';
+    element.classList.toggle('error', error);
+  }
+
+  function statusLabel(status) {
+    return ({
+      draft: 'Skica',
+      submitted: 'Čeka odobrenje',
+      revision: 'Vraćeno na doradu',
+      approved: 'Odobreno',
+      published: 'Objavljeno'
+    })[status] || status;
+  }
+
+  function friendlyError(error) {
+    return error?.message || 'Dogodila se pogreška. Pokušaj ponovno.';
+  }
+
+  async function loadProfile(user) {
+    const { data, error } = await db
+      .from('journal_profiles')
+      .select('id, display_name, role')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (error) throw error;
+    return data;
+  }
+
+  async function refreshDashboard() {
+    const { data, error } = await db
+      .from('journal_articles')
+      .select('id, author_id, title, excerpt, content, category, cover_image, status, updated_at')
+      .order('updated_at', { ascending: false });
+
+    if (error) throw error;
+
+    const articles = data || [];
+    myArticles = articles.filter(a => a.author_id === currentUser.id);
+    pendingArticles = currentProfile.role === 'admin'
+      ? articles.filter(a => a.status === 'submitted')
+      : [];
+
+    renderArticles();
+  }
+
+  function makeArticleRow(article, adminMode = false) {
+    const row = document.createElement('div');
+    row.className = 'article-row';
+
+    const info = document.createElement('div');
+    const title = document.createElement('p');
+    title.className = 'article-title';
+    title.textContent = article.title || 'Bez naslova';
+
+    const meta = document.createElement('div');
+    meta.className = 'article-meta';
+    meta.textContent = `${statusLabel(article.status)} · ${new Date(article.updated_at).toLocaleDateString('hr-HR')}`;
+
+    info.append(title, meta);
+    row.appendChild(info);
+
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+    actions.style.marginTop = '0';
+
+    if (adminMode) {
+      const review = document.createElement('button');
+      review.className = 'btn secondary';
+      review.textContent = 'PREGLEDAJ';
+      review.addEventListener('click', () => reviewArticle(article));
+      actions.appendChild(review);
+    } else if (['draft', 'revision'].includes(article.status)) {
+      const edit = document.createElement('button');
+      edit.className = 'btn secondary';
+      edit.textContent = 'UREDI';
+      edit.addEventListener('click', () => openEditor(article));
+      actions.appendChild(edit);
+    }
+
+    row.appendChild(actions);
+    return row;
+  }
+
+  function renderArticles() {
+    const mine = document.getElementById('my-articles');
+    mine.replaceChildren();
+
+    if (!myArticles.length) {
+      const empty = document.createElement('p');
+      empty.className = 'muted';
+      empty.textContent = 'Još nema spremljenih članaka.';
+      mine.appendChild(empty);
+    } else {
+      myArticles.forEach(a => mine.appendChild(makeArticleRow(a)));
+    }
+
+    const pending = document.getElementById('pending-articles');
+    pending.replaceChildren();
+
+    if (currentProfile.role === 'admin') {
+      document.getElementById('admin-section').hidden = false;
+
+      if (!pendingArticles.length) {
+        const empty = document.createElement('p');
+        empty.className = 'muted';
+        empty.textContent = 'Trenutačno nema članaka koji čekaju odobrenje.';
+        pending.appendChild(empty);
+      } else {
+        pendingArticles.forEach(a => pending.appendChild(makeArticleRow(a, true)));
+      }
+    } else {
+      document.getElementById('admin-section').hidden = true;
+    }
+  }
+
+  function openEditor(article = null) {
+    currentArticleId = article?.id || null;
+    currentArticleStatus = article?.status || 'draft';
+
+    document.getElementById('editor-heading').textContent =
+      article ? 'Uredi članak' : 'Novi članak';
+
+    document.getElementById('article-title').value = article?.title || '';
+    document.getElementById('article-excerpt').value = article?.excerpt || '';
+    document.getElementById('article-content').value = article?.content || '';
+    document.getElementById('article-category').value = article?.category || 'personal';
+    document.getElementById('article-cover').value = article?.cover_image || '';
+
+    document.getElementById('submit-article-btn').disabled = !currentArticleId;
+
+    setMessage('editor-message', '');
+    document.getElementById('editor-panel').hidden = false;
+    document.getElementById('editor-panel').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function closeEditor() {
+    document.getElementById('editor-panel').hidden = true;
+    currentArticleId = null;
+    currentArticleStatus = null;
+    setMessage('editor-message', '');
+  }
+
+  async function saveDraft(event) {
+    event.preventDefault();
+
+    setMessage('editor-message', 'Spremanje...');
+
+    const values = {
+      p_article_id: currentArticleId,
+      p_title: document.getElementById('article-title').value.trim(),
+      p_excerpt: document.getElementById('article-excerpt').value.trim(),
+      p_content: document.getElementById('article-content').value.trim(),
+      p_category: document.getElementById('article-category').value,
+      p_cover_image: document.getElementById('article-cover').value.trim() || null
+    };
+
+    const { data, error } = await db.rpc('journal_save_draft', values);
+
+    if (error) {
+      setMessage('editor-message', friendlyError(error), true);
+      return;
+    }
+
+    currentArticleId = data;
+    document.getElementById('submit-article-btn').disabled = false;
+
+    setMessage('editor-message', 'Skica je spremljena.');
+    await refreshDashboard();
+  }
+
+  async function submitArticle() {
+    if (!currentArticleId) return;
+
+    if (!confirm('Želiš li poslati članak na odobrenje? Nakon slanja nećeš ga moći uređivati dok ne bude vraćen na doradu.')) {
+      return;
+    }
+
+    setMessage('editor-message', 'Slanje na odobrenje...');
+
+    const { error } = await db.rpc('journal_submit_article', {
+      p_article_id: currentArticleId
+    });
+
+    if (error) {
+      setMessage('editor-message', friendlyError(error), true);
+      return;
+    }
+
+    closeEditor();
+    await refreshDashboard();
+    setMessage('dashboard-message', 'Članak je poslan na odobrenje.');
+  }
+
+  function reviewArticle(article) {
+    const approved = confirm(
+      `ČLANAK: ${article.title}\n\n${article.content}\n\nOK = odobri članak\nCancel = vrati na doradu`
+    );
+
+    const method = approved
+      ? 'journal_approve_article'
+      : 'journal_request_revision';
+
+    db.rpc(method, { p_article_id: article.id }).then(async ({ error }) => {
+      if (error) {
+        setMessage('dashboard-message', friendlyError(error), true);
+        return;
+      }
+
+      await refreshDashboard();
+      setMessage(
+        'dashboard-message',
+        approved ? 'Članak je odobren. Još nije javno objavljen.' : 'Članak je vraćen na doradu.'
+      );
+    });
+  }
+
+  async function enterDashboard(user) {
+    const profile = await loadProfile(user);
+
+    if (!profile) {
+      await db.auth.signOut();
+      showView('login');
+      setMessage('login-message', 'Ovaj račun nema pristup uredničkom prostoru.', true);
+      return;
+    }
+
+    currentUser = user;
+    currentProfile = profile;
+
+    document.getElementById('welcome-title').textContent =
+      profile.role === 'admin' ? 'Urednički pregled.' : 'Moji članci.';
+
+    document.getElementById('user-description').textContent =
+      `${profile.display_name || user.email} · ${profile.role === 'admin' ? 'Administrator' : 'Urednica'}`;
+
+    showView('dashboard');
+    await refreshDashboard();
+  }
+
+  async function initialize() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const hash = new URLSearchParams(window.location.hash.substring(1));
+
+      const isRecovery = params.get('type') === 'recovery' || hash.get('type') === 'recovery';
+      const isInvite = params.get('type') === 'invite' || hash.get('type') === 'invite';
+
+      passwordFlow = isRecovery || isInvite;
+
+      if (params.get('code')) {
+        const { error } = await db.auth.exchangeCodeForSession(params.get('code'));
+        if (error) throw error;
+      }
+
+      const { data: { session }, error } = await db.auth.getSession();
+      if (error) throw error;
+
+      if (passwordFlow && session) {
+        showView('password');
+      } else if (session?.user) {
+        await enterDashboard(session.user);
+      } else {
+        showView('login');
+      }
+    } catch (error) {
+      showView('login');
+      setMessage('login-message', friendlyError(error), true);
+    }
+  }
+
+  document.getElementById('login-form').addEventListener('submit', async event => {
+    event.preventDefault();
+    setMessage('login-message', 'Prijava...');
+
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    const { data, error } = await db.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      setMessage('login-message', friendlyError(error), true);
+      return;
+    }
+
+    setMessage('login-message', '');
+    try {
+      await enterDashboard(data.user);
+    } catch (e) {
+      setMessage('login-message', friendlyError(e), true);
+    }
+  });
+
+  document.getElementById('password-form').addEventListener('submit', async event => {
+    event.preventDefault();
+
+    const password = document.getElementById('new-password').value;
+    const confirmation = document.getElementById('confirm-password').value;
+
+    if (password !== confirmation) {
+      setMessage('password-message', 'Lozinke se ne podudaraju.', true);
+      return;
+    }
+
+    setMessage('password-message', 'Spremanje lozinke...');
+
+    const { error } = await db.auth.updateUser({ password });
+
+    if (error) {
+      setMessage('password-message', friendlyError(error), true);
+      return;
+    }
+
+    history.replaceState({}, '', window.location.pathname);
+    passwordFlow = false;
+
+    const { data: { user } } = await db.auth.getUser();
+
+    if (user) {
+      await enterDashboard(user);
+    } else {
+      showView('login');
+    }
+  });
+
+  document.getElementById('forgot-password').addEventListener('click', async () => {
+    const email = document.getElementById('login-email').value.trim();
+
+    if (!email) {
+      setMessage('login-message', 'Prvo upiši svoju e-mail adresu.', true);
+      return;
+    }
+
+    const { error } = await db.auth.resetPasswordForEmail(email, {
+      redirectTo: 'https://moveandtry.com/editor/'
+    });
+
+    setMessage(
+      'login-message',
+      error ? friendlyError(error) : 'Ako račun postoji, poslana je poruka za promjenu lozinke.',
+      !!error
+    );
+  });
+
+  document.getElementById('logout-btn').addEventListener('click', async () => {
+    await db.auth.signOut();
+    currentUser = null;
+    currentProfile = null;
+    showView('login');
+  });
+
+  document.getElementById('new-article-btn').addEventListener('click', () => openEditor());
+
+  document.getElementById('close-editor-btn').addEventListener('click', closeEditor);
+
+  document.getElementById('article-form').addEventListener('submit', saveDraft);
+
+  document.getElementById('submit-article-btn').addEventListener('click', submitArticle);
+
+  initialize();
+})();
+</script>
+
+</body>
+</html>
