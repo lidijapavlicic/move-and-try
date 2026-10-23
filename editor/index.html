@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -205,6 +204,32 @@
       background: var(--white);
       border: 1px solid var(--line);
       padding: 25px;
+    }
+
+    .stat-link {
+      width: 100%;
+      text-align: left;
+      color: var(--ink);
+      cursor: pointer;
+      transition: border-color .18s ease, background-color .18s ease;
+    }
+
+    .stat-link:hover, .stat-link:focus-visible {
+      border-color: var(--green);
+      background: var(--soft);
+    }
+
+    .stat-link:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    .stat-hint {
+      margin-top: 12px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .03em;
     }
 
     .stat-number {
@@ -505,22 +530,29 @@
       <h2 id="home-heading">Pregled sadržaja</h2>
 
       <div class="stats">
-        <div class="stat">
+        <button class="stat stat-link" type="button" data-stat-filter="all" aria-label="Prikaži sve članke">
           <div class="stat-number" id="stat-total">0</div>
           <div class="stat-label" id="stat-total-label">Članci</div>
-        </div>
-        <div class="stat">
+          <div class="stat-hint">OTVORI ČLANKE ↗</div>
+        </button>
+
+        <button class="stat stat-link" type="button" data-stat-filter="draft_revision" aria-label="Prikaži skice i članke na doradi">
           <div class="stat-number" id="stat-drafts">0</div>
           <div class="stat-label">Skice i dorade</div>
-        </div>
-        <div class="stat">
+          <div class="stat-hint">OTVORI ČLANKE ↗</div>
+        </button>
+
+        <button class="stat stat-link" type="button" data-stat-filter="submitted" aria-label="Prikaži članke koji čekaju odobrenje">
           <div class="stat-number" id="stat-pending">0</div>
           <div class="stat-label">Čeka odobrenje</div>
-        </div>
-        <div class="stat">
+          <div class="stat-hint">OTVORI ČLANKE ↗</div>
+        </button>
+
+        <button class="stat stat-link" type="button" data-stat-filter="approved_published" aria-label="Prikaži odobrene i objavljene članke">
           <div class="stat-number" id="stat-approved">0</div>
           <div class="stat-label">Odobreno i objavljeno</div>
-        </div>
+          <div class="stat-hint">OTVORI ČLANKE ↗</div>
+        </button>
       </div>
 
       <section class="section">
@@ -544,9 +576,11 @@
         <input id="article-search" type="search" placeholder="Pretraži naslove i autore...">
         <select id="article-status-filter">
           <option value="all">Svi statusi</option>
+          <option value="draft_revision">Skice i dorade</option>
           <option value="draft">Skice</option>
           <option value="submitted">Čeka odobrenje</option>
           <option value="revision">Na doradi</option>
+          <option value="approved_published">Odobreno i objavljeno</option>
           <option value="approved">Odobreno</option>
           <option value="published">Objavljeno</option>
         </select>
@@ -705,7 +739,7 @@
   </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
 <script>
 (function () {
@@ -715,7 +749,6 @@
   const SUPABASE_KEY = 'sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK';
 
   const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
   const $ = id => document.getElementById(id);
 
   const views = {
@@ -768,6 +801,32 @@
 
   const isAdmin = () => currentProfile?.role === 'admin';
 
+  // Filter za autorske članke.
+  // Dodaje se u postojeću sekciju bez promjene njezina izgleda.
+  const myArticlesSection = $('tab-mine');
+  const myArticlesList = $('my-articles');
+  const myFilters = document.createElement('div');
+  myFilters.className = 'filters';
+
+  const myStatusFilter = document.createElement('select');
+  myStatusFilter.id = 'my-article-status-filter';
+  myStatusFilter.setAttribute('aria-label', 'Filtriraj moje članke');
+
+  [
+    ['all', 'Svi statusi'],
+    ['draft_revision', 'Skice i dorade'],
+    ['submitted', 'Čeka odobrenje'],
+    ['approved_published', 'Odobreno i objavljeno']
+  ].forEach(([value, label]) => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = label;
+    myStatusFilter.appendChild(option);
+  });
+
+  myFilters.appendChild(myStatusFilter);
+  myArticlesSection.insertBefore(myFilters, myArticlesList);
+
   function showView(name) {
     Object.entries(views).forEach(([key, element]) => {
       element.hidden = key !== name;
@@ -786,10 +845,20 @@
 
   function dateLabel(value) {
     if (!value) return '—';
+
     const date = new Date(value);
+
     return Number.isNaN(date.getTime())
       ? '—'
-      : date.toLocaleDateString('hr-HR');
+      : new Intl.DateTimeFormat('hr-HR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hourCycle: 'h23',
+          timeZone: 'Europe/Zagreb'
+        }).format(date);
   }
 
   function statusLabel(status) {
@@ -807,8 +876,10 @@
 
   function createElement(tag, className, text) {
     const element = document.createElement(tag);
+
     if (className) element.className = className;
     if (text !== undefined) element.textContent = String(text);
+
     return element;
   }
 
@@ -879,6 +950,7 @@
 
       if (result.error) {
         profiles = [currentProfile];
+
         setMessage(
           'dashboard-message',
           'Članci su učitani, ali popis suradnika nije dostupan: ' +
@@ -926,10 +998,7 @@
       isAdmin() ? 'Urednički pregled' : 'Pregled mojih članaka';
 
     renderArticleList('recent-articles', visible.slice(0, 5));
-    renderArticleList(
-      'my-articles',
-      articles.filter(a => a.author_id === currentUser.id)
-    );
+    renderMyArticles();
 
     if (isAdmin()) {
       renderAllArticles();
@@ -943,7 +1012,11 @@
     const info = createElement('div', 'article-info');
 
     info.appendChild(
-      createElement('p', 'article-title', article.title || 'Bez naslova')
+      createElement(
+        'p',
+        'article-title',
+        article.title || 'Bez naslova'
+      )
     );
 
     const details = [
@@ -951,7 +1024,9 @@
       dateLabel(article.updated_at)
     ];
 
-    if (isAdmin()) details.push(personName(article.author_id));
+    if (isAdmin()) {
+      details.push(personName(article.author_id));
+    }
 
     info.appendChild(
       createElement('div', 'article-meta', details.join(' · '))
@@ -983,7 +1058,9 @@
     target.replaceChildren();
 
     if (!list.length) {
-      target.appendChild(emptyMessage('Nema članaka za prikaz.'));
+      target.appendChild(
+        emptyMessage('Nema članaka za prikaz.')
+      );
       return;
     }
 
@@ -992,13 +1069,51 @@
     });
   }
 
+  function matchesStatusFilter(article, status) {
+    if (status === 'all') return true;
+
+    if (status === 'draft_revision') {
+      return ['draft', 'revision'].includes(article.status);
+    }
+
+    if (status === 'approved_published') {
+      return ['approved', 'published'].includes(article.status);
+    }
+
+    return article.status === status;
+  }
+
+  function renderMyArticles() {
+    const status = $('my-article-status-filter').value;
+
+    const mine = articles.filter(article =>
+      article.author_id === currentUser.id &&
+      matchesStatusFilter(article, status)
+    );
+
+    renderArticleList('my-articles', mine);
+  }
+
+  function openStatArticles(status) {
+    if (isAdmin()) {
+      $('article-search').value = '';
+      $('article-status-filter').value = status;
+      switchTab('all');
+      renderAllArticles();
+    } else {
+      $('my-article-status-filter').value = status;
+      switchTab('mine');
+      renderMyArticles();
+    }
+  }
+
   function renderAllArticles() {
     const query = $('article-search').value.trim().toLowerCase();
     const status = $('article-status-filter').value;
 
     const filtered = articles.filter(article => {
       const matchesStatus =
-        status === 'all' || article.status === status;
+        matchesStatusFilter(article, status);
 
       const text = [
         article.title,
@@ -1017,7 +1132,9 @@
     target.replaceChildren();
 
     if (!profiles.length) {
-      target.appendChild(emptyMessage('Nema dostupnih suradnika.'));
+      target.appendChild(
+        emptyMessage('Nema dostupnih suradnika.')
+      );
       return;
     }
 
@@ -1061,7 +1178,13 @@
   }
 
   function switchTab(name) {
-    const allowed = ['home', 'mine', 'all', 'pending', 'people'];
+    const allowed = [
+      'home',
+      'mine',
+      'all',
+      'pending',
+      'people'
+    ];
 
     if (!allowed.includes(name)) return;
 
@@ -1077,14 +1200,21 @@
 
     document.querySelectorAll('[data-tab]').forEach(button => {
       const selected = button.dataset.tab === name;
+
       button.classList.toggle('active', selected);
-      button.setAttribute('aria-current', selected ? 'page' : 'false');
+      button.setAttribute(
+        'aria-current',
+        selected ? 'page' : 'false'
+      );
     });
 
     closeEditor();
     closeDetail();
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
   function readEditorValues() {
@@ -1135,6 +1265,7 @@
     }
 
     closeDetail();
+
     currentArticleId = article?.id || null;
     currentArticleRevision = article?.revision_number ?? null;
     currentEditorMode = adminEdit ? 'admin' : 'author';
@@ -1160,7 +1291,10 @@
 
     setMessage('editor-message', '');
     $('editor-panel').hidden = false;
-    $('editor-panel').scrollIntoView({ behavior: 'smooth' });
+
+    $('editor-panel').scrollIntoView({
+      behavior: 'smooth'
+    });
   }
 
   function closeEditor() {
@@ -1171,6 +1305,7 @@
     currentArticleRevision = null;
     currentEditorMode = 'author';
     editorInitialValues = null;
+
     setMessage('editor-message', '');
   }
 
@@ -1186,17 +1321,23 @@
       let result;
 
       if (currentEditorMode === 'admin') {
-        result = await db.rpc('journal_admin_edit_article_checked', {
-          p_article_id: currentArticleId,
-          p_expected_revision: currentArticleRevision,
-          ...values
-        });
+        result = await db.rpc(
+          'journal_admin_edit_article_checked',
+          {
+            p_article_id: currentArticleId,
+            p_expected_revision: currentArticleRevision,
+            ...values
+          }
+        );
       } else {
-        result = await db.rpc('journal_save_draft_checked', {
-          p_article_id: currentArticleId,
-          p_expected_revision: currentArticleRevision,
-          ...values
-        });
+        result = await db.rpc(
+          'journal_save_draft_checked',
+          {
+            p_article_id: currentArticleId,
+            p_expected_revision: currentArticleRevision,
+            ...values
+          }
+        );
       }
 
       if (result.error) throw result.error;
@@ -1208,16 +1349,25 @@
       await refreshDashboard();
 
       const updated = articleById(currentArticleId);
-      currentArticleRevision = updated?.revision_number ?? currentArticleRevision;
+
+      currentArticleRevision =
+        updated?.revision_number ?? currentArticleRevision;
 
       editorInitialValues = readEditorValues();
 
       $('editor-context').textContent =
         `${statusLabel(updated?.status)} · Revizija ${currentArticleRevision ?? '—'}`;
 
-      setMessage('editor-message', 'Izmjene su spremljene.');
+      setMessage(
+        'editor-message',
+        'Izmjene su spremljene.'
+      );
     } catch (error) {
-      setMessage('editor-message', friendlyError(error), true);
+      setMessage(
+        'editor-message',
+        friendlyError(error),
+        true
+      );
     } finally {
       setBusy(false);
     }
@@ -1242,17 +1392,24 @@
     if (!confirmed) return;
 
     setBusy(true);
-    setMessage('editor-message', 'Slanje na odobrenje...');
+    setMessage(
+      'editor-message',
+      'Slanje na odobrenje...'
+    );
 
     try {
-      const { error } = await db.rpc('journal_submit_article', {
-        p_article_id: currentArticleId
-      });
+      const { error } = await db.rpc(
+        'journal_submit_article',
+        {
+          p_article_id: currentArticleId
+        }
+      );
 
       if (error) throw error;
 
       setBusy(false);
       closeEditor();
+
       await refreshDashboard();
 
       setMessage(
@@ -1260,7 +1417,11 @@
         'Članak je uspješno poslan na odobrenje.'
       );
     } catch (error) {
-      setMessage('editor-message', friendlyError(error), true);
+      setMessage(
+        'editor-message',
+        friendlyError(error),
+        true
+      );
     } finally {
       setBusy(false);
     }
@@ -1279,7 +1440,8 @@
     $('revision-section').hidden = true;
     $('revision-note').value = '';
 
-    $('detail-title').textContent = article.title || 'Bez naslova';
+    $('detail-title').textContent =
+      article.title || 'Bez naslova';
 
     const meta = [
       statusLabel(article.status),
@@ -1288,11 +1450,14 @@
       `Revizija ${article.revision_number ?? '—'}`
     ];
 
-    if (isAdmin()) meta.push(personName(article.author_id));
+    if (isAdmin()) {
+      meta.push(personName(article.author_id));
+    }
 
     $('detail-meta').textContent = meta.join(' · ');
     $('detail-excerpt').textContent = article.excerpt || '';
-    $('detail-content').textContent = article.content || 'Članak nema teksta.';
+    $('detail-content').textContent =
+      article.content || 'Članak nema teksta.';
 
     const cover = $('detail-cover');
     cover.hidden = true;
@@ -1301,6 +1466,7 @@
     if (article.cover_image) {
       try {
         const url = new URL(article.cover_image);
+
         if (['https:', 'http:'].includes(url.protocol)) {
           cover.src = url.href;
           cover.hidden = false;
@@ -1314,7 +1480,10 @@
     actions.replaceChildren();
 
     if (isAdmin()) {
-      if (['draft', 'submitted', 'revision', 'approved'].includes(article.status)) {
+      if (
+        ['draft', 'submitted', 'revision', 'approved']
+          .includes(article.status)
+      ) {
         actions.appendChild(
           makeButton(
             'UREDI KAO ADMINISTRATOR',
@@ -1350,20 +1519,34 @@
       ['draft', 'revision'].includes(article.status)
     ) {
       actions.appendChild(
-        makeButton('UREDI SVOJ ČLANAK', () => openEditor(article))
+        makeButton(
+          'UREDI SVOJ ČLANAK',
+          () => openEditor(article)
+        )
       );
     }
 
     setMessage('detail-message', '');
+
     $('detail-comments').replaceChildren();
     $('detail-versions').replaceChildren();
     $('detail-activity').replaceChildren();
 
-    $('detail-comments').appendChild(emptyMessage('Učitavanje komentara...'));
-    $('detail-versions').appendChild(emptyMessage('Učitavanje verzija...'));
-    $('detail-activity').appendChild(emptyMessage('Učitavanje aktivnosti...'));
+    $('detail-comments').appendChild(
+      emptyMessage('Učitavanje komentara...')
+    );
 
-    $('detail-panel').scrollIntoView({ behavior: 'smooth' });
+    $('detail-versions').appendChild(
+      emptyMessage('Učitavanje verzija...')
+    );
+
+    $('detail-activity').appendChild(
+      emptyMessage('Učitavanje aktivnosti...')
+    );
+
+    $('detail-panel').scrollIntoView({
+      behavior: 'smooth'
+    });
 
     await loadArticleDetails(id);
   }
@@ -1372,6 +1555,7 @@
     $('detail-panel').hidden = true;
     $('revision-section').hidden = true;
     selectedArticleId = null;
+
     setMessage('detail-message', '');
   }
 
@@ -1409,24 +1593,30 @@
 
     if (result.error) {
       target.appendChild(
-        emptyMessage('Komentari nisu dostupni: ' + friendlyError(result.error))
+        emptyMessage(
+          'Komentari nisu dostupni: ' +
+          friendlyError(result.error)
+        )
       );
       return;
     }
 
     if (!result.data?.length) {
-      target.appendChild(emptyMessage('Još nema komentara.'));
+      target.appendChild(
+        emptyMessage('Još nema komentara.')
+      );
       return;
     }
 
     result.data.forEach(comment => {
       const box = createElement('div', 'note');
 
-      const type = comment.comment_type === 'revision_request'
-        ? 'Zahtjev za doradu'
-        : comment.comment_type === 'editorial_note'
-          ? 'Urednička napomena'
-          : 'Komentar';
+      const type =
+        comment.comment_type === 'revision_request'
+          ? 'Zahtjev za doradu'
+          : comment.comment_type === 'editorial_note'
+            ? 'Urednička napomena'
+            : 'Komentar';
 
       box.appendChild(
         createElement(
@@ -1437,7 +1627,11 @@
       );
 
       box.appendChild(
-        createElement('div', 'note-body', comment.content || '')
+        createElement(
+          'div',
+          'note-body',
+          comment.content || ''
+        )
       );
 
       target.appendChild(box);
@@ -1450,13 +1644,18 @@
 
     if (result.error) {
       target.appendChild(
-        emptyMessage('Povijest verzija nije dostupna: ' + friendlyError(result.error))
+        emptyMessage(
+          'Povijest verzija nije dostupna: ' +
+          friendlyError(result.error)
+        )
       );
       return;
     }
 
     if (!result.data?.length) {
-      target.appendChild(emptyMessage('Nema spremljenih verzija.'));
+      target.appendChild(
+        emptyMessage('Nema spremljenih verzija.')
+      );
       return;
     }
 
@@ -1476,6 +1675,7 @@
         () => {
           const isHidden = details.hidden;
           details.hidden = !isHidden;
+
           button.textContent = isHidden
             ? 'SAKRIJ VERZIJU'
             : 'PRIKAŽI VERZIJU';
@@ -1485,7 +1685,11 @@
 
       button.style.marginTop = '10px';
 
-      const details = createElement('div', 'version-content');
+      const details = createElement(
+        'div',
+        'version-content'
+      );
+
       details.hidden = true;
 
       const lines = [
@@ -1496,7 +1700,9 @@
         '',
         version.content || '',
         '',
-        version.change_note ? `Napomena: ${version.change_note}` : ''
+        version.change_note
+          ? `Napomena: ${version.change_note}`
+          : ''
       ];
 
       details.textContent = lines.join('\n');
@@ -1512,13 +1718,18 @@
 
     if (result.error) {
       target.appendChild(
-        emptyMessage('Dnevnik nije dostupan: ' + friendlyError(result.error))
+        emptyMessage(
+          'Dnevnik nije dostupan: ' +
+          friendlyError(result.error)
+        )
       );
       return;
     }
 
     if (!result.data?.length) {
-      target.appendChild(emptyMessage('Nema zabilježenih aktivnosti.'));
+      target.appendChild(
+        emptyMessage('Nema zabilježenih aktivnosti.')
+      );
       return;
     }
 
@@ -1538,21 +1749,33 @@
   async function approveArticle(id) {
     if (!isAdmin() || busy) return;
 
-    if (!confirm('Želiš li odobriti ovaj članak? Odobravanje ne znači javnu objavu.')) {
+    if (
+      !confirm(
+        'Želiš li odobriti ovaj članak? Odobravanje ne znači javnu objavu.'
+      )
+    ) {
       return;
     }
 
     setBusy(true);
-    setMessage('detail-message', 'Odobravanje...');
+    setMessage(
+      'detail-message',
+      'Odobravanje...'
+    );
 
     try {
-      const { error } = await db.rpc('journal_approve_article', {
-        p_article_id: id
-      });
+      const { error } = await db.rpc(
+        'journal_approve_article',
+        {
+          p_article_id: id
+        }
+      );
 
       if (error) throw error;
 
       await refreshDashboard();
+
+      setBusy(false);
       await openDetail(id);
 
       setMessage(
@@ -1560,7 +1783,11 @@
         'Članak je odobren. Još nije javno objavljen.'
       );
     } catch (error) {
-      setMessage('detail-message', friendlyError(error), true);
+      setMessage(
+        'detail-message',
+        friendlyError(error),
+        true
+      );
     } finally {
       setBusy(false);
     }
@@ -1582,7 +1809,10 @@
     }
 
     setBusy(true);
-    setMessage('detail-message', 'Vraćanje na doradu...');
+    setMessage(
+      'detail-message',
+      'Vraćanje na doradu...'
+    );
 
     try {
       const { error } = await db.rpc(
@@ -1596,6 +1826,8 @@
       if (error) throw error;
 
       await refreshDashboard();
+
+      setBusy(false);
       await openDetail(id);
 
       setMessage(
@@ -1603,7 +1835,11 @@
         'Članak je vraćen na doradu, a napomena je spremljena.'
       );
     } catch (error) {
-      setMessage('detail-message', friendlyError(error), true);
+      setMessage(
+        'detail-message',
+        friendlyError(error),
+        true
+      );
     } finally {
       setBusy(false);
     }
@@ -1615,12 +1851,19 @@
     const content = $('new-comment').value.trim();
 
     if (!content) {
-      setMessage('detail-message', 'Napiši komentar.', true);
+      setMessage(
+        'detail-message',
+        'Napiši komentar.',
+        true
+      );
       return;
     }
 
     setBusy(true);
-    setMessage('detail-message', 'Spremanje komentara...');
+    setMessage(
+      'detail-message',
+      'Spremanje komentara...'
+    );
 
     try {
       const id = selectedArticleId;
@@ -1637,11 +1880,19 @@
       if (error) throw error;
 
       $('new-comment').value = '';
+
       await loadArticleDetails(id);
 
-      setMessage('detail-message', 'Komentar je spremljen.');
+      setMessage(
+        'detail-message',
+        'Komentar je spremljen.'
+      );
     } catch (error) {
-      setMessage('detail-message', friendlyError(error), true);
+      setMessage(
+        'detail-message',
+        friendlyError(error),
+        true
+      );
     } finally {
       setBusy(false);
     }
@@ -1671,7 +1922,9 @@
     currentProfile = profile;
 
     $('welcome-title').textContent =
-      isAdmin() ? 'Urednički pregled.' : 'Moji članci.';
+      isAdmin()
+        ? 'Urednički pregled.'
+        : 'Moji članci.';
 
     $('user-description').textContent =
       `${profile.display_name || user.email} · ${
@@ -1683,27 +1936,42 @@
     });
 
     showView('dashboard');
+
     await refreshDashboard();
+
     switchTab('home');
   }
 
   async function initialize() {
     try {
-      const params = new URLSearchParams(window.location.search);
-      const hash = new URLSearchParams(window.location.hash.substring(1));
+      const params = new URLSearchParams(
+        window.location.search
+      );
 
-      const type = params.get('type') || hash.get('type');
+      const hash = new URLSearchParams(
+        window.location.hash.substring(1)
+      );
 
-      passwordFlow = type === 'recovery' || type === 'invite';
+      const type =
+        params.get('type') || hash.get('type');
+
+      passwordFlow =
+        type === 'recovery' || type === 'invite';
 
       if (params.get('code')) {
-        const { error } = await db.auth.exchangeCodeForSession(
-          params.get('code')
-        );
+        const { error } =
+          await db.auth.exchangeCodeForSession(
+            params.get('code')
+          );
+
         if (error) throw error;
       }
 
-      const { data: { session }, error } = await db.auth.getSession();
+      const {
+        data: { session },
+        error
+      } = await db.auth.getSession();
+
       if (error) throw error;
 
       if (passwordFlow && session) {
@@ -1715,157 +1983,303 @@
       }
     } catch (error) {
       showView('login');
-      setMessage('login-message', friendlyError(error), true);
+
+      setMessage(
+        'login-message',
+        friendlyError(error),
+        true
+      );
     }
   }
 
-  $('login-form').addEventListener('submit', async event => {
-    event.preventDefault();
-    setMessage('login-message', 'Prijava...');
+  $('login-form').addEventListener(
+    'submit',
+    async event => {
+      event.preventDefault();
 
-    try {
-      const email = $('login-email').value.trim();
-      const password = $('login-password').value;
-
-      const { data, error } = await db.auth.signInWithPassword({
-        email,
-        password
-      });
-
-      if (error) throw error;
-
-      await enterDashboard(data.user);
-    } catch (error) {
-      showView('login');
-      setMessage('login-message', friendlyError(error), true);
-    }
-  });
-
-  $('password-form').addEventListener('submit', async event => {
-    event.preventDefault();
-
-    const password = $('new-password').value;
-    const confirmation = $('confirm-password').value;
-
-    if (password !== confirmation) {
-      setMessage('password-message', 'Lozinke se ne podudaraju.', true);
-      return;
-    }
-
-    setMessage('password-message', 'Spremanje lozinke...');
-
-    try {
-      const { error } = await db.auth.updateUser({ password });
-      if (error) throw error;
-
-      history.replaceState({}, '', window.location.pathname);
-      passwordFlow = false;
-
-      const { data: { user }, error: userError } = await db.auth.getUser();
-      if (userError) throw userError;
-
-      if (user) {
-        await enterDashboard(user);
-      } else {
-        showView('login');
-      }
-    } catch (error) {
-      setMessage('password-message', friendlyError(error), true);
-    }
-  });
-
-  $('forgot-password').addEventListener('click', async () => {
-    const email = $('login-email').value.trim();
-
-    if (!email) {
       setMessage(
         'login-message',
-        'Prvo upiši svoju e-mail adresu.',
-        true
+        'Prijava...'
       );
-      return;
-    }
 
-    setMessage('login-message', 'Slanje poveznice...');
+      try {
+        const email =
+          $('login-email').value.trim();
 
-    const { error } = await db.auth.resetPasswordForEmail(email, {
-      redirectTo: 'https://moveandtry.com/editor/'
-    });
+        const password =
+          $('login-password').value;
 
-    setMessage(
-      'login-message',
-      error
-        ? friendlyError(error)
-        : 'Ako račun postoji, poslana je poruka za promjenu lozinke.',
-      !!error
-    );
-  });
+        const { data, error } =
+          await db.auth.signInWithPassword({
+            email,
+            password
+          });
 
-  $('logout-btn').addEventListener('click', async () => {
-    await db.auth.signOut();
+        if (error) throw error;
 
-    dashboardRequest++;
-    currentUser = null;
-    currentProfile = null;
-    articles = [];
-    profiles = [];
-    selectedArticleId = null;
-    currentArticleId = null;
-
-    $('detail-panel').hidden = true;
-    $('editor-panel').hidden = true;
-
-    showView('login');
-  });
-
-  $('refresh-btn').addEventListener('click', async () => {
-    setMessage('dashboard-message', 'Osvježavanje...');
-
-    try {
-      const profile = await loadProfile(currentUser);
-
-      if (!profile || !profile.is_active) {
-        await db.auth.signOut();
+        await enterDashboard(data.user);
+      } catch (error) {
         showView('login');
+
         setMessage(
           'login-message',
-          'Urednički pristup više nije aktivan.',
+          friendlyError(error),
+          true
+        );
+      }
+    }
+  );
+
+  $('password-form').addEventListener(
+    'submit',
+    async event => {
+      event.preventDefault();
+
+      const password =
+        $('new-password').value;
+
+      const confirmation =
+        $('confirm-password').value;
+
+      if (password !== confirmation) {
+        setMessage(
+          'password-message',
+          'Lozinke se ne podudaraju.',
           true
         );
         return;
       }
 
-      currentProfile = profile;
-      await refreshDashboard();
-      setMessage('dashboard-message', 'Podaci su osvježeni.');
-    } catch (error) {
-      setMessage('dashboard-message', friendlyError(error), true);
+      setMessage(
+        'password-message',
+        'Spremanje lozinke...'
+      );
+
+      try {
+        const { error } =
+          await db.auth.updateUser({
+            password
+          });
+
+        if (error) throw error;
+
+        history.replaceState(
+          {},
+          '',
+          window.location.pathname
+        );
+
+        passwordFlow = false;
+
+        const {
+          data: { user },
+          error: userError
+        } = await db.auth.getUser();
+
+        if (userError) throw userError;
+
+        if (user) {
+          await enterDashboard(user);
+        } else {
+          showView('login');
+        }
+      } catch (error) {
+        setMessage(
+          'password-message',
+          friendlyError(error),
+          true
+        );
+      }
     }
-  });
+  );
 
-  document.querySelectorAll('[data-tab]').forEach(button => {
-    button.addEventListener('click', () => {
-      switchTab(button.dataset.tab);
+  $('forgot-password').addEventListener(
+    'click',
+    async () => {
+      const email =
+        $('login-email').value.trim();
+
+      if (!email) {
+        setMessage(
+          'login-message',
+          'Prvo upiši svoju e-mail adresu.',
+          true
+        );
+        return;
+      }
+
+      setMessage(
+        'login-message',
+        'Slanje poveznice...'
+      );
+
+      const { error } =
+        await db.auth.resetPasswordForEmail(
+          email,
+          {
+            redirectTo:
+              'https://moveandtry.com/editor/'
+          }
+        );
+
+      setMessage(
+        'login-message',
+        error
+          ? friendlyError(error)
+          : 'Ako račun postoji, poslana je poruka za promjenu lozinke.',
+        !!error
+      );
+    }
+  );
+
+  $('logout-btn').addEventListener(
+    'click',
+    async () => {
+      await db.auth.signOut();
+
+      dashboardRequest++;
+
+      currentUser = null;
+      currentProfile = null;
+      articles = [];
+      profiles = [];
+      selectedArticleId = null;
+      currentArticleId = null;
+
+      $('detail-panel').hidden = true;
+      $('editor-panel').hidden = true;
+
+      showView('login');
+    }
+  );
+
+  $('refresh-btn').addEventListener(
+    'click',
+    async () => {
+      setMessage(
+        'dashboard-message',
+        'Osvježavanje...'
+      );
+
+      try {
+        const profile =
+          await loadProfile(currentUser);
+
+        if (!profile || !profile.is_active) {
+          await db.auth.signOut();
+
+          currentUser = null;
+          currentProfile = null;
+
+          showView('login');
+
+          setMessage(
+            'login-message',
+            'Urednički pristup više nije aktivan.',
+            true
+          );
+          return;
+        }
+
+        currentProfile = profile;
+
+        await refreshDashboard();
+
+        setMessage(
+          'dashboard-message',
+          'Podaci su osvježeni.'
+        );
+      } catch (error) {
+        setMessage(
+          'dashboard-message',
+          friendlyError(error),
+          true
+        );
+      }
+    }
+  );
+
+  document
+    .querySelectorAll('[data-tab]')
+    .forEach(button => {
+      button.addEventListener(
+        'click',
+        () => {
+          switchTab(button.dataset.tab);
+        }
+      );
     });
-  });
 
-  $('article-search').addEventListener('input', renderAllArticles);
-  $('article-status-filter').addEventListener('change', renderAllArticles);
+  document
+    .querySelectorAll('[data-stat-filter]')
+    .forEach(button => {
+      button.addEventListener(
+        'click',
+        () => {
+          openStatArticles(
+            button.dataset.statFilter
+          );
+        }
+      );
+    });
 
-  $('new-article-btn').addEventListener('click', () => openEditor());
-  $('close-editor-btn').addEventListener('click', closeEditor);
-  $('article-form').addEventListener('submit', saveDraft);
-  $('submit-article-btn').addEventListener('click', submitArticle);
+  $('my-article-status-filter').addEventListener(
+    'change',
+    renderMyArticles
+  );
 
-  $('close-detail-btn').addEventListener('click', closeDetail);
+  $('article-search').addEventListener(
+    'input',
+    renderAllArticles
+  );
 
-  $('cancel-revision-btn').addEventListener('click', () => {
-    $('revision-section').hidden = true;
-    $('revision-note').value = '';
-  });
+  $('article-status-filter').addEventListener(
+    'change',
+    renderAllArticles
+  );
 
-  $('confirm-revision-btn').addEventListener('click', requestRevision);
-  $('add-comment-btn').addEventListener('click', addComment);
+  $('new-article-btn').addEventListener(
+    'click',
+    () => openEditor()
+  );
+
+  $('close-editor-btn').addEventListener(
+    'click',
+    closeEditor
+  );
+
+  $('article-form').addEventListener(
+    'submit',
+    saveDraft
+  );
+
+  $('submit-article-btn').addEventListener(
+    'click',
+    submitArticle
+  );
+
+  $('close-detail-btn').addEventListener(
+    'click',
+    closeDetail
+  );
+
+  $('cancel-revision-btn').addEventListener(
+    'click',
+    () => {
+      $('revision-section').hidden = true;
+      $('revision-note').value = '';
+    }
+  );
+
+  $('confirm-revision-btn').addEventListener(
+    'click',
+    requestRevision
+  );
+
+  $('add-comment-btn').addEventListener(
+    'click',
+    addComment
+  );
 
   initialize();
 })();
