@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #f7f6f2;
@@ -18,9 +19,12 @@
       --line: #dcded6;
       --green: #687b61;
       --white: #fff;
+      --soft: #eeefe9;
+      --danger: #a13d3d;
     }
 
     * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
 
     body {
       margin: 0;
@@ -29,22 +33,9 @@
       font-family: Manrope, sans-serif;
     }
 
-    button, input, textarea, select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    button:disabled {
-      opacity: .5;
-      cursor: not-allowed;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    button:disabled { opacity: .5; cursor: not-allowed; }
 
     .topbar {
       padding: 22px clamp(20px, 5vw, 70px);
@@ -64,20 +55,7 @@
       letter-spacing: .07em;
     }
 
-    .topbar-note {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .15em;
-      color: var(--green);
-    }
-
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 60px 24px 110px;
-    }
-
-    .eyebrow {
+    .topbar-note, .eyebrow {
       font-size: 10px;
       font-weight: 800;
       letter-spacing: .18em;
@@ -85,7 +63,13 @@
       text-transform: uppercase;
     }
 
-    h1, h2 {
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 55px 24px 110px;
+    }
+
+    h1, h2, h3 {
       font-family: "DM Serif Display", serif;
       font-weight: 400;
     }
@@ -96,18 +80,11 @@
       line-height: 1.05;
     }
 
-    h2 {
-      font-size: 31px;
-      margin: 0 0 20px;
-    }
-
-    p {
-      line-height: 1.8;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
+    h2 { font-size: 32px; margin: 0 0 20px; }
+    h3 { font-size: 25px; margin: 0 0 14px; }
+    p { line-height: 1.8; }
+    .muted { color: var(--muted); }
+    .small { font-size: 12px; }
 
     .auth-card {
       max-width: 500px;
@@ -117,9 +94,7 @@
       border: 1px solid var(--line);
     }
 
-    .field {
-      margin-bottom: 20px;
-    }
+    .field { margin-bottom: 20px; }
 
     label {
       display: block;
@@ -167,67 +142,177 @@
       border-color: var(--green);
     }
 
-    .actions {
+    .btn.danger {
+      color: var(--danger);
+      border-color: var(--danger);
+      background: transparent;
+    }
+
+    .btn.small-btn { padding: 10px 14px; font-size: 10px; }
+
+    .actions, .top-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
       align-items: center;
-      margin-top: 22px;
     }
+
+    .actions { margin-top: 22px; }
 
     .dashboard-head {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      align-items: flex-start;
       gap: 20px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
-    .section {
-      margin-top: 55px;
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--line);
+      margin: 35px 0 32px;
+      padding-bottom: 12px;
     }
 
-    .article-list {
+    .tab {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .tab.active {
+      color: var(--white);
+      background: var(--green);
+    }
+
+    .section { margin-top: 42px; }
+
+    .stats {
       display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
+      margin: 25px 0;
     }
+
+    .stat {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 25px;
+    }
+
+    .stat-number {
+      font-family: "DM Serif Display", serif;
+      font-size: 43px;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .article-list { display: grid; gap: 12px; }
 
     .article-row {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      align-items: center;
+      gap: 20px;
       padding: 22px;
       background: var(--white);
       border: 1px solid var(--line);
     }
 
+    .article-info { min-width: 0; }
+
     .article-title {
-      margin: 0 0 5px;
+      margin: 0 0 6px;
       font-size: 15px;
       font-weight: 700;
+      overflow-wrap: anywhere;
     }
 
     .article-meta {
       font-size: 11px;
       color: var(--muted);
+      line-height: 1.8;
     }
 
     .status {
       display: inline-block;
+      color: var(--green);
       font-size: 10px;
       font-weight: 800;
-      letter-spacing: .07em;
+      letter-spacing: .05em;
       text-transform: uppercase;
-      color: var(--green);
     }
 
-    .editor-panel {
+    .editor-panel, .detail-panel {
       margin-top: 35px;
       padding: clamp(22px, 4vw, 40px);
       background: var(--white);
       border: 1px solid var(--line);
+    }
+
+    .detail-panel { margin-bottom: 40px; }
+
+    .detail-content {
+      font-size: 14px;
+      line-height: 1.95;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      margin: 30px 0;
+      padding: 25px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail-excerpt {
+      font-size: 14px;
+      color: var(--muted);
+      white-space: pre-wrap;
+    }
+
+    .detail-cover {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      margin-top: 20px;
+    }
+
+    .subsection {
+      margin-top: 35px;
+      padding-top: 25px;
+      border-top: 1px solid var(--line);
+    }
+
+    .note {
+      padding: 18px;
+      border: 1px solid var(--line);
+      margin: 12px 0;
+      background: var(--bg);
+    }
+
+    .note-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .note-body {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-size: 13px;
+      line-height: 1.8;
     }
 
     .message {
@@ -238,34 +323,90 @@
       white-space: pre-wrap;
     }
 
-    .message.error {
-      color: #a13d3d;
-    }
+    .message.error { color: var(--danger); }
 
-    .top-actions {
+    .filters {
       display: flex;
       gap: 12px;
-      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
     }
 
-    @media (max-width: 700px) {
-      .article-row {
-        align-items: flex-start;
+    .filters input { flex: 2; min-width: 180px; }
+    .filters select { flex: 1; min-width: 150px; }
+
+    .collaborator {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      padding: 7px 10px;
+      background: var(--soft);
+      color: var(--green);
+    }
+
+    .pill.inactive { color: var(--danger); }
+
+    .info-box {
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .version-row {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+    }
+
+    .version-content {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      padding: 15px;
+      background: var(--bg);
+      margin-top: 12px;
+      line-height: 1.8;
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 13px;
+      padding: 20px 0;
+    }
+
+    @media (max-width: 760px) {
+      .container { padding: 35px 20px 75px; }
+      .topbar { padding: 18px 20px; }
+      .topbar-note { font-size: 9px; }
+      .dashboard-head { flex-direction: column; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .article-row, .collaborator {
         flex-direction: column;
+        align-items: flex-start;
       }
-
-      .container {
-        padding-top: 35px;
-      }
-
-      .topbar {
-        padding: 18px 20px;
-      }
+      .filters { flex-direction: column; }
+      .filters input, .filters select { width: 100%; }
+      .tab { padding: 10px; }
+      .stat { padding: 18px; }
+      .detail-content { padding: 20px 0; }
     }
   </style>
 </head>
-<body>
 
+<body>
 <header class="topbar">
   <a href="/hr/journal.html" class="brand">MOVE&TRY / THE JOURNAL</a>
   <div class="topbar-note">UREDNIČKI PROSTOR</div>
@@ -282,9 +423,7 @@
     <div class="auth-card">
       <p class="eyebrow">PRIVATNI PRISTUP</p>
       <h1>Dobro došla.</h1>
-      <p class="muted">
-        Prijavi se svojim uredničkim računom.
-      </p>
+      <p class="muted">Prijavi se svojim uredničkim računom.</p>
 
       <form id="login-form">
         <div class="field">
@@ -314,9 +453,7 @@
     <div class="auth-card">
       <p class="eyebrow">POSTAVLJANJE PRISTUPA</p>
       <h1>Postavi lozinku.</h1>
-      <p class="muted">
-        Odaberi novu lozinku za svoj urednički račun.
-      </p>
+      <p class="muted">Odaberi novu lozinku za svoj urednički račun.</p>
 
       <form id="password-form">
         <div class="field">
@@ -346,33 +483,173 @@
       </div>
 
       <div class="top-actions">
-        <button class="btn secondary" id="logout-btn" type="button">
-          ODJAVA
-        </button>
+        <button class="btn secondary" id="refresh-btn" type="button">OSVJEŽI</button>
+        <button class="btn secondary" id="logout-btn" type="button">ODJAVA</button>
       </div>
     </div>
 
+    <nav class="tabs" id="dashboard-tabs" aria-label="Urednički izbornik">
+      <button class="tab active" type="button" data-tab="home">PREGLED</button>
+      <button class="tab" type="button" data-tab="mine">MOJI ČLANCI</button>
+      <button class="tab admin-only" type="button" data-tab="all" hidden>SVI ČLANCI</button>
+      <button class="tab admin-only" type="button" data-tab="pending" hidden>ZA ODOBRENJE</button>
+      <button class="tab admin-only" type="button" data-tab="people" hidden>SURADNICI</button>
+    </nav>
+
     <div class="actions">
-      <button class="btn green" id="new-article-btn" type="button">
-        + NOVI ČLANAK
-      </button>
+      <button class="btn green" id="new-article-btn" type="button">+ NOVI ČLANAK</button>
     </div>
 
-    <section class="section">
+    <section id="tab-home" class="section">
+      <p class="eyebrow">UREDNIČKI PREGLED</p>
+      <h2 id="home-heading">Pregled sadržaja</h2>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number" id="stat-total">0</div>
+          <div class="stat-label" id="stat-total-label">Članci</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" id="stat-drafts">0</div>
+          <div class="stat-label">Skice i dorade</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" id="stat-pending">0</div>
+          <div class="stat-label">Čeka odobrenje</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" id="stat-approved">0</div>
+          <div class="stat-label">Odobreno i objavljeno</div>
+        </div>
+      </div>
+
+      <section class="section">
+        <p class="eyebrow">NAJNOVIJE</p>
+        <h2>Posljednje aktivnosti na člancima</h2>
+        <div id="recent-articles" class="article-list"></div>
+      </section>
+    </section>
+
+    <section id="tab-mine" class="section" hidden>
       <p class="eyebrow">MOJI TEKSTOVI</p>
       <h2>Moji članci</h2>
       <div id="my-articles" class="article-list"></div>
     </section>
 
-    <section class="section" id="admin-section" hidden>
+    <section id="tab-all" class="section" hidden>
+      <p class="eyebrow">ADMINISTRACIJA</p>
+      <h2>Svi članci</h2>
+
+      <div class="filters">
+        <input id="article-search" type="search" placeholder="Pretraži naslove i autore...">
+        <select id="article-status-filter">
+          <option value="all">Svi statusi</option>
+          <option value="draft">Skice</option>
+          <option value="submitted">Čeka odobrenje</option>
+          <option value="revision">Na doradi</option>
+          <option value="approved">Odobreno</option>
+          <option value="published">Objavljeno</option>
+        </select>
+      </div>
+
+      <div id="all-articles" class="article-list"></div>
+    </section>
+
+    <section id="tab-pending" class="section" hidden>
       <p class="eyebrow">ADMINISTRACIJA</p>
       <h2>Čekaju tvoje odobrenje</h2>
       <div id="pending-articles" class="article-list"></div>
     </section>
 
+    <section id="tab-people" class="section" hidden>
+      <p class="eyebrow">ADMINISTRACIJA</p>
+      <h2>Suradnici</h2>
+
+      <p class="muted">
+        Pregled uredničkih profila, uloga i statusa pristupa.
+      </p>
+
+      <div id="collaborators-list"></div>
+
+      <div class="info-box" style="margin-top:30px">
+        <strong>Upravljanje suradnicima</strong>
+        <p>
+          Priprema autora, slanje pozivnica, promjena uloga i deaktivacija
+          bit će dostupni nakon povezivanja sigurnih administratorskih
+          funkcija. Trenutačni prikaz je samo za pregled.
+        </p>
+        <p>
+          E-mail adrese svih suradnika još nisu dostupne kroz postojeću
+          tablicu uredničkih profila.
+        </p>
+      </div>
+    </section>
+
+    <section id="detail-panel" class="detail-panel" hidden>
+      <p class="eyebrow">UREDNIČKI PREGLED ČLANKA</p>
+      <h2 id="detail-title">Pregled članka</h2>
+      <p class="article-meta" id="detail-meta"></p>
+      <p class="detail-excerpt" id="detail-excerpt"></p>
+      <img id="detail-cover" class="detail-cover" alt="Naslovna fotografija članka" hidden>
+      <div class="detail-content" id="detail-content"></div>
+
+      <div class="actions" id="detail-actions"></div>
+
+      <section id="revision-section" class="subsection" hidden>
+        <h3>Vrati na doradu</h3>
+        <p class="muted small">
+          Napiši autoru što treba doraditi. Napomena će ostati uz članak.
+        </p>
+        <label for="revision-note">Napomena autoru</label>
+        <textarea id="revision-note" style="min-height:130px" placeholder="Što treba izmijeniti ili dopuniti?"></textarea>
+        <div class="actions">
+          <button class="btn danger" id="confirm-revision-btn" type="button">
+            VRATI NA DORADU
+          </button>
+          <button class="btn secondary" id="cancel-revision-btn" type="button">
+            ODUSTANI
+          </button>
+        </div>
+      </section>
+
+      <section class="subsection">
+        <h3>Urednička komunikacija</h3>
+        <div id="detail-comments"></div>
+
+        <div id="comment-form-wrap">
+          <label for="new-comment">Novi komentar</label>
+          <textarea id="new-comment" style="min-height:110px" placeholder="Napiši komentar..."></textarea>
+          <div class="actions">
+            <button class="btn secondary" id="add-comment-btn" type="button">
+              DODAJ KOMENTAR
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="subsection">
+        <h3>Povijest verzija</h3>
+        <div id="detail-versions"></div>
+      </section>
+
+      <section class="subsection">
+        <h3>Dnevnik aktivnosti</h3>
+        <div id="detail-activity"></div>
+      </section>
+
+      <p class="message" id="detail-message" role="status"></p>
+
+      <div class="actions">
+        <button class="btn secondary" id="close-detail-btn" type="button">
+          ZATVORI PREGLED
+        </button>
+      </div>
+    </section>
+
     <section id="editor-panel" class="editor-panel" hidden>
       <p class="eyebrow">UREĐIVANJE ČLANKA</p>
       <h2 id="editor-heading">Novi članak</h2>
+      <p class="muted small" id="editor-context"></p>
 
       <form id="article-form">
         <div class="field">
@@ -407,12 +684,12 @@
         </div>
 
         <div class="actions">
-          <button class="btn secondary" type="submit">
-            SPREMI SKICU
+          <button class="btn secondary" id="save-draft-btn" type="submit">
+            SPREMI IZMJENE
           </button>
 
           <button class="btn green" id="submit-article-btn" type="button" disabled>
-            POŠALJI NA OBJAVU →
+            POŠALJI NA ODOBRENJE →
           </button>
 
           <button class="btn secondary" id="close-editor-btn" type="button">
@@ -425,9 +702,7 @@
     </section>
 
     <p class="message" id="dashboard-message" role="status"></p>
-
   </section>
-
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -441,20 +716,57 @@
 
   const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+  const $ = id => document.getElementById(id);
+
   const views = {
-    loading: document.getElementById('loading-view'),
-    login: document.getElementById('login-view'),
-    password: document.getElementById('password-view'),
-    dashboard: document.getElementById('dashboard-view')
+    loading: $('loading-view'),
+    login: $('login-view'),
+    password: $('password-view'),
+    dashboard: $('dashboard-view')
+  };
+
+  const STATUS = {
+    draft: 'Skica',
+    submitted: 'Čeka odobrenje',
+    revision: 'Vraćeno na doradu',
+    approved: 'Odobreno',
+    published: 'Objavljeno'
+  };
+
+  const CATEGORY = {
+    editorial: 'Urednički tekstovi',
+    personal: 'Osobne kolumne',
+    guest: 'Gostujuće priče',
+    news: 'Novosti',
+    inspiration: 'Inspiracija'
+  };
+
+  const ACTIONS = {
+    created: 'Članak stvoren',
+    edited: 'Članak uređen',
+    submitted: 'Poslano na odobrenje',
+    revision_requested: 'Zatražena dorada',
+    approved: 'Članak odobren',
+    published: 'Članak objavljen',
+    unpublished: 'Članak povučen',
+    comment_added: 'Dodan komentar'
   };
 
   let currentUser = null;
   let currentProfile = null;
+  let articles = [];
+  let profiles = [];
+  let activeTab = 'home';
+  let selectedArticleId = null;
   let currentArticleId = null;
-  let currentArticleStatus = null;
-  let myArticles = [];
-  let pendingArticles = [];
+  let currentArticleRevision = null;
+  let currentEditorMode = 'author';
+  let editorInitialValues = null;
   let passwordFlow = false;
+  let busy = false;
+  let dashboardRequest = 0;
+
+  const isAdmin = () => currentProfile?.role === 'admin';
 
   function showView(name) {
     Object.entries(views).forEach(([key, element]) => {
@@ -463,29 +775,78 @@
   }
 
   function setMessage(id, text, error = false) {
-    const element = document.getElementById(id);
+    const element = $(id);
     element.textContent = text || '';
     element.classList.toggle('error', error);
-  }
-
-  function statusLabel(status) {
-    return ({
-      draft: 'Skica',
-      submitted: 'Čeka odobrenje',
-      revision: 'Vraćeno na doradu',
-      approved: 'Odobreno',
-      published: 'Objavljeno'
-    })[status] || status;
   }
 
   function friendlyError(error) {
     return error?.message || 'Dogodila se pogreška. Pokušaj ponovno.';
   }
 
+  function dateLabel(value) {
+    if (!value) return '—';
+    const date = new Date(value);
+    return Number.isNaN(date.getTime())
+      ? '—'
+      : date.toLocaleDateString('hr-HR');
+  }
+
+  function statusLabel(status) {
+    return STATUS[status] || status || 'Nepoznato';
+  }
+
+  function categoryLabel(category) {
+    return CATEGORY[category] || category || '—';
+  }
+
+  function personName(id) {
+    const profile = profiles.find(p => p.id === id);
+    return profile?.display_name || 'Nepoznati autor';
+  }
+
+  function createElement(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = String(text);
+    return element;
+  }
+
+  function emptyMessage(text) {
+    return createElement('p', 'empty', text);
+  }
+
+  function makeButton(text, callback, className = 'btn secondary small-btn') {
+    const button = createElement('button', className, text);
+    button.type = 'button';
+    button.addEventListener('click', callback);
+    return button;
+  }
+
+  function setBusy(value) {
+    busy = value;
+
+    [
+      'save-draft-btn',
+      'submit-article-btn',
+      'confirm-revision-btn',
+      'add-comment-btn'
+    ].forEach(id => {
+      const button = $(id);
+      if (button) button.disabled = value;
+    });
+
+    if (!value) updateSubmitAvailability();
+  }
+
+  function articleById(id) {
+    return articles.find(article => article.id === id);
+  }
+
   async function loadProfile(user) {
     const { data, error } = await db
       .from('journal_profiles')
-      .select('id, display_name, role')
+      .select('id, display_name, role, is_active')
       .eq('id', user.id)
       .maybeSingle();
 
@@ -494,214 +855,836 @@
   }
 
   async function refreshDashboard() {
+    if (!currentUser || !currentProfile) return;
+
+    const request = ++dashboardRequest;
+
     const { data, error } = await db
       .from('journal_articles')
-      .select('id, author_id, title, excerpt, content, category, cover_image, status, updated_at')
-      .order('updated_at', { ascending: false });
+      .select('id, author_id, title, excerpt, content, category, cover_image, status, updated_at, created_at, revision_number')
+      .order('updated_at', { ascending: false })
+      .limit(1000);
 
     if (error) throw error;
+    if (request !== dashboardRequest) return;
 
-    const articles = data || [];
-    myArticles = articles.filter(a => a.author_id === currentUser.id);
-    pendingArticles = currentProfile.role === 'admin'
-      ? articles.filter(a => a.status === 'submitted')
-      : [];
+    articles = data || [];
 
-    renderArticles();
-  }
+    if (isAdmin()) {
+      const result = await db
+        .from('journal_profiles')
+        .select('id, display_name, role, is_active, created_at')
+        .order('created_at', { ascending: true })
+        .limit(1000);
 
-  function makeArticleRow(article, adminMode = false) {
-    const row = document.createElement('div');
-    row.className = 'article-row';
-
-    const info = document.createElement('div');
-    const title = document.createElement('p');
-    title.className = 'article-title';
-    title.textContent = article.title || 'Bez naslova';
-
-    const meta = document.createElement('div');
-    meta.className = 'article-meta';
-    meta.textContent = `${statusLabel(article.status)} · ${new Date(article.updated_at).toLocaleDateString('hr-HR')}`;
-
-    info.append(title, meta);
-    row.appendChild(info);
-
-    const actions = document.createElement('div');
-    actions.className = 'actions';
-    actions.style.marginTop = '0';
-
-    if (adminMode) {
-      const review = document.createElement('button');
-      review.className = 'btn secondary';
-      review.textContent = 'PREGLEDAJ';
-      review.addEventListener('click', () => reviewArticle(article));
-      actions.appendChild(review);
-    } else if (['draft', 'revision'].includes(article.status)) {
-      const edit = document.createElement('button');
-      edit.className = 'btn secondary';
-      edit.textContent = 'UREDI';
-      edit.addEventListener('click', () => openEditor(article));
-      actions.appendChild(edit);
+      if (result.error) {
+        profiles = [currentProfile];
+        setMessage(
+          'dashboard-message',
+          'Članci su učitani, ali popis suradnika nije dostupan: ' +
+            friendlyError(result.error),
+          true
+        );
+      } else {
+        profiles = result.data || [];
+      }
+    } else {
+      profiles = [currentProfile];
     }
 
-    row.appendChild(actions);
+    renderDashboard();
+
+    if (selectedArticleId && !articleById(selectedArticleId)) {
+      closeDetail();
+    }
+  }
+
+  function renderDashboard() {
+    const visible = isAdmin()
+      ? articles
+      : articles.filter(a => a.author_id === currentUser.id);
+
+    const drafts = visible.filter(a =>
+      ['draft', 'revision'].includes(a.status)
+    );
+
+    const pending = visible.filter(a => a.status === 'submitted');
+
+    const approved = visible.filter(a =>
+      ['approved', 'published'].includes(a.status)
+    );
+
+    $('stat-total').textContent = visible.length;
+    $('stat-drafts').textContent = drafts.length;
+    $('stat-pending').textContent = pending.length;
+    $('stat-approved').textContent = approved.length;
+
+    $('stat-total-label').textContent =
+      isAdmin() ? 'Ukupno članaka' : 'Mojih članaka';
+
+    $('home-heading').textContent =
+      isAdmin() ? 'Urednički pregled' : 'Pregled mojih članaka';
+
+    renderArticleList('recent-articles', visible.slice(0, 5));
+    renderArticleList(
+      'my-articles',
+      articles.filter(a => a.author_id === currentUser.id)
+    );
+
+    if (isAdmin()) {
+      renderAllArticles();
+      renderArticleList('pending-articles', pending);
+      renderCollaborators();
+    }
+  }
+
+  function makeArticleRow(article) {
+    const row = createElement('div', 'article-row');
+    const info = createElement('div', 'article-info');
+
+    info.appendChild(
+      createElement('p', 'article-title', article.title || 'Bez naslova')
+    );
+
+    const details = [
+      statusLabel(article.status),
+      dateLabel(article.updated_at)
+    ];
+
+    if (isAdmin()) details.push(personName(article.author_id));
+
+    info.appendChild(
+      createElement('div', 'article-meta', details.join(' · '))
+    );
+
+    const actions = createElement('div', 'actions');
+    actions.style.marginTop = '0';
+
+    actions.appendChild(
+      makeButton('PREGLEDAJ', () => openDetail(article.id))
+    );
+
+    const canEditOwn =
+      article.author_id === currentUser.id &&
+      ['draft', 'revision'].includes(article.status);
+
+    if (canEditOwn) {
+      actions.appendChild(
+        makeButton('UREDI', () => openEditor(article))
+      );
+    }
+
+    row.append(info, actions);
     return row;
   }
 
-  function renderArticles() {
-    const mine = document.getElementById('my-articles');
-    mine.replaceChildren();
+  function renderArticleList(targetId, list) {
+    const target = $(targetId);
+    target.replaceChildren();
 
-    if (!myArticles.length) {
-      const empty = document.createElement('p');
-      empty.className = 'muted';
-      empty.textContent = 'Još nema spremljenih članaka.';
-      mine.appendChild(empty);
-    } else {
-      myArticles.forEach(a => mine.appendChild(makeArticleRow(a)));
+    if (!list.length) {
+      target.appendChild(emptyMessage('Nema članaka za prikaz.'));
+      return;
     }
 
-    const pending = document.getElementById('pending-articles');
-    pending.replaceChildren();
-
-    if (currentProfile.role === 'admin') {
-      document.getElementById('admin-section').hidden = false;
-
-      if (!pendingArticles.length) {
-        const empty = document.createElement('p');
-        empty.className = 'muted';
-        empty.textContent = 'Trenutačno nema članaka koji čekaju odobrenje.';
-        pending.appendChild(empty);
-      } else {
-        pendingArticles.forEach(a => pending.appendChild(makeArticleRow(a, true)));
-      }
-    } else {
-      document.getElementById('admin-section').hidden = true;
-    }
+    list.forEach(article => {
+      target.appendChild(makeArticleRow(article));
+    });
   }
 
-  function openEditor(article = null) {
+  function renderAllArticles() {
+    const query = $('article-search').value.trim().toLowerCase();
+    const status = $('article-status-filter').value;
+
+    const filtered = articles.filter(article => {
+      const matchesStatus =
+        status === 'all' || article.status === status;
+
+      const text = [
+        article.title,
+        personName(article.author_id),
+        categoryLabel(article.category)
+      ].join(' ').toLowerCase();
+
+      return matchesStatus && text.includes(query);
+    });
+
+    renderArticleList('all-articles', filtered);
+  }
+
+  function renderCollaborators() {
+    const target = $('collaborators-list');
+    target.replaceChildren();
+
+    if (!profiles.length) {
+      target.appendChild(emptyMessage('Nema dostupnih suradnika.'));
+      return;
+    }
+
+    profiles.forEach(profile => {
+      const row = createElement('div', 'collaborator');
+      const info = createElement('div');
+
+      info.appendChild(
+        createElement(
+          'p',
+          'article-title',
+          profile.display_name || 'Bez prikaznog imena'
+        )
+      );
+
+      const authored = articles.filter(a =>
+        a.author_id === profile.id
+      ).length;
+
+      const role = profile.role === 'admin'
+        ? 'Administrator'
+        : 'Autor / urednik';
+
+      info.appendChild(
+        createElement(
+          'div',
+          'article-meta',
+          `${role} · ${authored} članaka · Od ${dateLabel(profile.created_at)}`
+        )
+      );
+
+      const status = createElement(
+        'span',
+        profile.is_active ? 'pill' : 'pill inactive',
+        profile.is_active ? 'AKTIVAN' : 'DEAKTIVIRAN'
+      );
+
+      row.append(info, status);
+      target.appendChild(row);
+    });
+  }
+
+  function switchTab(name) {
+    const allowed = ['home', 'mine', 'all', 'pending', 'people'];
+
+    if (!allowed.includes(name)) return;
+
+    if (!isAdmin() && !['home', 'mine'].includes(name)) {
+      name = 'home';
+    }
+
+    activeTab = name;
+
+    allowed.forEach(tab => {
+      $('tab-' + tab).hidden = tab !== name;
+    });
+
+    document.querySelectorAll('[data-tab]').forEach(button => {
+      const selected = button.dataset.tab === name;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-current', selected ? 'page' : 'false');
+    });
+
+    closeEditor();
+    closeDetail();
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function readEditorValues() {
+    return {
+      p_title: $('article-title').value.trim(),
+      p_excerpt: $('article-excerpt').value.trim(),
+      p_content: $('article-content').value.trim(),
+      p_category: $('article-category').value,
+      p_cover_image: $('article-cover').value.trim() || null
+    };
+  }
+
+  function editorValuesChanged() {
+    if (!editorInitialValues) return false;
+
+    const current = readEditorValues();
+
+    return Object.keys(current).some(key =>
+      current[key] !== editorInitialValues[key]
+    );
+  }
+
+  function updateSubmitAvailability() {
+    $('submit-article-btn').disabled =
+      busy ||
+      !currentArticleId ||
+      currentEditorMode !== 'author';
+  }
+
+  function openEditor(article = null, adminEdit = false) {
+    if (busy) return;
+
+    if (adminEdit && !isAdmin()) return;
+
+    if (!adminEdit && article) {
+      const allowed =
+        article.author_id === currentUser.id &&
+        ['draft', 'revision'].includes(article.status);
+
+      if (!allowed) {
+        setMessage(
+          'dashboard-message',
+          'Ovaj članak nije dostupan za autorsko uređivanje.',
+          true
+        );
+        return;
+      }
+    }
+
+    closeDetail();
     currentArticleId = article?.id || null;
-    currentArticleStatus = article?.status || 'draft';
+    currentArticleRevision = article?.revision_number ?? null;
+    currentEditorMode = adminEdit ? 'admin' : 'author';
 
-    document.getElementById('editor-heading').textContent =
-      article ? 'Uredi članak' : 'Novi članak';
+    $('editor-heading').textContent = adminEdit
+      ? 'Administratorsko uređivanje'
+      : article ? 'Uredi članak' : 'Novi članak';
 
-    document.getElementById('article-title').value = article?.title || '';
-    document.getElementById('article-excerpt').value = article?.excerpt || '';
-    document.getElementById('article-content').value = article?.content || '';
-    document.getElementById('article-category').value = article?.category || 'personal';
-    document.getElementById('article-cover').value = article?.cover_image || '';
+    $('editor-context').textContent = article
+      ? `${statusLabel(article.status)} · Revizija ${article.revision_number ?? '—'}`
+      : 'Nova skica';
 
-    document.getElementById('submit-article-btn').disabled = !currentArticleId;
+    $('article-title').value = article?.title || '';
+    $('article-excerpt').value = article?.excerpt || '';
+    $('article-content').value = article?.content || '';
+    $('article-category').value = article?.category || 'personal';
+    $('article-cover').value = article?.cover_image || '';
+
+    editorInitialValues = readEditorValues();
+
+    $('submit-article-btn').hidden = adminEdit;
+    $('submit-article-btn').disabled = !currentArticleId;
 
     setMessage('editor-message', '');
-    document.getElementById('editor-panel').hidden = false;
-    document.getElementById('editor-panel').scrollIntoView({ behavior: 'smooth' });
+    $('editor-panel').hidden = false;
+    $('editor-panel').scrollIntoView({ behavior: 'smooth' });
   }
 
   function closeEditor() {
-    document.getElementById('editor-panel').hidden = true;
+    if (busy) return;
+
+    $('editor-panel').hidden = true;
     currentArticleId = null;
-    currentArticleStatus = null;
+    currentArticleRevision = null;
+    currentEditorMode = 'author';
+    editorInitialValues = null;
     setMessage('editor-message', '');
   }
 
   async function saveDraft(event) {
     event.preventDefault();
+    if (busy) return;
 
+    setBusy(true);
     setMessage('editor-message', 'Spremanje...');
 
-    const values = {
-      p_article_id: currentArticleId,
-      p_title: document.getElementById('article-title').value.trim(),
-      p_excerpt: document.getElementById('article-excerpt').value.trim(),
-      p_content: document.getElementById('article-content').value.trim(),
-      p_category: document.getElementById('article-category').value,
-      p_cover_image: document.getElementById('article-cover').value.trim() || null
-    };
+    try {
+      const values = readEditorValues();
+      let result;
 
-    const { data, error } = await db.rpc('journal_save_draft', values);
+      if (currentEditorMode === 'admin') {
+        result = await db.rpc('journal_admin_edit_article_checked', {
+          p_article_id: currentArticleId,
+          p_expected_revision: currentArticleRevision,
+          ...values
+        });
+      } else {
+        result = await db.rpc('journal_save_draft_checked', {
+          p_article_id: currentArticleId,
+          p_expected_revision: currentArticleRevision,
+          ...values
+        });
+      }
 
-    if (error) {
-      setMessage('editor-message', friendlyError(error), true);
-      return;
-    }
+      if (result.error) throw result.error;
 
-    currentArticleId = data;
-    document.getElementById('submit-article-btn').disabled = false;
-
-    setMessage('editor-message', 'Skica je spremljena.');
-    await refreshDashboard();
-  }
-
-  async function submitArticle() {
-    if (!currentArticleId) return;
-
-    if (!confirm('Želiš li poslati članak na odobrenje? Nakon slanja nećeš ga moći uređivati dok ne bude vraćen na doradu.')) {
-      return;
-    }
-
-    setMessage('editor-message', 'Slanje na odobrenje...');
-
-    const { error } = await db.rpc('journal_submit_article', {
-      p_article_id: currentArticleId
-    });
-
-    if (error) {
-      setMessage('editor-message', friendlyError(error), true);
-      return;
-    }
-
-    closeEditor();
-    await refreshDashboard();
-    setMessage('dashboard-message', 'Članak je poslan na odobrenje.');
-  }
-
-  function reviewArticle(article) {
-    const approved = confirm(
-      `ČLANAK: ${article.title}\n\n${article.content}\n\nOK = odobri članak\nCancel = vrati na doradu`
-    );
-
-    const method = approved
-      ? 'journal_approve_article'
-      : 'journal_request_revision';
-
-    db.rpc(method, { p_article_id: article.id }).then(async ({ error }) => {
-      if (error) {
-        setMessage('dashboard-message', friendlyError(error), true);
-        return;
+      if (currentEditorMode === 'author' && !currentArticleId) {
+        currentArticleId = result.data;
       }
 
       await refreshDashboard();
+
+      const updated = articleById(currentArticleId);
+      currentArticleRevision = updated?.revision_number ?? currentArticleRevision;
+
+      editorInitialValues = readEditorValues();
+
+      $('editor-context').textContent =
+        `${statusLabel(updated?.status)} · Revizija ${currentArticleRevision ?? '—'}`;
+
+      setMessage('editor-message', 'Izmjene su spremljene.');
+    } catch (error) {
+      setMessage('editor-message', friendlyError(error), true);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function submitArticle() {
+    if (!currentArticleId || busy) return;
+
+    if (editorValuesChanged()) {
+      setMessage(
+        'editor-message',
+        'Imaš nespremljene izmjene. Prvo spremi članak, zatim ga pošalji.',
+        true
+      );
+      return;
+    }
+
+    const confirmed = confirm(
+      'Želiš li poslati članak na odobrenje? Nakon slanja nećeš ga moći uređivati dok ne bude vraćen na doradu.'
+    );
+
+    if (!confirmed) return;
+
+    setBusy(true);
+    setMessage('editor-message', 'Slanje na odobrenje...');
+
+    try {
+      const { error } = await db.rpc('journal_submit_article', {
+        p_article_id: currentArticleId
+      });
+
+      if (error) throw error;
+
+      setBusy(false);
+      closeEditor();
+      await refreshDashboard();
+
       setMessage(
         'dashboard-message',
-        approved ? 'Članak je odobren. Još nije javno objavljen.' : 'Članak je vraćen na doradu.'
+        'Članak je uspješno poslan na odobrenje.'
       );
+    } catch (error) {
+      setMessage('editor-message', friendlyError(error), true);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function openDetail(id) {
+    if (busy) return;
+
+    closeEditor();
+
+    const article = articleById(id);
+    if (!article) return;
+
+    selectedArticleId = id;
+    $('detail-panel').hidden = false;
+    $('revision-section').hidden = true;
+    $('revision-note').value = '';
+
+    $('detail-title').textContent = article.title || 'Bez naslova';
+
+    const meta = [
+      statusLabel(article.status),
+      categoryLabel(article.category),
+      dateLabel(article.updated_at),
+      `Revizija ${article.revision_number ?? '—'}`
+    ];
+
+    if (isAdmin()) meta.push(personName(article.author_id));
+
+    $('detail-meta').textContent = meta.join(' · ');
+    $('detail-excerpt').textContent = article.excerpt || '';
+    $('detail-content').textContent = article.content || 'Članak nema teksta.';
+
+    const cover = $('detail-cover');
+    cover.hidden = true;
+    cover.removeAttribute('src');
+
+    if (article.cover_image) {
+      try {
+        const url = new URL(article.cover_image);
+        if (['https:', 'http:'].includes(url.protocol)) {
+          cover.src = url.href;
+          cover.hidden = false;
+        }
+      } catch (_) {
+        // Ne prikazujemo neispravnu poveznicu.
+      }
+    }
+
+    const actions = $('detail-actions');
+    actions.replaceChildren();
+
+    if (isAdmin()) {
+      if (['draft', 'submitted', 'revision', 'approved'].includes(article.status)) {
+        actions.appendChild(
+          makeButton(
+            'UREDI KAO ADMINISTRATOR',
+            () => openEditor(article, true)
+          )
+        );
+      }
+
+      if (article.status === 'submitted') {
+        actions.appendChild(
+          makeButton(
+            'ODOBRI ČLANAK',
+            () => approveArticle(id),
+            'btn green'
+          )
+        );
+
+        actions.appendChild(
+          makeButton(
+            'VRATI NA DORADU',
+            () => {
+              $('revision-section').hidden = false;
+              $('revision-note').focus();
+            },
+            'btn secondary'
+          )
+        );
+      }
+    }
+
+    if (
+      article.author_id === currentUser.id &&
+      ['draft', 'revision'].includes(article.status)
+    ) {
+      actions.appendChild(
+        makeButton('UREDI SVOJ ČLANAK', () => openEditor(article))
+      );
+    }
+
+    setMessage('detail-message', '');
+    $('detail-comments').replaceChildren();
+    $('detail-versions').replaceChildren();
+    $('detail-activity').replaceChildren();
+
+    $('detail-comments').appendChild(emptyMessage('Učitavanje komentara...'));
+    $('detail-versions').appendChild(emptyMessage('Učitavanje verzija...'));
+    $('detail-activity').appendChild(emptyMessage('Učitavanje aktivnosti...'));
+
+    $('detail-panel').scrollIntoView({ behavior: 'smooth' });
+
+    await loadArticleDetails(id);
+  }
+
+  function closeDetail() {
+    $('detail-panel').hidden = true;
+    $('revision-section').hidden = true;
+    selectedArticleId = null;
+    setMessage('detail-message', '');
+  }
+
+  async function loadArticleDetails(id) {
+    const [comments, versions, activity] = await Promise.all([
+      db.from('journal_comments')
+        .select('id, article_id, author_id, content, comment_type, created_at')
+        .eq('article_id', id)
+        .order('created_at', { ascending: true })
+        .limit(500),
+
+      db.from('journal_article_versions')
+        .select('id, article_id, version_number, title, excerpt, content, category, cover_image, edited_by, change_note, created_at')
+        .eq('article_id', id)
+        .order('version_number', { ascending: false })
+        .limit(500),
+
+      db.from('journal_activity_log')
+        .select('id, article_id, actor_id, action, details, created_at')
+        .eq('article_id', id)
+        .order('created_at', { ascending: false })
+        .limit(500)
+    ]);
+
+    if (selectedArticleId !== id) return;
+
+    renderComments(comments);
+    renderVersions(versions);
+    renderActivity(activity);
+  }
+
+  function renderComments(result) {
+    const target = $('detail-comments');
+    target.replaceChildren();
+
+    if (result.error) {
+      target.appendChild(
+        emptyMessage('Komentari nisu dostupni: ' + friendlyError(result.error))
+      );
+      return;
+    }
+
+    if (!result.data?.length) {
+      target.appendChild(emptyMessage('Još nema komentara.'));
+      return;
+    }
+
+    result.data.forEach(comment => {
+      const box = createElement('div', 'note');
+
+      const type = comment.comment_type === 'revision_request'
+        ? 'Zahtjev za doradu'
+        : comment.comment_type === 'editorial_note'
+          ? 'Urednička napomena'
+          : 'Komentar';
+
+      box.appendChild(
+        createElement(
+          'div',
+          'note-meta',
+          `${type} · ${personName(comment.author_id)} · ${dateLabel(comment.created_at)}`
+        )
+      );
+
+      box.appendChild(
+        createElement('div', 'note-body', comment.content || '')
+      );
+
+      target.appendChild(box);
     });
+  }
+
+  function renderVersions(result) {
+    const target = $('detail-versions');
+    target.replaceChildren();
+
+    if (result.error) {
+      target.appendChild(
+        emptyMessage('Povijest verzija nije dostupna: ' + friendlyError(result.error))
+      );
+      return;
+    }
+
+    if (!result.data?.length) {
+      target.appendChild(emptyMessage('Nema spremljenih verzija.'));
+      return;
+    }
+
+    result.data.forEach(version => {
+      const row = createElement('div', 'version-row');
+
+      const heading = createElement(
+        'div',
+        '',
+        `Verzija ${version.version_number} · ${dateLabel(version.created_at)} · ${personName(version.edited_by)}`
+      );
+
+      row.appendChild(heading);
+
+      const button = makeButton(
+        'PRIKAŽI VERZIJU',
+        () => {
+          const isHidden = details.hidden;
+          details.hidden = !isHidden;
+          button.textContent = isHidden
+            ? 'SAKRIJ VERZIJU'
+            : 'PRIKAŽI VERZIJU';
+        },
+        'btn secondary small-btn'
+      );
+
+      button.style.marginTop = '10px';
+
+      const details = createElement('div', 'version-content');
+      details.hidden = true;
+
+      const lines = [
+        `Naslov: ${version.title || 'Bez naslova'}`,
+        `Kategorija: ${categoryLabel(version.category)}`,
+        '',
+        version.excerpt || '',
+        '',
+        version.content || '',
+        '',
+        version.change_note ? `Napomena: ${version.change_note}` : ''
+      ];
+
+      details.textContent = lines.join('\n');
+
+      row.append(button, details);
+      target.appendChild(row);
+    });
+  }
+
+  function renderActivity(result) {
+    const target = $('detail-activity');
+    target.replaceChildren();
+
+    if (result.error) {
+      target.appendChild(
+        emptyMessage('Dnevnik nije dostupan: ' + friendlyError(result.error))
+      );
+      return;
+    }
+
+    if (!result.data?.length) {
+      target.appendChild(emptyMessage('Nema zabilježenih aktivnosti.'));
+      return;
+    }
+
+    result.data.forEach(item => {
+      const row = createElement('div', 'version-row');
+
+      row.textContent = [
+        ACTIONS[item.action] || item.action,
+        personName(item.actor_id),
+        dateLabel(item.created_at)
+      ].join(' · ');
+
+      target.appendChild(row);
+    });
+  }
+
+  async function approveArticle(id) {
+    if (!isAdmin() || busy) return;
+
+    if (!confirm('Želiš li odobriti ovaj članak? Odobravanje ne znači javnu objavu.')) {
+      return;
+    }
+
+    setBusy(true);
+    setMessage('detail-message', 'Odobravanje...');
+
+    try {
+      const { error } = await db.rpc('journal_approve_article', {
+        p_article_id: id
+      });
+
+      if (error) throw error;
+
+      await refreshDashboard();
+      await openDetail(id);
+
+      setMessage(
+        'detail-message',
+        'Članak je odobren. Još nije javno objavljen.'
+      );
+    } catch (error) {
+      setMessage('detail-message', friendlyError(error), true);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function requestRevision() {
+    if (!isAdmin() || !selectedArticleId || busy) return;
+
+    const id = selectedArticleId;
+    const note = $('revision-note').value.trim();
+
+    if (!note) {
+      setMessage(
+        'detail-message',
+        'Napiši napomenu prije vraćanja članka na doradu.',
+        true
+      );
+      return;
+    }
+
+    setBusy(true);
+    setMessage('detail-message', 'Vraćanje na doradu...');
+
+    try {
+      const { error } = await db.rpc(
+        'journal_request_revision_with_note',
+        {
+          p_article_id: id,
+          p_note: note
+        }
+      );
+
+      if (error) throw error;
+
+      await refreshDashboard();
+      await openDetail(id);
+
+      setMessage(
+        'detail-message',
+        'Članak je vraćen na doradu, a napomena je spremljena.'
+      );
+    } catch (error) {
+      setMessage('detail-message', friendlyError(error), true);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function addComment() {
+    if (!selectedArticleId || busy) return;
+
+    const content = $('new-comment').value.trim();
+
+    if (!content) {
+      setMessage('detail-message', 'Napiši komentar.', true);
+      return;
+    }
+
+    setBusy(true);
+    setMessage('detail-message', 'Spremanje komentara...');
+
+    try {
+      const id = selectedArticleId;
+
+      const { error } = await db
+        .from('journal_comments')
+        .insert({
+          article_id: id,
+          author_id: currentUser.id,
+          content,
+          comment_type: 'comment'
+        });
+
+      if (error) throw error;
+
+      $('new-comment').value = '';
+      await loadArticleDetails(id);
+
+      setMessage('detail-message', 'Komentar je spremljen.');
+    } catch (error) {
+      setMessage('detail-message', friendlyError(error), true);
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function enterDashboard(user) {
     const profile = await loadProfile(user);
 
-    if (!profile) {
+    if (!profile || !profile.is_active) {
       await db.auth.signOut();
+
+      currentUser = null;
+      currentProfile = null;
+
       showView('login');
-      setMessage('login-message', 'Ovaj račun nema pristup uredničkom prostoru.', true);
+
+      setMessage(
+        'login-message',
+        'Ovaj račun nema aktivan pristup uredničkom prostoru.',
+        true
+      );
+
       return;
     }
 
     currentUser = user;
     currentProfile = profile;
 
-    document.getElementById('welcome-title').textContent =
-      profile.role === 'admin' ? 'Urednički pregled.' : 'Moji članci.';
+    $('welcome-title').textContent =
+      isAdmin() ? 'Urednički pregled.' : 'Moji članci.';
 
-    document.getElementById('user-description').textContent =
-      `${profile.display_name || user.email} · ${profile.role === 'admin' ? 'Administrator' : 'Urednica'}`;
+    $('user-description').textContent =
+      `${profile.display_name || user.email} · ${
+        isAdmin() ? 'Administrator' : 'Autor / urednik'
+      }`;
+
+    document.querySelectorAll('.admin-only').forEach(element => {
+      element.hidden = !isAdmin();
+    });
 
     showView('dashboard');
     await refreshDashboard();
+    switchTab('home');
   }
 
   async function initialize() {
@@ -709,13 +1692,14 @@
       const params = new URLSearchParams(window.location.search);
       const hash = new URLSearchParams(window.location.hash.substring(1));
 
-      const isRecovery = params.get('type') === 'recovery' || hash.get('type') === 'recovery';
-      const isInvite = params.get('type') === 'invite' || hash.get('type') === 'invite';
+      const type = params.get('type') || hash.get('type');
 
-      passwordFlow = isRecovery || isInvite;
+      passwordFlow = type === 'recovery' || type === 'invite';
 
       if (params.get('code')) {
-        const { error } = await db.auth.exchangeCodeForSession(params.get('code'));
+        const { error } = await db.auth.exchangeCodeForSession(
+          params.get('code')
+        );
         if (error) throw error;
       }
 
@@ -735,33 +1719,33 @@
     }
   }
 
-  document.getElementById('login-form').addEventListener('submit', async event => {
+  $('login-form').addEventListener('submit', async event => {
     event.preventDefault();
     setMessage('login-message', 'Prijava...');
 
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
-
-    const { data, error } = await db.auth.signInWithPassword({ email, password });
-
-    if (error) {
-      setMessage('login-message', friendlyError(error), true);
-      return;
-    }
-
-    setMessage('login-message', '');
     try {
+      const email = $('login-email').value.trim();
+      const password = $('login-password').value;
+
+      const { data, error } = await db.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) throw error;
+
       await enterDashboard(data.user);
-    } catch (e) {
-      setMessage('login-message', friendlyError(e), true);
+    } catch (error) {
+      showView('login');
+      setMessage('login-message', friendlyError(error), true);
     }
   });
 
-  document.getElementById('password-form').addEventListener('submit', async event => {
+  $('password-form').addEventListener('submit', async event => {
     event.preventDefault();
 
-    const password = document.getElementById('new-password').value;
-    const confirmation = document.getElementById('confirm-password').value;
+    const password = $('new-password').value;
+    const confirmation = $('confirm-password').value;
 
     if (password !== confirmation) {
       setMessage('password-message', 'Lozinke se ne podudaraju.', true);
@@ -770,32 +1754,39 @@
 
     setMessage('password-message', 'Spremanje lozinke...');
 
-    const { error } = await db.auth.updateUser({ password });
+    try {
+      const { error } = await db.auth.updateUser({ password });
+      if (error) throw error;
 
-    if (error) {
+      history.replaceState({}, '', window.location.pathname);
+      passwordFlow = false;
+
+      const { data: { user }, error: userError } = await db.auth.getUser();
+      if (userError) throw userError;
+
+      if (user) {
+        await enterDashboard(user);
+      } else {
+        showView('login');
+      }
+    } catch (error) {
       setMessage('password-message', friendlyError(error), true);
-      return;
-    }
-
-    history.replaceState({}, '', window.location.pathname);
-    passwordFlow = false;
-
-    const { data: { user } } = await db.auth.getUser();
-
-    if (user) {
-      await enterDashboard(user);
-    } else {
-      showView('login');
     }
   });
 
-  document.getElementById('forgot-password').addEventListener('click', async () => {
-    const email = document.getElementById('login-email').value.trim();
+  $('forgot-password').addEventListener('click', async () => {
+    const email = $('login-email').value.trim();
 
     if (!email) {
-      setMessage('login-message', 'Prvo upiši svoju e-mail adresu.', true);
+      setMessage(
+        'login-message',
+        'Prvo upiši svoju e-mail adresu.',
+        true
+      );
       return;
     }
+
+    setMessage('login-message', 'Slanje poveznice...');
 
     const { error } = await db.auth.resetPasswordForEmail(email, {
       redirectTo: 'https://moveandtry.com/editor/'
@@ -803,29 +1794,81 @@
 
     setMessage(
       'login-message',
-      error ? friendlyError(error) : 'Ako račun postoji, poslana je poruka za promjenu lozinke.',
+      error
+        ? friendlyError(error)
+        : 'Ako račun postoji, poslana je poruka za promjenu lozinke.',
       !!error
     );
   });
 
-  document.getElementById('logout-btn').addEventListener('click', async () => {
+  $('logout-btn').addEventListener('click', async () => {
     await db.auth.signOut();
+
+    dashboardRequest++;
     currentUser = null;
     currentProfile = null;
+    articles = [];
+    profiles = [];
+    selectedArticleId = null;
+    currentArticleId = null;
+
+    $('detail-panel').hidden = true;
+    $('editor-panel').hidden = true;
+
     showView('login');
   });
 
-  document.getElementById('new-article-btn').addEventListener('click', () => openEditor());
+  $('refresh-btn').addEventListener('click', async () => {
+    setMessage('dashboard-message', 'Osvježavanje...');
 
-  document.getElementById('close-editor-btn').addEventListener('click', closeEditor);
+    try {
+      const profile = await loadProfile(currentUser);
 
-  document.getElementById('article-form').addEventListener('submit', saveDraft);
+      if (!profile || !profile.is_active) {
+        await db.auth.signOut();
+        showView('login');
+        setMessage(
+          'login-message',
+          'Urednički pristup više nije aktivan.',
+          true
+        );
+        return;
+      }
 
-  document.getElementById('submit-article-btn').addEventListener('click', submitArticle);
+      currentProfile = profile;
+      await refreshDashboard();
+      setMessage('dashboard-message', 'Podaci su osvježeni.');
+    } catch (error) {
+      setMessage('dashboard-message', friendlyError(error), true);
+    }
+  });
+
+  document.querySelectorAll('[data-tab]').forEach(button => {
+    button.addEventListener('click', () => {
+      switchTab(button.dataset.tab);
+    });
+  });
+
+  $('article-search').addEventListener('input', renderAllArticles);
+  $('article-status-filter').addEventListener('change', renderAllArticles);
+
+  $('new-article-btn').addEventListener('click', () => openEditor());
+  $('close-editor-btn').addEventListener('click', closeEditor);
+  $('article-form').addEventListener('submit', saveDraft);
+  $('submit-article-btn').addEventListener('click', submitArticle);
+
+  $('close-detail-btn').addEventListener('click', closeDetail);
+
+  $('cancel-revision-btn').addEventListener('click', () => {
+    $('revision-section').hidden = true;
+    $('revision-note').value = '';
+  });
+
+  $('confirm-revision-btn').addEventListener('click', requestRevision);
+  $('add-comment-btn').addEventListener('click', addComment);
 
   initialize();
 })();
 </script>
-
 </body>
 </html>
