@@ -1,0 +1,23 @@
+{
+  "id": "/editor/",
+  "name": "MOVE&TRY | The Journal",
+  "short_name": "The Journal",
+  "description": "Urednički prostor MOVE&TRY The Journala",
+  "start_url": "/editor/",
+  "scope": "/editor/",
+  "display": "standalone",
+  "background_color": "#F7F6F2",
+  "theme_color": "#687B61",
+  "icons": [
+    {
+      "src": "/editor/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/editor/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
