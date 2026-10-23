@@ -1,26 +1,66 @@
-
 <!DOCTYPE html>
 <html lang="hr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <title>Izrada prirodnih parfema | Move & Try</title>
-  <meta name="description" content="Otkrij izradu prirodnih parfema kroz MOVE & TRY. Upoznaj svijet mirisa, kreativno kombiniranje mirisnih nota, prve korake i radionice izrade vlastitog parfema.">
 
-  <!-- Stranica je u pripremi i još nije povezana s platformom -->
+  <meta
+    name="description"
+    content="Otkrij izradu prirodnih parfema kroz MOVE & TRY. Upoznaj svijet mirisa, mirisne note, prve korake, stvarna iskustva i mjesta na kojima možeš izraditi vlastiti parfem."
+  >
+
+  <!-- Stranica je još u pripremi i nije povezana s platformom -->
   <meta name="robots" content="noindex, nofollow">
+
+  <link
+    rel="canonical"
+    href="https://moveandtry.com/hr/natural-perfume-making.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="hr"
+    href="https://moveandtry.com/hr/natural-perfume-making.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://moveandtry.com/natural-perfume-making.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://moveandtry.com/natural-perfume-making.html"
+  >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"
+  ></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
     gtag('config', 'G-PREYRXPPN8');
   </script>
@@ -28,137 +68,170 @@
   <link rel="stylesheet" href="../style.css">
 
   <style>
-    /* Zaglavlje navigacije */
+    /* ==========================================
+       HEADER
+    ========================================== */
+
     .header-behind-link {
-      color:#555;
-      font-family:'Manrope',sans-serif;
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.04em;
-      text-decoration:none;
-      white-space:nowrap;
-      transition:opacity .2s ease;
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
     }
 
     .header-behind-link:hover {
-      opacity:.55;
+      opacity: .55;
     }
 
-    /* Fotografski hero */
+
+    /* ==========================================
+       NATURAL PERFUME MAKING — PHOTO HERO
+    ========================================== */
+
     .activity-page .activity-header.perfume-photo-hero {
-      position:relative;
-      isolation:isolate;
-      overflow:hidden;
-      min-height:420px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      background:#151313;
-      color:#fff;
-      padding:60px 48px;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+
+      min-height: 420px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      background: #151313;
+      color: #fff;
+
+      padding: 60px 48px;
     }
 
     .perfume-photo-hero .perfume-hero-photos {
-      position:absolute;
-      inset:0;
-      z-index:-2;
-      overflow:hidden;
-      pointer-events:none;
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+
+      overflow: hidden;
+      pointer-events: none;
     }
 
     .perfume-photo-hero .perfume-hero-photo {
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      display:block;
-      object-fit:cover;
-      animation:perfumeHeroFade 12s ease-in-out infinite;
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      animation: perfumeHeroFade 12s ease-in-out infinite;
     }
 
     .perfume-photo-hero .perfume-hero-photo:first-child {
-      object-position:center 43%;
-      animation-delay:0s;
+      object-position: center 43%;
+      animation-delay: 0s;
     }
 
-    /* Druga fotografija: kadar prema dnu, ruka i bočica */
     .perfume-photo-hero .perfume-hero-photo:last-child {
-      object-position:center bottom;
-      animation-delay:-6s;
+      object-position: center bottom;
+      animation-delay: -6s;
     }
 
     .perfume-photo-hero::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-1;
-      background:linear-gradient(
+      content: "";
+
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      background: linear-gradient(
         180deg,
-        rgba(10,9,11,.45) 0%,
-        rgba(10,9,11,.64) 48%,
-        rgba(10,9,11,.91) 100%
+        rgba(10, 9, 11, .45) 0%,
+        rgba(10, 9, 11, .64) 48%,
+        rgba(10, 9, 11, .91) 100%
       );
-      pointer-events:none;
+
+      pointer-events: none;
     }
 
-    /* Tekst preko fotografija */
+
+    /* ==========================================
+       HERO TEXT
+    ========================================== */
+
     .activity-page .perfume-photo-hero .activity-page-type,
     .activity-page .perfume-photo-hero h1,
     .activity-page .perfume-photo-hero .activity-page-intro,
     .activity-page .perfume-photo-hero .activity-page-intro strong,
     .activity-page .perfume-photo-hero .activity-nav,
     .activity-page .perfume-photo-hero .activity-nav span {
-      position:relative;
-      z-index:1;
-      color:#fff;
+      position: relative;
+      z-index: 1;
+      color: #fff;
     }
 
     .activity-page .perfume-photo-hero .activity-page-type {
-      color:#e3c9a6;
+      color: #e3c9a6;
     }
 
     .activity-page .perfume-photo-hero .activity-page-intro {
-      color:rgba(255,255,255,.90);
+      color: rgba(255, 255, 255, .90);
     }
 
     .activity-page .perfume-photo-hero .activity-page-intro strong {
-      color:#fff;
+      color: #fff;
     }
 
     .activity-page .perfume-photo-hero .activity-nav span {
-      border-color:rgba(255,255,255,.42);
+      border-color: rgba(255, 255, 255, .42);
     }
 
-    /* Animacija fotografija */
+
+    /* ==========================================
+       HERO ANIMATION
+    ========================================== */
+
     @keyframes perfumeHeroFade {
-      0%,42% {
-        opacity:1;
+      0%,
+      42% {
+        opacity: 1;
       }
 
-      50%,92% {
-        opacity:0;
+      50%,
+      92% {
+        opacity: 0;
       }
 
       100% {
-        opacity:1;
+        opacity: 1;
       }
     }
 
-    @media (max-width:900px) {
+
+    /* ==========================================
+       RESPONSIVE
+    ========================================== */
+
+    @media (max-width: 900px) {
       .activity-page .activity-header.perfume-photo-hero {
-        min-height:380px;
-        padding:48px 24px;
+        min-height: 380px;
+        padding: 48px 24px;
       }
     }
 
-    @media (prefers-reduced-motion:reduce) {
+    @media (prefers-reduced-motion: reduce) {
       .perfume-photo-hero .perfume-hero-photo {
-        animation:none;
-        opacity:0;
+        animation: none;
+        opacity: 0;
       }
 
       .perfume-photo-hero .perfume-hero-photo:first-child {
-        opacity:1;
+        opacity: 1;
       }
     }
   </style>
@@ -166,26 +239,70 @@
 
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="site-header">
-  <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
-    <img src="/images/move-and-try-logo.png" alt="Move & Try">
+
+  <a
+    href="/hr/"
+    class="site-logo"
+    aria-label="Move & Try – početna"
+  >
+    <img
+      src="/images/move-and-try-logo.png"
+      alt="Move & Try"
+    >
   </a>
 
+
   <nav class="desktop-nav">
-    <a href="/hr/#find-your-try">OTKRIJ</a>
-    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-    <a href="/hr/#where-to-try">GDJE PROBATI</a>
-    <a href="/hr/journal.html">THE JOURNAL</a>
+
+    <a href="/hr/#find-your-try">
+      OTKRIJ
+    </a>
+
+    <a href="/hr/#be-part-of-it">
+      BUDI DIO PRIČE
+    </a>
+
+    <a href="/hr/#where-to-try">
+      GDJE PROBATI
+    </a>
+
+    <a href="/hr/journal.html">
+      THE JOURNAL
+    </a>
+
   </nav>
 
+
   <div class="header-actions">
-    <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+
+    <a
+      href="/hr/behind-move-and-try.html"
+      class="header-behind-link"
+    >
       IZA MOVE & TRY
     </a>
 
     <div class="header-language">
-      <span class="language-active">HR</span>
+
+      <a
+        href="/natural-perfume-making.html"
+        onclick="setLanguage('en')"
+      >
+        EN
+      </a>
+
+      <span>|</span>
+
+      <span class="language-active">
+        HR
+      </span>
+
     </div>
 
     <button
@@ -197,33 +314,93 @@
       <span></span>
       <span></span>
     </button>
+
   </div>
+
 </header>
 
-<!-- MOBILE MENU -->
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
 <div class="mobile-menu">
+
   <nav>
-    <a href="/hr/#find-your-try">OTKRIJ</a>
-    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-    <a href="/hr/#where-to-try">GDJE PROBATI</a>
-    <a href="/hr/journal.html">THE JOURNAL</a>
-    <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+
+    <a href="/hr/#find-your-try">
+      OTKRIJ
+    </a>
+
+    <a href="/hr/#be-part-of-it">
+      BUDI DIO PRIČE
+    </a>
+
+    <a href="/hr/#where-to-try">
+      GDJE PROBATI
+    </a>
+
+    <a href="/hr/journal.html">
+      THE JOURNAL
+    </a>
+
+    <a href="/hr/behind-move-and-try.html">
+      IZA MOVE & TRY
+    </a>
+
   </nav>
 
   <div class="mobile-menu-language">
-    <span class="language-active">HR</span>
+
+    <a
+      href="/natural-perfume-making.html"
+      onclick="setLanguage('en')"
+    >
+      EN
+    </a>
+
+    <span>|</span>
+
+    <span class="language-active">
+      HR
+    </span>
+
   </div>
+
 </div>
 
-<!-- IZRADA PRIRODNIH PARFEMA -->
+
+<!-- =========================
+     NATURAL PERFUME MAKING
+========================= -->
+
 <main class="activity-page">
 
-  <a href="/hr/create.html" class="back-link">← CREATE</a>
 
-  <!-- FOTOGRAFSKI HERO -->
+  <!-- =========================
+       BACK TO CREATE
+  ========================= -->
+
+  <a
+    href="/hr/create.html"
+    class="back-link"
+  >
+    ← CREATE
+  </a>
+
+
+  <!-- =========================
+       PHOTO HERO
+  ========================= -->
+
   <header class="activity-header perfume-photo-hero">
 
-    <div class="perfume-hero-photos" aria-hidden="true">
+
+    <div
+      class="perfume-hero-photos"
+      aria-hidden="true"
+    >
+
       <img
         class="perfume-hero-photo"
         src="/images/natural-perfume-spray.jpg"
@@ -238,123 +415,217 @@
         alt=""
         loading="eager"
       >
+
     </div>
+
 
     <p class="activity-page-type">
       CREATE · IZRADA PRIRODNIH PARFEMA
     </p>
 
-    <h1>IZRADA PRIRODNIH PARFEMA</h1>
+
+    <h1>
+      IZRADA PRIRODNIH PARFEMA
+    </h1>
+
 
     <p class="activity-page-intro">
       Miris može probuditi uspomenu, raspoloženje ili osjećaj.<br>
-      <strong>A što ako ovaj put stvoriš miris koji je samo tvoj?</strong>
+
+      <strong>
+        A što ako ovaj put stvoriš miris koji je samo tvoj?
+      </strong>
     </p>
 
+
     <div class="activity-nav">
-      <span>VODIČ</span>
-      <span>ISKUSTVA</span>
-      <span>STRUČNJACI</span>
-      <span>GDJE PROBATI</span>
+
+      <span class="activity-nav-active">
+        VODIČ
+      </span>
+
+      <span>
+        ISKUSTVA
+      </span>
+
+      <span>
+        STRUČNJACI
+      </span>
+
+      <span>
+        GDJE PROBATI
+      </span>
+
     </div>
+
   </header>
 
-  <!-- SADRŽAJ U PRIPREMI -->
+
+  <!-- =========================
+       CONTENT
+  ========================= -->
+
   <section class="activity-content-section">
+
 
     <p class="section-label">
       ISTRAŽI IZRADU PRIRODNIH PARFEMA
     </p>
 
-    <h2>SVAKI MIRIS IMA SVOJU PRIČU.</h2>
+
+    <h2>
+      SVAKI MIRIS IMA SVOJU PRIČU.
+    </h2>
+
 
     <div class="activity-content-grid">
 
-      <!-- VODIČ -->
-      <div class="content-card content-card-coming">
+
+      <!-- =========================
+           GUIDE — AVAILABLE
+      ========================= -->
+
+      <a
+        href="/hr/natural-perfume-making-guide.html"
+        class="content-card"
+      >
+
         <span class="content-card-type">
-          KRENI OVDJE · VODIČ
+          VODIČ ✓
         </span>
 
-        <h3>STVORI SVOJ PRVI PARFEM.</h3>
+        <h3>
+          STVORI SVOJ PRVI PARFEM.
+        </h3>
 
         <p>
-          Kako nastaje prirodni parfem, što su mirisne note,
-          kako se kombiniraju različiti mirisi i što trebaš
-          znati prije prvog pokušaja.
+          Što su gornje, srednje i bazne note,
+          kako pristupiti različitim mirisima
+          i što trebaš znati prije nego što
+          prvi put kreneš stvarati svoj parfem.
         </p>
 
-        <span class="content-card-status">USKORO</span>
-      </div>
-
-      <!-- ISKUSTVA -->
-      <div class="content-card content-card-coming">
-        <span class="content-card-type">
-          STVARNA ISKUSTVA
+        <span class="content-card-action">
+          PROČITAJ VODIČ →
         </span>
 
-        <h3>KAKO JE KAD SAM STVARAŠ MIRIS?</h3>
+      </a>
 
-        <p>
-          Biranje mirisnih nota, prve kombinacije,
-          neočekivani rezultati i zadovoljstvo kada
-          prvi put pomirišeš parfem koji si sam stvorio.
-        </p>
 
-        <span class="content-card-status">USKORO</span>
-      </div>
+      <!-- =========================
+           EXPERIENCE — COMING SOON
+      ========================= -->
 
-      <!-- STRUČNJACI -->
       <div class="content-card content-card-coming">
+
         <span class="content-card-type">
-          STRUČNA PERSPEKTIVA
+          ISKUSTVA
         </span>
 
-        <h3>ŠTO SE KRIJE IZA DOBROG MIRISA?</h3>
+        <h3>
+          KAKO JE KAD SAM STVARAŠ MIRIS?
+        </h3>
 
         <p>
-          Stručnjaci otkrivaju kako se biraju sastojci,
-          kako se mirisne note međusobno nadopunjuju
-          i što je važno pri izradi prirodnih parfema.
+          Biranje mirisa, prve kombinacije,
+          neočekivani rezultati i trenutak
+          kada prvi put pomirišeš parfem
+          koji si sam stvorio.
         </p>
 
-        <span class="content-card-status">USKORO</span>
+        <span class="content-card-status">
+          USKORO
+        </span>
+
       </div>
 
-      <!-- GDJE PROBATI -->
+
+      <!-- =========================
+           EXPERT — COMING SOON
+      ========================= -->
+
       <div class="content-card content-card-coming">
+
+        <span class="content-card-type">
+          STRUČNJAK
+        </span>
+
+        <h3>
+          ŠTO SE KRIJE IZA DOBROG MIRISA?
+        </h3>
+
+        <p>
+          Stručna perspektiva o prirodnim mirisima,
+          sastojcima, mirisnim notama
+          i procesu stvaranja parfema.
+        </p>
+
+        <span class="content-card-status">
+          USKORO
+        </span>
+
+      </div>
+
+
+      <!-- =========================
+           WHERE TO TRY — COMING SOON
+      ========================= -->
+
+      <div class="content-card content-card-coming">
+
         <span class="content-card-type">
           GDJE PROBATI
         </span>
 
-        <h3>PRONAĐI RADIONICU MIRISA.</h3>
+        <h3>
+          GDJE MOŽEŠ IZRADITI SVOJ PARFEM?
+        </h3>
 
         <p>
-          Upoznaj kreativne radionice, voditelje i mjesta
-          na kojima možeš istražiti svijet prirodnih mirisa
+          Pronađi radionice i mjesta
+          na kojima možeš upoznati prirodne mirise,
+          istražiti različite kombinacije
           i izraditi vlastiti parfem.
         </p>
 
-        <span class="content-card-status">USKORO</span>
+        <span class="content-card-status">
+          USKORO
+        </span>
+
       </div>
 
+
     </div>
+
   </section>
 
-  <!-- PODIJELI ISKUSTVO -->
+
+  <!-- =========================
+       SHARE YOUR EXPERIENCE
+  ========================= -->
+
   <section class="activity-contribute">
 
-    <p class="section-label">TVOJE ISKUSTVO</p>
 
-    <h2>IZRADIO SI SVOJ PARFEM?</h2>
+    <p class="section-label">
+      TVOJE ISKUSTVO
+    </p>
+
+
+    <h2>
+      IZRADIO SI SVOJ PARFEM?
+    </h2>
+
 
     <p>
       Jesi li pronašao svoju omiljenu kombinaciju mirisa
       ili te rezultat potpuno iznenadio?
+
       Podijeli svoje iskustvo.
-      Možda baš tvoja priča potakne nekoga da
-      stvori svoj prvi parfem.
+      Možda baš tvoja priča potakne nekoga
+      da stvori svoj prvi parfem.
     </p>
+
 
     <a
       href="/hr/share-experience.html"
@@ -363,10 +634,18 @@
       PODIJELI SVOJE ISKUSTVO →
     </a>
 
+
   </section>
+
 
 </main>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script src="../script.js"></script>
+
 </body>
 </html>
