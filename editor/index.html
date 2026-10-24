@@ -635,7 +635,7 @@
 
       <div class="info-box" style="margin-top:30px">
         <strong>Upravljanje suradnicima</strong>
-        <p>Pozivnice su povezane sa sigurnom poslužiteljskom funkcijom. Promjena uloga i deaktivacija zasad nisu dostupne iz Editora.</p>
+        <p>Suradnike možeš aktivirati i deaktivirati izravno u Editoru. Njihovi članci, komentari i povijest ostaju sačuvani. Trajno brisanje korisnika i promjena uloga nisu dostupni u Editoru.</p>
         <p>E-mail adrese postojećih suradnika nisu dio tablice uredničkih profila, pa se ovdje prikazuju imena, uloge i status pristupa.</p>
       </div>
     </section>
@@ -1153,9 +1153,7 @@
     target.replaceChildren();
 
     if (!profiles.length) {
-      target.appendChild(
-        emptyMessage('Nema dostupnih suradnika.')
-      );
+      target.appendChild(emptyMessage('Nema dostupnih suradnika.'));
       return;
     }
 
@@ -1163,39 +1161,97 @@
       const row = createElement('div', 'collaborator');
       const info = createElement('div');
 
-      info.appendChild(
-        createElement(
-          'p',
-          'article-title',
-          profile.display_name || 'Bez prikaznog imena'
-        )
-      );
+      info.appendChild(createElement(
+        'p', 'article-title', profile.display_name || 'Bez prikaznog imena'
+      ));
 
-      const authored = articles.filter(a =>
-        a.author_id === profile.id
-      ).length;
+      const authored = articles.filter(a => a.author_id === profile.id).length;
+      const role = profile.role === 'admin' ? 'Administrator' : 'Autor / urednik';
 
-      const role = profile.role === 'admin'
-        ? 'Administrator'
-        : 'Autor / urednik';
-
-      info.appendChild(
-        createElement(
-          'div',
-          'article-meta',
-          `${role} · ${authored} članaka · Od ${dateLabel(profile.created_at)}`
-        )
-      );
+      info.appendChild(createElement(
+        'div', 'article-meta',
+        `${role} · ${authored} članaka · Od ${dateLabel(profile.created_at)}`
+      ));
 
       const status = createElement(
-        'span',
-        profile.is_active ? 'pill' : 'pill inactive',
+        'span', profile.is_active ? 'pill' : 'pill inactive',
         profile.is_active ? 'AKTIVAN' : 'DEAKTIVIRAN'
       );
 
-      row.append(info, status);
+      const controls = createElement('div', 'top-actions');
+      controls.appendChild(status);
+
+      if (isAdmin() && profile.role === 'editor' && profile.id !== currentUser.id) {
+        const button = makeButton(
+          profile.is_active ? 'DEAKTIVIRAJ' : 'AKTIVIRAJ',
+          () => setCollaboratorStatus(profile.id, !profile.is_active),
+          profile.is_active ? 'btn danger small-btn' : 'btn green small-btn'
+        );
+        button.disabled = busy;
+        controls.appendChild(button);
+      }
+
+      row.append(info, controls);
       target.appendChild(row);
     });
+  }
+
+  async function setCollaboratorStatus(collaboratorId, isActive) {
+    if (!isAdmin() || busy) return;
+
+    const profile = profiles.find(p => p.id === collaboratorId);
+    if (!profile || profile.role !== 'editor' || collaboratorId === currentUser.id) return;
+
+    const name = profile.display_name || 'ovog suradnika';
+    const question = isActive
+      ? `Želiš li ponovno aktivirati suradnika ${name}?`
+      : `Želiš li deaktivirati suradnika ${name}?\n\nNjegovi članci, komentari i povijest ostat će sačuvani.`;
+    if (!confirm(question)) return;
+
+    busy = true;
+    renderCollaborators();
+    setMessage('dashboard-message', isActive ? 'Aktivacija suradnika...' : 'Deaktivacija suradnika...');
+
+    try {
+      const { data: sessionData, error: sessionError } = await db.auth.getSession();
+      if (sessionError || !sessionData.session?.access_token) {
+        throw new Error('Sesija je istekla. Prijavi se ponovno.');
+      }
+
+      const { data, error } = await db.functions.invoke('journal-set-collaborator-status', {
+        body: { collaborator_id: collaboratorId, is_active: isActive },
+        headers: { Authorization: `Bearer ${sessionData.session.access_token}` }
+      });
+
+      if (error) {
+        let detail = '';
+        try {
+          const body = await error.context?.json();
+          detail = body?.error || '';
+        } catch (_) { /* Nema JSON tijela. */ }
+        throw new Error(detail || error.message || 'Promjena statusa nije uspjela.');
+      }
+
+      if (!data?.success) {
+        throw new Error(data?.error || 'Promjena statusa nije potvrđena.');
+      }
+
+      try {
+        await refreshDashboard();
+        setMessage('dashboard-message', data.message || 'Status suradnika je promijenjen.');
+      } catch (refreshError) {
+        setMessage(
+          'dashboard-message',
+          'Status je promijenjen, ali popis nije osvježen: ' + friendlyError(refreshError),
+          true
+        );
+      }
+    } catch (error) {
+      setMessage('dashboard-message', friendlyError(error), true);
+    } finally {
+      busy = false;
+      renderCollaborators();
+    }
   }
 
   function switchTab(name) {
