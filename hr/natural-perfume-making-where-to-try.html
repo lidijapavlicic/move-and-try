@@ -152,7 +152,7 @@
         .where-hero {
             max-width: 1180px;
             margin: 0 auto;
-            padding: 80px 32px 74px;
+            padding: 72px 32px 70px;
         }
 
         .where-eyebrow {
@@ -167,12 +167,12 @@
         }
 
         .where-hero h1 {
-            max-width: 960px;
+            max-width: 920px;
             margin: 0;
 
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(54px, 8vw, 108px);
-            line-height: .94;
+            font-size: clamp(48px, 6vw, 86px);
+            line-height: .98;
             font-weight: 400;
 
             color: var(--wtt-green);
@@ -180,7 +180,7 @@
 
         .where-intro {
             max-width: 700px;
-            margin: 34px 0 0;
+            margin: 32px 0 0;
 
             font-family: 'Manrope', sans-serif;
             font-size: 18px;
@@ -491,12 +491,28 @@
             color: rgba(255, 255, 255, .78);
         }
 
-        .where-contribute-link {
+        /*
+           Namjerno jači selector od globalnog style.css.
+           Ovdje želimo editorial text link, ne boxed button.
+        */
+
+        .where-contribute .where-contribute-link {
+            appearance: none;
+
             display: inline-block;
 
-            padding-bottom: 5px;
+            width: auto;
+            max-width: none;
 
+            margin: 0;
+            padding: 0 0 5px;
+
+            border: 0;
             border-bottom: 1px solid rgba(255, 255, 255, .8);
+            border-radius: 0;
+
+            background: transparent;
+            box-shadow: none;
 
             font-family: 'Manrope', sans-serif;
             font-size: 12px;
@@ -511,7 +527,10 @@
                 transform .2s ease;
         }
 
-        .where-contribute-link:hover {
+        .where-contribute .where-contribute-link:hover {
+            background: transparent;
+            color: #fff;
+
             opacity: .65;
             transform: translateX(3px);
         }
@@ -593,7 +612,12 @@
             }
 
             .where-hero {
-                padding: 60px 22px 58px;
+                padding: 56px 22px 58px;
+            }
+
+            .where-hero h1 {
+                font-size: clamp(44px, 13vw, 62px);
+                line-height: 1;
             }
 
             .where-intro {
