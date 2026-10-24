@@ -1,14 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" type="image/png" href="/favicon.png">
 
-    <title>CREATE | Discover Your Creativity | Move & Try</title>
-    <meta name="description" content="Explore new ways to express yourself through pottery, painting, photography, writing, music and creative activities. It doesn't have to be perfect. Just try.">
+    <title>CREATE | Discover your creativity | Move & Try</title>
+
+    <meta
+        name="description"
+        content="Discover new ways to express yourself through natural perfume making, pottery, painting, photography, writing, music and creative activities. It doesn't have to be perfect. Just try."
+    >
 
     <link rel="canonical" href="https://moveandtry.com/create.html">
     <link rel="alternate" hreflang="en" href="https://moveandtry.com/create.html">
@@ -17,10 +21,18 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"
+    ></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -37,7 +49,8 @@
     <style>
         /* CREATE — SAME DIMENSIONS AND STRUCTURE AS MOVE AND LEARN */
 
-        .move-app-page .activity-card.pottery-photo-card {
+        .move-app-page .activity-card.pottery-photo-card,
+        .move-app-page .activity-card.perfume-photo-card {
             position: relative;
             isolation: isolate;
             overflow: hidden;
@@ -46,7 +59,58 @@
             background: #17191a;
         }
 
-        /* Photograph layer */
+
+        /* ==========================================
+           PERFUME CARD
+        ========================================== */
+
+        .perfume-photo-card .perfume-card-photos {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .perfume-photo-card .perfume-card-photo {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: perfumeCardFade 12s ease-in-out infinite;
+        }
+
+        .perfume-photo-card .perfume-card-photo:first-child {
+            object-position: center 43%;
+            animation-delay: 0s;
+        }
+
+        .perfume-photo-card .perfume-card-photo:last-child {
+            object-position: center bottom;
+            animation-delay: -6s;
+        }
+
+        .perfume-photo-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                180deg,
+                rgba(10, 9, 11, 0.42) 0%,
+                rgba(10, 9, 11, 0.60) 48%,
+                rgba(10, 9, 11, 0.90) 100%
+            );
+            pointer-events: none;
+        }
+
+
+        /* ==========================================
+           POTTERY CARD
+        ========================================== */
+
         .pottery-photo-card .pottery-card-photos {
             position: absolute;
             inset: 0;
@@ -65,19 +129,16 @@
             animation: potteryCardFade 12s ease-in-out infinite;
         }
 
-        /* First photograph — black and white */
         .pottery-photo-card .pottery-card-photo:first-child {
             object-position: center 48%;
             animation-delay: 0s;
         }
 
-        /* Second photograph — warm tones */
         .pottery-photo-card .pottery-card-photo:last-child {
             object-position: center 55%;
             animation-delay: -6s;
         }
 
-        /* Dark overlay — same as LEARN */
         .pottery-photo-card::before {
             content: "";
             position: absolute;
@@ -92,7 +153,17 @@
             pointer-events: none;
         }
 
-        /* Text above photographs */
+
+        /* ==========================================
+           CARD CONTENT
+        ========================================== */
+
+        .perfume-photo-card .activity-content,
+        .perfume-photo-card .activity-content h3,
+        .perfume-photo-card .activity-description,
+        .perfume-photo-card .activity-available,
+        .perfume-photo-card .activity-available span,
+        .perfume-photo-card .activity-action,
         .pottery-photo-card .activity-content,
         .pottery-photo-card .activity-content h3,
         .pottery-photo-card .activity-description,
@@ -104,21 +175,45 @@
             color: #ffffff;
         }
 
+        .perfume-photo-card .activity-description,
         .pottery-photo-card .activity-description {
             color: rgba(255, 255, 255, 0.88);
         }
 
+        .perfume-photo-card .activity-available span,
         .pottery-photo-card .activity-available span {
             border-color: rgba(255, 255, 255, 0.42);
         }
 
-        /* Alternating photographs every six seconds */
-        @keyframes potteryCardFade {
-            0%, 42% {
+
+        /* ==========================================
+           ANIMATIONS
+        ========================================== */
+
+        @keyframes perfumeCardFade {
+            0%,
+            42% {
                 opacity: 1;
             }
 
-            50%, 92% {
+            50%,
+            92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes potteryCardFade {
+            0%,
+            42% {
+                opacity: 1;
+            }
+
+            50%,
+            92% {
                 opacity: 0;
             }
 
@@ -128,17 +223,24 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+
+            .perfume-photo-card .perfume-card-photo,
             .pottery-photo-card .pottery-card-photo {
                 animation: none;
                 opacity: 0;
             }
 
+            .perfume-photo-card .perfume-card-photo:first-child,
             .pottery-photo-card .pottery-card-photo:first-child {
                 opacity: 1;
             }
         }
 
-        /* DESKTOP — BEHIND MOVE & TRY */
+
+        /* ==========================================
+           DESKTOP — BEHIND MOVE & TRY
+        ========================================== */
+
         .header-behind-link,
         .header-behind-link:visited {
             color: #555;
@@ -169,7 +271,7 @@
         <nav class="desktop-nav">
             <a href="/#find-your-try">DISCOVER</a>
             <a href="/#be-part-of-it">BE PART OF IT</a>
-            <a href="/#where-to-try">WHERE TO TRY</a>
+            <a href="/where-to-try.html">WHERE TO TRY</a>
             <a href="/journal.html">THE JOURNAL</a>
         </nav>
 
@@ -199,13 +301,14 @@
 
     </header>
 
+
     <!-- MOBILE MENU -->
     <div class="mobile-menu">
 
         <nav>
             <a href="/#find-your-try">DISCOVER</a>
             <a href="/#be-part-of-it">BE PART OF IT</a>
-            <a href="/#where-to-try">WHERE TO TRY</a>
+            <a href="/where-to-try.html">WHERE TO TRY</a>
             <a href="/journal.html">THE JOURNAL</a>
             <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
         </nav>
@@ -218,6 +321,7 @@
 
     </div>
 
+
     <!-- CREATE CATEGORY -->
     <main class="category-page move-app-page">
 
@@ -226,18 +330,26 @@
             <!-- LEFT: INTRODUCTION -->
             <section class="move-app-intro" aria-labelledby="create-title">
 
-                <p class="category-page-number">03 · CREATE</p>
+                <p class="category-page-number">
+                    03 · CREATE
+                </p>
 
-                <h1 id="create-title">CREATE</h1>
+                <h1 id="create-title">
+                    CREATE
+                </h1>
 
-                <h2>Create something.<br>Just for yourself.</h2>
+                <h2>
+                    Make something.<br>
+                    Just for yourself.
+                </h2>
 
                 <p>
                     Creativity isn't reserved for artists.
                     You don't need to know how to draw, play an instrument
-                    or make something perfect. Sometimes all it takes
-                    is following an idea, working with your hands
-                    and seeing what happens.
+                    or make perfect things.
+
+                    Sometimes it's enough to follow an idea,
+                    work with your hands and see what happens.
                 </p>
 
                 <p>
@@ -247,26 +359,103 @@
                 </p>
 
                 <p class="move-app-highlight">
-                    It doesn't have to be perfect.
-                    What matters is that it's yours.
+                    It doesn't have to be perfect. It just has to be yours.
                 </p>
 
             </section>
 
+
             <!-- RIGHT: ACTIVITIES -->
-            <section class="move-app-discover" aria-labelledby="create-discover-title">
+            <section
+                class="move-app-discover"
+                aria-labelledby="create-discover-title"
+            >
 
-                <p class="section-label">EXPLORE CREATE</p>
+                <p class="section-label">
+                    EXPLORE CREATE
+                </p>
 
-                <h2 id="create-discover-title">WHAT WOULD YOU LIKE TO TRY?</h2>
+                <h2 id="create-discover-title">
+                    WHAT WOULD YOU LIKE TO TRY?
+                </h2>
 
                 <div class="activity-grid">
 
-                    <!-- POTTERY -->
-                    <a href="/pottery.html" class="activity-card pottery-photo-card">
 
-                        <!-- TWO ALTERNATING PHOTOGRAPHS -->
-                        <div class="pottery-card-photos" aria-hidden="true">
+                    <!-- =========================
+                         NATURAL PERFUME MAKING
+                         LATEST ACTIVITY
+                    ========================= -->
+
+                    <a
+                        href="/natural-perfume-making.html"
+                        class="activity-card perfume-photo-card"
+                    >
+
+                        <div
+                            class="perfume-card-photos"
+                            aria-hidden="true"
+                        >
+
+                            <img
+                                class="perfume-card-photo"
+                                src="/images/natural-perfume-spray.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
+
+                            <img
+                                class="perfume-card-photo"
+                                src="/images/natural-perfume-bottle.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="activity-content">
+
+                            <h3>
+                                NATURAL PERFUME MAKING
+                            </h3>
+
+                            <p class="activity-description">
+                                Explore fragrance notes and natural essences
+                                and create a combination that is entirely your own.
+
+                                Discover what a first encounter
+                                with natural perfumery feels like.
+                            </p>
+
+                            <div class="activity-available">
+                                <span>GUIDE ✓</span>
+                                <span>EXPERIENCES ✓</span>
+                                <span>EXPERT</span>
+                                <span>WHERE TO TRY ✓</span>
+                            </div>
+
+                        </div>
+
+                        <span class="activity-action">
+                            EXPLORE PERFUME MAKING →
+                        </span>
+
+                    </a>
+
+
+                    <!-- =========================
+                         POTTERY
+                    ========================= -->
+
+                    <a
+                        href="/pottery.html"
+                        class="activity-card pottery-photo-card"
+                    >
+
+                        <div
+                            class="pottery-card-photos"
+                            aria-hidden="true"
+                        >
 
                             <img
                                 class="pottery-card-photo"
@@ -286,14 +475,17 @@
 
                         <div class="activity-content">
 
-                            <h3>POTTERY</h3>
+                            <h3>
+                                POTTERY
+                            </h3>
 
                             <p class="activity-description">
-                                Clay between your fingers, a pottery wheel
+                                Clay between your fingers, the pottery wheel
                                 and the satisfaction of creating something
                                 with your own hands.
-                                Discover what your first pottery
-                                experience could look like.
+
+                                Discover what your first encounter
+                                with pottery can look like.
                             </p>
 
                             <div class="activity-available">
@@ -313,7 +505,8 @@
 
                 </div>
 
-                <!-- SUBTLE COMING SOON LABEL -->
+
+                <!-- DISCREET TEASER -->
                 <p class="move-app-more">
                     MORE ACTIVITIES COMING SOON
                 </p>
@@ -322,33 +515,48 @@
 
         </div>
 
+
         <!-- SUGGEST AN ACTIVITY -->
         <section class="category-suggest">
 
-            <p class="section-label">MISSING SOMETHING?</p>
+            <p class="section-label">
+                SOMETHING MISSING?
+            </p>
 
-            <h2>HAVE ANOTHER IDEA?</h2>
+            <h2>
+                HAVE ANOTHER IDEA?
+            </h2>
 
             <p>
-                Is there something you'd love to create or try
+                Is there something you would love to make or try
                 that isn't on Move &amp; Try yet?
+
                 Tell us what you'd like to see.
             </p>
 
-            <a href="/#try-form" class="category-suggest-link">
+            <a
+                href="/#try-form"
+                class="category-suggest-link"
+            >
                 SUGGEST A TRY →
             </a>
 
         </section>
 
-        <!-- EXPLORE OTHER CATEGORIES -->
+
+        <!-- OTHER CATEGORIES -->
         <div
             class="category-other-categories"
             style="text-align: center; padding: 24px 20px 48px;"
         >
-            <a href="/#find-your-try" class="category-suggest-link">
+
+            <a
+                href="/#find-your-try"
+                class="category-suggest-link"
+            >
                 EXPLORE OTHER CATEGORIES →
             </a>
+
         </div>
 
     </main>
