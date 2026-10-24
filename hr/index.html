@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="hr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <title>Move & Try | Ne moraš biti dobar u tome. Samo probaj.</title>
@@ -20,15 +22,45 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Move & Try">
-  <meta property="og:title" content="Move & Try | Ne moraš biti dobar u tome. Samo probaj.">
-  <meta property="og:description" content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj.">
+
+  <meta
+    property="og:title"
+    content="Move & Try | Ne moraš biti dobar u tome. Samo probaj."
+  >
+
+  <meta
+    property="og:description"
+    content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj."
+  >
+
   <meta property="og:url" content="https://moveandtry.com/hr/">
-  <meta property="og:image" content="https://moveandtry.com/images/move-and-try-share.png">
+
+  <meta
+    property="og:image"
+    content="https://moveandtry.com/images/move-and-try-share.png"
+  >
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Move & Try | Ne moraš biti dobar u tome. Samo probaj.">
-  <meta name="twitter:description" content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj.">
-  <meta name="twitter:image" content="https://moveandtry.com/images/move-and-try-share.png">
+
+  <meta
+    name="twitter:title"
+    content="Move & Try | Ne moraš biti dobar u tome. Samo probaj."
+  >
+
+  <meta
+    name="twitter:description"
+    content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://moveandtry.com/images/move-and-try-share.png"
+  >
+
+
+  <!-- =========================
+       STRUCTURED DATA
+  ========================= -->
 
   <script type="application/ld+json">
   {
@@ -59,6 +91,11 @@
   }
   </script>
 
+
+  <!-- =========================
+       FONTS
+  ========================= -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -67,7 +104,15 @@
     rel="stylesheet"
   >
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+
+  <!-- =========================
+       GOOGLE ANALYTICS
+  ========================= -->
+
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"
+  ></script>
 
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -80,13 +125,15 @@
     gtag('config', 'G-PREYRXPPN8');
   </script>
 
+
   <link rel="stylesheet" href="../style.css">
+
 
   <style>
 
-    /* =========================
+    /* ==========================================
        ŠTO JE NOVO
-    ========================= */
+    ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-card {
       position: relative;
@@ -101,13 +148,15 @@
 
       background: #151417;
 
-      color: #fff;
+      color: #ffffff;
       text-decoration: none;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-card:first-of-type {
       margin-top: 0;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-card::before,
     .home-intro .whats-new .new-card.latest-update-card::after {
@@ -126,20 +175,67 @@
       animation: latestPhotoFade 12s ease-in-out infinite;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-card::before {
       animation-delay: 0s;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-card::after {
       animation-delay: -6s;
     }
 
 
-    /* POLE DANCE */
+    /* ==========================================
+       NATURAL PERFUME MAKING
+    ========================================== */
+
+    .home-intro .whats-new .new-card.latest-update-natural-perfume {
+      background: #181817;
+    }
+
+
+    .home-intro
+    .whats-new
+    .new-card.latest-update-natural-perfume::before {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(13, 12, 11, .43) 0%,
+          rgba(13, 12, 11, .59) 48%,
+          rgba(13, 12, 11, .89) 100%
+        ),
+        url('/images/natural-perfume-spray.jpg');
+
+      background-position: center 43%;
+    }
+
+
+    .home-intro
+    .whats-new
+    .new-card.latest-update-natural-perfume::after {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(13, 12, 11, .43) 0%,
+          rgba(13, 12, 11, .59) 48%,
+          rgba(13, 12, 11, .89) 100%
+        ),
+        url('/images/natural-perfume-bottle.jpg');
+
+      background-position: center bottom;
+    }
+
+
+    /* ==========================================
+       EXISTING WHAT'S NEW VISUALS
+       Kept for the shared visual system
+    ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-pole-dance {
       background: #18151d;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-pole-dance::before {
       background-image:
@@ -153,6 +249,7 @@
 
       background-position: center 35%;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-pole-dance::after {
       background-image:
@@ -168,11 +265,10 @@
     }
 
 
-    /* RUNNING */
-
     .home-intro .whats-new .new-card.latest-update-running {
       background: #101b20;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-running::before {
       background-image:
@@ -186,6 +282,7 @@
 
       background-position: center 48%;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-running::after {
       background-image:
@@ -201,11 +298,10 @@
     }
 
 
-    /* MEDIATION */
-
     .home-intro .whats-new .new-card.latest-update-mediation {
       background: #17191a;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-mediation::before {
       background-image:
@@ -219,6 +315,7 @@
 
       background-position: center 54%;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-mediation::after {
       background-image:
@@ -234,11 +331,10 @@
     }
 
 
-    /* JAHANJE */
-
     .home-intro .whats-new .new-card.latest-update-horse-riding {
       background: #18241e;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-horse-riding::before {
       background-image:
@@ -252,6 +348,7 @@
 
       background-position: center 65%;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-horse-riding::after {
       background-image:
@@ -267,6 +364,10 @@
     }
 
 
+    /* ==========================================
+       WHAT'S NEW TEXT
+    ========================================== */
+
     .home-intro .whats-new .new-card.latest-update-card .new-type,
     .home-intro .whats-new .new-card.latest-update-card h3,
     .home-intro .whats-new .new-card.latest-update-card p,
@@ -274,8 +375,9 @@
       position: relative;
       z-index: 2;
 
-      color: #fff;
+      color: #ffffff;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-card .new-type {
       color: #d4c8ae;
@@ -317,15 +419,16 @@
     }
 
 
-    /* =========================
-       ILUSTRACIJE KATEGORIJA
-    ========================= */
+    /* ==========================================
+       CATEGORY ILLUSTRATIONS
+    ========================================== */
 
     #find-your-try .category-card {
       position: relative;
       isolation: isolate;
       overflow: hidden;
     }
+
 
     #find-your-try .category-card::before {
       content: "";
@@ -347,34 +450,42 @@
         transform .5s ease;
     }
 
+
     #find-your-try .category-move::before {
       background-image: url('/images/category-move.webp');
     }
+
 
     #find-your-try .category-learn::before {
       background-image: url('/images/category-learn.webp');
     }
 
+
     #find-your-try .category-create::before {
       background-image: url('/images/category-create.webp');
     }
+
 
     #find-your-try .category-explore::before {
       background-image: url('/images/category-explore.webp');
     }
 
+
     #find-your-try .category-dare::before {
       background-image: url('/images/category-dare.webp');
     }
+
 
     #find-your-try .category-care::before {
       background-image: url('/images/category-care.webp');
     }
 
+
     #find-your-try .category-card > * {
       position: relative;
       z-index: 1;
     }
+
 
     @media (hover: hover) and (pointer: fine) {
 
@@ -384,6 +495,7 @@
       }
     }
 
+
     @media (max-width: 768px) {
 
       #find-your-try .category-card::before {
@@ -391,6 +503,7 @@
         background-position: right center;
       }
     }
+
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -400,9 +513,9 @@
     }
 
 
-    /* =========================
-       ZAVRŠNA FOTOGRAFIJA
-    ========================= */
+    /* ==========================================
+       FINAL IMAGE / SUGGEST
+    ========================================== */
 
     section.suggest {
       position: relative;
@@ -421,37 +534,44 @@
       background-position: center 50%;
       background-repeat: no-repeat;
 
-      color: #fff;
+      color: #ffffff;
     }
+
 
     section.suggest > .section-label {
       color: #e3dfc8;
     }
 
+
     section.suggest > h2,
     section.suggest .suggest-intro,
     section.suggest .suggest-intro strong,
     section.suggest .suggest-note {
-      color: #fff;
+      color: #ffffff;
     }
+
 
     section.suggest .privacy-note {
       color: rgba(255,255,255,.90);
     }
 
+
     section.suggest #suggestion-message {
-      color: #fff;
+      color: #ffffff;
     }
 
+
     section.suggest #try-form input {
-      background: #fff;
+      background: #ffffff;
       color: #171717;
     }
 
+
     section.suggest #try-form button {
       background: #171717;
-      color: #fff;
+      color: #ffffff;
     }
+
 
     @media (max-width: 768px) {
 
@@ -468,9 +588,9 @@
     }
 
 
-    /* =========================
-       NASLOVNA FOTOGRAFIJA
-    ========================= */
+    /* ==========================================
+       HERO IMAGE
+    ========================================== */
 
     section.home-hero-image {
       display: block;
@@ -486,6 +606,7 @@
 
       overflow: hidden;
     }
+
 
     section.home-hero-image img {
       display: block;
@@ -504,14 +625,14 @@
     }
 
 
-    /* =========================
-       THE JOURNAL — HEADER
-    ========================= */
+    /* ==========================================
+       HEADER
+    ========================================== */
 
     .header-behind-link {
       color: #555;
 
-      font-family: 'Manrope',sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: .04em;
@@ -522,9 +643,11 @@
       transition: opacity .2s ease;
     }
 
+
     .header-behind-link:hover {
       opacity: .55;
     }
+
 
     @media (min-width: 769px) {
 
@@ -537,14 +660,17 @@
         gap: 16px;
       }
 
+
       .desktop-nav {
         gap: clamp(12px,2vw,38px);
       }
+
 
       .desktop-nav a {
         white-space: nowrap;
       }
     }
+
 
     @media (max-width: 1250px) and (min-width: 769px) {
 
@@ -552,6 +678,7 @@
         display: none;
       }
     }
+
 
     @media (max-width: 768px) {
 
@@ -561,9 +688,19 @@
     }
 
 
-    /* =========================
-       BUDI DIO PRIČE
-    ========================= */
+    /* ==========================================
+       COMMUNITY ANCHORS
+    ========================================== */
+
+    #be-part-of-it,
+    #where-to-try {
+      scroll-margin-top: 110px;
+    }
+
+
+    /* ==========================================
+       BE PART OF IT
+    ========================================== */
 
     #be-part-of-it .community-actions .community-link-primary {
       display: inline-flex;
@@ -578,7 +715,7 @@
       background: #1f2a18;
       border: 1px solid #1f2a18;
 
-      color: #fff;
+      color: #ffffff;
 
       font-size: 11px;
       font-weight: 800;
@@ -592,10 +729,12 @@
         color .2s ease;
     }
 
+
     #be-part-of-it .community-actions .community-link-primary:hover {
       background: transparent;
       color: #1f2a18;
     }
+
 
     #be-part-of-it .community-instagram-link {
       display: inline-block;
@@ -615,14 +754,15 @@
       transition: opacity .2s ease;
     }
 
+
     #be-part-of-it .community-instagram-link:hover {
       opacity: .55;
     }
 
 
-    /* =========================
-       GDJE PROBATI — AKTIVAN PANEL
-    ========================= */
+    /* ==========================================
+       WHERE TO TRY — ACTIVE
+    ========================================== */
 
     #where-to-try .where-home-actions {
       display: flex;
@@ -633,6 +773,7 @@
 
       margin-top: 26px;
     }
+
 
     #where-to-try .where-home-primary {
       display: inline-flex;
@@ -647,7 +788,7 @@
       background: #1f2a18;
       border: 1px solid #1f2a18;
 
-      color: #fff;
+      color: #ffffff;
 
       font-size: 11px;
       font-weight: 800;
@@ -661,10 +802,12 @@
         color .2s ease;
     }
 
+
     #where-to-try .where-home-primary:hover {
       background: transparent;
       color: #1f2a18;
     }
+
 
     #where-to-try .where-home-current {
       display: inline-block;
@@ -682,14 +825,15 @@
       transition: opacity .2s ease;
     }
 
+
     #where-to-try .where-home-current:hover {
       opacity: .55;
     }
 
 
-    /* =========================
+    /* ==========================================
        FOOTER INSTAGRAM
-    ========================= */
+    ========================================== */
 
     .footer-instagram-link {
       display: block;
@@ -697,15 +841,16 @@
     }
 
   </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =========================
+<!-- ==========================================
      HEADER
-========================= -->
+========================================== -->
 
 <header class="site-header">
 
@@ -713,10 +858,12 @@
     href="/hr/"
     class="site-logo"
   >
+
     <img
       src="/images/move-and-try-logo.png"
       alt="Move & Try"
     >
+
   </a>
 
 
@@ -730,7 +877,7 @@
       BUDI DIO PRIČE
     </a>
 
-    <a href="/hr/where-to-try.html">
+    <a href="#where-to-try">
       GDJE PROBATI
     </a>
 
@@ -784,9 +931,9 @@
 </header>
 
 
-<!-- =========================
+<!-- ==========================================
      MOBILE MENU
-========================= -->
+========================================== -->
 
 <div class="mobile-menu">
 
@@ -800,7 +947,7 @@
       BUDI DIO PRIČE
     </a>
 
-    <a href="/hr/where-to-try.html">
+    <a href="#where-to-try">
       GDJE PROBATI
     </a>
 
@@ -835,9 +982,9 @@
 </div>
 
 
-<!-- =========================
+<!-- ==========================================
      HERO
-========================= -->
+========================================== -->
 
 <section class="home-hero-image">
 
@@ -849,9 +996,9 @@
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      HOW IT WORKS + WHAT'S NEW
-========================= -->
+========================================== -->
 
 <section
   class="home-intro"
@@ -874,6 +1021,7 @@
           KAKO FUNKCIONIRA
         </p>
 
+
         <h2 id="how-it-works-title">
           MALO ZNATIŽELJE.<br>
           NOVO ISKUSTVO.
@@ -882,6 +1030,8 @@
 
         <div class="how-steps">
 
+
+          <!-- 01 -->
 
           <div class="how-step">
 
@@ -907,6 +1057,8 @@
           </div>
 
 
+          <!-- 02 -->
+
           <div class="how-step">
 
             <span class="how-step-number">
@@ -924,6 +1076,8 @@
           </div>
 
 
+          <!-- 03 -->
+
           <div class="how-step">
 
             <span class="how-step-number">
@@ -940,13 +1094,15 @@
 
             <a
               class="how-step-link"
-              href="/hr/where-to-try.html"
+              href="#where-to-try"
             >
               GDJE PROBATI →
             </a>
 
           </div>
 
+
+          <!-- 04 -->
 
           <div class="how-step">
 
@@ -964,6 +1120,8 @@
 
           </div>
 
+
+          <!-- 05 -->
 
           <div class="how-step">
 
@@ -1001,7 +1159,10 @@
     </div>
 
 
-    <!-- WHAT'S NEW -->
+    <!-- ======================================
+         WHAT'S NEW
+         UVIJEK DVIJE ZADNJE OBJAVE
+    ======================================= -->
 
     <div class="home-intro-news">
 
@@ -1016,27 +1177,65 @@
           ZA OTKRITI.
         </h2>
 
+
+        <!-- ===============================
+             #1 — WHERE TO TRY
+        ================================ -->
+
         <a
-          href="#"
-          class="new-card"
-          id="latest-update"
+          href="/hr/natural-perfume-making-where-to-try.html"
+          class="new-card latest-update-card latest-update-natural-perfume"
         >
 
-          <span
-            class="new-type"
-            id="latest-update-type"
-          ></span>
+          <span class="new-type">
+            CREATE · GDJE PROBATI
+          </span>
 
-          <h3 id="latest-update-title"></h3>
+          <h3>
+            IZRADA PRIRODNIH PARFEMA
+          </h3>
 
-          <p id="latest-update-text"></p>
+          <p>
+            Pronađi gdje možeš upoznati prirodne mirise,
+            složiti vlastitu kombinaciju i izraditi svoj prvi parfem.
+          </p>
 
-          <span
-            class="new-action"
-            id="latest-update-action"
-          ></span>
+          <span class="new-action">
+            POGLEDAJ GDJE PROBATI →
+          </span>
 
         </a>
+
+
+        <!-- ===============================
+             #2 — EXPERIENCE
+        ================================ -->
+
+        <a
+          href="/hr/natural-perfume-making-experience-lidija.html"
+          class="new-card latest-update-card latest-update-natural-perfume"
+        >
+
+          <span class="new-type">
+            CREATE · ISKUSTVO
+          </span>
+
+          <h3>
+            IZRADA PRIRODNIH PARFEMA
+          </h3>
+
+          <p>
+            Lidija je prvi put izradila prirodni parfem
+            i završila s mirisom koji nije očekivala —
+            nježnijim nego što bi inače odabrala.
+          </p>
+
+          <span class="new-action">
+            PROČITAJ ISKUSTVO →
+          </span>
+
+        </a>
+
 
       </div>
 
@@ -1048,9 +1247,9 @@
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      CATEGORIES
-========================= -->
+========================================== -->
 
 <section
   class="categories"
@@ -1068,6 +1267,8 @@
 
   <div class="category-grid">
 
+
+    <!-- MOVE -->
 
     <a
       href="move.html"
@@ -1093,6 +1294,8 @@
     </a>
 
 
+    <!-- LEARN -->
+
     <a
       href="learn.html"
       class="category-card category-learn"
@@ -1116,6 +1319,8 @@
 
     </a>
 
+
+    <!-- CREATE -->
 
     <a
       href="create.html"
@@ -1141,6 +1346,8 @@
     </a>
 
 
+    <!-- EXPLORE -->
+
     <a
       href="explore.html"
       class="category-card category-explore"
@@ -1165,6 +1372,8 @@
     </a>
 
 
+    <!-- DARE -->
+
     <a
       href="dare.html"
       class="category-card category-dare"
@@ -1188,6 +1397,8 @@
 
     </a>
 
+
+    <!-- CARE -->
 
     <a
       href="care.html"
@@ -1216,9 +1427,14 @@
   </div>
 
 
+  <!-- ======================================
+       SURPRISE ME
+  ======================================= -->
+
   <button
     class="surprise-button"
-    onclick="surpriseMe()"
+    type="button"
+    onclick="surpriseMeHome()"
   >
     🎲 IZNENADI ME
   </button>
@@ -1226,16 +1442,18 @@
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      COMMUNITY
-========================= -->
+========================================== -->
 
 <section class="community">
 
   <div class="community-grid">
 
 
-    <!-- BE PART OF IT -->
+    <!-- ======================================
+         BE PART OF IT
+    ======================================= -->
 
     <div
       class="community-panel contribute-panel"
@@ -1246,17 +1464,22 @@
         BUDI DIO PRIČE
       </p>
 
+
       <h2>
         POSTOJI MNOGO NAČINA<br>
         DA BUDEŠ DIO MOVE & TRY.
       </h2>
 
+
       <p class="community-text">
         Podijeli svoje iskustvo. Prenesi znanje. Predloži nešto novo.<br>
+
         Pokaži nam mjesto koje vrijedi otkriti.<br>
+
         Svaka priča, ideja i perspektiva može nekoga potaknuti
         da napravi prvi korak.
       </p>
+
 
       <p class="community-highlight">
         Move & Try ne gradimo samo za ljude, nego zajedno s njima.
@@ -1293,7 +1516,9 @@
     </div>
 
 
-    <!-- WHERE TO TRY -->
+    <!-- ======================================
+         WHERE TO TRY
+    ======================================= -->
 
     <div
       class="community-panel where-panel"
@@ -1304,16 +1529,20 @@
         GDJE PROBATI
       </p>
 
+
       <h2>
         PRONAŠAO SI NEŠTO<br>
         ŠTO ŽELIŠ PROBATI?
       </h2>
 
+
       <p class="community-text">
         Od ideje do stvarnog iskustva.<br>
+
         Pronađi radionice, studije, klubove, stručnjake
         i druga mjesta gdje možeš napraviti prvi korak.
       </p>
+
 
       <p class="community-highlight">
         Otkrij ovdje. Probaj tamo.
@@ -1348,9 +1577,9 @@
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      SUGGEST
-========================= -->
+========================================== -->
 
 <section class="suggest">
 
@@ -1358,12 +1587,16 @@
     TVOJ RED
   </p>
 
+
   <h2>
     ŠTO BISMO SLJEDEĆE TREBALI PROBATI?
   </h2>
 
+
   <p class="suggest-intro">
+
     Postoji li nešto o čemu već neko vrijeme razmišljaš?<br>
+
     Nešto što te zanima, ali još nisi napravio prvi korak?
 
     <br><br>
@@ -1375,6 +1608,7 @@
     <br>
 
     Tvoja ideja možda postane naš sljedeći TRY.
+
   </p>
 
 
@@ -1410,9 +1644,9 @@
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      FOOTER
-========================= -->
+========================================== -->
 
 <footer class="site-footer">
 
@@ -1420,13 +1654,16 @@
     MOVE & TRY
   </p>
 
+
   <p class="footer-tagline">
     Ne moraš biti dobar u tome. Samo trebaš probati.
   </p>
 
+
   <a href="mailto:hello@moveandtry.com">
     hello@moveandtry.com
   </a>
+
 
   <a
     href="https://www.instagram.com/moveandtry/"
@@ -1440,7 +1677,113 @@
 </footer>
 
 
+<!-- ==========================================
+     SHARED JAVASCRIPT
+========================================== -->
+
 <script src="../script.js"></script>
 
+
+<!-- ==========================================
+     HOME — SURPRISE ME
+
+     Only currently active activities.
+========================================== -->
+
+<script>
+
+  function surpriseMeHome() {
+
+    const activities = [
+
+      "/hr/running.html",
+
+      "/hr/pole-dance.html",
+
+      "/hr/mediation.html",
+
+      "/hr/horse-riding.html",
+
+      "/hr/natural-perfume-making.html"
+
+    ];
+
+
+    const storageKey =
+      "moveAndTryLastSurpriseHr";
+
+
+    let availableActivities =
+      activities;
+
+
+    try {
+
+      const previous =
+        sessionStorage.getItem(storageKey);
+
+
+      if (
+        previous &&
+        activities.length > 1
+      ) {
+
+        const filtered =
+          activities.filter(
+            activity => activity !== previous
+          );
+
+
+        if (filtered.length) {
+          availableActivities = filtered;
+        }
+
+      }
+
+    } catch (error) {
+
+      /*
+         If sessionStorage is unavailable,
+         random selection still works normally.
+      */
+
+    }
+
+
+    const selected =
+      availableActivities[
+        Math.floor(
+          Math.random() *
+          availableActivities.length
+        )
+      ];
+
+
+    try {
+
+      sessionStorage.setItem(
+        storageKey,
+        selected
+      );
+
+    } catch (error) {
+
+      /*
+         Navigation does not depend
+         on sessionStorage.
+      */
+
+    }
+
+
+    window.location.href =
+      selected;
+
+  }
+
+</script>
+
+
 </body>
+
 </html>
