@@ -56,7 +56,9 @@
             position: relative;
             isolation: isolate;
             overflow: hidden;
+
             min-height: 285px;
+
             color: #ffffff;
         }
 
@@ -88,7 +90,9 @@
             position: absolute;
             inset: 0;
             z-index: 0;
+
             overflow: hidden;
+
             pointer-events: none;
         }
 
@@ -226,7 +230,6 @@
            CARD TEXT
         ========================= */
 
-        .running-photo-card .activity-number,
         .running-photo-card .activity-content,
         .running-photo-card .activity-content h3,
         .running-photo-card .activity-description,
@@ -234,7 +237,6 @@
         .running-photo-card .activity-available span,
         .running-photo-card .activity-action,
 
-        .pole-dance-photo-card .activity-number,
         .pole-dance-photo-card .activity-content,
         .pole-dance-photo-card .activity-content h3,
         .pole-dance-photo-card .activity-description,
@@ -242,7 +244,6 @@
         .pole-dance-photo-card .activity-available span,
         .pole-dance-photo-card .activity-action,
 
-        .horse-riding-photo-card .activity-number,
         .horse-riding-photo-card .activity-content,
         .horse-riding-photo-card .activity-content h3,
         .horse-riding-photo-card .activity-description,
@@ -251,6 +252,7 @@
         .horse-riding-photo-card .activity-action {
             position: relative;
             z-index: 2;
+
             color: #ffffff;
         }
 
@@ -315,8 +317,80 @@
 
 
         /* =========================
+           ACTIVITY BROWSER
+        ========================= */
+
+        .move-activity-browser {
+            margin-top: 24px;
+
+            border: 1px solid rgba(23, 37, 30, 0.28);
+            background: rgba(255, 255, 255, 0.38);
+
+            box-shadow:
+                0 10px 30px rgba(20, 30, 24, 0.04);
+
+            overflow: hidden;
+        }
+
+
+        /* =========================
+           ACTIVITY SEARCH
+        ========================= */
+
+        .move-activity-search {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            padding: 16px 18px;
+
+            border-bottom: 1px solid rgba(23, 37, 30, 0.18);
+
+            background: rgba(247, 246, 241, 0.96);
+        }
+
+        .move-activity-search::before {
+            content: "⌕";
+
+            flex: 0 0 auto;
+
+            margin-right: 10px;
+
+            font-family: 'Manrope', sans-serif;
+            font-size: 21px;
+            line-height: 1;
+
+            color: #68736d;
+        }
+
+        .move-activity-search input {
+            width: 100%;
+
+            padding: 0;
+
+            border: 0;
+            outline: 0;
+
+            background: transparent;
+
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.10em;
+
+            color: #17251e;
+        }
+
+        .move-activity-search input::placeholder {
+            color: #7a847e;
+            opacity: 1;
+        }
+
+
+        /* =========================
            SCROLLABLE ACTIVITY AREA
-           DESKTOP ONLY
+           DESKTOP
         ========================= */
 
         @media (min-width: 901px) {
@@ -326,105 +400,139 @@
             }
 
             .move-app-page .move-activity-scroll {
-                height: 910px;
+                height: 690px;
 
-                overflow-y: auto;
+                overflow-y: scroll;
                 overflow-x: hidden;
 
                 /*
-                   Zadržava scroll unutar activity panela.
-                   Kada panel dođe do vrha ili dna,
-                   scroll se ne prelijeva na cijelu stranicu.
+                   Scroll ostaje unutar activity browsera.
                 */
                 overscroll-behavior-y: contain;
 
                 /*
-                   Rezervira prostor za scrollbar
-                   i sprječava pomicanje širine sadržaja.
+                   Scrollbar uvijek zauzima svoje mjesto.
                 */
                 scrollbar-gutter: stable;
 
-                scrollbar-width: thin;
-                scrollbar-color: #9caaa1 transparent;
-
-                padding-right: 8px;
+                scrollbar-width: auto;
+                scrollbar-color:
+                    #84938a
+                    #e6e9e5;
             }
 
             .move-app-page .move-activity-scroll::-webkit-scrollbar {
-                width: 5px;
+                width: 9px;
             }
 
             .move-app-page .move-activity-scroll::-webkit-scrollbar-track {
-                background: transparent;
+                background: #e6e9e5;
             }
 
             .move-app-page .move-activity-scroll::-webkit-scrollbar-thumb {
-                background: #9caaa1;
+                background: #84938a;
+
+                border: 2px solid #e6e9e5;
                 border-radius: 20px;
+            }
+
+            .move-app-page .move-activity-scroll::-webkit-scrollbar-thumb:hover {
+                background: #697970;
             }
 
             .move-app-page .move-activity-scroll .activity-grid {
                 display: grid;
+
                 grid-template-columns: minmax(0, 1fr);
+
                 gap: 16px;
+
+                padding: 16px;
             }
 
             .move-app-page .move-activity-scroll .activity-card {
                 width: 100%;
                 min-width: 0;
+
                 box-sizing: border-box;
             }
         }
 
 
         /* =========================
-           SCROLL INDICATOR
+           SCROLL HINT
         ========================= */
 
         .move-scroll-hint {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
 
-            gap: 8px;
+            gap: 7px;
 
-            margin: 16px 0 0;
+            margin: 10px 2px 0;
 
             font-family: 'Manrope', sans-serif;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
-            letter-spacing: 0.13em;
+            letter-spacing: 0.12em;
 
-            color: #17251e;
-            text-align: center;
-        }
-
-        .move-scroll-hint[hidden] {
-            display: none;
+            color: #66716b;
         }
 
         .move-scroll-hint-arrow {
-            font-size: 19px;
+            font-size: 17px;
             line-height: 1;
         }
 
 
         /* =========================
-           MOBILE: NORMAL PAGE SCROLL
+           SEARCH EMPTY STATE
+        ========================= */
+
+        .move-search-empty {
+            display: none;
+
+            padding: 36px 24px;
+
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            line-height: 1.6;
+
+            color: #59635e;
+        }
+
+        .move-search-empty.is-visible {
+            display: block;
+        }
+
+
+        /* =========================
+           MOBILE
         ========================= */
 
         @media (max-width: 900px) {
+
+            .move-activity-browser {
+                margin-top: 20px;
+            }
 
             .move-app-page .move-activity-scroll {
                 height: auto;
                 max-height: none;
 
                 overflow: visible;
-
-                padding-right: 0;
             }
 
-            .move-app-page .move-scroll-hint {
+            .move-app-page .move-activity-scroll .activity-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+
+                padding: 16px;
+            }
+
+            .move-scroll-hint {
                 display: none;
             }
         }
@@ -474,6 +582,7 @@
         }
 
         @media (max-width: 768px) {
+
             .site-header .header-behind-link {
                 display: none !important;
             }
@@ -621,7 +730,7 @@
 
 
 <!-- =========================
-     CATEGORY PAGE — APP LAYOUT
+     CATEGORY PAGE
 ========================= -->
 
 <main class="category-page move-app-page">
@@ -672,7 +781,7 @@
 
 
         <!-- =========================
-             RIGHT — DISCOVER ACTIVITIES
+             RIGHT — DISCOVER
         ========================= -->
 
         <section
@@ -690,201 +799,244 @@
 
 
             <!-- =========================
-                 SCROLLABLE ACTIVITY CARDS
+                 ACTIVITY BROWSER
             ========================= -->
 
-            <div
-                class="move-activity-scroll"
-                id="moveActivityScroll"
-                tabindex="0"
-                aria-label="Popis MOVE aktivnosti"
-            >
-
-                <div class="activity-grid">
+            <div class="move-activity-browser">
 
 
-                    <!-- =========================
-                         RUNNING
-                    ========================= -->
+                <!-- SEARCH -->
 
-                    <a
-                        href="running.html"
-                        class="activity-card running-photo-card"
+                <div class="move-activity-search">
+
+                    <label
+                        for="moveActivitySearch"
+                        class="visually-hidden"
+                    >
+                        Pretraži MOVE aktivnosti
+                    </label>
+
+                    <input
+                        type="search"
+                        id="moveActivitySearch"
+                        placeholder="PRETRAŽI AKTIVNOSTI"
+                        autocomplete="off"
+                        spellcheck="false"
                     >
 
-                        <div
-                            class="running-card-photos"
-                            aria-hidden="true"
-                        >
-
-                            <img
-                                class="running-card-photo"
-                                src="/images/running-forest.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
-                            <img
-                                class="running-card-photo"
-                                src="/images/running-blue.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
-                        </div>
+                </div>
 
 
-                        <div class="activity-content">
+                <!-- SCROLL AREA -->
 
-                            <h3>
-                                TRČANJE
-                            </h3>
+                <div
+                    class="move-activity-scroll"
+                    id="moveActivityScroll"
+                    tabindex="0"
+                    aria-label="Popis MOVE aktivnosti"
+                >
 
-                            <p class="activity-description">
-                                Kreni jednostavno. Otkrij kako je to trčati
-                                prije nego što počneš razmišljati o tempu,
-                                udaljenosti ili opremi.
-                            </p>
-
-                            <div class="activity-available">
-                                <span>VODIČ ✓</span>
-                                <span>ISKUSTVA ✓</span>
-                            </div>
-
-                        </div>
-
-
-                        <span class="activity-action">
-                            ISTRAŽI TRČANJE →
-                        </span>
-
-                    </a>
-
-
-                    <!-- =========================
-                         POLE DANCE
-                    ========================= -->
-
-                    <a
-                        href="pole-dance.html"
-                        class="activity-card pole-dance-photo-card"
+                    <div
+                        class="activity-grid"
+                        id="moveActivityGrid"
                     >
 
-                        <div
-                            class="pole-card-photos"
-                            aria-hidden="true"
+
+                        <!-- =========================
+                             HORSE RIDING
+                             NAJNOVIJE
+                        ========================= -->
+
+                        <a
+                            href="horse-riding.html"
+                            class="activity-card horse-riding-photo-card"
+                            data-activity-name="jahanje horse riding konji"
                         >
 
-                            <img
-                                class="pole-card-photo"
-                                src="/images/pole-dance-man.jpg"
-                                alt=""
-                                loading="lazy"
+                            <div
+                                class="horse-riding-card-photos"
+                                aria-hidden="true"
                             >
 
-                            <img
-                                class="pole-card-photo"
-                                src="/images/pole-dance-woman.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
+                                <img
+                                    class="horse-riding-card-photo"
+                                    src="/images/horse-riding-1.jpg"
+                                    alt=""
+                                    loading="lazy"
+                                >
 
-                        </div>
+                                <img
+                                    class="horse-riding-card-photo"
+                                    src="/images/horse-riding-2.jpg"
+                                    alt=""
+                                    loading="lazy"
+                                >
 
-
-                        <div class="activity-content">
-
-                            <h3>
-                                POLE DANCE
-                            </h3>
-
-                            <p class="activity-description">
-                                Snaga, pokret i sasvim drugačije prvo iskustvo.
-                            </p>
-
-                            <div class="activity-available">
-                                <span>VODIČ ✓</span>
                             </div>
 
-                        </div>
+
+                            <div class="activity-content">
+
+                                <h3>
+                                    JAHANJE
+                                </h3>
+
+                                <p class="activity-description">
+                                    Upoznaj konje, sjedni u sedlo i otkrij
+                                    sasvim drugačiji način kretanja.
+                                    Za početak je dovoljna znatiželja.
+                                </p>
+
+                                <div class="activity-available">
+                                    <span>ISKUSTVA ✓</span>
+                                </div>
+
+                            </div>
 
 
-                        <span class="activity-action">
-                            ISTRAŽI POLE DANCE →
-                        </span>
+                            <span class="activity-action">
+                                ISTRAŽI JAHANJE →
+                            </span>
 
-                    </a>
+                        </a>
 
 
-                    <!-- =========================
-                         HORSE RIDING
-                    ========================= -->
+                        <!-- =========================
+                             POLE DANCE
+                        ========================= -->
 
-                    <a
-                        href="horse-riding.html"
-                        class="activity-card horse-riding-photo-card"
+                        <a
+                            href="pole-dance.html"
+                            class="activity-card pole-dance-photo-card"
+                            data-activity-name="pole dance ples pole"
+                        >
+
+                            <div
+                                class="pole-card-photos"
+                                aria-hidden="true"
+                            >
+
+                                <img
+                                    class="pole-card-photo"
+                                    src="/images/pole-dance-man.jpg"
+                                    alt=""
+                                    loading="lazy"
+                                >
+
+                                <img
+                                    class="pole-card-photo"
+                                    src="/images/pole-dance-woman.jpg"
+                                    alt=""
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="activity-content">
+
+                                <h3>
+                                    POLE DANCE
+                                </h3>
+
+                                <p class="activity-description">
+                                    Snaga, pokret i sasvim drugačije
+                                    prvo iskustvo.
+                                </p>
+
+                                <div class="activity-available">
+                                    <span>VODIČ ✓</span>
+                                </div>
+
+                            </div>
+
+
+                            <span class="activity-action">
+                                ISTRAŽI POLE DANCE →
+                            </span>
+
+                        </a>
+
+
+                        <!-- =========================
+                             RUNNING
+                        ========================= -->
+
+                        <a
+                            href="running.html"
+                            class="activity-card running-photo-card"
+                            data-activity-name="trčanje trcanje running"
+                        >
+
+                            <div
+                                class="running-card-photos"
+                                aria-hidden="true"
+                            >
+
+                                <img
+                                    class="running-card-photo"
+                                    src="/images/running-forest.jpg"
+                                    alt=""
+                                    loading="lazy"
+                                >
+
+                                <img
+                                    class="running-card-photo"
+                                    src="/images/running-blue.jpg"
+                                    alt=""
+                                    loading="lazy"
+                                >
+
+                            </div>
+
+
+                            <div class="activity-content">
+
+                                <h3>
+                                    TRČANJE
+                                </h3>
+
+                                <p class="activity-description">
+                                    Kreni jednostavno. Otkrij kako je to trčati
+                                    prije nego što počneš razmišljati o tempu,
+                                    udaljenosti ili opremi.
+                                </p>
+
+                                <div class="activity-available">
+                                    <span>VODIČ ✓</span>
+                                    <span>ISKUSTVA ✓</span>
+                                </div>
+
+                            </div>
+
+
+                            <span class="activity-action">
+                                ISTRAŽI TRČANJE →
+                            </span>
+
+                        </a>
+
+
+                    </div>
+
+
+                    <!-- SEARCH EMPTY STATE -->
+
+                    <p
+                        class="move-search-empty"
+                        id="moveSearchEmpty"
                     >
-
-                        <div
-                            class="horse-riding-card-photos"
-                            aria-hidden="true"
-                        >
-
-                            <img
-                                class="horse-riding-card-photo"
-                                src="/images/horse-riding-1.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
-                            <img
-                                class="horse-riding-card-photo"
-                                src="/images/horse-riding-2.jpg"
-                                alt=""
-                                loading="lazy"
-                            >
-
-                        </div>
-
-
-                        <div class="activity-content">
-
-                            <h3>
-                                JAHANJE
-                            </h3>
-
-                            <p class="activity-description">
-                                Upoznaj konje, sjedni u sedlo i otkrij
-                                sasvim drugačiji način kretanja.
-                                Za početak je dovoljna znatiželja.
-                            </p>
-
-                            <div class="activity-available">
-                                <span>ISKUSTVA ✓</span>
-                            </div>
-
-                        </div>
-
-
-                        <span class="activity-action">
-                            ISTRAŽI JAHANJE →
-                        </span>
-
-                    </a>
+                        Nema aktivnosti koje odgovaraju pretrazi.
+                    </p>
 
                 </div>
 
             </div>
 
 
-            <!-- =========================
-                 SCROLL HINT
-            ========================= -->
+            <!-- SCROLL HINT -->
 
-            <p
-                class="move-scroll-hint"
-                id="moveScrollHint"
-            >
+            <p class="move-scroll-hint">
                 <span
                     class="move-scroll-hint-arrow"
                     aria-hidden="true"
@@ -892,7 +1044,7 @@
                     ↓
                 </span>
 
-                SKROLAJ ZA VIŠE
+                SKROLAJ AKTIVNOSTI
             </p>
 
         </section>
@@ -951,57 +1103,108 @@
 
 
 <!-- =========================
-     JAVASCRIPT
+     SHARED JAVASCRIPT
 ========================= -->
 
 <script src="../script.js"></script>
 
 
+<!-- =========================
+     MOVE ACTIVITY SEARCH
+========================= -->
+
 <script>
     (() => {
+
+        const searchInput =
+            document.getElementById("moveActivitySearch");
 
         const activityScroll =
             document.getElementById("moveActivityScroll");
 
-        const scrollHint =
-            document.getElementById("moveScrollHint");
+        const cards =
+            Array.from(
+                document.querySelectorAll(
+                    "#moveActivityGrid .activity-card"
+                )
+            );
+
+        const emptyState =
+            document.getElementById("moveSearchEmpty");
 
 
-        if (!activityScroll || !scrollHint) {
+        if (
+            !searchInput ||
+            !activityScroll ||
+            !cards.length ||
+            !emptyState
+        ) {
             return;
         }
 
 
-        function updateScrollHint() {
+        function normalizeText(value) {
 
-            if (window.innerWidth <= 900) {
-                scrollHint.hidden = true;
-                return;
-            }
-
-
-            const hasOverflow =
-                activityScroll.scrollHeight >
-                activityScroll.clientHeight + 2;
-
-
-            scrollHint.hidden = !hasOverflow;
+            return value
+                .toLocaleLowerCase("hr")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .trim();
 
         }
 
 
-        updateScrollHint();
+        function filterActivities() {
+
+            const query =
+                normalizeText(searchInput.value);
+
+            let visibleCount = 0;
 
 
-        window.addEventListener(
-            "resize",
-            updateScrollHint
-        );
+            cards.forEach(card => {
+
+                const searchableText =
+                    normalizeText(
+                        card.dataset.activityName ||
+                        card.textContent ||
+                        ""
+                    );
 
 
-        window.addEventListener(
-            "load",
-            updateScrollHint
+                const visible =
+                    !query ||
+                    searchableText.includes(query);
+
+
+                card.hidden = !visible;
+
+
+                if (visible) {
+                    visibleCount += 1;
+                }
+
+            });
+
+
+            emptyState.classList.toggle(
+                "is-visible",
+                visibleCount === 0
+            );
+
+
+            /*
+               Nakon nove pretrage vrati activity
+               browser na vrh.
+            */
+            activityScroll.scrollTop = 0;
+
+        }
+
+
+        searchInput.addEventListener(
+            "input",
+            filterActivities
         );
 
     })();
@@ -1009,5 +1212,4 @@
 
 
 </body>
-
 </html>
