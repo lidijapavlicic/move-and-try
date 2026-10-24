@@ -439,7 +439,6 @@
     }
   </style>
 </head>
-
 <body>
 <header class="topbar">
   <a href="/hr/journal.html" class="brand">MOVE&TRY / THE JOURNAL</a>
@@ -612,19 +611,32 @@
         Pregled uredničkih profila, uloga i statusa pristupa.
       </p>
 
-      <div id="collaborators-list"></div>
+      <div class="editor-panel" style="margin-top:25px">
+        <p class="eyebrow">PRISTUP UREDNIČKOM PROSTORU</p>
+        <h3>Pozovi suradnika</h3>
+        <p class="muted small">Pozivnicu može poslati samo aktivni administrator. Novi suradnik dobiva ulogu autora / urednika.</p>
+        <form id="invite-form">
+          <div class="field">
+            <label for="invite-name">Ime suradnika</label>
+            <input id="invite-name" type="text" maxlength="120" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="invite-email">E-mail suradnika</label>
+            <input id="invite-email" type="email" maxlength="254" autocomplete="off" required>
+          </div>
+          <div class="actions">
+            <button class="btn green" id="invite-submit-btn" type="submit">POŠALJI POZIVNICU →</button>
+          </div>
+        </form>
+        <p class="message" id="invite-message" role="status" aria-live="polite"></p>
+      </div>
+
+      <div id="collaborators-list" style="margin-top:25px"></div>
 
       <div class="info-box" style="margin-top:30px">
         <strong>Upravljanje suradnicima</strong>
-        <p>
-          Priprema autora, slanje pozivnica, promjena uloga i deaktivacija
-          bit će dostupni nakon povezivanja sigurnih administratorskih
-          funkcija. Trenutačni prikaz je samo za pregled.
-        </p>
-        <p>
-          E-mail adrese svih suradnika još nisu dostupne kroz postojeću
-          tablicu uredničkih profila.
-        </p>
+        <p>Pozivnice su povezane sa sigurnom poslužiteljskom funkcijom. Promjena uloga i deaktivacija zasad nisu dostupne iz Editora.</p>
+        <p>E-mail adrese postojećih suradnika nisu dio tablice uredničkih profila, pa se ovdje prikazuju imena, uloge i status pristupa.</p>
       </div>
     </section>
 
@@ -785,7 +797,7 @@
 
   const ACTIONS = {
     created: 'Članak stvoren',
-    edited: 'Članak uređen',
+        edited: 'Članak uređen',
     submitted: 'Poslano na odobrenje',
     revision_requested: 'Zatražena dorada',
     approved: 'Članak odobren',
@@ -1235,8 +1247,7 @@
       p_cover_image: $('article-cover').value.trim() || null
     };
   }
-
-  function editorValuesChanged() {
+    function editorValuesChanged() {
     if (!editorInitialValues) return false;
 
     const current = readEditorValues();
@@ -1684,8 +1695,7 @@
         () => {
           const isHidden = details.hidden;
           details.hidden = !isHidden;
-
-          button.textContent = isHidden
+                    button.textContent = isHidden
             ? 'SAKRIJ VERZIJU'
             : 'PRIKAŽI VERZIJU';
         },
@@ -2247,6 +2257,62 @@
     renderAllArticles
   );
 
+  $('invite-form').addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!isAdmin() || busy) return;
+
+    const name = $('invite-name').value.trim();
+    const email = $('invite-email').value.trim().toLowerCase();
+    if (!name || !email || !$('invite-email').checkValidity()) {
+      setMessage('invite-message', 'Upiši ime i ispravnu e-mail adresu.', true);
+      return;
+    }
+
+    if (!confirm(`Poslati pozivnicu na ${email}?`)) return;
+
+    const button = $('invite-submit-btn');
+    button.disabled = true;
+    setMessage('invite-message', 'Slanje pozivnice...');
+
+    try {
+      const { data: sessionData, error: sessionError } = await db.auth.getSession();
+      if (sessionError || !sessionData.session?.access_token) {
+        throw new Error('Sesija je istekla. Prijavi se ponovno.');
+      }
+
+      const { data, error } = await db.functions.invoke('journal-invite-collaborator', {
+        body: { email, display_name: name },
+        headers: { Authorization: `Bearer ${sessionData.session.access_token}` }
+      });
+
+      if (error) {
+        // FunctionsHttpError može sadržavati detaljniju poruku u HTTP odgovoru.
+        let detail = '';
+        try {
+          const body = await error.context?.json();
+          detail = body?.error || '';
+        } catch (_) { /* Nema JSON tijela. */ }
+        throw new Error(detail || error.message || 'Slanje pozivnice nije uspjelo.');
+      }
+
+      if (!data?.success) {
+        throw new Error(data?.error || 'Nije potvrđeno slanje pozivnice.');
+      }
+
+      setMessage('invite-message', data.message || 'Pozivnica je obrađena.');
+      $('invite-form').reset();
+      try {
+        await refreshDashboard();
+      } catch (refreshError) {
+        setMessage('dashboard-message', 'Pozivnica je obrađena, ali popis suradnika nije osvježen: ' + friendlyError(refreshError), true);
+      }
+    } catch (error) {
+      setMessage('invite-message', friendlyError(error), true);
+    } finally {
+      button.disabled = false;
+    }
+  });
+
   $('new-article-btn').addEventListener(
     'click',
     () => openEditor()
@@ -2295,3 +2361,4 @@
 </script>
 </body>
 </html>
+  
