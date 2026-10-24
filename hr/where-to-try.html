@@ -11,7 +11,7 @@
 
     <meta
         name="description"
-        content="Pronađi mjesta, ljude, studije, klubove, radionice i organizacije gdje možeš stvarno probati nešto novo."
+        content="Od ideje do stvarnog iskustva. Pronađi radionice, studije, klubove, stručnjake i druga mjesta gdje možeš napraviti prvi korak."
     >
 
     <link
@@ -65,6 +65,7 @@
     <link rel="stylesheet" href="../style.css">
 
     <style>
+
         /* ==========================================
            DESKTOP — IZA MOVE & TRY
         ========================================== */
@@ -85,9 +86,11 @@
         }
 
         @media (max-width: 768px) {
+
             .site-header .header-behind-link {
                 display: none !important;
             }
+
         }
 
 
@@ -113,8 +116,11 @@
         .where-provider-link {
             cursor: pointer;
         }
+
     </style>
+
 </head>
+
 
 <body>
 
@@ -136,6 +142,7 @@
         >
     </a>
 
+
     <nav class="desktop-nav">
 
         <a href="/hr/#find-your-try">
@@ -156,6 +163,7 @@
 
     </nav>
 
+
     <div class="header-actions">
 
         <a
@@ -164,6 +172,7 @@
         >
             IZA MOVE & TRY
         </a>
+
 
         <div class="header-language">
 
@@ -181,6 +190,7 @@
             </span>
 
         </div>
+
 
         <button
             class="menu-toggle"
@@ -227,6 +237,7 @@
 
     </nav>
 
+
     <div class="mobile-menu-language">
 
         <a
@@ -261,20 +272,28 @@
     <header class="where-header">
 
         <p class="section-label">
-            SPREMAN STVARNO PROBATI?
+            OD IDEJE DO STVARNOG ISKUSTVA
         </p>
+
 
         <h1>
             GDJE PROBATI
         </h1>
 
+
         <p class="where-intro">
+
             Pronašao si nešto što želiš probati?<br>
 
             <strong>
-                Pronađi mjesto koje ti može pomoći
-                da to stvarno i učiniš.
+                Odaberi kategoriju, pronađi aktivnost
+                i pogledaj gdje možeš napraviti prvi korak.
             </strong>
+
+            <br><br>
+
+            Otkrij ovdje. Probaj tamo.
+
         </p>
 
     </header>
@@ -290,12 +309,14 @@
     >
 
         <p class="section-label">
-            ISTRAŽI
+            ODABERI KATEGORIJU
         </p>
+
 
         <h2>
             ŠTO ŽELIŠ PROBATI?
         </h2>
+
 
         <div class="where-category-grid">
 
@@ -307,6 +328,7 @@
                 MOVE
             </button>
 
+
             <button
                 type="button"
                 class="where-category"
@@ -314,6 +336,7 @@
             >
                 LEARN
             </button>
+
 
             <button
                 type="button"
@@ -323,6 +346,7 @@
                 CREATE
             </button>
 
+
             <button
                 type="button"
                 class="where-category"
@@ -331,6 +355,7 @@
                 EXPLORE
             </button>
 
+
             <button
                 type="button"
                 class="where-category"
@@ -338,6 +363,7 @@
             >
                 DARE
             </button>
+
 
             <button
                 type="button"
@@ -369,11 +395,13 @@
                 id="selected-category"
             ></p>
 
+
             <h2>
                 ŠTO BI ŽELIO PROBATI?
             </h2>
 
         </div>
+
 
         <div
             class="where-activity-grid"
@@ -401,20 +429,24 @@
             ← NATRAG NA AKTIVNOSTI
         </button>
 
+
         <div class="where-provider-heading">
 
             <p class="section-label">
                 GDJE PROBATI
             </p>
 
+
             <h2 id="provider-activity-title"></h2>
 
+
             <p class="where-provider-intro">
-                Pronađi mjesto koje ti može pomoći
-                da ovu aktivnost stvarno probaš.
+                Pronađi ljude i mjesta gdje možeš
+                napraviti prvi korak i stvarno probati ovu aktivnost.
             </p>
 
         </div>
+
 
         <div
             class="where-provider-list"
@@ -434,20 +466,23 @@
             NASTAVI ISTRAŽIVATI
         </p>
 
+
         <h2>
             ŠTO BI JOŠ PROBAO?
         </h2>
 
+
         <p>
-            Istraži druge aktivnosti
+            Istraži druge kategorije i aktivnosti
             i pronađi svoj sljedeći TRY.
         </p>
+
 
         <a
             href="#where-categories"
             class="where-more-link"
         >
-            ISTRAŽI SVE AKTIVNOSTI →
+            ISTRAŽI GDJE PROBATI →
         </a>
 
     </section>
@@ -463,17 +498,20 @@
             BUDI DIO PRIČE
         </p>
 
+
         <h2>
             MOGU LI LJUDI NEŠTO PROBATI S TOBOM?
         </h2>
 
+
         <p>
             Vodiš studio, klub, radionicu, tečaj
-            ili neku drugu aktivnost?
+            ili nudiš neku drugu aktivnost?
 
             Pomozi ljudima da pronađu mjesto
-            gdje to mogu stvarno probati.
+            gdje mogu napraviti svoj prvi korak.
         </p>
+
 
         <a
             href="/hr/be-part-of-where-to-try.html"
@@ -505,7 +543,9 @@
 ========================= -->
 
 <script>
+
     (() => {
+
 
         const productionActivities = {
 
@@ -525,12 +565,14 @@
             dare: [],
 
             care: []
+
         };
 
 
         const productionProviders = {
 
             "natural-perfume-making": [
+
                 {
                     name: "BILJARICA",
 
@@ -556,33 +598,58 @@
                     href:
                         "/hr/natural-perfume-making-where-to-try.html"
                 }
+
             ]
+
         };
 
 
         const categoryButtons =
-            document.querySelectorAll(".where-category");
+            document.querySelectorAll(
+                ".where-category"
+            );
+
 
         const categoryResults =
-            document.getElementById("category-results");
+            document.getElementById(
+                "category-results"
+            );
+
 
         const selectedCategory =
-            document.getElementById("selected-category");
+            document.getElementById(
+                "selected-category"
+            );
+
 
         const activityGrid =
-            document.getElementById("where-activity-grid");
+            document.getElementById(
+                "where-activity-grid"
+            );
+
 
         const providerResults =
-            document.getElementById("provider-results");
+            document.getElementById(
+                "provider-results"
+            );
+
 
         const providerActivityTitle =
-            document.getElementById("provider-activity-title");
+            document.getElementById(
+                "provider-activity-title"
+            );
+
 
         const providerList =
-            document.getElementById("where-provider-list");
+            document.getElementById(
+                "where-provider-list"
+            );
+
 
         const providerBack =
-            document.getElementById("provider-back");
+            document.getElementById(
+                "provider-back"
+            );
 
 
         /* ==========================================
@@ -591,12 +658,15 @@
 
         function renderCategory(category) {
 
+
             if (
                 !categoryResults ||
                 !selectedCategory ||
                 !activityGrid
             ) {
+
                 return;
+
             }
 
 
@@ -605,43 +675,60 @@
 
 
             if (providerResults) {
+
                 providerResults.hidden = true;
+
             }
 
 
             categoryResults.hidden = false;
 
+
             selectedCategory.textContent =
                 category.toUpperCase();
+
 
             activityGrid.innerHTML = "";
 
 
             if (activities.length === 0) {
 
+
                 activityGrid.innerHTML = `
+
                     <p class="where-empty-category">
+
                         Ovdje još nema objavljenih mjesta za probati.
+
                         Popis ćemo širiti kako na MOVE & TRY dodajemo
                         nove aktivnosti i provjerene mogućnosti.
+
                     </p>
+
                 `;
 
+
                 return;
+
             }
 
 
             activities.forEach(activity => {
 
+
                 const card =
                     document.createElement("a");
+
 
                 card.className =
                     "where-activity-card";
 
+
                 card.href = "#";
 
+
                 card.innerHTML = `
+
                     <h3>
                         ${activity.title}
                     </h3>
@@ -649,22 +736,30 @@
                     <span class="where-activity-card-action">
                         PRONAĐI GDJE PROBATI →
                     </span>
+
                 `;
 
 
                 card.addEventListener(
+
                     "click",
+
                     event => {
+
 
                         event.preventDefault();
 
+
                         renderProviders(activity);
 
+
                     }
+
                 );
 
 
                 activityGrid.appendChild(card);
+
 
             });
 
@@ -677,36 +772,49 @@
 
         function renderProviders(activity) {
 
+
             if (
                 !providerResults ||
                 !providerActivityTitle ||
                 !providerList
             ) {
+
                 return;
+
             }
 
 
             const providers =
-                productionProviders[activity.slug] || [];
+                productionProviders[
+                    activity.slug
+                ] || [];
 
 
             if (categoryResults) {
+
                 categoryResults.hidden = true;
+
             }
 
 
             providerResults.hidden = false;
 
+
             providerActivityTitle.textContent =
                 activity.title;
+
 
             providerList.innerHTML = "";
 
 
             providers.forEach(provider => {
 
+
                 const card =
-                    document.createElement("article");
+                    document.createElement(
+                        "article"
+                    );
+
 
                 card.className =
                     "where-provider-card";
@@ -733,7 +841,8 @@
                 const tags =
                     provider.tags
                     .map(
-                        tag => `<span>${tag}</span>`
+                        tag =>
+                            `<span>${tag}</span>`
                     )
                     .join("");
 
@@ -758,21 +867,26 @@
                             ${location}
                         </p>
 
+
                         <h3>
                             ${provider.name}
                         </h3>
+
 
                         <p class="where-provider-address">
                             ${address}
                         </p>
 
+
                         <p class="where-provider-description">
                             ${provider.description}
                         </p>
 
+
                         <div class="where-provider-tags">
                             ${tags}
                         </div>
+
 
                         <a
                             href="${provider.href}"
@@ -782,17 +896,24 @@
                         </a>
 
                     </div>
+
                 `;
 
 
-                providerList.appendChild(card);
+                providerList.appendChild(
+                    card
+                );
+
 
             });
 
 
             providerResults.scrollIntoView({
+
                 behavior: "smooth",
+
                 block: "start"
+
             });
 
         }
@@ -809,11 +930,16 @@
 
         categoryButtons.forEach(button => {
 
+
             button.addEventListener(
+
                 "click",
+
                 event => {
 
+
                     event.preventDefault();
+
                     event.stopImmediatePropagation();
 
 
@@ -821,19 +947,33 @@
                         button.dataset.category;
 
 
-                    categoryButtons.forEach(item => {
-                        item.classList.remove("active");
-                    });
+                    categoryButtons.forEach(
+                        item => {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
 
 
-                    button.classList.add("active");
+                    button.classList.add(
+                        "active"
+                    );
 
 
-                    renderCategory(category);
+                    renderCategory(
+                        category
+                    );
+
 
                 },
+
                 true
+
             );
+
 
         });
 
@@ -844,32 +984,50 @@
 
         if (providerBack) {
 
+
             providerBack.addEventListener(
+
                 "click",
+
                 event => {
 
+
                     event.preventDefault();
+
                     event.stopImmediatePropagation();
 
 
-                    providerResults.hidden = true;
+                    providerResults.hidden =
+                        true;
 
-                    categoryResults.hidden = false;
+
+                    categoryResults.hidden =
+                        false;
 
 
                     categoryResults.scrollIntoView({
+
                         behavior: "smooth",
+
                         block: "start"
+
                     });
 
+
                 },
+
                 true
+
             );
+
 
         }
 
+
     })();
+
 </script>
+
 
 </body>
 
