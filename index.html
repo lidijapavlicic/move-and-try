@@ -11,14 +11,28 @@
 
   <meta
     name="description"
-    content="Move & Try is a place to discover something new to try. Move, learn, create, explore, dare or care for yourself. You don't have to be good at it. Just try."
+    content="Move & Try is a place to discover something new you can try. Move, learn, create, explore, dare or take care of yourself. You don't have to be good at it. Just try."
   >
 
   <link rel="canonical" href="https://moveandtry.com/">
 
-  <link rel="alternate" hreflang="en" href="https://moveandtry.com/">
-  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/">
-  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/">
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://moveandtry.com/"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="hr"
+    href="https://moveandtry.com/hr/"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://moveandtry.com/"
+  >
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Move & Try">
@@ -30,17 +44,23 @@
 
   <meta
     property="og:description"
-    content="Discover something new to try. You don't have to be good at it. Just try."
+    content="Discover something new you can try. You don't have to be good at it. Just try."
   >
 
-  <meta property="og:url" content="https://moveandtry.com/">
+  <meta
+    property="og:url"
+    content="https://moveandtry.com/"
+  >
 
   <meta
     property="og:image"
     content="https://moveandtry.com/images/move-and-try-share.png"
   >
 
-  <meta name="twitter:card" content="summary_large_image">
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
 
   <meta
     name="twitter:title"
@@ -49,7 +69,7 @@
 
   <meta
     name="twitter:description"
-    content="Discover something new to try. You don't have to be good at it. Just try."
+    content="Discover something new you can try. You don't have to be good at it. Just try."
   >
 
   <meta
@@ -57,10 +77,6 @@
     content="https://moveandtry.com/images/move-and-try-share.png"
   >
 
-
-  <!-- =========================
-       STRUCTURED DATA
-  ========================= -->
 
   <script type="application/ld+json">
   {
@@ -72,7 +88,7 @@
         "url": "https://moveandtry.com/",
         "name": "Move & Try",
         "alternateName": "MOVE & TRY",
-        "description": "Move & Try is a place to discover something new to try. Move, learn, create, explore, dare or care for yourself.",
+        "description": "Move & Try is a place to discover something new you can try. You don't have to be good at it. Just try.",
         "publisher": {
           "@id": "https://moveandtry.com/#organization"
         }
@@ -92,97 +108,12 @@
   </script>
 
 
-  <!-- =========================
-       LANGUAGE REDIRECT
-  ========================= -->
-
-  <script>
-    (function () {
-
-      "use strict";
-
-      var path =
-        window.location.pathname;
-
-
-      if (
-        path !== "/" &&
-        path !== "/index.html"
-      ) {
-        return;
-      }
-
-
-      var savedLanguage = null;
-
-
-      try {
-
-        savedLanguage =
-          localStorage.getItem(
-            "moveandtry_language"
-          );
-
-      } catch (error) {
-
-        savedLanguage = null;
-
-      }
-
-
-      var preferredLanguage;
-
-
-      if (
-        savedLanguage === "hr" ||
-        savedLanguage === "en"
-      ) {
-
-        preferredLanguage =
-          savedLanguage;
-
-      } else {
-
-        var browserLanguage = (
-
-          navigator.languages &&
-          navigator.languages.length
-
-            ? navigator.languages[0]
-
-            : navigator.language || "en"
-
-        ).toLowerCase();
-
-
-        preferredLanguage =
-          browserLanguage.startsWith("hr")
-            ? "hr"
-            : "en";
-
-      }
-
-
-      if (preferredLanguage === "hr") {
-
-        window.location.replace(
-          "/hr/" +
-          window.location.search +
-          window.location.hash
-        );
-
-      }
-
-    })();
-  </script>
-
-
-  <!-- =========================
-       FONTS
-  ========================= -->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
@@ -190,9 +121,7 @@
   >
 
 
-  <!-- =========================
-       GOOGLE ANALYTICS
-  ========================= -->
+  <!-- GOOGLE ANALYTICS -->
 
   <script
     async
@@ -200,8 +129,7 @@
   ></script>
 
   <script>
-    window.dataLayer =
-      window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
     function gtag() {
       dataLayer.push(arguments);
@@ -230,11 +158,11 @@
       flex-direction: column;
 
       min-height: 285px;
-      margin-top: 26px;
+      margin-top: 18px;
 
       background: #151417;
+      color: #fff;
 
-      color: #ffffff;
       text-decoration: none;
     }
 
@@ -250,6 +178,7 @@
 
       position: absolute;
       inset: 0;
+
       z-index: 0;
 
       background-repeat: no-repeat;
@@ -273,148 +202,45 @@
 
 
     /* ==========================================
-       NATURAL PERFUME MAKING
+       NATURAL PERFUME MAKING — WHERE TO TRY
     ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-natural-perfume {
-      background: #181817;
+      background: #211b19;
     }
 
 
-    .home-intro
-    .whats-new
-    .new-card.latest-update-natural-perfume::before {
+    .home-intro .whats-new .new-card.latest-update-natural-perfume::before {
       background-image:
         linear-gradient(
           180deg,
-          rgba(13,12,11,.43) 0%,
-          rgba(13,12,11,.59) 48%,
-          rgba(13,12,11,.89) 100%
+          rgba(20,15,13,.46) 0%,
+          rgba(20,15,13,.62) 48%,
+          rgba(20,15,13,.90) 100%
         ),
         url('/images/natural-perfume-spray.jpg');
 
-      background-position: center 43%;
+      background-position: center;
     }
 
 
-    .home-intro
-    .whats-new
-    .new-card.latest-update-natural-perfume::after {
+    .home-intro .whats-new .new-card.latest-update-natural-perfume::after {
       background-image:
         linear-gradient(
           180deg,
-          rgba(13,12,11,.43) 0%,
-          rgba(13,12,11,.59) 48%,
-          rgba(13,12,11,.89) 100%
+          rgba(20,15,13,.46) 0%,
+          rgba(20,15,13,.62) 48%,
+          rgba(20,15,13,.90) 100%
         ),
         url('/images/natural-perfume-bottle.jpg');
 
-      background-position: center bottom;
+      background-position: center;
     }
 
 
     /* ==========================================
-       EXISTING WHAT'S NEW VISUALS
+       HORSE RIDING — EXPERIENCE
     ========================================== */
-
-    .home-intro .whats-new .new-card.latest-update-pole-dance {
-      background: #18151d;
-    }
-
-
-    .home-intro .whats-new .new-card.latest-update-pole-dance::before {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(12,10,17,.46) 0%,
-          rgba(12,10,17,.60) 48%,
-          rgba(12,10,17,.88) 100%
-        ),
-        url('/images/pole-dance-man.jpg');
-
-      background-position: center 35%;
-    }
-
-
-    .home-intro .whats-new .new-card.latest-update-pole-dance::after {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(12,10,17,.46) 0%,
-          rgba(12,10,17,.60) 48%,
-          rgba(12,10,17,.88) 100%
-        ),
-        url('/images/pole-dance-woman.jpg');
-
-      background-position: center 35%;
-    }
-
-
-    .home-intro .whats-new .new-card.latest-update-running {
-      background: #101b20;
-    }
-
-
-    .home-intro .whats-new .new-card.latest-update-running::before {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(7,19,25,.56) 0%,
-          rgba(7,19,25,.66) 48%,
-          rgba(7,19,25,.88) 100%
-        ),
-        url('/images/running-forest.jpg');
-
-      background-position: center 48%;
-    }
-
-
-    .home-intro .whats-new .new-card.latest-update-running::after {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(7,19,25,.56) 0%,
-          rgba(7,19,25,.66) 48%,
-          rgba(7,19,25,.88) 100%
-        ),
-        url('/images/running-blue.jpg');
-
-      background-position: center 48%;
-    }
-
-
-    .home-intro .whats-new .new-card.latest-update-mediation {
-      background: #17191a;
-    }
-
-
-    .home-intro .whats-new .new-card.latest-update-mediation::before {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(9,11,13,.46) 0%,
-          rgba(9,11,13,.60) 48%,
-          rgba(9,11,13,.88) 100%
-        ),
-        url('/images/learn-mediation-connection.jpg');
-
-      background-position: center 54%;
-    }
-
-
-    .home-intro .whats-new .new-card.latest-update-mediation::after {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(9,11,13,.46) 0%,
-          rgba(9,11,13,.60) 48%,
-          rgba(9,11,13,.88) 100%
-        ),
-        url('/images/learn-mediation-handshake.jpg');
-
-      background-position: center 62%;
-    }
-
 
     .home-intro .whats-new .new-card.latest-update-horse-riding {
       background: #18241e;
@@ -449,10 +275,6 @@
     }
 
 
-    /* ==========================================
-       WHAT'S NEW TEXT
-    ========================================== */
-
     .home-intro .whats-new .new-card.latest-update-card .new-type,
     .home-intro .whats-new .new-card.latest-update-card h3,
     .home-intro .whats-new .new-card.latest-update-card p,
@@ -460,7 +282,7 @@
       position: relative;
       z-index: 2;
 
-      color: #ffffff;
+      color: #fff;
     }
 
 
@@ -484,6 +306,7 @@
       100% {
         opacity: 1;
       }
+
     }
 
 
@@ -494,18 +317,21 @@
         animation: none;
       }
 
+
       .home-intro .whats-new .new-card.latest-update-card::before {
         opacity: 1;
       }
 
+
       .home-intro .whats-new .new-card.latest-update-card::after {
         opacity: 0;
       }
+
     }
 
 
     /* ==========================================
-       CATEGORY ILLUSTRATIONS
+       CATEGORY IMAGES
     ========================================== */
 
     #find-your-try .category-card {
@@ -520,6 +346,7 @@
 
       position: absolute;
       inset: 0;
+
       z-index: -1;
 
       background-repeat: no-repeat;
@@ -578,6 +405,7 @@
         opacity: .65;
         transform: scale(1.035);
       }
+
     }
 
 
@@ -587,6 +415,7 @@
         opacity: .30;
         background-position: right center;
       }
+
     }
 
 
@@ -595,11 +424,12 @@
       #find-your-try .category-card::before {
         transition: none;
       }
+
     }
 
 
     /* ==========================================
-       FINAL IMAGE / SUGGEST
+       FINAL IMAGE
     ========================================== */
 
     section.suggest {
@@ -619,7 +449,7 @@
       background-position: center 50%;
       background-repeat: no-repeat;
 
-      color: #ffffff;
+      color: #fff;
     }
 
 
@@ -632,7 +462,7 @@
     section.suggest .suggest-intro,
     section.suggest .suggest-intro strong,
     section.suggest .suggest-note {
-      color: #ffffff;
+      color: #fff;
     }
 
 
@@ -642,19 +472,19 @@
 
 
     section.suggest #suggestion-message {
-      color: #ffffff;
+      color: #fff;
     }
 
 
     section.suggest #try-form input {
-      background: #ffffff;
+      background: #fff;
       color: #171717;
     }
 
 
     section.suggest #try-form button {
       background: #171717;
-      color: #ffffff;
+      color: #fff;
     }
 
 
@@ -670,21 +500,22 @@
           ),
           url('/images/home-final-background.jpg');
       }
+
     }
 
 
     /* ==========================================
-       HERO IMAGE
+       HERO IMAGE — FULL WIDTH
     ========================================== */
 
     section.home-hero-image {
       display: block;
-      box-sizing: border-box;
 
       width: 100vw;
       max-width: none;
 
       margin: 0 0 0 calc(50% - 50vw);
+
       padding: 0;
 
       border: 0;
@@ -712,7 +543,7 @@
 
 
     /* ==========================================
-       HEADER
+       THE JOURNAL — MENU
     ========================================== */
 
     .header-behind-link {
@@ -721,6 +552,7 @@
       font-family: 'Manrope', sans-serif;
       font-size: 11px;
       font-weight: 700;
+
       letter-spacing: .04em;
 
       text-decoration: none;
@@ -755,6 +587,7 @@
       .desktop-nav a {
         white-space: nowrap;
       }
+
     }
 
 
@@ -763,6 +596,7 @@
       .header-behind-link {
         display: none;
       }
+
     }
 
 
@@ -771,25 +605,17 @@
       .header-behind-link {
         display: none;
       }
+
     }
 
 
     /* ==========================================
-       COMMUNITY ANCHORS
-    ========================================== */
-
-    #be-part-of-it,
-    #where-to-try {
-      scroll-margin-top: 110px;
-    }
-
-
-    /* ==========================================
-       BE PART OF IT
+       BE PART OF IT — PRIMARY CTA
     ========================================== */
 
     #be-part-of-it .community-actions .community-link-primary {
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
 
@@ -799,12 +625,14 @@
       padding: 15px 22px;
 
       background: #1f2a18;
+
       border: 1px solid #1f2a18;
 
-      color: #ffffff;
+      color: #fff;
 
       font-size: 11px;
       font-weight: 800;
+
       letter-spacing: .05em;
       line-height: 1.6;
 
@@ -822,15 +650,76 @@
     }
 
 
-    #be-part-of-it .community-instagram-link {
-      display: inline-block;
+    /* ==========================================
+       WHERE TO TRY — ACTIVE
+    ========================================== */
 
-      margin-top: 15px;
+    #where-to-try {
+      scroll-margin-top: 110px;
+    }
 
-      color: #1f2a18;
+
+    #where-to-try .community-highlight {
+      margin: 18px 0 22px;
+    }
+
+
+    #where-to-try .where-home-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      gap: 14px;
+
+      margin-top: 26px;
+    }
+
+
+    #where-to-try .where-home-primary {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      width: fit-content;
+      max-width: 100%;
+
+      padding: 15px 22px;
+
+      background: #1f2a18;
+
+      border: 1px solid #1f2a18;
+
+      color: #ffffff;
 
       font-size: 11px;
       font-weight: 800;
+
+      letter-spacing: .05em;
+      line-height: 1.6;
+
+      text-decoration: none;
+
+      transition:
+        background .2s ease,
+        color .2s ease;
+    }
+
+
+    #where-to-try .where-home-primary:hover {
+      background: transparent;
+      color: #1f2a18;
+    }
+
+
+    #where-to-try .where-home-current {
+      display: inline-block;
+
+      color: #1f2a18;
+
+      font-size: 10px;
+      font-weight: 800;
+
       letter-spacing: .05em;
       line-height: 1.6;
 
@@ -841,93 +730,8 @@
     }
 
 
-    #be-part-of-it .community-instagram-link:hover {
+    #where-to-try .where-home-current:hover {
       opacity: .55;
-    }
-
-
-   /* ==========================================
-   WHERE TO TRY — ACTIVE
-========================================== */
-
-#where-to-try .community-highlight {
-  margin: 18px 0 22px;
-}
-
-
-#where-to-try .where-home-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  gap: 14px;
-
-  margin-top: 26px;
-}
-
-
-#where-to-try .where-home-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: fit-content;
-  max-width: 100%;
-
-  padding: 15px 22px;
-
-  background: #1f2a18;
-  border: 1px solid #1f2a18;
-
-  color: #ffffff;
-
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .05em;
-  line-height: 1.6;
-
-  text-decoration: none;
-
-  transition:
-    background .2s ease,
-    color .2s ease;
-}
-
-
-#where-to-try .where-home-primary:hover {
-  background: transparent;
-  color: #1f2a18;
-}
-
-
-#where-to-try .where-home-current {
-  display: inline-block;
-
-  color: #1f2a18;
-
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .05em;
-  line-height: 1.6;
-
-  text-decoration: underline;
-  text-underline-offset: 4px;
-
-  transition: opacity .2s ease;
-}
-
-
-#where-to-try .where-home-current:hover {
-  opacity: .55;
-}
-
-    /* ==========================================
-       FOOTER INSTAGRAM
-    ========================================== */
-
-    .footer-instagram-link {
-      display: block;
-      margin-top: 7px;
     }
 
   </style>
@@ -938,15 +742,16 @@
 <body>
 
 
-<!-- ==========================================
+<!-- =========================
      HEADER
-========================================== -->
+========================= -->
 
 <header class="site-header">
 
   <a
     href="/"
     class="site-logo"
+    aria-label="Move & Try home"
   >
 
     <img
@@ -971,7 +776,7 @@
       WHERE TO TRY
     </a>
 
-    <a href="journal.html">
+    <a href="/journal.html">
       THE JOURNAL
     </a>
 
@@ -981,7 +786,7 @@
   <div class="header-actions">
 
     <a
-      href="behind-move-and-try.html"
+      href="/behind-move-and-try.html"
       class="header-behind-link"
     >
       BEHIND MOVE & TRY
@@ -1021,9 +826,9 @@
 </header>
 
 
-<!-- ==========================================
+<!-- =========================
      MOBILE MENU
-========================================== -->
+========================= -->
 
 <div class="mobile-menu">
 
@@ -1041,11 +846,11 @@
       WHERE TO TRY
     </a>
 
-    <a href="journal.html">
+    <a href="/journal.html">
       THE JOURNAL
     </a>
 
-    <a href="behind-move-and-try.html">
+    <a href="/behind-move-and-try.html">
       BEHIND MOVE & TRY
     </a>
 
@@ -1072,23 +877,23 @@
 </div>
 
 
-<!-- ==========================================
-     HERO
-========================================== -->
+<!-- =========================
+     HERO IMAGE
+========================= -->
 
 <section class="home-hero-image">
 
   <img
     src="/images/home-discover.png"
-    alt="A playful illustration of different activities and new things to discover"
+    alt="A playful view of different activities and things to discover"
   >
 
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      HOW IT WORKS + WHAT'S NEW
-========================================== -->
+========================= -->
 
 <section
   class="home-intro"
@@ -1107,6 +912,7 @@
 
       <div class="how-it-works-inner">
 
+
         <p class="section-label">
           HOW IT WORKS
         </p>
@@ -1121,8 +927,6 @@
         <div class="how-steps">
 
 
-          <!-- 01 -->
-
           <div class="how-step">
 
             <span class="how-step-number">
@@ -1134,7 +938,7 @@
             </h3>
 
             <p>
-              Explore activities and find something that sparks your interest.
+              Explore activities and find something that sparks your curiosity.
             </p>
 
             <a
@@ -1147,8 +951,6 @@
           </div>
 
 
-          <!-- 02 -->
-
           <div class="how-step">
 
             <span class="how-step-number">
@@ -1160,13 +962,11 @@
             </h3>
 
             <p>
-              Read real experiences, tips and stories from others.
+              Read real experiences, advice and stories from others.
             </p>
 
           </div>
 
-
-          <!-- 03 -->
 
           <div class="how-step">
 
@@ -1179,7 +979,7 @@
             </h3>
 
             <p>
-              Find somewhere to turn your curiosity into a real experience.
+              Find where your curiosity can become a real experience.
             </p>
 
             <a
@@ -1192,8 +992,6 @@
           </div>
 
 
-          <!-- 04 -->
-
           <div class="how-step">
 
             <span class="how-step-number">
@@ -1201,17 +999,16 @@
             </span>
 
             <h3>
-              GIVE IT A TRY
+              TRY IT
             </h3>
 
             <p>
-              Take the first step. You don't have to be good at it.
+              Take the first step.
+              You don't have to be good at it.
             </p>
 
           </div>
 
-
-          <!-- 05 -->
 
           <div class="how-step">
 
@@ -1224,7 +1021,8 @@
             </h3>
 
             <p>
-              Your story might inspire someone else to give it a try.
+              Your story might inspire someone else
+              to give it a try.
             </p>
 
             <a
@@ -1241,17 +1039,18 @@
 
 
         <p class="how-it-works-ending">
-          No experience needed. Just curiosity.
+          You don't need experience. Just curiosity.
         </p>
+
 
       </div>
 
     </div>
 
 
-    <!-- ======================================
+    <!-- =========================
          WHAT'S NEW
-    ======================================= -->
+    ========================= -->
 
     <div class="home-intro-news">
 
@@ -1261,13 +1060,14 @@
           WHAT'S NEW
         </p>
 
+
         <h2>
           SOMETHING NEW<br>
           TO DISCOVER.
         </h2>
 
 
-        <!-- #1 — WHERE TO TRY -->
+        <!-- 01 — NATURAL PERFUME / WHERE TO TRY -->
 
         <a
           href="/natural-perfume-making-where-to-try.html"
@@ -1283,8 +1083,8 @@
           </h3>
 
           <p>
-            Find places where you can explore natural scents,
-            create your own combination and make your first perfume.
+            Find a place where you can explore natural scents
+            and create your first perfume.
           </p>
 
           <span class="new-action">
@@ -1294,25 +1094,24 @@
         </a>
 
 
-        <!-- #2 — EXPERIENCE -->
+        <!-- 02 — HORSE RIDING / EXPERIENCE -->
 
         <a
-          href="/natural-perfume-making-experience-lidija.html"
-          class="new-card latest-update-card latest-update-natural-perfume"
+          href="/horse-riding-experience-kristina.html"
+          class="new-card latest-update-card latest-update-horse-riding"
         >
 
           <span class="new-type">
-            CREATE · EXPERIENCE
+            MOVE · EXPERIENCE
           </span>
 
           <h3>
-            NATURAL PERFUME MAKING
+            HORSE RIDING
           </h3>
 
           <p>
-            Lidija made a natural perfume for the first time
-            and ended up with a scent she didn't expect —
-            softer than what she would normally choose.
+            The first time Kristina got in the saddle,
+            she couldn't stop laughing — and wanted to go faster.
           </p>
 
           <span class="new-action">
@@ -1332,9 +1131,9 @@
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      CATEGORIES
-========================================== -->
+========================= -->
 
 <section
   class="categories"
@@ -1345,6 +1144,7 @@
     FIND YOUR NEXT TRY
   </p>
 
+
   <h2>
     WHAT DO YOU FEEL LIKE DOING TODAY?
   </h2>
@@ -1354,7 +1154,7 @@
 
 
     <a
-      href="move.html"
+      href="/move.html"
       class="category-card category-move"
     >
 
@@ -1378,7 +1178,7 @@
 
 
     <a
-      href="learn.html"
+      href="/learn.html"
       class="category-card category-learn"
     >
 
@@ -1402,7 +1202,7 @@
 
 
     <a
-      href="create.html"
+      href="/create.html"
       class="category-card category-create"
     >
 
@@ -1415,7 +1215,7 @@
       </h3>
 
       <p>
-        Write. Paint. Photograph. Make something.
+        Write. Paint. Photograph. Make.
       </p>
 
       <span class="category-action">
@@ -1426,7 +1226,7 @@
 
 
     <a
-      href="explore.html"
+      href="/explore.html"
       class="category-card category-explore"
     >
 
@@ -1439,7 +1239,9 @@
       </h3>
 
       <p>
-        Go somewhere. Take a different path. Stay curious.
+        Go somewhere.
+        Take a different path.
+        Stay curious.
       </p>
 
       <span class="category-action">
@@ -1450,7 +1252,7 @@
 
 
     <a
-      href="dare.html"
+      href="/dare.html"
       class="category-card category-dare"
     >
 
@@ -1474,7 +1276,7 @@
 
 
     <a
-      href="care.html"
+      href="/care.html"
       class="category-card category-care"
     >
 
@@ -1500,10 +1302,6 @@
   </div>
 
 
-  <!-- ======================================
-       SURPRISE ME
-  ======================================= -->
-
   <button
     class="surprise-button"
     type="button"
@@ -1515,16 +1313,18 @@
 </section>
 
 
-<!-- ==========================================
-     COMMUNITY
-========================================== -->
+<!-- =========================
+     BE PART OF IT + WHERE TO TRY
+========================= -->
 
 <section class="community">
 
   <div class="community-grid">
 
 
-    <!-- BE PART OF IT -->
+    <!-- =========================
+         BE PART OF IT
+    ========================= -->
 
     <div
       class="community-panel contribute-panel"
@@ -1544,16 +1344,14 @@
 
       <p class="community-text">
         Share your experience. Pass on what you know. Suggest something new.<br>
-
         Show us a place worth discovering.<br>
-
-        Every story, idea and perspective could inspire someone
-        to take the first step.
+        Every story, idea and perspective could inspire someone to take the first step.
       </p>
 
 
       <p class="community-highlight">
-        Move & Try isn't just built for people. It's built with them.
+        Move & Try isn't just built for people.
+        It's built with them.
       </p>
 
 
@@ -1566,17 +1364,6 @@
           DISCOVER HOW TO GET INVOLVED →
         </a>
 
-        <br>
-
-        <a
-          href="https://www.instagram.com/moveandtry/"
-          class="community-instagram-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          OR MESSAGE US ON INSTAGRAM →
-        </a>
-
       </div>
 
 
@@ -1587,7 +1374,9 @@
     </div>
 
 
-    <!-- WHERE TO TRY -->
+    <!-- =========================
+         WHERE TO TRY
+    ========================= -->
 
     <div
       class="community-panel where-panel"
@@ -1607,9 +1396,9 @@
 
       <p class="community-text">
         From an idea to a real experience.<br>
-
-        Find workshops, studios, clubs, experts
-        and other places where you can take the first step.
+        Find workshops, studios, clubs,
+        experts and other places
+        where you can take the first step.
       </p>
 
 
@@ -1632,11 +1421,11 @@
           href="/natural-perfume-making-where-to-try.html"
           class="where-home-current"
         >
-          CURRENTLY AVAILABLE:
-          NATURAL PERFUME MAKING →
+          CURRENTLY AVAILABLE: NATURAL PERFUME MAKING →
         </a>
 
       </div>
+
 
     </div>
 
@@ -1646,9 +1435,9 @@
 </section>
 
 
-<!-- ==========================================
-     SUGGEST
-========================================== -->
+<!-- =========================
+     YOUR TURN
+========================= -->
 
 <section class="suggest">
 
@@ -1663,9 +1452,7 @@
 
 
   <p class="suggest-intro">
-
     Is there something you've been thinking about trying?<br>
-
     Something you're curious about but haven't taken the first step yet?
 
     <br><br>
@@ -1677,7 +1464,6 @@
     <br>
 
     Your idea might become our next TRY.
-
   </p>
 
 
@@ -1702,7 +1488,8 @@
 
 
   <p class="suggest-note">
-    You suggest. We explore. Together, we build Move & Try.
+    You suggest. We explore.
+    Together, we build Move & Try.
   </p>
 
 
@@ -1713,9 +1500,9 @@
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      FOOTER
-========================================== -->
+========================= -->
 
 <footer class="site-footer">
 
@@ -1725,7 +1512,8 @@
 
 
   <p class="footer-tagline">
-    You don't have to be good at it. You just have to try.
+    You don't have to be good at it.
+    You just have to try.
   </p>
 
 
@@ -1733,31 +1521,21 @@
     hello@moveandtry.com
   </a>
 
-
-  <a
-    href="https://www.instagram.com/moveandtry/"
-    class="footer-instagram-link"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Instagram · @moveandtry
-  </a>
-
 </footer>
 
 
-<!-- ==========================================
-     SHARED JAVASCRIPT
-========================================== -->
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script src="script.js"></script>
 
 
-<!-- ==========================================
-     HOME — SURPRISE ME
-========================================== -->
-
 <script>
+
+  /* ==========================================
+     SURPRISE ME — HOME
+  ========================================== */
 
   function surpriseMeHome() {
 
@@ -1780,71 +1558,42 @@
       "moveAndTryLastSurpriseEn";
 
 
-    let availableActivities =
-      activities;
+    const lastActivity =
+      sessionStorage.getItem(
+        storageKey
+      );
 
 
-    try {
-
-      const previous =
-        sessionStorage.getItem(storageKey);
-
-
-      if (
-        previous &&
-        activities.length > 1
-      ) {
-
-        const filtered =
-          activities.filter(
-            activity => activity !== previous
-          );
+    const availableActivities =
+      activities.filter(
+        activity =>
+          activity !== lastActivity
+      );
 
 
-        if (filtered.length) {
-          availableActivities = filtered;
-        }
-
-      }
-
-    } catch (error) {
-
-      /*
-         If sessionStorage is unavailable,
-         random selection still works normally.
-      */
-
-    }
+    const pool =
+      availableActivities.length
+        ? availableActivities
+        : activities;
 
 
-    const selected =
-      availableActivities[
+    const randomActivity =
+      pool[
         Math.floor(
           Math.random() *
-          availableActivities.length
+          pool.length
         )
       ];
 
 
-    try {
-
-      sessionStorage.setItem(
-        storageKey,
-        selected
-      );
-
-    } catch (error) {
-
-      /*
-         Navigation does not depend
-         on sessionStorage.
-      */
-
-    }
+    sessionStorage.setItem(
+      storageKey,
+      randomActivity
+    );
 
 
     window.location.href =
-      selected;
+      randomActivity;
 
   }
 
