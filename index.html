@@ -1,25 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="icon" type="image/png" href="/favicon.png">
+
   <title>Move & Try | You don't have to be good at it. Just try.</title>
-  <meta name="description" content="Move & Try is a place to discover something new to try. Move, learn, create, explore, dare or care for yourself. You don't have to be good at it. Just try.">
+
+  <meta
+    name="description"
+    content="Move & Try is a place to discover something new to try. Move, learn, create, explore, dare or care for yourself. You don't have to be good at it. Just try."
+  >
+
   <link rel="canonical" href="https://moveandtry.com/">
+
   <link rel="alternate" hreflang="en" href="https://moveandtry.com/">
   <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/">
   <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/">
+
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Move & Try">
-  <meta property="og:title" content="Move & Try | You don't have to be good at it. Just try.">
-  <meta property="og:description" content="Discover something new to try. You don't have to be good at it. Just try.">
+
+  <meta
+    property="og:title"
+    content="Move & Try | You don't have to be good at it. Just try."
+  >
+
+  <meta
+    property="og:description"
+    content="Discover something new to try. You don't have to be good at it. Just try."
+  >
+
   <meta property="og:url" content="https://moveandtry.com/">
-  <meta property="og:image" content="https://moveandtry.com/images/move-and-try-share.png">
+
+  <meta
+    property="og:image"
+    content="https://moveandtry.com/images/move-and-try-share.png"
+  >
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Move & Try | You don't have to be good at it. Just try.">
-  <meta name="twitter:description" content="Discover something new to try. You don't have to be good at it. Just try.">
-  <meta name="twitter:image" content="https://moveandtry.com/images/move-and-try-share.png">
+
+  <meta
+    name="twitter:title"
+    content="Move & Try | You don't have to be good at it. Just try."
+  >
+
+  <meta
+    name="twitter:description"
+    content="Discover something new to try. You don't have to be good at it. Just try."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://moveandtry.com/images/move-and-try-share.png"
+  >
+
+
+  <!-- =========================
+       STRUCTURED DATA
+  ========================= -->
 
   <script type="application/ld+json">
   {
@@ -32,7 +73,9 @@
         "name": "Move & Try",
         "alternateName": "MOVE & TRY",
         "description": "Move & Try is a place to discover something new to try. Move, learn, create, explore, dare or care for yourself.",
-        "publisher": {"@id": "https://moveandtry.com/#organization"}
+        "publisher": {
+          "@id": "https://moveandtry.com/#organization"
+        }
       },
       {
         "@type": "Organization",
@@ -48,168 +91,367 @@
   }
   </script>
 
+
+  <!-- =========================
+       LANGUAGE REDIRECT
+  ========================= -->
+
   <script>
     (function () {
+
       "use strict";
-      var path = window.location.pathname;
-      if (path !== "/" && path !== "/index.html") return;
+
+      var path =
+        window.location.pathname;
+
+
+      if (
+        path !== "/" &&
+        path !== "/index.html"
+      ) {
+        return;
+      }
+
 
       var savedLanguage = null;
 
+
       try {
-        savedLanguage = localStorage.getItem("moveandtry_language");
+
+        savedLanguage =
+          localStorage.getItem(
+            "moveandtry_language"
+          );
+
       } catch (error) {
+
         savedLanguage = null;
+
       }
+
 
       var preferredLanguage;
 
-      if (savedLanguage === "hr" || savedLanguage === "en") {
-        preferredLanguage = savedLanguage;
+
+      if (
+        savedLanguage === "hr" ||
+        savedLanguage === "en"
+      ) {
+
+        preferredLanguage =
+          savedLanguage;
+
       } else {
+
         var browserLanguage = (
-          navigator.languages && navigator.languages.length
+
+          navigator.languages &&
+          navigator.languages.length
+
             ? navigator.languages[0]
+
             : navigator.language || "en"
+
         ).toLowerCase();
 
-        preferredLanguage = browserLanguage.startsWith("hr") ? "hr" : "en";
+
+        preferredLanguage =
+          browserLanguage.startsWith("hr")
+            ? "hr"
+            : "en";
+
       }
 
+
       if (preferredLanguage === "hr") {
+
         window.location.replace(
-          "/hr/" + window.location.search + window.location.hash
+          "/hr/" +
+          window.location.search +
+          window.location.hash
         );
+
       }
+
     })();
   </script>
 
+
+  <!-- =========================
+       FONTS
+  ========================= -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =========================
+       GOOGLE ANALYTICS
+  ========================= -->
+
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"
+  ></script>
+
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    window.dataLayer =
+      window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
     gtag('config', 'G-PREYRXPPN8');
   </script>
 
+
   <link rel="stylesheet" href="style.css">
 
+
   <style>
-    /* WHAT'S NEW */
+
+    /* ==========================================
+       WHAT'S NEW
+    ========================================== */
+
     .home-intro .whats-new .new-card.latest-update-card {
       position: relative;
       isolation: isolate;
       overflow: hidden;
+
       display: flex;
       flex-direction: column;
+
       min-height: 285px;
       margin-top: 18px;
+
       background: #151417;
-      color: #fff;
+
+      color: #ffffff;
       text-decoration: none;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-card:first-of-type {
       margin-top: 0;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-card::before,
     .home-intro .whats-new .new-card.latest-update-card::after {
       content: "";
+
       position: absolute;
       inset: 0;
       z-index: 0;
+
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
+
       pointer-events: none;
+
       animation: latestPhotoFade 12s ease-in-out infinite;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-card::before {
       animation-delay: 0s;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-card::after {
       animation-delay: -6s;
     }
+
+
+    /* ==========================================
+       NATURAL PERFUME MAKING
+    ========================================== */
+
+    .home-intro .whats-new .new-card.latest-update-natural-perfume {
+      background: #181817;
+    }
+
+
+    .home-intro
+    .whats-new
+    .new-card.latest-update-natural-perfume::before {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(13,12,11,.43) 0%,
+          rgba(13,12,11,.59) 48%,
+          rgba(13,12,11,.89) 100%
+        ),
+        url('/images/natural-perfume-spray.jpg');
+
+      background-position: center 43%;
+    }
+
+
+    .home-intro
+    .whats-new
+    .new-card.latest-update-natural-perfume::after {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(13,12,11,.43) 0%,
+          rgba(13,12,11,.59) 48%,
+          rgba(13,12,11,.89) 100%
+        ),
+        url('/images/natural-perfume-bottle.jpg');
+
+      background-position: center bottom;
+    }
+
+
+    /* ==========================================
+       EXISTING WHAT'S NEW VISUALS
+    ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-pole-dance {
       background: #18151d;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-pole-dance::before {
       background-image:
-        linear-gradient(180deg,rgba(12,10,17,.46) 0%,rgba(12,10,17,.60) 48%,rgba(12,10,17,.88) 100%),
+        linear-gradient(
+          180deg,
+          rgba(12,10,17,.46) 0%,
+          rgba(12,10,17,.60) 48%,
+          rgba(12,10,17,.88) 100%
+        ),
         url('/images/pole-dance-man.jpg');
+
       background-position: center 35%;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-pole-dance::after {
       background-image:
-        linear-gradient(180deg,rgba(12,10,17,.46) 0%,rgba(12,10,17,.60) 48%,rgba(12,10,17,.88) 100%),
+        linear-gradient(
+          180deg,
+          rgba(12,10,17,.46) 0%,
+          rgba(12,10,17,.60) 48%,
+          rgba(12,10,17,.88) 100%
+        ),
         url('/images/pole-dance-woman.jpg');
+
       background-position: center 35%;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-running {
       background: #101b20;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-running::before {
       background-image:
-        linear-gradient(180deg,rgba(7,19,25,.56) 0%,rgba(7,19,25,.66) 48%,rgba(7,19,25,.88) 100%),
+        linear-gradient(
+          180deg,
+          rgba(7,19,25,.56) 0%,
+          rgba(7,19,25,.66) 48%,
+          rgba(7,19,25,.88) 100%
+        ),
         url('/images/running-forest.jpg');
+
       background-position: center 48%;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-running::after {
       background-image:
-        linear-gradient(180deg,rgba(7,19,25,.56) 0%,rgba(7,19,25,.66) 48%,rgba(7,19,25,.88) 100%),
+        linear-gradient(
+          180deg,
+          rgba(7,19,25,.56) 0%,
+          rgba(7,19,25,.66) 48%,
+          rgba(7,19,25,.88) 100%
+        ),
         url('/images/running-blue.jpg');
+
       background-position: center 48%;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-mediation {
       background: #17191a;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-mediation::before {
       background-image:
-        linear-gradient(180deg,rgba(9,11,13,.46) 0%,rgba(9,11,13,.60) 48%,rgba(9,11,13,.88) 100%),
+        linear-gradient(
+          180deg,
+          rgba(9,11,13,.46) 0%,
+          rgba(9,11,13,.60) 48%,
+          rgba(9,11,13,.88) 100%
+        ),
         url('/images/learn-mediation-connection.jpg');
+
       background-position: center 54%;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-mediation::after {
       background-image:
-        linear-gradient(180deg,rgba(9,11,13,.46) 0%,rgba(9,11,13,.60) 48%,rgba(9,11,13,.88) 100%),
+        linear-gradient(
+          180deg,
+          rgba(9,11,13,.46) 0%,
+          rgba(9,11,13,.60) 48%,
+          rgba(9,11,13,.88) 100%
+        ),
         url('/images/learn-mediation-handshake.jpg');
+
       background-position: center 62%;
     }
 
-    /* HORSE RIDING — NEW EXPERIENCE */
+
     .home-intro .whats-new .new-card.latest-update-horse-riding {
       background: #18241e;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-horse-riding::before {
       background-image:
-        linear-gradient(180deg,rgba(9,19,15,.46) 0%,rgba(9,19,15,.62) 48%,rgba(9,19,15,.88) 100%),
+        linear-gradient(
+          180deg,
+          rgba(9,19,15,.46) 0%,
+          rgba(9,19,15,.62) 48%,
+          rgba(9,19,15,.88) 100%
+        ),
         url('/images/horse-riding-1.jpg');
+
       background-position: center 65%;
     }
 
+
     .home-intro .whats-new .new-card.latest-update-horse-riding::after {
       background-image:
-        linear-gradient(180deg,rgba(9,19,15,.46) 0%,rgba(9,19,15,.62) 48%,rgba(9,19,15,.88) 100%),
+        linear-gradient(
+          180deg,
+          rgba(9,19,15,.46) 0%,
+          rgba(9,19,15,.62) 48%,
+          rgba(9,19,15,.88) 100%
+        ),
         url('/images/horse-riding-2.jpg');
+
       background-position: center 85%;
     }
+
+
+    /* ==========================================
+       WHAT'S NEW TEXT
+    ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-card .new-type,
     .home-intro .whats-new .new-card.latest-update-card h3,
@@ -217,20 +459,36 @@
     .home-intro .whats-new .new-card.latest-update-card .new-action {
       position: relative;
       z-index: 2;
-      color: #fff;
+
+      color: #ffffff;
     }
+
 
     .home-intro .whats-new .new-card.latest-update-card .new-type {
       color: #d4c8ae;
     }
 
+
     @keyframes latestPhotoFade {
-      0%,42% { opacity: 1; }
-      50%,92% { opacity: 0; }
-      100% { opacity: 1; }
+
+      0%,
+      42% {
+        opacity: 1;
+      }
+
+      50%,
+      92% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
 
+
     @media (prefers-reduced-motion: reduce) {
+
       .home-intro .whats-new .new-card.latest-update-card::before,
       .home-intro .whats-new .new-card.latest-update-card::after {
         animation: none;
@@ -245,382 +503,839 @@
       }
     }
 
-    /* CATEGORY PHOTOGRAPHS */
+
+    /* ==========================================
+       CATEGORY ILLUSTRATIONS
+    ========================================== */
+
     #find-your-try .category-card {
       position: relative;
       isolation: isolate;
       overflow: hidden;
     }
 
+
     #find-your-try .category-card::before {
       content: "";
+
       position: absolute;
       inset: 0;
       z-index: -1;
+
       background-repeat: no-repeat;
       background-position: right center;
       background-size: cover;
+
       opacity: .40;
+
       pointer-events: none;
-      transition: opacity .5s ease, transform .5s ease;
+
+      transition:
+        opacity .5s ease,
+        transform .5s ease;
     }
+
 
     #find-your-try .category-move::before {
       background-image: url('/images/category-move.webp');
     }
 
+
     #find-your-try .category-learn::before {
       background-image: url('/images/category-learn.webp');
     }
+
 
     #find-your-try .category-create::before {
       background-image: url('/images/category-create.webp');
     }
 
+
     #find-your-try .category-explore::before {
       background-image: url('/images/category-explore.webp');
     }
+
 
     #find-your-try .category-dare::before {
       background-image: url('/images/category-dare.webp');
     }
 
+
     #find-your-try .category-care::before {
       background-image: url('/images/category-care.webp');
     }
+
 
     #find-your-try .category-card > * {
       position: relative;
       z-index: 1;
     }
 
+
     @media (hover: hover) and (pointer: fine) {
+
       #find-your-try .category-card:hover::before {
         opacity: .65;
         transform: scale(1.035);
       }
     }
 
+
     @media (max-width: 768px) {
+
       #find-your-try .category-card::before {
         opacity: .30;
         background-position: right center;
       }
     }
 
+
     @media (prefers-reduced-motion: reduce) {
+
       #find-your-try .category-card::before {
         transition: none;
       }
     }
 
-    /* FINAL PHOTO */
+
+    /* ==========================================
+       FINAL IMAGE / SUGGEST
+    ========================================== */
+
     section.suggest {
       position: relative;
       isolation: isolate;
+
       background-color: #17251d;
+
       background-image:
-        linear-gradient(rgba(9,19,15,.40),rgba(9,19,15,.50)),
+        linear-gradient(
+          rgba(9,19,15,.40),
+          rgba(9,19,15,.50)
+        ),
         url('/images/home-final-background.jpg');
+
       background-size: cover;
       background-position: center 50%;
       background-repeat: no-repeat;
-      color: #fff;
+
+      color: #ffffff;
     }
+
 
     section.suggest > .section-label {
       color: #e3dfc8;
     }
 
+
     section.suggest > h2,
     section.suggest .suggest-intro,
     section.suggest .suggest-intro strong,
     section.suggest .suggest-note {
-      color: #fff;
+      color: #ffffff;
     }
+
 
     section.suggest .privacy-note {
       color: rgba(255,255,255,.90);
     }
 
+
     section.suggest #suggestion-message {
-      color: #fff;
+      color: #ffffff;
     }
 
+
     section.suggest #try-form input {
-      background: #fff;
+      background: #ffffff;
       color: #171717;
     }
 
+
     section.suggest #try-form button {
       background: #171717;
-      color: #fff;
+      color: #ffffff;
     }
 
+
     @media (max-width: 768px) {
+
       section.suggest {
         background-position: center center;
+
         background-image:
-          linear-gradient(rgba(9,19,15,.64),rgba(9,19,15,.73)),
+          linear-gradient(
+            rgba(9,19,15,.64),
+            rgba(9,19,15,.73)
+          ),
           url('/images/home-final-background.jpg');
       }
     }
 
-    /* HOME HERO */
+
+    /* ==========================================
+       HERO IMAGE
+    ========================================== */
+
     section.home-hero-image {
       display: block;
       box-sizing: border-box;
+
       width: 100vw;
       max-width: none;
+
       margin: 0 0 0 calc(50% - 50vw);
       padding: 0;
+
       border: 0;
       border-radius: 0;
+
       overflow: hidden;
     }
 
+
     section.home-hero-image img {
       display: block;
+
       width: 100%;
       max-width: none;
       height: auto;
+
       margin: 0;
       padding: 0;
+
       border: 0;
       border-radius: 0;
+
       object-fit: contain;
     }
 
-    /* THE JOURNAL — NEW NAVIGATION */
+
+    /* ==========================================
+       HEADER
+    ========================================== */
+
     .header-behind-link {
       color: #555;
-      font-family: 'Manrope',sans-serif;
+
+      font-family: 'Manrope', sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: .04em;
+
       text-decoration: none;
       white-space: nowrap;
+
       transition: opacity .2s ease;
     }
+
 
     .header-behind-link:hover {
       opacity: .55;
     }
 
+
     @media (min-width: 769px) {
+
       .site-header {
-        grid-template-columns: minmax(120px,1fr) auto minmax(120px,1fr);
+        grid-template-columns:
+          minmax(120px,1fr)
+          auto
+          minmax(120px,1fr);
+
         gap: 16px;
       }
+
 
       .desktop-nav {
         gap: clamp(12px,2vw,38px);
       }
+
 
       .desktop-nav a {
         white-space: nowrap;
       }
     }
 
+
     @media (max-width: 1250px) and (min-width: 769px) {
+
       .header-behind-link {
         display: none;
       }
     }
+
 
     @media (max-width: 768px) {
+
       .header-behind-link {
         display: none;
       }
     }
 
-    /* BE PART OF IT — PRIMARY BUTTON */
+
+    /* ==========================================
+       COMMUNITY ANCHORS
+    ========================================== */
+
+    #be-part-of-it,
+    #where-to-try {
+      scroll-margin-top: 110px;
+    }
+
+
+    /* ==========================================
+       BE PART OF IT
+    ========================================== */
+
     #be-part-of-it .community-actions .community-link-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       width: fit-content;
       max-width: 100%;
+
       padding: 15px 22px;
+
       background: #1f2a18;
       border: 1px solid #1f2a18;
-      color: #fff;
+
+      color: #ffffff;
+
       font-size: 11px;
       font-weight: 800;
       letter-spacing: .05em;
       line-height: 1.6;
+
       text-decoration: none;
-      transition: background .2s ease, color .2s ease;
+
+      transition:
+        background .2s ease,
+        color .2s ease;
     }
+
 
     #be-part-of-it .community-actions .community-link-primary:hover {
       background: transparent;
       color: #1f2a18;
     }
 
+
     #be-part-of-it .community-instagram-link {
       display: inline-block;
+
       margin-top: 15px;
+
       color: #1f2a18;
+
       font-size: 11px;
       font-weight: 800;
       letter-spacing: .05em;
       line-height: 1.6;
+
       text-decoration: underline;
       text-underline-offset: 4px;
+
       transition: opacity .2s ease;
     }
+
 
     #be-part-of-it .community-instagram-link:hover {
       opacity: .55;
     }
 
+
+    /* ==========================================
+       WHERE TO TRY — ACTIVE
+    ========================================== */
+
+    #where-to-try .where-home-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      gap: 14px;
+
+      margin-top: 26px;
+    }
+
+
+    #where-to-try .where-home-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      width: fit-content;
+      max-width: 100%;
+
+      padding: 15px 22px;
+
+      background: #1f2a18;
+      border: 1px solid #1f2a18;
+
+      color: #ffffff;
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      line-height: 1.6;
+
+      text-decoration: none;
+
+      transition:
+        background .2s ease,
+        color .2s ease;
+    }
+
+
+    #where-to-try .where-home-primary:hover {
+      background: transparent;
+      color: #1f2a18;
+    }
+
+
+    #where-to-try .where-home-current {
+      display: inline-block;
+
+      color: #1f2a18;
+
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      line-height: 1.6;
+
+      text-decoration: underline;
+      text-underline-offset: 4px;
+
+      transition: opacity .2s ease;
+    }
+
+
+    #where-to-try .where-home-current:hover {
+      opacity: .55;
+    }
+
+
+    /* ==========================================
+       FOOTER INSTAGRAM
+    ========================================== */
+
     .footer-instagram-link {
       display: block;
       margin-top: 7px;
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
+<!-- ==========================================
+     HEADER
+========================================== -->
+
 <header class="site-header">
-  <a href="/" class="site-logo">
-    <img src="/images/move-and-try-logo.png" alt="Move & Try">
+
+  <a
+    href="/"
+    class="site-logo"
+  >
+
+    <img
+      src="/images/move-and-try-logo.png"
+      alt="Move & Try"
+    >
+
   </a>
 
+
   <nav class="desktop-nav">
-    <a href="#find-your-try">DISCOVER</a>
-    <a href="#be-part-of-it">BE PART OF IT</a>
-    <a href="#where-to-try">WHERE TO TRY</a>
-    <a href="journal.html">THE JOURNAL</a>
+
+    <a href="#find-your-try">
+      DISCOVER
+    </a>
+
+    <a href="#be-part-of-it">
+      BE PART OF IT
+    </a>
+
+    <a href="#where-to-try">
+      WHERE TO TRY
+    </a>
+
+    <a href="journal.html">
+      THE JOURNAL
+    </a>
+
   </nav>
 
+
   <div class="header-actions">
-    <a href="behind-move-and-try.html" class="header-behind-link">BEHIND MOVE & TRY</a>
+
+    <a
+      href="behind-move-and-try.html"
+      class="header-behind-link"
+    >
+      BEHIND MOVE & TRY
+    </a>
+
 
     <div class="header-language">
-      <span class="language-active">EN</span>
+
+      <span class="language-active">
+        EN
+      </span>
+
       <span>|</span>
-      <a href="/hr/" onclick="setLanguage('hr')">HR</a>
+
+      <a
+        href="/hr/"
+        onclick="setLanguage('hr')"
+      >
+        HR
+      </a>
+
     </div>
 
-    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
       <span></span>
       <span></span>
     </button>
+
   </div>
+
 </header>
 
+
+<!-- ==========================================
+     MOBILE MENU
+========================================== -->
+
 <div class="mobile-menu">
+
   <nav>
-    <a href="#find-your-try">DISCOVER</a>
-    <a href="#be-part-of-it">BE PART OF IT</a>
-    <a href="#where-to-try">WHERE TO TRY</a>
-    <a href="journal.html">THE JOURNAL</a>
-    <a href="behind-move-and-try.html">BEHIND MOVE & TRY</a>
+
+    <a href="#find-your-try">
+      DISCOVER
+    </a>
+
+    <a href="#be-part-of-it">
+      BE PART OF IT
+    </a>
+
+    <a href="#where-to-try">
+      WHERE TO TRY
+    </a>
+
+    <a href="journal.html">
+      THE JOURNAL
+    </a>
+
+    <a href="behind-move-and-try.html">
+      BEHIND MOVE & TRY
+    </a>
+
   </nav>
 
+
   <div class="mobile-menu-language">
-    <span class="language-active">EN</span>
+
+    <span class="language-active">
+      EN
+    </span>
+
     <span>|</span>
-    <a href="/hr/" onclick="setLanguage('hr')">HR</a>
+
+    <a
+      href="/hr/"
+      onclick="setLanguage('hr')"
+    >
+      HR
+    </a>
+
   </div>
+
 </div>
 
+
+<!-- ==========================================
+     HERO
+========================================== -->
+
 <section class="home-hero-image">
-  <img src="/images/home-discover.png" alt="A playful illustration of different activities and new things to discover">
+
+  <img
+    src="/images/home-discover.png"
+    alt="A playful illustration of different activities and new things to discover"
+  >
+
 </section>
 
-<section class="home-intro" aria-label="How it works and what's new">
+
+<!-- ==========================================
+     HOW IT WORKS + WHAT'S NEW
+========================================== -->
+
+<section
+  class="home-intro"
+  aria-label="How it works and what's new"
+>
+
   <div class="home-intro-grid">
-    <div class="how-it-works" aria-labelledby="how-it-works-title">
+
+
+    <!-- HOW IT WORKS -->
+
+    <div
+      class="how-it-works"
+      aria-labelledby="how-it-works-title"
+    >
+
       <div class="how-it-works-inner">
 
-        <p class="section-label">HOW IT WORKS</p>
+        <p class="section-label">
+          HOW IT WORKS
+        </p>
+
 
         <h2 id="how-it-works-title">
           A LITTLE CURIOSITY.<br>
           A NEW EXPERIENCE.
         </h2>
 
+
         <div class="how-steps">
 
+
+          <!-- 01 -->
+
           <div class="how-step">
-            <span class="how-step-number">01</span>
-            <h3>DISCOVER</h3>
-            <p>Explore activities and find something that sparks your interest.</p>
-            <a class="how-step-link" href="#find-your-try">
+
+            <span class="how-step-number">
+              01
+            </span>
+
+            <h3>
+              DISCOVER
+            </h3>
+
+            <p>
+              Explore activities and find something that sparks your interest.
+            </p>
+
+            <a
+              class="how-step-link"
+              href="#find-your-try"
+            >
               EXPLORE ACTIVITIES →
             </a>
+
           </div>
 
-          <div class="how-step">
-            <span class="how-step-number">02</span>
-            <h3>GET INSPIRED</h3>
-            <p>Read real experiences, tips and stories from others.</p>
-          </div>
+
+          <!-- 02 -->
 
           <div class="how-step">
-            <span class="how-step-number">03</span>
-            <h3>FIND A PLACE</h3>
+
+            <span class="how-step-number">
+              02
+            </span>
+
+            <h3>
+              GET INSPIRED
+            </h3>
+
+            <p>
+              Read real experiences, tips and stories from others.
+            </p>
+
+          </div>
+
+
+          <!-- 03 -->
+
+          <div class="how-step">
+
+            <span class="how-step-number">
+              03
+            </span>
+
+            <h3>
+              FIND A PLACE
+            </h3>
+
             <p>
               Find somewhere to turn your curiosity into a real experience.
-              <span class="how-coming">COMING SOON</span>
             </p>
-            <a class="how-step-link" href="#where-to-try">
+
+            <a
+              class="how-step-link"
+              href="#where-to-try"
+            >
               WHERE TO TRY →
             </a>
+
           </div>
 
-          <div class="how-step">
-            <span class="how-step-number">04</span>
-            <h3>GIVE IT A TRY</h3>
-            <p>Take the first step. You don't have to be good at it.</p>
-          </div>
+
+          <!-- 04 -->
 
           <div class="how-step">
-            <span class="how-step-number">05</span>
-            <h3>SHARE YOUR EXPERIENCE</h3>
-            <p>Your story might inspire someone else to give it a try.</p>
-            <a class="how-step-link" href="/share-experience.html">
+
+            <span class="how-step-number">
+              04
+            </span>
+
+            <h3>
+              GIVE IT A TRY
+            </h3>
+
+            <p>
+              Take the first step. You don't have to be good at it.
+            </p>
+
+          </div>
+
+
+          <!-- 05 -->
+
+          <div class="how-step">
+
+            <span class="how-step-number">
+              05
+            </span>
+
+            <h3>
+              SHARE YOUR EXPERIENCE
+            </h3>
+
+            <p>
+              Your story might inspire someone else to give it a try.
+            </p>
+
+            <a
+              class="how-step-link"
+              href="/share-experience.html"
+            >
               SHARE YOUR STORY →
             </a>
+
           </div>
 
+
         </div>
+
 
         <p class="how-it-works-ending">
           No experience needed. Just curiosity.
         </p>
 
       </div>
+
     </div>
 
+
+    <!-- ======================================
+         WHAT'S NEW
+    ======================================= -->
+
     <div class="home-intro-news">
+
       <div class="whats-new">
 
-        <p class="section-label">WHAT'S NEW</p>
+        <p class="section-label">
+          WHAT'S NEW
+        </p>
 
         <h2>
           SOMETHING NEW<br>
           TO DISCOVER.
         </h2>
 
-        <a href="#" class="new-card" id="latest-update">
-          <span class="new-type" id="latest-update-type"></span>
-          <h3 id="latest-update-title"></h3>
-          <p id="latest-update-text"></p>
-          <span class="new-action" id="latest-update-action"></span>
+
+        <!-- #1 — WHERE TO TRY -->
+
+        <a
+          href="/natural-perfume-making-where-to-try.html"
+          class="new-card latest-update-card latest-update-natural-perfume"
+        >
+
+          <span class="new-type">
+            CREATE · WHERE TO TRY
+          </span>
+
+          <h3>
+            NATURAL PERFUME MAKING
+          </h3>
+
+          <p>
+            Find places where you can explore natural scents,
+            create your own combination and make your first perfume.
+          </p>
+
+          <span class="new-action">
+            SEE WHERE TO TRY →
+          </span>
+
         </a>
 
+
+        <!-- #2 — EXPERIENCE -->
+
+        <a
+          href="/natural-perfume-making-experience-lidija.html"
+          class="new-card latest-update-card latest-update-natural-perfume"
+        >
+
+          <span class="new-type">
+            CREATE · EXPERIENCE
+          </span>
+
+          <h3>
+            NATURAL PERFUME MAKING
+          </h3>
+
+          <p>
+            Lidija made a natural perfume for the first time
+            and ended up with a scent she didn't expect —
+            softer than what she would normally choose.
+          </p>
+
+          <span class="new-action">
+            READ THE EXPERIENCE →
+          </span>
+
+        </a>
+
+
       </div>
+
     </div>
 
+
   </div>
+
 </section>
 
-<section class="categories" id="find-your-try">
+
+<!-- ==========================================
+     CATEGORIES
+========================================== -->
+
+<section
+  class="categories"
+  id="find-your-try"
+>
 
   <p class="section-label">
     FIND YOUR NEXT TRY
@@ -630,84 +1345,213 @@
     WHAT DO YOU FEEL LIKE DOING TODAY?
   </h2>
 
+
   <div class="category-grid">
 
-    <a href="move.html" class="category-card category-move">
-      <span class="category-number">01</span>
-      <h3>MOVE</h3>
-      <p>Run. Climb. Dance. Hike. Ride.</p>
-      <span class="category-action">EXPLORE MOVE →</span>
+
+    <a
+      href="move.html"
+      class="category-card category-move"
+    >
+
+      <span class="category-number">
+        01
+      </span>
+
+      <h3>
+        MOVE
+      </h3>
+
+      <p>
+        Run. Climb. Dance. Hike. Ride.
+      </p>
+
+      <span class="category-action">
+        EXPLORE MOVE →
+      </span>
+
     </a>
 
-    <a href="learn.html" class="category-card category-learn">
-      <span class="category-number">02</span>
-      <h3>LEARN</h3>
-      <p>Code. Cook. Speak. Build. Understand.</p>
-      <span class="category-action">EXPLORE LEARN →</span>
+
+    <a
+      href="learn.html"
+      class="category-card category-learn"
+    >
+
+      <span class="category-number">
+        02
+      </span>
+
+      <h3>
+        LEARN
+      </h3>
+
+      <p>
+        Code. Cook. Speak. Build. Understand.
+      </p>
+
+      <span class="category-action">
+        EXPLORE LEARN →
+      </span>
+
     </a>
 
-    <a href="create.html" class="category-card category-create">
-      <span class="category-number">03</span>
-      <h3>CREATE</h3>
-      <p>Write. Paint. Photograph. Make something.</p>
-      <span class="category-action">EXPLORE CREATE →</span>
+
+    <a
+      href="create.html"
+      class="category-card category-create"
+    >
+
+      <span class="category-number">
+        03
+      </span>
+
+      <h3>
+        CREATE
+      </h3>
+
+      <p>
+        Write. Paint. Photograph. Make something.
+      </p>
+
+      <span class="category-action">
+        EXPLORE CREATE →
+      </span>
+
     </a>
 
-    <a href="explore.html" class="category-card category-explore">
-      <span class="category-number">04</span>
-      <h3>EXPLORE</h3>
-      <p>Go somewhere. Take a different path. Stay curious.</p>
-      <span class="category-action">EXPLORE EXPLORE →</span>
+
+    <a
+      href="explore.html"
+      class="category-card category-explore"
+    >
+
+      <span class="category-number">
+        04
+      </span>
+
+      <h3>
+        EXPLORE
+      </h3>
+
+      <p>
+        Go somewhere. Take a different path. Stay curious.
+      </p>
+
+      <span class="category-action">
+        EXPLORE EXPLORE →
+      </span>
+
     </a>
 
-    <a href="dare.html" class="category-card category-dare">
-      <span class="category-number">05</span>
-      <h3>DARE</h3>
-      <p>Do the thing you've been talking yourself out of.</p>
-      <span class="category-action">EXPLORE DARE →</span>
+
+    <a
+      href="dare.html"
+      class="category-card category-dare"
+    >
+
+      <span class="category-number">
+        05
+      </span>
+
+      <h3>
+        DARE
+      </h3>
+
+      <p>
+        Do the thing you've been talking yourself out of.
+      </p>
+
+      <span class="category-action">
+        EXPLORE DARE →
+      </span>
+
     </a>
 
-    <a href="care.html" class="category-card category-care">
-      <span class="category-number">06</span>
-      <h3>CARE</h3>
-      <p>Pause. Talk. Rest. Recover. Take care of yourself.</p>
-      <span class="category-action">EXPLORE CARE →</span>
+
+    <a
+      href="care.html"
+      class="category-card category-care"
+    >
+
+      <span class="category-number">
+        06
+      </span>
+
+      <h3>
+        CARE
+      </h3>
+
+      <p>
+        Pause. Talk. Rest. Recover. Take care of yourself.
+      </p>
+
+      <span class="category-action">
+        EXPLORE CARE →
+      </span>
+
     </a>
+
 
   </div>
 
+
+  <!-- ======================================
+       SURPRISE ME
+  ======================================= -->
+
   <button
     class="surprise-button"
-    onclick="surpriseMe()"
+    type="button"
+    onclick="surpriseMeHome()"
   >
     🎲 SURPRISE ME
   </button>
 
 </section>
 
+
+<!-- ==========================================
+     COMMUNITY
+========================================== -->
+
 <section class="community">
+
   <div class="community-grid">
 
-    <div class="community-panel contribute-panel" id="be-part-of-it">
+
+    <!-- BE PART OF IT -->
+
+    <div
+      class="community-panel contribute-panel"
+      id="be-part-of-it"
+    >
 
       <p class="section-label">
         BE PART OF IT
       </p>
+
 
       <h2>
         THERE ARE MANY WAYS<br>
         TO BE PART OF MOVE & TRY.
       </h2>
 
+
       <p class="community-text">
         Share your experience. Pass on what you know. Suggest something new.<br>
+
         Show us a place worth discovering.<br>
-        Every story, idea and perspective could inspire someone to take the first step.
+
+        Every story, idea and perspective could inspire someone
+        to take the first step.
       </p>
+
 
       <p class="community-highlight">
         Move & Try isn't just built for people. It's built with them.
       </p>
+
 
       <div class="community-actions">
 
@@ -731,42 +1575,76 @@
 
       </div>
 
+
       <p class="community-note">
         Stories · Knowledge · Photos · Ideas · Places · People
       </p>
 
     </div>
 
-    <div class="community-panel where-panel" id="where-to-try">
+
+    <!-- WHERE TO TRY -->
+
+    <div
+      class="community-panel where-panel"
+      id="where-to-try"
+    >
 
       <p class="section-label">
         WHERE TO TRY
       </p>
+
 
       <h2>
         FOUND SOMETHING<br>
         YOU WANT TO TRY?
       </h2>
 
+
       <p class="community-text">
-        We're building a place where you'll be able to find
-        people and places that can help you experience it in real life.
-        <br><br>
-        Coaches. Studios. Teachers. Guides. Workshops. Groups.
+        From an idea to a real experience.<br>
+
+        Find workshops, studios, clubs, experts
+        and other places where you can take the first step.
       </p>
+
 
       <p class="community-highlight">
         Discover here. Try there.
       </p>
 
-      <span class="community-coming">
-        COMING SOON
-      </span>
+
+      <div class="where-home-actions">
+
+        <a
+          href="/where-to-try.html"
+          class="where-home-primary"
+        >
+          FIND WHERE TO TRY →
+        </a>
+
+
+        <a
+          href="/natural-perfume-making-where-to-try.html"
+          class="where-home-current"
+        >
+          CURRENTLY AVAILABLE:
+          NATURAL PERFUME MAKING →
+        </a>
+
+      </div>
 
     </div>
 
+
   </div>
+
 </section>
+
+
+<!-- ==========================================
+     SUGGEST
+========================================== -->
 
 <section class="suggest">
 
@@ -774,17 +1652,30 @@
     YOUR TURN
   </p>
 
+
   <h2>
     WHAT SHOULD WE TRY NEXT?
   </h2>
 
+
   <p class="suggest-intro">
+
     Is there something you've been thinking about trying?<br>
+
     Something you're curious about but haven't taken the first step yet?
+
     <br><br>
-    <strong>Tell us.</strong><br>
+
+    <strong>
+      Tell us.
+    </strong>
+
+    <br>
+
     Your idea might become our next TRY.
+
   </p>
+
 
   <form id="try-form">
 
@@ -802,11 +1693,14 @@
 
   </form>
 
+
   <p id="suggestion-message"></p>
+
 
   <p class="suggest-note">
     You suggest. We explore. Together, we build Move & Try.
   </p>
+
 
   <p class="privacy-note">
     We don't ask for your name or email.
@@ -814,19 +1708,27 @@
 
 </section>
 
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
 <footer class="site-footer">
 
   <p>
     MOVE & TRY
   </p>
 
+
   <p class="footer-tagline">
     You don't have to be good at it. You just have to try.
   </p>
 
+
   <a href="mailto:hello@moveandtry.com">
     hello@moveandtry.com
   </a>
+
 
   <a
     href="https://www.instagram.com/moveandtry/"
@@ -839,7 +1741,112 @@
 
 </footer>
 
+
+<!-- ==========================================
+     SHARED JAVASCRIPT
+========================================== -->
+
 <script src="script.js"></script>
 
+
+<!-- ==========================================
+     HOME — SURPRISE ME
+========================================== -->
+
+<script>
+
+  function surpriseMeHome() {
+
+    const activities = [
+
+      "/running.html",
+
+      "/pole-dance.html",
+
+      "/mediation.html",
+
+      "/horse-riding.html",
+
+      "/natural-perfume-making.html"
+
+    ];
+
+
+    const storageKey =
+      "moveAndTryLastSurpriseEn";
+
+
+    let availableActivities =
+      activities;
+
+
+    try {
+
+      const previous =
+        sessionStorage.getItem(storageKey);
+
+
+      if (
+        previous &&
+        activities.length > 1
+      ) {
+
+        const filtered =
+          activities.filter(
+            activity => activity !== previous
+          );
+
+
+        if (filtered.length) {
+          availableActivities = filtered;
+        }
+
+      }
+
+    } catch (error) {
+
+      /*
+         If sessionStorage is unavailable,
+         random selection still works normally.
+      */
+
+    }
+
+
+    const selected =
+      availableActivities[
+        Math.floor(
+          Math.random() *
+          availableActivities.length
+        )
+      ];
+
+
+    try {
+
+      sessionStorage.setItem(
+        storageKey,
+        selected
+      );
+
+    } catch (error) {
+
+      /*
+         Navigation does not depend
+         on sessionStorage.
+      */
+
+    }
+
+
+    window.location.href =
+      selected;
+
+  }
+
+</script>
+
+
 </body>
+
 </html>
