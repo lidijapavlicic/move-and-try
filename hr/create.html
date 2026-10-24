@@ -11,7 +11,7 @@
 
     <meta
         name="description"
-        content="Otkrij nove načine izražavanja kroz lončarstvo, izradu prirodnih parfema, slikanje, fotografiju, pisanje, glazbu i kreativne aktivnosti. Ne mora biti savršeno. Samo probaj."
+        content="Otkrij nove načine izražavanja kroz izradu prirodnih parfema, lončarstvo, slikanje, fotografiju, pisanje, glazbu i kreativne aktivnosti. Ne mora biti savršeno. Samo probaj."
     >
 
     <link rel="canonical" href="https://moveandtry.com/hr/create.html">
@@ -47,88 +47,27 @@
     <link rel="stylesheet" href="../style.css">
 
     <style>
-        /* ==========================================
-           CREATE — ISTE DIMENZIJE I STRUKTURA
-           KAO MOVE I LEARN
-        ========================================== */
+        /* CREATE — ISTE DIMENZIJE I STRUKTURA KAO MOVE I LEARN */
 
         .move-app-page .activity-card.pottery-photo-card,
         .move-app-page .activity-card.perfume-photo-card {
             position: relative;
             isolation: isolate;
             overflow: hidden;
-
             min-height: 285px;
-
             color: #ffffff;
             background: #17191a;
         }
 
 
         /* ==========================================
-           POTTERY — PHOTO LAYER
-        ========================================== */
-
-        .pottery-photo-card .pottery-card-photos {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .pottery-photo-card .pottery-card-photo {
-            position: absolute;
-            inset: 0;
-
-            display: block;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            animation: potteryCardFade 12s ease-in-out infinite;
-        }
-
-        .pottery-photo-card .pottery-card-photo:first-child {
-            object-position: center 48%;
-            animation-delay: 0s;
-        }
-
-        .pottery-photo-card .pottery-card-photo:last-child {
-            object-position: center 55%;
-            animation-delay: -6s;
-        }
-
-        .pottery-photo-card::before {
-            content: "";
-
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-
-            background: linear-gradient(
-                180deg,
-                rgba(9, 11, 13, 0.46) 0%,
-                rgba(9, 11, 13, 0.60) 48%,
-                rgba(9, 11, 13, 0.88) 100%
-            );
-
-            pointer-events: none;
-        }
-
-
-        /* ==========================================
-           PERFUME — PHOTO LAYER
+           PERFUME CARD
         ========================================== */
 
         .perfume-photo-card .perfume-card-photos {
             position: absolute;
             inset: 0;
             z-index: 0;
-
             overflow: hidden;
             pointer-events: none;
         }
@@ -136,14 +75,10 @@
         .perfume-photo-card .perfume-card-photo {
             position: absolute;
             inset: 0;
-
             display: block;
-
             width: 100%;
             height: 100%;
-
             object-fit: cover;
-
             animation: perfumeCardFade 12s ease-in-out infinite;
         }
 
@@ -159,52 +94,94 @@
 
         .perfume-photo-card::before {
             content: "";
-
             position: absolute;
             inset: 0;
             z-index: 1;
-
             background: linear-gradient(
                 180deg,
                 rgba(10, 9, 11, 0.42) 0%,
                 rgba(10, 9, 11, 0.60) 48%,
                 rgba(10, 9, 11, 0.90) 100%
             );
-
             pointer-events: none;
         }
 
 
         /* ==========================================
-           CARD TEXT ABOVE PHOTOS
+           POTTERY CARD
         ========================================== */
 
-        .pottery-photo-card .activity-content,
-        .pottery-photo-card .activity-content h3,
-        .pottery-photo-card .activity-description,
-        .pottery-photo-card .activity-available,
-        .pottery-photo-card .activity-available span,
-        .pottery-photo-card .activity-action,
+        .pottery-photo-card .pottery-card-photos {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .pottery-photo-card .pottery-card-photo {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: potteryCardFade 12s ease-in-out infinite;
+        }
+
+        .pottery-photo-card .pottery-card-photo:first-child {
+            object-position: center 48%;
+            animation-delay: 0s;
+        }
+
+        .pottery-photo-card .pottery-card-photo:last-child {
+            object-position: center 55%;
+            animation-delay: -6s;
+        }
+
+        .pottery-photo-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                180deg,
+                rgba(9, 11, 13, 0.46) 0%,
+                rgba(9, 11, 13, 0.60) 48%,
+                rgba(9, 11, 13, 0.88) 100%
+            );
+            pointer-events: none;
+        }
+
+
+        /* ==========================================
+           CARD CONTENT
+        ========================================== */
 
         .perfume-photo-card .activity-content,
         .perfume-photo-card .activity-content h3,
         .perfume-photo-card .activity-description,
         .perfume-photo-card .activity-available,
         .perfume-photo-card .activity-available span,
-        .perfume-photo-card .activity-action {
+        .perfume-photo-card .activity-action,
+        .pottery-photo-card .activity-content,
+        .pottery-photo-card .activity-content h3,
+        .pottery-photo-card .activity-description,
+        .pottery-photo-card .activity-available,
+        .pottery-photo-card .activity-available span,
+        .pottery-photo-card .activity-action {
             position: relative;
             z-index: 2;
-
             color: #ffffff;
         }
 
-        .pottery-photo-card .activity-description,
-        .perfume-photo-card .activity-description {
+        .perfume-photo-card .activity-description,
+        .pottery-photo-card .activity-description {
             color: rgba(255, 255, 255, 0.88);
         }
 
-        .pottery-photo-card .activity-available span,
-        .perfume-photo-card .activity-available span {
+        .perfume-photo-card .activity-available span,
+        .pottery-photo-card .activity-available span {
             border-color: rgba(255, 255, 255, 0.42);
         }
 
@@ -212,22 +189,6 @@
         /* ==========================================
            ANIMATIONS
         ========================================== */
-
-        @keyframes potteryCardFade {
-            0%,
-            42% {
-                opacity: 1;
-            }
-
-            50%,
-            92% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
 
         @keyframes perfumeCardFade {
             0%,
@@ -245,21 +206,32 @@
             }
         }
 
+        @keyframes potteryCardFade {
+            0%,
+            42% {
+                opacity: 1;
+            }
 
-        /* ==========================================
-           REDUCED MOTION
-        ========================================== */
+            50%,
+            92% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
 
         @media (prefers-reduced-motion: reduce) {
 
-            .pottery-photo-card .pottery-card-photo,
-            .perfume-photo-card .perfume-card-photo {
+            .perfume-photo-card .perfume-card-photo,
+            .pottery-photo-card .pottery-card-photo {
                 animation: none;
                 opacity: 0;
             }
 
-            .pottery-photo-card .pottery-card-photo:first-child,
-            .perfume-photo-card .perfume-card-photo:first-child {
+            .perfume-photo-card .perfume-card-photo:first-child,
+            .pottery-photo-card .pottery-card-photo:first-child {
                 opacity: 1;
             }
         }
@@ -272,15 +244,12 @@
         .header-behind-link,
         .header-behind-link:visited {
             color: #555;
-
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: .04em;
-
             text-decoration: none;
             white-space: nowrap;
-
             transition: opacity .2s ease;
         }
 
@@ -290,435 +259,298 @@
     </style>
 </head>
 
-
 <body>
 
+    <!-- SITE HEADER -->
+    <header class="site-header">
 
-<!-- =========================
-     SITE HEADER
-========================= -->
-
-<header class="site-header">
-
-    <a
-        href="/hr/"
-        class="site-logo"
-        aria-label="Move & Try – početna"
-    >
-        <img
-            src="/images/move-and-try-logo.png"
-            alt="Move & Try"
-        >
-    </a>
-
-
-    <nav class="desktop-nav">
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
+        <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+            <img src="/images/move-and-try-logo.png" alt="Move & Try">
         </a>
 
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
+        <nav class="desktop-nav">
+            <a href="/hr/#find-your-try">OTKRIJ</a>
+            <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+            <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+            <a href="/hr/journal.html">THE JOURNAL</a>
+        </nav>
 
-        <a href="/hr/where-to-try.html">
-            GDJE PROBATI
-        </a>
+        <div class="header-actions">
 
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
-    </nav>
-
-
-    <div class="header-actions">
-
-        <a
-            href="/hr/behind-move-and-try.html"
-            class="header-behind-link"
-        >
-            IZA MOVE & TRY
-        </a>
-
-        <div class="header-language">
-
-            <a
-                href="/create.html"
-                onclick="setLanguage('en')"
-            >
-                EN
+            <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+                IZA MOVE & TRY
             </a>
 
-            <span>|</span>
+            <div class="header-language">
+                <a href="/create.html" onclick="setLanguage('en')">EN</a>
+                <span>|</span>
+                <span class="language-active">HR</span>
+            </div>
 
-            <span class="language-active">
-                HR
-            </span>
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Otvori izbornik"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+            </button>
 
         </div>
 
-        <button
-            class="menu-toggle"
-            type="button"
-            aria-label="Otvori izbornik"
-            aria-expanded="false"
-        >
-            <span></span>
-            <span></span>
-        </button>
+    </header>
+
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+
+        <nav>
+            <a href="/hr/#find-your-try">OTKRIJ</a>
+            <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+            <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+            <a href="/hr/journal.html">THE JOURNAL</a>
+            <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+        </nav>
+
+        <div class="mobile-menu-language">
+            <a href="/create.html" onclick="setLanguage('en')">EN</a>
+            <span>|</span>
+            <span class="language-active">HR</span>
+        </div>
 
     </div>
 
-</header>
+
+    <!-- CREATE CATEGORY -->
+    <main class="category-page move-app-page">
+
+        <div class="move-app-layout">
+
+            <!-- LEFT: INTRODUCTION -->
+            <section class="move-app-intro" aria-labelledby="create-title">
+
+                <p class="category-page-number">03 · CREATE</p>
+
+                <h1 id="create-title">CREATE</h1>
+
+                <h2>
+                    Stvori nešto.<br>
+                    Samo za sebe.
+                </h2>
+
+                <p>
+                    Kreativnost nije rezervirana za umjetnike.
+                    Ne moraš znati crtati, svirati ili izrađivati savršene stvari.
+                    Ponekad je dovoljno prepustiti se ideji,
+                    raditi rukama i vidjeti što će nastati.
+                </p>
+
+                <p>
+                    Postoji toliko načina da izraziš svoju kreativnost —
+                    od slikanja i keramike do fotografije,
+                    pisanja i glazbe.
+                </p>
+
+                <p class="move-app-highlight">
+                    Ne mora biti savršeno. Važno je da je tvoje.
+                </p>
+
+            </section>
 
 
-<!-- =========================
-     MOBILE MENU
-========================= -->
+            <!-- RIGHT: ACTIVITIES -->
+            <section class="move-app-discover" aria-labelledby="create-discover-title">
 
-<div class="mobile-menu">
+                <p class="section-label">ISTRAŽI CREATE</p>
 
-    <nav>
+                <h2 id="create-discover-title">
+                    ŠTO BI ŽELIO PROBATI?
+                </h2>
 
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/where-to-try.html">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
-        <a href="/hr/behind-move-and-try.html">
-            IZA MOVE & TRY
-        </a>
-
-    </nav>
+                <div class="activity-grid">
 
 
-    <div class="mobile-menu-language">
+                    <!-- =========================
+                         IZRADA PRIRODNIH PARFEMA
+                         NAJNOVIJA AKTIVNOST
+                    ========================= -->
 
-        <a
-            href="/create.html"
-            onclick="setLanguage('en')"
-        >
-            EN
-        </a>
+                    <a
+                        href="/hr/natural-perfume-making.html"
+                        class="activity-card perfume-photo-card"
+                    >
 
-        <span>|</span>
+                        <div
+                            class="perfume-card-photos"
+                            aria-hidden="true"
+                        >
 
-        <span class="language-active">
-            HR
-        </span>
+                            <img
+                                class="perfume-card-photo"
+                                src="/images/natural-perfume-spray.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
 
-    </div>
+                            <img
+                                class="perfume-card-photo"
+                                src="/images/natural-perfume-bottle.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
 
-</div>
+                        </div>
 
+                        <div class="activity-content">
 
-<!-- =========================
-     CREATE CATEGORY
-========================= -->
+                            <h3>
+                                IZRADA PRIRODNIH PARFEMA
+                            </h3>
 
-<main class="category-page move-app-page">
+                            <p class="activity-description">
+                                Upoznaj mirisne note, istraži prirodne esencije
+                                i složi kombinaciju koja je samo tvoja.
 
-    <div class="move-app-layout">
+                                Otkrij kako izgleda prvi susret
+                                s prirodnom parfumerijom.
+                            </p>
 
+                            <div class="activity-available">
+                                <span>VODIČ ✓</span>
+                                <span>ISKUSTVA ✓</span>
+                                <span>STRUČNJAK</span>
+                                <span>GDJE PROBATI ✓</span>
+                            </div>
 
-        <!-- =========================
-             LEFT: INTRODUCTION
-        ========================= -->
+                        </div>
 
-        <section
-            class="move-app-intro"
-            aria-labelledby="create-title"
-        >
+                        <span class="activity-action">
+                            ISTRAŽI IZRADU PARFEMA →
+                        </span>
 
-            <p class="category-page-number">
-                03 · CREATE
-            </p>
-
-            <h1 id="create-title">
-                CREATE
-            </h1>
-
-            <h2>
-                Stvori nešto.<br>
-                Samo za sebe.
-            </h2>
-
-            <p>
-                Kreativnost nije rezervirana za umjetnike.
-                Ne moraš znati crtati, svirati ili izrađivati savršene stvari.
-                Ponekad je dovoljno prepustiti se ideji,
-                raditi rukama i vidjeti što će nastati.
-            </p>
-
-            <p>
-                Postoji toliko načina da izraziš svoju kreativnost —
-                od slikanja i keramike do fotografije,
-                pisanja i glazbe.
-            </p>
-
-            <p class="move-app-highlight">
-                Ne mora biti savršeno. Važno je da je tvoje.
-            </p>
-
-        </section>
+                    </a>
 
 
-        <!-- =========================
-             RIGHT: ACTIVITIES
-        ========================= -->
+                    <!-- =========================
+                         LONČARSTVO
+                    ========================= -->
 
-        <section
-            class="move-app-discover"
-            aria-labelledby="create-discover-title"
-        >
+                    <a
+                        href="/hr/pottery.html"
+                        class="activity-card pottery-photo-card"
+                    >
+
+                        <div
+                            class="pottery-card-photos"
+                            aria-hidden="true"
+                        >
+
+                            <img
+                                class="pottery-card-photo"
+                                src="/images/create-pottery-hands.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
+
+                            <img
+                                class="pottery-card-photo"
+                                src="/images/create-pottery-wheel.jpg"
+                                alt=""
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="activity-content">
+
+                            <h3>
+                                LONČARSTVO
+                            </h3>
+
+                            <p class="activity-description">
+                                Glina među prstima, lončarsko kolo
+                                i zadovoljstvo stvaranja nečega
+                                vlastitim rukama.
+
+                                Otkrij kako izgleda tvoj prvi
+                                susret s lončarstvom.
+                            </p>
+
+                            <div class="activity-available">
+                                <span>VODIČ</span>
+                                <span>ISKUSTVA</span>
+                                <span>STRUČNJACI</span>
+                                <span>GDJE PROBATI</span>
+                            </div>
+
+                        </div>
+
+                        <span class="activity-action">
+                            ISTRAŽI LONČARSTVO →
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <!-- DISKRETNA NAJAVA -->
+                <p class="move-app-more">
+                    USKORO JOŠ AKTIVNOSTI
+                </p>
+
+            </section>
+
+        </div>
+
+
+        <!-- PREDLOŽI AKTIVNOST -->
+        <section class="category-suggest">
 
             <p class="section-label">
-                ISTRAŽI CREATE
+                NEŠTO NEDOSTAJE?
             </p>
 
-            <h2 id="create-discover-title">
-                ŠTO BI ŽELIO PROBATI?
+            <h2>
+                IMAŠ DRUGU IDEJU?
             </h2>
 
+            <p>
+                Postoji nešto što bi volio stvoriti ili isprobati,
+                a još ga nema na Move &amp; Try?
 
-            <div class="activity-grid">
-
-
-                <!-- =========================
-                     LONČARSTVO
-                ========================= -->
-
-                <a
-                    href="/hr/pottery.html"
-                    class="activity-card pottery-photo-card"
-                >
-
-                    <div
-                        class="pottery-card-photos"
-                        aria-hidden="true"
-                    >
-
-                        <img
-                            class="pottery-card-photo"
-                            src="/images/create-pottery-hands.jpg"
-                            alt=""
-                            loading="lazy"
-                        >
-
-                        <img
-                            class="pottery-card-photo"
-                            src="/images/create-pottery-wheel.jpg"
-                            alt=""
-                            loading="lazy"
-                        >
-
-                    </div>
-
-
-                    <div class="activity-content">
-
-                        <h3>
-                            LONČARSTVO
-                        </h3>
-
-                        <p class="activity-description">
-                            Glina među prstima, lončarsko kolo
-                            i zadovoljstvo stvaranja nečega
-                            vlastitim rukama.
-
-                            Otkrij kako izgleda tvoj prvi
-                            susret s lončarstvom.
-                        </p>
-
-
-                        <div class="activity-available">
-
-                            <span>
-                                VODIČ
-                            </span>
-
-                            <span>
-                                ISKUSTVA
-                            </span>
-
-                            <span>
-                                STRUČNJACI
-                            </span>
-
-                            <span>
-                                GDJE PROBATI
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <span class="activity-action">
-                        ISTRAŽI LONČARSTVO →
-                    </span>
-
-                </a>
-
-
-                <!-- =========================
-                     IZRADA PRIRODNIH PARFEMA
-                ========================= -->
-
-                <a
-                    href="/hr/natural-perfume-making.html"
-                    class="activity-card perfume-photo-card"
-                >
-
-                    <div
-                        class="perfume-card-photos"
-                        aria-hidden="true"
-                    >
-
-                        <img
-                            class="perfume-card-photo"
-                            src="/images/natural-perfume-spray.jpg"
-                            alt=""
-                            loading="lazy"
-                        >
-
-                        <img
-                            class="perfume-card-photo"
-                            src="/images/natural-perfume-bottle.jpg"
-                            alt=""
-                            loading="lazy"
-                        >
-
-                    </div>
-
-
-                    <div class="activity-content">
-
-                        <h3>
-                            IZRADA PRIRODNIH PARFEMA
-                        </h3>
-
-                        <p class="activity-description">
-                            Upoznaj mirisne note, istraži prirodne esencije
-                            i složi kombinaciju koja je samo tvoja.
-
-                            Otkrij kako izgleda prvi susret
-                            s prirodnom parfumerijom.
-                        </p>
-
-
-                        <div class="activity-available">
-
-                            <span>
-                                VODIČ ✓
-                            </span>
-
-                            <span>
-                                ISKUSTVA ✓
-                            </span>
-
-                            <span>
-                                STRUČNJAK
-                            </span>
-
-                            <span>
-                                GDJE PROBATI ✓
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <span class="activity-action">
-                        ISTRAŽI IZRADU PARFEMA →
-                    </span>
-
-                </a>
-
-
-            </div>
-
-
-            <!-- =========================
-                 DISKRETNA NAJAVA
-            ========================= -->
-
-            <p class="move-app-more">
-                USKORO JOŠ AKTIVNOSTI
+                Reci nam što bi želio vidjeti.
             </p>
+
+            <a
+                href="/hr/#try-form"
+                class="category-suggest-link"
+            >
+                PREDLOŽI TRY →
+            </a>
 
         </section>
 
-    </div>
 
-
-    <!-- =========================
-         PREDLOŽI AKTIVNOST
-    ========================= -->
-
-    <section class="category-suggest">
-
-        <p class="section-label">
-            NEŠTO NEDOSTAJE?
-        </p>
-
-        <h2>
-            IMAŠ DRUGU IDEJU?
-        </h2>
-
-        <p>
-            Postoji nešto što bi volio stvoriti ili isprobati,
-            a još ga nema na Move &amp; Try?
-
-            Reci nam što bi želio vidjeti.
-        </p>
-
-        <a
-            href="/hr/#try-form"
-            class="category-suggest-link"
+        <!-- OSTALE KATEGORIJE -->
+        <div
+            class="category-other-categories"
+            style="text-align: center; padding: 24px 20px 48px;"
         >
-            PREDLOŽI TRY →
-        </a>
 
-    </section>
+            <a
+                href="/hr/#find-your-try"
+                class="category-suggest-link"
+            >
+                ISTRAŽI OSTALE KATEGORIJE →
+            </a>
 
+        </div>
 
-    <!-- =========================
-         OSTALE KATEGORIJE
-    ========================= -->
+    </main>
 
-    <div
-        class="category-other-categories"
-        style="text-align: center; padding: 24px 20px 48px;"
-    >
-
-        <a
-            href="/hr/#find-your-try"
-            class="category-suggest-link"
-        >
-            ISTRAŽI OSTALE KATEGORIJE →
-        </a>
-
-    </div>
-
-</main>
-
-
-<script src="../script.js"></script>
+    <script src="../script.js"></script>
 
 </body>
 </html>
