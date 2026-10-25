@@ -632,7 +632,7 @@
 
         <button class="stat stat-link" type="button" data-stat-filter="approved_published" aria-label="Prikaži odobrene i objavljene članke">
           <div class="stat-number" id="stat-approved">0</div>
-          <div class="stat-label">Odobreno i objavljeno</div>
+          <div class="stat-label">Odobreno, zakazano i objavljeno</div>
           <div class="stat-hint">OTVORI ČLANKE ↗</div>
         </button>
       </div>
@@ -664,6 +664,7 @@
           <option value="revision">Na doradi</option>
           <option value="approved_published">Odobreno i objavljeno</option>
           <option value="approved">Odobreno</option>
+          <option value="scheduled">Zakazano</option>
           <option value="published">Objavljeno</option>
         </select>
       </div>
@@ -722,7 +723,31 @@
       <img id="detail-cover" class="detail-cover" alt="Naslovna fotografija članka" hidden>
       <div class="detail-content" id="detail-content"></div>
 
+      <section class="subsection" id="detail-en-section" hidden>
+        <p class="eyebrow">ENGLISH VERSION</p>
+        <h3 id="detail-title-en">English title</h3>
+        <p class="detail-excerpt" id="detail-excerpt-en"></p>
+        <div class="detail-content" id="detail-content-en"></div>
+      </section>
+
       <div class="actions" id="detail-actions"></div>
+
+      <section class="subsection" id="schedule-section" hidden>
+        <h3>Zakaži objavu</h3>
+        <p class="muted small">Odaberi datum i vrijeme prema Zagrebu (Europe/Zagreb). Zakazivanje je dostupno samo za odobren članak s popunjenim HR i EN sadržajem.</p>
+        <div class="field">
+          <label for="schedule-date">Datum objave</label>
+          <input id="schedule-date" type="date">
+        </div>
+        <div class="field">
+          <label for="schedule-time">Vrijeme objave</label>
+          <input id="schedule-time" type="time" step="60">
+        </div>
+        <div class="actions">
+          <button class="btn green" id="confirm-schedule-btn" type="button">POTVRDI ZAKAZIVANJE →</button>
+          <button class="btn secondary" id="cancel-schedule-btn" type="button">ODUSTANI</button>
+        </div>
+      </section>
 
       <section id="revision-section" class="subsection" hidden>
         <h3>Vrati na doradu</h3>
@@ -781,6 +806,7 @@
       <p class="muted small" id="editor-context"></p>
 
       <form id="article-form">
+        <p class="eyebrow">HRVATSKA VERZIJA</p>
         <div class="field">
           <label for="article-title">Naslov</label>
           <input id="article-title" type="text" maxlength="180">
@@ -806,6 +832,23 @@
           <label for="article-content">Tekst članka</label>
           <textarea id="article-content" placeholder="Ovdje počinje tvoja priča..."></textarea>
         </div>
+
+        <section class="subsection" id="admin-en-fields" hidden>
+          <p class="eyebrow">ENGLISH VERSION · ADMINISTRATOR</p>
+          <p class="muted small">Englesku verziju uređuje administrator. Za objavljivanje su obvezni naslov, opis i tekst na oba jezika.</p>
+          <div class="field">
+            <label for="article-title-en">Title (EN)</label>
+            <input id="article-title-en" type="text" maxlength="180">
+          </div>
+          <div class="field">
+            <label for="article-excerpt-en">Short description (EN)</label>
+            <textarea id="article-excerpt-en" style="min-height:100px"></textarea>
+          </div>
+          <div class="field">
+            <label for="article-content-en">Article text (EN)</label>
+            <textarea id="article-content-en" placeholder="English article text..."></textarea>
+          </div>
+        </section>
 
         <div class="field">
           <label for="article-cover">Poveznica na naslovnu fotografiju (opcionalno)</label>
@@ -858,6 +901,7 @@
     submitted: 'Čeka odobrenje',
     revision: 'Vraćeno na doradu',
     approved: 'Odobreno',
+    scheduled: 'Zakazano',
     published: 'Objavljeno'
   };
 
@@ -875,6 +919,7 @@
     submitted: 'Poslano na odobrenje',
     revision_requested: 'Zatražena dorada',
     approved: 'Članak odobren',
+    scheduled: 'Objava zakazana',
     published: 'Članak objavljen',
     unpublished: 'Članak povučen',
     comment_added: 'Dodan komentar'
@@ -915,7 +960,8 @@
     ['all', 'Svi statusi'],
     ['draft_revision', 'Skice i dorade'],
     ['submitted', 'Čeka odobrenje'],
-    ['approved_published', 'Odobreno i objavljeno']
+    ['approved_published', 'Odobreno, zakazano i objavljeno'],
+    ['scheduled', 'Zakazano']
   ].forEach(([value, label]) => {
     const option = document.createElement('option');
     option.value = value;
@@ -1000,7 +1046,8 @@
       'save-draft-btn',
       'submit-article-btn',
       'confirm-revision-btn',
-      'add-comment-btn'
+      'add-comment-btn',
+      'confirm-schedule-btn'
     ].forEach(id => {
       const button = $(id);
       if (button) button.disabled = value;
@@ -1031,7 +1078,7 @@
 
     const { data, error } = await db
       .from('journal_articles')
-      .select('id, author_id, title, excerpt, content, category, cover_image, status, updated_at, created_at, revision_number')
+      .select('id, author_id, title, excerpt, content, title_en, excerpt_en, content_en, category, cover_image, status, updated_at, created_at, revision_number, scheduled_at, published_at')
       .order('updated_at', { ascending: false })
       .limit(1000);
 
@@ -1082,7 +1129,7 @@
     const pending = visible.filter(a => a.status === 'submitted');
 
     const approved = visible.filter(a =>
-      ['approved', 'published'].includes(a.status)
+      ['approved', 'scheduled', 'published'].includes(a.status)
     );
 
     $('stat-total').textContent = visible.length;
@@ -1122,6 +1169,9 @@
       statusLabel(article.status),
       dateLabel(article.updated_at)
     ];
+    if (article.status === 'scheduled' && article.scheduled_at) {
+      details.push('Objava: ' + dateLabel(article.scheduled_at));
+    }
 
     if (isAdmin()) {
       details.push(personName(article.author_id));
@@ -1176,7 +1226,7 @@
     }
 
     if (status === 'approved_published') {
-      return ['approved', 'published'].includes(article.status);
+      return ['approved', 'scheduled', 'published'].includes(article.status);
     }
 
     return article.status === status;
@@ -1216,6 +1266,7 @@
 
       const text = [
         article.title,
+        article.title_en,
         personName(article.author_id),
         categoryLabel(article.category)
       ].join(' ').toLowerCase();
@@ -1373,13 +1424,19 @@
   }
 
   function readEditorValues() {
-    return {
+    const values = {
       p_title: $('article-title').value.trim(),
       p_excerpt: $('article-excerpt').value.trim(),
       p_content: $('article-content').value.trim(),
       p_category: $('article-category').value,
       p_cover_image: $('article-cover').value.trim() || null
     };
+    if (currentEditorMode === 'admin') {
+      values.p_title_en = $('article-title-en').value.trim() || null;
+      values.p_excerpt_en = $('article-excerpt-en').value.trim() || null;
+      values.p_content_en = $('article-content-en').value.trim() || null;
+    }
+    return values;
   }
     function editorValuesChanged() {
     if (!editorInitialValues) return false;
@@ -1437,6 +1494,10 @@
     $('article-content').value = article?.content || '';
     $('article-category').value = article?.category || 'personal';
     $('article-cover').value = article?.cover_image || '';
+    $('admin-en-fields').hidden = !adminEdit;
+    $('article-title-en').value = article?.title_en || '';
+    $('article-excerpt-en').value = article?.excerpt_en || '';
+    $('article-content-en').value = article?.content_en || '';
 
     editorInitialValues = readEditorValues();
 
@@ -1455,6 +1516,7 @@
     if (busy) return;
 
     $('editor-panel').hidden = true;
+    $('admin-en-fields').hidden = true;
     currentArticleId = null;
     currentArticleRevision = null;
     currentEditorMode = 'author';
@@ -1476,7 +1538,7 @@
 
       if (currentEditorMode === 'admin') {
         result = await db.rpc(
-          'journal_admin_edit_article_checked',
+          'journal_admin_edit_article_bilingual_checked',
           {
             p_article_id: currentArticleId,
             p_expected_revision: currentArticleRevision,
@@ -1485,7 +1547,7 @@
         );
       } else {
         result = await db.rpc(
-          'journal_save_draft_checked',
+          'journal_save_draft_bilingual_checked',
           {
             p_article_id: currentArticleId,
             p_expected_revision: currentArticleRevision,
@@ -1592,6 +1654,7 @@
     selectedArticleId = id;
     $('detail-panel').hidden = false;
     $('revision-section').hidden = true;
+    $('schedule-section').hidden = true;
     $('revision-note').value = '';
 
     $('detail-title').textContent =
@@ -1603,6 +1666,8 @@
       dateLabel(article.updated_at),
       `Revizija ${article.revision_number ?? '—'}`
     ];
+    if (article.status === 'scheduled') meta.push('Zakazano: ' + dateLabel(article.scheduled_at));
+    if (article.published_at) meta.push('Objavljeno: ' + dateLabel(article.published_at));
 
     if (isAdmin()) {
       meta.push(personName(article.author_id));
@@ -1612,6 +1677,10 @@
     $('detail-excerpt').textContent = article.excerpt || '';
     $('detail-content').textContent =
       article.content || 'Članak nema teksta.';
+    $('detail-en-section').hidden = !isAdmin() && !article.title_en && !article.excerpt_en && !article.content_en;
+    $('detail-title-en').textContent = article.title_en || 'Engleski naslov nije unesen';
+    $('detail-excerpt-en').textContent = article.excerpt_en || '';
+    $('detail-content-en').textContent = article.content_en || 'Engleski tekst nije unesen.';
 
     const cover = $('detail-cover');
     cover.hidden = true;
@@ -1644,6 +1713,14 @@
             () => openEditor(article, true)
           )
         );
+      }
+
+      if (article.status === 'approved') {
+        actions.appendChild(makeButton('OBJAVI ODMAH', () => publishArticle(id), 'btn green'));
+        actions.appendChild(makeButton('ZAKAŽI OBJAVU', () => {
+          $('schedule-section').hidden = false;
+          $('schedule-date').focus();
+        }, 'btn secondary'));
       }
 
       if (article.status === 'submitted') {
@@ -1708,6 +1785,7 @@
   function closeDetail() {
     $('detail-panel').hidden = true;
     $('revision-section').hidden = true;
+    $('schedule-section').hidden = true;
     selectedArticleId = null;
 
     setMessage('detail-message', '');
@@ -1722,7 +1800,7 @@
         .limit(500),
 
       db.from('journal_article_versions')
-        .select('id, article_id, version_number, title, excerpt, content, category, cover_image, edited_by, change_note, created_at')
+        .select('id, article_id, version_number, title, excerpt, content, title_en, excerpt_en, content_en, category, cover_image, edited_by, change_note, created_at')
         .eq('article_id', id)
         .order('version_number', { ascending: false })
         .limit(500),
@@ -1853,6 +1931,12 @@
         '',
         version.content || '',
         '',
+        'ENGLISH VERSION',
+        `Title: ${version.title_en || '—'}`,
+        version.excerpt_en || '',
+        '',
+        version.content_en || '',
+        '',
         version.change_note
           ? `Napomena: ${version.change_note}`
           : ''
@@ -1897,6 +1981,75 @@
 
       target.appendChild(row);
     });
+  }
+
+
+  // Convert Zagreb wall-clock time to an unambiguous UTC instant, including DST.
+  function zagrebTimeToIso(dateValue, timeValue) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateValue) || !/^\d{2}:\d{2}$/.test(timeValue)) {
+      throw new Error('Odaberi datum i vrijeme objave.');
+    }
+    const desired = `${dateValue}T${timeValue}`;
+    const formatter = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Europe/Zagreb', year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+    });
+    const matching = [];
+    const guess = Date.parse(desired + ':00Z');
+    for (let offset = -180; offset <= 180; offset += 30) {
+      const instant = new Date(guess + offset * 60000);
+      const parts = Object.fromEntries(formatter.formatToParts(instant).map(x => [x.type, x.value]));
+      if (`${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}` === desired) {
+        matching.push(instant.toISOString());
+      }
+    }
+    const unique = [...new Set(matching)];
+    if (unique.length === 0) throw new Error('Odabrano lokalno vrijeme ne postoji zbog promjene sata. Odaberi drugo vrijeme.');
+    if (unique.length > 1) throw new Error('Odabrano vrijeme pojavljuje se dvaput zbog promjene sata. Odaberi drugo vrijeme.');
+    if (Date.parse(unique[0]) <= Date.now()) throw new Error('Datum i vrijeme objave moraju biti u budućnosti.');
+    return unique[0];
+  }
+
+  async function publishArticle(id, schedule = false) {
+    if (!isAdmin() || busy || selectedArticleId !== id) return;
+    const article = articleById(id);
+    if (!article || article.status !== 'approved') {
+      setMessage('detail-message', 'Osvježi članak prije objavljivanja.', true);
+      return;
+    }
+    const required = [article.title, article.excerpt, article.content,
+      article.title_en, article.excerpt_en, article.content_en];
+    if (required.some(value => !String(value || '').trim())) {
+      setMessage('detail-message', 'Prije objave popuni HR i EN naslov, opis i tekst u administratorskom uređivanju.', true);
+      return;
+    }
+    let scheduledAt = null;
+    if (schedule) {
+      try { scheduledAt = zagrebTimeToIso($('schedule-date').value, $('schedule-time').value); }
+      catch (error) { setMessage('detail-message', friendlyError(error), true); return; }
+    }
+    const question = schedule
+      ? `Zakaži objavu članka za ${dateLabel(scheduledAt)} (Zagreb)?`
+      : 'Objaviti članak odmah? Ova radnja mijenja status u Objavljeno.';
+    if (!confirm(question)) return;
+    setBusy(true);
+    setMessage('detail-message', schedule ? 'Zakazivanje objave...' : 'Objavljivanje...');
+    try {
+      const { error } = await db.rpc('journal_publish_or_schedule', {
+        p_article_id: id,
+        p_expected_revision: article.revision_number,
+        p_scheduled_at: scheduledAt
+      });
+      if (error) throw error;
+      await refreshDashboard();
+      setBusy(false);
+      await openDetail(id);
+      setMessage('detail-message', schedule
+        ? `Objava je zakazana za ${dateLabel(scheduledAt)}.`
+        : 'Članak je objavljen u bazi. Prikaz na javnom Journalu povezujemo zasebno.');
+    } catch (error) {
+      setMessage('detail-message', friendlyError(error), true);
+    } finally { setBusy(false); }
   }
 
   async function approveArticle(id) {
@@ -2731,6 +2884,13 @@
     'click',
     requestRevision
   );
+
+  $('confirm-schedule-btn').addEventListener('click', () => {
+    if (selectedArticleId) publishArticle(selectedArticleId, true);
+  });
+  $('cancel-schedule-btn').addEventListener('click', () => {
+    $('schedule-section').hidden = true;
+  });
 
   $('add-comment-btn').addEventListener(
     'click',
