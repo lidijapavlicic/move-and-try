@@ -776,6 +776,40 @@
         <div class="journal-posts"
              id="journal-posts">
 
+            <!-- SCHEDULED PUBLICATION: 25 October 2026, 09:00 Europe/Zagreb (08:00 UTC) -->
+            <a class="journal-post"
+               href="/from-curiosity-to-your-own-scent.html"
+               data-category="news"
+               data-publish-at="2026-10-25T08:00:00Z"
+               hidden>
+
+                <img class="journal-post-image"
+                     src="/images/natural-perfume-spray.jpg"
+                     alt="Natural perfume making workshop"
+                     loading="lazy">
+
+                <div class="journal-post-copy">
+                    <span class="journal-post-category">
+                        NEWS · 25 OCTOBER 2026
+                    </span>
+
+                    <h3 class="journal-post-title">
+                        From Curiosity to Your Own Scent:
+                        A New Activity on MOVE &amp; TRY
+                    </h3>
+
+                    <p class="journal-post-description">
+                        From a workshop with Biljarica to a guide,
+                        a real experience and a place where you can
+                        try natural perfume making yourself.
+                    </p>
+
+                    <span class="journal-post-author">
+                        MOVE&amp;TRY Editorial
+                    </span>
+                </div>
+            </a>
+
             <!-- =====================================
                  ARTICLE 2 — PERSONAL COLUMN
                  Published: 16 October 2026
@@ -976,8 +1010,11 @@
             return number + (number === 1 ? ' POST' : ' POSTS');
         }
 
+        let activeCategory = 'all';
+
         function filterPosts(category) {
 
+            activeCategory = category;
             let visibleCount = 0;
 
             buttons.forEach(function (button) {
@@ -999,9 +1036,15 @@
 
             posts.forEach(function (post) {
 
+                const publishAt = post.dataset.publishAt;
+                const published =
+                    !publishAt ||
+                    Date.now() >= Date.parse(publishAt);
+
                 const matches =
-                    category === 'all' ||
-                    post.dataset.category === category;
+                    published &&
+                    (category === 'all' ||
+                     post.dataset.category === category);
 
                 post.hidden = !matches;
 
@@ -1029,6 +1072,11 @@
         });
 
         filterPosts('all');
+
+        // Refresh scheduled posts while the page remains open.
+        window.setInterval(function () {
+            filterPosts(activeCategory);
+        }, 30000);
 
     })();
 </script>
