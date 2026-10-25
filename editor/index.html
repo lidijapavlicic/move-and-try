@@ -415,6 +415,35 @@
       line-height: 1.8;
     }
 
+    /* Urednička alatna traka i obavijesti */
+    .toolbar { display:flex; align-items:center; gap:8px; margin-left:auto; }
+    .tool-wrap { position:relative; }
+    .tool-btn { position:relative; display:grid; place-items:center; width:42px; height:42px;
+      border:1px solid var(--line); background:var(--white); color:var(--ink); border-radius:50%; }
+    .tool-btn:hover, .tool-btn:focus-visible { border-color:var(--green); color:var(--green); background:var(--soft); }
+    .tool-btn svg { width:19px; height:19px; stroke:currentColor; fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+    .tool-count { position:absolute; right:-5px; top:-6px; min-width:20px; height:20px; padding:0 4px;
+      border-radius:12px; background:var(--green); color:white; font-size:10px; font-weight:800;
+      display:grid; place-items:center; border:2px solid white; }
+    .tool-count[hidden] { display:none; }
+    .tool-popover { position:absolute; z-index:20; top:calc(100% + 12px); right:0; width:min(350px, calc(100vw - 36px));
+      background:white; border:1px solid var(--line); box-shadow:0 18px 48px rgba(0,0,0,.11); padding:22px; }
+    .tool-popover h3 { font-size:23px; }
+    .tool-popover p { font-size:12px; margin:10px 0; }
+    .tool-popover .btn { width:100%; margin-top:12px; }
+    .notification-panel { background:var(--white); border:1px solid var(--line); padding:clamp(20px,4vw,32px); margin:18px 0 28px; }
+    .notification-head { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+    .notification-list { margin-top:15px; max-height:440px; overflow:auto; }
+    .notification-item { display:block; width:100%; text-align:left; padding:17px 12px; background:transparent;
+      border:0; border-top:1px solid var(--line); color:var(--ink); }
+    .notification-item:hover, .notification-item:focus-visible { background:var(--soft); }
+    .notification-item.unread { border-left:3px solid var(--green); padding-left:9px; }
+    .notification-item strong { display:block; font-size:13px; margin-bottom:5px; }
+    .notification-item span { display:block; font-size:11px; color:var(--muted); line-height:1.7; }
+    @media (hover:hover) { .tool-wrap[data-tip]:hover::after { content:attr(data-tip); position:absolute;
+      top:calc(100% + 6px); right:0; z-index:30; white-space:nowrap; padding:7px 10px;
+      background:var(--ink); color:white; font-size:10px; font-weight:700; pointer-events:none; } }
+
     .empty {
       color: var(--muted);
       font-size: 13px;
@@ -424,7 +453,14 @@
     @media (max-width: 760px) {
       .container { padding: 35px 20px 75px; }
       .topbar { padding: 18px 20px; }
-      .topbar-note { font-size: 9px; }
+      .topbar-note { display:none; }
+      .topbar { gap:8px; }
+      .brand { font-size:11px; letter-spacing:.02em; }
+      .toolbar { gap:5px; }
+      .tool-btn { width:35px; height:35px; }
+      .tool-btn svg { width:17px; height:17px; }
+      .tool-popover { right:-45px; }
+
       .dashboard-head { flex-direction: column; }
       .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .article-row, .collaborator {
@@ -442,7 +478,37 @@
 <body>
 <header class="topbar">
   <a href="/hr/journal.html" class="brand">MOVE&TRY / THE JOURNAL</a>
-  <div class="topbar-note">UREDNIČKI PROSTOR</div>
+  <div class="topbar-note" id="topbar-note">UREDNIČKI PROSTOR</div>
+  <nav class="toolbar" id="editor-toolbar" aria-label="Urednički alati" hidden>
+    <div class="tool-wrap" data-tip="Osvježi podatke">
+      <button class="tool-btn" id="refresh-btn" type="button" title="Osvježi podatke" aria-label="Osvježi podatke">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M5.6 9A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.4-2"/></svg>
+      </button>
+    </div>
+    <div class="tool-wrap" data-tip="Centar obavijesti">
+      <button class="tool-btn" id="notifications-btn" type="button" title="Centar obavijesti" aria-label="Centar obavijesti" aria-expanded="false" aria-controls="notification-panel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
+        <span class="tool-count" id="notification-count" hidden>0</span>
+      </button>
+    </div>
+    <div class="tool-wrap" data-tip="Postavke obavijesti">
+      <button class="tool-btn" id="settings-btn" type="button" title="Postavke obavijesti" aria-label="Postavke obavijesti" aria-expanded="false" aria-controls="settings-panel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l-1.8 1.8a1.7 1.7 0 0 0-1.9-.3l-1 .5V21h-2.6v-2.1l-1-.5a1.7 1.7 0 0 0-1.9.3l-1.8-1.8A1.7 1.7 0 0 0 8 15.0l-.5-1H5.4v-2.6h2.1l.5-1a1.7 1.7 0 0 0-.3-1.9l1.8-1.8a1.7 1.7 0 0 0 1.9.3l1-.5V4.4H15v2.1l1 .5a1.7 1.7 0 0 0 1.9-.3l1.8 1.8a1.7 1.7 0 0 0-.3 1.9l.5 1H22v2.6h-2.1z" transform="translate(-1.7 -.7) scale(.94)"/></svg>
+      </button>
+      <div class="tool-popover" id="settings-panel" hidden>
+        <p class="eyebrow">POSTAVKE UREĐAJA</p><h3>Push obavijesti</h3>
+        <p id="push-status-text" class="muted">Provjera statusa...</p>
+        <button class="btn green" id="push-enable-btn" type="button">UKLJUČI OBAVIJESTI</button>
+        <p class="message" id="push-message" role="status" aria-live="polite"></p>
+        <p class="muted small">Ova postavka odnosi se samo na ovaj uređaj. Obavijesti u Editoru ostaju dostupne.</p>
+      </div>
+    </div>
+    <div class="tool-wrap" data-tip="Odjava">
+      <button class="tool-btn" id="logout-btn" type="button" title="Odjava" aria-label="Odjava">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3"/><path d="M12 3h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6"/></svg>
+      </button>
+    </div>
+  </nav>
 </header>
 
 <main class="container">
@@ -515,14 +581,19 @@
         <p class="muted" id="user-description"></p>
       </div>
 
-      <div class="top-actions">
-        <button class="btn secondary" id="refresh-btn" type="button">OSVJEŽI</button>
-        <button class="btn secondary" id="push-enable-btn" type="button">UKLJUČI OBAVIJESTI</button>
-        <button class="btn secondary" id="logout-btn" type="button">ODJAVA</button>
-      </div>
     </div>
 
-    <p class="message" id="push-message" role="status" aria-live="polite"></p>
+    <section class="notification-panel" id="notification-panel" aria-label="Centar obavijesti" hidden>
+      <div class="notification-head">
+        <div><p class="eyebrow">THE JOURNAL</p><h2 style="margin-bottom:0">Obavijesti</h2></div>
+        <div class="top-actions">
+          <button class="btn secondary small-btn" id="mark-all-read-btn" type="button">OZNAČI SVE KAO PROČITANO</button>
+          <button class="btn secondary small-btn" id="close-notifications-btn" type="button">ZATVORI</button>
+        </div>
+      </div>
+      <p class="message" id="notifications-message" role="status"></p>
+      <div id="notification-list" class="notification-list"></div>
+    </section>
 
     <nav class="tabs" id="dashboard-tabs" aria-label="Urednički izbornik">
       <button class="tab active" type="button" data-tab="home">PREGLED</button>
@@ -822,6 +893,10 @@
   let passwordFlow = false;
   let busy = false;
   let dashboardRequest = 0;
+  let notifications = [];
+  let pushBusy = false;
+  let notificationRequest = 0;
+
 
   const isAdmin = () => currentProfile?.role === 'admin';
 
@@ -1977,6 +2052,115 @@
   }
 
 
+  // Obavijesti su trajne i neovisne o push pretplati.
+  const NOTIFICATION_ACTIONS = {
+    submitted: 'Članak je poslan na odobrenje',
+    revision_requested: 'Zatražena je dorada članka',
+    approved: 'Članak je odobren',
+    comment_added: 'Novi komentar na članku'
+  };
+
+  function setToolbarVisible(visible) {
+    $('editor-toolbar').hidden = !visible;
+    $('topbar-note').hidden = visible;
+    if (!visible) {
+      $('settings-panel').hidden = true;
+      $('notification-panel').hidden = true;
+    }
+  }
+
+  function renderNotifications() {
+    const unread = notifications.filter(item => !item.read_at).length;
+    $('notification-count').hidden = unread === 0;
+    $('notification-count').textContent = unread > 99 ? '99+' : String(unread);
+    $('notifications-btn').setAttribute('aria-label', `Centar obavijesti, ${unread} nepročitanih`);
+    $('mark-all-read-btn').disabled = unread === 0;
+    const target = $('notification-list');
+    target.replaceChildren();
+    if (!notifications.length) {
+      target.appendChild(emptyMessage('Nema obavijesti za prikaz.'));
+      return;
+    }
+    for (const item of notifications) {
+      const activity = item.journal_activity_log;
+      const article = activity ? articleById(activity.article_id) : null;
+      const button = createElement('button', 'notification-item' + (!item.read_at ? ' unread' : ''));
+      button.type = 'button';
+      button.appendChild(createElement('strong', '', NOTIFICATION_ACTIONS[activity?.action] || 'Urednička obavijest'));
+      button.appendChild(createElement('span', '', (article?.title || 'Članak') + ' · ' + dateLabel(item.created_at)));
+      button.addEventListener('click', () => openNotification(item));
+      target.appendChild(button);
+    }
+  }
+
+  async function refreshNotifications() {
+    if (!currentUser) return;
+    const request = ++notificationRequest;
+    const { data, error } = await db.from('journal_notifications')
+      .select('id, activity_id, created_at, read_at, journal_activity_log!journal_notifications_activity_id_fkey(article_id, action, details)')
+      .eq('recipient_id', currentUser.id)
+      .order('created_at', { ascending: false })
+      .limit(200);
+    if (error) throw error;
+    if (request !== notificationRequest) return;
+    notifications = data || [];
+    renderNotifications();
+  }
+
+  async function markNotificationsRead(ids = null) {
+    const { error } = await db.rpc('journal_mark_notifications_read', {
+      p_notification_ids: ids
+    });
+    if (error) throw error;
+    const chosen = ids ? new Set(ids) : null;
+    notifications.forEach(item => {
+      if (!item.read_at && (!chosen || chosen.has(item.id))) item.read_at = new Date().toISOString();
+    });
+    renderNotifications();
+  }
+
+  async function openNotification(item) {
+    try {
+      if (!item.read_at) await markNotificationsRead([item.id]);
+      const articleId = item.journal_activity_log?.article_id;
+      if (!articleId) {
+        setMessage('notifications-message', 'Povezani članak nije dostupan.', true);
+        return;
+      }
+      $('notification-panel').hidden = true;
+      $('notifications-btn').setAttribute('aria-expanded', 'false');
+      await openArticleLink(articleId);
+    } catch (error) {
+      setMessage('notifications-message', friendlyError(error), true);
+    }
+  }
+
+  async function openArticleLink(id) {
+    if (!/^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(id)) return;
+    if (!articleById(id)) {
+      await refreshDashboard();
+    }
+    if (!articleById(id)) {
+      setMessage('dashboard-message', 'Članak nije dostupan ili nemaš pristup.', true);
+      return;
+    }
+    switchTab(isAdmin() ? 'all' : 'mine');
+    await openDetail(id);
+    const url = new URL(window.location.href);
+    url.searchParams.set('article', id);
+    history.replaceState({}, '', url.pathname + url.search);
+  }
+
+  async function openInitialArticle() {
+    const id = new URLSearchParams(window.location.search).get('article');
+    if (id) await openArticleLink(id);
+  }
+
+  function closeSettings() {
+    $('settings-panel').hidden = true;
+    $('settings-btn').setAttribute('aria-expanded', 'false');
+  }
+
   // PUSH: user-initiated subscription, no background permission prompts.
   function pushSupported() {
     return window.isSecureContext && 'serviceWorker' in navigator &&
@@ -1994,81 +2178,76 @@
 
   async function refreshPushStatus() {
     const button = $('push-enable-btn');
+    const status = $('push-status-text');
     if (!pushSupported()) {
       button.disabled = true;
       button.textContent = 'OBAVIJESTI NISU PODRŽANE';
+      status.textContent = 'Ovaj preglednik ne podržava push obavijesti.';
       return;
     }
-    if (Notification.permission === 'denied') {
+    try {
+      const registration = await navigator.serviceWorker.getRegistration('/editor/');
+      const subscription = registration && await registration.pushManager.getSubscription();
+      const enabled = Boolean(subscription);
+      button.disabled = pushBusy || (!enabled && Notification.permission === 'denied');
+      button.textContent = enabled ? 'ISKLJUČI OBAVIJESTI' : 'UKLJUČI OBAVIJESTI';
+      status.textContent = enabled ? 'Push obavijesti uključene su na ovom uređaju.' :
+        Notification.permission === 'denied' ? 'Obavijesti su blokirane u postavkama preglednika.' :
+        'Push obavijesti isključene su na ovom uređaju.';
+    } catch (error) {
       button.disabled = true;
-      button.textContent = 'OBAVIJESTI BLOKIRANE';
-      setMessage('push-message', 'Dopuštenje za obavijesti blokirano je u postavkama preglednika.', true);
-      return;
-    }
-    button.disabled = false;
-    button.textContent = 'UKLJUČI OBAVIJESTI';
-    if (Notification.permission === 'granted') {
-      try {
-        const reg = await navigator.serviceWorker.getRegistration('/editor/');
-        const sub = reg && await reg.pushManager.getSubscription();
-        if (sub) button.textContent = 'POTVRDI OBAVIJESTI';
-      } catch (error) { console.warn('Push status:', error); }
+      status.textContent = 'Status obavijesti nije moguće provjeriti.';
+      console.warn('Push status:', error);
     }
   }
 
   async function enableJournalPush() {
-    const button = $('push-enable-btn');
-    if (!currentUser) return;
-    if (!pushSupported()) {
-      setMessage('push-message', 'Ovaj preglednik ili način otvaranja ne podržava push obavijesti.', true);
-      return;
-    }
-    if (Notification.permission === 'denied') {
-      setMessage('push-message', 'Omogući obavijesti za ovu stranicu u postavkama preglednika.', true);
-      return;
-    }
-    button.disabled = true;
-    setMessage('push-message', 'Uključivanje obavijesti...');
+    if (!currentUser || pushBusy || !pushSupported()) return;
+    pushBusy = true;
+    $('push-enable-btn').disabled = true;
     try {
-      // Ask for permission in direct response to the user's click.
-      const permission = Notification.permission === 'granted'
-        ? 'granted' : await Notification.requestPermission();
-      if (permission !== 'granted') {
-        setMessage('push-message', 'Obavijesti nisu dopuštene. Možeš ih uključiti kasnije.', true);
-        return;
-      }
+      const registration = await navigator.serviceWorker.getRegistration('/editor/');
+      const existing = registration && await registration.pushManager.getSubscription();
       const { data: sessionData, error: sessionError } = await db.auth.getSession();
       const token = sessionData?.session?.access_token;
       if (sessionError || !token) throw new Error('Sesija je istekla. Prijavi se ponovno.');
-      const registration = await navigator.serviceWorker.register('/editor/sw.js', { scope: '/editor/' });
-      const { data: keyData, error: keyError } = await db.functions.invoke('journal-push-subscribe', {
-        method: 'GET', headers: { Authorization: `Bearer ${token}` }
-      });
-      if (keyError || !keyData?.publicKey) {
-        throw new Error('Nije moguće dohvatiti javni push ključ. Provjeri objavu funkcije journal-push-subscribe.');
-      }
-      const applicationServerKey = decodeVapidKey(keyData.publicKey);
-      let subscription = await registration.pushManager.getSubscription();
-      if (!subscription) {
-        subscription = await registration.pushManager.subscribe({
-          userVisibleOnly: true, applicationServerKey
+      if (existing) {
+        setMessage('push-message', 'Isključivanje obavijesti...');
+        // Najprije brišemo zapis u bazi. Ako zahtjev ne uspije, zadržavamo pretplatu.
+        const { data, error } = await db.functions.invoke('journal-push-subscribe', {
+          body: { action: 'unsubscribe', endpoint: existing.endpoint },
+          headers: { Authorization: `Bearer ${token}` }
         });
+        if (error || !data?.success) throw new Error(data?.error || error?.message || 'Odjava pretplate nije uspjela.');
+        const removed = await existing.unsubscribe();
+        if (!removed) throw new Error('Pretplata je uklonjena iz baze, ali preglednik nije potvrdio odjavu. Pokušaj ponovno.');
+        setMessage('push-message', 'Push obavijesti isključene su na ovom uređaju.');
+      } else {
+        if (Notification.permission === 'denied') throw new Error('Omogući obavijesti u postavkama preglednika.');
+        setMessage('push-message', 'Uključivanje obavijesti...');
+        const permission = Notification.permission === 'granted'
+          ? 'granted' : await Notification.requestPermission();
+        if (permission !== 'granted') throw new Error('Nisi dopustila obavijesti.');
+        const reg = await navigator.serviceWorker.register('/editor/sw.js', { scope: '/editor/' });
+        const { data: keyData, error: keyError } = await db.functions.invoke('journal-push-subscribe', {
+          method: 'GET', headers: { Authorization: `Bearer ${token}` }
+        });
+        if (keyError || !keyData?.publicKey) throw new Error('Nije moguće dohvatiti javni push ključ.');
+        const applicationServerKey = decodeVapidKey(keyData.publicKey);
+        let subscription = await reg.pushManager.getSubscription();
+        if (!subscription) subscription = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey });
+        const { data, error } = await db.functions.invoke('journal-push-subscribe', {
+          body: { subscription: subscription.toJSON() },
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (error || !data?.success) throw new Error(data?.error || error?.message || 'Pretplata nije spremljena.');
+        setMessage('push-message', 'Push obavijesti uključene su na ovom uređaju.');
       }
-      const { data, error } = await db.functions.invoke('journal-push-subscribe', {
-        body: { subscription: subscription.toJSON() },
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      if (error || !data?.success) {
-        let detail = '';
-        try { detail = (await error?.context?.json())?.error || ''; } catch (_) {}
-        throw new Error(detail || data?.error || error?.message || 'Pretplata nije spremljena.');
-      }
-      button.textContent = 'OBAVIJESTI UKLJUČENE';
-      setMessage('push-message', 'Obavijesti su uključene na ovom uređaju.');
     } catch (error) {
-      setMessage('push-message', 'Neuspjelo uključivanje: ' + friendlyError(error), true);
+      setMessage('push-message', friendlyError(error), true);
     } finally {
-      button.disabled = false;
+      pushBusy = false;
+      await refreshPushStatus();
     }
   }
 
@@ -2080,6 +2259,7 @@
 
       currentUser = null;
       currentProfile = null;
+      setToolbarVisible(false);
 
       showView('login');
 
@@ -2110,14 +2290,18 @@
     });
 
     showView('dashboard');
+    setToolbarVisible(true);
     refreshPushStatus();
 
     await refreshDashboard();
-
     switchTab('home');
+    try { await refreshNotifications(); }
+    catch (error) { setMessage('dashboard-message', 'Obavijesti nisu učitane: ' + friendlyError(error), true); }
+    await openInitialArticle();
   }
 
   async function initialize() {
+    setToolbarVisible(false);
     try {
       const params = new URLSearchParams(
         window.location.search
@@ -2308,6 +2492,40 @@
   );
 
   $('push-enable-btn').addEventListener('click', enableJournalPush);
+  $('settings-btn').addEventListener('click', async () => {
+    const opening = $('settings-panel').hidden;
+    $('settings-panel').hidden = !opening;
+    $('settings-btn').setAttribute('aria-expanded', String(opening));
+    if (opening) {
+      $('notification-panel').hidden = true;
+      $('notifications-btn').setAttribute('aria-expanded', 'false');
+      await refreshPushStatus();
+    }
+  });
+  $('notifications-btn').addEventListener('click', async () => {
+    const opening = $('notification-panel').hidden;
+    $('notification-panel').hidden = !opening;
+    $('notifications-btn').setAttribute('aria-expanded', String(opening));
+    closeSettings();
+    if (opening) {
+      setMessage('notifications-message', '');
+      try { await refreshNotifications(); }
+      catch (error) { setMessage('notifications-message', friendlyError(error), true); }
+      $('notification-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+  $('close-notifications-btn').addEventListener('click', () => {
+    $('notification-panel').hidden = true;
+    $('notifications-btn').setAttribute('aria-expanded', 'false');
+  });
+  $('mark-all-read-btn').addEventListener('click', async () => {
+    try { await markNotificationsRead(); setMessage('notifications-message', 'Sve obavijesti označene su pročitanima.'); }
+    catch (error) { setMessage('notifications-message', friendlyError(error), true); }
+  });
+  document.addEventListener('click', event => {
+    if (!$('settings-panel').hidden && !event.target.closest('#settings-panel, #settings-btn')) closeSettings();
+  });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeSettings(); });
 
   $('logout-btn').addEventListener(
     'click',
@@ -2325,7 +2543,10 @@
 
       $('detail-panel').hidden = true;
       $('editor-panel').hidden = true;
-
+      notifications = [];
+      notificationRequest++;
+      renderNotifications();
+      setToolbarVisible(false);
       showView('login');
     }
   );
@@ -2361,6 +2582,8 @@
         currentProfile = profile;
 
         await refreshDashboard();
+        await refreshNotifications();
+        await refreshPushStatus();
 
         setMessage(
           'dashboard-message',
