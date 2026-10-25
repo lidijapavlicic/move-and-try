@@ -1,10 +1,42 @@
+
 'use strict';
+
+const EDITOR_PATH = '/editor/';
+
+function getNotificationUrl(data) {
+  const articleId =
+    typeof data?.article_id === 'string'
+      ? data.article_id
+      : null;
+
+  let requestedUrl = data?.url || EDITOR_PATH;
+
+  if (articleId && requestedUrl === EDITOR_PATH) {
+    requestedUrl =
+      `${EDITOR_PATH}?article=${encodeURIComponent(articleId)}`;
+  }
+
+  try {
+    const url = new URL(requestedUrl, self.location.origin);
+
+    if (
+      url.origin !== self.location.origin ||
+      !url.pathname.startsWith(EDITOR_PATH)
+    ) {
+      return new URL(EDITOR_PATH, self.location.origin).href;
+    }
+
+    return url.href;
+  } catch (_) {
+    return new URL(EDITOR_PATH, self.location.origin).href;
+  }
+}
 
 self.addEventListener('push', event => {
   let data = {
     title: 'The Journal',
     body: 'Imaš novu uredničku obavijest.',
-    url: '/editor/'
+    url: EDITOR_PATH
   };
 
   if (event.data) {
@@ -23,7 +55,7 @@ self.addEventListener('push', event => {
       icon: '/editor/icon-192.png',
       badge: '/editor/icon-192.png',
       data: {
-        url: data.url || '/editor/'
+        url: getNotificationUrl(data)
       }
     })
   );
@@ -32,23 +64,40 @@ self.addEventListener('push', event => {
 self.addEventListener('notificationclick', event => {
   event.notification.close();
 
-  const targetUrl = new URL(
-    event.notification.data?.url || '/editor/',
-    self.location.origin
-  ).href;
+  const targetUrl = getNotificationUrl(
+    event.notification.data || {}
+  );
 
   event.waitUntil(
-    clients.matchAll({
-      type: 'window',
-      includeUncontrolled: true
-    }).then(windowClients => {
-      for (const client of windowClients) {
-        if (client.url.startsWith(self.location.origin)) {
-          return client.focus().then(() => client.navigate(targetUrl));
+    (async () => {
+      const windowClients = await clients.matchAll({
+        type: 'window',
+        includeUncontrolled: true
+      });
+
+      const editorClients = windowClients.filter(client => {
+        try {
+          const url = new URL(client.url);
+
+          return (
+            url.origin === self.location.origin &&
+            url.pathname.startsWith(EDITOR_PATH)
+          );
+        } catch (_) {
+          return false;
         }
+      });
+
+      if (editorClients.length > 0) {
+        const client = editorClients[0];
+
+        await client.navigate(targetUrl);
+        await client.focus();
+
+        return;
       }
 
-      return clients.openWindow(targetUrl);
-    })
+      await clients.openWindow(targetUrl);
+    })()
   );
 });
