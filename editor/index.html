@@ -517,9 +517,12 @@
 
       <div class="top-actions">
         <button class="btn secondary" id="refresh-btn" type="button">OSVJEŽI</button>
+        <button class="btn secondary" id="push-enable-btn" type="button">UKLJUČI OBAVIJESTI</button>
         <button class="btn secondary" id="logout-btn" type="button">ODJAVA</button>
       </div>
     </div>
+
+    <p class="message" id="push-message" role="status" aria-live="polite"></p>
 
     <nav class="tabs" id="dashboard-tabs" aria-label="Urednički izbornik">
       <button class="tab active" type="button" data-tab="home">PREGLED</button>
@@ -1973,6 +1976,102 @@
     }
   }
 
+
+  // PUSH: user-initiated subscription, no background permission prompts.
+  function pushSupported() {
+    return window.isSecureContext && 'serviceWorker' in navigator &&
+      'PushManager' in window && 'Notification' in window;
+  }
+
+  function decodeVapidKey(base64url) {
+    const normalized = base64url.replace(/-/g, '+').replace(/_/g, '/');
+    const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, '=');
+    const binary = atob(padded);
+    const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+    if (bytes.length !== 65) throw new Error('VAPID ključ nije ispravnog formata.');
+    return bytes;
+  }
+
+  async function refreshPushStatus() {
+    const button = $('push-enable-btn');
+    if (!pushSupported()) {
+      button.disabled = true;
+      button.textContent = 'OBAVIJESTI NISU PODRŽANE';
+      return;
+    }
+    if (Notification.permission === 'denied') {
+      button.disabled = true;
+      button.textContent = 'OBAVIJESTI BLOKIRANE';
+      setMessage('push-message', 'Dopuštenje za obavijesti blokirano je u postavkama preglednika.', true);
+      return;
+    }
+    button.disabled = false;
+    button.textContent = 'UKLJUČI OBAVIJESTI';
+    if (Notification.permission === 'granted') {
+      try {
+        const reg = await navigator.serviceWorker.getRegistration('/editor/');
+        const sub = reg && await reg.pushManager.getSubscription();
+        if (sub) button.textContent = 'POTVRDI OBAVIJESTI';
+      } catch (error) { console.warn('Push status:', error); }
+    }
+  }
+
+  async function enableJournalPush() {
+    const button = $('push-enable-btn');
+    if (!currentUser) return;
+    if (!pushSupported()) {
+      setMessage('push-message', 'Ovaj preglednik ili način otvaranja ne podržava push obavijesti.', true);
+      return;
+    }
+    if (Notification.permission === 'denied') {
+      setMessage('push-message', 'Omogući obavijesti za ovu stranicu u postavkama preglednika.', true);
+      return;
+    }
+    button.disabled = true;
+    setMessage('push-message', 'Uključivanje obavijesti...');
+    try {
+      // Ask for permission in direct response to the user's click.
+      const permission = Notification.permission === 'granted'
+        ? 'granted' : await Notification.requestPermission();
+      if (permission !== 'granted') {
+        setMessage('push-message', 'Obavijesti nisu dopuštene. Možeš ih uključiti kasnije.', true);
+        return;
+      }
+      const { data: sessionData, error: sessionError } = await db.auth.getSession();
+      const token = sessionData?.session?.access_token;
+      if (sessionError || !token) throw new Error('Sesija je istekla. Prijavi se ponovno.');
+      const registration = await navigator.serviceWorker.register('/editor/sw.js', { scope: '/editor/' });
+      const { data: keyData, error: keyError } = await db.functions.invoke('journal-push-subscribe', {
+        method: 'GET', headers: { Authorization: `Bearer ${token}` }
+      });
+      if (keyError || !keyData?.publicKey) {
+        throw new Error('Nije moguće dohvatiti javni push ključ. Provjeri objavu funkcije journal-push-subscribe.');
+      }
+      const applicationServerKey = decodeVapidKey(keyData.publicKey);
+      let subscription = await registration.pushManager.getSubscription();
+      if (!subscription) {
+        subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true, applicationServerKey
+        });
+      }
+      const { data, error } = await db.functions.invoke('journal-push-subscribe', {
+        body: { subscription: subscription.toJSON() },
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (error || !data?.success) {
+        let detail = '';
+        try { detail = (await error?.context?.json())?.error || ''; } catch (_) {}
+        throw new Error(detail || data?.error || error?.message || 'Pretplata nije spremljena.');
+      }
+      button.textContent = 'OBAVIJESTI UKLJUČENE';
+      setMessage('push-message', 'Obavijesti su uključene na ovom uređaju.');
+    } catch (error) {
+      setMessage('push-message', 'Neuspjelo uključivanje: ' + friendlyError(error), true);
+    } finally {
+      button.disabled = false;
+    }
+  }
+
   async function enterDashboard(user) {
     const profile = await loadProfile(user);
 
@@ -2011,6 +2110,7 @@
     });
 
     showView('dashboard');
+    refreshPushStatus();
 
     await refreshDashboard();
 
@@ -2206,6 +2306,8 @@
       );
     }
   );
+
+  $('push-enable-btn').addEventListener('click', enableJournalPush);
 
   $('logout-btn').addEventListener(
     'click',
