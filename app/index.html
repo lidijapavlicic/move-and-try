@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -532,7 +531,21 @@
       }
 
       let selected = lang || 'hr';
-      let tab = 'home';
+
+      /*
+       * Omogućuje otvaranje određene kartice
+       * iz drugih stranica aplikacije.
+       *
+       * Primjer:
+       * /app/?tab=saved
+       */
+      const requestedTab =
+        new URLSearchParams(window.location.search).get('tab');
+
+      let tab =
+        ['home', 'explore', 'journal', 'saved'].includes(requestedTab)
+          ? requestedTab
+          : 'home';
 
       function currentLanguage() {
         return lang || selected;
@@ -569,8 +582,37 @@
 
         syncLanguage();
 
-        // Direct navigation, not an iframe.
-        // The public PWA manifest scope includes these paths.
+        /*
+         * VAŽNO:
+         * Označavamo da korisnik dolazi iz javne
+         * MOVE&TRY aplikacije.
+         *
+         * app-navigation.js koristi ovu oznaku
+         * za prikaz donje navigacije.
+         */
+        url.searchParams.set(
+          'source',
+          'moveandtry-app'
+        );
+
+        /*
+         * Dodatno pamtimo aplikacijsku sesiju.
+         * Time navigacija može ostati aktivna
+         * pri prelasku između internih stranica.
+         */
+        try {
+          sessionStorage.setItem(
+            'moveandtry_public_app_session',
+            '1'
+          );
+        } catch (_) {
+          // Nastavljamo i ako pohrana nije dostupna.
+        }
+
+        /*
+         * Izravna navigacija, bez iframea.
+         * Stranica se otvara unutar PWA opsega.
+         */
         window.location.assign(url.href);
       }
 
@@ -740,7 +782,10 @@
           return;
         }
 
-        const url = new URL(link.href, window.location.origin);
+        const url = new URL(
+          link.href,
+          window.location.origin
+        );
 
         if (
           url.origin !== window.location.origin ||
