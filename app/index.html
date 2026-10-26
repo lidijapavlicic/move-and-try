@@ -18,8 +18,10 @@
 (function () {
   var standalone = window.matchMedia('(display-mode: standalone)').matches ||
                    window.navigator.standalone === true;
-  var installationPreview = new URLSearchParams(window.location.search).get('install') === '1';
-  if (!standalone && !installationPreview) {
+  var params = new URLSearchParams(window.location.search);
+  var installationPreview = params.get('install') === '1';
+  var pwaLaunch = params.get('source') === 'pwa';
+  if (!standalone && !installationPreview && !pwaLaunch) {
     var saved = localStorage.getItem('moveandtry_language');
     var language = saved === 'hr' || saved === 'en'
       ? saved
