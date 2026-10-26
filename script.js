@@ -1338,3 +1338,25 @@ if (providerBack) {
     });
 
 }
+
+/* ==========================================
+   LANGUAGE REDIRECT — HOME PAGES ONLY
+   Saved manual choice takes precedence over browser language.
+   Other pages, /app/ and /editor/ are not redirected here.
+========================================== */
+(function redirectHomeToPreferredLanguage() {
+    const path = window.location.pathname;
+    if (path !== '/' && path !== '/index.html' &&
+        path !== '/hr/' && path !== '/hr/index.html') {
+        return;
+    }
+
+    const preferred = getPreferredLanguage();
+    const target = preferred === 'hr' ? '/hr/' : '/';
+    const onCroatianHome = path === '/hr/' || path === '/hr/index.html';
+
+    if ((preferred === 'hr' && !onCroatianHome) ||
+        (preferred === 'en' && onCroatianHome)) {
+        window.location.replace(target + window.location.search + window.location.hash);
+    }
+})();
