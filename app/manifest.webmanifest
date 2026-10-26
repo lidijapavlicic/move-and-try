@@ -1,11 +1,10 @@
-
 {
   "id": "/app/",
   "name": "MOVE&TRY",
   "short_name": "MOVE&TRY",
   "description": "Discover something new to try.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/app/?source=pwa",
+  "scope": "/app/",
   "display": "standalone",
   "background_color": "#f7f6f2",
   "theme_color": "#f7f6f2",
