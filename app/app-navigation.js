@@ -1,75 +1,115 @@
-/* MOVE&TRY — zajednička navigacija javne PWA aplikacije */
+(() => {
+  'use strict';
 
-#moveandtry-app-nav {
-    position: fixed;
-    z-index: 2147483000;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  const path = window.location.pathname;
 
-    display: flex;
-    justify-content: space-around;
-    align-items: stretch;
+  // Ne prikazujemo navigaciju unutar Editora
+  // niti na samoj naslovnici aplikacije.
+  if (
+    path.startsWith('/editor/') ||
+    path.startsWith('/app/')
+  ) {
+    return;
+  }
 
-    background: rgba(247, 246, 242, 0.98);
-    border-top: 1px solid #dcded6;
+  const standalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
 
-    padding:
-        10px
-        max(12px, env(safe-area-inset-right))
-        calc(10px + env(safe-area-inset-bottom))
-        max(12px, env(safe-area-inset-left));
+  const params = new URLSearchParams(window.location.search);
 
-    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.04);
-    font-family: 'Manrope', Arial, sans-serif;
-}
+  const sessionKey = 'moveandtry_public_app_session';
 
-#moveandtry-app-nav a {
-    flex: 1;
-    min-width: 0;
+  const cameFromApp =
+    params.get('source') === 'moveandtry-app' ||
+    document.referrer.includes('/app/');
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
+  if (cameFromApp) {
+    try {
+      sessionStorage.setItem(sessionKey, '1');
+    } catch (_) {}
+  }
 
-    padding: 4px 2px;
+  let activeSession = cameFromApp;
 
-    color: #697067;
-    text-decoration: none;
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 1.3;
+  try {
+    activeSession =
+      activeSession ||
+      sessionStorage.getItem(sessionKey) === '1';
+  } catch (_) {}
 
-    background: transparent;
-    border: 0;
-}
+  // Navigacija se prikazuje samo unutar instalirane aplikacije.
+  if (!standalone || !activeSession) {
+    return;
+  }
 
-#moveandtry-app-nav a[aria-current="page"] {
-    color: #1f2a18;
-}
+  if (document.getElementById('moveandtry-app-nav')) {
+    return;
+  }
 
-#moveandtry-app-nav svg {
-    width: 22px;
-    height: 22px;
+  const isHR = path.startsWith('/hr/');
 
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
+  const labels = isHR
+    ? ['Početna', 'Istraži', 'Journal', 'Spremljeno']
+    : ['Home', 'Explore', 'Journal', 'Saved'];
 
-html.moveandtry-public-app-page body {
-    padding-bottom: calc(84px + env(safe-area-inset-bottom)) !important;
-}
+  const links = [
+    '/app/',
+    '/app/?tab=explore',
+    '/app/?tab=journal',
+    '/app/?tab=saved'
+  ];
 
-@media (min-width: 720px) {
-    #moveandtry-app-nav {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        width: min(720px, 100%);
-    }
-}
+  const icons = [
+    '<path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/>',
+    '<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',
+    '<path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M8 9h7M8 13h7"/>',
+    '<path d="M6 3h12v18l-6-4-6 4z"/>'
+  ];
+
+  const nav = document.createElement('nav');
+
+  nav.id = 'moveandtry-app-nav';
+  nav.className = 'moveandtry-app-nav';
+  nav.setAttribute(
+    'aria-label',
+    isHR ? 'Navigacija aplikacije' : 'App navigation'
+  );
+
+  const items = labels.map((label, index) => {
+    const svg = `
+      <svg
+        viewBox="0 0 24 24"
+        width="22"
+        height="22"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        ${icons[index]}
+      </svg>
+    `;
+
+    const current =
+      index === 2 && path.includes('journal')
+        ? ' aria-current="page"'
+        : index === 1 && !path.includes('journal')
+          ? ' aria-current="page"'
+          : '';
+
+    return `
+      <a href="${links[index]}"${current}>
+        ${svg}
+        <span>${label}</span>
+      </a>
+    `;
+  }).join('');
+
+  nav.innerHTML = items;
+
+  document.body.appendChild(nav);
+  document.body.classList.add('moveandtry-app-active');
+})();
