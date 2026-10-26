@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>The Journal | Move & Try</title>
+    <title>The Journal | MOVE&TRY</title>
 
     <meta name="description"
-          content="THE JOURNAL by MOVE & TRY. Stories, reflections, personal columns, inspiration and news from the community.">
+          content="The Journal by MOVE&TRY. Stories, reflections, personal columns, inspiration and news from the community.">
 
     <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -17,10 +16,8 @@
 
     <link rel="alternate" hreflang="en"
           href="https://moveandtry.com/journal.html">
-
     <link rel="alternate" hreflang="hr"
           href="https://moveandtry.com/hr/journal.html">
-
     <link rel="alternate" hreflang="x-default"
           href="https://moveandtry.com/journal.html">
 
@@ -32,7 +29,7 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Google Analytics -->
+    <!-- GOOGLE ANALYTICS -->
     <script async
             src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
 
@@ -66,6 +63,7 @@
         .journal-page .site-header {
             position: sticky;
             top: 0;
+            z-index: 100;
         }
 
         .journal-header-actions {
@@ -159,7 +157,7 @@
         }
 
         /* =====================================
-           CATEGORIES
+           CATEGORY NAVIGATION
            ===================================== */
 
         .journal-category-wrap {
@@ -209,7 +207,7 @@
         }
 
         /* =====================================
-           CONTENT
+           JOURNAL CONTENT
            ===================================== */
 
         .journal-content {
@@ -242,7 +240,7 @@
         }
 
         /* =====================================
-           ARTICLES — ONE BELOW ANOTHER
+           ARTICLE CARDS — VERTICAL LIST
            ===================================== */
 
         .journal-posts {
@@ -282,7 +280,7 @@
         }
 
         /* =====================================
-           TYPOGRAPHIC COVER — PERSONAL COLUMNS
+           TYPOGRAPHIC COVER
            ===================================== */
 
         .journal-post-cover {
@@ -325,6 +323,10 @@
             color: #6F7967;
         }
 
+        /* =====================================
+           ARTICLE COPY
+           ===================================== */
+
         .journal-post-copy {
             min-width: 0;
         }
@@ -357,6 +359,7 @@
         }
 
         .journal-post-author {
+            display: block;
             font-family: 'Manrope', sans-serif;
             font-size: 10px;
             font-weight: 700;
@@ -364,22 +367,17 @@
             color: #777777;
         }
 
-        /* =====================================
-           PUBLICATION DATES
-           ===================================== */
-
         .journal-post-date {
             display: block;
             margin-top: 8px;
             font-family: 'Manrope', sans-serif;
             font-size: 10px;
             font-weight: 600;
-            letter-spacing: 0.04em;
             color: #888888;
         }
 
         /* =====================================
-           EMPTY STATE
+           EMPTY CATEGORY
            ===================================== */
 
         .journal-empty {
@@ -423,77 +421,7 @@
         }
 
         /* =====================================
-           TABLET
-           ===================================== */
-
-        @media (max-width: 1100px) {
-            .journal-behind-link {
-                display: none;
-            }
-        }
-
-        /* =====================================
-           MOBILE
-           ===================================== */
-
-        @media (max-width: 700px) {
-            .journal-intro {
-                padding: 80px 24px 75px;
-            }
-
-            .journal-title {
-                font-size: clamp(56px, 13vw, 85px);
-            }
-
-            .journal-subtitle {
-                font-size: 14px;
-                margin-top: 25px;
-            }
-
-            .journal-category-wrap {
-                padding: 45px 24px 0;
-            }
-
-            .journal-categories {
-                justify-content: flex-start;
-                gap: 12px 23px;
-                padding: 20px 0;
-            }
-
-            .journal-category {
-                font-size: 10px;
-            }
-
-            .journal-content {
-                padding: 55px 24px 80px;
-            }
-
-            .journal-post {
-                grid-template-columns: 1fr;
-                row-gap: 20px;
-                padding-bottom: 38px;
-                margin-bottom: 38px;
-            }
-
-            .journal-post-cover {
-                padding: 28px;
-            }
-
-            .journal-post-cover-title {
-                font-size: clamp(35px, 9vw, 58px);
-            }
-
-            .journal-post-title {
-                font-size: 29px;
-            }
-
-            .journal-empty {
-                min-height: 300px;
-            }
-        }
-
-        /* =====================================
-           INVITATION TO CONTRIBUTE
+           WRITE FOR THE JOURNAL
            ===================================== */
 
         .journal-contribute {
@@ -553,7 +481,76 @@
             border-bottom-color: #111111;
         }
 
+        /* =====================================
+           TABLET
+           ===================================== */
+
+        @media (max-width: 1100px) {
+            .journal-behind-link {
+                display: none;
+            }
+        }
+
+        /* =====================================
+           MOBILE
+           ===================================== */
+
         @media (max-width: 700px) {
+
+            .journal-intro {
+                padding: 80px 24px 75px;
+            }
+
+            .journal-title {
+                font-size: clamp(56px, 13vw, 85px);
+            }
+
+            .journal-subtitle {
+                font-size: 14px;
+                margin-top: 25px;
+            }
+
+            .journal-category-wrap {
+                padding: 45px 24px 0;
+            }
+
+            .journal-categories {
+                justify-content: flex-start;
+                gap: 12px 23px;
+                padding: 20px 0;
+            }
+
+            .journal-category {
+                font-size: 10px;
+            }
+
+            .journal-content {
+                padding: 55px 24px 80px;
+            }
+
+            .journal-post {
+                grid-template-columns: 1fr;
+                row-gap: 20px;
+                padding-bottom: 38px;
+                margin-bottom: 38px;
+            }
+
+            .journal-post-cover {
+                padding: 28px;
+            }
+
+            .journal-post-cover-title {
+                font-size: clamp(35px, 9vw, 58px);
+            }
+
+            .journal-post-title {
+                font-size: 29px;
+            }
+
+            .journal-empty {
+                min-height: 300px;
+            }
+
             .journal-contribute {
                 padding: 0 24px 75px;
             }
@@ -753,7 +750,7 @@
     </div>
 
     <!-- =====================================
-         ARTICLES
+         ALL JOURNAL POSTS
          ===================================== -->
 
     <section class="journal-content"
@@ -768,7 +765,7 @@
 
             <span class="journal-count"
                   id="journal-count">
-                2 POSTS
+                3 POSTS
             </span>
 
         </div>
@@ -776,12 +773,60 @@
         <div class="journal-posts"
              id="journal-posts">
 
-            <!-- SCHEDULED PUBLICATION: 25 October 2026, 09:00 Europe/Zagreb (08:00 UTC) -->
+            <!-- =====================================
+                 ARTICLE 4 — EDITORIAL
+                 SCHEDULED: 29 OCTOBER 2026
+                 09:00 EUROPE/ZAGREB
+                 ===================================== -->
+
+            <a class="journal-post"
+               href="/where-do-adults-meet.html"
+               data-category="editorial"
+               data-publish-at="2026-10-29T08:00:00Z"
+               hidden>
+
+                <img class="journal-post-image"
+                     src="/images/journal-where-adults-meet.png"
+                     alt="AI-generated illustration of adults talking together in a city café"
+                     loading="lazy">
+
+                <div class="journal-post-copy">
+
+                    <span class="journal-post-category">
+                        EDITORIALS
+                    </span>
+
+                    <h3 class="journal-post-title">
+                        Where Do Adults Meet New People These Days?
+                    </h3>
+
+                    <p class="journal-post-description">
+                        On making friends after thirty, life between
+                        work and home, and the people we may never meet.
+                    </p>
+
+                    <span class="journal-post-author">
+                        MOVE&TRY Editorial
+                    </span>
+
+                    <time class="journal-post-date"
+                          datetime="2026-10-29">
+                        29 October 2026
+                    </time>
+
+                </div>
+
+            </a>
+
+            <!-- =====================================
+                 ARTICLE 3 — NEWS
+                 PUBLISHED: 25 OCTOBER 2026
+                 ===================================== -->
+
             <a class="journal-post"
                href="/from-curiosity-to-your-own-scent.html"
                data-category="news"
-               data-publish-at="2026-10-25T08:00:00Z"
-               hidden>
+               data-publish-at="2026-10-25T08:00:00Z">
 
                 <img class="journal-post-image"
                      src="/images/natural-perfume-spray.jpg"
@@ -789,30 +834,38 @@
                      loading="lazy">
 
                 <div class="journal-post-copy">
+
                     <span class="journal-post-category">
-                        NEWS · 25 OCTOBER 2026
+                        NEWS
                     </span>
 
                     <h3 class="journal-post-title">
                         From Curiosity to Your Own Scent:
-                        A New Activity on MOVE &amp; TRY
+                        A New Activity on MOVE & TRY
                     </h3>
 
                     <p class="journal-post-description">
                         From a workshop with Biljarica to a guide,
-                        a real experience and a place where you can
-                        try natural perfume making yourself.
+                        a personal experience and a place where
+                        you can try making your own natural perfume.
                     </p>
 
                     <span class="journal-post-author">
-                        MOVE&amp;TRY Editorial
+                        MOVE&TRY Editorial
                     </span>
+
+                    <time class="journal-post-date"
+                          datetime="2026-10-25">
+                        25 October 2026
+                    </time>
+
                 </div>
+
             </a>
 
             <!-- =====================================
                  ARTICLE 2 — PERSONAL COLUMN
-                 Published: 16 October 2026
+                 PUBLISHED: 16 OCTOBER 2026
                  ===================================== -->
 
             <a class="journal-post"
@@ -838,8 +891,12 @@
                 <div class="journal-post-copy">
 
                     <span class="journal-post-category">
-                        PERSONAL COLUMNS · 16 OCTOBER 2026
+                        PERSONAL COLUMNS
                     </span>
+
+                    <h3 class="journal-post-title">
+                        What If I Give It a Try?
+                    </h3>
 
                     <p class="journal-post-description">
                         On work, curiosity, people, and an idea
@@ -850,6 +907,10 @@
                         Lidija | MOVE&TRY
                     </span>
 
+                    <time class="journal-post-date"
+                          datetime="2026-10-16">
+                        16 October 2026
+                    </time>
 
                 </div>
 
@@ -857,7 +918,7 @@
 
             <!-- =====================================
                  ARTICLE 1 — EDITORIAL
-                 Published: 14 October 2026
+                 PUBLISHED: 14 OCTOBER 2026
                  ===================================== -->
 
             <a class="journal-post"
@@ -872,7 +933,7 @@
                 <div class="journal-post-copy">
 
                     <span class="journal-post-category">
-                        EDITORIALS · 14 OCTOBER 2026
+                        EDITORIALS
                     </span>
 
                     <h3 class="journal-post-title">
@@ -889,6 +950,10 @@
                         MOVE&TRY Editorial
                     </span>
 
+                    <time class="journal-post-date"
+                          datetime="2026-10-14">
+                        14 October 2026
+                    </time>
 
                 </div>
 
@@ -897,7 +962,7 @@
         </div>
 
         <!-- =====================================
-             EMPTY STATE
+             EMPTY CATEGORY
              ===================================== -->
 
         <div class="journal-empty"
@@ -957,120 +1022,126 @@
 </main>
 
 <!-- =====================================
-     EXISTING SITE SCRIPT
+     EXISTING SITE JAVASCRIPT
      ===================================== -->
 
 <script src="script.js"></script>
 
 <!-- =====================================
-     JOURNAL CATEGORY FILTER
+     CATEGORY FILTER + SCHEDULED RELEASE
      ===================================== -->
 
 <script>
-    (function () {
+(function () {
+    'use strict';
 
-        const buttons = document.querySelectorAll(
-            '.journal-category'
-        );
+    const buttons = document.querySelectorAll('.journal-category');
+    const posts = document.querySelectorAll('.journal-post');
 
-        const posts = document.querySelectorAll(
-            '.journal-post'
-        );
+    const emptyState = document.getElementById('journal-empty');
+    const heading = document.getElementById('journal-section-heading');
+    const count = document.getElementById('journal-count');
 
-        const emptyState = document.getElementById(
-            'journal-empty'
-        );
+    const labels = {
+        all: 'ALL POSTS',
+        editorial: 'EDITORIALS',
+        personal: 'PERSONAL COLUMNS',
+        guest: 'GUEST STORIES',
+        news: 'NEWS',
+        inspiration: 'INSPIRATION'
+    };
 
-        const heading = document.getElementById(
-            'journal-section-heading'
-        );
+    let activeCategory = 'all';
 
-        const count = document.getElementById(
-            'journal-count'
-        );
+    function isPublished(post) {
 
-        const labels = {
-            all: 'ALL POSTS',
-            editorial: 'EDITORIALS',
-            personal: 'PERSONAL COLUMNS',
-            guest: 'GUEST STORIES',
-            news: 'NEWS',
-            inspiration: 'INSPIRATION'
-        };
+        const publishAt = post.getAttribute('data-publish-at');
 
-        function countLabel(number) {
-            return number + (number === 1 ? ' POST' : ' POSTS');
+        if (!publishAt) {
+            return true;
         }
 
-        let activeCategory = 'all';
+        const publishTime = Date.parse(publishAt);
 
-        function filterPosts(category) {
-
-            activeCategory = category;
-            let visibleCount = 0;
-
-            buttons.forEach(function (button) {
-
-                const selected =
-                    button.dataset.category === category;
-
-                button.classList.toggle(
-                    'active',
-                    selected
-                );
-
-                button.setAttribute(
-                    'aria-pressed',
-                    String(selected)
-                );
-
-            });
-
-            posts.forEach(function (post) {
-
-                const publishAt = post.dataset.publishAt;
-                const published =
-                    !publishAt ||
-                    Date.now() >= Date.parse(publishAt);
-
-                const matches =
-                    published &&
-                    (category === 'all' ||
-                     post.dataset.category === category);
-
-                post.hidden = !matches;
-
-                if (matches) {
-                    visibleCount++;
-                }
-
-            });
-
-            heading.textContent = labels[category];
-            count.textContent = countLabel(visibleCount);
-            emptyState.hidden = visibleCount > 0;
-
+        if (Number.isNaN(publishTime)) {
+            return false;
         }
+
+        return Date.now() >= publishTime;
+    }
+
+    function countLabel(number) {
+        return number + (number === 1 ? ' POST' : ' POSTS');
+    }
+
+    function updatePosts() {
+
+        let visibleCount = 0;
 
         buttons.forEach(function (button) {
 
-            button.addEventListener(
-                'click',
-                function () {
-                    filterPosts(button.dataset.category);
-                }
+            const selected =
+                button.dataset.category === activeCategory;
+
+            button.classList.toggle('active', selected);
+
+            button.setAttribute(
+                'aria-pressed',
+                String(selected)
             );
 
         });
 
-        filterPosts('all');
+        posts.forEach(function (post) {
 
-        // Refresh scheduled posts while the page remains open.
-        window.setInterval(function () {
-            filterPosts(activeCategory);
-        }, 30000);
+            const released = isPublished(post);
 
-    })();
+            const matchesCategory =
+                activeCategory === 'all' ||
+                post.dataset.category === activeCategory;
+
+            const visible = released && matchesCategory;
+
+            post.hidden = !visible;
+
+            if (visible) {
+                visibleCount++;
+            }
+
+        });
+
+        heading.textContent = labels[activeCategory];
+        count.textContent = countLabel(visibleCount);
+        emptyState.hidden = visibleCount > 0;
+    }
+
+    buttons.forEach(function (button) {
+
+        button.addEventListener('click', function () {
+
+            activeCategory = button.dataset.category;
+
+            updatePosts();
+
+        });
+
+    });
+
+    updatePosts();
+
+    /* Recheck scheduled posts every 30 seconds. */
+    window.setInterval(updatePosts, 30000);
+
+    /* Refresh after returning to the browser tab. */
+    document.addEventListener('visibilitychange', function () {
+
+        if (!document.hidden) {
+            updatePosts();
+        }
+
+    });
+
+})();
 </script>
 
 </body>
