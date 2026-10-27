@@ -1,10 +1,5 @@
 /* =========================================================
-   MOVE&TRY — ZAJEDNIČKA NAVIGACIJA JAVNE PWA APLIKACIJE
-   ========================================================= */
-
-
-/* =========================================================
-   DONJA NAVIGACIJA APLIKACIJE
+   MOVE&TRY — JAVNA PWA NAVIGACIJA
    ========================================================= */
 
 #moveandtry-app-nav {
@@ -15,8 +10,8 @@
     right: 0;
     bottom: 0;
 
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     align-items: stretch;
 
     background: rgba(247, 246, 242, 0.98);
@@ -24,38 +19,37 @@
 
     padding:
         10px
-        max(12px, env(safe-area-inset-right))
+        max(8px, env(safe-area-inset-right))
         calc(10px + env(safe-area-inset-bottom))
-        max(12px, env(safe-area-inset-left));
+        max(8px, env(safe-area-inset-left));
 
     box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(12px);
 
     font-family: 'Manrope', Arial, sans-serif;
 }
 
-
-/* =========================================================
-   GUMBI DONJE NAVIGACIJE
-   ========================================================= */
+/* NAVIGATION ITEMS */
 
 #moveandtry-app-nav a {
-    flex: 1;
     min-width: 0;
+    min-height: 45px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    gap: 4px;
-    padding: 4px 2px;
+    gap: 5px;
+    padding: 3px 1px;
 
     color: #697067;
     text-decoration: none;
 
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.2;
+    text-align: center;
 
     background: transparent;
     border: 0;
@@ -70,14 +64,13 @@
     outline-offset: -2px;
 }
 
-
-/* =========================================================
-   IKONE
-   ========================================================= */
+/* ICONS */
 
 #moveandtry-app-nav svg {
     width: 22px;
     height: 22px;
+
+    flex-shrink: 0;
 
     fill: none;
     stroke: currentColor;
@@ -87,10 +80,18 @@
     stroke-linejoin: round;
 }
 
+/* WHERE TO TRY — CENTER ITEM */
 
-/* =========================================================
-   PROSTOR ZA DONJU NAVIGACIJU
-   ========================================================= */
+#moveandtry-app-nav a:nth-child(3) {
+    color: #1f2a18;
+}
+
+#moveandtry-app-nav a:nth-child(3) svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* SPACE FOR BOTTOM NAVIGATION */
 
 body.moveandtry-app-active {
     padding-bottom:
@@ -102,29 +103,17 @@ html.moveandtry-public-app-page body {
         calc(84px + env(safe-area-inset-bottom)) !important;
 }
 
-
-/* =========================================================
-   SAMO INSTALIRANA APLIKACIJA
-   SAKRIJ GORNJU WEB NAVIGACIJU
-   ========================================================= */
+/* HIDE WEBSITE HEADER ONLY INSIDE PUBLIC PWA */
 
 body.moveandtry-app-active .site-header {
     display: none !important;
 }
 
-
-/* =========================================================
-   SAKRIJ MOBILNI WEB IZBORNIK
-   ========================================================= */
+/* HIDE WEBSITE MOBILE MENU */
 
 body.moveandtry-app-active .mobile-menu {
     display: none !important;
 }
-
-
-/* =========================================================
-   SPRIJEČI OSTATAK OTVORENOG MOBILNOG IZBORNIKA
-   ========================================================= */
 
 body.moveandtry-app-active .menu-toggle,
 body.moveandtry-app-active .desktop-nav,
@@ -132,13 +121,9 @@ body.moveandtry-app-active .header-actions {
     display: none !important;
 }
 
-
-/* =========================================================
-   DESKTOP — DONJA NAVIGACIJA
-   ========================================================= */
+/* DESKTOP / TABLET */
 
 @media (min-width: 720px) {
-
     #moveandtry-app-nav {
         left: 50%;
         right: auto;
@@ -146,5 +131,17 @@ body.moveandtry-app-active .header-actions {
         transform: translateX(-50%);
         width: min(720px, 100%);
     }
+}
 
+/* SMALL PHONES */
+
+@media (max-width: 360px) {
+    #moveandtry-app-nav a {
+        font-size: 8px;
+    }
+
+    #moveandtry-app-nav svg {
+        width: 20px;
+        height: 20px;
+    }
 }
