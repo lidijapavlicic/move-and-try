@@ -3,8 +3,8 @@
 
   const path = window.location.pathname;
 
-  // Ne prikazujemo navigaciju unutar Editora
-  // niti na samoj naslovnici aplikacije.
+  // Editor i sama aplikacijska naslovnica imaju
+  // vlastitu navigaciju.
   if (
     path.startsWith('/editor/') ||
     path.startsWith('/app/')
@@ -14,10 +14,9 @@
 
   const standalone =
     window.matchMedia('(display-mode: standalone)').matches ||
-    window.navigator.standalone === true;
+    navigator.standalone === true;
 
   const params = new URLSearchParams(window.location.search);
-
   const sessionKey = 'moveandtry_public_app_session';
 
   const cameFromApp =
@@ -38,24 +37,22 @@
       sessionStorage.getItem(sessionKey) === '1';
   } catch (_) {}
 
-  // Navigacija se prikazuje samo unutar instalirane aplikacije.
-  if (!standalone || !activeSession) {
-    return;
-  }
+  // Obična web-stranica ostaje nepromijenjena.
+  if (!standalone || !activeSession) return;
 
-  if (document.getElementById('moveandtry-app-nav')) {
-    return;
-  }
+  if (document.getElementById('moveandtry-app-nav')) return;
 
   const isHR = path.startsWith('/hr/');
+  const prefix = isHR ? '/hr/' : '/';
 
   const labels = isHR
-    ? ['Početna', 'Istraži', 'Journal', 'Spremljeno']
-    : ['Home', 'Explore', 'Journal', 'Saved'];
+    ? ['Početna', 'Istraži', 'Gdje probati', 'Journal', 'Spremljeno']
+    : ['Home', 'Explore', 'Where to Try', 'Journal', 'Saved'];
 
   const links = [
     '/app/',
     '/app/?tab=explore',
+    prefix + 'where-to-try.html',
     '/app/?tab=journal',
     '/app/?tab=saved'
   ];
@@ -63,20 +60,29 @@
   const icons = [
     '<path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/>',
     '<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',
+    '<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/>',
     '<path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M8 9h7M8 13h7"/>',
     '<path d="M6 3h12v18l-6-4-6 4z"/>'
   ];
+
+  const isWherePage =
+    path.endsWith('/where-to-try.html');
+
+  const isJournalPage =
+    path.endsWith('/journal.html') ||
+    path.includes('/journal/');
 
   const nav = document.createElement('nav');
 
   nav.id = 'moveandtry-app-nav';
   nav.className = 'moveandtry-app-nav';
+
   nav.setAttribute(
     'aria-label',
     isHR ? 'Navigacija aplikacije' : 'App navigation'
   );
 
-  const items = labels.map((label, index) => {
+  nav.innerHTML = labels.map((label, index) => {
     const svg = `
       <svg
         viewBox="0 0 24 24"
@@ -94,22 +100,47 @@
     `;
 
     const current =
-      index === 2 && path.includes('journal')
-        ? ' aria-current="page"'
-        : index === 1 && !path.includes('journal')
-          ? ' aria-current="page"'
-          : '';
+      (index === 2 && isWherePage) ||
+      (index === 3 && isJournalPage) ||
+      (index === 1 && !isWherePage && !isJournalPage);
+
+    const ariaCurrent =
+      current ? ' aria-current="page"' : '';
 
     return `
-      <a href="${links[index]}"${current}>
+      <a href="${links[index]}"${ariaCurrent}>
         ${svg}
         <span>${label}</span>
       </a>
     `;
   }).join('');
 
-  nav.innerHTML = items;
-
   document.body.appendChild(nav);
   document.body.classList.add('moveandtry-app-active');
+
+  // Link prema Gdje probati ostaje u PWA sesiji.
+  const whereLink = nav.querySelectorAll('a')[2];
+
+  whereLink.addEventListener('click', event => {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const url = new URL(whereLink.href);
+    url.searchParams.set('source', 'moveandtry-app');
+
+    try {
+      sessionStorage.setItem(sessionKey, '1');
+    } catch (_) {}
+
+    window.location.assign(url.href);
+  });
 })();
