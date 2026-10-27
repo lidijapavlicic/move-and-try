@@ -1,56 +1,24 @@
 <!DOCTYPE html>
 <html lang="hr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <title>Gdje probati | Move & Try</title>
+    <meta name="description" content="Od ideje do stvarnog iskustva. Pronađi radionice, studije, klubove, stručnjake i druga mjesta gdje možeš napraviti prvi korak.">
 
-    <meta
-        name="description"
-        content="Od ideje do stvarnog iskustva. Pronađi radionice, studije, klubove, stručnjake i druga mjesta gdje možeš napraviti prvi korak."
-    >
-
-    <link
-        rel="canonical"
-        href="https://moveandtry.com/hr/where-to-try.html"
-    >
-
-    <link
-        rel="alternate"
-        hreflang="hr"
-        href="https://moveandtry.com/hr/where-to-try.html"
-    >
-
-    <link
-        rel="alternate"
-        hreflang="en"
-        href="https://moveandtry.com/where-to-try.html"
-    >
-
-    <link
-        rel="alternate"
-        hreflang="x-default"
-        href="https://moveandtry.com/where-to-try.html"
-    >
+    <link rel="canonical" href="https://moveandtry.com/hr/where-to-try.html">
+    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/where-to-try.html">
+    <link rel="alternate" hreflang="en" href="https://moveandtry.com/where-to-try.html">
+    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/where-to-try.html">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Google Analytics -->
-    <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"
-    ></script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -64,12 +32,11 @@
 
     <link rel="stylesheet" href="../style.css">
 
+    <!-- MOVE&TRY PWA NAVIGATION -->
+    <link rel="stylesheet" href="/app/app-navigation.css">
+
     <style>
-
-        /* ==========================================
-           DESKTOP — IZA MOVE & TRY
-        ========================================== */
-
+        /* DESKTOP — IZA MOVE & TRY */
         .header-actions .header-behind-link {
             color: #555;
             font-family: 'Manrope', sans-serif;
@@ -86,18 +53,12 @@
         }
 
         @media (max-width: 768px) {
-
             .site-header .header-behind-link {
                 display: none !important;
             }
-
         }
 
-
-        /* ==========================================
-           SMALL PRODUCTION OVERRIDES
-        ========================================== */
-
+        /* SMALL PRODUCTION OVERRIDES */
         .where-provider-address:empty {
             display: none;
         }
@@ -116,81 +77,36 @@
         .where-provider-link {
             cursor: pointer;
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     SITE HEADER
-========================= -->
-
+<!-- SITE HEADER -->
 <header class="site-header">
 
-    <a
-        href="/hr/"
-        class="site-logo"
-        aria-label="Move & Try početna"
-    >
-        <img
-            src="/images/move-and-try-logo.png"
-            alt="Move & Try"
-        >
+    <a href="/hr/" class="site-logo" aria-label="Move & Try početna">
+        <img src="/images/move-and-try-logo.png" alt="Move & Try">
     </a>
 
-
     <nav class="desktop-nav">
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/where-to-try.html">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
     </nav>
-
 
     <div class="header-actions">
 
-        <a
-            href="/hr/behind-move-and-try.html"
-            class="header-behind-link"
-        >
+        <a href="/hr/behind-move-and-try.html" class="header-behind-link">
             IZA MOVE & TRY
         </a>
 
-
         <div class="header-language">
-
-            <a
-                href="/where-to-try.html"
-                onclick="setLanguage('en')"
-            >
-                EN
-            </a>
-
+            <a href="/where-to-try.html" onclick="setLanguage('en')">EN</a>
             <span>|</span>
-
-            <span class="language-active">
-                HR
-            </span>
-
+            <span class="language-active">HR</span>
         </div>
-
 
         <button
             class="menu-toggle"
@@ -203,86 +119,40 @@
         </button>
 
     </div>
-
 </header>
 
-
-<!-- =========================
-     MOBILE MENU
-========================= -->
-
+<!-- MOBILE MENU -->
 <div class="mobile-menu">
 
     <nav>
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/where-to-try.html">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
-        <a href="/hr/behind-move-and-try.html">
-            IZA MOVE & TRY
-        </a>
-
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
+        <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
 
-
     <div class="mobile-menu-language">
-
-        <a
-            href="/where-to-try.html"
-            onclick="setLanguage('en')"
-        >
-            EN
-        </a>
-
+        <a href="/where-to-try.html" onclick="setLanguage('en')">EN</a>
         <span>|</span>
-
-        <span class="language-active">
-            HR
-        </span>
-
+        <span class="language-active">HR</span>
     </div>
 
 </div>
 
-
-<!-- =========================
-     WHERE TO TRY
-========================= -->
-
+<!-- WHERE TO TRY -->
 <main class="where-page">
 
-
-    <!-- =========================
-         PAGE HEADER
-    ========================= -->
-
+    <!-- PAGE HEADER -->
     <header class="where-header">
 
         <p class="section-label">
             OD IDEJE DO STVARNOG ISKUSTVA
         </p>
 
-
-        <h1>
-            GDJE PROBATI
-        </h1>
-
+        <h1>GDJE PROBATI</h1>
 
         <p class="where-intro">
-
             Pronašao si nešto što želiš probati?<br>
 
             <strong>
@@ -293,83 +163,42 @@
             <br><br>
 
             Otkrij ovdje. Probaj tamo.
-
         </p>
 
     </header>
 
-
-    <!-- =========================
-         CATEGORIES
-    ========================= -->
-
-    <section
-        class="where-section"
-        id="where-categories"
-    >
+    <!-- CATEGORIES -->
+    <section class="where-section" id="where-categories">
 
         <p class="section-label">
             ODABERI KATEGORIJU
         </p>
 
-
-        <h2>
-            ŠTO ŽELIŠ PROBATI?
-        </h2>
-
+        <h2>ŠTO ŽELIŠ PROBATI?</h2>
 
         <div class="where-category-grid">
 
-            <button
-                type="button"
-                class="where-category"
-                data-category="move"
-            >
+            <button type="button" class="where-category" data-category="move">
                 MOVE
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="learn"
-            >
+            <button type="button" class="where-category" data-category="learn">
                 LEARN
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="create"
-            >
+            <button type="button" class="where-category" data-category="create">
                 CREATE
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="explore"
-            >
+            <button type="button" class="where-category" data-category="explore">
                 EXPLORE
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="dare"
-            >
+            <button type="button" class="where-category" data-category="dare">
                 DARE
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="care"
-            >
+            <button type="button" class="where-category" data-category="care">
                 CARE
             </button>
 
@@ -377,11 +206,7 @@
 
     </section>
 
-
-    <!-- =========================
-         CATEGORY ACTIVITIES
-    ========================= -->
-
+    <!-- CATEGORY ACTIVITIES -->
     <section
         class="where-section where-category-results"
         id="category-results"
@@ -390,18 +215,11 @@
 
         <div class="where-category-heading">
 
-            <p
-                class="section-label"
-                id="selected-category"
-            ></p>
+            <p class="section-label" id="selected-category"></p>
 
-
-            <h2>
-                ŠTO BI ŽELIO PROBATI?
-            </h2>
+            <h2>ŠTO BI ŽELIO PROBATI?</h2>
 
         </div>
-
 
         <div
             class="where-activity-grid"
@@ -410,11 +228,7 @@
 
     </section>
 
-
-    <!-- =========================
-         ACTIVITY PROVIDERS
-    ========================= -->
-
+    <!-- ACTIVITY PROVIDERS -->
     <section
         class="where-section where-provider-results"
         id="provider-results"
@@ -429,16 +243,13 @@
             ← NATRAG NA AKTIVNOSTI
         </button>
 
-
         <div class="where-provider-heading">
 
             <p class="section-label">
                 GDJE PROBATI
             </p>
 
-
             <h2 id="provider-activity-title"></h2>
-
 
             <p class="where-provider-intro">
                 Pronađi ljude i mjesta gdje možeš
@@ -447,7 +258,6 @@
 
         </div>
 
-
         <div
             class="where-provider-list"
             id="where-provider-list"
@@ -455,54 +265,34 @@
 
     </section>
 
-
-    <!-- =========================
-         OTHER ACTIVITIES
-    ========================= -->
-
+    <!-- OTHER ACTIVITIES -->
     <section class="where-section where-more">
 
         <p class="section-label">
             NASTAVI ISTRAŽIVATI
         </p>
 
-
-        <h2>
-            ŠTO BI JOŠ PROBAO?
-        </h2>
-
+        <h2>ŠTO BI JOŠ PROBAO?</h2>
 
         <p>
             Istraži druge kategorije i aktivnosti
             i pronađi svoj sljedeći TRY.
         </p>
 
-
-        <a
-            href="#where-categories"
-            class="where-more-link"
-        >
+        <a href="#where-categories" class="where-more-link">
             ISTRAŽI GDJE PROBATI →
         </a>
 
     </section>
 
-
-    <!-- =========================
-         BE PART OF IT
-    ========================= -->
-
+    <!-- BE PART OF IT -->
     <section class="where-section where-contribute">
 
         <p class="section-label">
             BUDI DIO PRIČE
         </p>
 
-
-        <h2>
-            MOGU LI LJUDI NEŠTO PROBATI S TOBOM?
-        </h2>
-
+        <h2>MOGU LI LJUDI NEŠTO PROBATI S TOBOM?</h2>
 
         <p>
             Vodiš studio, klub, radionicu, tečaj
@@ -511,7 +301,6 @@
             Pomozi ljudima da pronađu mjesto
             gdje mogu napraviti svoj prvi korak.
         </p>
-
 
         <a
             href="/hr/be-part-of-where-to-try.html"
@@ -522,513 +311,376 @@
 
     </section>
 
-
 </main>
 
-
-<!-- =========================
-     SHARED JAVASCRIPT
-========================= -->
-
+<!-- SHARED JAVASCRIPT -->
 <script src="../script.js"></script>
 
+<!-- MOVE&TRY PWA NAVIGATION -->
+<script src="/app/app-navigation.js" defer></script>
 
-<!-- =========================
-     WHERE TO TRY
-     PRODUCTION CONTENT ONLY
+<!--
+    WHERE TO TRY
+    PRODUCTION CONTENT ONLY
 
-     Stari provideri ostaju spremljeni
-     u globalnom script.js, ali ova stranica
-     ih ne prikazuje.
-========================= -->
+    Stari provideri ostaju spremljeni
+    u globalnom script.js, ali ova stranica
+    ih ne prikazuje.
+-->
 
 <script>
+(() => {
 
-    (() => {
+    const productionActivities = {
 
+        move: [],
 
-        const productionActivities = {
+        learn: [],
 
-            move: [],
+        create: [
+            {
+                title: "IZRADA PRIRODNIH PARFEMA",
+                slug: "natural-perfume-making"
+            }
+        ],
 
-            learn: [],
+        explore: [],
 
-            create: [
-                {
-                    title: "IZRADA PRIRODNIH PARFEMA",
-                    slug: "natural-perfume-making"
-                }
-            ],
+        dare: [],
 
-            explore: [],
+        care: []
 
-            dare: [],
+    };
 
-            care: []
+    const productionProviders = {
 
-        };
+        "natural-perfume-making": [
 
+            {
+                name: "BILJARICA",
 
-        const productionProviders = {
+                city: "ZAGREB",
 
-            "natural-perfume-making": [
+                area: "",
 
-                {
-                    name: "BILJARICA",
+                address: "",
 
-                    city: "ZAGREB",
+                postalCode: "",
 
-                    area: "",
+                image: "/images/biljarica-logo.jpg",
 
-                    address: "",
+                description:
+                    "Vođena radionica izrade prirodnog parfema za sve koji žele upoznati prirodne mirise, istražiti mirisne note i napraviti vlastitu kombinaciju.",
 
-                    postalCode: "",
+                tags: [
+                    "RADIONICA",
+                    "ZA POČETNIKE",
+                    "PRIRODNI PARFEMI"
+                ],
 
-                    image: "/images/biljarica-logo.jpg",
-
-                    description:
-                        "Vođena radionica izrade prirodnog parfema za sve koji žele upoznati prirodne mirise, istražiti mirisne note i napraviti vlastitu kombinaciju.",
-
-                    tags: [
-                        "RADIONICA",
-                        "ZA POČETNIKE",
-                        "PRIRODNI PARFEMI"
-                    ],
-
-                    href:
-                        "/hr/natural-perfume-making-where-to-try.html"
-                }
-
-            ]
-
-        };
-
-
-        const categoryButtons =
-            document.querySelectorAll(
-                ".where-category"
-            );
-
-
-        const categoryResults =
-            document.getElementById(
-                "category-results"
-            );
-
-
-        const selectedCategory =
-            document.getElementById(
-                "selected-category"
-            );
-
-
-        const activityGrid =
-            document.getElementById(
-                "where-activity-grid"
-            );
-
-
-        const providerResults =
-            document.getElementById(
-                "provider-results"
-            );
-
-
-        const providerActivityTitle =
-            document.getElementById(
-                "provider-activity-title"
-            );
-
-
-        const providerList =
-            document.getElementById(
-                "where-provider-list"
-            );
-
-
-        const providerBack =
-            document.getElementById(
-                "provider-back"
-            );
-
-
-        /* ==========================================
-           RENDER CATEGORY
-        ========================================== */
-
-        function renderCategory(category) {
-
-
-            if (
-                !categoryResults ||
-                !selectedCategory ||
-                !activityGrid
-            ) {
-
-                return;
-
+                href:
+                    "/hr/natural-perfume-making-where-to-try.html"
             }
 
+        ]
 
-            const activities =
-                productionActivities[category] || [];
+    };
 
+    const categoryButtons =
+        document.querySelectorAll(".where-category");
 
-            if (providerResults) {
+    const categoryResults =
+        document.getElementById("category-results");
 
-                providerResults.hidden = true;
+    const selectedCategory =
+        document.getElementById("selected-category");
 
-            }
+    const activityGrid =
+        document.getElementById("where-activity-grid");
 
+    const providerResults =
+        document.getElementById("provider-results");
 
-            categoryResults.hidden = false;
+    const providerActivityTitle =
+        document.getElementById("provider-activity-title");
 
+    const providerList =
+        document.getElementById("where-provider-list");
 
-            selectedCategory.textContent =
-                category.toUpperCase();
-
-
-            activityGrid.innerHTML = "";
-
-
-            if (activities.length === 0) {
-
-
-                activityGrid.innerHTML = `
-
-                    <p class="where-empty-category">
-
-                        Ovdje još nema objavljenih mjesta za probati.
-
-                        Popis ćemo širiti kako na MOVE & TRY dodajemo
-                        nove aktivnosti i provjerene mogućnosti.
-
-                    </p>
-
-                `;
+    const providerBack =
+        document.getElementById("provider-back");
 
 
-                return;
+    /* ==========================================
+       RENDER CATEGORY
+    ========================================== */
 
-            }
+    function renderCategory(category) {
 
-
-            activities.forEach(activity => {
-
-
-                const card =
-                    document.createElement("a");
-
-
-                card.className =
-                    "where-activity-card";
-
-
-                card.href = "#";
-
-
-                card.innerHTML = `
-
-                    <h3>
-                        ${activity.title}
-                    </h3>
-
-                    <span class="where-activity-card-action">
-                        PRONAĐI GDJE PROBATI →
-                    </span>
-
-                `;
-
-
-                card.addEventListener(
-
-                    "click",
-
-                    event => {
-
-
-                        event.preventDefault();
-
-
-                        renderProviders(activity);
-
-
-                    }
-
-                );
-
-
-                activityGrid.appendChild(card);
-
-
-            });
-
+        if (
+            !categoryResults ||
+            !selectedCategory ||
+            !activityGrid
+        ) {
+            return;
         }
 
+        const activities =
+            productionActivities[category] || [];
 
-        /* ==========================================
-           RENDER PROVIDERS
-        ========================================== */
+        if (providerResults) {
+            providerResults.hidden = true;
+        }
 
-        function renderProviders(activity) {
+        categoryResults.hidden = false;
 
+        selectedCategory.textContent =
+            category.toUpperCase();
 
-            if (
-                !providerResults ||
-                !providerActivityTitle ||
-                !providerList
-            ) {
+        activityGrid.innerHTML = "";
 
-                return;
+        if (activities.length === 0) {
 
-            }
+            activityGrid.innerHTML = `
 
+                <p class="where-empty-category">
 
-            const providers =
-                productionProviders[
-                    activity.slug
-                ] || [];
+                    Ovdje još nema objavljenih mjesta za probati.
 
+                    Popis ćemo širiti kako na MOVE & TRY dodajemo
+                    nove aktivnosti i provjerene mogućnosti.
 
-            if (categoryResults) {
+                </p>
 
-                categoryResults.hidden = true;
+            `;
 
-            }
+            return;
+        }
 
+        activities.forEach(activity => {
 
-            providerResults.hidden = false;
+            const card =
+                document.createElement("a");
 
+            card.className =
+                "where-activity-card";
 
-            providerActivityTitle.textContent =
-                activity.title;
+            card.href = "#";
 
+            card.innerHTML = `
 
-            providerList.innerHTML = "";
+                <h3>
+                    ${activity.title}
+                </h3>
 
+                <span class="where-activity-card-action">
+                    PRONAĐI GDJE PROBATI →
+                </span>
 
-            providers.forEach(provider => {
+            `;
 
+            card.addEventListener(
+                "click",
+                event => {
 
-                const card =
-                    document.createElement(
-                        "article"
-                    );
+                    event.preventDefault();
 
+                    renderProviders(activity);
 
-                card.className =
-                    "where-provider-card";
+                }
+            );
 
+            activityGrid.appendChild(card);
 
-                const location =
-                    [
-                        provider.city,
-                        provider.area
-                    ]
-                    .filter(Boolean)
-                    .join(" · ");
+        });
 
-
-                const address =
-                    [
-                        provider.address,
-                        provider.postalCode
-                    ]
-                    .filter(Boolean)
-                    .join("<br>");
+    }
 
 
-                const tags =
-                    provider.tags
+    /* ==========================================
+       RENDER PROVIDERS
+    ========================================== */
+
+    function renderProviders(activity) {
+
+        if (
+            !providerResults ||
+            !providerActivityTitle ||
+            !providerList
+        ) {
+            return;
+        }
+
+        const providers =
+            productionProviders[activity.slug] || [];
+
+        if (categoryResults) {
+            categoryResults.hidden = true;
+        }
+
+        providerResults.hidden = false;
+
+        providerActivityTitle.textContent =
+            activity.title;
+
+        providerList.innerHTML = "";
+
+        providers.forEach(provider => {
+
+            const card =
+                document.createElement("article");
+
+            card.className =
+                "where-provider-card";
+
+            const location = [
+                provider.city,
+                provider.area
+            ]
+                .filter(Boolean)
+                .join(" · ");
+
+            const address = [
+                provider.address,
+                provider.postalCode
+            ]
+                .filter(Boolean)
+                .join("<br>");
+
+            const tags =
+                provider.tags
                     .map(
                         tag =>
                             `<span>${tag}</span>`
                     )
                     .join("");
 
+            card.innerHTML = `
 
-                card.innerHTML = `
+                <div class="where-provider-visual">
 
-                    <div class="where-provider-visual">
+                    <img
+                        src="${provider.image}"
+                        alt="${provider.name}"
+                        class="where-provider-image"
+                        loading="lazy"
+                    >
 
-                        <img
-                            src="${provider.image}"
-                            alt="${provider.name}"
-                            class="where-provider-image"
-                            loading="lazy"
-                        >
+                </div>
 
+                <div class="where-provider-content">
+
+                    <p class="where-provider-location">
+                        ${location}
+                    </p>
+
+                    <h3>
+                        ${provider.name}
+                    </h3>
+
+                    <p class="where-provider-address">
+                        ${address}
+                    </p>
+
+                    <p class="where-provider-description">
+                        ${provider.description}
+                    </p>
+
+                    <div class="where-provider-tags">
+                        ${tags}
                     </div>
 
+                    <a
+                        href="${provider.href}"
+                        class="where-provider-link"
+                    >
+                        POGLEDAJ GDJE PROBATI →
+                    </a>
 
-                    <div class="where-provider-content">
+                </div>
 
-                        <p class="where-provider-location">
-                            ${location}
-                        </p>
+            `;
 
-
-                        <h3>
-                            ${provider.name}
-                        </h3>
-
-
-                        <p class="where-provider-address">
-                            ${address}
-                        </p>
-
-
-                        <p class="where-provider-description">
-                            ${provider.description}
-                        </p>
-
-
-                        <div class="where-provider-tags">
-                            ${tags}
-                        </div>
-
-
-                        <a
-                            href="${provider.href}"
-                            class="where-provider-link"
-                        >
-                            POGLEDAJ GDJE PROBATI →
-                        </a>
-
-                    </div>
-
-                `;
-
-
-                providerList.appendChild(
-                    card
-                );
-
-
-            });
-
-
-            providerResults.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "start"
-
-            });
-
-        }
-
-
-        /* ==========================================
-           CATEGORY BUTTONS
-
-           Capture phase + stopImmediatePropagation
-           prevents the old global WHERE TO TRY
-           handlers in script.js from rendering
-           old test content on this production page.
-        ========================================== */
-
-        categoryButtons.forEach(button => {
-
-
-            button.addEventListener(
-
-                "click",
-
-                event => {
-
-
-                    event.preventDefault();
-
-                    event.stopImmediatePropagation();
-
-
-                    const category =
-                        button.dataset.category;
-
-
-                    categoryButtons.forEach(
-                        item => {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    renderCategory(
-                        category
-                    );
-
-
-                },
-
-                true
-
-            );
-
+            providerList.appendChild(card);
 
         });
 
+        providerResults.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
-        /* ==========================================
-           BACK TO ACTIVITIES
-        ========================================== */
-
-        if (providerBack) {
-
-
-            providerBack.addEventListener(
-
-                "click",
-
-                event => {
+    }
 
 
-                    event.preventDefault();
+    /* ==========================================
+       CATEGORY BUTTONS
 
-                    event.stopImmediatePropagation();
+       Capture phase + stopImmediatePropagation
+       prevents the old global WHERE TO TRY
+       handlers in script.js from rendering
+       old test content on this production page.
+    ========================================== */
+
+    categoryButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                event.stopImmediatePropagation();
+
+                const category =
+                    button.dataset.category;
+
+                categoryButtons.forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                renderCategory(category);
+
+            },
+            true
+        );
+
+    });
 
 
-                    providerResults.hidden =
-                        true;
+    /* ==========================================
+       BACK TO ACTIVITIES
+    ========================================== */
 
+    if (providerBack) {
 
-                    categoryResults.hidden =
-                        false;
+        providerBack.addEventListener(
+            "click",
+            event => {
 
+                event.preventDefault();
 
-                    categoryResults.scrollIntoView({
+                event.stopImmediatePropagation();
 
-                        behavior: "smooth",
+                providerResults.hidden = true;
 
-                        block: "start"
+                categoryResults.hidden = false;
 
-                    });
+                categoryResults.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
+            },
+            true
+        );
 
-                },
+    }
 
-                true
-
-            );
-
-
-        }
-
-
-    })();
-
+})();
 </script>
 
-
 </body>
-
 </html>
