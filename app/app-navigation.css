@@ -81,10 +81,7 @@
 }
 
 /* WHERE TO TRY — CENTER ITEM */
-
-#moveandtry-app-nav a:nth-child(3) {
-    color: #1f2a18;
-}
+/* Larger icon, but active color only when selected */
 
 #moveandtry-app-nav a:nth-child(3) svg {
     width: 24px;
