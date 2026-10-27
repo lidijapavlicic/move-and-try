@@ -1,8 +1,16 @@
-/* MOVE&TRY — zajednička navigacija javne PWA aplikacije */
+/* =========================================================
+   MOVE&TRY — ZAJEDNIČKA NAVIGACIJA JAVNE PWA APLIKACIJE
+   ========================================================= */
+
+
+/* =========================================================
+   DONJA NAVIGACIJA APLIKACIJE
+   ========================================================= */
 
 #moveandtry-app-nav {
     position: fixed;
     z-index: 2147483000;
+
     left: 0;
     right: 0;
     bottom: 0;
@@ -21,8 +29,14 @@
         max(12px, env(safe-area-inset-left));
 
     box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.04);
+
     font-family: 'Manrope', Arial, sans-serif;
 }
+
+
+/* =========================================================
+   GUMBI DONJE NAVIGACIJE
+   ========================================================= */
 
 #moveandtry-app-nav a {
     flex: 1;
@@ -32,12 +46,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
 
+    gap: 4px;
     padding: 4px 2px;
 
     color: #697067;
     text-decoration: none;
+
     font-size: 10px;
     font-weight: 700;
     line-height: 1.3;
@@ -50,6 +65,16 @@
     color: #1f2a18;
 }
 
+#moveandtry-app-nav a:focus-visible {
+    outline: 2px solid #758b6b;
+    outline-offset: -2px;
+}
+
+
+/* =========================================================
+   IKONE
+   ========================================================= */
+
 #moveandtry-app-nav svg {
     width: 22px;
     height: 22px;
@@ -57,19 +82,69 @@
     fill: none;
     stroke: currentColor;
     stroke-width: 1.7;
+
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
-html.moveandtry-public-app-page body {
-    padding-bottom: calc(84px + env(safe-area-inset-bottom)) !important;
+
+/* =========================================================
+   PROSTOR ZA DONJU NAVIGACIJU
+   ========================================================= */
+
+body.moveandtry-app-active {
+    padding-bottom:
+        calc(84px + env(safe-area-inset-bottom)) !important;
 }
 
+html.moveandtry-public-app-page body {
+    padding-bottom:
+        calc(84px + env(safe-area-inset-bottom)) !important;
+}
+
+
+/* =========================================================
+   SAMO INSTALIRANA APLIKACIJA
+   SAKRIJ GORNJU WEB NAVIGACIJU
+   ========================================================= */
+
+body.moveandtry-app-active .site-header {
+    display: none !important;
+}
+
+
+/* =========================================================
+   SAKRIJ MOBILNI WEB IZBORNIK
+   ========================================================= */
+
+body.moveandtry-app-active .mobile-menu {
+    display: none !important;
+}
+
+
+/* =========================================================
+   SPRIJEČI OSTATAK OTVORENOG MOBILNOG IZBORNIKA
+   ========================================================= */
+
+body.moveandtry-app-active .menu-toggle,
+body.moveandtry-app-active .desktop-nav,
+body.moveandtry-app-active .header-actions {
+    display: none !important;
+}
+
+
+/* =========================================================
+   DESKTOP — DONJA NAVIGACIJA
+   ========================================================= */
+
 @media (min-width: 720px) {
+
     #moveandtry-app-nav {
         left: 50%;
         right: auto;
+
         transform: translateX(-50%);
         width: min(720px, 100%);
     }
+
 }
