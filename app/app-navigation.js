@@ -53,7 +53,7 @@
     '/app/',
     '/app/?tab=explore',
     prefix + 'where-to-try.html',
-    '/app/?tab=journal',
+    prefix + 'journal.html',
     '/app/?tab=saved'
   ];
 
@@ -66,11 +66,15 @@
   ];
 
   const isWherePage =
-    path.endsWith('/where-to-try.html');
+    path.endsWith('/where-to-try.html') ||
+    path.endsWith('-where-to-try.html');
 
   const isJournalPage =
     path.endsWith('/journal.html') ||
-    path.includes('/journal/');
+    path.includes('/journal/') ||
+    path.endsWith('/what-if-i-try.html') ||
+    path.endsWith('/from-curiosity-to-your-own-scent.html') ||
+    path.endsWith('/where-do-adults-meet.html');
 
   const nav = document.createElement('nav');
 
@@ -101,8 +105,7 @@
 
     const current =
       (index === 2 && isWherePage) ||
-      (index === 3 && isJournalPage) ||
-      (index === 1 && !isWherePage && !isJournalPage);
+      (index === 3 && isJournalPage);
 
     const ariaCurrent =
       current ? ' aria-current="page"' : '';
@@ -118,29 +121,34 @@
   document.body.appendChild(nav);
   document.body.classList.add('moveandtry-app-active');
 
-  // Link prema Gdje probati ostaje u PWA sesiji.
-  const whereLink = nav.querySelectorAll('a')[2];
+  // Links to public pages remain in the PWA session.
+  const publicLinks = [
+    nav.querySelectorAll('a')[2],
+    nav.querySelectorAll('a')[3]
+  ];
 
-  whereLink.addEventListener('click', event => {
-    if (
-      event.button !== 0 ||
-      event.metaKey ||
-      event.ctrlKey ||
-      event.shiftKey ||
-      event.altKey
-    ) {
-      return;
-    }
+  publicLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      if (
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
 
-    event.preventDefault();
+      event.preventDefault();
 
-    const url = new URL(whereLink.href);
-    url.searchParams.set('source', 'moveandtry-app');
+      const url = new URL(link.href);
+      url.searchParams.set('source', 'moveandtry-app');
 
-    try {
-      sessionStorage.setItem(sessionKey, '1');
-    } catch (_) {}
+      try {
+        sessionStorage.setItem(sessionKey, '1');
+      } catch (_) {}
 
-    window.location.assign(url.href);
+      window.location.assign(url.href);
+    });
   });
 })();
