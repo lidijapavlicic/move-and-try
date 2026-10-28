@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -389,6 +390,92 @@
       gap: 14px;
     }
 
+    /* SURPRISE ME — 3D DICE */
+
+    .dice-area {
+      display: grid;
+      justify-items: center;
+      gap: 14px;
+      padding: 6px 0 18px;
+    }
+
+    .dice-stage {
+      width: 120px;
+      height: 120px;
+      display: grid;
+      place-items: center;
+      perspective: 700px;
+    }
+
+    .dice-cube {
+      position: relative;
+      width: 76px;
+      height: 76px;
+      transform-style: preserve-3d;
+      transform: rotateX(-22deg) rotateY(-32deg);
+      transition: transform 1.35s cubic-bezier(.18,.8,.18,1);
+    }
+
+    .dice-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      border: 2px solid #526247;
+      border-radius: 12px;
+      background: #f8f9f4;
+      box-shadow: inset 0 0 18px rgba(31,42,24,.07);
+      backface-visibility: hidden;
+    }
+
+    .dice-face:nth-child(1) { transform: translateZ(38px); }
+    .dice-face:nth-child(2) { transform: rotateY(180deg) translateZ(38px); }
+    .dice-face:nth-child(3) { transform: rotateY(90deg) translateZ(38px); }
+    .dice-face:nth-child(4) { transform: rotateY(-90deg) translateZ(38px); }
+    .dice-face:nth-child(5) { transform: rotateX(90deg) translateZ(38px); }
+    .dice-face:nth-child(6) { transform: rotateX(-90deg) translateZ(38px); }
+
+    .dice-pips {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      grid-template-rows: repeat(3,1fr);
+      gap: 3px;
+    }
+
+    .dice-pip {
+      width: 9px;
+      height: 9px;
+      align-self: center;
+      justify-self: center;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .dice-trigger {
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .dice-trigger:disabled {
+      cursor: wait;
+      opacity: .75;
+    }
+
+    .dice-caption {
+      margin: 0 !important;
+      text-align: center;
+      font-size: 11px !important;
+    }
+
+    .surprise-result { text-align: center; }
+    .surprise-actions { justify-content: center; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dice-cube { transition: none; }
+    }
+
     /* BOTTOM APP NAVIGATION */
 
     .bottom {
@@ -448,7 +535,8 @@
     }
 
     /* WELCOME AND PANELS */
-        .overlay {
+
+    .overlay {
       position: fixed;
       z-index: 30;
       inset: 0;
@@ -724,7 +812,7 @@
         >
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="3"/>
-            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l-1.9 1.9A1.7 1.7 0 0 0 16 18.4l-.9.4a1.7 1.7 0 0 0-1-1.55V21h-2.7v-.65a1.7 1.7 0 0 0-1-1.55l-.9-.4a1.7 1.7 0 0 0-1.87.34l-1.9-1.9A1.7 1.7 0 0 0 6.1 15l-.4-.9a1.7 1.7 0 0 0-1.55-1H3.5v-2.7h.65a1.7 1.7 0 0 0 1.55-1l.4-.9a1.7 1.7 0 0 0-.34-1.87l1.9-1.9A1.7 1.7 0 0 0 9.5 5.1l.9-.4a1.7 1.7 0 0 0 1-1.55V2.5h2.7v.65a1.7 1.7 0 0 0 1 1.55l.9.4a1.7 1.7 0 0 0 1.87-.34l1.9 1.9A1.7 1.7 0 0 0 19.4 8.5l.4.9a1.7 1.7 0 0 0 1.55 1H22v2.7h-.65a1.7 1.7 0 0 0-1.55 1z"/>
+            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l-1.9 1.9A1.7 1.7 0 0 0 16 18.4l-.9.4a1.7 1.7 0 0 0-1-1.55V21h-2.7v-.65a1.7 1.7 0 0 0-1-1.55l-.9-.4a1.7 1.7 0 0 0-1.87.34l1.9-1.9A1.7 1.7 0 0 0 9.5 5.1l.9-.4a1.7 1.7 0 0 0 1-1.55V2.5h2.7v.65a1.7 1.7 0 0 0 1 1.55l.9.4a1.7 1.7 0 0 0 1.87-.34l1.9 1.9A1.7 1.7 0 0 0 19.4 8.5l.4.9a1.7 1.7 0 0 0 1.55 1H22v2.7h-.65a1.7 1.7 0 0 0-1.55 1z"/>
           </svg>
         </button>
 
@@ -871,14 +959,89 @@
       const WEB_LANGUAGE_KEY = 'moveandtry_language';
       const SESSION_KEY = 'moveandtry_public_app_session';
 
-      // Only published, known activity destinations. Add new entries when published.
-      const SURPRISE_ACTIVITIES = [
-        { hr: 'Trčanje', en: 'Running', slug: 'running.html' },
-        { hr: 'Pole dance', en: 'Pole dance', slug: 'pole-dance.html' },
-        { hr: 'Izrada prirodnih parfema', en: 'Natural perfume making', slug: 'natural-perfume-making.html' }
-      ];
+      // Public catalogue is maintained in /data/activities.json.
+      let surpriseActivities = [];
+      let lastSurpriseId = null;
+      let diceBusy = false;
+      let diceTurns = 0;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-      let lastSurpriseSlug = null;
+      async function loadSurpriseActivities() {
+        try {
+          const response = await fetch('/data/activities.json', { cache: 'no-cache' });
+          if (!response.ok) throw new Error('Catalogue HTTP ' + response.status);
+          const data = await response.json();
+          if (!data || !Array.isArray(data.activities)) throw new Error('Invalid catalogue');
+          surpriseActivities = data.activities.filter(item =>
+            item.published === true && item.includeInSurprise === true &&
+            item.id && item.name && item.name.hr && item.name.en &&
+            item.url && /^\/hr\/[a-z0-9-]+\.html$/.test(item.url.hr) &&
+            /^\/[a-z0-9-]+\.html$/.test(item.url.en)
+          );
+        } catch (error) {
+          console.warn('MOVE&TRY activity catalogue:', error);
+          surpriseActivities = [];
+        }
+        const pick = document.getElementById('surprise-pick');
+        if (pick) pick.disabled = !surpriseActivities.length;
+        const note = document.getElementById('dice-caption');
+        if (note) note.textContent = surpriseActivities.length
+          ? translations().diceReady
+          : translations().diceUnavailable;
+      }
+
+      function diceFaces() {
+        const layouts = [
+          [5], [1,9], [1,5,9], [1,3,7,9], [1,3,5,7,9], [1,3,4,6,7,9]
+        ];
+        return layouts.map((positions, index) => `
+          <div class="dice-face" aria-hidden="true"><div class="dice-pips">
+            ${positions.map(position => `<i class="dice-pip" style="grid-area:${Math.ceil(position/3)} / ${((position-1)%3)+1}"></i>`).join('')}
+          </div></div>`).join('');
+      }
+
+      function rollDice() {
+        if (diceBusy || !surpriseActivities.length) return;
+        const choices = surpriseActivities.filter(item => item.id !== lastSurpriseId);
+        const pool = choices.length ? choices : surpriseActivities;
+        const picked = pool[Math.floor(Math.random() * pool.length)];
+        lastSurpriseId = picked.id;
+        diceBusy = true;
+        const button = document.getElementById('surprise-pick');
+        const cube = document.getElementById('dice-cube');
+        const result = document.getElementById('surprise-result');
+        if (!button || !cube || !result) { diceBusy = false; return; }
+        button.disabled = true;
+        result.hidden = true;
+        const t = translations();
+        document.getElementById('dice-caption').textContent = t.diceRolling;
+        diceTurns += 1;
+        const face = Math.floor(Math.random() * 6);
+        const positions = [[0,0],[0,180],[0,-90],[0,90],[-90,0],[90,0]];
+        const [x,y] = positions[face];
+        cube.style.transform = `rotateX(${x + diceTurns * 720}deg) rotateY(${y + diceTurns * 720}deg)`;
+        window.setTimeout(() => {
+          // Avoid writing into a view that has been replaced while the die was spinning.
+          if (!cube.isConnected) { diceBusy = false; return; }
+          const now = translations();
+          const language = currentLanguage();
+          const link = document.createElement('a');
+          link.className = 'text-link';
+          link.href = picked.url[language];
+          link.textContent = now.surpriseOpen;
+          const name = document.createElement('strong');
+          name.textContent = picked.name[language];
+          const actions = document.createElement('div');
+          actions.className = 'surprise-actions';
+          actions.appendChild(link);
+          result.replaceChildren(name, actions);
+          result.hidden = false;
+          button.textContent = now.surpriseAgain;
+          button.disabled = false;
+          document.getElementById('dice-caption').textContent = now.diceReady;
+          diceBusy = false;
+        }, reducedMotion.matches ? 40 : 1400);
+      }
 
       const CATEGORIES = [
         ['move', 'MOVE', 'category-move.webp'],
@@ -890,6 +1053,7 @@
       ];
 
       const T = {
+
         hr: {
           intro: 'Tvoja sljedeća priča počinje znatiželjom.',
           sub: 'Istraži aktivnosti, pročitaj stvarna iskustva i pronađi nešto novo što želiš isprobati.',
@@ -914,7 +1078,10 @@
           surpriseTitle: 'Iznenadi me',
           surpriseText: 'Ne znaš što bi isprobala? Prepusti izbor slučaju.',
           surpriseButton: 'IZNENADI ME →',
-          surpriseAgain: 'Pokušaj ponovno',
+          surpriseAgain: 'BACI PONOVNO',
+          diceReady: 'Baci kockicu i otkrij svoju sljedeću aktivnost.',
+          diceRolling: 'Kockica se baca…',
+          diceUnavailable: 'Aktivnosti trenutačno nisu dostupne. Pokušaj ponovno kasnije.',
           surpriseOpen: 'POGLEDAJ AKTIVNOST →',
           close: 'Zatvori'
         },
@@ -927,7 +1094,7 @@
           explore: 'Explore',
           home: 'Home',
           where: 'Where to Try',
-                    journal: 'Journal',
+          journal: 'Journal',
           saved: 'Saved',
           latest: 'FOR INSPIRATION',
           journalText: 'Stories, ideas and experiences.',
@@ -943,7 +1110,10 @@
           surpriseTitle: 'Surprise me',
           surpriseText: 'Not sure what to try? Let curiosity choose.',
           surpriseButton: 'SURPRISE ME →',
-          surpriseAgain: 'Try again',
+          surpriseAgain: 'ROLL AGAIN',
+          diceReady: 'Roll the dice and discover your next activity.',
+          diceRolling: 'Rolling the dice…',
+          diceUnavailable: 'Activities are temporarily unavailable. Please try again later.',
           surpriseOpen: 'EXPLORE ACTIVITY →',
           close: 'Close'
         }
@@ -1147,7 +1317,13 @@
                 <div class="eyebrow">MOVE&TRY</div>
                 <h2>${t.surpriseTitle}</h2>
                 <p>${t.surpriseText}</p>
-                <button type="button" class="surprise-button" id="surprise-pick">${t.surpriseButton}</button>
+                <div class="dice-area">
+                  <div class="dice-stage" role="img" aria-label="${t.surpriseTitle}">
+                    <div class="dice-cube" id="dice-cube">${diceFaces()}</div>
+                  </div>
+                  <button type="button" class="surprise-button dice-trigger" id="surprise-pick" ${surpriseActivities.length ? '' : 'disabled'}>${t.surpriseButton}</button>
+                  <p class="dice-caption" id="dice-caption">${surpriseActivities.length ? t.diceReady : t.diceUnavailable}</p>
+                </div>
                 <div class="surprise-result" id="surprise-result" hidden aria-live="polite"></div>
               </div>
 
@@ -1314,24 +1490,9 @@
       });
 
       view.addEventListener('click', event => {
-        const surpriseButton = event.target.closest('#surprise-pick, #surprise-again');
+        const surpriseButton = event.target.closest('#surprise-pick');
         if (surpriseButton) {
-          const choices = SURPRISE_ACTIVITIES.filter(item =>
-            item.slug !== lastSurpriseSlug
-          );
-          const pool = choices.length ? choices : SURPRISE_ACTIVITIES;
-          const picked = pool[Math.floor(Math.random() * pool.length)];
-          lastSurpriseSlug = picked.slug;
-          const t = translations();
-          const result = document.getElementById('surprise-result');
-          result.hidden = false;
-          result.innerHTML = `
-            <strong>${picked[currentLanguage()]}</strong>
-            <div class="surprise-actions">
-              <a class="text-link" href="${prefix()}${picked.slug}">${t.surpriseOpen}</a>
-              <button type="button" class="surprise-button" id="surprise-again">${t.surpriseAgain}</button>
-            </div>
-          `;
+          rollDice();
           return;
         }
 
@@ -1369,6 +1530,7 @@
       }
 
       render();
+      loadSurpriseActivities();
 
       if ('serviceWorker' in navigator && window.isSecureContext) {
         window.addEventListener('load', () => {
