@@ -1,0 +1,90 @@
+
+{
+  "version": 1,
+  "activities": [
+    {
+      "id": "running",
+      "category": "move",
+      "name": {
+        "hr": "Trčanje",
+        "en": "Running"
+      },
+      "url": {
+        "hr": "/hr/running.html",
+        "en": "/running.html"
+      },
+      "published": true,
+      "includeInSurprise": true
+    },
+    {
+      "id": "pole-dance",
+      "category": "move",
+      "name": {
+        "hr": "Pole dance",
+        "en": "Pole dance"
+      },
+      "url": {
+        "hr": "/hr/pole-dance.html",
+        "en": "/pole-dance.html"
+      },
+      "published": true,
+      "includeInSurprise": true
+    },
+    {
+      "id": "horse-riding",
+      "category": "move",
+      "name": {
+        "hr": "Jahanje",
+        "en": "Horse riding"
+      },
+      "url": {
+        "hr": "/hr/horse-riding.html",
+        "en": "/horse-riding.html"
+      },
+      "published": true,
+      "includeInSurprise": true
+    },
+    {
+      "id": "natural-perfume-making",
+      "category": "create",
+      "name": {
+        "hr": "Izrada prirodnih parfema",
+        "en": "Natural perfume making"
+      },
+      "url": {
+        "hr": "/hr/natural-perfume-making.html",
+        "en": "/natural-perfume-making.html"
+      },
+      "published": true,
+      "includeInSurprise": true
+    },
+    {
+      "id": "mediation",
+      "category": "learn",
+      "name": {
+        "hr": "Medijacija",
+        "en": "Mediation"
+      },
+      "url": {
+        "hr": "/hr/mediation.html",
+        "en": "/mediation.html"
+      },
+      "published": true,
+      "includeInSurprise": true
+    },
+    {
+      "id": "pottery",
+      "category": "create",
+      "name": {
+        "hr": "Lončarstvo",
+        "en": "Pottery"
+      },
+      "url": {
+        "hr": "/hr/pottery.html",
+        "en": "/pottery.html"
+      },
+      "published": true,
+      "includeInSurprise": false
+    }
+  ]
+}
