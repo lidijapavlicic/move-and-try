@@ -660,6 +660,32 @@
       line-height: 1.7;
     }
 
+    /* PUSH NOTIFICATIONS */
+
+    .push-control {
+      padding: 16px 0 4px;
+      border-top: 1px solid var(--line);
+    }
+
+    .push-control button {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      background: var(--green);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .push-control button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .push-control p {
+      margin: 12px 0;
+    }
+
     .empty-notifications {
       padding: 27px 12px 20px;
       text-align: center;
@@ -812,9 +838,7 @@
         >
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="3"/>
-            
-<path d="M19 13.5a7.5 7.5 0 0 0 0-3l2-1.5-2-3.5-2.3.9a7.5 7.5 0 0 0-2.6-1.5L13.7 2h-4l-.4 2.9a7.5 7.5 0 0 0-2.6 1.5l-2.3-.9-2 3.5 2 1.5a7.5 7.5 0 0 0 0 3l-2 1.5 2 3.5 2.3-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.9h4l.4-2.9a7.5 7.5 0 0 0 2.6-1.5l2.3.9 2-3.5z"/>
-
+            <path d="M19 13.5a7.5 7.5 0 0 0 0-3l2-1.5-2-3.5-2.3.9a7.5 7.5 0 0 0-2.6-1.5L13.7 2h-4l-.4 2.9a7.5 7.5 0 0 0-2.6 1.5l2.3.9 2-3.5 2 1.5a7.5 7.5 0 0 0 0 3l-2 1.5 2 3.5 2.3-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.9h4l.4-2.9a7.5 7.5 0 0 0 2.6-1.5l2.3.9 2-3.5z"/>
           </svg>
         </button>
 
@@ -891,6 +915,11 @@
           data-close-panel
           aria-label="Zatvori"
         >×</button>
+      </div>
+
+      <div class="push-control">
+        <button type="button" id="push-toggle" hidden></button>
+        <p id="push-status" role="status" aria-live="polite"></p>
       </div>
 
       <div class="empty-notifications">
@@ -1074,6 +1103,14 @@
           continue: 'NASTAVI →',
           notifications: 'Obavijesti',
           noNotifications: 'Još nema obavijesti.',
+          pushEnable: 'UKLJUČI OBAVIJESTI',
+          pushDisable: 'ISKLJUČI OBAVIJESTI',
+          pushEnabled: 'Push obavijesti su uključene.',
+          pushDisabled: 'Push obavijesti su isključene.',
+          pushDenied: 'Obavijesti su blokirane u postavkama preglednika.',
+          pushUnsupported: 'Ovaj preglednik ili način otvaranja aplikacije ne podržava push obavijesti.',
+          pushError: 'Nije uspjelo. Pokušaj ponovno.',
+          pushBusy: 'MOLIMO PRIČEKAJ…',
           settings: 'Postavke',
           languageLabel: 'Jezik aplikacije',
           settingsNote: 'Jezik možeš promijeniti u bilo kojem trenutku.',
@@ -1106,6 +1143,14 @@
           continue: 'CONTINUE →',
           notifications: 'Notifications',
           noNotifications: 'No notifications yet.',
+          pushEnable: 'ENABLE NOTIFICATIONS',
+          pushDisable: 'DISABLE NOTIFICATIONS',
+          pushEnabled: 'Push notifications are enabled.',
+          pushDisabled: 'Push notifications are disabled.',
+          pushDenied: 'Notifications are blocked in browser settings.',
+          pushUnsupported: 'Push notifications are not supported in this browser or app mode.',
+          pushError: 'Something went wrong. Please try again.',
+          pushBusy: 'PLEASE WAIT…',
           settings: 'Settings',
           languageLabel: 'App language',
           settingsNote: 'You can change the language at any time.',
@@ -1145,6 +1190,135 @@
           : 'home';
 
       let lastPanelTrigger = null;
+      const PUSH_BASE = 'https://pdyngeaykfpybeafjtpw.supabase.co/functions/v1/';
+      const PUSH_TOKEN_KEY = 'moveandtry_app_push_device_token';
+
+      const pushToggle = document.getElementById('push-toggle');
+      const pushStatus = document.getElementById('push-status');
+      let pushBusy = false;
+      let pushActive = false;
+      let pushMessage = null;
+
+      function pushSupported() {
+        return window.isSecureContext && 'serviceWorker' in navigator &&
+          'PushManager' in window && 'Notification' in window &&
+          !!window.crypto?.getRandomValues;
+      }
+
+      function setPushUI() {
+        const t = translations();
+        pushToggle.hidden = !pushSupported() || Notification.permission === 'denied';
+        pushToggle.disabled = pushBusy;
+        pushToggle.textContent = pushBusy ? t.pushBusy :
+          pushActive ? t.pushDisable : t.pushEnable;
+        pushStatus.textContent = pushMessage ? t[pushMessage] :
+          !pushSupported() ? t.pushUnsupported :
+          Notification.permission === 'denied' ? t.pushDenied :
+          pushActive ? t.pushEnabled : t.pushDisabled;
+      }
+
+      function getDeviceToken() {
+        let token = localStorage.getItem(PUSH_TOKEN_KEY);
+        if (!/^[a-f0-9]{64}$/.test(token || '')) {
+          const bytes = crypto.getRandomValues(new Uint8Array(32));
+          token = Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+          localStorage.setItem(PUSH_TOKEN_KEY, token);
+        }
+        return token;
+      }
+
+      function urlBase64ToUint8Array(base64) {
+        const padded = base64.replace(/-/g, '+').replace(/_/g, '/');
+        const binary = atob(padded + '='.repeat((4 - padded.length % 4) % 4));
+        return Uint8Array.from(binary, c => c.charCodeAt(0));
+      }
+
+      async function pushRequest(action, subscription) {
+        const response = await fetch(PUSH_BASE + 'app-push-subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action, deviceToken: getDeviceToken(), subscription })
+        });
+        if (!response.ok) throw new Error('Push subscription HTTP ' + response.status);
+      }
+
+      async function refreshPushStatus() {
+        if (!pushSupported()) { setPushUI(); return; }
+        try {
+          const registration = await navigator.serviceWorker.ready;
+          const subscription = await registration.pushManager.getSubscription();
+          pushActive = !!subscription && Notification.permission === 'granted';
+          pushMessage = null;
+        } catch (_) {
+          pushMessage = 'pushError';
+        }
+        setPushUI();
+      }
+
+      async function togglePush() {
+        if (pushBusy || !pushSupported()) return;
+        pushBusy = true;
+        pushMessage = null;
+        setPushUI();
+
+        try {
+          const registration = await navigator.serviceWorker.ready;
+          let subscription = await registration.pushManager.getSubscription();
+
+          if (subscription) {
+            // Remove the server record first, while the endpoint is still available.
+            await pushRequest('unsubscribe', subscription.toJSON());
+            const removed = await subscription.unsubscribe();
+            if (!removed) throw new Error('Browser unsubscribe failed');
+            pushActive = false;
+          } else {
+            const permission = await Notification.requestPermission();
+
+            if (permission !== 'granted') {
+              pushMessage = permission === 'denied' ? 'pushDenied' : 'pushDisabled';
+              return;
+            }
+
+            const configResponse = await fetch(
+              PUSH_BASE + 'app-push-config',
+              { cache: 'no-store' }
+            );
+
+            if (!configResponse.ok) {
+              throw new Error('Push config unavailable');
+            }
+
+            const config = await configResponse.json();
+
+            if (typeof config.publicKey !== 'string') {
+              throw new Error('Missing public key');
+            }
+
+            subscription = await registration.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: urlBase64ToUint8Array(config.publicKey)
+            });
+
+            try {
+              await pushRequest('subscribe', subscription.toJSON());
+            } catch (error) {
+              await subscription.unsubscribe().catch(() => {});
+              throw error;
+            }
+
+            pushActive = true;
+          }
+        } catch (error) {
+          console.warn('MOVE&TRY push:', error);
+          pushMessage = 'pushError';
+        } finally {
+          pushBusy = false;
+          setPushUI();
+        }
+      }
+
+      pushToggle.addEventListener('click', togglePush);
+
 
       // Legacy /app/?tab=journal links should also skip the intermediate screen.
       if (requestedTab === 'journal' && lang) {
@@ -1259,6 +1433,9 @@
             isCurrent ? 'page' : 'false'
           );
         });
+
+        // Refresh push controls when the app language changes.
+        setPushUI();
       }
 
       function render() {
@@ -1319,14 +1496,40 @@
                 <div class="eyebrow">MOVE&TRY</div>
                 <h2>${t.surpriseTitle}</h2>
                 <p>${t.surpriseText}</p>
+
                 <div class="dice-area">
-                  <div class="dice-stage" role="img" aria-label="${t.surpriseTitle}">
-                    <div class="dice-cube" id="dice-cube">${diceFaces()}</div>
+                  <div
+                    class="dice-stage"
+                    role="img"
+                    aria-label="${t.surpriseTitle}"
+                  >
+                    <div class="dice-cube" id="dice-cube">
+                      ${diceFaces()}
+                    </div>
                   </div>
-                  <button type="button" class="surprise-button dice-trigger" id="surprise-pick" ${surpriseActivities.length ? '' : 'disabled'}>${t.surpriseButton}</button>
-                  <p class="dice-caption" id="dice-caption">${surpriseActivities.length ? t.diceReady : t.diceUnavailable}</p>
+
+                  <button
+                    type="button"
+                    class="surprise-button dice-trigger"
+                    id="surprise-pick"
+                    ${surpriseActivities.length ? '' : 'disabled'}
+                  >
+                    ${t.surpriseButton}
+                  </button>
+
+                  <p class="dice-caption" id="dice-caption">
+                    ${surpriseActivities.length
+                      ? t.diceReady
+                      : t.diceUnavailable}
+                  </p>
                 </div>
-                <div class="surprise-result" id="surprise-result" hidden aria-live="polite"></div>
+
+                <div
+                  class="surprise-result"
+                  id="surprise-result"
+                  hidden
+                  aria-live="polite"
+                ></div>
               </div>
 
               <div class="categories">
@@ -1385,7 +1588,13 @@
         document.body.classList.add('dialog-open');
 
         panel.querySelector('.panel').focus();
+
+        if (id === 'notifications-panel') {
+          refreshPushStatus();
+        }
       }
+
+      // FIRST-LAUNCH LANGUAGE SELECTION
 
       document.querySelectorAll('[data-choice]').forEach(button => {
         button.addEventListener('click', () => {
@@ -1413,12 +1622,16 @@
         syncLanguage();
 
         welcome.hidden = true;
+
         if (requestedTab === 'journal') {
           navigateTo(prefix() + 'journal.html');
           return;
         }
+
         render();
       });
+
+      // SETTINGS — LANGUAGE
 
       document.querySelectorAll('[data-setting-language]').forEach(button => {
         button.addEventListener('click', () => {
@@ -1433,6 +1646,8 @@
           render();
         });
       });
+
+      // HEADER PANELS
 
       document.getElementById('notifications-button')
         .addEventListener('click', event => {
@@ -1459,6 +1674,8 @@
           closePanels();
         }
       });
+
+      // BOTTOM NAVIGATION
 
       document.querySelectorAll('[data-tab]').forEach(button => {
         button.addEventListener('click', () => {
@@ -1491,8 +1708,11 @@
         });
       });
 
+      // EXPLORE LINKS AND SURPRISE ME
+
       view.addEventListener('click', event => {
         const surpriseButton = event.target.closest('#surprise-pick');
+
         if (surpriseButton) {
           rollDice();
           return;
@@ -1525,6 +1745,8 @@
         navigateTo(url.href);
       });
 
+      // INITIALIZE APPLICATION
+
       if (!lang) {
         showLanguageChoice();
       } else {
@@ -1534,15 +1756,20 @@
       render();
       loadSurpriseActivities();
 
+      // REGISTER SERVICE WORKER
+
       if ('serviceWorker' in navigator && window.isSecureContext) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/app/sw.js', {
             scope: '/app/'
+          }).then(() => {
+            refreshPushStatus();
           }).catch(error => {
             console.warn('MOVE&TRY app service worker:', error);
           });
         });
       }
+
     })();
   </script>
 
