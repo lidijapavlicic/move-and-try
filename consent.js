@@ -489,6 +489,19 @@
     }
   }
 
+  function addFooterCopyright() {
+    const footer = document.querySelector('.site-footer');
+    if (!footer || footer.querySelector('.mt-footer-copyright')) return;
+
+    const year = new Date().getFullYear();
+    const text = language === 'hr'
+      ? `© ${year} MOVE&TRY. Sva prava pridržana.`
+      : `© ${year} MOVE&TRY. All rights reserved.`;
+
+    const copyright = createElement('p', 'mt-footer-copyright', text);
+    footer.appendChild(copyright);
+  }
+
   function initialize() {
     const stored = readConsent();
 
@@ -496,6 +509,7 @@
     document.body.appendChild(consentPanel);
 
     addFooterSettings();
+    addFooterCopyright();
 
     if (stored) {
       applyConsent(stored.analytics);
