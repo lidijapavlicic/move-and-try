@@ -10,7 +10,7 @@
  * Public push notifications only.
  */
 
-const PUBLIC_CACHE = 'moveandtry-public-v1';
+const PUBLIC_CACHE = 'moveandtry-public-v2';
 
 const OFFLINE_URL = '/offline.html';
 

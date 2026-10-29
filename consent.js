@@ -461,15 +461,7 @@
       '.site-footer'
     );
 
-    if (!footer) return;
-
-    if (
-      footer.querySelector(
-        '.mt-consent-footer-button'
-      )
-    ) {
-      return;
-    }
+    if (document.querySelector('.mt-consent-footer-button')) return;
 
     const wrapper = createElement(
       'div',
@@ -489,7 +481,12 @@
     });
 
     wrapper.appendChild(button);
-    footer.appendChild(wrapper);
+    if (footer) {
+      footer.appendChild(wrapper);
+    } else {
+      wrapper.classList.add('mt-consent-floating-link');
+      document.body.appendChild(wrapper);
+    }
   }
 
   function initialize() {

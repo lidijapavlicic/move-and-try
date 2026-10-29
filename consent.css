@@ -209,3 +209,22 @@
     transition: none;
   }
 }
+
+/* Accessible privacy settings on pages without .site-footer */
+.mt-consent-floating-link {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 99998;
+  background: #f7f6f2;
+  color: #1f2a18;
+  border: 1px solid #d5d5d0;
+  padding: 9px 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.12);
+}
+.mt-consent-floating-link .mt-consent-footer-button {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
