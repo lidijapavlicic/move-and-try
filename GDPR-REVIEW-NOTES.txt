@@ -1,0 +1,99 @@
+MOVE&TRY — GDPR technical review, 2026-10-29
+
+CHANGED
+- Removed unconditional Google Analytics initialization from 79 HTML pages.
+- Added consent.css and consent.js to each of those pages.
+- Created four policy pages (HR/EN privacy and cookie policies).
+- Bumped public SW cache from v1 to v2.
+- Existing editor/index.html and 404.html were not modified.
+
+BEFORE PUBLICATION
+- Confirm controller contact/identity information and any legally required address details.
+- Define specific retention schedules for Supabase, Formspree and push subscriptions.
+- Confirm processors, transfers and legal notices with a qualified reviewer.
+- Test consent in fresh/incognito browser: reject = no GA requests or _ga cookies; accept = GA works; revoke = no new tracking; reload and language switching preserve choice.
+- Check all pages, including /app/, on mobile and desktop; test service-worker updates.
+- Check Formspree submission notices and authorization before publishing submitted experiences.
+- Review RLS, API grants and backend functions separately (not certified by this patch).
+- No deployment has been performed.
+
+CHANGED HTML FILES
+dare.html
+try-pole-dance.html
+write-for-the-journal.html
+explore.html
+care.html
+where-to-try.html
+index.html
+be-part-of-where-to-try.html
+natural-perfume-making-where-to-try.html
+from-curiosity-to-your-own-scent.html
+horse-riding.html
+pottery.html
+share-experience.html
+move.html
+how-to-contribute.html
+natural-perfume-making.html
+where-do-adults-meet.html
+what-if-i-try.html
+try-running.html
+create.html
+mediation-guide.html
+learn.html
+mediation.html
+running-lidija.html
+behind-move-and-try.html
+natural-perfume-making-experience-lidija.html
+horse-riding-experience-kristina.html
+journal.html
+why-adults-find-it-harder-to-try-new-things.html
+pole-dance.html
+running.html
+natural-perfume-making-guide.html
+hr/dare.html
+hr/try-pole-dance.html
+hr/write-for-the-journal.html
+hr/try-horse-riding.html
+hr/explore.html
+hr/care.html
+hr/where-to-try.html
+hr/index.html
+hr/be-part-of-where-to-try.html
+hr/natural-perfume-making-where-to-try.html
+hr/from-curiosity-to-your-own-scent.html
+hr/kayaking.html
+hr/horse-riding.html
+hr/kinesitherapy.html
+hr/pottery.html
+hr/crossfit.html
+hr/share-experience.html
+hr/move.html
+hr/how-to-contribute.html
+hr/natural-perfume-making.html
+hr/where-do-adults-meet.html
+hr/what-if-i-try.html
+hr/try-perfume-making.html
+hr/try-running.html
+hr/child-adolescent-psychotherapy.html
+hr/create.html
+hr/mediation-guide.html
+hr/learn.html
+hr/mediation.html
+hr/running-lidija.html
+hr/behind-move-and-try.html
+hr/natural-perfume-making-experience-lidija.html
+hr/horse-riding-experience-kristina.html
+hr/journal.html
+hr/why-adults-find-it-harder-to-try-new-things.html
+hr/pole-dance.html
+hr/running.html
+hr/womens-boxing.html
+hr/calligraphy.html
+hr/natural-perfume-making-guide.html
+app/index.html
+templates/experts-template.html
+templates/expert-template.html
+templates/experiences-template.html
+templates/experience-template.html
+templates/try-template.html
+templates/topic-template.html
