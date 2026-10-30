@@ -1,4 +1,3 @@
-
 const SUPABASE_URL = "https://pdyngeaykfpybeafjtpw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK";
 
@@ -838,51 +837,50 @@ const mobileMenu =
 
 if (menuToggle && mobileMenu) {
 
+    if (!mobileMenu.id) {
+        mobileMenu.id = "move-try-mobile-menu";
+    }
+    menuToggle.setAttribute("aria-controls", mobileMenu.id);
+    menuToggle.setAttribute("aria-expanded", "false");
+
+    function closeMobileMenu(restoreFocus = false) {
+        if (!mobileMenu.classList.contains("is-open")) return;
+        mobileMenu.classList.remove("is-open");
+        menuToggle.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+        if (restoreFocus) menuToggle.focus();
+    }
+
     menuToggle.addEventListener("click", () => {
-
-        const isOpen =
-            mobileMenu.classList.toggle("is-open");
-
-        menuToggle.classList.toggle(
-            "is-open",
-            isOpen
-        );
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            isOpen
-        );
-
-        document.body.style.overflow =
-            isOpen ? "hidden" : "";
-
+        const isOpen = mobileMenu.classList.toggle("is-open");
+        menuToggle.classList.toggle("is-open", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        document.body.style.overflow = isOpen ? "hidden" : "";
+        if (isOpen) {
+            const firstLink = mobileMenu.querySelector("a, button");
+            if (firstLink) firstLink.focus();
+        }
     });
 
-
-    /* CLOSE MENU AFTER CLICKING A LINK */
-
-    const mobileMenuLinks =
-        mobileMenu.querySelectorAll("a");
-
-    mobileMenuLinks.forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            mobileMenu.classList.remove("is-open");
-
-            menuToggle.classList.remove("is-open");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            document.body.style.overflow = "";
-
-        });
-
+    mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => closeMobileMenu());
     });
 
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && mobileMenu.classList.contains("is-open")) {
+            event.preventDefault();
+            closeMobileMenu(true);
+        }
+    });
+
+    document.addEventListener("click", event => {
+        if (mobileMenu.classList.contains("is-open") &&
+            !mobileMenu.contains(event.target) &&
+            !menuToggle.contains(event.target)) {
+            closeMobileMenu();
+        }
+    });
 }
 
 
