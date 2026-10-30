@@ -959,6 +959,20 @@
       line-height: 1.7;
       padding: 20px 0;
     }
+
+    /* Journal cards: editorial layout, original website taxonomy */
+    @media (min-width: 720px) {
+      .app-journal-post {
+        display: grid;
+        grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+        column-gap: 26px;
+        align-items: center;
+      }
+      .app-journal-post img, .app-journal-post .app-journal-cover {
+        grid-row: 1;
+        margin-bottom: 0;
+      }
+    }
   </style>
 
   <link rel="stylesheet" href="/consent.css">
@@ -1421,7 +1435,7 @@
           <section class="section journal-section">
             <div class="eyebrow">MOVE&TRY STORIES</div>
             <h2>${escapeHTML(t.journalTitle)}</h2>
-            <a class="feature journal-entry-button" href="${language === 'hr' ? '/hr/journal.html' : '/journal.html'}">
+            <a class="feature journal-entry-button" href="#journal" data-open-tab="journal">
               <span><strong>${escapeHTML(t.journalDesc)}</strong>
               <small>${escapeHTML(t.journalOpen)}</small></span>
               <span aria-hidden="true">↗</span>
@@ -1489,8 +1503,8 @@
           </section>`;
         }
         const labels = language === 'hr'
-          ? { all: 'Sve', editorial: 'Editorial', column: 'Kolumne', interview: 'Intervjui', experience: 'Iskustva' }
-          : { all: 'All', editorial: 'Editorial', column: 'Columns', interview: 'Interviews', experience: 'Experiences' };
+          ? { all: 'Sve', editorial: 'Urednički tekstovi', personal: 'Osobne kolumne', guest: 'Gostujuće priče', news: 'Novosti', inspiration: 'Inspiracija' }
+          : { all: 'All', editorial: 'Editorial', personal: 'Personal columns', guest: 'Guest stories', news: 'News', inspiration: 'Inspiration' };
         const filtered = journalFilter === 'all' ? journalPosts : journalPosts.filter(post => post.type === journalFilter);
         return `<section class="app-journal">
           <div class="eyebrow">MOVE&TRY</div>
@@ -1502,11 +1516,13 @@
           ${filtered.length ? filtered.map(post => `
             <a class="app-journal-post" href="${escapeHTML(post.url)}">
               ${post.image ? `<img src="${escapeHTML(post.image)}" alt="" loading="lazy">`
-                : `<div class="app-journal-cover"><small>THE JOURNAL</small><strong>${escapeHTML(post.title)}</strong></div>`}
-              <div class="app-journal-meta">${escapeHTML(post.category || 'THE JOURNAL')}</div>
-              <h2>${escapeHTML(post.title)}</h2>
-              <p>${escapeHTML(post.description || '')}</p>
-              <span class="app-journal-author">${escapeHTML(post.author || 'MOVE&TRY')}</span>
+                : `<div class="app-journal-cover"><small>THE JOURNAL.</small><strong>${escapeHTML(post.title)}</strong></div>`}
+              <div class="app-journal-copy">
+                <div class="app-journal-meta">${escapeHTML(post.category || 'THE JOURNAL')}</div>
+                <h2>${escapeHTML(post.title)}</h2>
+                <p>${escapeHTML(post.description || '')}</p>
+                <span class="app-journal-author">${escapeHTML(post.author || 'MOVE&TRY')}</span>
+              </div>
             </a>`).join('') : `<p class="app-journal-message">${language === 'hr' ? 'Još nema članaka u ovoj kategoriji.' : 'No articles in this category yet.'}</p>`}
         </section>`;
       }
@@ -1542,9 +1558,7 @@
               description: link.querySelector('.journal-post-description')?.textContent?.trim() || '',
               category,
               author: link.querySelector('.journal-post-author')?.textContent?.trim() || '',
-              type: kind === 'personal' ? 'column'
-                : kind === 'interview' ? 'interview'
-                : kind === 'experience' ? 'experience' : 'editorial'
+              type: ['editorial', 'personal', 'guest', 'news', 'inspiration'].includes(kind) ? kind : 'editorial'
             };
           }).filter(Boolean);
           if (requestId === journalRequest && requestedLanguage === language) journalPosts = posts;
@@ -1576,9 +1590,9 @@
       }
 
       function setTab(tab) {
-        if (tab === 'where' || tab === 'journal') {
-          const destination = tab === 'where' ? 'where-to-try.html' : 'journal.html';
-          window.location.assign((language === 'hr' ? '/hr/' : '/') + destination);
+        if (tab === 'where') {
+          const destination = 'where-to-try.html';
+          window.location.assign((language === 'hr' ? '/hr/' : '/') + destination + '?source=moveandtry-app');
           return;
         }
         activeTab = tab;
@@ -2183,7 +2197,7 @@
       navButtons.forEach(button => {
         button.addEventListener('click', () => {
           if (button.dataset.tab === 'where') {
-            window.location.assign(language === 'hr' ? '/hr/where-to-try.html' : '/where-to-try.html');
+            window.location.assign((language === 'hr' ? '/hr/where-to-try.html' : '/where-to-try.html') + '?source=moveandtry-app');
             return;
           }
           setTab(button.dataset.tab);
