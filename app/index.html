@@ -226,12 +226,12 @@
       line-height: 1.2;
     }
 
+    /* CATEGORY CARDS — matching the main MOVE&TRY website */
     .categories {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
-
     .category {
       position: relative;
       isolation: isolate;
@@ -239,48 +239,65 @@
       flex-direction: column;
       justify-content: flex-end;
       overflow: hidden;
-      min-height: 164px;
-      padding: 16px;
-      background-color: #e4e6e0;
-      background-position: center;
-      background-size: cover;
-      color: #fff;
+      min-height: 205px;
+      padding: 18px;
+      background: #ecece5;
+      color: var(--ink);
+      border: 1px solid rgba(40, 50, 36, .14);
+      text-decoration: none;
     }
-
-    /*
-      Nježniji fotografski prikaz:
-      svijetli sloj ublažava intenzitet fotografije,
-      donji gradijent čuva čitljivost teksta.
-    */
-
     .category::before {
       content: "";
       position: absolute;
       z-index: -1;
       inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(246,247,241,.34) 0%,
-        rgba(231,235,226,.18) 42%,
-        rgba(12,20,15,.67) 100%
-      );
+      background-image: var(--category-image);
+      background-size: cover;
+      background-position: right center;
+      background-repeat: no-repeat;
+      opacity: .30;
+      transition: opacity .35s ease, transform .35s ease;
     }
-
-    .category strong {
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: .055em;
-      line-height: 1.2;
+    .category::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(247,247,242,.84), rgba(247,247,242,.06) 80%);
     }
-
-    .category small {
-      margin-top: 7px;
-      font-size: 10px;
+    .category-number {
+      font-size: 11px;
+      letter-spacing: .14em;
       font-weight: 700;
-      opacity: .95;
+      margin-bottom: auto;
     }
-
-    .category:active { transform: scale(.99); }
+    .category strong {
+      display: block;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 400;
+      line-height: 1.12;
+    }
+    .category small {
+      display: block;
+      margin-top: 9px;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+    .category-action {
+      display: block;
+      margin-top: 17px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .09em;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .category:hover::before { opacity: .55; transform: scale(1.035); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .category::before { transition: none; }
+    }
 
     /* JOURNAL */
 
@@ -311,6 +328,16 @@
     }
 
     .feature > span:last-child { font-size: 23px; }
+
+    .journal-entry-button {
+      background: #202b1b;
+      color: #fff;
+      padding: 21px 20px;
+      border: 1px solid #202b1b;
+      margin-top: 12px;
+    }
+    .journal-entry-button strong { color: #fff; font-size: 15px; }
+    .journal-entry-button small { color: #e2e7db; font-size: 12px; }
 
     /* SECONDARY TABS */
 
@@ -743,7 +770,7 @@
       }
 
       .hero { min-height: 335px; }
-      .category { min-height: 200px; }
+      .category { min-height: 220px; }
     }
 
     @media (max-width: 360px) {
@@ -1319,12 +1346,17 @@
 
       function categoryCards() {
         const t = translations();
-        return `<div class="categories">${CATEGORY_DATA.map(category => `
+        const descriptions = language === 'hr'
+          ? ['Trči. Pleši. Penji se. Kreni.', 'Stvaraj. Slikaj. Oblikuj.', 'Uči. Pitaj. Otkrij.', 'Kreni drugim putem. Istraži.', 'Usudi se pokušati.', 'Zastani. Razgovaraj. Brini o sebi.']
+          : ['Run. Dance. Climb. Move.', 'Make. Paint. Create.', 'Learn. Ask. Discover.', 'Take a different path. Explore.', 'Dare to try.', 'Pause. Talk. Take care.'];
+        return `<div class="categories">${CATEGORY_DATA.map((category, index) => `
           <a class="category" href="${language === 'hr' ? category.hr : category.en}"
-             style="background-image:url('${category.image}')"
+             style="--category-image:url('${category.image}')"
              aria-label="${escapeHTML(t.openCategory)}: ${category.id}">
+            <span class="category-number">${String(index + 1).padStart(2, '0')}</span>
             <strong>${category.id}</strong>
-            <small>${escapeHTML(t[category.key])}</small>
+            <small>${escapeHTML(descriptions[index])}</small>
+            <span class="category-action">${language === 'hr' ? 'ISTRAŽI' : 'EXPLORE'} ${category.id} →</span>
           </a>`).join('')}</div>`;
       }
 
@@ -1389,7 +1421,7 @@
           <section class="section journal-section">
             <div class="eyebrow">MOVE&TRY STORIES</div>
             <h2>${escapeHTML(t.journalTitle)}</h2>
-            <a class="feature" href="${language === 'hr' ? '/hr/journal.html' : '/journal.html'}">
+            <a class="feature journal-entry-button" href="${language === 'hr' ? '/hr/journal.html' : '/journal.html'}">
               <span><strong>${escapeHTML(t.journalDesc)}</strong>
               <small>${escapeHTML(t.journalOpen)}</small></span>
               <span aria-hidden="true">↗</span>
