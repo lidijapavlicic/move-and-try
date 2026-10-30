@@ -485,7 +485,7 @@
       bottom: 0;
       left: 0;
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       align-items: stretch;
       padding:
         10px max(8px, env(safe-area-inset-right))
@@ -807,6 +807,21 @@
       cursor: wait;
     }
 
+    .surprise-activity-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-decoration: none;
+      min-height: 48px;
+      padding: 12px 20px;
+      background: var(--green);
+      color: #fff;
+      border: 1px solid var(--green);
+      border-radius: 8px;
+      font-weight: 800;
+    }
+
     /* THE JOURNAL — public HTML articles inside the app */
 
     .app-journal { padding: 30px 22px 70px; }
@@ -1017,7 +1032,7 @@
 
   </div>
 
-  <!-- FIVE-ITEM APP NAVIGATION -->
+  <!-- FOUR-ITEM APP NAVIGATION -->
 
   <nav class="bottom" aria-label="App navigation">
 
@@ -1043,14 +1058,6 @@
         <circle cx="12" cy="10" r="2.5"/>
       </svg>
       <span data-nav="where">Gdje probati</span>
-    </button>
-
-    <button type="button" data-tab="journal">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/>
-        <path d="M8 9h7M8 13h7"/>
-      </svg>
-      <span data-nav="journal">Journal</span>
     </button>
 
     <button type="button" data-tab="saved">
@@ -1220,10 +1227,10 @@
           categoryHint: 'Odaberi ono što te zanima.', journalTitle: 'The Journal',
           journalDesc: 'Priče, iskustva i ljudi iza novih početaka.', journalOpen: 'Otvori Journal',
           exploreTitle: 'Što želiš isprobati?', exploreDesc: 'Pronađi inspiraciju u šest MOVE&TRY kategorija.',
-          diceTitle: 'Surprise Me', diceDesc: 'Prepusti slučajnosti izbor svoje sljedeće aktivnosti.',
-          diceButton: 'BACi KOCKICU', diceBusy: 'KOCKICA SE VRTI…', diceReady: 'Pritisni gumb i otkrij aktivnost.',
+          diceTitle: 'Iznenadi me', diceDesc: 'Prepusti slučajnosti izbor svoje sljedeće aktivnosti.',
+          diceButton: 'BACI KOCKICU', diceBusy: 'KOCKICA SE VRTI…', diceReady: 'Pritisni gumb i otkrij aktivnost.',
           diceUnavailable: 'Trenutačno nema dostupnih aktivnosti za nasumičan odabir.',
-          diceResult: 'Tvoj prijedlog:', diceOpen: 'Pogledaj aktivnost', diceAgain: 'Pokušaj ponovno',
+          diceResult: 'Tvoj prijedlog:', diceOpen: 'Pogledaj aktivnost', diceAgain: 'PONOVNO BACI KOCKICU',
           whereTitle: 'Gdje probati?', whereDesc: 'Otkrij mjesta i ljude uz koje možeš napraviti prvi korak.',
           whereOpen: 'Istraži mogućnosti', savedTitle: 'Spremljeno',
           savedDesc: 'Tvoje spremljene aktivnosti i članci pojavit će se ovdje kada omogućimo spremanje sadržaja.',
@@ -1255,7 +1262,7 @@
           diceTitle: 'Surprise Me', diceDesc: 'Let chance choose your next activity.',
           diceButton: 'ROLL THE DICE', diceBusy: 'ROLLING…', diceReady: 'Roll the dice to discover an activity.',
           diceUnavailable: 'No published activities are currently available for a random pick.',
-          diceResult: 'Your suggestion:', diceOpen: 'View activity', diceAgain: 'Try again',
+          diceResult: 'Your suggestion:', diceOpen: 'View activity', diceAgain: 'ROLL AGAIN',
           whereTitle: 'Where to Try', whereDesc: 'Discover places and people who can help you take the first step.',
           whereOpen: 'Explore opportunities', savedTitle: 'Saved',
           savedDesc: 'Your saved activities and articles will appear here when saving content becomes available.',
@@ -1321,6 +1328,50 @@
           </a>`).join('')}</div>`;
       }
 
+      // Homepage messages: bilingual, rotating over the existing hero image.
+      const HERO_MESSAGES = {
+        hr: [
+          'A ŠTO AKO PROBAŠ?',
+          'KAD SI ZADNJI PUT NEŠTO NAPRAVIO PRVI PUT?',
+          'TKO KAŽE DA TO NIJE ZA TEBE?',
+          'ŠTO AKO TI SE SVIDI?',
+          'A ZAŠTO NE?',
+          'MOŽDA NISI TAKAV TIP. A MOŽDA JESI.',
+          'NE MORAŠ BITI DOBAR U TOME.',
+          'ŠTO AKO SE IZNENADIŠ?',
+          'IMAŠ LI HRABROSTI BITI POČETNIK?',
+          'NE ČEKAJ SAVRŠEN TRENUTAK.',
+          'JEDAN POKUŠAJ MOŽE PROMIJENITI SVE.',
+          'ZNATIŽELJA JE DOBAR POČETAK.'
+        ],
+        en: [
+          'WHAT IF YOU TRY?',
+          'WHEN WAS THE LAST TIME YOU DID SOMETHING FOR THE FIRST TIME?',
+          'WHO SAYS IT’S NOT FOR YOU?',
+          'WHAT IF YOU LOVE IT?',
+          'AND WHY NOT?',
+          'MAYBE IT’S NOT YOUR THING. OR MAYBE IT IS.',
+          'YOU DON’T HAVE TO BE GOOD AT IT.',
+          'WHAT IF YOU SURPRISE YOURSELF?',
+          'DO YOU DARE TO BE A BEGINNER?',
+          'DON’T WAIT FOR THE PERFECT MOMENT.',
+          'ONE TRY CAN CHANGE EVERYTHING.',
+          'CURIOSITY IS A GOOD PLACE TO START.'
+        ]
+      };
+      let heroMessageIndex = 0;
+      function heroMessage() {
+        return HERO_MESSAGES[language][heroMessageIndex % HERO_MESSAGES[language].length];
+      }
+      window.setInterval(() => {
+        if (document.hidden || activeTab !== 'home') return;
+        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+        const target = document.getElementById('hero-message');
+        if (!target) return;
+        heroMessageIndex = (heroMessageIndex + 1) % HERO_MESSAGES[language].length;
+        target.textContent = heroMessage();
+      }, 5500);
+
       function renderHome() {
         const t = translations();
         return `
@@ -1329,7 +1380,7 @@
             <h1>${escapeHTML(t.hello)}</h1>
             <p>${escapeHTML(t.intro)}</p>
           </section>
-          <div class="hero"><span>${escapeHTML(t.discover)}</span></div>
+          <div class="hero"><span id="hero-message" aria-live="off">${escapeHTML(heroMessage())}</span></div>
           <section class="section">
             <div class="eyebrow">MOVE · CREATE · LEARN · EXPLORE · DARE · CARE</div>
             <h2>${escapeHTML(t.categories)}</h2>
@@ -1338,7 +1389,7 @@
           <section class="section journal-section">
             <div class="eyebrow">MOVE&TRY STORIES</div>
             <h2>${escapeHTML(t.journalTitle)}</h2>
-            <a class="feature" href="#" data-open-tab="journal">
+            <a class="feature" href="${language === 'hr' ? '/hr/journal.html' : '/journal.html'}">
               <span><strong>${escapeHTML(t.journalDesc)}</strong>
               <small>${escapeHTML(t.journalOpen)}</small></span>
               <span aria-hidden="true">↗</span>
@@ -1493,6 +1544,11 @@
       }
 
       function setTab(tab) {
+        if (tab === 'where' || tab === 'journal') {
+          const destination = tab === 'where' ? 'where-to-try.html' : 'journal.html';
+          window.location.assign((language === 'hr' ? '/hr/' : '/') + destination);
+          return;
+        }
         activeTab = tab;
         render();
         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -1631,7 +1687,9 @@
 
       function renderPushCategories() {
         const t = translations();
-        const selected = storedPushCategories();
+        const selected = getStored(PUSH_CATEGORY_KEY) === null
+          ? [...PUSH_CATEGORIES]
+          : storedPushCategories();
 
         document.getElementById(
           'push-categories-title'
@@ -1810,9 +1868,9 @@
 
           if (!subscription) return;
 
-          const categories = storedPushCategories();
-
-          if (!categories.length) return;
+          const categories = getStored(PUSH_CATEGORY_KEY) === null
+            ? [...PUSH_CATEGORIES]
+            : storedPushCategories();
 
           await pushApi('app-push-subscribe', {
             method: 'POST',
@@ -1871,15 +1929,12 @@
               throw new Error('Browser unsubscribe failed');
             }
           } else {
-            const categories =
-              selectedPushCategories().length
-                ? selectedPushCategories()
-                : storedPushCategories();
-
-            if (!categories.length) {
-              status.textContent = t.pushSelect;
-              return;
-            }
+            // First activation: all categories are selected and saved by default.
+            // Re-enabling after a previous choice restores that choice, including [].
+            const previousSelection = getStored(PUSH_CATEGORY_KEY);
+            const categories = previousSelection === null
+              ? [...PUSH_CATEGORIES]
+              : storedPushCategories();
 
             const permission =
               await Notification.requestPermission();
@@ -1927,6 +1982,7 @@
               PUSH_CATEGORY_KEY,
               JSON.stringify(categories)
             );
+            renderPushCategories();
           }
         } catch (error) {
           console.error('Push toggle:', error);
@@ -1946,11 +2002,8 @@
           'push-status'
         );
 
-        if (!categories.length) {
-          status.textContent = t.pushSelect;
-          return;
-        }
-
+        // An empty selection is intentional: keep push enabled but opt out
+        // of all category notifications. Persist [] to the backend.
         pushBusy = true;
 
         const button = document.getElementById(
@@ -2063,20 +2116,15 @@
           </strong>
           <div class="surprise-actions">
             <a
-              class="text-link"
+              class="surprise-button surprise-activity-link"
               href="${escapeHTML(selected.url[language])}"
             >${escapeHTML(t.diceOpen)} →</a>
-            <button
-              class="surprise-button"
-              type="button"
-              id="dice-again"
-            >${escapeHTML(t.diceAgain)}</button>
           </div>
         `;
 
         result.hidden = false;
         caption.textContent = t.diceReady;
-        button.textContent = t.diceButton;
+        button.textContent = t.diceAgain;
         button.disabled = false;
         diceBusy = false;
       }
@@ -2102,6 +2150,10 @@
 
       navButtons.forEach(button => {
         button.addEventListener('click', () => {
+          if (button.dataset.tab === 'where') {
+            window.location.assign(language === 'hr' ? '/hr/where-to-try.html' : '/where-to-try.html');
+            return;
+          }
           setTab(button.dataset.tab);
         });
       });
@@ -2238,7 +2290,7 @@
         : 'hr';
 
       const initialTab = new URLSearchParams(location.search).get('tab');
-      if (['home', 'explore', 'where', 'journal', 'saved'].includes(initialTab)) activeTab = initialTab;
+      if (['home', 'explore', 'saved'].includes(initialTab)) activeTab = initialTab;
       setLanguage(chosenLanguage);
 
       if (!I18N[savedLanguage]) {
