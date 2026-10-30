@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 
@@ -71,7 +70,6 @@
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
-
 
   <link rel="stylesheet" href="../style.css">
 
@@ -613,7 +611,25 @@
       opacity: .55;
     }
 
+    .mobile-privacy-link {
+      display: block;
+      width: 100%;
+      padding: 12px 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    :where(a, button, input):focus-visible {
+      outline: 3px solid #587349;
+      outline-offset: 3px;
+    }
+
   </style>
+
   <link rel="stylesheet" href="/consent.css">
 </head>
 
@@ -669,6 +685,14 @@
     <a href="#where-to-try">GDJE PROBATI</a>
     <a href="/hr/journal.html">THE JOURNAL</a>
     <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+
+    <button
+      type="button"
+      class="mobile-privacy-link"
+      onclick="window.MoveTryConsent?.openSettings(this)"
+    >
+      POSTAVKE PRIVATNOSTI
+    </button>
   </nav>
 
   <div class="mobile-menu-language">
@@ -1038,6 +1062,7 @@
 
     <input
       type="text"
+      aria-label="Što bi volio ili voljela probati?"
       id="try-input"
       name="try"
       placeholder="Volio bih probati..."
@@ -1050,7 +1075,7 @@
 
   </form>
 
-  <p id="suggestion-message"></p>
+  <p id="suggestion-message" role="status" aria-live="polite"></p>
 
   <p class="suggest-note">
     Ti predlažeš. Mi istražujemo.
