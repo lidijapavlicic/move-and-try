@@ -975,6 +975,15 @@
     }
 
     /* WHERE TO TRY — native app view, public website untouched */
+    .app-where-search-wrap { display:flex; align-items:center; gap:12px; border:1px solid var(--line); padding:13px 16px; margin:0 0 18px; background:transparent; }
+    .app-where-search-wrap span { color:var(--muted); font-size:24px; line-height:1; }
+    .app-where-search { width:100%; min-width:0; border:0; outline:0; background:transparent; color:inherit; font:inherit; font-size:13px; }
+    .app-where-search::placeholder { color:var(--muted); opacity:1; }
+    .app-where-categories { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; margin-bottom:34px; }
+    .app-where-category { min-width:0; padding:16px 5px; border:1px solid var(--green); background:transparent; color:inherit; font-size:11px; font-weight:700; letter-spacing:.12em; cursor:pointer; }
+    .app-where-category[aria-pressed="true"] { background:var(--green); color:#fff; }
+    .app-where-empty { color:var(--muted); font-size:13px; padding:22px 0; }
+    @media (min-width:720px) { .app-where-categories { grid-template-columns:repeat(6,minmax(0,1fr)); } }
     .app-where { padding: 30px 22px 70px; }
     .app-where h1 { font: 400 clamp(35px, 9vw, 49px)/1.06 'DM Serif Display', Georgia, serif; margin: 12px 0 15px; }
     .app-where-intro { color: var(--muted); font-size: 13px; line-height: 1.85; max-width: 520px; margin: 0 0 30px; }
@@ -1500,9 +1509,11 @@
           </section>`;
       }
 
+      let whereCategory = 'all';
+      let whereQuery = '';
       function renderWhere() {
         const hr = language === 'hr';
-        // Only published providers from the public WHERE TO TRY pages.
+        // Published WHERE TO TRY listings; add future listings to this array.
         const providers = [{
           category: 'CREATE',
           activity: hr ? 'IZRADA PRIRODNIH PARFEMA' : 'NATURAL PERFUME MAKING',
@@ -1512,32 +1523,44 @@
           description: hr
             ? 'Vođena radionica izrade prirodnog parfema za sve koji žele upoznati prirodne mirise, istražiti mirisne note i napraviti vlastitu kombinaciju.'
             : 'A guided natural perfume-making workshop to explore natural scents, discover fragrance notes and create your own combination.',
-          url: hr ? '/hr/natural-perfume-making-where-to-try.html' : '/natural-perfume-making-where-to-try.html'
+          url: hr ? '/hr/natural-perfume-making-where-to-try.html' : '/natural-perfume-making-where-to-try.html',
+          publishedAt: '2026-10-30'
         }];
+        const categories = ['MOVE', 'LEARN', 'CREATE', 'EXPLORE', 'DARE', 'CARE'];
+        const query = whereQuery.trim().toLocaleLowerCase();
+        const filtered = providers.filter(p =>
+          (whereCategory === 'all' || p.category === whereCategory) &&
+          (!query || [p.category, p.activity, p.name, p.city, p.description].some(value => value.toLocaleLowerCase().includes(query)))
+        ).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
         return `<section class="app-where">
           <div class="eyebrow">MOVE&TRY</div>
-          <h1>${hr ? 'GDJE PROBATI.' : 'WHERE TO TRY.'}</h1>
+          <h1>${hr ? 'GDJE PROBATI' : 'WHERE TO TRY'}</h1>
           <p class="app-where-intro">${hr
             ? 'Otkrij stvarna mjesta i ljude uz koje možeš napraviti prvi korak.'
             : 'Discover real places and people who can help you take the first step.'}</p>
-          <div class="app-where-count">${hr ? 'OBJAVLJENA MJESTA' : 'PUBLISHED PLACES'} · ${providers.length}</div>
-          <div class="app-where-list">${providers.map(provider => `
+          <div class="app-where-search-wrap">
+            <span aria-hidden="true">⌕</span>
+            <input class="app-where-search" id="app-where-search" type="search"
+              value="${escapeHTML(whereQuery).replace(/&quot;/g, '&quot;')}"
+              placeholder="${hr ? 'Pretraži aktivnosti, mjesta i organizatore...' : 'Search activities, places and providers...'}"
+              aria-label="${hr ? 'Pretraži gdje probati' : 'Search where to try'}">
+          </div>
+          <div class="app-where-categories" aria-label="${hr ? 'Filtriraj po kategoriji' : 'Filter by category'}">
+            ${categories.map(category => `<button type="button" class="app-where-category" data-where-category="${category}"
+              aria-pressed="${whereCategory === category}">${category}</button>`).join('')}
+          </div>
+          <div class="app-where-count">${hr ? 'OBJAVLJENO U GDJE PROBATI' : 'PUBLISHED IN WHERE TO TRY'} · ${filtered.length}</div>
+          <div class="app-where-list">${filtered.length ? filtered.map(provider => `
             <a class="app-where-card" href="${provider.url}">
-              <div class="app-where-photo"><img src="${provider.image}" alt="${escapeHTML(provider.name)}" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="app-where-photo"><img src="${provider.image}" alt="${escapeHTML(provider.name)}" loading="lazy"></div>
               <div class="app-where-details">
-                <div class="app-where-meta">${provider.category} · ${provider.city}</div>
+                <div class="app-where-meta">${provider.category} · ${escapeHTML(provider.city)}</div>
                 <h2>${escapeHTML(provider.activity)}</h2>
                 <div class="app-where-provider">${escapeHTML(provider.name)}</div>
                 <p>${escapeHTML(provider.description)}</p>
                 <span class="app-where-action">${hr ? 'POGLEDAJ GDJE PROBATI' : 'SEE WHERE TO TRY'} →</span>
               </div>
-            </a>`).join('')}</div>
-          <div class="app-where-contribute">
-            <div class="eyebrow">${hr ? 'BUDI DIO PRIČE' : 'BE PART OF THE STORY'}</div>
-            <h2>${hr ? 'Mogu li ljudi nešto probati s tobom?' : 'Can people try something with you?'}</h2>
-            <p>${hr ? 'Vodiš studio, klub, radionicu ili tečaj? Pridruži se MOVE&TRY.' : 'Run a studio, club, workshop or class? Join MOVE&TRY.'}</p>
-            <a href="${hr ? '/hr/be-part-of-where-to-try.html' : '/be-part-of-where-to-try.html'}">${hr ? 'BUDI DIO GDJE PROBATI' : 'BE PART OF WHERE TO TRY'} →</a>
-          </div>
+            </a>`).join('') : `<p class="app-where-empty">${hr ? 'Nema objava za odabranu pretragu ili kategoriju.' : 'No published listings match your search or category.'}</p>`}</div>
         </section>`;
       }
 
@@ -2263,6 +2286,13 @@
           return;
         }
 
+        const whereButton = event.target.closest('[data-where-category]');
+        if (whereButton) {
+          whereCategory = whereCategory === whereButton.dataset.whereCategory ? 'all' : whereButton.dataset.whereCategory;
+          render();
+          return;
+        }
+
         const filter = event.target.closest(
           '[data-journal-filter]'
         );
@@ -2279,6 +2309,18 @@
           )
         ) {
           rollDice();
+        }
+      });
+
+      view.addEventListener('input', event => {
+        if (event.target.id !== 'app-where-search') return;
+        whereQuery = event.target.value;
+        const cursor = event.target.selectionStart;
+        render();
+        const search = document.getElementById('app-where-search');
+        if (search) {
+          search.focus();
+          try { search.setSelectionRange(cursor, cursor); } catch (_) {}
         }
       });
 
