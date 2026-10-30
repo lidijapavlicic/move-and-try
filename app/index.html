@@ -1401,7 +1401,7 @@
           ? ['Trči. Pleši. Penji se. Kreni.', 'Stvaraj. Slikaj. Oblikuj.', 'Uči. Pitaj. Otkrij.', 'Kreni drugim putem. Istraži.', 'Usudi se pokušati.', 'Zastani. Razgovaraj. Brini o sebi.']
           : ['Run. Dance. Climb. Move.', 'Make. Paint. Create.', 'Learn. Ask. Discover.', 'Take a different path. Explore.', 'Dare to try.', 'Pause. Talk. Take care.'];
         return `<div class="categories">${CATEGORY_DATA.map((category, index) => `
-          <a class="category" href="${language === 'hr' ? category.hr : category.en}"
+          <a class="category" href="${language === 'hr' ? category.hr : category.en}?source=moveandtry-app"
              style="--category-image:url('${category.image}')"
              aria-label="${escapeHTML(t.openCategory)}: ${category.id}">
             <span class="category-number">${String(index + 1).padStart(2, '0')}</span>
@@ -1546,6 +1546,7 @@
               aria-label="${hr ? 'Pretraži gdje probati' : 'Search where to try'}">
           </div>
           <div class="app-where-categories" aria-label="${hr ? 'Filtriraj po kategoriji' : 'Filter by category'}">
+            ${whereCategory !== 'all' ? `<button type="button" class="app-where-category" data-where-category="all" aria-pressed="false">${hr ? 'SVE KATEGORIJE ×' : 'ALL CATEGORIES ×'}</button>` : ''}
             ${categories.map(category => `<button type="button" class="app-where-category" data-where-category="${category}"
               aria-pressed="${whereCategory === category}">${category}</button>`).join('')}
           </div>
@@ -1670,6 +1671,11 @@
       }
 
       function setTab(tab) {
+        // A new visit to Explore or Where to Try starts without a retained filter.
+        if (tab === 'where') {
+          whereCategory = 'all';
+          whereQuery = '';
+        }
         activeTab = tab;
         render();
         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -2288,7 +2294,7 @@
 
         const whereButton = event.target.closest('[data-where-category]');
         if (whereButton) {
-          whereCategory = whereCategory === whereButton.dataset.whereCategory ? 'all' : whereButton.dataset.whereCategory;
+          whereCategory = whereButton.dataset.whereCategory === 'all' || whereCategory === whereButton.dataset.whereCategory ? 'all' : whereButton.dataset.whereCategory;
           render();
           return;
         }
