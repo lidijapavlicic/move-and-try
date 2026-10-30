@@ -826,6 +826,44 @@ loadLatestUpdate();
 
 
 /* =========================
+   APP LINK — SHARED SITE NAVIGATION
+   Adds APP only where it is missing.
+   Works on HR and EN pages using script.js.
+========================= */
+(function ensureAppNavigationLink() {
+    const appUrl = "/app/";
+
+    function addLink(nav) {
+        if (!nav) return;
+
+        const existing = Array.from(nav.querySelectorAll("a"))
+            .some(link => {
+                const href = link.getAttribute("href") || "";
+                try {
+                    const url = new URL(href, window.location.href);
+                    return url.origin === window.location.origin &&
+                        (url.pathname === "/app" ||
+                         url.pathname === "/app/" ||
+                         url.pathname === "/app/index.html");
+                } catch (_) {
+                    return false;
+                }
+            });
+
+        if (existing) return;
+
+        const link = document.createElement("a");
+        link.href = appUrl;
+        link.textContent = "APP";
+        nav.appendChild(link);
+    }
+
+    addLink(document.querySelector(".site-header .desktop-nav"));
+    addLink(document.querySelector(".mobile-menu nav"));
+})();
+
+
+/* =========================
    MOBILE MENU
 ========================= */
 
