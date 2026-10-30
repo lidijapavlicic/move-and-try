@@ -1,445 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+<title>Where to Try | Move & Try</title>
+<meta name="description" content="From an idea to a real experience. Find workshops, studios, clubs, experts and other places where you can take the first step.">
 
-    <title>Where to Try | Move & Try</title>
+<link rel="canonical" href="https://moveandtry.com/where-to-try.html">
+<link rel="alternate" hreflang="en" href="https://moveandtry.com/where-to-try.html">
+<link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/where-to-try.html">
+<link rel="alternate" hreflang="x-default" href="https://moveandtry.com/where-to-try.html">
 
-    <meta
-        name="description"
-        content="From an idea to a real experience. Find workshops, studios, clubs, experts and other places where you can take the first step."
-    >
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link
-        rel="canonical"
-        href="https://moveandtry.com/where-to-try.html"
-    >
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/app/app-navigation.css">
 
-    <link
-        rel="alternate"
-        hreflang="en"
-        href="https://moveandtry.com/where-to-try.html"
-    >
+<style>
+/* HEADER */
+.header-actions .header-behind-link {
+    color:#555;
+    font-family:'Manrope',sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.04em;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:opacity .2s ease;
+}
+.header-actions .header-behind-link:hover {opacity:.55}
+@media(max-width:768px) {
+    .site-header .header-behind-link {display:none!important}
+}
 
-    <link
-        rel="alternate"
-        hreflang="hr"
-        href="https://moveandtry.com/hr/where-to-try.html"
-    >
+/* PROVIDER STYLES */
+.where-provider-address:empty {display:none}
+.where-provider-image {
+    background:#fff;
+    object-fit:contain;
+    padding:32px;
+}
+.where-empty-category {
+    max-width:680px;
+    line-height:1.7;
+}
+.where-provider-link {cursor:pointer}
 
-    <link
-        rel="alternate"
-        hreflang="x-default"
-        href="https://moveandtry.com/where-to-try.html"
-    >
+/* SEARCH */
+.where-search {
+    max-width:760px;
+    margin:0 auto 12px;
+    padding:0 40px 36px;
+}
+.where-search label {
+    display:block;
+    font:700 11px 'Manrope',sans-serif;
+    letter-spacing:.12em;
+    margin-bottom:13px;
+    color:#1f2a18;
+}
+.where-search-field {
+    display:flex;
+    align-items:center;
+    border:1px solid #1f2a18;
+    background:#fff;
+}
+.where-search-field input {
+    width:100%;
+    min-width:0;
+    border:0;
+    outline-offset:-3px;
+    background:transparent;
+    padding:19px 18px;
+    color:#1f2a18;
+    font:500 14px 'Manrope',sans-serif;
+}
+.where-search-clear {
+    flex-shrink:0;
+    border:0;
+    background:transparent;
+    padding:15px 20px;
+    cursor:pointer;
+    font:700 11px 'Manrope',sans-serif;
+    color:#1f2a18;
+}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+/* PUBLISHED */
+.where-published {text-align:left}
+.where-published-list {
+    display:grid;
+    gap:18px;
+    margin-top:35px;
+}
+.where-published-item {
+    display:grid;
+    grid-template-columns:190px minmax(0,1fr);
+    min-height:160px;
+    color:#1f2a18;
+    text-decoration:none;
+    background:#fff;
+    border:1px solid rgba(28,43,23,.22);
+    overflow:hidden;
+}
+.where-published-item:hover {border-color:#1f2a18}
+.where-published-item img {
+    width:100%;
+    height:100%;
+    min-height:160px;
+    object-fit:contain;
+    background:#fff;
+    padding:20px;
+}
+.where-published-info {
+    padding:23px 26px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8px;
+}
+.where-published-meta {
+    font:700 10px 'Manrope',sans-serif;
+    letter-spacing:.12em;
+    color:#656a61;
+}
+.where-published-info h3 {
+    margin:0;
+    font:400 30px 'DM Serif Display',serif;
+}
+.where-published-info p {
+    margin:0;
+    font:400 13px/1.65 'Manrope',sans-serif;
+}
+.where-published-action {
+    margin-top:5px;
+    font:800 10px 'Manrope',sans-serif;
+    letter-spacing:.09em;
+}
+.where-published-empty {
+    font:400 14px/1.7 'Manrope',sans-serif;
+}
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+/* REFINED SEARCH AND CATEGORY COMPOSITION */
+.where-header {padding-bottom:42px}
+.where-header .where-intro {
+    margin-top:22px;
+    margin-bottom:0;
+}
+#where-categories {padding-top:42px}
+#where-categories > .section-label {margin-bottom:12px}
+#where-categories > h2 {margin-bottom:28px}
+#where-categories .where-search {
+    max-width:none;
+    margin:0 0 30px;
+    padding:0;
+}
+#where-categories .where-search label {margin-bottom:10px}
+#where-categories .where-search-field {
+    transition:border-color .2s ease,box-shadow .2s ease;
+}
+#where-categories .where-search-field:focus-within {
+    box-shadow:0 0 0 2px rgba(31,42,24,.12);
+}
+#where-categories .where-category-grid {margin-top:0}
 
-    <!-- Google Analytics -->
+@media(max-width:600px) {
+    .where-search {padding:0 22px 30px}
+    .where-published-item {
+        grid-template-columns:115px minmax(0,1fr);
+    }
+    .where-published-item img {
+        min-height:150px;
+        padding:10px;
+    }
+    .where-published-info {padding:15px}
+    .where-published-info h3 {font-size:24px}
+    .where-header {padding-bottom:26px}
+    #where-categories {padding-top:28px}
+    #where-categories > h2 {margin-bottom:24px}
+    #where-categories .where-search {
+        padding:0;
+        margin-bottom:24px;
+    }
+}
+</style>
 
-
-    <link rel="stylesheet" href="style.css">
-
-    <!-- MOVE&TRY PWA NAVIGATION -->
-    <link rel="stylesheet" href="/app/app-navigation.css">
-
-    <style>
-
-        /* ==========================================
-           DESKTOP — BEHIND MOVE & TRY
-        ========================================== */
-
-        .header-actions .header-behind-link {
-            color: #555;
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: .04em;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: opacity .2s ease;
-        }
-
-        .header-actions .header-behind-link:hover {
-            opacity: .55;
-        }
-
-        @media (max-width: 768px) {
-
-            .site-header .header-behind-link {
-                display: none !important;
-            }
-
-        }
-
-
-        /* ==========================================
-           SMALL PRODUCTION OVERRIDES
-        ========================================== */
-
-        .where-provider-address:empty {
-            display: none;
-        }
-
-        .where-provider-image {
-            background: #ffffff;
-            object-fit: contain;
-            padding: 32px;
-        }
-
-        .where-empty-category {
-            max-width: 680px;
-            line-height: 1.7;
-        }
-
-        .where-provider-link {
-            cursor: pointer;
-        }
-
-
-        /* WHERE TO TRY — SEARCH + PUBLISHED LIST (PAGE-LOCAL) */
-        .where-search { max-width: 760px; margin: 0 auto 12px; padding: 0 40px 36px; }
-        .where-search label { display: block; font: 700 11px 'Manrope',sans-serif; letter-spacing: .12em; margin-bottom: 13px; color: #1f2a18; }
-        .where-search-field { display: flex; align-items: center; border: 1px solid #1f2a18; background: #fff; }
-        .where-search-field input { width: 100%; min-width: 0; border: 0; outline-offset: -3px; background: transparent; padding: 19px 18px; color: #1f2a18; font: 500 14px 'Manrope',sans-serif; }
-        .where-search-clear { flex-shrink: 0; border: 0; background: transparent; padding: 15px 20px; cursor: pointer; font: 700 11px 'Manrope',sans-serif; color: #1f2a18; }
-        .where-published { text-align: left; }
-        .where-published-list { display: grid; gap: 18px; margin-top: 35px; }
-        .where-published-item { display: grid; grid-template-columns: 190px minmax(0,1fr); min-height: 160px; color: #1f2a18; text-decoration: none; background: #fff; border: 1px solid rgba(28,43,23,.22); overflow: hidden; }
-        .where-published-item:hover { border-color: #1f2a18; }
-        .where-published-item img { width: 100%; height: 100%; min-height: 160px; object-fit: contain; background: #fff; padding: 20px; }
-        .where-published-info { padding: 23px 26px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
-        .where-published-meta { font: 700 10px 'Manrope',sans-serif; letter-spacing: .12em; color: #656a61; }
-        .where-published-info h3 { margin: 0; font: 400 30px 'DM Serif Display',serif; }
-        .where-published-info p { margin: 0; font: 400 13px/1.65 'Manrope',sans-serif; }
-        .where-published-action { margin-top: 5px; font: 800 10px 'Manrope',sans-serif; letter-spacing: .09em; }
-        .where-published-empty { font: 400 14px/1.7 'Manrope',sans-serif; }
-        @media(max-width:600px) { .where-search { padding: 0 22px 30px; } .where-published-item { grid-template-columns: 115px minmax(0,1fr); } .where-published-item img { min-height: 150px; padding: 10px; } .where-published-info { padding: 15px; } .where-published-info h3 { font-size: 24px; } }
-
-    </style>
-
-  <link rel="stylesheet" href="/consent.css">
+<link rel="stylesheet" href="/consent.css">
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     SITE HEADER
-========================= -->
-
+<!-- SITE HEADER -->
 <header class="site-header">
-
-    <a
-        href="/"
-        class="site-logo"
-        aria-label="Move & Try home"
-    >
-        <img
-            src="/images/move-and-try-logo.png"
-            alt="Move & Try"
-        >
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+        <img src="/images/move-and-try-logo.png" alt="Move & Try">
     </a>
 
-
     <nav class="desktop-nav">
-
-        <a href="/#find-your-try">
-            DISCOVER
-        </a>
-
-        <a href="/#be-part-of-it">
-            BE PART OF IT
-        </a>
-
-        <a href="/where-to-try.html">
-            WHERE TO TRY
-        </a>
-
-        <a href="/journal.html">
-            THE JOURNAL
-        </a>
-
+        <a href="/#find-your-try">DISCOVER</a>
+        <a href="/#be-part-of-it">BE PART OF IT</a>
+        <a href="/where-to-try.html">WHERE TO TRY</a>
+        <a href="/journal.html">THE JOURNAL</a>
     </nav>
 
-
     <div class="header-actions">
-
-        <a
-            href="/behind-move-and-try.html"
-            class="header-behind-link"
-        >
+        <a href="/behind-move-and-try.html" class="header-behind-link">
             BEHIND MOVE & TRY
         </a>
 
-
         <div class="header-language">
-
-            <span class="language-active">
-                EN
-            </span>
-
+            <span class="language-active">EN</span>
             <span>|</span>
-
-            <a
-                href="/hr/where-to-try.html"
-                onclick="setLanguage('hr')"
-            >
-                HR
-            </a>
-
+            <a href="/hr/where-to-try.html" onclick="setLanguage('hr')">HR</a>
         </div>
 
-
-        <button
-            class="menu-toggle"
-            type="button"
-            aria-label="Open menu"
-            aria-expanded="false"
-        >
+        <button class="menu-toggle"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false">
             <span></span>
             <span></span>
         </button>
-
     </div>
-
 </header>
 
-
-<!-- =========================
-     MOBILE MENU
-========================= -->
-
+<!-- MOBILE MENU -->
 <div class="mobile-menu">
-
     <nav>
-
-        <a href="/#find-your-try">
-            DISCOVER
-        </a>
-
-        <a href="/#be-part-of-it">
-            BE PART OF IT
-        </a>
-
-        <a href="/where-to-try.html">
-            WHERE TO TRY
-        </a>
-
-        <a href="/journal.html">
-            THE JOURNAL
-        </a>
-
-        <a href="/behind-move-and-try.html">
-            BEHIND MOVE & TRY
-        </a>
-
+        <a href="/#find-your-try">DISCOVER</a>
+        <a href="/#be-part-of-it">BE PART OF IT</a>
+        <a href="/where-to-try.html">WHERE TO TRY</a>
+        <a href="/journal.html">THE JOURNAL</a>
+        <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
     </nav>
 
-
     <div class="mobile-menu-language">
-
-        <span class="language-active">
-            EN
-        </span>
-
+        <span class="language-active">EN</span>
         <span>|</span>
-
-        <a
-            href="/hr/where-to-try.html"
-            onclick="setLanguage('hr')"
-        >
-            HR
-        </a>
-
+        <a href="/hr/where-to-try.html" onclick="setLanguage('hr')">HR</a>
     </div>
-
 </div>
-
-
-<!-- =========================
-     WHERE TO TRY
-========================= -->
 
 <main class="where-page">
 
-
-    <!-- =========================
-         PAGE HEADER
-    ========================= -->
-
+    <!-- PAGE HEADER -->
     <header class="where-header">
-
-        <p class="section-label">
-            FROM AN IDEA TO A REAL EXPERIENCE
-        </p>
-
-
-        <h1>
-            WHERE TO TRY
-        </h1>
-
-
-        <p class="where-intro">
-
-            Found something you want to try?<br>
-
-            <strong>
-                Choose a category, find an activity
-                and see where you can take the first step.
-            </strong>
-
-            <br><br>
-
-            Discover here. Try there.
-
-        </p>
-
+        <p class="section-label">FROM AN IDEA TO A REAL EXPERIENCE</p>
+        <h1>WHERE TO TRY</h1>
+        <p class="where-intro">Discover here. Try there.</p>
     </header>
 
+    <!-- CATEGORIES AND SEARCH -->
+    <section class="where-section" id="where-categories">
 
-    <!-- SEARCH -->
-    <div class="where-search" role="search">
-        <label for="where-search-input">SEARCH WHERE TO TRY</label>
-        <div class="where-search-field">
-            <input id="where-search-input" type="search" autocomplete="off" placeholder="Search activities, places and providers..." aria-label="Search published places">
-            <button id="where-search-clear" class="where-search-clear" type="button" hidden>CLEAR ×</button>
+        <p class="section-label">CHOOSE A CATEGORY</p>
+        <h2>WHAT DO YOU WANT TO TRY?</h2>
+
+        <div class="where-search" role="search">
+            <label for="where-search-input">SEARCH WHERE TO TRY</label>
+
+            <div class="where-search-field">
+                <input
+                    id="where-search-input"
+                    type="search"
+                    autocomplete="off"
+                    placeholder="Search activities, places and providers..."
+                    aria-label="Search published places"
+                >
+                <button
+                    id="where-search-clear"
+                    class="where-search-clear"
+                    type="button"
+                    hidden
+                >CLEAR ×</button>
+            </div>
         </div>
-    </div>
-
-    <!-- =========================
-         CATEGORIES
-    ========================= -->
-
-    <section
-        class="where-section"
-        id="where-categories"
-    >
-
-        <p class="section-label">
-            CHOOSE A CATEGORY
-        </p>
-
-
-        <h2>
-            WHAT DO YOU WANT TO TRY?
-        </h2>
-
 
         <div class="where-category-grid">
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="move"
-            >
+            <button type="button" class="where-category" data-category="move">
                 MOVE
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="learn"
-            >
+            <button type="button" class="where-category" data-category="learn">
                 LEARN
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="create"
-            >
+            <button type="button" class="where-category" data-category="create">
                 CREATE
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="explore"
-            >
+            <button type="button" class="where-category" data-category="explore">
                 EXPLORE
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="dare"
-            >
+            <button type="button" class="where-category" data-category="dare">
                 DARE
             </button>
 
-
-            <button
-                type="button"
-                class="where-category"
-                data-category="care"
-            >
+            <button type="button" class="where-category" data-category="care">
                 CARE
             </button>
-
         </div>
-
     </section>
 
-
-    <!-- =========================
-         CATEGORY ACTIVITIES
-    ========================= -->
-
+    <!-- CATEGORY ACTIVITIES -->
     <section
         class="where-section where-category-results"
         id="category-results"
         hidden
     >
-
         <div class="where-category-heading">
-
-            <p
-                class="section-label"
-                id="selected-category"
-            ></p>
-
-
-            <h2>
-                WHAT WOULD YOU LIKE TO TRY?
-            </h2>
-
+            <p class="section-label" id="selected-category"></p>
+            <h2>WHAT WOULD YOU LIKE TO TRY?</h2>
         </div>
-
 
         <div
             class="where-activity-grid"
             id="where-activity-grid"
         ></div>
-
     </section>
 
-
-    <!-- =========================
-         ACTIVITY PROVIDERS
-    ========================= -->
-
+    <!-- ACTIVITY PROVIDERS -->
     <section
         class="where-section where-provider-results"
         id="provider-results"
         hidden
     >
-
         <button
             type="button"
             class="where-provider-back"
@@ -448,68 +337,49 @@
             ← BACK TO ACTIVITIES
         </button>
 
-
         <div class="where-provider-heading">
-
-            <p class="section-label">
-                WHERE TO TRY
-            </p>
-
-
+            <p class="section-label">WHERE TO TRY</p>
             <h2 id="provider-activity-title"></h2>
-
 
             <p class="where-provider-intro">
                 Find people and places where you can
                 take the first step and actually try this activity.
             </p>
-
         </div>
-
 
         <div
             class="where-provider-list"
             id="where-provider-list"
         ></div>
-
     </section>
 
-
-    <!-- =========================
-         OTHER ACTIVITIES
-    ========================= -->
-
-    <section class="where-section where-more where-published" id="where-published">
+    <!-- PUBLISHED -->
+    <section
+        class="where-section where-more where-published"
+        id="where-published"
+    >
         <p class="section-label">WHERE TO TRY</p>
         <h2>PUBLISHED</h2>
-        <div id="where-published-list" class="where-published-list" aria-live="polite"></div>
+
+        <div
+            id="where-published-list"
+            class="where-published-list"
+            aria-live="polite"
+        ></div>
     </section>
 
-
-    <!-- =========================
-         BE PART OF IT
-    ========================= -->
-
+    <!-- BE PART OF IT -->
     <section class="where-section where-contribute">
-
-        <p class="section-label">
-            BE PART OF IT
-        </p>
-
-
-        <h2>
-            CAN PEOPLE TRY SOMETHING WITH YOU?
-        </h2>
-
+        <p class="section-label">BE PART OF IT</p>
+        <h2>CAN PEOPLE TRY SOMETHING WITH YOU?</h2>
 
         <p>
             Do you run a studio, club, workshop, course
             or offer another activity?
 
-            Help people find a place
+            Help people discover a place
             where they can take their first step.
         </p>
-
 
         <a
             href="/be-part-of-where-to-try.html"
@@ -517,594 +387,440 @@
         >
             BE PART OF WHERE TO TRY →
         </a>
-
     </section>
-
 
 </main>
 
-
-<!-- =========================
-     SHARED JAVASCRIPT
-========================= -->
-
 <script src="script.js"></script>
-
-<!-- MOVE&TRY PWA NAVIGATION -->
 <script src="/app/app-navigation.js" defer></script>
 
-
-<!-- =========================
-     WHERE TO TRY
-     PRODUCTION CONTENT ONLY
-
-     Old providers remain stored
-     in the global script.js, but this page
-     does not display them.
-========================= -->
-
 <script>
+(() => {
 
-    (() => {
+    /* PUBLISHED PRODUCTION ACTIVITIES */
+    const productionActivities = {
+        move: [],
+        learn: [],
+        create: [
+            {
+                title: "NATURAL PERFUME MAKING",
+                slug: "natural-perfume-making"
+            }
+        ],
+        explore: [],
+        dare: [],
+        care: []
+    };
 
+    /* PUBLISHED PRODUCTION PROVIDERS */
+    const productionProviders = {
+        "natural-perfume-making": [
+            {
+                name: "BILJARICA",
+                city: "ZAGREB",
+                area: "",
+                address: "",
+                postalCode: "",
+                image: "/images/biljarica-logo.jpg",
+                description:
+                    "A guided natural perfume-making workshop for anyone curious about natural scents, fragrance notes and creating their own unique blend.",
+                tags: [
+                    "WORKSHOP",
+                    "BEGINNER FRIENDLY",
+                    "NATURAL PERFUMES"
+                ],
+                href: "/natural-perfume-making-where-to-try.html"
+            }
+        ]
+    };
 
-        const productionActivities = {
+    const categoryButtons =
+        document.querySelectorAll(".where-category");
 
-            move: [],
+    const categoryResults =
+        document.getElementById("category-results");
 
-            learn: [],
+    const selectedCategory =
+        document.getElementById("selected-category");
 
-            create: [
-                {
-                    title: "NATURAL PERFUME MAKING",
-                    slug: "natural-perfume-making"
-                }
-            ],
+    const activityGrid =
+        document.getElementById("where-activity-grid");
 
-            explore: [],
+    const providerResults =
+        document.getElementById("provider-results");
 
-            dare: [],
+    const providerActivityTitle =
+        document.getElementById("provider-activity-title");
 
-            care: []
+    const providerList =
+        document.getElementById("where-provider-list");
 
-        };
+    const providerBack =
+        document.getElementById("provider-back");
 
+    /* RENDER CATEGORY */
+    function renderCategory(category) {
 
-        const productionProviders = {
+        if (!categoryResults || !selectedCategory || !activityGrid) {
+            return;
+        }
 
-            "natural-perfume-making": [
+        const activities = productionActivities[category] || [];
 
-                {
-                    name: "BILJARICA",
+        if (providerResults) {
+            providerResults.hidden = true;
+        }
 
-                    city: "ZAGREB",
+        categoryResults.hidden = false;
+        selectedCategory.textContent = category.toUpperCase();
+        activityGrid.innerHTML = "";
 
-                    area: "",
+        if (activities.length === 0) {
+            activityGrid.innerHTML = `
+                <p class="where-empty-category">
+                    There are no published places to try in this category yet.
 
-                    address: "",
+                    We'll keep expanding the list as MOVE & TRY
+                    adds new activities and verified opportunities.
+                </p>
+            `;
+            return;
+        }
 
-                    postalCode: "",
+        activities.forEach(activity => {
 
-                    image: "/images/biljarica-logo.jpg",
+            const card = document.createElement("a");
+            card.className = "where-activity-card";
+            card.href = "#";
 
-                    description:
-                        "A guided natural perfume-making workshop for anyone who wants to explore natural scents, discover fragrance notes and create their own combination.",
+            card.innerHTML = `
+                <h3>${activity.title}</h3>
 
-                    tags: [
-                        "WORKSHOP",
-                        "BEGINNER-FRIENDLY",
-                        "NATURAL PERFUMES"
-                    ],
+                <span class="where-activity-card-action">
+                    FIND WHERE TO TRY →
+                </span>
+            `;
 
-                    href:
-                        "/natural-perfume-making-where-to-try.html"
-                }
+            card.addEventListener("click", event => {
+                event.preventDefault();
+                renderProviders(activity);
+            });
 
+            activityGrid.appendChild(card);
+        });
+    }
+
+    /* RENDER PROVIDERS */
+    function renderProviders(activity) {
+
+        if (!providerResults || !providerActivityTitle || !providerList) {
+            return;
+        }
+
+        const providers = productionProviders[activity.slug] || [];
+
+        if (categoryResults) {
+            categoryResults.hidden = true;
+        }
+
+        providerResults.hidden = false;
+        providerActivityTitle.textContent = activity.title;
+        providerList.innerHTML = "";
+
+        providers.forEach(provider => {
+
+            const card = document.createElement("article");
+            card.className = "where-provider-card";
+
+            const location = [
+                provider.city,
+                provider.area
             ]
+                .filter(Boolean)
+                .join(" · ");
 
-        };
+            const address = [
+                provider.address,
+                provider.postalCode
+            ]
+                .filter(Boolean)
+                .join("<br>");
 
+            const tags = provider.tags
+                .map(tag => `<span>${tag}</span>`)
+                .join("");
 
-        const categoryButtons =
-            document.querySelectorAll(
-                ".where-category"
-            );
+            card.innerHTML = `
+                <div class="where-provider-visual">
+                    <img
+                        src="${provider.image}"
+                        alt="${provider.name}"
+                        class="where-provider-image"
+                        loading="lazy"
+                    >
+                </div>
 
-
-        const categoryResults =
-            document.getElementById(
-                "category-results"
-            );
-
-
-        const selectedCategory =
-            document.getElementById(
-                "selected-category"
-            );
-
-
-        const activityGrid =
-            document.getElementById(
-                "where-activity-grid"
-            );
-
-
-        const providerResults =
-            document.getElementById(
-                "provider-results"
-            );
-
-
-        const providerActivityTitle =
-            document.getElementById(
-                "provider-activity-title"
-            );
-
-
-        const providerList =
-            document.getElementById(
-                "where-provider-list"
-            );
-
-
-        const providerBack =
-            document.getElementById(
-                "provider-back"
-            );
-
-
-        /* ==========================================
-           RENDER CATEGORY
-        ========================================== */
-
-        function renderCategory(category) {
-
-
-            if (
-                !categoryResults ||
-                !selectedCategory ||
-                !activityGrid
-            ) {
-
-                return;
-
-            }
-
-
-            const activities =
-                productionActivities[category] || [];
-
-
-            if (providerResults) {
-
-                providerResults.hidden = true;
-
-            }
-
-
-            categoryResults.hidden = false;
-
-
-            selectedCategory.textContent =
-                category.toUpperCase();
-
-
-            activityGrid.innerHTML = "";
-
-
-            if (activities.length === 0) {
-
-
-                activityGrid.innerHTML = `
-
-                    <p class="where-empty-category">
-
-                        There are no published places to try here yet.
-
-                        We'll expand the list as MOVE & TRY adds
-                        new activities and verified options.
-
+                <div class="where-provider-content">
+                    <p class="where-provider-location">
+                        ${location}
                     </p>
 
-                `;
+                    <h3>${provider.name}</h3>
 
+                    <p class="where-provider-address">
+                        ${address}
+                    </p>
 
-                return;
+                    <p class="where-provider-description">
+                        ${provider.description}
+                    </p>
 
-            }
-
-
-            activities.forEach(activity => {
-
-
-                const card =
-                    document.createElement("a");
-
-
-                card.className =
-                    "where-activity-card";
-
-
-                card.href = "#";
-
-
-                card.innerHTML = `
-
-                    <h3>
-                        ${activity.title}
-                    </h3>
-
-                    <span class="where-activity-card-action">
-                        FIND WHERE TO TRY →
-                    </span>
-
-                `;
-
-
-                card.addEventListener(
-
-                    "click",
-
-                    event => {
-
-
-                        event.preventDefault();
-
-
-                        renderProviders(activity);
-
-
-                    }
-
-                );
-
-
-                activityGrid.appendChild(card);
-
-
-            });
-
-        }
-
-
-        /* ==========================================
-           RENDER PROVIDERS
-        ========================================== */
-
-        function renderProviders(activity) {
-
-
-            if (
-                !providerResults ||
-                !providerActivityTitle ||
-                !providerList
-            ) {
-
-                return;
-
-            }
-
-
-            const providers =
-                productionProviders[
-                    activity.slug
-                ] || [];
-
-
-            if (categoryResults) {
-
-                categoryResults.hidden = true;
-
-            }
-
-
-            providerResults.hidden = false;
-
-
-            providerActivityTitle.textContent =
-                activity.title;
-
-
-            providerList.innerHTML = "";
-
-
-            providers.forEach(provider => {
-
-
-                const card =
-                    document.createElement(
-                        "article"
-                    );
-
-
-                card.className =
-                    "where-provider-card";
-
-
-                const location =
-                    [
-                        provider.city,
-                        provider.area
-                    ]
-                    .filter(Boolean)
-                    .join(" · ");
-
-
-                const address =
-                    [
-                        provider.address,
-                        provider.postalCode
-                    ]
-                    .filter(Boolean)
-                    .join("<br>");
-
-
-                const tags =
-                    provider.tags
-                    .map(
-                        tag =>
-                            `<span>${tag}</span>`
-                    )
-                    .join("");
-
-
-                card.innerHTML = `
-
-                    <div class="where-provider-visual">
-
-                        <img
-                            src="${provider.image}"
-                            alt="${provider.name}"
-                            class="where-provider-image"
-                            loading="lazy"
-                        >
-
+                    <div class="where-provider-tags">
+                        ${tags}
                     </div>
 
+                    <a
+                        href="${provider.href}"
+                        class="where-provider-link"
+                    >
+                        SEE WHERE TO TRY →
+                    </a>
+                </div>
+            `;
 
-                    <div class="where-provider-content">
-
-                        <p class="where-provider-location">
-                            ${location}
-                        </p>
-
-
-                        <h3>
-                            ${provider.name}
-                        </h3>
-
-
-                        <p class="where-provider-address">
-                            ${address}
-                        </p>
-
-
-                        <p class="where-provider-description">
-                            ${provider.description}
-                        </p>
-
-
-                        <div class="where-provider-tags">
-                            ${tags}
-                        </div>
-
-
-                        <a
-                            href="${provider.href}"
-                            class="where-provider-link"
-                        >
-                            SEE WHERE TO TRY →
-                        </a>
-
-                    </div>
-
-                `;
-
-
-                providerList.appendChild(
-                    card
-                );
-
-
-            });
-
-
-            providerResults.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "start"
-
-            });
-
-        }
-
-
-        /* ==========================================
-           CATEGORY BUTTONS
-
-           Capture phase + stopImmediatePropagation
-           prevents the old global WHERE TO TRY
-           handlers in script.js from rendering
-           old test content on this production page.
-        ========================================== */
-
-        /* Search and newest-first published providers, using only production data above. */
-    const whereSearch = document.getElementById('where-search-input');
-    const whereSearchClear = document.getElementById('where-search-clear');
-    const wherePublishedList = document.getElementById('where-published-list');
-    let activeWhereCategory = '';
-    const publishedEntries = Object.entries(productionActivities).flatMap(([category, activities]) =>
-        activities.flatMap(activity => (productionProviders[activity.slug] || []).map(provider => ({
-            category, activity, provider
-        })))
-    );
-    // Entries are maintained in publication order (newest first) in productionActivities.
-    function renderPublished() {
-        if (!wherePublishedList) return;
-        const query = (whereSearch?.value || '').trim().toLocaleLowerCase();
-        if (whereSearchClear) whereSearchClear.hidden = !query && !activeWhereCategory;
-        const matches = publishedEntries.filter(({category, activity, provider}) => {
-            if (activeWhereCategory && category !== activeWhereCategory) return false;
-            return !query || [category, activity.title, provider.name, provider.city,
-                provider.area, provider.description, ...(provider.tags || [])]
-                .join(' ').toLocaleLowerCase().includes(query);
+            providerList.appendChild(card);
         });
+
+        providerResults.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+
+    /* SEARCH AND PUBLISHED LIST */
+    const whereSearch =
+        document.getElementById("where-search-input");
+
+    const whereSearchClear =
+        document.getElementById("where-search-clear");
+
+    const wherePublishedList =
+        document.getElementById("where-published-list");
+
+    let activeWhereCategory = "";
+
+    const publishedEntries =
+        Object.entries(productionActivities).flatMap(
+            ([category, activities]) =>
+                activities.flatMap(
+                    activity =>
+                        (productionProviders[activity.slug] || [])
+                            .map(provider => ({
+                                category,
+                                activity,
+                                provider
+                            }))
+                )
+        );
+
+    function renderPublished() {
+
+        if (!wherePublishedList) return;
+
+        const query = (whereSearch?.value || "")
+            .trim()
+            .toLocaleLowerCase();
+
+        if (whereSearchClear) {
+            whereSearchClear.hidden =
+                !query && !activeWhereCategory;
+        }
+
+        const matches = publishedEntries.filter(
+            ({category, activity, provider}) => {
+
+                if (
+                    activeWhereCategory &&
+                    category !== activeWhereCategory
+                ) {
+                    return false;
+                }
+
+                return !query || [
+                    category,
+                    activity.title,
+                    provider.name,
+                    provider.city,
+                    provider.area,
+                    provider.description,
+                    ...(provider.tags || [])
+                ]
+                    .join(" ")
+                    .toLocaleLowerCase()
+                    .includes(query);
+            }
+        );
+
         wherePublishedList.replaceChildren();
+
         if (!matches.length) {
-            const empty = document.createElement('p');
-            empty.className = 'where-published-empty';
-            empty.textContent = 'No published places match your search.';
+            const empty = document.createElement("p");
+            empty.className = "where-published-empty";
+            empty.textContent =
+                "No published places match your search.";
             wherePublishedList.appendChild(empty);
             return;
         }
+
         matches.forEach(({category, activity, provider}) => {
-            const link = document.createElement('a');
-            link.className = 'where-published-item';
+
+            const link = document.createElement("a");
+            link.className = "where-published-item";
             link.href = provider.href;
-            const img = document.createElement('img');
+
+            const img = document.createElement("img");
             img.src = provider.image;
             img.alt = provider.name;
-            img.loading = 'lazy';
-            const info = document.createElement('div');
-            info.className = 'where-published-info';
-            const meta = document.createElement('span');
-            meta.className = 'where-published-meta';
-            meta.textContent = category.toUpperCase() + ' · ' + activity.title;
-            const title = document.createElement('h3');
+            img.loading = "lazy";
+
+            const info = document.createElement("div");
+            info.className = "where-published-info";
+
+            const meta = document.createElement("span");
+            meta.className = "where-published-meta";
+            meta.textContent =
+                category.toUpperCase() + " · " + activity.title;
+
+            const title = document.createElement("h3");
             title.textContent = provider.name;
-            const description = document.createElement('p');
+
+            const description = document.createElement("p");
             description.textContent = provider.description;
-            const action = document.createElement('span');
-            action.className = 'where-published-action';
-            action.textContent = 'SEE WHERE TO TRY →';
+
+            const action = document.createElement("span");
+            action.className = "where-published-action";
+            action.textContent = "SEE WHERE TO TRY →";
+
             info.append(meta, title, description, action);
             link.append(img, info);
             wherePublishedList.appendChild(link);
         });
     }
-    if (whereSearch) whereSearch.addEventListener('input', () => {
-        activeWhereCategory = '';
-        categoryButtons.forEach(button => button.classList.remove('active'));
-        if (categoryResults) categoryResults.hidden = true;
-        if (providerResults) providerResults.hidden = true;
-        renderPublished();
-    });
-    if (whereSearchClear) whereSearchClear.addEventListener('click', () => {
-        if (whereSearch) whereSearch.value = '';
-        activeWhereCategory = '';
-        categoryButtons.forEach(button => button.classList.remove('active'));
-        if (categoryResults) categoryResults.hidden = true;
-        if (providerResults) providerResults.hidden = true;
-        renderPublished();
-        whereSearch?.focus();
-    });
+
+    /* SEARCH EVENTS */
+    if (whereSearch) {
+        whereSearch.addEventListener("input", () => {
+            activeWhereCategory = "";
+
+            categoryButtons.forEach(button =>
+                button.classList.remove("active")
+            );
+
+            if (categoryResults) {
+                categoryResults.hidden = true;
+            }
+
+            if (providerResults) {
+                providerResults.hidden = true;
+            }
+
+            renderPublished();
+        });
+    }
+
+    if (whereSearchClear) {
+        whereSearchClear.addEventListener("click", () => {
+
+            if (whereSearch) {
+                whereSearch.value = "";
+            }
+
+            activeWhereCategory = "";
+
+            categoryButtons.forEach(button =>
+                button.classList.remove("active")
+            );
+
+            if (categoryResults) {
+                categoryResults.hidden = true;
+            }
+
+            if (providerResults) {
+                providerResults.hidden = true;
+            }
+
+            renderPublished();
+            whereSearch?.focus();
+        });
+    }
+
     renderPublished();
 
+    /* CATEGORY BUTTONS */
     categoryButtons.forEach(button => {
 
+        button.addEventListener(
+            "click",
+            event => {
 
-            button.addEventListener(
+                event.preventDefault();
+                event.stopImmediatePropagation();
 
-                "click",
+                const category = button.dataset.category;
 
-                event => {
+                const wasSelected =
+                    activeWhereCategory === category;
 
+                activeWhereCategory =
+                    wasSelected ? "" : category;
 
-                    event.preventDefault();
-
-                    event.stopImmediatePropagation();
-
-
-                    const category =
-                        button.dataset.category;
-                const wasSelected = activeWhereCategory === category;
-                activeWhereCategory = wasSelected ? '' : category;
                 renderPublished();
 
+                categoryButtons.forEach(item => {
+                    item.classList.remove("active");
+                });
 
-                    categoryButtons.forEach(
-                        item => {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    if (activeWhereCategory) {
+                if (activeWhereCategory) {
                     button.classList.add("active");
                     renderCategory(category);
                 } else {
-                    if (categoryResults) categoryResults.hidden = true;
-                    if (providerResults) providerResults.hidden = true;
+                    if (categoryResults) {
+                        categoryResults.hidden = true;
+                    }
+
+                    if (providerResults) {
+                        providerResults.hidden = true;
+                    }
                 }
+            },
+            true
+        );
+    });
 
+    /* BACK TO ACTIVITIES */
+    if (providerBack) {
+        providerBack.addEventListener(
+            "click",
+            event => {
 
-                },
+                event.preventDefault();
+                event.stopImmediatePropagation();
 
-                true
+                providerResults.hidden = true;
+                categoryResults.hidden = false;
 
-            );
+                categoryResults.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            },
+            true
+        );
+    }
 
-
-        });
-
-
-        /* ==========================================
-           BACK TO ACTIVITIES
-        ========================================== */
-
-        if (providerBack) {
-
-
-            providerBack.addEventListener(
-
-                "click",
-
-                event => {
-
-
-                    event.preventDefault();
-
-                    event.stopImmediatePropagation();
-
-
-                    providerResults.hidden =
-                        true;
-
-
-                    categoryResults.hidden =
-                        false;
-
-
-                    categoryResults.scrollIntoView({
-
-                        behavior: "smooth",
-
-                        block: "start"
-
-                    });
-
-
-                },
-
-                true
-
-            );
-
-
-        }
-
-
-    })();
-
+})();
 </script>
 
-
-  <script src="/consent.js" defer></script>
+<script src="/consent.js" defer></script>
 </body>
-
 </html>
