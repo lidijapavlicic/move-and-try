@@ -979,7 +979,10 @@
     .app-where-search-wrap span { color:var(--muted); font-size:24px; line-height:1; }
     .app-where-search { width:100%; min-width:0; border:0; outline:0; background:transparent; color:inherit; font:inherit; font-size:13px; }
     .app-where-search::placeholder { color:var(--muted); opacity:1; }
-    .app-where-categories { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; margin-bottom:34px; }
+    .app-where-categories { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; margin-bottom:0; }
+    .app-where-reset-wrap { min-height:34px; display:flex; justify-content:center; align-items:center; margin-bottom:16px; }
+    .app-where-reset { border:0; background:transparent; color:var(--muted); font-size:10px; font-weight:800; letter-spacing:.1em; padding:9px 12px; }
+    .app-where-reset:hover { color:var(--green); }
     .app-where-category { min-width:0; padding:16px 5px; border:1px solid var(--green); background:transparent; color:inherit; font-size:11px; font-weight:700; letter-spacing:.12em; cursor:pointer; }
     .app-where-category[aria-pressed="true"] { background:var(--green); color:#fff; }
     .app-where-empty { color:var(--muted); font-size:13px; padding:22px 0; }
@@ -1546,10 +1549,10 @@
               aria-label="${hr ? 'Pretraži gdje probati' : 'Search where to try'}">
           </div>
           <div class="app-where-categories" aria-label="${hr ? 'Filtriraj po kategoriji' : 'Filter by category'}">
-            ${whereCategory !== 'all' ? `<button type="button" class="app-where-category" data-where-category="all" aria-pressed="false">${hr ? 'SVE KATEGORIJE ×' : 'ALL CATEGORIES ×'}</button>` : ''}
             ${categories.map(category => `<button type="button" class="app-where-category" data-where-category="${category}"
               aria-pressed="${whereCategory === category}">${category}</button>`).join('')}
           </div>
+          <div class="app-where-reset-wrap">${whereCategory !== 'all' ? `<button type="button" class="app-where-reset" data-where-category="all">${hr ? '× PONIŠTI ODABIR' : '× CLEAR SELECTION'}</button>` : ''}</div>
           <div class="app-where-count">${hr ? 'OBJAVLJENO U GDJE PROBATI' : 'PUBLISHED IN WHERE TO TRY'} · ${filtered.length}</div>
           <div class="app-where-list">${filtered.length ? filtered.map(provider => `
             <a class="app-where-card" href="${provider.url}">
@@ -2481,4 +2484,3 @@
 
 </body>
 </html>
-
