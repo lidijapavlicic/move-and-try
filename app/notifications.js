@@ -1,10 +1,12 @@
 
 /*
- * MOVE&TRY — Notification History
+ * MOVE&TRY — Notification Centre
  * File: /app/notifications.js
  *
- * Requires /app/sw.js with the MOVE_TRY_* message protocol.
+ * Compatible with /app/sw.js (v4)
  * Styles: /app/notifications.css
+ *
+ * No Supabase access from this module.
  */
 
 (() => {
@@ -13,51 +15,52 @@
   const HOST_ID = 'app-notification-history';
   const MAX_ITEMS = 100;
 
-  const MESSAGES = {
-    get: 'MOVE_TRY_GET_NOTIFICATIONS',
-    read: 'MOVE_TRY_MARK_NOTIFICATION_READ',
-    readAll: 'MOVE_TRY_MARK_ALL_NOTIFICATIONS_READ',
-    remove: 'MOVE_TRY_DELETE_NOTIFICATION',
-    clear: 'MOVE_TRY_CLEAR_NOTIFICATIONS',
-    history: 'MOVE_TRY_NOTIFICATIONS_HISTORY',
-    updated: 'MOVE_TRY_NOTIFICATIONS_UPDATED'
-  };
+  const MSG = Object.freeze({
+    GET: 'MOVE_TRY_GET_NOTIFICATIONS',
+    READ: 'MOVE_TRY_MARK_NOTIFICATION_READ',
+    READ_ALL: 'MOVE_TRY_MARK_ALL_NOTIFICATIONS_READ',
+    DELETE: 'MOVE_TRY_DELETE_NOTIFICATION',
+    CLEAR: 'MOVE_TRY_CLEAR_NOTIFICATIONS',
+    HISTORY: 'MOVE_TRY_NOTIFICATIONS_HISTORY',
+    UPDATED: 'MOVE_TRY_NOTIFICATIONS_UPDATED',
+    ERROR: 'MOVE_TRY_NOTIFICATIONS_ERROR'
+  });
 
-  const TEXT = {
+  const I18N = {
     hr: {
-      title: 'Primljene obavijesti',
-      readAll: 'Označi sve pročitanima',
+      heading: 'Primljene obavijesti',
+      markAll: 'Označi sve pročitanima',
       clear: 'Obriši sve',
-      remove: 'Obriši',
+      delete: 'Obriši',
       empty: 'Još nema primljenih obavijesti.',
-      unavailable: 'Povijest obavijesti nije dostupna na ovom uređaju.',
-      open: 'Otvori obavijest',
-      unread: 'Nepročitana obavijest',
+      error: 'Povijest obavijesti trenutačno nije dostupna.',
       bell: 'Obavijesti',
-      unreadCount: 'Nepročitanih obavijesti: '
+      unread: 'Nepročitanih obavijesti: ',
+      unreadItem: 'Nepročitana obavijest',
+      confirmClear: 'Želiš li obrisati sve obavijesti?'
     },
     en: {
-      title: 'Received notifications',
-      readAll: 'Mark all as read',
+      heading: 'Received notifications',
+      markAll: 'Mark all as read',
       clear: 'Clear all',
-      remove: 'Delete',
+      delete: 'Delete',
       empty: 'No received notifications yet.',
-      unavailable: 'Notification history is unavailable on this device.',
-      open: 'Open notification',
-      unread: 'Unread notification',
+      error: 'Notification history is currently unavailable.',
       bell: 'Notifications',
-      unreadCount: 'Unread notifications: '
+      unread: 'Unread notifications: ',
+      unreadItem: 'Unread notification',
+      confirmClear: 'Delete all notifications?'
     }
   };
 
   let locale = 'hr';
   let initialized = false;
-  let listening = false;
   let records = [];
-  let workerReady = false;
+  let refreshScheduled = false;
+  let historyError = false;
 
-  function t() {
-    return TEXT[locale];
+  function text() {
+    return I18N[locale];
   }
 
   function host() {
@@ -65,25 +68,30 @@
   }
 
   function escapeHTML(value) {
-    return String(value ?? '').replace(/[&<>"']/g, character => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    })[character]);
+    return String(value ?? '').replace(
+      /[&<>"']/g,
+      char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      })[char]
+    );
   }
 
   function safeURL(value) {
-    if (typeof value !== 'string') return '/app/';
-
     try {
-      const url = new URL(value, location.origin);
+      const url = new URL(
+        String(value || '/app/'),
+        location.origin
+      );
 
-      if (
-        url.origin !== location.origin ||
-        !['https:', 'http:'].includes(url.protocol)
-      ) {
+      if (url.origin !== location.origin) {
+        return '/app/';
+      }
+
+      if (!['http:', 'https:'].includes(url.protocol)) {
         return '/app/';
       }
 
@@ -93,23 +101,25 @@
     }
   }
 
-  function dateValue(item) {
+  function timestamp(item) {
     const value =
-      item.receivedAt ??
       item.createdAt ??
+      item.receivedAt ??
       item.timestamp ??
-      item.date ??
-      null;
+      item.date;
 
-    const time = typeof value === 'number'
-      ? value < 100000000000 ? value * 1000 : value
-      : Date.parse(value);
+    if (typeof value === 'number') {
+      return value < 100000000000
+        ? value * 1000
+        : value;
+    }
 
-    return Number.isFinite(time) ? time : 0;
+    const parsed = Date.parse(value);
+    return Number.isFinite(parsed) ? parsed : 0;
   }
 
-  function dateLabel(item) {
-    const time = dateValue(item);
+  function formattedDate(item) {
+    const time = timestamp(item);
     if (!time) return '';
 
     try {
@@ -129,7 +139,9 @@
   }
 
   function normalize(item) {
-    if (!item || typeof item !== 'object') return null;
+    if (!item || typeof item !== 'object') {
+      return null;
+    }
 
     const id =
       item.id ??
@@ -137,54 +149,65 @@
       item.publicationId ??
       item.deliveryId;
 
-    if (id === null || id === undefined || id === '') {
+    if (id === undefined || id === null || id === '') {
       return null;
     }
 
     return {
-      ...item,
       id: String(id),
-      title: String(item.title ?? 'MOVE&TRY'),
-      body: String(item.body ?? ''),
-      category: String(item.category ?? ''),
-      url: safeURL(item.url ?? item.targetUrl ?? '/app/'),
-      read: item.read === true || item.isRead === true
+      title: String(item.title || 'MOVE&TRY'),
+      body: String(item.body || ''),
+      category: String(item.category || ''),
+      url: safeURL(item.url),
+      createdAt: timestamp(item),
+      read: item.read === true
     };
   }
 
-  function setRecords(items) {
+  function updateRecords(items) {
     if (!Array.isArray(items)) return;
 
     const unique = new Map();
 
     for (const item of items) {
-      const normalized = normalize(item);
-      if (normalized && !unique.has(normalized.id)) {
-        unique.set(normalized.id, normalized);
+      const record = normalize(item);
+
+      if (record && !unique.has(record.id)) {
+        unique.set(record.id, record);
       }
     }
 
-    records = [...unique.values()]
-      .sort((a, b) => dateValue(b) - dateValue(a))
+    records = Array.from(unique.values())
+      .sort((a, b) => b.createdAt - a.createdAt)
       .slice(0, MAX_ITEMS);
 
+    historyError = false;
     render();
   }
 
   function updateBell() {
-    const unread = records.filter(item => !item.read).length;
+    const unreadCount = records.filter(
+      item => !item.read
+    ).length;
 
-    const dot = document.getElementById('notification-dot');
-    if (dot) dot.hidden = unread === 0;
+    const dot = document.getElementById(
+      'notification-dot'
+    );
 
-    const button = document.getElementById('notifications-button');
+    if (dot) {
+      dot.hidden = unreadCount === 0;
+    }
 
-    if (button) {
-      button.setAttribute(
+    const bell = document.getElementById(
+      'notifications-button'
+    );
+
+    if (bell) {
+      bell.setAttribute(
         'aria-label',
-        unread
-          ? t().unreadCount + unread
-          : t().bell
+        unreadCount
+          ? text().unread + unreadCount
+          : text().bell
       );
     }
   }
@@ -195,172 +218,233 @@
     const container = host();
     if (!container) return;
 
-    const unread = records.filter(item => !item.read).length;
+    const unreadCount = records.filter(
+      item => !item.read
+    ).length;
 
-    const header = `
+    const heading = `
       <div class="notification-history-header">
         <h3 class="notification-history-title">
-          ${escapeHTML(t().title)}
+          ${escapeHTML(text().heading)}
         </h3>
         <div class="notification-history-actions">
-          ${unread ? `
+          ${unreadCount > 0 ? `
             <button
               type="button"
               class="notification-history-action"
               data-notification-action="read-all"
-            >${escapeHTML(t().readAll)}</button>
+            >${escapeHTML(text().markAll)}</button>
           ` : ''}
-          ${records.length ? `
+          ${records.length > 0 ? `
             <button
               type="button"
               class="notification-history-action"
               data-notification-action="clear"
-            >${escapeHTML(t().clear)}</button>
+            >${escapeHTML(text().clear)}</button>
           ` : ''}
         </div>
       </div>
     `;
 
+    if (historyError && !records.length) {
+      container.innerHTML = heading + `
+        <p class="notification-history-error">
+          ${escapeHTML(text().error)}
+        </p>
+      `;
+      return;
+    }
+
     if (!records.length) {
-      container.innerHTML = header + `
+      container.innerHTML = heading + `
         <div class="notification-history-empty">
-          ${escapeHTML(t().empty)}
+          ${escapeHTML(text().empty)}
         </div>
       `;
       return;
     }
 
-    container.innerHTML = header + `
-      <ul class="notification-history-list">
-        ${records.map(item => `
-          <li class="notification-history-item ${item.read ? '' : 'is-unread'}">
-            <a
-              class="notification-history-link"
-              href="${escapeHTML(item.url)}"
-              data-notification-action="open"
-              data-notification-id="${escapeHTML(item.id)}"
-              ${item.read ? '' : `aria-label="${escapeHTML(t().unread + ': ' + item.title)}"`}
-            >
-              <strong class="notification-history-item-title">
-                ${escapeHTML(item.title)}
-              </strong>
-              ${item.body ? `
-                <span class="notification-history-item-body">
-                  ${escapeHTML(item.body)}
+    const list = records.map(item => {
+      const unread = !item.read;
+
+      return `
+        <li class="notification-history-item ${unread ? 'is-unread' : ''}">
+          <a
+            class="notification-history-link"
+            href="${escapeHTML(item.url)}"
+            data-notification-action="open"
+            data-notification-id="${escapeHTML(item.id)}"
+            ${unread ? `aria-label="${escapeHTML(text().unreadItem + ': ' + item.title)}"` : ''}
+          >
+            <strong class="notification-history-item-title">
+              ${escapeHTML(item.title)}
+            </strong>
+            ${item.body ? `
+              <span class="notification-history-item-body">
+                ${escapeHTML(item.body)}
+              </span>
+            ` : ''}
+          </a>
+
+          <div class="notification-history-item-meta">
+            <span>
+              ${item.category ? `
+                <span class="notification-history-category">
+                  ${escapeHTML(item.category)}
                 </span>
               ` : ''}
-            </a>
-            <div class="notification-history-item-meta">
-              <span>
-                ${item.category ? `
-                  <span class="notification-history-category">
-                    ${escapeHTML(item.category)}
-                  </span>
-                ` : ''}
-                ${escapeHTML(dateLabel(item))}
-              </span>
-              <button
-                type="button"
-                class="notification-history-delete"
-                data-notification-action="delete"
-                data-notification-id="${escapeHTML(item.id)}"
-                aria-label="${escapeHTML(t().remove + ': ' + item.title)}"
-              >${escapeHTML(t().remove)}</button>
-            </div>
-          </li>
-        `).join('')}
+              ${escapeHTML(formattedDate(item))}
+            </span>
+
+            <button
+              type="button"
+              class="notification-history-delete"
+              data-notification-action="delete"
+              data-notification-id="${escapeHTML(item.id)}"
+              aria-label="${escapeHTML(text().delete + ': ' + item.title)}"
+            >${escapeHTML(text().delete)}</button>
+          </div>
+        </li>
+      `;
+    }).join('');
+
+    container.innerHTML = heading + `
+      <ul class="notification-history-list">
+        ${list}
       </ul>
     `;
   }
 
   async function send(type, extra = {}) {
     if (!('serviceWorker' in navigator)) {
-      workerReady = false;
       return false;
     }
 
     try {
-      const registration = await navigator.serviceWorker.ready;
+      const registration =
+        await navigator.serviceWorker.ready;
+
       const worker =
         navigator.serviceWorker.controller ||
         registration.active;
 
-      if (!worker) {
-        workerReady = false;
-        return false;
-      }
+      if (!worker) return false;
 
-      worker.postMessage({ type, ...extra });
-      workerReady = true;
+      worker.postMessage({
+        type,
+        ...extra
+      });
+
       return true;
     } catch (error) {
-      console.warn('MOVE&TRY notification history:', error);
-      workerReady = false;
+      console.warn(
+        'MOVE&TRY notification communication:',
+        error
+      );
       return false;
     }
   }
 
-  function refresh() {
-    return send(MESSAGES.get);
+  async function refresh() {
+    const sent = await send(MSG.GET);
+
+    if (!sent) {
+      historyError = true;
+      render();
+    }
+
+    return sent;
+  }
+
+  function scheduleRefresh() {
+    if (refreshScheduled) return;
+
+    refreshScheduled = true;
+
+    queueMicrotask(() => {
+      refreshScheduled = false;
+      refresh();
+    });
   }
 
   function onWorkerMessage(event) {
     const data = event.data;
 
-    if (!data || typeof data !== 'object') return;
-
-    if (
-      data.type !== MESSAGES.history &&
-      data.type !== MESSAGES.updated
-    ) {
+    if (!data || typeof data !== 'object') {
       return;
     }
 
-    const items =
-      Array.isArray(data.notifications)
-        ? data.notifications
-        : Array.isArray(data.history)
-          ? data.history
-          : Array.isArray(data.items)
-            ? data.items
-            : null;
+    switch (data.type) {
+      case MSG.HISTORY:
+        updateRecords(data.notifications);
+        break;
 
-    if (items) setRecords(items);
+      case MSG.UPDATED:
+        // SW sends an update signal without records.
+        // Request the complete current history.
+        scheduleRefresh();
+        break;
+
+      case MSG.ERROR:
+        historyError = true;
+        render();
+        break;
+
+      default:
+        break;
+    }
   }
 
-  function onHistoryClick(event) {
-    const target = event.target.closest(
+  async function performAction(action, id) {
+    switch (action) {
+      case 'open':
+        if (id) {
+          await send(MSG.READ, { id });
+        }
+        break;
+
+      case 'delete':
+        if (id) {
+          await send(MSG.DELETE, { id });
+        }
+        break;
+
+      case 'read-all':
+        await send(MSG.READ_ALL);
+        break;
+
+      case 'clear':
+        if (window.confirm(text().confirmClear)) {
+          await send(MSG.CLEAR);
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  function onClick(event) {
+    const button = event.target.closest(
       '[data-notification-action]'
     );
 
-    if (!target || !host()?.contains(target)) return;
-
-    const action = target.dataset.notificationAction;
-    const id = target.dataset.notificationId;
-
-    if (action === 'open' && id) {
-      // Navigation remains native.
-      // The service worker stores the read state.
-      send(MESSAGES.read, { id });
+    if (!button || !host()?.contains(button)) {
       return;
     }
 
-    if (action === 'delete' && id) {
-      event.preventDefault();
-      send(MESSAGES.remove, { id });
+    const action = button.dataset.notificationAction;
+    const id = button.dataset.notificationId;
+
+    if (action === 'open') {
+      // Keep native link navigation.
+      // SW updates the stored read state.
+      performAction(action, id);
       return;
     }
 
-    if (action === 'read-all') {
-      event.preventDefault();
-      send(MESSAGES.readAll);
-      return;
-    }
-
-    if (action === 'clear') {
-      event.preventDefault();
-      send(MESSAGES.clear);
-    }
+    event.preventDefault();
+    performAction(action, id);
   }
 
   function setLocale(next) {
@@ -368,26 +452,57 @@
     render();
   }
 
+  function ensureHost() {
+    let container = host();
+
+    if (container) return container;
+
+    const panel = document.querySelector(
+      '#notifications-panel .panel'
+    );
+
+    if (!panel) return null;
+
+    container = document.createElement('section');
+    container.id = HOST_ID;
+    container.setAttribute(
+      'aria-label',
+      'Notification history'
+    );
+
+    const oldEmpty = panel.querySelector(
+      '.empty-notifications'
+    );
+
+    if (oldEmpty) {
+      oldEmpty.hidden = true;
+      oldEmpty.insertAdjacentElement(
+        'beforebegin',
+        container
+      );
+    } else {
+      panel.appendChild(container);
+    }
+
+    return container;
+  }
+
   function init(options = {}) {
     setLocale(options.locale);
+
+    const container = ensureHost();
 
     if (!initialized) {
       initialized = true;
 
-      const container = host();
       if (container) {
         container.addEventListener(
           'click',
-          onHistoryClick
+          onClick
         );
       }
 
-      if (
-        'serviceWorker' in navigator &&
-        !listening
-      ) {
-        listening = true;
-
+      if ('serviceWorker' in navigator) {
         navigator.serviceWorker.addEventListener(
           'message',
           onWorkerMessage
@@ -395,7 +510,7 @@
 
         navigator.serviceWorker.addEventListener(
           'controllerchange',
-          refresh
+          scheduleRefresh
         );
       }
     }
