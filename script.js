@@ -836,26 +836,42 @@ loadLatestUpdate();
     function addLink(nav) {
         if (!nav) return;
 
-        const existing = Array.from(nav.querySelectorAll("a"))
-            .some(link => {
-                const href = link.getAttribute("href") || "";
-                try {
-                    const url = new URL(href, window.location.href);
-                    return url.origin === window.location.origin &&
-                        (url.pathname === "/app" ||
-                         url.pathname === "/app/" ||
-                         url.pathname === "/app/index.html");
-                } catch (_) {
-                    return false;
-                }
-            });
+        const links = Array.from(nav.querySelectorAll("a"));
+        const appLink = links.find(link => {
+            const href = link.getAttribute("href") || "";
+            try {
+                const url = new URL(href, window.location.href);
+                return url.origin === window.location.origin &&
+                    (url.pathname === "/app" ||
+                     url.pathname === "/app/" ||
+                     url.pathname === "/app/index.html");
+            } catch (_) {
+                return false;
+            }
+        });
 
-        if (existing) return;
+        const journalLink = links.find(link => {
+            const href = link.getAttribute("href") || "";
+            try {
+                const url = new URL(href, window.location.href);
+                return url.origin === window.location.origin &&
+                    /\/journal(?:\.html|\/)?$/.test(url.pathname);
+            } catch (_) {
+                return false;
+            }
+        });
 
-        const link = document.createElement("a");
-        link.href = appUrl;
-        link.textContent = "APP";
-        nav.appendChild(link);
+        const link = appLink || document.createElement("a");
+        if (!appLink) {
+            link.href = appUrl;
+            link.textContent = "APP";
+        }
+
+        if (journalLink && journalLink !== link) {
+            nav.insertBefore(link, journalLink);
+        } else if (!appLink) {
+            nav.appendChild(link);
+        }
     }
 
     addLink(document.querySelector(".site-header .desktop-nav"));
