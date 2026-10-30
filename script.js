@@ -833,27 +833,25 @@ loadLatestUpdate();
 (function ensureAppNavigationLink() {
     const appUrl = "/app/";
 
+    function isAppLink(link) {
+        if (link.textContent.trim().toUpperCase() === "APP") return true;
+        try {
+            const url = new URL(link.getAttribute("href") || "", window.location.href);
+            return url.origin === window.location.origin &&
+                /^\/app(?:\/|\/index\.html)?$/.test(url.pathname);
+        } catch (_) {
+            return false;
+        }
+    }
+
     function addLink(nav) {
         if (!nav) return;
 
         const links = Array.from(nav.querySelectorAll("a"));
-        const appLink = links.find(link => {
-            const href = link.getAttribute("href") || "";
-            try {
-                const url = new URL(href, window.location.href);
-                return url.origin === window.location.origin &&
-                    (url.pathname === "/app" ||
-                     url.pathname === "/app/" ||
-                     url.pathname === "/app/index.html");
-            } catch (_) {
-                return false;
-            }
-        });
-
+        const appLinks = links.filter(isAppLink);
         const journalLink = links.find(link => {
-            const href = link.getAttribute("href") || "";
             try {
-                const url = new URL(href, window.location.href);
+                const url = new URL(link.getAttribute("href") || "", window.location.href);
                 return url.origin === window.location.origin &&
                     /\/journal(?:\.html|\/)?$/.test(url.pathname);
             } catch (_) {
@@ -861,15 +859,18 @@ loadLatestUpdate();
             }
         });
 
-        const link = appLink || document.createElement("a");
-        if (!appLink) {
+        const link = appLinks[0] || document.createElement("a");
+        if (!appLinks.length) {
             link.href = appUrl;
             link.textContent = "APP";
         }
 
+        // Remove duplicates while preserving the original link and its styling.
+        appLinks.slice(1).forEach(duplicate => duplicate.remove());
+
         if (journalLink && journalLink !== link) {
             nav.insertBefore(link, journalLink);
-        } else if (!appLink) {
+        } else if (!link.parentElement) {
             nav.appendChild(link);
         }
     }
