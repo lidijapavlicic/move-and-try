@@ -1530,3 +1530,745 @@
         showPanel(null);
       }
 
+      function getStored(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function setStored(key, value) {
+        try {
+          localStorage.setItem(key, value);
+        } catch (error) {
+          console.warn('MOVE&TRY storage:', error);
+        }
+      }
+
+      const APP_PUSH_API =
+        'https://pdyngeaykfpybeafjtpw.supabase.co/functions/v1/';
+
+      const PUSH_TOKEN_KEY =
+        'moveandtry_app_push_device_token';
+
+      const PUSH_CATEGORY_KEY =
+        'moveandtry_app_push_categories';
+
+      const PUSH_CATEGORIES = [
+        'MOVE',
+        'CREATE',
+        'LEARN',
+        'EXPLORE',
+        'DARE',
+        'CARE',
+        'JOURNAL',
+        'WHERE_TO_TRY'
+      ];
+
+      let pushBusy = false;
+      let localeSyncInProgress = false;
+      let chosenLanguage = language;
+
+      function pushSupported() {
+        return window.isSecureContext &&
+          'Notification' in window &&
+          'serviceWorker' in navigator &&
+          'PushManager' in window;
+      }
+
+      function pushToken() {
+        let token = getStored(PUSH_TOKEN_KEY);
+
+        if (!token || !/^[a-f0-9]{64}$/.test(token)) {
+          const bytes = crypto.getRandomValues(
+            new Uint8Array(32)
+          );
+
+          token = Array.from(
+            bytes,
+            b => b.toString(16).padStart(2, '0')
+          ).join('');
+
+          setStored(PUSH_TOKEN_KEY, token);
+        }
+
+        return token;
+      }
+
+      function selectedPushCategories() {
+        return Array.from(
+          document.querySelectorAll(
+            '#push-category-grid input:checked'
+          )
+        ).map(input => input.value);
+      }
+
+      function storedPushCategories() {
+        try {
+          const stored = JSON.parse(
+            getStored(PUSH_CATEGORY_KEY) || '[]'
+          );
+
+          return Array.isArray(stored)
+            ? stored.filter(
+                category => PUSH_CATEGORIES.includes(category)
+              )
+            : [];
+        } catch (_) {
+          return [];
+        }
+      }
+
+      function renderPushCategories() {
+        const t = translations();
+        const selected = storedPushCategories();
+
+        document.getElementById(
+          'push-categories-title'
+        ).textContent = t.pushCategories;
+
+        document.getElementById(
+          'push-save'
+        ).textContent = t.pushSave;
+
+        document.getElementById(
+          'push-category-grid'
+        ).innerHTML = PUSH_CATEGORIES.map(category => `
+          <label>
+            <input
+              type="checkbox"
+              value="${category}"
+              ${selected.includes(category) ? 'checked' : ''}
+            >
+            ${category === 'WHERE_TO_TRY'
+              ? (language === 'hr' ? 'GDJE PROBATI' : 'WHERE TO TRY')
+              : category === 'JOURNAL'
+                ? 'THE JOURNAL'
+                : category}
+          </label>
+        `).join('');
+      }
+
+      async function pushApi(name, options = {}) {
+        const response = await fetch(
+          APP_PUSH_API + name,
+          {
+            ...options,
+            mode: 'cors',
+            cache: 'no-store',
+            headers: {
+              'Content-Type': 'application/json',
+              ...(options.headers || {})
+            }
+          }
+        );
+
+        const result = await response.json()
+          .catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(
+            result.error ||
+            'Push API error: ' + response.status
+          );
+        }
+
+        return result;
+      }
+
+      function urlBase64ToUint8Array(base64) {
+        const padding = '='.repeat(
+          (4 - base64.length % 4) % 4
+        );
+
+        const binary = atob(
+          (base64 + padding)
+            .replace(/-/g, '+')
+            .replace(/_/g, '/')
+        );
+
+        return Uint8Array.from(
+          binary,
+          char => char.charCodeAt(0)
+        );
+      }
+
+      async function appPushRegistration() {
+        return navigator.serviceWorker.register(
+          '/app/sw.js',
+          { scope: '/app/' }
+        );
+      }
+
+      async function refreshPushStatus() {
+        const t = translations();
+
+        const status = document.getElementById(
+          'push-status'
+        );
+
+        const button = document.getElementById(
+          'push-toggle'
+        );
+
+        const fieldset = document.getElementById(
+          'push-categories'
+        );
+
+        if (
+          !document.querySelector(
+            '#push-category-grid input'
+          )
+        ) {
+          renderPushCategories();
+        } else {
+          document.getElementById(
+            'push-categories-title'
+          ).textContent = t.pushCategories;
+
+          document.getElementById(
+            'push-save'
+          ).textContent = t.pushSave;
+        }
+
+        if (!pushSupported()) {
+          status.textContent = t.pushUnsupported;
+          button.hidden = true;
+          fieldset.hidden = true;
+          return;
+        }
+
+        if (Notification.permission === 'denied') {
+          status.textContent = t.pushDenied;
+          button.hidden = true;
+          fieldset.hidden = true;
+          return;
+        }
+
+        try {
+          const registration =
+            await appPushRegistration();
+
+          const subscription =
+            await registration.pushManager.getSubscription();
+
+          const active = !!subscription;
+
+          button.hidden = false;
+          button.disabled = pushBusy;
+          button.textContent = active
+            ? t.pushTurnOff
+            : t.pushTurnOn;
+
+          fieldset.hidden = false;
+
+          document.getElementById(
+            'push-save'
+          ).hidden = !active;
+
+          status.textContent = active
+            ? t.pushExisting
+            : t.pushNotEnabled;
+        } catch (error) {
+          console.warn('Push status:', error);
+          status.textContent = t.pushError;
+          button.hidden = true;
+          fieldset.hidden = true;
+        }
+      }
+
+      async function syncPushLocale() {
+        if (
+          localeSyncInProgress ||
+          pushBusy ||
+          !pushSupported() ||
+          Notification.permission !== 'granted'
+        ) {
+          return;
+        }
+
+        localeSyncInProgress = true;
+
+        try {
+          const registration =
+            await navigator.serviceWorker.getRegistration(
+              '/app/'
+            );
+
+          const subscription =
+            await registration?.pushManager.getSubscription();
+
+          if (!subscription) return;
+
+          const categories = storedPushCategories();
+
+          if (!categories.length) return;
+
+          await pushApi('app-push-subscribe', {
+            method: 'POST',
+            body: JSON.stringify({
+              action: 'subscribe',
+              deviceToken: pushToken(),
+              subscription: subscription.toJSON(),
+              categories,
+              locale: language
+            })
+          });
+        } catch (error) {
+          console.warn('Push locale sync:', error);
+        } finally {
+          localeSyncInProgress = false;
+        }
+      }
+
+      async function togglePush() {
+        if (pushBusy || !pushSupported()) return;
+
+        const t = translations();
+        const status = document.getElementById(
+          'push-status'
+        );
+
+        const button = document.getElementById(
+          'push-toggle'
+        );
+
+        pushBusy = true;
+        button.disabled = true;
+        status.textContent = t.pushChecking;
+
+        try {
+          const registration =
+            await appPushRegistration();
+
+          let subscription =
+            await registration.pushManager.getSubscription();
+
+          if (subscription) {
+            await pushApi('app-push-subscribe', {
+              method: 'POST',
+              body: JSON.stringify({
+                action: 'unsubscribe',
+                deviceToken: pushToken(),
+                subscription: subscription.toJSON()
+              })
+            });
+
+            const removed =
+              await subscription.unsubscribe();
+
+            if (!removed) {
+              throw new Error('Browser unsubscribe failed');
+            }
+          } else {
+            const categories =
+              selectedPushCategories().length
+                ? selectedPushCategories()
+                : storedPushCategories();
+
+            if (!categories.length) {
+              status.textContent = t.pushSelect;
+              return;
+            }
+
+            const permission =
+              await Notification.requestPermission();
+
+            if (permission !== 'granted') {
+              status.textContent = t.pushDenied;
+              return;
+            }
+
+            const config =
+              await pushApi('app-push-config');
+
+            if (
+              !/^[A-Za-z0-9_-]{87}$/.test(
+                config.publicKey || ''
+              )
+            ) {
+              throw new Error('Invalid VAPID key');
+            }
+
+            subscription =
+              await registration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey:
+                  urlBase64ToUint8Array(config.publicKey)
+              });
+
+            try {
+              await pushApi('app-push-subscribe', {
+                method: 'POST',
+                body: JSON.stringify({
+                  action: 'subscribe',
+                  deviceToken: pushToken(),
+                  subscription: subscription.toJSON(),
+                  categories,
+                  locale: language
+                })
+              });
+            } catch (error) {
+              await subscription.unsubscribe();
+              throw error;
+            }
+
+            setStored(
+              PUSH_CATEGORY_KEY,
+              JSON.stringify(categories)
+            );
+          }
+        } catch (error) {
+          console.error('Push toggle:', error);
+          status.textContent = t.pushError;
+        } finally {
+          pushBusy = false;
+          await refreshPushStatus();
+        }
+      }
+
+      async function savePushCategories() {
+        if (pushBusy) return;
+
+        const t = translations();
+        const categories = selectedPushCategories();
+        const status = document.getElementById(
+          'push-status'
+        );
+
+        if (!categories.length) {
+          status.textContent = t.pushSelect;
+          return;
+        }
+
+        pushBusy = true;
+
+        const button = document.getElementById(
+          'push-save'
+        );
+
+        button.disabled = true;
+        status.textContent = t.pushSaving;
+
+        try {
+          const registration =
+            await appPushRegistration();
+
+          const subscription =
+            await registration.pushManager.getSubscription();
+
+          if (!subscription) {
+            throw new Error('No active subscription');
+          }
+
+          await pushApi('app-push-subscribe', {
+            method: 'POST',
+            body: JSON.stringify({
+              action: 'subscribe',
+              deviceToken: pushToken(),
+              subscription: subscription.toJSON(),
+              categories,
+              locale: language
+            })
+          });
+
+          setStored(
+            PUSH_CATEGORY_KEY,
+            JSON.stringify(categories)
+          );
+
+          status.textContent = t.pushSaved;
+        } catch (error) {
+          console.error('Push categories:', error);
+          status.textContent = t.pushError;
+        } finally {
+          pushBusy = false;
+          button.disabled = false;
+        }
+      }
+
+      async function rollDice() {
+        if (diceBusy || !surpriseActivities.length) {
+          return;
+        }
+
+        const t = translations();
+        const button = document.getElementById(
+          'surprise-pick'
+        );
+        const cube = document.getElementById(
+          'dice-cube'
+        );
+        const caption = document.getElementById(
+          'dice-caption'
+        );
+        const result = document.getElementById(
+          'surprise-result'
+        );
+
+        const candidates = surpriseActivities.filter(
+          item => item.id !== lastSurpriseId
+        );
+
+        const pool = candidates.length
+          ? candidates
+          : surpriseActivities;
+
+        const selected = pool[
+          Math.floor(Math.random() * pool.length)
+        ];
+
+        lastSurpriseId = selected.id;
+        diceBusy = true;
+        button.disabled = true;
+        button.textContent = t.diceBusy;
+        result.hidden = true;
+        caption.textContent = t.diceBusy;
+
+        diceTurns += 1;
+
+        cube.style.transform =
+          `rotateX(${diceTurns * 720 + 340}deg) ` +
+          `rotateY(${diceTurns * 720 + 405}deg)`;
+
+        await new Promise(resolve => setTimeout(
+          resolve,
+          reducedMotion.matches ? 0 : 1400
+        ));
+
+        if (activeTab !== 'explore') {
+          diceBusy = false;
+          return;
+        }
+
+        result.innerHTML = `
+          <strong>
+            ${escapeHTML(t.diceResult)}
+            ${escapeHTML(selected.name[language])}
+          </strong>
+          <div class="surprise-actions">
+            <a
+              class="text-link"
+              href="${escapeHTML(selected.url[language])}"
+            >${escapeHTML(t.diceOpen)} →</a>
+            <button
+              class="surprise-button"
+              type="button"
+              id="dice-again"
+            >${escapeHTML(t.diceAgain)}</button>
+          </div>
+        `;
+
+        result.hidden = false;
+        caption.textContent = t.diceReady;
+        button.textContent = t.diceButton;
+        button.disabled = false;
+        diceBusy = false;
+      }
+
+      function openPrivacySettings() {
+        closePanels();
+
+        if (
+          window.MoveTryConsent &&
+          typeof window.MoveTryConsent.openSettings === 'function'
+        ) {
+          window.MoveTryConsent.openSettings(
+            document.getElementById(
+              'privacy-settings-button'
+            )
+          );
+        } else {
+          alert(translations().privacyUnavailable);
+        }
+      }
+
+      // NAVIGATION
+
+      navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          setTab(button.dataset.tab);
+        });
+      });
+
+      view.addEventListener('click', event => {
+        const tabLink = event.target.closest(
+          '[data-open-tab]'
+        );
+
+        if (tabLink) {
+          event.preventDefault();
+          setTab(tabLink.dataset.openTab);
+          return;
+        }
+
+        const filter = event.target.closest(
+          '[data-journal-filter]'
+        );
+
+        if (filter) {
+          journalFilter = filter.dataset.journalFilter;
+          render();
+          return;
+        }
+
+        if (
+          event.target.closest(
+            '#surprise-pick, #dice-again'
+          )
+        ) {
+          rollDice();
+        }
+      });
+
+      // PANELS
+
+      document.getElementById(
+        'notifications-button'
+      ).addEventListener('click', () => {
+        showPanel(notificationsPanel);
+      });
+
+      document.getElementById(
+        'settings-button'
+      ).addEventListener('click', () => {
+        showPanel(settingsPanel);
+      });
+
+      document.querySelectorAll(
+        '[data-close-panel]'
+      ).forEach(button => {
+        button.addEventListener('click', closePanels);
+      });
+
+      [notificationsPanel, settingsPanel].forEach(panel => {
+        panel.addEventListener('click', event => {
+          if (event.target === panel) {
+            closePanels();
+          }
+        });
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closePanels();
+        }
+      });
+
+      // LANGUAGE AND PRIVACY
+
+      document.querySelectorAll(
+        '[data-setting-language]'
+      ).forEach(button => {
+        button.addEventListener('click', () => {
+          setLanguage(button.dataset.settingLanguage);
+        });
+      });
+
+      document.getElementById(
+        'privacy-settings-button'
+      ).addEventListener('click', openPrivacySettings);
+
+      // PUSH CONTROLS
+
+      document.getElementById(
+        'push-toggle'
+      ).addEventListener('click', togglePush);
+
+      document.getElementById(
+        'push-save'
+      ).addEventListener('click', savePushCategories);
+
+      // WELCOME
+
+      document.querySelectorAll(
+        '[data-choice]'
+      ).forEach(button => {
+        button.addEventListener('click', () => {
+          chosenLanguage = button.dataset.choice;
+
+          document.querySelectorAll(
+            '[data-choice]'
+          ).forEach(item => {
+            item.setAttribute(
+              'aria-pressed',
+              String(
+                item.dataset.choice === chosenLanguage
+              )
+            );
+          });
+        });
+      });
+
+      document.getElementById(
+        'continue'
+      ).addEventListener('click', () => {
+        setLanguage(chosenLanguage);
+        welcome.hidden = true;
+        setStored(SESSION_KEY, '1');
+
+        document.querySelector(
+          '[data-tab="home"]'
+        ).focus();
+      });
+
+      // INITIALIZATION
+
+      const savedLanguage =
+        getStored(APP_LANGUAGE_KEY) ||
+        getStored(WEB_LANGUAGE_KEY);
+
+      chosenLanguage = I18N[savedLanguage]
+        ? savedLanguage
+        : 'hr';
+
+      setLanguage(chosenLanguage);
+
+      if (!I18N[savedLanguage]) {
+        welcome.hidden = false;
+
+        document.querySelector(
+          '[data-choice="hr"]'
+        ).focus();
+      }
+
+      loadSurpriseActivities();
+
+    })();
+  </script>
+
+  <script src="/app/notifications.js"></script>
+
+  <script>
+    window.MoveTryNotifications?.init({
+      locale: document.documentElement.lang === 'en'
+        ? 'en'
+        : 'hr'
+    });
+
+    if (
+      'serviceWorker' in navigator &&
+      window.isSecureContext
+    ) {
+      navigator.serviceWorker.register(
+        '/app/sw.js',
+        { scope: '/app/' }
+      )
+      .then(() => {
+        window.MoveTryNotifications?.refresh();
+      })
+      .catch(error => {
+        console.warn(
+          'MOVE&TRY app service worker:',
+          error
+        );
+      });
+    }
+  </script>
+
+  <script src="/consent.js" defer></script>
+
+</body>
+</html>
+
