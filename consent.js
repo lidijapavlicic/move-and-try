@@ -1,4 +1,3 @@
-
 /* ================================================
    MOVE&TRY — PRIVACY & COOKIE CONSENT
    HR / EN
@@ -290,10 +289,60 @@
 
     settings.hidden = !settingsMode;
 
+    if (!settingsMode) {
+      const firstButton = consentPanel.querySelector('button');
+      if (firstButton) firstButton.focus();
+    }
+
     if (settingsMode) {
       showSettings();
     }
   }
+
+  /* Keyboard accessibility for the consent dialog. */
+  document.addEventListener('keydown', event => {
+    if (!consentPanel || consentPanel.hidden) return;
+
+    if (event.key === 'Escape') {
+      // Initial consent must still be explicitly chosen.
+      if (readConsent()) {
+        event.preventDefault();
+        closePanel();
+      }
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const focusable = Array.from(consentPanel.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(element => !element.closest('[hidden]') && element.getClientRects().length);
+
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (
+      event.shiftKey &&
+      (
+        document.activeElement === first ||
+        !consentPanel.contains(document.activeElement)
+      )
+    ) {
+      event.preventDefault();
+      last.focus();
+    } else if (
+      !event.shiftKey &&
+      (
+        document.activeElement === last ||
+        !consentPanel.contains(document.activeElement)
+      )
+    ) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
 
   function createElement(tag, className, text) {
     const element = document.createElement(tag);
@@ -334,14 +383,12 @@
 
     panel.id = 'mt-cookie-consent';
 
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-modal', 'true');
+
     panel.setAttribute(
       'aria-label',
       t.title
-    );
-
-    panel.setAttribute(
-      'role',
-      'region'
     );
 
     const title = createElement(
