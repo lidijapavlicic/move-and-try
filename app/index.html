@@ -1280,12 +1280,12 @@
       };
 
       const CATEGORY_DATA = [
-        { id: 'MOVE', key: 'categoryMove', image: '/images/category-move.jpg', hr: '/hr/move.html', en: '/move.html' },
-        { id: 'CREATE', key: 'categoryCreate', image: '/images/category-create.jpg', hr: '/hr/create.html', en: '/create.html' },
-        { id: 'LEARN', key: 'categoryLearn', image: '/images/category-learn.jpg', hr: '/hr/learn.html', en: '/learn.html' },
-        { id: 'EXPLORE', key: 'categoryExplore', image: '/images/category-explore.jpg', hr: '/hr/explore.html', en: '/explore.html' },
-        { id: 'DARE', key: 'categoryDare', image: '/images/category-dare.jpg', hr: '/hr/dare.html', en: '/dare.html' },
-        { id: 'CARE', key: 'categoryCare', image: '/images/category-care.jpg', hr: '/hr/care.html', en: '/care.html' }
+        { id: 'MOVE', key: 'categoryMove', image: '/images/category-move.webp', hr: '/hr/move.html', en: '/move.html' },
+        { id: 'CREATE', key: 'categoryCreate', image: '/images/category-create.webp', hr: '/hr/create.html', en: '/create.html' },
+        { id: 'LEARN', key: 'categoryLearn', image: '/images/category-learn.webp', hr: '/hr/learn.html', en: '/learn.html' },
+        { id: 'EXPLORE', key: 'categoryExplore', image: '/images/category-explore.webp', hr: '/hr/explore.html', en: '/explore.html' },
+        { id: 'DARE', key: 'categoryDare', image: '/images/category-dare.webp', hr: '/hr/dare.html', en: '/dare.html' },
+        { id: 'CARE', key: 'categoryCare', image: '/images/category-care.webp', hr: '/hr/care.html', en: '/care.html' }
       ];
 
       const view = document.getElementById('view');
@@ -1294,7 +1294,7 @@
       const settingsPanel = document.getElementById('settings-panel');
       const navButtons = [...document.querySelectorAll('[data-tab]')];
 
-      let language = localStorage.getItem(APP_LANGUAGE_KEY) === 'en' ? 'en' : 'hr';
+      let language = getStored(APP_LANGUAGE_KEY) === 'en' ? 'en' : 'hr';
       let activeTab = 'home';
       let journalFilter = 'all';
       let journalPosts = null;
@@ -1428,44 +1428,51 @@
         </section>`;
       }
 
+      let journalRequest = 0;
       async function loadJournalPosts() {
         if (journalLoading) return;
         journalLoading = true;
+        const requestId = ++journalRequest;
+        const requestedLanguage = language;
         try {
-          const url = language === 'hr' ? '/hr/journal.html' : '/journal.html';
+          const url = requestedLanguage === 'hr' ? '/hr/journal.html' : '/journal.html';
           const response = await fetch(url, { cache: 'no-cache' });
           if (!response.ok) throw new Error('Journal HTTP ' + response.status);
-          const html = await response.text();
-          const doc = new DOMParser().parseFromString(html, 'text/html');
-          const links = [...doc.querySelectorAll('a[href]')];
+          const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+          const now = Date.now();
           const seen = new Set();
-          journalPosts = links.map(link => {
-            const href = link.getAttribute('href') || '';
-            const target = new URL(href, response.url);
-            if (target.origin !== location.origin || !target.pathname.includes('/journal/')) return null;
-            if (seen.has(target.pathname)) return null;
-            const title = link.querySelector('h2,h3')?.textContent?.trim();
+          const posts = [...doc.querySelectorAll('a.journal-post[href]')].map(link => {
+            const publishAt = link.dataset.publishAt;
+            if (publishAt && (!Number.isFinite(Date.parse(publishAt)) || Date.parse(publishAt) > now)) return null;
+            const target = new URL(link.getAttribute('href'), response.url);
+            if (target.origin !== location.origin || seen.has(target.pathname)) return null;
+            const title = link.querySelector('.journal-post-title,.journal-post-cover-title,h2,h3')?.textContent?.trim();
             if (!title) return null;
             seen.add(target.pathname);
             const image = link.querySelector('img')?.getAttribute('src');
+            const category = link.querySelector('.journal-post-category')?.textContent?.trim() || '';
+            const kind = (link.dataset.category || '').toLowerCase();
             return {
-              url: target.pathname,
+              url: target.pathname + target.search + target.hash,
               title,
               image: image ? new URL(image, response.url).pathname : '',
-              description: link.querySelector('p')?.textContent?.trim() || '',
-              category: link.querySelector('.tag,.category,.meta')?.textContent?.trim() || '',
-              author: link.querySelector('.author')?.textContent?.trim() || '',
-              type: /interview/i.test(link.className) ? 'interview'
-                : /column/i.test(link.className) ? 'column'
-                : /experience/i.test(link.className) ? 'experience' : 'editorial'
+              description: link.querySelector('.journal-post-description')?.textContent?.trim() || '',
+              category,
+              author: link.querySelector('.journal-post-author')?.textContent?.trim() || '',
+              type: kind === 'personal' ? 'column'
+                : kind === 'interview' ? 'interview'
+                : kind === 'experience' ? 'experience' : 'editorial'
             };
           }).filter(Boolean);
+          if (requestId === journalRequest && requestedLanguage === language) journalPosts = posts;
         } catch (error) {
           console.warn('MOVE&TRY Journal:', error);
-          journalPosts = [];
+          if (requestId === journalRequest && requestedLanguage === language) journalPosts = [];
         } finally {
-          journalLoading = false;
-          if (activeTab === 'journal') render();
+          if (requestId === journalRequest) {
+            journalLoading = false;
+            if (activeTab === 'journal') render();
+          }
         }
       }
 
@@ -1493,8 +1500,10 @@
 
       function setLanguage(next) {
         language = next === 'en' ? 'en' : 'hr';
-        localStorage.setItem(APP_LANGUAGE_KEY, language);
-        localStorage.setItem(WEB_LANGUAGE_KEY, language);
+        setStored(APP_LANGUAGE_KEY, language);
+        setStored(WEB_LANGUAGE_KEY, language);
+        journalRequest += 1;
+        journalLoading = false;
         journalPosts = null;
         journalFilter = 'all';
         document.querySelectorAll('[data-nav]').forEach(node => {
@@ -2028,9 +2037,14 @@
 
         diceTurns += 1;
 
+        const face = (surpriseActivities.findIndex(item => item.id === selected.id) % 6) + 1;
+        const orientations = [
+          [0, 0], [0, 180], [0, -90], [0, 90], [-90, 0], [90, 0]
+        ];
+        const [faceX, faceY] = orientations[face - 1];
         cube.style.transform =
-          `rotateX(${diceTurns * 720 + 340}deg) ` +
-          `rotateY(${diceTurns * 720 + 405}deg)`;
+          `rotateX(${diceTurns * 720 + faceX}deg) ` +
+          `rotateY(${diceTurns * 720 + faceY}deg)`;
 
         await new Promise(resolve => setTimeout(
           resolve,
@@ -2223,6 +2237,8 @@
         ? savedLanguage
         : 'hr';
 
+      const initialTab = new URLSearchParams(location.search).get('tab');
+      if (['home', 'explore', 'where', 'journal', 'saved'].includes(initialTab)) activeTab = initialTab;
       setLanguage(chosenLanguage);
 
       if (!I18N[savedLanguage]) {
