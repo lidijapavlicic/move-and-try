@@ -67,6 +67,26 @@
         .where-provider-link {
             cursor: pointer;
         }
+
+        /* WHERE TO TRY — SEARCH + PUBLISHED LIST (PAGE-LOCAL) */
+        .where-search { max-width: 760px; margin: 0 auto 12px; padding: 0 40px 36px; }
+        .where-search label { display: block; font: 700 11px 'Manrope',sans-serif; letter-spacing: .12em; margin-bottom: 13px; color: #1f2a18; }
+        .where-search-field { display: flex; align-items: center; border: 1px solid #1f2a18; background: #fff; }
+        .where-search-field input { width: 100%; min-width: 0; border: 0; outline-offset: -3px; background: transparent; padding: 19px 18px; color: #1f2a18; font: 500 14px 'Manrope',sans-serif; }
+        .where-search-clear { flex-shrink: 0; border: 0; background: transparent; padding: 15px 20px; cursor: pointer; font: 700 11px 'Manrope',sans-serif; color: #1f2a18; }
+        .where-published { text-align: left; }
+        .where-published-list { display: grid; gap: 18px; margin-top: 35px; }
+        .where-published-item { display: grid; grid-template-columns: 190px minmax(0,1fr); min-height: 160px; color: #1f2a18; text-decoration: none; background: #fff; border: 1px solid rgba(28,43,23,.22); overflow: hidden; }
+        .where-published-item:hover { border-color: #1f2a18; }
+        .where-published-item img { width: 100%; height: 100%; min-height: 160px; object-fit: contain; background: #fff; padding: 20px; }
+        .where-published-info { padding: 23px 26px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+        .where-published-meta { font: 700 10px 'Manrope',sans-serif; letter-spacing: .12em; color: #656a61; }
+        .where-published-info h3 { margin: 0; font: 400 30px 'DM Serif Display',serif; }
+        .where-published-info p { margin: 0; font: 400 13px/1.65 'Manrope',sans-serif; }
+        .where-published-action { margin-top: 5px; font: 800 10px 'Manrope',sans-serif; letter-spacing: .09em; }
+        .where-published-empty { font: 400 14px/1.7 'Manrope',sans-serif; }
+        @media(max-width:600px) { .where-search { padding: 0 22px 30px; } .where-published-item { grid-template-columns: 115px minmax(0,1fr); } .where-published-item img { min-height: 150px; padding: 10px; } .where-published-info { padding: 15px; } .where-published-info h3 { font-size: 24px; } }
+
     </style>
   <link rel="stylesheet" href="/consent.css">
 </head>
@@ -157,6 +177,15 @@
         </p>
 
     </header>
+
+    <!-- SEARCH -->
+    <div class="where-search" role="search">
+        <label for="where-search-input">PRETRAŽI GDJE PROBATI</label>
+        <div class="where-search-field">
+            <input id="where-search-input" type="search" autocomplete="off" placeholder="Pretraži aktivnosti, mjesta i organizatore..." aria-label="Pretraži objave">
+            <button id="where-search-clear" class="where-search-clear" type="button" hidden>OČISTI ×</button>
+        </div>
+    </div>
 
     <!-- CATEGORIES -->
     <section class="where-section" id="where-categories">
@@ -257,23 +286,10 @@
     </section>
 
     <!-- OTHER ACTIVITIES -->
-    <section class="where-section where-more">
-
-        <p class="section-label">
-            NASTAVI ISTRAŽIVATI
-        </p>
-
-        <h2>ŠTO BI JOŠ PROBAO?</h2>
-
-        <p>
-            Istraži druge kategorije i aktivnosti
-            i pronađi svoj sljedeći TRY.
-        </p>
-
-        <a href="#where-categories" class="where-more-link">
-            ISTRAŽI GDJE PROBATI →
-        </a>
-
+    <section class="where-section where-more where-published" id="where-published">
+        <p class="section-label">GDJE PROBATI</p>
+        <h2>OBJAVLJENO</h2>
+        <div id="where-published-list" class="where-published-list" aria-live="polite"></div>
     </section>
 
     <!-- BE PART OF IT -->
@@ -613,6 +629,78 @@
        old test content on this production page.
     ========================================== */
 
+    /* Search and newest-first published providers, using only production data above. */
+    const whereSearch = document.getElementById('where-search-input');
+    const whereSearchClear = document.getElementById('where-search-clear');
+    const wherePublishedList = document.getElementById('where-published-list');
+    let activeWhereCategory = '';
+    const publishedEntries = Object.entries(productionActivities).flatMap(([category, activities]) =>
+        activities.flatMap(activity => (productionProviders[activity.slug] || []).map(provider => ({
+            category, activity, provider
+        })))
+    );
+    // Entries are maintained in publication order (newest first) in productionActivities.
+    function renderPublished() {
+        if (!wherePublishedList) return;
+        const query = (whereSearch?.value || '').trim().toLocaleLowerCase();
+        if (whereSearchClear) whereSearchClear.hidden = !query && !activeWhereCategory;
+        const matches = publishedEntries.filter(({category, activity, provider}) => {
+            if (activeWhereCategory && category !== activeWhereCategory) return false;
+            return !query || [category, activity.title, provider.name, provider.city,
+                provider.area, provider.description, ...(provider.tags || [])]
+                .join(' ').toLocaleLowerCase().includes(query);
+        });
+        wherePublishedList.replaceChildren();
+        if (!matches.length) {
+            const empty = document.createElement('p');
+            empty.className = 'where-published-empty';
+            empty.textContent = 'Nema objavljenih mjesta za odabranu pretragu.';
+            wherePublishedList.appendChild(empty);
+            return;
+        }
+        matches.forEach(({category, activity, provider}) => {
+            const link = document.createElement('a');
+            link.className = 'where-published-item';
+            link.href = provider.href;
+            const img = document.createElement('img');
+            img.src = provider.image;
+            img.alt = provider.name;
+            img.loading = 'lazy';
+            const info = document.createElement('div');
+            info.className = 'where-published-info';
+            const meta = document.createElement('span');
+            meta.className = 'where-published-meta';
+            meta.textContent = category.toUpperCase() + ' · ' + activity.title;
+            const title = document.createElement('h3');
+            title.textContent = provider.name;
+            const description = document.createElement('p');
+            description.textContent = provider.description;
+            const action = document.createElement('span');
+            action.className = 'where-published-action';
+            action.textContent = 'POGLEDAJ GDJE PROBATI →';
+            info.append(meta, title, description, action);
+            link.append(img, info);
+            wherePublishedList.appendChild(link);
+        });
+    }
+    if (whereSearch) whereSearch.addEventListener('input', () => {
+        activeWhereCategory = '';
+        categoryButtons.forEach(button => button.classList.remove('active'));
+        if (categoryResults) categoryResults.hidden = true;
+        if (providerResults) providerResults.hidden = true;
+        renderPublished();
+    });
+    if (whereSearchClear) whereSearchClear.addEventListener('click', () => {
+        if (whereSearch) whereSearch.value = '';
+        activeWhereCategory = '';
+        categoryButtons.forEach(button => button.classList.remove('active'));
+        if (categoryResults) categoryResults.hidden = true;
+        if (providerResults) providerResults.hidden = true;
+        renderPublished();
+        whereSearch?.focus();
+    });
+    renderPublished();
+
     categoryButtons.forEach(button => {
 
         button.addEventListener(
@@ -625,14 +713,21 @@
 
                 const category =
                     button.dataset.category;
+                const wasSelected = activeWhereCategory === category;
+                activeWhereCategory = wasSelected ? '' : category;
+                renderPublished();
 
                 categoryButtons.forEach(item => {
                     item.classList.remove("active");
                 });
 
-                button.classList.add("active");
-
-                renderCategory(category);
+                if (activeWhereCategory) {
+                    button.classList.add("active");
+                    renderCategory(category);
+                } else {
+                    if (categoryResults) categoryResults.hidden = true;
+                    if (providerResults) providerResults.hidden = true;
+                }
 
             },
             true
