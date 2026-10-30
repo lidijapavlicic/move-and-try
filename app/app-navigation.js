@@ -46,14 +46,13 @@
   const prefix = isHR ? '/hr/' : '/';
 
   const labels = isHR
-    ? ['Početna', 'Istraži', 'Gdje probati', 'Journal', 'Spremljeno']
-    : ['Home', 'Explore', 'Where to Try', 'Journal', 'Saved'];
+    ? ['Početna', 'Istraži', 'Gdje probati', 'Spremljeno']
+    : ['Home', 'Explore', 'Where to Try', 'Saved'];
 
   const links = [
     '/app/',
     '/app/?tab=explore',
     prefix + 'where-to-try.html',
-    prefix + 'journal.html',
     '/app/?tab=saved'
   ];
 
@@ -61,20 +60,12 @@
     '<path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/>',
     '<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',
     '<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/>',
-    '<path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M8 9h7M8 13h7"/>',
     '<path d="M6 3h12v18l-6-4-6 4z"/>'
   ];
 
   const isWherePage =
     path.endsWith('/where-to-try.html') ||
     path.endsWith('-where-to-try.html');
-
-  const isJournalPage =
-    path.endsWith('/journal.html') ||
-    path.includes('/journal/') ||
-    path.endsWith('/what-if-i-try.html') ||
-    path.endsWith('/from-curiosity-to-your-own-scent.html') ||
-    path.endsWith('/where-do-adults-meet.html');
 
   const nav = document.createElement('nav');
 
@@ -104,8 +95,7 @@
     `;
 
     const current =
-      (index === 2 && isWherePage) ||
-      (index === 3 && isJournalPage);
+      (index === 2 && isWherePage);
 
     const ariaCurrent =
       current ? ' aria-current="page"' : '';
@@ -122,10 +112,7 @@
   document.body.classList.add('moveandtry-app-active');
 
   // Links to public pages remain in the PWA session.
-  const publicLinks = [
-    nav.querySelectorAll('a')[2],
-    nav.querySelectorAll('a')[3]
-  ];
+  const publicLinks = [nav.querySelectorAll('a')[2]];
 
   publicLinks.forEach(link => {
     link.addEventListener('click', event => {
