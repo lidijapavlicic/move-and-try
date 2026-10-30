@@ -20,6 +20,16 @@
     rel="stylesheet"
   >
 
+  <script>
+    // Installed PWA: standalone display mode (iOS also supports navigator.standalone).
+    window.MT_BROWSER_MODE = !(
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.matchMedia('(display-mode: fullscreen)').matches ||
+      navigator.standalone === true
+    );
+    if (window.MT_BROWSER_MODE) document.documentElement.classList.add('mt-browser');
+  </script>
+
   <style>
     :root {
       --bg: #f7f6f2;
@@ -1005,6 +1015,27 @@
     .app-where-contribute p { color: var(--muted); font-size: 12px; line-height: 1.8; }
     .app-where-contribute a { display: inline-block; margin-top: 12px; font-size: 10px; font-weight: 800; border-bottom: 1px solid var(--green); padding-bottom: 5px; }
     @media (max-width: 380px) { .app-where-card { grid-template-columns: 1fr; } .app-where-photo { aspect-ratio: 2/1; } }
+
+    /* Installation-only entry for regular browser tabs. */
+    .mt-browser .shell, .mt-browser .bottom, .mt-browser #welcome,
+    .mt-browser #notifications-panel, .mt-browser #settings-panel { display: none !important; }
+    #mt-install-gate { display: none; }
+    .mt-browser #mt-install-gate {
+      display: flex; min-height: 100dvh; align-items: center; justify-content: center;
+      padding: 34px 22px; text-align: center;
+    }
+    .mt-install-inner { width: 100%; max-width: 480px; }
+    .mt-install-logo { display: block; width: min(230px, 78%); height: auto; margin: 0 auto 46px; }
+    .mt-install-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .17em; }
+    .mt-install-inner h1 { font: 400 clamp(38px, 10vw, 56px)/1.1 'DM Serif Display', Georgia, serif; margin: 18px 0; }
+    .mt-install-inner p { color: var(--muted); font-size: 13px; line-height: 1.9; }
+    .mt-install-button { display: block; width: 100%; margin: 32px auto 16px; padding: 19px;
+      background: var(--green); color: #fff; border: 1px solid var(--green);
+      font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+    .mt-install-button[hidden] { display: none; }
+    .mt-install-help { padding: 15px 12px; border-top: 1px solid var(--line); }
+    .mt-install-home { display: inline-block; margin-top: 25px; font-size: 10px;
+      font-weight: 800; letter-spacing: .1em; border-bottom: 1px solid currentColor; padding-bottom: 5px; }
   </style>
 
   <link rel="stylesheet" href="/consent.css">
@@ -1012,6 +1043,20 @@
 </head>
 
 <body>
+
+  <!-- Browser visitors see installation guidance; installed PWA shows the existing app. -->
+  <section id="mt-install-gate" aria-labelledby="mt-install-title">
+    <div class="mt-install-inner">
+      <img class="mt-install-logo" src="/images/move-and-try-logo.png" alt="MOVE&TRY">
+      <span class="mt-install-eyebrow" id="mt-install-eyebrow">MOVE&TRY APP</span>
+      <h1 id="mt-install-title">Ponesi znatiželju sa sobom.</h1>
+      <p id="mt-install-description">Instaliraj MOVE&TRY na svoj uređaj i otvori aplikaciju s početnog zaslona.</p>
+      <button class="mt-install-button" id="mt-install-button" type="button" hidden>INSTALIRAJ APLIKACIJU →</button>
+      <p class="mt-install-help" id="mt-install-help" role="status" aria-live="polite"></p>
+      <a class="mt-install-home" id="mt-install-home" href="/hr/">NATRAG NA WEB →</a>
+    </div>
+  </section>
+
 
   <!-- FIRST-LAUNCH LANGUAGE SELECTION -->
 
@@ -1252,7 +1297,7 @@
   </div>
 
   <script>
-    (() => {
+    if (!window.MT_BROWSER_MODE) (() => {
       'use strict';
 
       const APP_LANGUAGE_KEY = 'moveandtry_app_language';
@@ -2451,10 +2496,69 @@
     })();
   </script>
 
+
+  <script>
+    (() => {
+      if (!window.MT_BROWSER_MODE) return;
+      const lang = (localStorage.getItem('moveandtry_language') || navigator.language || 'hr')
+        .toLowerCase().startsWith('hr') ? 'hr' : 'en';
+      const en = lang === 'en';
+      document.documentElement.lang = lang;
+      const set = (id, hr, eng) => { document.getElementById(id).textContent = en ? eng : hr; };
+      set('mt-install-title', 'Ponesi znatiželju sa sobom.', 'Take curiosity with you.');
+      set('mt-install-description', 'Instaliraj MOVE&TRY na svoj uređaj i otvori aplikaciju s početnog zaslona.',
+        'Install MOVE&TRY on your device and launch it from your home screen.');
+      set('mt-install-button', 'INSTALIRAJ APLIKACIJU →', 'INSTALL THE APP →');
+      set('mt-install-home', 'NATRAG NA WEB →', 'BACK TO WEBSITE →');
+      document.getElementById('mt-install-home').href = en ? '/' : '/hr/';
+      const button = document.getElementById('mt-install-button');
+      const help = document.getElementById('mt-install-help');
+      const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const android = /Android/i.test(navigator.userAgent);
+      const showHelp = () => {
+        help.textContent = ios
+          ? (en ? 'In Safari, tap Share, then Add to Home Screen.' : 'U Safariju dodirni Dijeli, zatim Dodaj na početni zaslon.')
+          : android
+            ? (en ? 'Open this page in Chrome and choose Install app or Add to Home screen from the browser menu.'
+                  : 'Otvori ovu stranicu u Chromeu i u izborniku preglednika odaberi Instaliraj aplikaciju ili Dodaj na početni zaslon.')
+            : (en ? 'Open your browser menu and select Install app, if available.'
+                  : 'U izborniku preglednika odaberi Instaliraj aplikaciju, ako je dostupno.');
+      };
+      showHelp();
+      let deferredPrompt = null;
+      window.addEventListener('beforeinstallprompt', event => {
+        event.preventDefault();
+        deferredPrompt = event;
+        button.hidden = false;
+      });
+      button.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        const prompt = deferredPrompt;
+        deferredPrompt = null;
+        button.hidden = true;
+        try {
+          await prompt.prompt();
+          const choice = await prompt.userChoice;
+          if (choice?.outcome !== 'accepted') showHelp();
+        } catch (error) {
+          console.warn('MOVE&TRY install prompt:', error);
+          showHelp();
+        }
+      });
+      window.addEventListener('appinstalled', () => {
+        button.hidden = true;
+        help.textContent = en
+          ? 'Installed! Open MOVE&TRY from your home screen.'
+          : 'Instalirano! Otvori MOVE&TRY s početnog zaslona.';
+      });
+    })();
+  </script>
+
   <script src="/app/notifications.js"></script>
 
   <script>
-    window.MoveTryNotifications?.init({
+    if (!window.MT_BROWSER_MODE) window.MoveTryNotifications?.init({
       locale: document.documentElement.lang === 'en'
         ? 'en'
         : 'hr'
