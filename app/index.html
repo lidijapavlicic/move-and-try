@@ -755,6 +755,14 @@
       html { scroll-behavior: auto; }
       .category:active { transform: none; }
     }
+    .push-categories { margin: 20px 0; padding: 16px; border: 1px solid var(--line); border-radius: 12px; }
+    .push-categories legend { font-weight: 800; padding: 0 6px; }
+    .push-category-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin: 14px 0; }
+
+    .push-category-grid label { display: flex; align-items: center; gap: 8px; font-weight: 700; cursor: pointer; }
+    .push-category-grid input { width: 19px; height: 19px; accent-color: var(--green); }
+    .push-save { padding: 12px 16px; border: 0; background: var(--green); color: white; font-weight: 800; cursor: pointer; }
+    .push-save:disabled { opacity: .5; cursor: wait; }
   </style>
   <link rel="stylesheet" href="/consent.css">
 </head>
@@ -926,6 +934,12 @@
         <p id="push-status" role="status" aria-live="polite"></p>
       </div>
 
+      <fieldset class="push-categories" id="push-categories" hidden>
+        <legend id="push-categories-title">Kategorije obavijesti</legend>
+        <div class="push-category-grid" id="push-category-grid"></div>
+        <button type="button" id="push-save" class="push-save">Spremi kategorije</button>
+      </fieldset>
+
       <div class="empty-notifications">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
@@ -1065,6 +1079,9 @@
           pushExisting: 'Pretplata na push obavijesti aktivna je na ovom uređaju.',
           pushManage: 'Upravljaj obavijestima u postavkama uređaja.',
           pushCheck: 'Provjeri status obavijesti', pushChecking: 'Provjeravam…',
+          pushTurnOn: 'Uključi obavijesti', pushTurnOff: 'Isključi obavijesti', pushSave: 'Spremi kategorije',
+          pushCategories: 'Odaberi kategorije obavijesti', pushSaving: 'Spremam…', pushSaved: 'Kategorije su spremljene.',
+          pushSelect: 'Odaberi barem jednu kategoriju.', pushError: 'Spremanje nije uspjelo. Provjeri vezu i pokušaj ponovno.',
           privacyUnavailable: 'Postavke privatnosti trenutačno nisu dostupne. Pokušaj ponovno nakon učitavanja stranice.',
           categoryMove: 'Pokreni se', categoryCreate: 'Stvaraj', categoryLearn: 'Nauči',
           categoryExplore: 'Istraži', categoryDare: 'Odvaži se', categoryCare: 'Brini o sebi',
@@ -1094,6 +1111,9 @@
           pushExisting: 'A push subscription is active on this device.',
           pushManage: 'Manage notifications in your device settings.',
           pushCheck: 'Check notification status', pushChecking: 'Checking…',
+          pushTurnOn: 'Enable notifications', pushTurnOff: 'Disable notifications', pushSave: 'Save categories',
+          pushCategories: 'Choose notification categories', pushSaving: 'Saving…', pushSaved: 'Categories saved.',
+          pushSelect: 'Choose at least one category.', pushError: 'Could not save. Check your connection and try again.',
           privacyUnavailable: 'Privacy settings are currently unavailable. Please try again after the page loads.',
           categoryMove: 'Get moving', categoryCreate: 'Get creative', categoryLearn: 'Learn something',
           categoryExplore: 'Explore', categoryDare: 'Challenge yourself', categoryCare: 'Take care',
@@ -1255,30 +1275,176 @@
           event.preventDefault(); first.focus();
         }
       }
+      const APP_PUSH_API = 'https://pdyngeaykfpybeafjtpw.supabase.co/functions/v1/';
+      const PUSH_TOKEN_KEY = 'moveandtry_app_push_device_token';
+      const PUSH_CATEGORY_KEY = 'moveandtry_app_push_categories';
+      const PUSH_CATEGORIES = ['MOVE', 'CREATE', 'LEARN', 'EXPLORE', 'DARE', 'CARE'];
+      let pushBusy = false;
+
+      function pushSupported() {
+        return window.isSecureContext && 'Notification' in window &&
+          'serviceWorker' in navigator && 'PushManager' in window;
+      }
+      function pushToken() {
+        let token = getStored(PUSH_TOKEN_KEY);
+        if (!token || !/^[a-f0-9]{64}$/.test(token)) {
+          const bytes = crypto.getRandomValues(new Uint8Array(32));
+          token = Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+          setStored(PUSH_TOKEN_KEY, token);
+        }
+        return token;
+      }
+      function selectedPushCategories() {
+        return Array.from(document.querySelectorAll('#push-category-grid input:checked'))
+          .map(input => input.value);
+      }
+      function storedPushCategories() {
+        try {
+          const value = JSON.parse(getStored(PUSH_CATEGORY_KEY) || '[]');
+          return Array.isArray(value) ? value.filter(x => PUSH_CATEGORIES.includes(x)) : [];
+        } catch (_) { return []; }
+      }
+      function renderPushCategories() {
+        const t = translations();
+        const selected = storedPushCategories();
+        document.getElementById('push-categories-title').textContent = t.pushCategories;
+        document.getElementById('push-save').textContent = t.pushSave;
+        document.getElementById('push-category-grid').innerHTML = PUSH_CATEGORIES.map(category =>
+          `<label><input type="checkbox" value="${category}" ${selected.includes(category) ? 'checked' : ''}>${category}</label>`
+        ).join('');
+      }
+      async function pushApi(name, options = {}) {
+        const response = await fetch(APP_PUSH_API + name, {
+          ...options,
+          mode: 'cors',
+          cache: 'no-store',
+          headers: { 'Content-Type': 'application/json', ...(options.headers || {}) }
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error || 'Push API error: ' + response.status);
+        return result;
+      }
+      function urlBase64ToUint8Array(base64) {
+        const padding = '='.repeat((4 - base64.length % 4) % 4);
+        const binary = atob((base64 + padding).replace(/-/g, '+').replace(/_/g, '/'));
+        return Uint8Array.from(binary, char => char.charCodeAt(0));
+      }
+      async function appPushRegistration() {
+        return navigator.serviceWorker.register('/app/sw.js', { scope: '/app/' });
+      }
       async function refreshPushStatus() {
         const t = translations();
         const status = document.getElementById('push-status');
         const button = document.getElementById('push-toggle');
-        button.hidden = false;
-        button.textContent = t.pushCheck;
-        if (!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)) {
+        const fieldset = document.getElementById('push-categories');
+        if (!document.querySelector('#push-category-grid input')) renderPushCategories();
+        else {
+          document.getElementById('push-categories-title').textContent = t.pushCategories;
+          document.getElementById('push-save').textContent = t.pushSave;
+        }
+        if (!pushSupported()) {
           status.textContent = t.pushUnsupported;
           button.hidden = true;
+          fieldset.hidden = true;
           return;
         }
         if (Notification.permission === 'denied') {
           status.textContent = t.pushDenied;
           button.hidden = true;
+          fieldset.hidden = true;
           return;
         }
         try {
-          const registration = await navigator.serviceWorker.getRegistration();
-          const subscription = registration ? await registration.pushManager.getSubscription() : null;
-          status.textContent = subscription ? t.pushExisting :
-            (Notification.permission === 'granted' ? t.pushEnabled + ' ' + t.pushManage : t.pushNotEnabled);
+          const registration = await appPushRegistration();
+          const subscription = await registration.pushManager.getSubscription();
+          const active = !!subscription;
+          button.hidden = false;
+          button.disabled = pushBusy;
+          button.textContent = active ? t.pushTurnOff : t.pushTurnOn;
+          fieldset.hidden = false;
+          document.getElementById('push-save').hidden = !active;
+          status.textContent = active ? t.pushExisting : t.pushNotEnabled;
         } catch (error) {
           console.warn('Push status:', error);
-          status.textContent = t.pushNotEnabled;
+          status.textContent = t.pushError;
+          button.hidden = true;
+          fieldset.hidden = true;
+        }
+      }
+      async function togglePush() {
+        if (pushBusy || !pushSupported()) return;
+        const t = translations();
+        const status = document.getElementById('push-status');
+        const button = document.getElementById('push-toggle');
+        pushBusy = true;
+        button.disabled = true;
+        status.textContent = t.pushChecking;
+        try {
+          const registration = await appPushRegistration();
+          let subscription = await registration.pushManager.getSubscription();
+          if (subscription) {
+            // Remove server registration before unsubscribing locally.
+            await pushApi('app-push-subscribe', {
+              method: 'POST',
+              body: JSON.stringify({ action: 'unsubscribe', deviceToken: pushToken(), subscription: subscription.toJSON() })
+            });
+            const removed = await subscription.unsubscribe();
+            if (!removed) throw new Error('Browser unsubscribe failed');
+          } else {
+            const permission = await Notification.requestPermission();
+            if (permission !== 'granted') { await refreshPushStatus(); return; }
+            const config = await pushApi('app-push-config');
+            if (!/^[A-Za-z0-9_-]{87}$/.test(config.publicKey || '')) throw new Error('Invalid VAPID key');
+            const categories = selectedPushCategories().length ? selectedPushCategories() : storedPushCategories();
+            if (!categories.length) { status.textContent = t.pushSelect; return; }
+            subscription = await registration.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: urlBase64ToUint8Array(config.publicKey)
+            });
+            try {
+              await pushApi('app-push-subscribe', {
+                method: 'POST',
+                body: JSON.stringify({ action: 'subscribe', deviceToken: pushToken(), subscription: subscription.toJSON(), categories })
+              });
+            } catch (error) {
+              await subscription.unsubscribe();
+              throw error;
+            }
+            setStored(PUSH_CATEGORY_KEY, JSON.stringify(categories));
+          }
+        } catch (error) {
+          console.error('Push toggle:', error);
+          status.textContent = t.pushError;
+        } finally {
+          pushBusy = false;
+          await refreshPushStatus();
+        }
+      }
+      async function savePushCategories() {
+        if (pushBusy) return;
+        const t = translations();
+        const categories = selectedPushCategories();
+        const status = document.getElementById('push-status');
+        if (!categories.length) { status.textContent = t.pushSelect; return; }
+        pushBusy = true;
+        document.getElementById('push-save').disabled = true;
+        status.textContent = t.pushSaving;
+        try {
+          const registration = await appPushRegistration();
+          const subscription = await registration.pushManager.getSubscription();
+          if (!subscription) throw new Error('No active subscription');
+          await pushApi('app-push-subscribe', {
+            method: 'POST',
+            body: JSON.stringify({ action: 'subscribe', deviceToken: pushToken(), subscription: subscription.toJSON(), categories })
+          });
+          setStored(PUSH_CATEGORY_KEY, JSON.stringify(categories));
+          status.textContent = t.pushSaved;
+        } catch (error) {
+          console.error('Push categories:', error);
+          status.textContent = t.pushError;
+        } finally {
+          pushBusy = false;
+          document.getElementById('push-save').disabled = false;
         }
       }
       async function rollDice() {
@@ -1311,20 +1477,13 @@
         diceBusy = false;
       }
       function openPrivacySettings() {
+        const trigger = document.getElementById('privacy-settings-button');
         closePanel();
-        // The existing consent module owns the preference dialog.
-        const triggers = ['[data-consent-settings]', '[data-open-consent]', '#consent-settings-button'];
-        for (const selector of triggers) {
-          const trigger = document.querySelector(selector);
-          if (trigger && trigger !== document.getElementById('privacy-settings-button')) {
-            trigger.click(); return;
-          }
+        if (window.MoveTryConsent && typeof window.MoveTryConsent.openSettings === 'function') {
+          window.MoveTryConsent.openSettings(trigger);
+        } else {
+          alert(translations().privacyUnavailable);
         }
-        if (typeof window.openConsentSettings === 'function') { window.openConsentSettings(); return; }
-        if (window.MTConsent && typeof window.MTConsent.openSettings === 'function') {
-          window.MTConsent.openSettings(); return;
-        }
-        alert(translations().privacyUnavailable);
       }
 
       document.querySelectorAll('[data-tab]').forEach(button => {
@@ -1347,7 +1506,8 @@
         button.addEventListener('click', () => setLanguage(button.dataset.settingLanguage));
       });
       document.getElementById('privacy-settings-button').addEventListener('click', openPrivacySettings);
-      document.getElementById('push-toggle').addEventListener('click', refreshPushStatus);
+      document.getElementById('push-toggle').addEventListener('click', togglePush);
+      document.getElementById('push-save').addEventListener('click', savePushCategories);
       document.querySelectorAll('[data-choice]').forEach(button => button.addEventListener('click', () => {
         chosenLanguage = button.dataset.choice;
         document.querySelectorAll('[data-choice]').forEach(item => {
