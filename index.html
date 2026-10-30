@@ -1,1133 +1,641 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f6f2">
+<link rel="icon" type="image/png" href="/favicon.png">
+<title>Move & Try | You don't have to be good at it. Just try.</title>
+<meta name="description" content="Move & Try is a place to discover something new you can try. Move, learn, create, explore, dare or take care of yourself. You don't have to be good at it. Just try.">
+<link rel="canonical" href="https://moveandtry.com/">
+<link rel="alternate" hreflang="en" href="https://moveandtry.com/">
+<link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/">
+<link rel="alternate" hreflang="x-default" href="https://moveandtry.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Move & Try">
+<meta property="og:title" content="Move & Try | You don't have to be good at it. Just try.">
+<meta property="og:description" content="Discover something new you can try. You don't have to be good at it. Just try.">
+<meta property="og:url" content="https://moveandtry.com/">
+<meta property="og:image" content="https://moveandtry.com/images/move-and-try-share.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Move & Try | You don't have to be good at it. Just try.">
+<meta name="twitter:description" content="Discover something new you can try. You don't have to be good at it. Just try.">
+<meta name="twitter:image" content="https://moveandtry.com/images/move-and-try-share.png">
 
-  <meta name="theme-color" content="#f7f6f2">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://moveandtry.com/#website",
+      "url":"https://moveandtry.com/",
+      "name":"Move & Try",
+      "alternateName":"MOVE & TRY",
+      "description":"Move & Try is a place to discover something new you can try. You don't have to be good at it. Just try.",
+      "publisher":{"@id":"https://moveandtry.com/#organization"}
+    },
+    {
+      "@type":"Organization",
+      "@id":"https://moveandtry.com/#organization",
+      "name":"Move & Try",
+      "url":"https://moveandtry.com/",
+      "logo":{"@type":"ImageObject","url":"https://moveandtry.com/images/move-and-try-logo.png"}
+    }
+  ]
+}
+</script>
 
-  <link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
-  <title>Move & Try | You don't have to be good at it. Just try.</title>
-
-  <meta
-    name="description"
-    content="Move & Try is a place to discover something new you can try. Move, learn, create, explore, dare or take care of yourself. You don't have to be good at it. Just try."
-  >
-
-  <link rel="canonical" href="https://moveandtry.com/">
-
-  <link rel="alternate" hreflang="en" href="https://moveandtry.com/">
-  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/">
-  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/">
-
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Move & Try">
-  <meta property="og:title" content="Move & Try | You don't have to be good at it. Just try.">
-  <meta property="og:description" content="Discover something new you can try. You don't have to be good at it. Just try.">
-  <meta property="og:url" content="https://moveandtry.com/">
-  <meta property="og:image" content="https://moveandtry.com/images/move-and-try-share.png">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Move & Try | You don't have to be good at it. Just try.">
-  <meta name="twitter:description" content="Discover something new you can try. You don't have to be good at it. Just try.">
-  <meta name="twitter:image" content="https://moveandtry.com/images/move-and-try-share.png">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://moveandtry.com/#website",
-        "url": "https://moveandtry.com/",
-        "name": "Move & Try",
-        "alternateName": "MOVE & TRY",
-        "description": "Move & Try is a place to discover something new you can try. You don't have to be good at it. Just try.",
-        "publisher": {
-          "@id": "https://moveandtry.com/#organization"
-        }
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://moveandtry.com/#organization",
-        "name": "Move & Try",
-        "url": "https://moveandtry.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://moveandtry.com/images/move-and-try-logo.png"
-        }
-      }
-    ]
+<style>
+/* WHAT'S NEW */
+.home-intro .whats-new .new-card.latest-update-card {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:340px;
+  margin-top:18px;
+  background:#151417;
+  color:#fff;
+  text-decoration:none;
+}
+.home-intro .whats-new .new-card.latest-update-card:first-of-type {
+  margin-top:0;
+}
+.home-intro .whats-new .new-card.latest-update-card::before,
+.home-intro .whats-new .new-card.latest-update-card::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  pointer-events:none;
+  animation:latestPhotoFade 12s ease-in-out infinite;
+}
+.home-intro .whats-new .new-card.latest-update-card::before {
+  animation-delay:0s;
+}
+.home-intro .whats-new .new-card.latest-update-card::after {
+  animation-delay:-6s;
+}
+.home-intro .whats-new .new-card.latest-update-natural-perfume {
+  background:#211b19;
+}
+.home-intro .whats-new .new-card.latest-update-natural-perfume::before {
+  background-image:linear-gradient(180deg,rgba(20,15,13,.46) 0%,rgba(20,15,13,.62) 48%,rgba(20,15,13,.90) 100%),url('/images/natural-perfume-spray.jpg');
+}
+.home-intro .whats-new .new-card.latest-update-natural-perfume::after {
+  background-image:linear-gradient(180deg,rgba(20,15,13,.46) 0%,rgba(20,15,13,.62) 48%,rgba(20,15,13,.90) 100%),url('/images/natural-perfume-bottle.jpg');
+}
+.home-intro .whats-new .new-card.latest-update-horse-riding {
+  background:#18241e;
+}
+.home-intro .whats-new .new-card.latest-update-horse-riding::before {
+  background-image:linear-gradient(180deg,rgba(9,19,15,.46) 0%,rgba(9,19,15,.62) 48%,rgba(9,19,15,.88) 100%),url('/images/horse-riding-1.jpg');
+  background-position:center 65%;
+}
+.home-intro .whats-new .new-card.latest-update-horse-riding::after {
+  background-image:linear-gradient(180deg,rgba(9,19,15,.46) 0%,rgba(9,19,15,.62) 48%,rgba(9,19,15,.88) 100%),url('/images/horse-riding-2.jpg');
+  background-position:center 85%;
+}
+.home-intro .whats-new .new-card.latest-update-card .new-type,
+.home-intro .whats-new .new-card.latest-update-card h3,
+.home-intro .whats-new .new-card.latest-update-card p,
+.home-intro .whats-new .new-card.latest-update-card .new-action {
+  position:relative;
+  z-index:2;
+  color:#fff;
+}
+.home-intro .whats-new .new-card.latest-update-card .new-type {
+  color:#d4c8ae;
+}
+@keyframes latestPhotoFade {
+  0%,42%,100% {opacity:1}
+  50%,92% {opacity:0}
+}
+@media (prefers-reduced-motion:reduce) {
+  .home-intro .whats-new .new-card.latest-update-card::before,
+  .home-intro .whats-new .new-card.latest-update-card::after {
+    animation:none;
   }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css">
-
-  <style>
-
-    /* ==========================================
-       WHAT'S NEW
-    ========================================== */
-
-    .home-intro .whats-new .new-card.latest-update-card {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-
-      display: flex;
-      flex-direction: column;
-
-      min-height: 340px;
-      margin-top: 18px;
-
-      background: #151417;
-      color: #fff;
-
-      text-decoration: none;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-card:first-of-type {
-      margin-top: 0;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-card::before,
-    .home-intro .whats-new .new-card.latest-update-card::after {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      z-index: 0;
-
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-
-      pointer-events: none;
-
-      animation: latestPhotoFade 12s ease-in-out infinite;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-card::before {
-      animation-delay: 0s;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-card::after {
-      animation-delay: -6s;
-    }
-
-
-    /* ==========================================
-       NATURAL PERFUME MAKING — WHERE TO TRY
-    ========================================== */
-
-    .home-intro .whats-new .new-card.latest-update-natural-perfume {
-      background: #211b19;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-natural-perfume::before {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(20,15,13,.46) 0%,
-          rgba(20,15,13,.62) 48%,
-          rgba(20,15,13,.90) 100%
-        ),
-        url('/images/natural-perfume-spray.jpg');
-
-      background-position: center;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-natural-perfume::after {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(20,15,13,.46) 0%,
-          rgba(20,15,13,.62) 48%,
-          rgba(20,15,13,.90) 100%
-        ),
-        url('/images/natural-perfume-bottle.jpg');
-
-      background-position: center;
-    }
-
-
-    /* ==========================================
-       HORSE RIDING — EXPERIENCE
-    ========================================== */
-
-    .home-intro .whats-new .new-card.latest-update-horse-riding {
-      background: #18241e;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-horse-riding::before {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(9,19,15,.46) 0%,
-          rgba(9,19,15,.62) 48%,
-          rgba(9,19,15,.88) 100%
-        ),
-        url('/images/horse-riding-1.jpg');
-
-      background-position: center 65%;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-horse-riding::after {
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(9,19,15,.46) 0%,
-          rgba(9,19,15,.62) 48%,
-          rgba(9,19,15,.88) 100%
-        ),
-        url('/images/horse-riding-2.jpg');
-
-      background-position: center 85%;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-card .new-type,
-    .home-intro .whats-new .new-card.latest-update-card h3,
-    .home-intro .whats-new .new-card.latest-update-card p,
-    .home-intro .whats-new .new-card.latest-update-card .new-action {
-      position: relative;
-      z-index: 2;
-      color: #fff;
-    }
-
-    .home-intro .whats-new .new-card.latest-update-card .new-type {
-      color: #d4c8ae;
-    }
-
-    @keyframes latestPhotoFade {
-      0%,
-      42% {
-        opacity: 1;
-      }
-
-      50%,
-      92% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      .home-intro .whats-new .new-card.latest-update-card::before,
-      .home-intro .whats-new .new-card.latest-update-card::after {
-        animation: none;
-      }
-
-      .home-intro .whats-new .new-card.latest-update-card::before {
-        opacity: 1;
-      }
-
-      .home-intro .whats-new .new-card.latest-update-card::after {
-        opacity: 0;
-      }
-    }
-
-
-    /* ==========================================
-       CATEGORY IMAGES
-    ========================================== */
-
-    #find-your-try .category-card {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-    }
-
-    #find-your-try .category-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-
-      background-repeat: no-repeat;
-      background-position: right center;
-      background-size: cover;
-
-      opacity: .40;
-
-      pointer-events: none;
-
-      transition:
-        opacity .5s ease,
-        transform .5s ease;
-    }
-
-    #find-your-try .category-move::before {
-      background-image: url('/images/category-move.webp');
-    }
-
-    #find-your-try .category-learn::before {
-      background-image: url('/images/category-learn.webp');
-    }
-
-    #find-your-try .category-create::before {
-      background-image: url('/images/category-create.webp');
-    }
-
-    #find-your-try .category-explore::before {
-      background-image: url('/images/category-explore.webp');
-    }
-
-    #find-your-try .category-dare::before {
-      background-image: url('/images/category-dare.webp');
-    }
-
-    #find-your-try .category-care::before {
-      background-image: url('/images/category-care.webp');
-    }
-
-    #find-your-try .category-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      #find-your-try .category-card:hover::before {
-        opacity: .65;
-        transform: scale(1.035);
-      }
-    }
-
-    @media (max-width: 768px) {
-      #find-your-try .category-card::before {
-        opacity: .30;
-        background-position: right center;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #find-your-try .category-card::before {
-        transition: none;
-      }
-    }
-
-
-    /* ==========================================
-       FINAL IMAGE
-    ========================================== */
-
-    section.suggest {
-      position: relative;
-      isolation: isolate;
-
-      background-color: #17251d;
-
-      background-image:
-        linear-gradient(
-          rgba(9,19,15,.40),
-          rgba(9,19,15,.50)
-        ),
-        url('/images/home-final-background.jpg');
-
-      background-size: cover;
-      background-position: center 50%;
-      background-repeat: no-repeat;
-
-      color: #fff;
-    }
-
-    section.suggest > .section-label {
-      color: #e3dfc8;
-    }
-
-    section.suggest > h2,
-    section.suggest .suggest-intro,
-    section.suggest .suggest-intro strong,
-    section.suggest .suggest-note {
-      color: #fff;
-    }
-
-    section.suggest .privacy-note {
-      color: rgba(255,255,255,.90);
-    }
-
-    section.suggest #suggestion-message {
-      color: #fff;
-    }
-
-    section.suggest #try-form input {
-      background: #fff;
-      color: #171717;
-    }
-
-    section.suggest #try-form button {
-      background: #171717;
-      color: #fff;
-    }
-
-    @media (max-width: 768px) {
-      section.suggest {
-        background-position: center center;
-
-        background-image:
-          linear-gradient(
-            rgba(9,19,15,.64),
-            rgba(9,19,15,.73)
-          ),
-          url('/images/home-final-background.jpg');
-      }
-    }
-
-
-    /* ==========================================
-       HERO IMAGE
-    ========================================== */
-
-    section.home-hero-image {
-      display: block;
-
-      width: 100vw;
-      max-width: none;
-
-      margin: 0 0 0 calc(50% - 50vw);
-
-      padding: 0;
-
-      border: 0;
-      border-radius: 0;
-
-      overflow: hidden;
-    }
-
-    section.home-hero-image img {
-      display: block;
-
-      width: 100%;
-      max-width: none;
-      height: auto;
-
-      margin: 0;
-      padding: 0;
-
-      border: 0;
-      border-radius: 0;
-
-      object-fit: contain;
-    }
-
-
-    /* ==========================================
-       HEADER
-    ========================================== */
-
-    .header-behind-link {
-      color: #555;
-
-      font-family: 'Manrope', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-
-      letter-spacing: .04em;
-
-      text-decoration: none;
-      white-space: nowrap;
-
-      transition: opacity .2s ease;
-    }
-
-    .header-behind-link:hover {
-      opacity: .55;
-    }
-
-    @media (min-width: 769px) {
-
-      .site-header {
-        grid-template-columns:
-          minmax(120px,1fr)
-          auto
-          minmax(120px,1fr);
-
-        gap: 16px;
-      }
-
-      .desktop-nav {
-        gap: clamp(12px,2vw,38px);
-      }
-
-      .desktop-nav a {
-        white-space: nowrap;
-      }
-    }
-
-    @media (max-width: 1250px) and (min-width: 769px) {
-      .header-behind-link {
-        display: none;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .header-behind-link {
-        display: none;
-      }
-    }
-
-
-    /* ==========================================
-       BE PART OF IT
-    ========================================== */
-
-    #be-part-of-it .community-actions .community-link-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      width: fit-content;
-      max-width: 100%;
-
-      padding: 15px 22px;
-
-      background: #1f2a18;
-      border: 1px solid #1f2a18;
-
-      color: #fff;
-
-      font-size: 11px;
-      font-weight: 800;
-
-      letter-spacing: .05em;
-      line-height: 1.6;
-
-      text-decoration: none;
-
-      transition:
-        background .2s ease,
-        color .2s ease;
-    }
-
-    #be-part-of-it .community-actions .community-link-primary:hover {
-      background: transparent;
-      color: #1f2a18;
-    }
-
-    .community-instagram-link {
-      display: inline-block;
-      margin-top: 14px;
-      color: #1f2a18;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .05em;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    .footer-instagram-link {
-      display: block;
-      margin-top: 7px;
-    }
-
-
-    /* ==========================================
-       WHERE TO TRY — ACTIVE
-    ========================================== */
-
-    #where-to-try {
-      scroll-margin-top: 110px;
-    }
-
-    #where-to-try .community-highlight {
-      margin: 18px 0 22px;
-    }
-
-    #where-to-try .where-home-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-
-      gap: 14px;
-
-      margin-top: 26px;
-    }
-
-    #where-to-try .where-home-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      width: fit-content;
-      max-width: 100%;
-
-      padding: 15px 22px;
-
-      background: #1f2a18;
-      border: 1px solid #1f2a18;
-
-      color: #ffffff;
-
-      font-size: 11px;
-      font-weight: 800;
-
-      letter-spacing: .05em;
-      line-height: 1.6;
-
-      text-decoration: none;
-
-      transition:
-        background .2s ease,
-        color .2s ease;
-    }
-
-    #where-to-try .where-home-primary:hover {
-      background: transparent;
-      color: #1f2a18;
-    }
-
-    #where-to-try .where-home-current {
-      display: inline-block;
-
-      color: #1f2a18;
-
-      font-size: 10px;
-      font-weight: 800;
-
-      letter-spacing: .05em;
-      line-height: 1.6;
-
-      text-decoration: underline;
-      text-underline-offset: 4px;
-
-      transition: opacity .2s ease;
-    }
-
-    #where-to-try .where-home-current:hover {
-      opacity: .55;
-    }
-
-
-    /* ==========================================
-       ACCESSIBILITY & PRIVACY SETTINGS
-    ========================================== */
-
-    .mobile-privacy-link {
-      display: block;
-      width: 100%;
-      padding: 12px 0;
-      border: 0;
-      background: transparent;
-      color: inherit;
-      font: inherit;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    :where(a, button, input):focus-visible {
-      outline: 3px solid #587349;
-      outline-offset: 3px;
-    }
-
-  </style>
-
-  <link rel="stylesheet" href="/consent.css">
+  .home-intro .whats-new .new-card.latest-update-card::before {opacity:1}
+  .home-intro .whats-new .new-card.latest-update-card::after {opacity:0}
+}
+
+/* CATEGORY IMAGES */
+#find-your-try .category-card {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+#find-your-try .category-card::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background-repeat:no-repeat;
+  background-position:right center;
+  background-size:cover;
+  opacity:.40;
+  pointer-events:none;
+  transition:opacity .5s ease,transform .5s ease;
+}
+#find-your-try .category-move::before {background-image:url('/images/category-move.webp')}
+#find-your-try .category-learn::before {background-image:url('/images/category-learn.webp')}
+#find-your-try .category-create::before {background-image:url('/images/category-create.webp')}
+#find-your-try .category-explore::before {background-image:url('/images/category-explore.webp')}
+#find-your-try .category-dare::before {background-image:url('/images/category-dare.webp')}
+#find-your-try .category-care::before {background-image:url('/images/category-care.webp')}
+#find-your-try .category-card > * {
+  position:relative;
+  z-index:1;
+}
+@media (hover:hover) and (pointer:fine) {
+  #find-your-try .category-card:hover::before {
+    opacity:.65;
+    transform:scale(1.035);
+  }
+}
+@media (max-width:768px) {
+  #find-your-try .category-card::before {
+    opacity:.30;
+    background-position:right center;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  #find-your-try .category-card::before {transition:none}
+}
+
+/* FINAL IMAGE */
+section.suggest {
+  position:relative;
+  isolation:isolate;
+  background-color:#17251d;
+  background-image:linear-gradient(rgba(9,19,15,.40),rgba(9,19,15,.50)),url('/images/home-final-background.jpg');
+  background-size:cover;
+  background-position:center 50%;
+  background-repeat:no-repeat;
+  color:#fff;
+}
+section.suggest > .section-label {color:#e3dfc8}
+section.suggest > h2,
+section.suggest .suggest-intro,
+section.suggest .suggest-intro strong,
+section.suggest .suggest-note {color:#fff}
+section.suggest .privacy-note {color:rgba(255,255,255,.90)}
+section.suggest #suggestion-message {color:#fff}
+section.suggest #try-form input {background:#fff;color:#171717}
+section.suggest #try-form button {background:#171717;color:#fff}
+@media (max-width:768px) {
+  section.suggest {
+    background-position:center center;
+    background-image:linear-gradient(rgba(9,19,15,.64),rgba(9,19,15,.73)),url('/images/home-final-background.jpg');
+  }
+}
+
+/* HERO IMAGE */
+section.home-hero-image {
+  display:block;
+  width:100vw;
+  max-width:none;
+  margin:0 0 0 calc(50% - 50vw);
+  padding:0;
+  border:0;
+  border-radius:0;
+  overflow:hidden;
+}
+section.home-hero-image img {
+  display:block;
+  width:100%;
+  max-width:none;
+  height:auto;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  object-fit:contain;
+}
+
+/* HEADER */
+.header-behind-link {
+  color:#555;
+  font-family:'Manrope',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:opacity .2s ease;
+}
+.header-behind-link:hover {opacity:.55}
+@media (min-width:769px) {
+  .site-header {
+    grid-template-columns:minmax(120px,1fr) auto minmax(120px,1fr);
+    gap:16px;
+  }
+  .desktop-nav {gap:clamp(12px,2vw,38px)}
+  .desktop-nav a {white-space:nowrap}
+}
+@media (max-width:1250px) and (min-width:769px) {
+  .header-behind-link {display:none}
+}
+@media (max-width:768px) {
+  .header-behind-link {display:none}
+}
+
+/* BE PART OF IT */
+#be-part-of-it .community-actions .community-link-primary {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:fit-content;
+  max-width:100%;
+  padding:15px 22px;
+  background:#1f2a18;
+  border:1px solid #1f2a18;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.05em;
+  line-height:1.6;
+  text-decoration:none;
+  transition:background .2s ease,color .2s ease;
+}
+#be-part-of-it .community-actions .community-link-primary:hover {
+  background:transparent;
+  color:#1f2a18;
+}
+.community-instagram-link {
+  display:inline-block;
+  margin-top:14px;
+  color:#1f2a18;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.05em;
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.footer-instagram-link {display:block;margin-top:7px}
+
+/* WHERE TO TRY */
+#where-to-try {scroll-margin-top:110px}
+#where-to-try .community-highlight {margin:18px 0 22px}
+#where-to-try .where-home-actions {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:14px;
+  margin-top:26px;
+}
+#where-to-try .where-home-primary {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:fit-content;
+  max-width:100%;
+  padding:15px 22px;
+  background:#1f2a18;
+  border:1px solid #1f2a18;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.05em;
+  line-height:1.6;
+  text-decoration:none;
+  transition:background .2s ease,color .2s ease;
+}
+#where-to-try .where-home-primary:hover {
+  background:transparent;
+  color:#1f2a18;
+}
+#where-to-try .where-home-current {
+  display:inline-block;
+  color:#1f2a18;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.05em;
+  line-height:1.6;
+  text-decoration:underline;
+  text-underline-offset:4px;
+  transition:opacity .2s ease;
+}
+#where-to-try .where-home-current:hover {opacity:.55}
+.mobile-privacy-link {
+  display:block;
+  width:100%;
+  padding:12px 0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+:where(a,button,input):focus-visible {
+  outline:3px solid #587349;
+  outline-offset:3px;
+}
+
+/* NEW: MOVE&TRY APP */
+#move-try-app {
+  padding:clamp(60px,8vw,110px) max(24px,calc((100vw - 1220px)/2));
+  background:#eeeee8;
+  color:#1b2118;
+  border-top:1px solid #d5d6cd;
+  border-bottom:1px solid #d5d6cd;
+  scroll-margin-top:90px;
+}
+#move-try-app .app-install-inner {max-width:850px}
+#move-try-app .app-install-eyebrow {
+  font:800 11px/1.5 'Manrope',sans-serif;
+  letter-spacing:.19em;
+  color:#586a50;
+  margin:0 0 20px;
+}
+#move-try-app h2 {
+  font-family:'DM Serif Display',Georgia,serif;
+  font-weight:400;
+  font-size:clamp(36px,5.2vw,70px);
+  line-height:1.08;
+  margin:0 0 24px;
+}
+#move-try-app .app-install-description {
+  max-width:650px;
+  font:400 clamp(15px,1.5vw,18px)/1.85 'Manrope',sans-serif;
+  margin:0 0 28px;
+}
+#move-try-app .app-install-link {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:17px 25px;
+  background:#1f2a18;
+  border:1px solid #1f2a18;
+  color:white;
+  text-decoration:none;
+  font:800 11px/1.5 'Manrope',sans-serif;
+  letter-spacing:.07em;
+  transition:background .2s,color .2s;
+}
+#move-try-app .app-install-link:hover {
+  background:transparent;
+  color:#1f2a18;
+}
+#move-try-app .app-install-note {
+  font:600 11px/1.8 'Manrope',sans-serif;
+  margin:15px 0 0;
+  color:#586250;
+}
+#move-try-app details {
+  max-width:650px;
+  margin-top:30px;
+  padding-top:18px;
+  border-top:1px solid #c9cec4;
+  font:400 13px/1.9 'Manrope',sans-serif;
+}
+#move-try-app summary {cursor:pointer;font-weight:800}
+#move-try-app details p {margin:10px 0}
+@media (max-width:768px) {
+  #move-try-app {padding:62px 24px}
+  #move-try-app .app-install-link {
+    width:100%;
+    box-sizing:border-box;
+  }
+}
+</style>
+<link rel="stylesheet" href="/consent.css">
 </head>
-
-
 <body>
 
-
 <header class="site-header">
-
   <a href="/" class="site-logo" aria-label="Move & Try home">
     <img src="/images/move-and-try-logo.png" alt="Move & Try">
   </a>
-
   <nav class="desktop-nav">
     <a href="#find-your-try">DISCOVER</a>
     <a href="#be-part-of-it">BE PART OF IT</a>
     <a href="#where-to-try">WHERE TO TRY</a>
+    <a href="#move-try-app">APP</a>
     <a href="/journal.html">THE JOURNAL</a>
   </nav>
-
   <div class="header-actions">
-
-    <a href="/behind-move-and-try.html" class="header-behind-link">
-      BEHIND MOVE & TRY
-    </a>
-
+    <a href="/behind-move-and-try.html" class="header-behind-link">BEHIND MOVE & TRY</a>
     <div class="header-language">
       <span class="language-active">EN</span>
       <span>|</span>
-
-      <a href="/hr/" onclick="setLanguage('hr')">
-        HR
-      </a>
+      <a href="/hr/" onclick="setLanguage('hr')">HR</a>
     </div>
-
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-    >
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span>
       <span></span>
     </button>
-
   </div>
-
 </header>
 
-
 <div class="mobile-menu">
-
   <nav>
     <a href="#find-your-try">DISCOVER</a>
     <a href="#be-part-of-it">BE PART OF IT</a>
     <a href="#where-to-try">WHERE TO TRY</a>
+    <a href="#move-try-app">APP</a>
     <a href="/journal.html">THE JOURNAL</a>
     <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
-
-    <button
-      type="button"
-      class="mobile-privacy-link"
-      onclick="window.MoveTryConsent?.openSettings(this)"
-    >
-      PRIVACY SETTINGS
-    </button>
+    <button type="button" class="mobile-privacy-link" onclick="window.MoveTryConsent?.openSettings(this)">PRIVACY SETTINGS</button>
   </nav>
-
   <div class="mobile-menu-language">
-
-    <span class="language-active">
-      EN
-    </span>
-
+    <span class="language-active">EN</span>
     <span>|</span>
-
-    <a href="/hr/" onclick="setLanguage('hr')">
-      HR
-    </a>
-
+    <a href="/hr/" onclick="setLanguage('hr')">HR</a>
   </div>
-
 </div>
 
-
 <section class="home-hero-image">
-
-  <img
-    src="/images/home-discover.png"
-    alt="A playful view of different activities and things to discover"
-  >
-
+  <img src="/images/home-discover.png" alt="A playful view of different activities and things to discover">
 </section>
 
-
-<section
-  class="home-intro"
-  aria-label="How it works and what's new"
->
-
+<section class="home-intro" aria-label="How it works and what's new">
   <div class="home-intro-grid">
-
     <div class="how-it-works" aria-labelledby="how-it-works-title">
-
       <div class="how-it-works-inner">
-
-        <p class="section-label">
-          HOW IT WORKS
-        </p>
-
-        <h2 id="how-it-works-title">
-          A LITTLE CURIOSITY.<br>
-          A NEW EXPERIENCE.
-        </h2>
-
+        <p class="section-label">HOW IT WORKS</p>
+        <h2 id="how-it-works-title">A LITTLE CURIOSITY.<br>A NEW EXPERIENCE.</h2>
         <div class="how-steps">
-
           <div class="how-step">
-
-            <span class="how-step-number">
-              01
-            </span>
-
-            <h3>
-              DISCOVER
-            </h3>
-
-            <p>
-              Explore activities and find something that sparks your curiosity.
-            </p>
-
-            <a class="how-step-link" href="#find-your-try">
-              EXPLORE ACTIVITIES →
-            </a>
-
+            <span class="how-step-number">01</span>
+            <h3>DISCOVER</h3>
+            <p>Explore activities and find something that sparks your curiosity.</p>
+            <a class="how-step-link" href="#find-your-try">EXPLORE ACTIVITIES →</a>
           </div>
-
-
           <div class="how-step">
-
-            <span class="how-step-number">
-              02
-            </span>
-
-            <h3>
-              GET INSPIRED
-            </h3>
-
-            <p>
-              Read real experiences, tips and stories from others.
-            </p>
-
+            <span class="how-step-number">02</span>
+            <h3>GET INSPIRED</h3>
+            <p>Read real experiences, tips and stories from others.</p>
           </div>
-
-
           <div class="how-step">
-
-            <span class="how-step-number">
-              03
-            </span>
-
-            <h3>
-              FIND A PLACE
-            </h3>
-
-            <p>
-              Find where your curiosity can become a real experience.
-            </p>
-
-            <a class="how-step-link" href="#where-to-try">
-              WHERE TO TRY →
-            </a>
-
+            <span class="how-step-number">03</span>
+            <h3>FIND A PLACE</h3>
+            <p>Find where your curiosity can become a real experience.</p>
+            <a class="how-step-link" href="#where-to-try">WHERE TO TRY →</a>
           </div>
-
-
           <div class="how-step">
-
-            <span class="how-step-number">
-              04
-            </span>
-
-            <h3>
-              TRY IT
-            </h3>
-
-            <p>
-              Take the first step.
-              You don't have to be good at it.
-            </p>
-
+            <span class="how-step-number">04</span>
+            <h3>TRY IT</h3>
+            <p>Take the first step. You don't have to be good at it.</p>
           </div>
-
-
           <div class="how-step">
-
-            <div class="how-step-number">
-              05
-            </div>
-
-            <h3>
-              SHARE YOUR EXPERIENCE
-            </h3>
-
-            <p>
-              Your story might inspire someone else
-              to give it a try.
-            </p>
-
-            <a class="how-step-link" href="/share-experience.html">
-              SHARE YOUR STORY →
-            </a>
-
+            <span class="how-step-number">05</span>
+            <h3>SHARE YOUR EXPERIENCE</h3>
+            <p>Your story might inspire someone else to give it a try.</p>
+            <a class="how-step-link" href="/share-experience.html">SHARE YOUR STORY →</a>
           </div>
-
         </div>
-
-        <p class="how-it-works-ending">
-          You don't need experience. Just curiosity.
-        </p>
-
+        <p class="how-it-works-ending">You don't need experience. Just curiosity.</p>
       </div>
-
     </div>
-
 
     <div class="home-intro-news">
-
       <div class="whats-new">
-
-        <p class="section-label">
-          WHAT'S NEW
-        </p>
-
-        <h2>
-          SOMETHING NEW<br>
-          TO DISCOVER.
-        </h2>
-
-        <a
-          href="/natural-perfume-making-where-to-try.html"
-          class="new-card latest-update-card latest-update-natural-perfume"
-        >
-
-          <span class="new-type">
-            CREATE · WHERE TO TRY
-          </span>
-
-          <h3>
-            NATURAL PERFUME MAKING
-          </h3>
-
-          <p>
-            Find a place where you can explore natural scents
-            and create your first perfume.
-          </p>
-
-          <span class="new-action">
-            SEE WHERE TO TRY →
-          </span>
-
+        <p class="section-label">WHAT'S NEW</p>
+        <h2>SOMETHING NEW<br>TO DISCOVER.</h2>
+        <a href="/natural-perfume-making-where-to-try.html" class="new-card latest-update-card latest-update-natural-perfume">
+          <span class="new-type">CREATE · WHERE TO TRY</span>
+          <h3>NATURAL PERFUME MAKING</h3>
+          <p>Find a place where you can explore natural scents and create your first perfume.</p>
+          <span class="new-action">SEE WHERE TO TRY →</span>
         </a>
-
-
-        <a
-          href="/horse-riding-experience-kristina.html"
-          class="new-card latest-update-card latest-update-horse-riding"
-        >
-
-          <span class="new-type">
-            MOVE · EXPERIENCE
-          </span>
-
-          <h3>
-            HORSE RIDING
-          </h3>
-
-          <p>
-            The first time Kristina got in the saddle,
-            she couldn't stop laughing — and wanted to go faster.
-          </p>
-
-          <span class="new-action">
-            READ THE EXPERIENCE →
-          </span>
-
+        <a href="/horse-riding-experience-kristina.html" class="new-card latest-update-card latest-update-horse-riding">
+          <span class="new-type">MOVE · EXPERIENCE</span>
+          <h3>HORSE RIDING</h3>
+          <p>The first time Kristina got in the saddle, she couldn't stop laughing — and wanted to go faster.</p>
+          <span class="new-action">READ THE EXPERIENCE →</span>
         </a>
-
       </div>
-
     </div>
-
   </div>
-
 </section>
 
-
 <section class="categories" id="find-your-try">
-
-  <p class="section-label">
-    FIND YOUR NEXT TRY
-  </p>
-
-  <h2>
-    WHAT DO YOU FEEL LIKE DOING TODAY?
-  </h2>
-
+  <p class="section-label">FIND YOUR NEXT TRY</p>
+  <h2>WHAT DO YOU FEEL LIKE DOING TODAY?</h2>
   <div class="category-grid">
-
     <a href="/move.html" class="category-card category-move">
       <span class="category-number">01</span>
       <h3>MOVE</h3>
       <p>Run. Climb. Dance. Hike. Ride.</p>
       <span class="category-action">EXPLORE MOVE →</span>
     </a>
-
     <a href="/learn.html" class="category-card category-learn">
       <span class="category-number">02</span>
       <h3>LEARN</h3>
       <p>Code. Cook. Speak. Build. Understand.</p>
       <span class="category-action">EXPLORE LEARN →</span>
     </a>
-
     <a href="/create.html" class="category-card category-create">
       <span class="category-number">03</span>
       <h3>CREATE</h3>
       <p>Write. Paint. Photograph. Make.</p>
       <span class="category-action">EXPLORE CREATE →</span>
     </a>
-
     <a href="/explore.html" class="category-card category-explore">
       <span class="category-number">04</span>
       <h3>EXPLORE</h3>
       <p>Go somewhere. Take a different path. Stay curious.</p>
       <span class="category-action">EXPLORE EXPLORE →</span>
     </a>
-
     <a href="/dare.html" class="category-card category-dare">
       <span class="category-number">05</span>
       <h3>DARE</h3>
       <p>Do the thing you've been talking yourself out of.</p>
       <span class="category-action">EXPLORE DARE →</span>
     </a>
-
     <a href="/care.html" class="category-card category-care">
       <span class="category-number">06</span>
       <h3>CARE</h3>
       <p>Pause. Talk. Rest. Recover. Take care of yourself.</p>
       <span class="category-action">EXPLORE CARE →</span>
     </a>
-
   </div>
-
-  <button
-    class="surprise-button"
-    type="button"
-    onclick="surpriseMeHome()"
-  >
-    🎲 SURPRISE ME
-  </button>
-
+  <button class="surprise-button" type="button" onclick="surpriseMeHome()">🎲 SURPRISE ME</button>
 </section>
 
+<!-- NEW: APP INSTALLATION -->
+<section id="move-try-app" aria-labelledby="move-try-app-title">
+  <div class="app-install-inner">
+    <p class="app-install-eyebrow">MOVE&TRY · THE APP</p>
+    <h2 id="move-try-app-title">TAKE YOUR CURIOSITY WITH YOU.</h2>
+    <p class="app-install-description">
+      Discover activities, find places to try them,
+      save what inspires you and follow new stories — all in one place.
+    </p>
+    <a class="app-install-link" href="/app/">INSTALL MOVE&TRY →</a>
+    <p class="app-install-note">Free · Directly from our website · No app store needed</p>
+    <details>
+      <summary>How do I install the app?</summary>
+      <p><strong>Android:</strong> open the app using the button above, then choose “Install app” or “Add to Home screen” in your browser, if available.</p>
+      <p><strong>iPhone:</strong> open the app in Safari, tap Share, then “Add to Home Screen”.</p>
+      <p><strong>Desktop:</strong> open the app in Chrome or Edge and choose the install option in the address bar or browser menu, if available.</p>
+    </details>
+  </div>
+</section>
 
 <section class="community">
-
   <div class="community-grid">
-
-    <div
-      class="community-panel contribute-panel"
-      id="be-part-of-it"
-    >
-
-      <p class="section-label">
-        BE PART OF IT
-      </p>
-
-      <h2>
-        THERE ARE MANY WAYS<br>
-        TO BE PART OF MOVE & TRY.
-      </h2>
-
+    <div class="community-panel contribute-panel" id="be-part-of-it">
+      <p class="section-label">BE PART OF IT</p>
+      <h2>THERE ARE MANY WAYS<br>TO BE PART OF MOVE & TRY.</h2>
       <p class="community-text">
         Share your experience. Pass on what you know. Suggest something new.<br>
         Show us a place worth discovering.<br>
         Every story, idea and perspective could inspire someone to take the first step.
       </p>
-
       <p class="community-highlight">
-        Move & Try isn't just built for people.
+        Move & Try isn't just built for people.<br>
         It's built with them.
       </p>
-
       <div class="community-actions">
-
-        <a
-          href="/how-to-contribute.html"
-          class="community-link community-link-primary"
-        >
-          DISCOVER HOW TO GET INVOLVED →
-        </a>
-
-        <a
-          class="community-instagram-link"
-          href="https://www.instagram.com/moveandtry/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          OR REACH OUT ON INSTAGRAM →
-        </a>
-
+        <a href="/how-to-contribute.html" class="community-link community-link-primary">DISCOVER HOW TO GET INVOLVED →</a>
+        <a class="community-instagram-link" href="https://www.instagram.com/moveandtry/" target="_blank" rel="noopener noreferrer">OR REACH OUT ON INSTAGRAM →</a>
       </div>
-
-      <p class="community-note">
-        Stories · Knowledge · Photos · Ideas · Places · People
-      </p>
-
+      <p class="community-note">Stories · Knowledge · Photos · Ideas · Places · People</p>
     </div>
 
-
-    <div
-      class="community-panel where-panel"
-      id="where-to-try"
-    >
-
-      <p class="section-label">
-        WHERE TO TRY
-      </p>
-
-      <h2>
-        FOUND SOMETHING<br>
-        YOU WANT TO TRY?
-      </h2>
-
+    <div class="community-panel where-panel" id="where-to-try">
+      <p class="section-label">WHERE TO TRY</p>
+      <h2>FOUND SOMETHING<br>YOU WANT TO TRY?</h2>
       <p class="community-text">
         From an idea to a real experience.<br>
-        Find workshops, studios, clubs,
-        experts and other places
+        Find workshops, studios, clubs,<br>
+        experts and other places<br>
         where you can take the first step.
       </p>
-
-      <p class="community-highlight">
-        Discover here. Try there.
-      </p>
-
+      <p class="community-highlight">Discover here. Try there.</p>
       <div class="where-home-actions">
-
-        <a
-          href="/where-to-try.html"
-          class="where-home-primary"
-        >
-          FIND WHERE TO TRY →
-        </a>
-
-        <a
-          href="/natural-perfume-making-where-to-try.html"
-          class="where-home-current"
-        >
-          CURRENTLY AVAILABLE: NATURAL PERFUME MAKING →
-        </a>
-
+        <a href="/where-to-try.html" class="where-home-primary">FIND WHERE TO TRY →</a>
+        <a href="/natural-perfume-making-where-to-try.html" class="where-home-current">CURRENTLY AVAILABLE: NATURAL PERFUME MAKING →</a>
       </div>
-
     </div>
-
   </div>
-
 </section>
 
-
 <section class="suggest">
-
-  <p class="section-label">
-    YOUR TURN
-  </p>
-
-  <h2>
-    WHAT SHOULD WE TRY NEXT?
-  </h2>
-
+  <p class="section-label">YOUR TURN</p>
+  <h2>WHAT SHOULD WE TRY NEXT?</h2>
   <p class="suggest-intro">
     Is there something you've been thinking about trying?<br>
     Something you're curious about but haven't taken the first step yet?
-
     <br><br>
-
     <strong>Tell us.</strong><br>
-
     Your idea might become our next TRY.
   </p>
-
   <form id="try-form">
-
     <input
       type="text"
       aria-label="What would you like to try?"
@@ -1136,177 +644,76 @@
       placeholder="I'd love to try..."
       required
     >
-
-    <button type="submit">
-      SEND →
-    </button>
-
+    <button type="submit">SEND →</button>
   </form>
-
   <p id="suggestion-message" role="status" aria-live="polite"></p>
-
   <p class="suggest-note">
-    You suggest. We explore.
+    You suggest. We explore.<br>
     Together, we build Move & Try.
   </p>
-
-  <p class="privacy-note">
-    We don't ask for your name or email.
-  </p>
-
+  <p class="privacy-note">We don't ask for your name or email.</p>
 </section>
 
-
 <footer class="site-footer">
-
-  <p>
-    MOVE & TRY
-  </p>
-
+  <p>MOVE & TRY</p>
   <p class="footer-tagline">
-    You don't have to be good at it.
+    You don't have to be good at it.<br>
     You just have to try.
   </p>
-
-  <a href="mailto:hello@moveandtry.com">
-    hello@moveandtry.com
-  </a>
-
-  <a
-    class="footer-instagram-link"
-    href="https://www.instagram.com/moveandtry/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Instagram · @moveandtry
-  </a>
-
+  <a href="mailto:hello@moveandtry.com">hello@moveandtry.com</a>
+  <a class="footer-instagram-link" href="https://www.instagram.com/moveandtry/" target="_blank" rel="noopener noreferrer">Instagram · @moveandtry</a>
 </footer>
 
-
 <script src="script.js"></script>
-
-
 <script>
+function surpriseMeHome() {
+  const activities = [
+    "/running.html",
+    "/pole-dance.html",
+    "/mediation.html",
+    "/horse-riding.html",
+    "/natural-perfume-making.html"
+  ];
+  const storageKey = "moveAndTryLastSurpriseEn";
+  const lastActivity = sessionStorage.getItem(storageKey);
+  const availableActivities = activities.filter(activity => activity !== lastActivity);
+  const pool = availableActivities.length ? availableActivities : activities;
+  const randomActivity = pool[Math.floor(Math.random() * pool.length)];
+  sessionStorage.setItem(storageKey, randomActivity);
+  window.location.href = randomActivity;
+}
 
-  /* ==========================================
-     SURPRISE ME — HOME
-  ========================================== */
-
-  function surpriseMeHome() {
-
-    const activities = [
-      "/running.html",
-      "/pole-dance.html",
-      "/mediation.html",
-      "/horse-riding.html",
-      "/natural-perfume-making.html"
-    ];
-
-    const storageKey =
-      "moveAndTryLastSurpriseEn";
-
-    const lastActivity =
-      sessionStorage.getItem(storageKey);
-
-    const availableActivities =
-      activities.filter(
-        activity =>
-          activity !== lastActivity
-      );
-
-    const pool =
-      availableActivities.length
-        ? availableActivities
-        : activities;
-
-    const randomActivity =
-      pool[
-        Math.floor(
-          Math.random() *
-          pool.length
-        )
-      ];
-
-    sessionStorage.setItem(
-      storageKey,
-      randomActivity
-    );
-
-    window.location.href =
-      randomActivity;
-
-  }
-
-
-  /* ==========================================
-     WHAT'S NEW — EQUAL CARD HEIGHTS
-  ========================================== */
-
-  function equalizeWhatsNewCards() {
-
-    const cards =
-      document.querySelectorAll(
-        '.home-intro .whats-new .new-card.latest-update-card'
-      );
-
-    if (!cards.length) {
-      return;
-    }
-
-    cards.forEach(card => {
-      card.style.minHeight = '';
-    });
-
-    let maxHeight = 340;
-
-    cards.forEach(card => {
-      maxHeight = Math.max(
-        maxHeight,
-        card.offsetHeight
-      );
-    });
-
-    cards.forEach(card => {
-      card.style.minHeight =
-        `${maxHeight}px`;
-    });
-
-  }
-
-  window.addEventListener(
-    'load',
-    equalizeWhatsNewCards
+function equalizeWhatsNewCards() {
+  const cards = document.querySelectorAll(
+    '.home-intro .whats-new .new-card.latest-update-card'
   );
-
-  window.addEventListener(
-    'resize',
-    equalizeWhatsNewCards
-  );
-
+  if (!cards.length) return;
+  cards.forEach(card => { card.style.minHeight = ''; });
+  let maxHeight = 340;
+  cards.forEach(card => {
+    maxHeight = Math.max(maxHeight, card.offsetHeight);
+  });
+  cards.forEach(card => {
+    card.style.minHeight = `${maxHeight}px`;
+  });
+}
+window.addEventListener('load', equalizeWhatsNewCards);
+window.addEventListener('resize', equalizeWhatsNewCards);
 </script>
 
 <script>
-  /*
-   * MOVE&TRY public PWA registration.
-   * The Journal Editor uses its own separate service worker.
-   */
-  if (
-    'serviceWorker' in navigator &&
-    window.isSecureContext &&
-    !window.location.pathname.startsWith('/editor/')
-  ) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js', {
-        scope: '/'
-      }).catch(error => {
-        console.warn('MOVE&TRY public service worker:', error);
-      });
-    });
-  }
+/* MOVE&TRY public PWA; private Editor has its own registration. */
+if (
+  'serviceWorker' in navigator &&
+  window.isSecureContext &&
+  !window.location.pathname.startsWith('/editor/')
+) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      .catch(error => console.warn('MOVE&TRY public service worker:', error));
+  });
+}
 </script>
-
-  <script src="/consent.js" defer></script>
+<script src="/consent.js" defer></script>
 </body>
-
 </html>
