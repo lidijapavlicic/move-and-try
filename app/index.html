@@ -722,6 +722,8 @@
       font-weight: 700;
     }
 
+    .privacy-choice { width: 100%; min-height: 44px; text-align: left; padding-left: 15px; }
+
     .setting-choice[aria-pressed="true"] {
       border-color: var(--green);
       background: #e9eee4;
@@ -981,6 +983,11 @@
       <p id="settings-note">
         Jezik možeš promijeniti u bilo kojem trenutku.
       </p>
+
+      <div class="setting-label" id="privacy-label">Privatnost</div>
+      <button class="setting-choice privacy-choice" id="privacy-settings-button" type="button">
+        Privatnost i kolačići →
+      </button>
     </section>
   </div>
 
@@ -1033,748 +1040,335 @@
           </div></div>`).join('');
       }
 
-      function rollDice() {
-        if (diceBusy || !surpriseActivities.length) return;
-        const choices = surpriseActivities.filter(item => item.id !== lastSurpriseId);
-        const pool = choices.length ? choices : surpriseActivities;
-        const picked = pool[Math.floor(Math.random() * pool.length)];
-        lastSurpriseId = picked.id;
-        diceBusy = true;
-        const button = document.getElementById('surprise-pick');
-        const cube = document.getElementById('dice-cube');
-        const result = document.getElementById('surprise-result');
-        if (!button || !cube || !result) { diceBusy = false; return; }
-        button.disabled = true;
-        result.hidden = true;
-        const t = translations();
-        document.getElementById('dice-caption').textContent = t.diceRolling;
-        diceTurns += 1;
-        const face = Math.floor(Math.random() * 6);
-        const positions = [[0,0],[0,180],[0,-90],[0,90],[-90,0],[90,0]];
-        const [x,y] = positions[face];
-        cube.style.transform = `rotateX(${x + diceTurns * 720}deg) rotateY(${y + diceTurns * 720}deg)`;
-        window.setTimeout(() => {
-          // Avoid writing into a view that has been replaced while the die was spinning.
-          if (!cube.isConnected) { diceBusy = false; return; }
-          const now = translations();
-          const language = currentLanguage();
-          const link = document.createElement('a');
-          link.className = 'text-link';
-          link.href = picked.url[language];
-          link.textContent = now.surpriseOpen;
-          const name = document.createElement('strong');
-          name.textContent = picked.name[language];
-          const actions = document.createElement('div');
-          actions.className = 'surprise-actions';
-          actions.appendChild(link);
-          result.replaceChildren(name, actions);
-          result.hidden = false;
-          button.textContent = now.surpriseAgain;
-          button.disabled = false;
-          document.getElementById('dice-caption').textContent = now.diceReady;
-          diceBusy = false;
-        }, reducedMotion.matches ? 40 : 1400);
-      }
-
-      const CATEGORIES = [
-        ['move', 'MOVE', 'category-move.webp'],
-        ['learn', 'LEARN', 'category-learn.webp'],
-        ['create', 'CREATE', 'category-create.webp'],
-        ['explore', 'EXPLORE', 'category-explore.webp'],
-        ['dare', 'DARE', 'category-dare.webp'],
-        ['care', 'CARE', 'category-care.webp']
-      ];
-
-      const T = {
-
+      const I18N = {
         hr: {
-          intro: 'Tvoja sljedeća priča počinje znatiželjom.',
-          sub: 'Istraži aktivnosti, pročitaj stvarna iskustva i pronađi nešto novo što želiš isprobati.',
-          discover: 'OTKRIJ NEŠTO NOVO',
-          categories: 'Što ti se danas radi?',
-          explore: 'Istraži',
-          home: 'Početna',
-          where: 'Gdje probati',
-          journal: 'Journal',
-          saved: 'Spremljeno',
-          latest: 'ZA INSPIRACIJU',
-          journalText: 'Priče, ideje i iskustva.',
-          journalLink: 'Otvori The Journal',
-          savedText: 'Ovdje će se nalaziti tvoji spremljeni sadržaji. Funkcionalnost dodajemo u sljedećoj fazi.',
-          exploreText: 'Odaberi kategoriju i istraži aktivnosti na MOVE&TRY platformi.',
-          continue: 'NASTAVI →',
-          notifications: 'Obavijesti',
-          noNotifications: 'Još nema obavijesti.',
-          pushEnable: 'UKLJUČI OBAVIJESTI',
-          pushDisable: 'ISKLJUČI OBAVIJESTI',
-          pushEnabled: 'Push obavijesti su uključene.',
-          pushDisabled: 'Push obavijesti su isključene.',
+          home: 'Početna', explore: 'Istraži', where: 'Gdje probati', journal: 'Journal', saved: 'Spremljeno',
+          hello: 'Tvoja sljedeća priča počinje ovdje.', intro: 'Otkrij aktivnosti, ideje i ljude koji te mogu potaknuti da isprobaš nešto novo.',
+          discover: 'OTKRIJ NEŠTO NOVO', categories: 'Istraži po kategorijama',
+          categoryHint: 'Odaberi ono što te zanima.', journalTitle: 'The Journal',
+          journalDesc: 'Priče, iskustva i ljudi iza novih početaka.', journalOpen: 'Otvori Journal',
+          exploreTitle: 'Što želiš isprobati?', exploreDesc: 'Pronađi inspiraciju u šest MOVE&TRY kategorija.',
+          diceTitle: 'Surprise Me', diceDesc: 'Prepusti slučajnosti izbor svoje sljedeće aktivnosti.',
+          diceButton: 'BACi KOCKICU', diceBusy: 'KOCKICA SE VRTI…', diceReady: 'Pritisni gumb i otkrij aktivnost.',
+          diceUnavailable: 'Trenutačno nema dostupnih aktivnosti za nasumičan odabir.',
+          diceResult: 'Tvoj prijedlog:', diceOpen: 'Pogledaj aktivnost', diceAgain: 'Pokušaj ponovno',
+          whereTitle: 'Gdje probati?', whereDesc: 'Otkrij mjesta i ljude uz koje možeš napraviti prvi korak.',
+          whereOpen: 'Istraži mogućnosti', savedTitle: 'Spremljeno',
+          savedDesc: 'Tvoje spremljene aktivnosti i članci pojavit će se ovdje kada omogućimo spremanje sadržaja.',
+          settings: 'Postavke', notifications: 'Obavijesti', noNotifications: 'Još nema obavijesti.',
+          languageLabel: 'Jezik aplikacije', settingsNote: 'Jezik možeš promijeniti u bilo kojem trenutku.',
+          privacyLabel: 'Privatnost', privacyButton: 'Privatnost i kolačići →',
+          close: 'Zatvori', pushUnsupported: 'Push obavijesti nisu podržane u ovom pregledniku.',
           pushDenied: 'Obavijesti su blokirane u postavkama preglednika.',
-          pushUnsupported: 'Ovaj preglednik ili način otvaranja aplikacije ne podržava push obavijesti.',
-          pushError: 'Nije uspjelo. Pokušaj ponovno.',
-          pushBusy: 'MOLIMO PRIČEKAJ…',
-          settings: 'Postavke',
-          languageLabel: 'Jezik aplikacije',
-          settingsNote: 'Jezik možeš promijeniti u bilo kojem trenutku.',
-          surpriseTitle: 'Iznenadi me',
-          surpriseText: 'Ne znaš što isprobati? Prepusti izbor slučaju.',
-          surpriseButton: 'IZNENADI ME →',
-          surpriseAgain: 'BACI PONOVNO',
-          diceReady: 'Baci kockicu i otkrij svoju sljedeću aktivnost.',
-          diceRolling: 'Kockica se baca…',
-          diceUnavailable: 'Aktivnosti trenutačno nisu dostupne. Pokušaj ponovno kasnije.',
-          surpriseOpen: 'POGLEDAJ AKTIVNOST →',
-          close: 'Zatvori'
+          pushEnabled: 'Obavijesti su dopuštene na ovom uređaju.',
+          pushNotEnabled: 'Obavijesti još nisu uključene na ovom uređaju.',
+          pushExisting: 'Pretplata na push obavijesti aktivna je na ovom uređaju.',
+          pushManage: 'Upravljaj obavijestima u postavkama uređaja.',
+          pushCheck: 'Provjeri status obavijesti', pushChecking: 'Provjeravam…',
+          privacyUnavailable: 'Postavke privatnosti trenutačno nisu dostupne. Pokušaj ponovno nakon učitavanja stranice.',
+          categoryMove: 'Pokreni se', categoryCreate: 'Stvaraj', categoryLearn: 'Nauči',
+          categoryExplore: 'Istraži', categoryDare: 'Odvaži se', categoryCare: 'Brini o sebi',
+          openCategory: 'Otvori kategoriju', access: 'Pristupačnost'
         },
-
         en: {
-          intro: 'Your next story starts with curiosity.',
-          sub: 'Explore activities, read real experiences and find something new you want to try.',
-          discover: 'DISCOVER SOMETHING NEW',
-          categories: 'What do you feel like doing today?',
-          explore: 'Explore',
-          home: 'Home',
-          where: 'Where to Try',
-          journal: 'Journal',
-          saved: 'Saved',
-          latest: 'FOR INSPIRATION',
-          journalText: 'Stories, ideas and experiences.',
-          journalLink: 'Open The Journal',
-          savedText: 'Your saved content will appear here. This feature is coming in a later phase.',
-          exploreText: 'Choose a category and discover activities on MOVE&TRY.',
-          continue: 'CONTINUE →',
-          notifications: 'Notifications',
-          noNotifications: 'No notifications yet.',
-          pushEnable: 'ENABLE NOTIFICATIONS',
-          pushDisable: 'DISABLE NOTIFICATIONS',
-          pushEnabled: 'Push notifications are enabled.',
-          pushDisabled: 'Push notifications are disabled.',
-          pushDenied: 'Notifications are blocked in browser settings.',
-          pushUnsupported: 'Push notifications are not supported in this browser or app mode.',
-          pushError: 'Something went wrong. Please try again.',
-          pushBusy: 'PLEASE WAIT…',
-          settings: 'Settings',
-          languageLabel: 'App language',
-          settingsNote: 'You can change the language at any time.',
-          surpriseTitle: 'Surprise me',
-          surpriseText: 'Not sure what to try? Let curiosity choose.',
-          surpriseButton: 'SURPRISE ME →',
-          surpriseAgain: 'ROLL AGAIN',
-          diceReady: 'Roll the dice and discover your next activity.',
-          diceRolling: 'Rolling the dice…',
-          diceUnavailable: 'Activities are temporarily unavailable. Please try again later.',
-          surpriseOpen: 'EXPLORE ACTIVITY →',
-          close: 'Close'
+          home: 'Home', explore: 'Explore', where: 'Where to Try', journal: 'Journal', saved: 'Saved',
+          hello: 'Your next story starts here.', intro: 'Discover activities, ideas and people who might inspire you to try something new.',
+          discover: 'DISCOVER SOMETHING NEW', categories: 'Explore by category',
+          categoryHint: 'Choose what interests you.', journalTitle: 'The Journal',
+          journalDesc: 'Stories, experiences and the people behind new beginnings.', journalOpen: 'Open the Journal',
+          exploreTitle: 'What would you like to try?', exploreDesc: 'Find inspiration across six MOVE&TRY categories.',
+          diceTitle: 'Surprise Me', diceDesc: 'Let chance choose your next activity.',
+          diceButton: 'ROLL THE DICE', diceBusy: 'ROLLING…', diceReady: 'Roll the dice to discover an activity.',
+          diceUnavailable: 'No published activities are currently available for a random pick.',
+          diceResult: 'Your suggestion:', diceOpen: 'View activity', diceAgain: 'Try again',
+          whereTitle: 'Where to Try', whereDesc: 'Discover places and people who can help you take the first step.',
+          whereOpen: 'Explore opportunities', savedTitle: 'Saved',
+          savedDesc: 'Your saved activities and articles will appear here once saving is available.',
+          settings: 'Settings', notifications: 'Notifications', noNotifications: 'No notifications yet.',
+          languageLabel: 'App language', settingsNote: 'You can change your language at any time.',
+          privacyLabel: 'Privacy', privacyButton: 'Privacy and cookies →',
+          close: 'Close', pushUnsupported: 'Push notifications are not supported in this browser.',
+          pushDenied: 'Notifications are blocked in your browser settings.',
+          pushEnabled: 'Notifications are permitted on this device.',
+          pushNotEnabled: 'Notifications are not enabled on this device yet.',
+          pushExisting: 'A push subscription is active on this device.',
+          pushManage: 'Manage notifications in your device settings.',
+          pushCheck: 'Check notification status', pushChecking: 'Checking…',
+          privacyUnavailable: 'Privacy settings are currently unavailable. Please try again after the page loads.',
+          categoryMove: 'Get moving', categoryCreate: 'Get creative', categoryLearn: 'Learn something',
+          categoryExplore: 'Explore', categoryDare: 'Challenge yourself', categoryCare: 'Take care',
+          openCategory: 'Open category', access: 'Accessibility'
         }
       };
 
+      const CATEGORY_DATA = [
+        { id: 'move', title: 'MOVE', subtitle: 'categoryMove', image: '/images/move.jpg' },
+        { id: 'create', title: 'CREATE', subtitle: 'categoryCreate', image: '/images/create.jpg' },
+        { id: 'learn', title: 'LEARN', subtitle: 'categoryLearn', image: '/images/learn.jpg' },
+        { id: 'explore', title: 'EXPLORE', subtitle: 'categoryExplore', image: '/images/explore.jpg' },
+        { id: 'dare', title: 'DARE', subtitle: 'categoryDare', image: '/images/dare.jpg' },
+        { id: 'care', title: 'CARE', subtitle: 'categoryCare', image: '/images/care.jpg' }
+      ];
+
+      const tabs = ['home', 'explore', 'where', 'journal', 'saved'];
       const view = document.getElementById('view');
       const welcome = document.getElementById('welcome');
+      const notificationPanel = document.getElementById('notifications-panel');
+      const settingsPanel = document.getElementById('settings-panel');
+      let currentTab = 'home';
+      let language = 'hr';
+      let chosenLanguage = 'hr';
+      let previouslyFocused = null;
+      let activePanel = null;
 
-      let lang = null;
-
-      try {
-        lang = localStorage.getItem(APP_LANGUAGE_KEY);
-      } catch (_) {}
-
-      if (lang !== 'hr' && lang !== 'en') {
-        lang = null;
+      function translations() { return I18N[language]; }
+      function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, character => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        })[character]);
       }
-
-      let selected = lang || 'hr';
-
-      const requestedTab =
-        new URLSearchParams(window.location.search).get('tab');
-
-      let tab =
-        ['home', 'explore', 'saved'].includes(requestedTab)
-          ? requestedTab
-          : 'home';
-
-      let lastPanelTrigger = null;
-      const PUSH_BASE = 'https://pdyngeaykfpybeafjtpw.supabase.co/functions/v1/';
-      const PUSH_TOKEN_KEY = 'moveandtry_app_push_device_token';
-
-      const pushToggle = document.getElementById('push-toggle');
-      const pushStatus = document.getElementById('push-status');
-      let pushBusy = false;
-      let pushActive = false;
-      let pushMessage = null;
-
-      function pushSupported() {
-        return window.isSecureContext && 'serviceWorker' in navigator &&
-          'PushManager' in window && 'Notification' in window &&
-          !!window.crypto?.getRandomValues;
+      function getStored(key) {
+        try { return localStorage.getItem(key); } catch (_) { return null; }
       }
-
-      function setPushUI() {
-        const t = translations();
-        pushToggle.hidden = !pushSupported() || Notification.permission === 'denied';
-        pushToggle.disabled = pushBusy;
-        pushToggle.textContent = pushBusy ? t.pushBusy :
-          pushActive ? t.pushDisable : t.pushEnable;
-        pushStatus.textContent = pushMessage ? t[pushMessage] :
-          !pushSupported() ? t.pushUnsupported :
-          Notification.permission === 'denied' ? t.pushDenied :
-          pushActive ? t.pushEnabled : t.pushDisabled;
+      function setStored(key, value) {
+        try { localStorage.setItem(key, value); } catch (_) { /* Storage may be unavailable. */ }
       }
-
-      function getDeviceToken() {
-        let token = localStorage.getItem(PUSH_TOKEN_KEY);
-        if (!/^[a-f0-9]{64}$/.test(token || '')) {
-          const bytes = crypto.getRandomValues(new Uint8Array(32));
-          token = Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
-          localStorage.setItem(PUSH_TOKEN_KEY, token);
-        }
-        return token;
-      }
-
-      function urlBase64ToUint8Array(base64) {
-        const padded = base64.replace(/-/g, '+').replace(/_/g, '/');
-        const binary = atob(padded + '='.repeat((4 - padded.length % 4) % 4));
-        return Uint8Array.from(binary, c => c.charCodeAt(0));
-      }
-
-      async function pushRequest(action, subscription) {
-        const response = await fetch(PUSH_BASE + 'app-push-subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action, deviceToken: getDeviceToken(), subscription })
-        });
-        if (!response.ok) throw new Error('Push subscription HTTP ' + response.status);
-      }
-
-      async function refreshPushStatus() {
-        if (!pushSupported()) { setPushUI(); return; }
-        try {
-          const registration = await navigator.serviceWorker.ready;
-          const subscription = await registration.pushManager.getSubscription();
-          pushActive = !!subscription && Notification.permission === 'granted';
-          pushMessage = null;
-        } catch (_) {
-          pushMessage = 'pushError';
-        }
-        setPushUI();
-      }
-
-      async function togglePush() {
-        if (pushBusy || !pushSupported()) return;
-        pushBusy = true;
-        pushMessage = null;
-        setPushUI();
-
-        try {
-          const registration = await navigator.serviceWorker.ready;
-          let subscription = await registration.pushManager.getSubscription();
-
-          if (subscription) {
-            // Remove the server record first, while the endpoint is still available.
-            await pushRequest('unsubscribe', subscription.toJSON());
-            const removed = await subscription.unsubscribe();
-            if (!removed) throw new Error('Browser unsubscribe failed');
-            pushActive = false;
-          } else {
-            const permission = await Notification.requestPermission();
-
-            if (permission !== 'granted') {
-              pushMessage = permission === 'denied' ? 'pushDenied' : 'pushDisabled';
-              return;
-            }
-
-            const configResponse = await fetch(
-              PUSH_BASE + 'app-push-config',
-              { cache: 'no-store' }
-            );
-
-            if (!configResponse.ok) {
-              throw new Error('Push config unavailable');
-            }
-
-            const config = await configResponse.json();
-
-            if (typeof config.publicKey !== 'string') {
-              throw new Error('Missing public key');
-            }
-
-            subscription = await registration.pushManager.subscribe({
-              userVisibleOnly: true,
-              applicationServerKey: urlBase64ToUint8Array(config.publicKey)
-            });
-
-            try {
-              await pushRequest('subscribe', subscription.toJSON());
-            } catch (error) {
-              await subscription.unsubscribe().catch(() => {});
-              throw error;
-            }
-
-            pushActive = true;
-          }
-        } catch (error) {
-          console.warn('MOVE&TRY push:', error);
-          pushMessage = 'pushError';
-        } finally {
-          pushBusy = false;
-          setPushUI();
-        }
-      }
-
-      pushToggle.addEventListener('click', togglePush);
-
-
-      // Legacy /app/?tab=journal links should also skip the intermediate screen.
-      if (requestedTab === 'journal' && lang) {
-        navigateTo(prefix() + 'journal.html');
-      }
-
-      function currentLanguage() {
-        return lang || selected;
-      }
-
-      function translations() {
-        return T[currentLanguage()];
-      }
-
-      function prefix() {
-        return currentLanguage() === 'hr' ? '/hr/' : '/';
-      }
-
-      function syncLanguage() {
-        try {
-          localStorage.setItem(WEB_LANGUAGE_KEY, currentLanguage());
-        } catch (_) {}
-      }
-
-      function navigateTo(path) {
-        const url = new URL(path, window.location.origin);
-
-        if (url.origin !== window.location.origin) return;
-
-        if (
-          url.pathname.startsWith('/editor/') ||
-          url.pathname.startsWith('/app/')
-        ) {
-          return;
-        }
-
-        syncLanguage();
-
-        url.searchParams.set('source', 'moveandtry-app');
-
-        try {
-          sessionStorage.setItem(SESSION_KEY, '1');
-        } catch (_) {}
-
-        window.location.assign(url.href);
-      }
-
       function categoryCards() {
         const t = translations();
-
-        return CATEGORIES.map(([slug, name, image]) => `
-          <a
-            class="category"
-            href="${prefix()}${slug}.html"
-            style="background-image:url('/images/${image}')"
-          >
-            <strong>${name}</strong>
-            <small>${t.explore} →</small>
-          </a>
-        `).join('');
+        return `<div class="categories">${CATEGORY_DATA.map(category => `
+          <a class="category" href="${language === 'hr' ? '/hr/' : '/'}${category.id}.html"
+             style="background-image:url('${category.image}')"
+             aria-label="${escapeHTML(category.title + ' — ' + t[category.subtitle])}">
+            <strong>${category.title}</strong><small>${escapeHTML(t[category.subtitle])}</small>
+          </a>`).join('')}</div>`;
       }
+      function journalLink() { return language === 'hr' ? '/hr/journal/' : '/journal/'; }
+      function whereLink() { return language === 'hr' ? '/hr/where-to-try.html' : '/where-to-try.html'; }
 
-      function updateLanguageUI() {
+      function renderHome() {
         const t = translations();
-
-        document.documentElement.lang = currentLanguage();
-        document.title = 'MOVE&TRY — ' + t.home;
-
-        document.querySelectorAll('[data-nav]').forEach(node => {
-          node.textContent = t[node.dataset.nav];
-        });
-
-        document.getElementById('notifications-title').textContent =
-          t.notifications;
-
-        document.getElementById('notifications-empty').textContent =
-          t.noNotifications;
-
-        document.getElementById('settings-title').textContent =
-          t.settings;
-
-        document.getElementById('language-label').textContent =
-          t.languageLabel;
-
-        document.getElementById('settings-note').textContent =
-          t.settingsNote;
-
-        document.getElementById('notifications-button')
-          .setAttribute('aria-label', t.notifications);
-
-        document.getElementById('settings-button')
-          .setAttribute('aria-label', t.settings);
-
-        document.querySelectorAll('[data-close-panel]').forEach(button => {
-          button.setAttribute('aria-label', t.close);
-        });
-
-        document.querySelectorAll('[data-setting-language]').forEach(button => {
-          button.setAttribute(
-            'aria-pressed',
-            String(button.dataset.settingLanguage === currentLanguage())
-          );
-        });
-
-        document.querySelectorAll('[data-tab]').forEach(button => {
-          const isCurrent =
-            button.dataset.tab !== 'where' &&
-            button.dataset.tab === tab;
-
-          button.setAttribute(
-            'aria-current',
-            isCurrent ? 'page' : 'false'
-          );
-        });
-
-        // Refresh push controls when the app language changes.
-        setPushUI();
+        return `<section class="intro"><div class="eyebrow">MOVE&TRY</div>
+          <h1>${escapeHTML(t.hello)}</h1><p>${escapeHTML(t.intro)}</p></section>
+          <div class="hero" role="img" aria-label="${escapeHTML(t.discover)}"><span>${escapeHTML(t.discover)}</span></div>
+          <section class="section"><div class="eyebrow">MOVE · CREATE · LEARN · EXPLORE · DARE · CARE</div>
+          <h2>${escapeHTML(t.categories)}</h2>${categoryCards()}</section>
+          <section class="section journal-section"><div class="eyebrow">MOVE&TRY</div>
+          <h2>${escapeHTML(t.journalTitle)}</h2><a class="feature" href="${journalLink()}">
+          <span><strong>${escapeHTML(t.journalOpen)}</strong><small>${escapeHTML(t.journalDesc)}</small></span>
+          <span aria-hidden="true">→</span></a></section>`;
       }
-
+      function renderExplore() {
+        const t = translations();
+        return `<section class="placeholder"><div class="eyebrow">MOVE&TRY</div>
+          <h1>${escapeHTML(t.exploreTitle)}</h1><p>${escapeHTML(t.exploreDesc)}</p>
+          <div class="surprise-box"><div class="eyebrow">MOVE&TRY</div><h2>${escapeHTML(t.diceTitle)}</h2>
+          <p>${escapeHTML(t.diceDesc)}</p><div class="dice-area">
+          <div class="dice-stage"><div class="dice-cube" id="dice-cube">${diceFaces()}</div></div>
+          <button class="surprise-button" id="surprise-pick" type="button" ${surpriseActivities.length ? '' : 'disabled'}>${escapeHTML(t.diceButton)}</button>
+          <p class="dice-caption" id="dice-caption" role="status" aria-live="polite">${escapeHTML(surpriseActivities.length ? t.diceReady : t.diceUnavailable)}</p>
+          </div><div class="surprise-result" id="surprise-result" hidden></div></div>
+          <h2>${escapeHTML(t.categories)}</h2>${categoryCards()}</section>`;
+      }
+      function renderWhere() {
+        const t = translations();
+        return `<section class="placeholder"><div class="eyebrow">MOVE&TRY</div><h1>${escapeHTML(t.whereTitle)}</h1>
+          <p>${escapeHTML(t.whereDesc)}</p><a class="text-link" href="${whereLink()}">${escapeHTML(t.whereOpen)} →</a></section>`;
+      }
+      function renderJournal() {
+        const t = translations();
+        return `<section class="placeholder"><div class="eyebrow">MOVE&TRY</div><h1>${escapeHTML(t.journalTitle)}</h1>
+          <p>${escapeHTML(t.journalDesc)}</p><a class="text-link" href="${journalLink()}">${escapeHTML(t.journalOpen)} →</a></section>`;
+      }
+      function renderSaved() {
+        const t = translations();
+        return `<section class="placeholder"><div class="eyebrow">MOVE&TRY</div><h1>${escapeHTML(t.savedTitle)}</h1>
+          <p>${escapeHTML(t.savedDesc)}</p></section>`;
+      }
       function render() {
+        const renderers = { home: renderHome, explore: renderExplore, where: renderWhere,
+          journal: renderJournal, saved: renderSaved };
+        view.innerHTML = renderers[currentTab]();
+        document.querySelectorAll('[data-tab]').forEach(button => {
+          if (button.dataset.tab === currentTab) button.setAttribute('aria-current', 'page');
+          else button.removeAttribute('aria-current');
+        });
+        document.querySelectorAll('[data-nav]').forEach(node => {
+          node.textContent = translations()[node.dataset.nav];
+        });
+      }
+      function changeTab(tab, focusView = true) {
+        if (!tabs.includes(tab)) return;
+        currentTab = tab;
+        render();
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        if (focusView) view.focus({ preventScroll: true });
+      }
+      function setLanguage(next) {
+        if (!I18N[next]) return;
+        language = next;
+        chosenLanguage = next;
+        document.documentElement.lang = next;
+        setStored(APP_LANGUAGE_KEY, next);
+        setStored(WEB_LANGUAGE_KEY, next);
+        document.querySelectorAll('[data-setting-language]').forEach(button => {
+          button.setAttribute('aria-pressed', String(button.dataset.settingLanguage === next));
+        });
         const t = translations();
-
-        updateLanguageUI();
-
-        if (tab === 'home') {
-          view.innerHTML = `
-            <section class="intro">
-              <div class="eyebrow">
-                MOVE&TRY · ${t.discover}
-              </div>
-
-              <h1>${t.intro}</h1>
-              <p>${t.sub}</p>
-            </section>
-
-            <div class="hero" role="img"
-              aria-label="MOVE&TRY — Discover something new">
-              <span>
-                YOU DON'T HAVE TO BE GOOD AT IT. JUST TRY.
-              </span>
-            </div>
-
-            <section class="section">
-              <div class="eyebrow">${t.discover}</div>
-              <h2>${t.categories}</h2>
-
-              <div class="categories">
-                ${categoryCards()}
-              </div>
-            </section>
-
-            <section class="section journal-section">
-              <div class="eyebrow">${t.latest}</div>
-              <h2>The Journal</h2>
-
-              <a class="feature" href="${prefix()}journal.html">
-                <span>
-                  <strong>${t.journalText}</strong>
-                  <small>${t.journalLink}</small>
-                </span>
-                <span aria-hidden="true">→</span>
-              </a>
-            </section>
-          `;
-        }
-
-        else if (tab === 'explore') {
-          view.innerHTML = `
-            <section class="placeholder">
-              <div class="eyebrow">MOVE&TRY</div>
-              <h1>${t.explore}</h1>
-              <p>${t.exploreText}</p>
-
-              <div class="surprise-box">
-                <div class="eyebrow">MOVE&TRY</div>
-                <h2>${t.surpriseTitle}</h2>
-                <p>${t.surpriseText}</p>
-
-                <div class="dice-area">
-                  <div
-                    class="dice-stage"
-                    role="img"
-                    aria-label="${t.surpriseTitle}"
-                  >
-                    <div class="dice-cube" id="dice-cube">
-                      ${diceFaces()}
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    class="surprise-button dice-trigger"
-                    id="surprise-pick"
-                    ${surpriseActivities.length ? '' : 'disabled'}
-                  >
-                    ${t.surpriseButton}
-                  </button>
-
-                  <p class="dice-caption" id="dice-caption">
-                    ${surpriseActivities.length
-                      ? t.diceReady
-                      : t.diceUnavailable}
-                  </p>
-                </div>
-
-                <div
-                  class="surprise-result"
-                  id="surprise-result"
-                  hidden
-                  aria-live="polite"
-                ></div>
-              </div>
-
-              <div class="categories">
-                ${categoryCards()}
-              </div>
-            </section>
-          `;
-        }
-
-        else if (tab === 'saved') {
-          view.innerHTML = `
-            <section class="placeholder">
-              <div class="eyebrow">MOVE&TRY</div>
-              <h1>${t.saved}</h1>
-              <p>${t.savedText}</p>
-            </section>
-          `;
-        }
+        document.getElementById('notifications-title').textContent = t.notifications;
+        document.getElementById('settings-title').textContent = t.settings;
+        document.getElementById('notifications-empty').textContent = t.noNotifications;
+        document.getElementById('language-label').textContent = t.languageLabel;
+        document.getElementById('settings-note').textContent = t.settingsNote;
+        document.getElementById('privacy-label').textContent = t.privacyLabel;
+        document.getElementById('privacy-settings-button').textContent = t.privacyButton;
+        document.getElementById('notifications-button').setAttribute('aria-label', t.notifications);
+        document.getElementById('settings-button').setAttribute('aria-label', t.settings);
+        document.querySelectorAll('[data-close-panel]').forEach(button => button.setAttribute('aria-label', t.close));
+        render();
+        refreshPushStatus();
       }
-
-      function showLanguageChoice() {
-        selected = lang || selected;
-        welcome.hidden = false;
-
-        document.querySelectorAll('[data-choice]').forEach(button => {
-          button.setAttribute(
-            'aria-pressed',
-            String(button.dataset.choice === selected)
-          );
-        });
-
-        document.getElementById('continue').textContent =
-          T[selected].continue;
-      }
-
-      function closePanels() {
-        document.getElementById('notifications-panel').hidden = true;
-        document.getElementById('settings-panel').hidden = true;
-
-        document.body.classList.remove('dialog-open');
-
-        if (lastPanelTrigger) {
-          lastPanelTrigger.focus();
-          lastPanelTrigger = null;
-        }
-      }
-
-      function openPanel(id, trigger) {
-        closePanels();
-
-        lastPanelTrigger = trigger;
-
-        const panel = document.getElementById(id);
+      function showPanel(panel) {
+        closePanel();
+        previouslyFocused = document.activeElement;
+        activePanel = panel;
         panel.hidden = false;
-
         document.body.classList.add('dialog-open');
-
         panel.querySelector('.panel').focus();
-
-        if (id === 'notifications-panel') {
-          refreshPushStatus();
+        if (panel === notificationPanel) refreshPushStatus();
+      }
+      function closePanel() {
+        if (!activePanel) return;
+        activePanel.hidden = true;
+        activePanel = null;
+        document.body.classList.remove('dialog-open');
+        if (previouslyFocused && previouslyFocused.isConnected) previouslyFocused.focus();
+      }
+      function trapDialogFocus(event) {
+        if (!activePanel || event.key !== 'Tab') return;
+        const elements = Array.from(activePanel.querySelectorAll('button:not([disabled]):not([hidden]),a[href],input:not([disabled])'))
+          .filter(element => element.getClientRects().length);
+        if (!elements.length) { event.preventDefault(); return; }
+        const first = elements[0], last = elements[elements.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === activePanel.querySelector('.panel'))) {
+          event.preventDefault(); last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first.focus();
         }
       }
-
-      // FIRST-LAUNCH LANGUAGE SELECTION
-
-      document.querySelectorAll('[data-choice]').forEach(button => {
-        button.addEventListener('click', () => {
-          selected = button.dataset.choice;
-
-          document.querySelectorAll('[data-choice]').forEach(choice => {
-            choice.setAttribute(
-              'aria-pressed',
-              String(choice.dataset.choice === selected)
-            );
-          });
-
-          document.getElementById('continue').textContent =
-            T[selected].continue;
-        });
-      });
-
-      document.getElementById('continue').addEventListener('click', () => {
-        lang = selected;
-
-        try {
-          localStorage.setItem(APP_LANGUAGE_KEY, lang);
-        } catch (_) {}
-
-        syncLanguage();
-
-        welcome.hidden = true;
-
-        if (requestedTab === 'journal') {
-          navigateTo(prefix() + 'journal.html');
+      async function refreshPushStatus() {
+        const t = translations();
+        const status = document.getElementById('push-status');
+        const button = document.getElementById('push-toggle');
+        button.hidden = false;
+        button.textContent = t.pushCheck;
+        if (!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)) {
+          status.textContent = t.pushUnsupported;
+          button.hidden = true;
           return;
         }
-
-        render();
-      });
-
-      // SETTINGS — LANGUAGE
-
-      document.querySelectorAll('[data-setting-language]').forEach(button => {
-        button.addEventListener('click', () => {
-          lang = button.dataset.settingLanguage;
-          selected = lang;
-
-          try {
-            localStorage.setItem(APP_LANGUAGE_KEY, lang);
-          } catch (_) {}
-
-          syncLanguage();
-          render();
-        });
-      });
-
-      // HEADER PANELS
-
-      document.getElementById('notifications-button')
-        .addEventListener('click', event => {
-          openPanel('notifications-panel', event.currentTarget);
-        });
-
-      document.getElementById('settings-button')
-        .addEventListener('click', event => {
-          openPanel('settings-panel', event.currentTarget);
-        });
-
-      document.querySelectorAll('[data-close-panel]').forEach(button => {
-        button.addEventListener('click', closePanels);
-      });
-
-      document.querySelectorAll('.panel-backdrop').forEach(backdrop => {
-        backdrop.addEventListener('click', event => {
-          if (event.target === backdrop) closePanels();
-        });
-      });
-
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-          closePanels();
+        if (Notification.permission === 'denied') {
+          status.textContent = t.pushDenied;
+          button.hidden = true;
+          return;
         }
-      });
-
-      // BOTTOM NAVIGATION
+        try {
+          const registration = await navigator.serviceWorker.getRegistration();
+          const subscription = registration ? await registration.pushManager.getSubscription() : null;
+          status.textContent = subscription ? t.pushExisting :
+            (Notification.permission === 'granted' ? t.pushEnabled + ' ' + t.pushManage : t.pushNotEnabled);
+        } catch (error) {
+          console.warn('Push status:', error);
+          status.textContent = t.pushNotEnabled;
+        }
+      }
+      async function rollDice() {
+        if (diceBusy || !surpriseActivities.length) return;
+        const t = translations();
+        const button = document.getElementById('surprise-pick');
+        const cube = document.getElementById('dice-cube');
+        const caption = document.getElementById('dice-caption');
+        const result = document.getElementById('surprise-result');
+        const candidates = surpriseActivities.filter(item => item.id !== lastSurpriseId);
+        const pool = candidates.length ? candidates : surpriseActivities;
+        const selected = pool[Math.floor(Math.random() * pool.length)];
+        lastSurpriseId = selected.id;
+        diceBusy = true;
+        button.disabled = true;
+        button.textContent = t.diceBusy;
+        result.hidden = true;
+        caption.textContent = t.diceBusy;
+        diceTurns += 1;
+        cube.style.transform = `rotateX(${diceTurns * 720 + 340}deg) rotateY(${diceTurns * 720 + 405}deg)`;
+        await new Promise(resolve => setTimeout(resolve, reducedMotion.matches ? 0 : 1400));
+        if (currentTab !== 'explore') { diceBusy = false; return; }
+        result.innerHTML = `<strong>${escapeHTML(t.diceResult)} ${escapeHTML(selected.name[language])}</strong>
+          <div class="surprise-actions"><a class="text-link" href="${escapeHTML(selected.url[language])}">${escapeHTML(t.diceOpen)} →</a>
+          <button class="surprise-button" type="button" id="dice-again">${escapeHTML(t.diceAgain)}</button></div>`;
+        result.hidden = false;
+        caption.textContent = t.diceReady;
+        button.textContent = t.diceButton;
+        button.disabled = false;
+        diceBusy = false;
+      }
+      function openPrivacySettings() {
+        closePanel();
+        // The existing consent module owns the preference dialog.
+        const triggers = ['[data-consent-settings]', '[data-open-consent]', '#consent-settings-button'];
+        for (const selector of triggers) {
+          const trigger = document.querySelector(selector);
+          if (trigger && trigger !== document.getElementById('privacy-settings-button')) {
+            trigger.click(); return;
+          }
+        }
+        if (typeof window.openConsentSettings === 'function') { window.openConsentSettings(); return; }
+        if (window.MTConsent && typeof window.MTConsent.openSettings === 'function') {
+          window.MTConsent.openSettings(); return;
+        }
+        alert(translations().privacyUnavailable);
+      }
 
       document.querySelectorAll('[data-tab]').forEach(button => {
-        button.addEventListener('click', () => {
-          const target = button.dataset.tab;
-
-          if (target === 'where') {
-            navigateTo(prefix() + 'where-to-try.html');
-            return;
-          }
-
-          if (target === 'journal') {
-            navigateTo(prefix() + 'journal.html');
-            return;
-          }
-
-          tab = target;
-
-          const url = new URL(window.location.href);
-
-          if (tab === 'home') {
-            url.searchParams.delete('tab');
-          } else {
-            url.searchParams.set('tab', tab);
-          }
-
-          history.replaceState(null, '', url.href);
-
-          render();
-          window.scrollTo(0, 0);
-        });
+        button.addEventListener('click', () => changeTab(button.dataset.tab));
       });
-
-      // EXPLORE LINKS AND SURPRISE ME
-
       view.addEventListener('click', event => {
-        const surpriseButton = event.target.closest('#surprise-pick');
-
-        if (surpriseButton) {
-          rollDice();
-          return;
-        }
-
-        const link = event.target.closest('a[href]');
-
-        if (
-          !link ||
-          event.defaultPrevented ||
-          event.button !== 0 ||
-          event.metaKey ||
-          event.ctrlKey ||
-          event.shiftKey ||
-          event.altKey
-        ) {
-          return;
-        }
-
-        const url = new URL(link.href, window.location.origin);
-
-        if (
-          url.origin !== window.location.origin ||
-          url.pathname.startsWith('/editor/')
-        ) {
-          return;
-        }
-
-        event.preventDefault();
-        navigateTo(url.href);
+        if (event.target.closest('#surprise-pick, #dice-again')) rollDice();
       });
-
-      // INITIALIZE APPLICATION
-
-      if (!lang) {
-        showLanguageChoice();
-      } else {
-        syncLanguage();
-      }
-
-      render();
-      loadSurpriseActivities();
-
-      // REGISTER SERVICE WORKER
-
-      if ('serviceWorker' in navigator && window.isSecureContext) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/app/sw.js', {
-            scope: '/app/'
-          }).then(() => {
-            refreshPushStatus();
-          }).catch(error => {
-            console.warn('MOVE&TRY app service worker:', error);
-          });
+      document.getElementById('notifications-button').addEventListener('click', () => showPanel(notificationPanel));
+      document.getElementById('settings-button').addEventListener('click', () => showPanel(settingsPanel));
+      document.querySelectorAll('[data-close-panel]').forEach(button => button.addEventListener('click', closePanel));
+      [notificationPanel, settingsPanel].forEach(panel => panel.addEventListener('click', event => {
+        if (event.target === panel) closePanel();
+      }));
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closePanel();
+        trapDialogFocus(event);
+      });
+      document.querySelectorAll('[data-setting-language]').forEach(button => {
+        button.addEventListener('click', () => setLanguage(button.dataset.settingLanguage));
+      });
+      document.getElementById('privacy-settings-button').addEventListener('click', openPrivacySettings);
+      document.getElementById('push-toggle').addEventListener('click', refreshPushStatus);
+      document.querySelectorAll('[data-choice]').forEach(button => button.addEventListener('click', () => {
+        chosenLanguage = button.dataset.choice;
+        document.querySelectorAll('[data-choice]').forEach(item => {
+          item.setAttribute('aria-pressed', String(item.dataset.choice === chosenLanguage));
         });
+      }));
+      document.getElementById('continue').addEventListener('click', () => {
+        setLanguage(chosenLanguage);
+        welcome.hidden = true;
+        setStored(SESSION_KEY, '1');
+        document.querySelector('[data-tab="home"]').focus();
+      });
+      const savedLanguage = getStored(APP_LANGUAGE_KEY) || getStored(WEB_LANGUAGE_KEY);
+      setLanguage(I18N[savedLanguage] ? savedLanguage : 'hr');
+      if (!I18N[savedLanguage]) {
+        welcome.hidden = false;
+        document.querySelector('[data-choice="hr"]').focus();
       }
-
+      loadSurpriseActivities();
     })();
   </script>
-
   <script src="/consent.js" defer></script>
 </body>
 </html>
