@@ -12,7 +12,7 @@
   const CONSENT_VERSION = 1;
   const GA_ID = 'G-PREYRXPPN8';
 
-  const language =
+  let language =
     document.documentElement.lang.toLowerCase().startsWith('hr')
       ? 'hr'
       : 'en';
@@ -59,9 +59,9 @@
     }
   };
 
-  const t = translations[language];
+  let t = translations[language];
 
-  const paths = language === 'hr'
+  let paths = language === 'hr'
     ? {
         privacy: '/hr/privacy-policy.html',
         cookies: '/hr/cookie-policy.html'
@@ -74,6 +74,10 @@
   let consentPanel = null;
   let analyticsCheckbox = null;
   let analyticsLoaded = false;
+  let lastSettingsTrigger = null;
+
+  // Analytics is disabled unless consent is confirmed.
+  window['ga-disable-' + GA_ID] = true;
 
   function readConsent() {
     try {
@@ -91,7 +95,9 @@
         return stored;
       }
     } catch (error) {
-      console.warn('MOVE&TRY: consent storage unavailable.');
+      console.warn(
+        'MOVE&TRY: consent storage unavailable.'
+      );
     }
 
     return null;
@@ -110,9 +116,13 @@
         STORAGE_KEY,
         JSON.stringify(value)
       );
+
       return true;
     } catch (error) {
-      console.warn('MOVE&TRY: could not save consent.');
+      console.warn(
+        'MOVE&TRY: could not save consent.'
+      );
+
       return false;
     }
   }
@@ -121,6 +131,8 @@
     if (analyticsLoaded) return;
 
     analyticsLoaded = true;
+
+    window['ga-disable-' + GA_ID] = false;
 
     window.dataLayer = window.dataLayer || [];
 
@@ -132,7 +144,9 @@
     window.gtag('config', GA_ID);
 
     const script = document.createElement('script');
+
     script.async = true;
+
     script.src =
       'https://www.googletagmanager.com/gtag/js?id=' +
       encodeURIComponent(GA_ID);
@@ -141,6 +155,8 @@
   }
 
   function removeAnalyticsCookies() {
+    window['ga-disable-' + GA_ID] = true;
+
     const names = document.cookie
       .split(';')
       .map(item => item.trim().split('=')[0])
@@ -150,6 +166,7 @@
       );
 
     const host = window.location.hostname;
+
     const domains = [''];
 
     if (
@@ -187,6 +204,15 @@
     if (consentPanel) {
       consentPanel.hidden = true;
     }
+
+    if (
+      lastSettingsTrigger &&
+      lastSettingsTrigger.isConnected
+    ) {
+      lastSettingsTrigger.focus();
+    }
+
+    lastSettingsTrigger = null;
   }
 
   function saveChoice(analytics) {
@@ -194,33 +220,38 @@
 
     if (!saved) {
       /*
-       * Without persistent storage, we cannot reliably
-       * remember the choice across pages.
-       * Keep analytics off rather than risk tracking
-       * without a durable consent record.
+       * If consent cannot be stored, keep
+       * analytics disabled.
        */
-      if (!analytics) {
-        removeAnalyticsCookies();
-      }
+      removeAnalyticsCookies();
 
       closePanel();
+
       return;
+    }
+
+    if (!analytics) {
+      removeAnalyticsCookies();
     }
 
     if (!analytics && analyticsLoaded) {
       /*
-       * Reloading stops further analytics execution
-       * from the current page.
+       * Reload to stop analytics execution
+       * on the current page.
        */
       window.location.reload();
+
       return;
     }
 
     applyConsent(analytics);
+
     closePanel();
   }
 
   function showSettings() {
+    if (!consentPanel) return;
+
     const settings = consentPanel.querySelector(
       '.mt-consent-settings'
     );
@@ -243,8 +274,13 @@
     }
   }
 
-  function openPanel(settingsMode) {
+  function openPanel(settingsMode, trigger) {
     if (!consentPanel) return;
+
+    if (settingsMode) {
+      lastSettingsTrigger =
+        trigger || document.activeElement;
+    }
 
     consentPanel.hidden = false;
 
@@ -281,7 +317,11 @@
     );
 
     button.type = 'button';
-    button.addEventListener('click', handler);
+
+    button.addEventListener(
+      'click',
+      handler
+    );
 
     return button;
   }
@@ -293,8 +333,16 @@
     );
 
     panel.id = 'mt-cookie-consent';
-    panel.setAttribute('aria-label', t.title);
-    panel.setAttribute('role', 'region');
+
+    panel.setAttribute(
+      'aria-label',
+      t.title
+    );
+
+    panel.setAttribute(
+      'role',
+      'region'
+    );
 
     const title = createElement(
       'h2',
@@ -319,11 +367,13 @@
         '',
         () => saveChoice(false)
       ),
+
       createButton(
         t.settings,
         '',
         showSettings
       ),
+
       createButton(
         t.accept,
         'mt-consent-button-primary',
@@ -351,6 +401,7 @@
         'mt-consent-setting-name',
         t.necessary
       ),
+
       createElement(
         'span',
         'mt-consent-setting-description',
@@ -360,6 +411,7 @@
 
     necessaryRow.append(
       necessaryInfo,
+
       createElement(
         'span',
         'mt-consent-setting-status',
@@ -380,6 +432,7 @@
         'mt-consent-setting-name',
         t.analytics
       ),
+
       createElement(
         'span',
         'mt-consent-setting-description',
@@ -393,6 +446,7 @@
     );
 
     analyticsCheckbox.type = 'checkbox';
+
     analyticsCheckbox.setAttribute(
       'aria-label',
       t.analytics
@@ -443,7 +497,10 @@
 
     cookiesLink.href = paths.cookies;
 
-    links.append(privacyLink, cookiesLink);
+    links.append(
+      privacyLink,
+      cookiesLink
+    );
 
     panel.append(
       title,
@@ -461,7 +518,15 @@
       '.site-footer'
     );
 
-    if (document.querySelector('.mt-consent-footer-button')) return;
+    if (!footer) return;
+
+    if (
+      footer.querySelector(
+        '.mt-consent-footer-button'
+      )
+    ) {
+      return;
+    }
 
     const wrapper = createElement(
       'div',
@@ -477,45 +542,125 @@
     button.type = 'button';
 
     button.addEventListener('click', () => {
-      openPanel(true);
+      openPanel(true, button);
     });
 
     wrapper.appendChild(button);
-    if (footer) {
-      footer.appendChild(wrapper);
-    } else {
-      wrapper.classList.add('mt-consent-floating-link');
-      document.body.appendChild(wrapper);
-    }
+
+    footer.appendChild(wrapper);
   }
 
   function addFooterCopyright() {
-    const footer = document.querySelector('.site-footer');
-    if (!footer || footer.querySelector('.mt-footer-copyright')) return;
+    const footer = document.querySelector(
+      '.site-footer'
+    );
+
+    if (
+      !footer ||
+      footer.querySelector('.mt-footer-copyright')
+    ) {
+      return;
+    }
 
     const year = new Date().getFullYear();
+
     const text = language === 'hr'
       ? `© ${year} MOVE&TRY. Sva prava pridržana.`
       : `© ${year} MOVE&TRY. All rights reserved.`;
 
-    const copyright = createElement('p', 'mt-footer-copyright', text);
+    const copyright = createElement(
+      'p',
+      'mt-footer-copyright',
+      text
+    );
+
     footer.appendChild(copyright);
   }
+
+  /*
+   * Public API for website navigation
+   * and the installed PWA settings panel.
+   */
+
+  window.MoveTryConsent = {
+    openSettings(trigger) {
+      openPanel(true, trigger);
+    },
+
+    setLanguage(nextLanguage) {
+      if (
+        nextLanguage !== 'hr' &&
+        nextLanguage !== 'en'
+      ) {
+        return;
+      }
+
+      if (nextLanguage === language) {
+        return;
+      }
+
+      language = nextLanguage;
+
+      t = translations[language];
+
+      paths = language === 'hr'
+        ? {
+            privacy: '/hr/privacy-policy.html',
+            cookies: '/hr/cookie-policy.html'
+          }
+        : {
+            privacy: '/privacy-policy.html',
+            cookies: '/cookie-policy.html'
+          };
+
+      if (consentPanel) {
+        const wasVisible = !consentPanel.hidden;
+
+        const settingsOpen =
+          !consentPanel.querySelector(
+            '.mt-consent-settings'
+          ).hidden;
+
+        consentPanel.remove();
+
+        consentPanel = buildPanel();
+
+        document.body.appendChild(consentPanel);
+
+        consentPanel.hidden = !wasVisible;
+
+        consentPanel.querySelector(
+          '.mt-consent-settings'
+        ).hidden = !settingsOpen;
+
+        if (analyticsCheckbox) {
+          const saved = readConsent();
+
+          analyticsCheckbox.checked =
+            saved ? saved.analytics : false;
+        }
+      }
+    }
+  };
 
   function initialize() {
     const stored = readConsent();
 
     consentPanel = buildPanel();
+
     document.body.appendChild(consentPanel);
 
     addFooterSettings();
+
     addFooterCopyright();
 
     if (stored) {
       applyConsent(stored.analytics);
+
       closePanel();
     } else {
       removeAnalyticsCookies();
+
       openPanel(false);
     }
   }
@@ -528,4 +673,5 @@
   } else {
     initialize();
   }
+
 })();
