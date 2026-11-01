@@ -20,11 +20,9 @@
         rel="stylesheet"
     >
 
-    <!-- MOVE&TRY CONSENT -->
     <link rel="stylesheet" href="/consent.css">
 
     <style>
-
         :root {
             --bg: #f5f3ec;
             --card: #fffef9;
@@ -194,9 +192,6 @@
             outline: none;
             background: #ffffff;
             color: var(--ink);
-            transition:
-                border-color .15s ease,
-                box-shadow .15s ease;
         }
 
         textarea {
@@ -316,7 +311,6 @@
         }
 
         @media (max-width: 760px) {
-
             .shell {
                 width: min(calc(100% - 22px), 1020px);
                 padding-top: 20px;
@@ -339,20 +333,13 @@
                 display: none;
             }
         }
-
     </style>
 
 </head>
 
 <body>
 
-
 <main class="shell">
-
-
-    <!-- ==========================================
-         TOP
-    =========================================== -->
 
     <div class="topbar">
 
@@ -369,21 +356,16 @@
 
         </div>
 
-
         <button
             id="logout"
             class="logout hidden"
             type="button"
         >
-            ODJAVA
+            ZAKLJUČAJ
         </button>
 
     </div>
 
-
-    <!-- ==========================================
-         HERO
-    =========================================== -->
 
     <section class="hero">
 
@@ -403,9 +385,7 @@
     </section>
 
 
-    <!-- ==========================================
-         LOGIN
-    =========================================== -->
+    <!-- LOGIN -->
 
     <section
         id="login-card"
@@ -413,44 +393,25 @@
     >
 
         <h2>
-            Prijava
+            Otključaj konzolu
         </h2>
-
 
         <form id="login-form">
 
-
             <div class="field">
 
-                <label for="login-email">
-                    E-mail
+                <label for="access-key">
+                    Push Console Access Key
                 </label>
 
                 <input
-                    id="login-email"
-                    type="email"
-                    autocomplete="username"
-                    required
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="login-password">
-                    Lozinka
-                </label>
-
-                <input
-                    id="login-password"
+                    id="access-key"
                     type="password"
                     autocomplete="current-password"
                     required
                 >
 
             </div>
-
 
             <div class="actions">
 
@@ -459,13 +420,12 @@
                     class="button"
                     type="submit"
                 >
-                    PRIJAVI SE
+                    OTKLJUČAJ
                 </button>
 
             </div>
 
         </form>
-
 
         <div
             id="login-status"
@@ -476,26 +436,18 @@
     </section>
 
 
-    <!-- ==========================================
-         CONSOLE
-    =========================================== -->
+    <!-- CONSOLE -->
 
     <section
         id="console"
         class="hidden"
     >
 
-
-        <!-- ======================================
-             AUDIENCE
-        ======================================= -->
-
         <section class="card">
 
             <h2>
                 Publika
             </h2>
-
 
             <div class="field">
 
@@ -505,9 +457,7 @@
 
                 <select id="category">
 
-                    <option value="MOVE">
-                        MOVE
-                    </option>
+                    <option value="MOVE">MOVE</option>
 
                     <option
                         value="CREATE"
@@ -516,25 +466,11 @@
                         CREATE
                     </option>
 
-                    <option value="LEARN">
-                        LEARN
-                    </option>
-
-                    <option value="EXPLORE">
-                        EXPLORE
-                    </option>
-
-                    <option value="DARE">
-                        DARE
-                    </option>
-
-                    <option value="CARE">
-                        CARE
-                    </option>
-
-                    <option value="JOURNAL">
-                        THE JOURNAL
-                    </option>
+                    <option value="LEARN">LEARN</option>
+                    <option value="EXPLORE">EXPLORE</option>
+                    <option value="DARE">DARE</option>
+                    <option value="CARE">CARE</option>
+                    <option value="JOURNAL">THE JOURNAL</option>
 
                     <option value="WHERE_TO_TRY">
                         GDJE PROBATI / WHERE TO TRY
@@ -543,7 +479,6 @@
                 </select>
 
             </div>
-
 
             <div class="actions">
 
@@ -557,7 +492,6 @@
 
             </div>
 
-
             <div
                 id="preview"
                 class="preview-grid hidden"
@@ -565,41 +499,18 @@
             >
 
                 <div class="preview-stat">
-
-                    <strong id="preview-total">
-                        0
-                    </strong>
-
-                    <span>
-                        UKUPNO
-                    </span>
-
+                    <strong id="preview-total">0</strong>
+                    <span>UKUPNO</span>
                 </div>
 
-
                 <div class="preview-stat">
-
-                    <strong id="preview-hr">
-                        0
-                    </strong>
-
-                    <span>
-                        HR
-                    </span>
-
+                    <strong id="preview-hr">0</strong>
+                    <span>HR</span>
                 </div>
 
-
                 <div class="preview-stat">
-
-                    <strong id="preview-en">
-                        0
-                    </strong>
-
-                    <span>
-                        EN
-                    </span>
-
+                    <strong id="preview-en">0</strong>
+                    <span>EN</span>
                 </div>
 
             </div>
@@ -607,26 +518,18 @@
         </section>
 
 
-        <!-- ======================================
-             HR + EN
-        ======================================= -->
-
         <div class="grid-2">
-
 
             <!-- HR -->
 
             <section class="card language-card">
 
-                <h2>
-                    HR
-                </h2>
+                <h2>HR</h2>
 
                 <p class="language-note">
                     Hrvatska verzija ide pretplatnicima
                     čiji je jezik aplikacije HR.
                 </p>
-
 
                 <div class="field">
 
@@ -686,15 +589,12 @@
 
             <section class="card language-card">
 
-                <h2>
-                    EN
-                </h2>
+                <h2>EN</h2>
 
                 <p class="language-note">
                     English version goes to subscribers
                     whose app language is EN.
                 </p>
-
 
                 <div class="field">
 
@@ -749,13 +649,10 @@
 
             </section>
 
-
         </div>
 
 
-        <!-- ======================================
-             SEND
-        ======================================= -->
+        <!-- SEND -->
 
         <section class="card">
 
@@ -767,7 +664,6 @@
                 Ništa se ne šalje automatski.
                 Klik na gumb traži još jednu potvrdu.
             </p>
-
 
             <div class="actions">
 
@@ -781,7 +677,6 @@
 
             </div>
 
-
             <div
                 id="send-status"
                 class="status hidden"
@@ -790,18 +685,9 @@
 
         </section>
 
-
     </section>
 
-
 </main>
-
-
-<!-- ==========================================
-     SUPABASE CLIENT
-=========================================== -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <script>
@@ -815,31 +701,11 @@
        CONFIG
     ========================================== */
 
-    const SUPABASE_URL =
-        'https://pdyngeaykfpybeafjtpw.supabase.co';
-
-
-    const SUPABASE_KEY =
-        'sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK';
-
-
     const FUNCTION_URL =
-        SUPABASE_URL +
-        '/functions/v1/app-push-console-send';
+        'https://pdyngeaykfpybeafjtpw.supabase.co/functions/v1/app-push-console-send';
 
 
-    const db =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY,
-            {
-                auth: {
-                    persistSession: true,
-                    autoRefreshToken: true,
-                    detectSessionInUrl: false
-                }
-            }
-        );
+    let accessKey = '';
 
 
     /* ==========================================
@@ -851,54 +717,50 @@
             'login-card'
         );
 
-
     const consoleRoot =
         document.getElementById(
             'console'
         );
-
 
     const logoutButton =
         document.getElementById(
             'logout'
         );
 
-
     const loginForm =
         document.getElementById(
             'login-form'
         );
-
 
     const loginButton =
         document.getElementById(
             'login-button'
         );
 
-
     const loginStatus =
         document.getElementById(
             'login-status'
         );
 
+    const accessKeyInput =
+        document.getElementById(
+            'access-key'
+        );
 
     const previewButton =
         document.getElementById(
             'preview-button'
         );
 
-
     const sendButton =
         document.getElementById(
             'send-button'
         );
 
-
     const preview =
         document.getElementById(
             'preview'
         );
-
 
     const sendStatus =
         document.getElementById(
@@ -959,22 +821,17 @@
         element.textContent =
             message;
 
-
         element.classList.remove(
             'hidden',
             'error',
             'success'
         );
 
-
         if (type) {
-
             element.classList.add(
                 type
             );
-
         }
-
     }
 
 
@@ -982,20 +839,16 @@
         element
     ) {
 
-        element.textContent =
-            '';
-
+        element.textContent = '';
 
         element.classList.add(
             'hidden'
         );
 
-
         element.classList.remove(
             'error',
             'success'
         );
-
     }
 
 
@@ -1014,7 +867,6 @@
             )
             .textContent =
                 input.value.length;
-
     }
 
 
@@ -1022,34 +874,16 @@
 
         const pairs = [
 
-            [
-                'titleHr',
-                'title-hr-count'
-            ],
-
-            [
-                'bodyHr',
-                'body-hr-count'
-            ],
-
-            [
-                'titleEn',
-                'title-en-count'
-            ],
-
-            [
-                'bodyEn',
-                'body-en-count'
-            ]
+            ['titleHr', 'title-hr-count'],
+            ['bodyHr', 'body-hr-count'],
+            ['titleEn', 'title-en-count'],
+            ['bodyEn', 'body-en-count']
 
         ];
 
 
         for (
-            const [
-                key,
-                outputId
-            ]
+            const [key, outputId]
             of pairs
         ) {
 
@@ -1057,7 +891,6 @@
                 fields[key],
                 outputId
             );
-
 
             fields[key]
                 .addEventListener(
@@ -1071,220 +904,24 @@
 
                     }
                 );
-
         }
-
     }
 
 
     /* ==========================================
-       PAYLOAD
-    ========================================== */
-
-    function payload(
-        mode
-    ) {
-
-        return {
-
-            mode,
-
-            category:
-                fields.category.value,
-
-            hr: {
-
-                title:
-                    fields
-                        .titleHr
-                        .value
-                        .trim(),
-
-                body:
-                    fields
-                        .bodyHr
-                        .value
-                        .trim(),
-
-                url:
-                    fields
-                        .urlHr
-                        .value
-                        .trim()
-
-            },
-
-            en: {
-
-                title:
-                    fields
-                        .titleEn
-                        .value
-                        .trim(),
-
-                body:
-                    fields
-                        .bodyEn
-                        .value
-                        .trim(),
-
-                url:
-                    fields
-                        .urlEn
-                        .value
-                        .trim()
-
-            }
-
-        };
-
-    }
-
-
-    /* ==========================================
-       VALIDATION
-    ========================================== */
-
-    function validMoveTryUrl(
-        value
-    ) {
-
-        try {
-
-            const url =
-                new URL(
-                    value
-                );
-
-
-            return (
-                url.protocol ===
-                    'https:' &&
-                url.hostname ===
-                    'moveandtry.com'
-            );
-
-        } catch (_) {
-
-            return false;
-
-        }
-
-    }
-
-
-    function validateContent(
-        data
-    ) {
-
-        const versions = [
-            data.hr,
-            data.en
-        ];
-
-
-        for (
-            const version
-            of versions
-        ) {
-
-            if (
-                !version.title ||
-                version.title.length > 100
-            ) {
-
-                return (
-                    'Naslov mora imati između ' +
-                    '1 i 100 znakova.'
-                );
-
-            }
-
-
-            if (
-                !version.body ||
-                version.body.length > 300
-            ) {
-
-                return (
-                    'Tekst mora imati između ' +
-                    '1 i 300 znakova.'
-                );
-
-            }
-
-
-            if (
-                !validMoveTryUrl(
-                    version.url
-                )
-            ) {
-
-                return (
-                    'URL mora biti ' +
-                    'https://moveandtry.com/...'
-                );
-
-            }
-
-        }
-
-
-        return null;
-
-    }
-
-
-    /* ==========================================
-       AUTH TOKEN
-    ========================================== */
-
-    async function sessionToken() {
-
-        const {
-            data,
-            error
-        } =
-            await db.auth
-                .getSession();
-
-
-        if (error) {
-
-            throw error;
-
-        }
-
-
-        const token =
-            data.session
-                ?.access_token;
-
-
-        if (!token) {
-
-            throw new Error(
-                'Nisi prijavljena.'
-            );
-
-        }
-
-
-        return token;
-
-    }
-
-
-    /* ==========================================
-       CONSOLE API
+       API
     ========================================== */
 
     async function callConsole(
         data
     ) {
 
-        const token =
-            await sessionToken();
+        if (!accessKey) {
+
+            throw new Error(
+                'Konzola nije otključana.'
+            );
+        }
 
 
         const response =
@@ -1299,9 +936,8 @@
                         'Content-Type':
                             'application/json',
 
-                        'Authorization':
-                            'Bearer ' +
-                            token
+                        'x-push-console-key':
+                            accessKey
 
                     },
 
@@ -1331,118 +967,43 @@
                 'Push Console error: ' +
                 response.status
             );
-
         }
 
 
         return result;
-
     }
 
 
     /* ==========================================
-       AUTH UI
+       LOCK / UNLOCK
     ========================================== */
 
-    function showAuthenticated(
-        isAuthenticated
+    function setUnlocked(
+        unlocked
     ) {
 
         loginCard
             .classList
             .toggle(
                 'hidden',
-                isAuthenticated
+                unlocked
             );
-
 
         consoleRoot
             .classList
             .toggle(
                 'hidden',
-                !isAuthenticated
+                !unlocked
             );
-
 
         logoutButton
             .classList
             .toggle(
                 'hidden',
-                !isAuthenticated
+                !unlocked
             );
-
     }
 
-
-    async function verifyAccess() {
-
-        const {
-            data
-        } =
-            await db.auth
-                .getSession();
-
-
-        if (
-            !data.session
-        ) {
-
-            showAuthenticated(
-                false
-            );
-
-            return;
-
-        }
-
-
-        try {
-
-            await callConsole(
-                {
-                    mode:
-                        'access-check'
-                }
-            );
-
-
-            showAuthenticated(
-                true
-            );
-
-
-            clearStatus(
-                loginStatus
-            );
-
-        } catch (_) {
-
-            showAuthenticated(
-                false
-            );
-
-
-            await db.auth
-                .signOut();
-
-
-            setStatus(
-                loginStatus,
-
-                'Prijava postoji, ali ovaj račun ' +
-                'nema pristup Push Consoleu.',
-
-                'error'
-            );
-
-        }
-
-    }
-
-
-    /* ==========================================
-       LOGIN
-    ========================================== */
 
     loginForm
         .addEventListener(
@@ -1451,66 +1012,71 @@
 
                 event.preventDefault();
 
-
                 clearStatus(
                     loginStatus
                 );
 
-
                 loginButton.disabled =
                     true;
 
-
                 loginButton.textContent =
-                    'PRIJAVA…';
+                    'PROVJERAVAM…';
+
+
+                const candidate =
+                    accessKeyInput
+                        .value
+                        .trim();
+
+
+                if (!candidate) {
+
+                    setStatus(
+                        loginStatus,
+                        'Upiši Access Key.',
+                        'error'
+                    );
+
+                    loginButton.disabled =
+                        false;
+
+                    loginButton.textContent =
+                        'OTKLJUČAJ';
+
+                    return;
+                }
+
+
+                accessKey =
+                    candidate;
 
 
                 try {
 
-                    const email =
-                        document
-                            .getElementById(
-                                'login-email'
-                            )
-                            .value
-                            .trim();
+                    await callConsole({
+                        mode:
+                            'access-check'
+                    });
 
 
-                    const password =
-                        document
-                            .getElementById(
-                                'login-password'
-                            )
-                            .value;
+                    accessKeyInput.value =
+                        '';
 
 
-                    const {
-                        error
-                    } =
-                        await db.auth
-                            .signInWithPassword({
-                                email,
-                                password
-                            });
-
-
-                    if (error) {
-
-                        throw error;
-
-                    }
-
-
-                    await verifyAccess();
+                    setUnlocked(
+                        true
+                    );
 
                 } catch (error) {
 
+                    accessKey =
+                        '';
+
+
                     setStatus(
                         loginStatus,
-
                         error.message ||
-                        'Prijava nije uspjela.',
-
+                        'Access Key nije ispravan.',
                         'error'
                     );
 
@@ -1519,33 +1085,24 @@
                     loginButton.disabled =
                         false;
 
-
                     loginButton.textContent =
-                        'PRIJAVI SE';
-
+                        'OTKLJUČAJ';
                 }
-
             }
         );
 
 
-    /* ==========================================
-       LOGOUT
-    ========================================== */
-
     logoutButton
         .addEventListener(
             'click',
-            async () => {
+            () => {
 
-                await db.auth
-                    .signOut();
+                accessKey =
+                    '';
 
-
-                showAuthenticated(
+                setUnlocked(
                     false
                 );
-
 
                 preview
                     .classList
@@ -1553,11 +1110,9 @@
                         'hidden'
                     );
 
-
                 clearStatus(
                     sendStatus
                 );
-
             }
         );
 
@@ -1575,10 +1130,8 @@
                     sendStatus
                 );
 
-
                 previewButton.disabled =
                     true;
-
 
                 previewButton.textContent =
                     'PROVJERAVAM…';
@@ -1632,9 +1185,7 @@
 
                     setStatus(
                         sendStatus,
-
                         error.message,
-
                         'error'
                     );
 
@@ -1643,14 +1194,149 @@
                     previewButton.disabled =
                         false;
 
-
                     previewButton.textContent =
                         'PROVJERI PRIMATELJE';
-
                 }
-
             }
         );
+
+
+    /* ==========================================
+       CONTENT
+    ========================================== */
+
+    function pushPayload() {
+
+        return {
+
+            mode:
+                'send',
+
+            category:
+                fields
+                    .category
+                    .value,
+
+            hr: {
+
+                title:
+                    fields
+                        .titleHr
+                        .value
+                        .trim(),
+
+                body:
+                    fields
+                        .bodyHr
+                        .value
+                        .trim(),
+
+                url:
+                    fields
+                        .urlHr
+                        .value
+                        .trim()
+
+            },
+
+            en: {
+
+                title:
+                    fields
+                        .titleEn
+                        .value
+                        .trim(),
+
+                body:
+                    fields
+                        .bodyEn
+                        .value
+                        .trim(),
+
+                url:
+                    fields
+                        .urlEn
+                        .value
+                        .trim()
+
+            }
+
+        };
+    }
+
+
+    function validUrl(
+        value
+    ) {
+
+        try {
+
+            const url =
+                new URL(
+                    value
+                );
+
+            return (
+                url.protocol === 'https:' &&
+                url.hostname === 'moveandtry.com'
+            );
+
+        } catch (_) {
+
+            return false;
+        }
+    }
+
+
+    function validatePayload(
+        data
+    ) {
+
+        for (
+            const item
+            of [data.hr, data.en]
+        ) {
+
+            if (
+                !item.title ||
+                item.title.length > 100
+            ) {
+
+                return (
+                    'Naslov mora imati između ' +
+                    '1 i 100 znakova.'
+                );
+            }
+
+
+            if (
+                !item.body ||
+                item.body.length > 300
+            ) {
+
+                return (
+                    'Tekst mora imati između ' +
+                    '1 i 300 znakova.'
+                );
+            }
+
+
+            if (
+                !validUrl(
+                    item.url
+                )
+            ) {
+
+                return (
+                    'URL mora biti ' +
+                    'https://moveandtry.com/...'
+                );
+            }
+        }
+
+
+        return null;
+    }
 
 
     /* ==========================================
@@ -1668,31 +1354,24 @@
 
 
                 const data =
-                    payload(
-                        'send'
-                    );
+                    pushPayload();
 
 
-                const validationError =
-                    validateContent(
+                const error =
+                    validatePayload(
                         data
                     );
 
 
-                if (
-                    validationError
-                ) {
+                if (error) {
 
                     setStatus(
                         sendStatus,
-
-                        validationError,
-
+                        error,
                         'error'
                     );
 
                     return;
-
                 }
 
 
@@ -1709,22 +1388,16 @@
                     );
 
 
-                if (
-                    !confirmed
-                ) {
-
+                if (!confirmed) {
                     return;
-
                 }
 
 
                 sendButton.disabled =
                     true;
 
-
                 previewButton.disabled =
                     true;
-
 
                 sendButton.textContent =
                     'ŠALJEM…';
@@ -1746,43 +1419,30 @@
                             data.category,
 
                         'Pronađeno: ' +
-                            (
-                                result.matched ??
-                                0
-                            ),
+                            (result.matched ?? 0),
 
                         'Poslano: ' +
-                            (
-                                result.sent ??
-                                0
-                            ),
+                            (result.sent ?? 0),
+
+                        'HR: ' +
+                            (result.sent_hr ?? 0),
+
+                        'EN: ' +
+                            (result.sent_en ?? 0),
 
                         'Neuspjelo: ' +
-                            (
-                                result.failed ??
-                                0
-                            ),
+                            (result.failed ?? 0),
 
                         'Istekle pretplate: ' +
-                            (
-                                result.expired ??
-                                0
-                            )
+                            (result.expired ?? 0)
 
-                    ].join(
-                        '\n'
-                    );
+                    ].join('\n');
 
 
                     setStatus(
                         sendStatus,
-
                         message,
-
-                        (
-                            result.failed ??
-                            0
-                        ) === 0
+                        (result.failed ?? 0) === 0
                             ? 'success'
                             : 'error'
                     );
@@ -1798,9 +1458,7 @@
 
                     setStatus(
                         sendStatus,
-
                         error.message,
-
                         'error'
                     );
 
@@ -1809,32 +1467,12 @@
                     sendButton.disabled =
                         false;
 
-
                     previewButton.disabled =
                         false;
 
-
                     sendButton.textContent =
                         'POŠALJI PUSH';
-
                 }
-
-            }
-        );
-
-
-    /* ==========================================
-       AUTH STATE
-    ========================================== */
-
-    db.auth
-        .onAuthStateChange(
-            () => {
-
-                queueMicrotask(
-                    verifyAccess
-                );
-
             }
         );
 
@@ -1845,18 +1483,14 @@
 
     setupCounters();
 
-    verifyAccess();
-
+    setUnlocked(
+        false
+    );
 
 })();
-
 </script>
 
-
-<!-- MOVE&TRY CONSENT -->
 <script src="/consent.js" defer></script>
 
-
 </body>
-
 </html>
