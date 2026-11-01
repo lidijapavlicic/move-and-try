@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
@@ -54,6 +53,15 @@
 
     <url>
         <loc>https://moveandtry.com/try-pole-dance.html</loc>
+    </url>
+
+    <!-- NATURAL PERFUME MAKING -->
+    <url>
+        <loc>https://moveandtry.com/natural-perfume-making.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/natural-perfume-making-expert-maja.html</loc>
     </url>
 
     <!-- COMMUNITY -->
@@ -122,6 +130,15 @@
 
     <url>
         <loc>https://moveandtry.com/hr/try-pole-dance.html</loc>
+    </url>
+
+    <!-- IZRADA PRIRODNIH PARFEMA -->
+    <url>
+        <loc>https://moveandtry.com/hr/natural-perfume-making.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/natural-perfume-making-expert-maja.html</loc>
     </url>
 
     <!-- COMMUNITY -->
