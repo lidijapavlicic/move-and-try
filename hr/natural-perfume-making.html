@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 
@@ -14,9 +13,6 @@
     name="description"
     content="Otkrij izradu prirodnih parfema kroz MOVE & TRY. Upoznaj svijet mirisa, mirisne note, prve korake, stvarna iskustva i mjesta na kojima možeš izraditi vlastiti parfem."
   >
-
-  <!-- Ukloniti u završnom production passu -->
-  <meta name="robots" content="noindex, nofollow">
 
   <link
     rel="canonical"
@@ -49,19 +45,11 @@
     rel="stylesheet"
   >
 
-  <!-- Google Analytics -->
-
-
   <link rel="stylesheet" href="../style.css">
 
-  <!-- MOVE&TRY PWA NAVIGATION -->
   <link rel="stylesheet" href="/app/app-navigation.css">
 
   <style>
-    /* ==========================================
-       HEADER
-    ========================================== */
-
     .header-behind-link {
       color: #555;
       font-family: 'Manrope', sans-serif;
@@ -77,25 +65,16 @@
       opacity: .55;
     }
 
-
-    /* ==========================================
-       NATURAL PERFUME MAKING — PHOTO HERO
-    ========================================== */
-
     .activity-page .activity-header.perfume-photo-hero {
       position: relative;
       isolation: isolate;
       overflow: hidden;
-
       min-height: 420px;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
-
       background: #151313;
       color: #fff;
-
       padding: 60px 48px;
     }
 
@@ -103,7 +82,6 @@
       position: absolute;
       inset: 0;
       z-index: -2;
-
       overflow: hidden;
       pointer-events: none;
     }
@@ -111,13 +89,10 @@
     .perfume-photo-hero .perfume-hero-photo {
       position: absolute;
       inset: 0;
-
       width: 100%;
       height: 100%;
-
       display: block;
       object-fit: cover;
-
       animation: perfumeHeroFade 12s ease-in-out infinite;
     }
 
@@ -133,25 +108,17 @@
 
     .perfume-photo-hero::before {
       content: "";
-
       position: absolute;
       inset: 0;
       z-index: -1;
-
       background: linear-gradient(
         180deg,
         rgba(10, 9, 11, .45) 0%,
         rgba(10, 9, 11, .64) 48%,
         rgba(10, 9, 11, .91) 100%
       );
-
       pointer-events: none;
     }
-
-
-    /* ==========================================
-       HERO TEXT
-    ========================================== */
 
     .activity-page .perfume-photo-hero .activity-page-type,
     .activity-page .perfume-photo-hero h1,
@@ -172,18 +139,9 @@
       color: rgba(255, 255, 255, .90);
     }
 
-    .activity-page .perfume-photo-hero .activity-page-intro strong {
-      color: #fff;
-    }
-
     .activity-page .perfume-photo-hero .activity-nav span {
       border-color: rgba(255, 255, 255, .42);
     }
-
-
-    /* ==========================================
-       HERO ANIMATION
-    ========================================== */
 
     @keyframes perfumeHeroFade {
       0%,
@@ -200,11 +158,6 @@
         opacity: 1;
       }
     }
-
-
-    /* ==========================================
-       RESPONSIVE
-    ========================================== */
 
     @media (max-width: 900px) {
       .activity-page .activity-header.perfume-photo-hero {
@@ -224,62 +177,32 @@
       }
     }
   </style>
+
   <link rel="stylesheet" href="/consent.css">
 </head>
 
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="site-header">
 
-  <a
-    href="/hr/"
-    class="site-logo"
-    aria-label="Move & Try – početna"
-  >
-    <img
-      src="/images/move-and-try-logo.png"
-      alt="Move & Try"
-    >
+  <a href="/hr/" class="site-logo" aria-label="Move & Try – početna">
+    <img src="/images/move-and-try-logo.png" alt="Move & Try">
   </a>
 
-
   <nav class="desktop-nav">
-
-    <a href="/hr/#find-your-try">
-      OTKRIJ
-    </a>
-
-    <a href="/hr/#be-part-of-it">
-      BUDI DIO PRIČE
-    </a>
-
-    <a href="/hr/where-to-try.html">
-      GDJE PROBATI
-    </a>
-
-    <a href="/hr/journal.html">
-      THE JOURNAL
-    </a>
-
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
   </nav>
-
 
   <div class="header-actions">
 
-    <a
-      href="/hr/behind-move-and-try.html"
-      class="header-behind-link"
-    >
+    <a href="/hr/behind-move-and-try.html" class="header-behind-link">
       IZA MOVE & TRY
     </a>
 
     <div class="header-language">
-
       <a
         href="/natural-perfume-making.html"
         onclick="setLanguage('en')"
@@ -289,10 +212,7 @@
 
       <span>|</span>
 
-      <span class="language-active">
-        HR
-      </span>
-
+      <span class="language-active">HR</span>
     </div>
 
     <button
@@ -309,35 +229,14 @@
 
 </header>
 
-
-<!-- =========================
-     MOBILE MENU
-========================= -->
-
 <div class="mobile-menu">
 
   <nav>
-
-    <a href="/hr/#find-your-try">
-      OTKRIJ
-    </a>
-
-    <a href="/hr/#be-part-of-it">
-      BUDI DIO PRIČE
-    </a>
-
-    <a href="/hr/where-to-try.html">
-      GDJE PROBATI
-    </a>
-
-    <a href="/hr/journal.html">
-      THE JOURNAL
-    </a>
-
-    <a href="/hr/behind-move-and-try.html">
-      IZA MOVE & TRY
-    </a>
-
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+    <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
   </nav>
 
   <div class="mobile-menu-language">
@@ -351,45 +250,21 @@
 
     <span>|</span>
 
-    <span class="language-active">
-      HR
-    </span>
+    <span class="language-active">HR</span>
 
   </div>
 
 </div>
 
-
-<!-- =========================
-     IZRADA PRIRODNIH PARFEMA
-========================= -->
-
 <main class="activity-page">
 
-
-  <!-- =========================
-       BACK TO CREATE
-  ========================= -->
-
-  <a
-    href="/hr/create.html"
-    class="back-link"
-  >
+  <a href="/hr/create.html" class="back-link">
     ← CREATE
   </a>
 
-
-  <!-- =========================
-       PHOTO HERO
-  ========================= -->
-
   <header class="activity-header perfume-photo-hero">
 
-
-    <div
-      class="perfume-hero-photos"
-      aria-hidden="true"
-    >
+    <div class="perfume-hero-photos" aria-hidden="true">
 
       <img
         class="perfume-hero-photo"
@@ -408,16 +283,13 @@
 
     </div>
 
-
     <p class="activity-page-type">
       CREATE · IZRADA PRIRODNIH PARFEMA
     </p>
 
-
     <h1>
       IZRADA PRIRODNIH PARFEMA
     </h1>
-
 
     <p class="activity-page-intro">
       Miris može probuditi uspomenu, raspoloženje ili osjećaj.<br>
@@ -427,53 +299,26 @@
       </strong>
     </p>
 
-
     <div class="activity-nav">
-
-      <span>
-        VODIČ
-      </span>
-
-      <span>
-        ISKUSTVA
-      </span>
-
-      <span>
-        STRUČNJACI
-      </span>
-
-      <span>
-        GDJE PROBATI
-      </span>
-
+      <span>VODIČ</span>
+      <span>ISKUSTVA</span>
+      <span>STRUČNJACI</span>
+      <span>GDJE PROBATI</span>
     </div>
 
   </header>
 
-
-  <!-- =========================
-       CONTENT
-  ========================= -->
-
   <section class="activity-content-section">
-
 
     <p class="section-label">
       ISTRAŽI IZRADU PRIRODNIH PARFEMA
     </p>
 
-
     <h2>
       SVAKI MIRIS IMA SVOJU PRIČU.
     </h2>
 
-
     <div class="activity-content-grid">
-
-
-      <!-- =========================
-           GUIDE — AVAILABLE
-      ========================= -->
 
       <a
         href="/hr/natural-perfume-making-guide.html"
@@ -501,11 +346,6 @@
 
       </a>
 
-
-      <!-- =========================
-           EXPERIENCE — AVAILABLE
-      ========================= -->
-
       <a
         href="/hr/natural-perfume-making-experience-lidija.html"
         class="content-card"
@@ -531,37 +371,30 @@
 
       </a>
 
-
-      <!-- =========================
-           EXPERT — COMING SOON
-      ========================= -->
-
-      <div class="content-card content-card-coming">
+      <a
+        href="/hr/natural-perfume-making-expert-maja.html"
+        class="content-card"
+      >
 
         <span class="content-card-type">
-          STRUČNJAK
+          STRUČNJAK ✓
         </span>
 
         <h3>
-          ŠTO SE KRIJE IZA DOBROG MIRISA?
+          PRIRODNI PARFEM NIJE SAMO MIRIS.
         </h3>
 
         <p>
-          Stručna perspektiva o prirodnim mirisima,
-          sastojcima, mirisnim notama
-          i procesu stvaranja parfema.
+          Maja Gašparić iz Biljarice govori o prirodnoj parfumeriji,
+          osobnom doživljaju mirisa
+          i zašto za prvi parfem ne trebaš prethodno znanje.
         </p>
 
-        <span class="content-card-status">
-          USKORO
+        <span class="content-card-action">
+          PROČITAJ RIJEČ STRUČNJAKA →
         </span>
 
-      </div>
-
-
-      <!-- =========================
-           WHERE TO TRY — AVAILABLE
-      ========================= -->
+      </a>
 
       <a
         href="/hr/natural-perfume-making-where-to-try.html"
@@ -589,28 +422,19 @@
 
       </a>
 
-
     </div>
 
   </section>
 
-
-  <!-- =========================
-       SHARE YOUR EXPERIENCE
-  ========================= -->
-
   <section class="activity-contribute">
-
 
     <p class="section-label">
       TVOJE ISKUSTVO
     </p>
 
-
     <h2>
       IZRADIO SI SVOJ PARFEM?
     </h2>
-
 
     <p>
       Jesi li pronašao svoju omiljenu kombinaciju mirisa
@@ -621,7 +445,6 @@
       da stvori svoj prvi parfem.
     </p>
 
-
     <a
       href="/hr/share-experience.html"
       class="activity-contribute-link"
@@ -629,22 +452,26 @@
       PODIJELI SVOJE ISKUSTVO →
     </a>
 
-
   </section>
-
 
 </main>
 
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script src="../script.js"></script>
 
-<!-- MOVE&TRY PWA NAVIGATION -->
 <script src="/app/app-navigation.js" defer></script>
 
-  <script src="/consent.js" defer></script>
+<script>
+  /* MOVE&TRY public PWA; private Editor has its own registration. */
+  if ('serviceWorker' in navigator && window.isSecureContext &&
+      !window.location.pathname.startsWith('/editor/')) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .catch(error => console.warn('MOVE&TRY public service worker:', error));
+    });
+  }
+</script>
+
+<script src="/consent.js" defer></script>
+
 </body>
 </html>
