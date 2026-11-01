@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#f5f3ec">
+  <title>MOVE&TRY Push Console</title>
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #f5f3ec;
+      --card: #fffef9;
+      --ink: #1e261f;
+      --muted: #6c746d;
+      --line: #d9ddd5;
+      --green: #233126;
+      --danger: #8a2f2f;
+      --danger-soft: #f6e9e7;
+      --success: #315e3c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .shell {
+      width: min(calc(100% - 32px), 1020px);
+      margin: 0 auto;
+      padding: 30px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      width: 138px;
+      height: auto;
+      display: block;
+    }
+
+    .private-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 27px;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, .6);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+
+    .logout {
+      border: 1px solid var(--line);
+      background: transparent;
+      padding: 10px 13px;
+      color: var(--ink);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .hero {
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #69776b;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .17em;
+    }
+
+    h1,
+    h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 7vw, 72px);
+      line-height: 1;
+      letter-spacing: -.025em;
+    }
+
+    .hero p:last-child {
+      max-width: 700px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 26px;
+      margin-bottom: 18px;
+    }
+
+    .login-card {
+      max-width: 520px;
+    }
+
+    .card h2 {
+      margin: 0 0 18px;
+      font-size: 32px;
+      line-height: 1.1;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      color: #4f5a51;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #cfd4cc;
+      border-radius: 0;
+      background: #fff;
+      color: var(--ink);
+      padding: 13px 14px;
+      outline: none;
+      transition:
+        border-color .15s ease,
+        box-shadow .15s ease;
+    }
+
+    textarea {
+      min-height: 104px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #66766a;
+      box-shadow: 0 0 0 3px rgba(76, 101, 83, .10);
+    }
+
+    .counter {
+      margin-top: -2px;
+      color: #858b84;
+      font-size: 10px;
+      text-align: right;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .button {
+      min-height: 45px;
+      border: 1px solid var(--green);
+      padding: 12px 18px;
+      background: var(--green);
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--green);
+    }
+
+    .button.danger {
+      border-color: var(--danger);
+      background: var(--danger);
+    }
+
+    .button:disabled {
+      opacity: .5;
+      cursor: wait;
+    }
+
+    .status {
+      margin-top: 16px;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      background: #f8f8f4;
+      color: #4f5850;
+      font-size: 12px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .status.error {
+      border-color: #e2c2bd;
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .status.success {
+      border-color: #bfd3c1;
+      background: #edf5ed;
+      color: var(--success);
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .preview-stat {
+      border: 1px solid var(--line);
+      background: #faf9f4;
+      padding: 15px;
+    }
+
+    .preview-stat strong {
+      display: block;
+      margin-bottom: 3px;
+      font: 400 30px/1 'DM Serif Display', Georgia, serif;
+    }
+
+    .preview-stat span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .language-card h2 {
+      margin-bottom: 6px;
+    }
+
+    .language-note {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(calc(100% - 22px), 1020px);
+        padding-top: 20px;
+      }
+
+      .grid-2,
+      .preview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .private-badge {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="shell">
+
+  <div class="topbar">
+
+    <div class="brand">
+      <img
+        src="/images/move-and-try-logo.png"
+        alt="MOVE&TRY"
+      >
+
+      <span class="private-badge">
+        PRIVATE · PUSH CONSOLE
+      </span>
+    </div>
+
+    <button
+      id="logout"
+      class="logout hidden"
+      type="button"
+    >
+      ODJAVA
+    </button>
+
+  </div>
+
+
+  <section class="hero">
+
+    <p class="eyebrow">
+      MOVE&TRY · PUSH
+    </p>
+
+    <h1>
+      Push Console
+    </h1>
+
+    <p>
+      Objavljivanje sadržaja i slanje obavijesti ostaju odvojeni.
+      Ovdje biraš što se šalje, kada se šalje i kojoj kategoriji.
+    </p>
+
+  </section>
+
+
+  <!-- LOGIN -->
+
+  <section
+    id="login-card"
+    class="card login-card"
+  >
+
+    <h2>
+      Prijava
+    </h2>
+
+    <form id="login-form">
+
+      <div class="field">
+
+        <label for="login-email">
+          E-mail
+        </label>
+
+        <input
+          id="login-email"
+          type="email"
+          autocomplete="username"
+          required
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label for="login-password">
+          Lozinka
+        </label>
+
+        <input
+          id="login-password"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          id="login-button"
+          class="button"
+          type="submit"
+        >
+          PRIJAVI SE
+        </button>
+
+      </div>
+
+    </form>
+
+    <div
+      id="login-status"
+      class="status hidden"
+      role="status"
+    ></div>
+
+  </section>
+
+
+  <!-- CONSOLE -->
+
+  <section
+    id="console"
+    class="hidden"
+  >
+
+
+    <!-- CATEGORY -->
+
+    <section class="card">
+
+      <h2>
+        Publika
+      </h2>
+
+      <div class="field">
+
+        <label for="category">
+          Kategorija
+        </label>
+
+        <select id="category">
+          <option value="MOVE">MOVE</option>
+          <option value="CREATE" selected>CREATE</option>
+          <option value="LEARN">LEARN</option>
+          <option value="EXPLORE">EXPLORE</option>
+          <option value="DARE">DARE</option>
+          <option value="CARE">CARE</option>
+          <option value="JOURNAL">THE JOURNAL</option>
+          <option value="WHERE_TO_TRY">
+            GDJE PROBATI / WHERE TO TRY
+          </option>
+        </select>
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          id="preview-button"
+          class="button secondary"
+          type="button"
+        >
+          PROVJERI PRIMATELJE
+        </button>
+
+      </div>
+
+      <div
+        id="preview"
+        class="preview-grid hidden"
+        aria-live="polite"
+      >
+
+        <div class="preview-stat">
+          <strong id="preview-total">0</strong>
+          <span>UKUPNO</span>
+        </div>
+
+        <div class="preview-stat">
+          <strong id="preview-hr">0</strong>
+          <span>HR</span>
+        </div>
+
+        <div class="preview-stat">
+          <strong id="preview-en">0</strong>
+          <span>EN</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- HR / EN -->
+
+    <div class="grid-2">
+
+
+      <!-- HR -->
+
+      <section class="card language-card">
+
+        <h2>HR</h2>
+
+        <p class="language-note">
+          Hrvatska verzija ide pretplatnicima
+          čiji je jezik aplikacije HR.
+        </p>
+
+        <div class="field">
+
+          <label for="title-hr">
+            Naslov
+          </label>
+
+          <input
+            id="title-hr"
+            maxlength="100"
+            value="Nova Riječ stručnjaka 🌿"
+          >
+
+          <div class="counter">
+            <span id="title-hr-count">0</span>/100
+          </div>
+
+        </div>
+
+        <div class="field">
+
+          <label for="body-hr">
+            Tekst
+          </label>
+
+          <textarea
+            id="body-hr"
+            maxlength="300"
+          >Maja iz Biljarice otkriva zašto prirodni parfem nije samo miris.</textarea>
+
+          <div class="counter">
+            <span id="body-hr-count">0</span>/300
+          </div>
+
+        </div>
+
+        <div class="field">
+
+          <label for="url-hr">
+            URL
+          </label>
+
+          <input
+            id="url-hr"
+            type="url"
+            value="https://moveandtry.com/hr/natural-perfume-making-expert-maja.html"
+          >
+
+        </div>
+
+      </section>
+
+
+      <!-- EN -->
+
+      <section class="card language-card">
+
+        <h2>EN</h2>
+
+        <p class="language-note">
+          English version goes to subscribers
+          whose app language is EN.
+        </p>
+
+        <div class="field">
+
+          <label for="title-en">
+            Title
+          </label>
+
+          <input
+            id="title-en"
+            maxlength="100"
+            value="New Expert Insight 🌿"
+          >
+
+          <div class="counter">
+            <span id="title-en-count">0</span>/100
+          </div>
+
+        </div>
+
+        <div class="field">
+
+          <label for="body-en">
+            Text
+          </label>
+
+          <textarea
+            id="body-en"
+            maxlength="300"
+          >Maja from Biljarica shares why natural perfume is more than just a scent.</textarea>
+
+          <div class="counter">
+            <span id="body-en-count">0</span>/300
+          </div>
+
+        </div>
+
+        <div class="field">
+
+          <label for="url-en">
+            URL
+          </label>
+
+          <input
+            id="url-en"
+            type="url"
+            value="https://moveandtry.com/natural-perfume-making-expert-maja.html"
+          >
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- SEND -->
+
+    <section class="card">
+
+      <h2>
+        Slanje
+      </h2>
+
+      <p class="language-note">
+        Ništa se ne šalje automatski.
+        Klik na gumb traži još jednu potvrdu.
+      </p>
+
+      <div class="actions">
+
+        <button
+          id="send-button"
+          class="button danger"
+          type="button"
+        >
+          POŠALJI PUSH
+        </button>
+
+      </div>
+
+      <div
+        id="send-status"
+        class="status hidden"
+        role="status"
+      ></div>
+
+    </section>
+
+  </section>
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+(() => {
+
+  'use strict';
+
+
+  const SUPABASE_URL =
+    'https://pdyngeaykfpybeafjtpw.supabase.co';
+
+  const SUPABASE_KEY =
+    'sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK';
+
+  const FUNCTION_URL =
+    SUPABASE_URL +
+    '/functions/v1/app-push-console-send';
+
+
+  const db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: false
+      }
+    }
+  );
+
+
+  const loginCard =
+    document.getElementById('login-card');
+
+  const consoleRoot =
+    document.getElementById('console');
+
+  const logoutButton =
+    document.getElementById('logout');
+
+  const loginForm =
+    document.getElementById('login-form');
+
+  const loginButton =
+    document.getElementById('login-button');
+
+  const loginStatus =
+    document.getElementById('login-status');
+
+  const previewButton =
+    document.getElementById('preview-button');
+
+  const sendButton =
+    document.getElementById('send-button');
+
+  const preview =
+    document.getElementById('preview');
+
+  const sendStatus =
+    document.getElementById('send-status');
+
+
+  const fields = {
+
+    category:
+      document.getElementById('category'),
+
+    titleHr:
+      document.getElementById('title-hr'),
+
+    bodyHr:
+      document.getElementById('body-hr'),
+
+    urlHr:
+      document.getElementById('url-hr'),
+
+    titleEn:
+      document.getElementById('title-en'),
+
+    bodyEn:
+      document.getElementById('body-en'),
+
+    urlEn:
+      document.getElementById('url-en')
+
+  };
+
+
+  function setStatus(
+    element,
+    message,
+    type = ''
+  ) {
+
+    element.textContent = message;
+
+    element.classList.remove(
+      'hidden',
+      'error',
+      'success'
+    );
+
+    if (type) {
+      element.classList.add(type);
+    }
+
+  }
+
+
+  function clearStatus(element) {
+
+    element.textContent = '';
+
+    element.classList.add('hidden');
+
+    element.classList.remove(
+      'error',
+      'success'
+    );
+
+  }
+
+
+  function updateCounter(
+    input,
+    outputId
+  ) {
+
+    document
+      .getElementById(outputId)
+      .textContent =
+        input.value.length;
+
+  }
+
+
+  function setupCounters() {
+
+    const pairs = [
+
+      [
+        'titleHr',
+        'title-hr-count'
+      ],
+
+      [
+        'bodyHr',
+        'body-hr-count'
+      ],
+
+      [
+        'titleEn',
+        'title-en-count'
+      ],
+
+      [
+        'bodyEn',
+        'body-en-count'
+      ]
+
+    ];
+
+
+    for (
+      const [key, outputId]
+      of pairs
+    ) {
+
+      updateCounter(
+        fields[key],
+        outputId
+      );
+
+      fields[key].addEventListener(
+        'input',
+        () => {
+
+          updateCounter(
+            fields[key],
+            outputId
+          );
+
+        }
+      );
+
+    }
+
+  }
+
+
+  function payload(mode) {
+
+    return {
+
+      mode,
+
+      category:
+        fields.category.value,
+
+      hr: {
+
+        title:
+          fields.titleHr.value.trim(),
+
+        body:
+          fields.bodyHr.value.trim(),
+
+        url:
+          fields.urlHr.value.trim()
+
+      },
+
+      en: {
+
+        title:
+          fields.titleEn.value.trim(),
+
+        body:
+          fields.bodyEn.value.trim(),
+
+        url:
+          fields.urlEn.value.trim()
+
+      }
+
+    };
+
+  }
+
+
+  function validMoveTryUrl(value) {
+
+    try {
+
+      const url =
+        new URL(value);
+
+      return (
+        url.protocol === 'https:' &&
+        url.hostname === 'moveandtry.com'
+      );
+
+    } catch (_) {
+
+      return false;
+
+    }
+
+  }
+
+
+  function validateContent(data) {
+
+    const versions = [
+      data.hr,
+      data.en
+    ];
+
+
+    for (
+      const version
+      of versions
+    ) {
+
+      if (
+        !version.title ||
+        version.title.length > 100
+      ) {
+
+        return (
+          'Naslov mora imati između ' +
+          '1 i 100 znakova.'
+        );
+
+      }
+
+
+      if (
+        !version.body ||
+        version.body.length > 300
+      ) {
+
+        return (
+          'Tekst mora imati između ' +
+          '1 i 300 znakova.'
+        );
+
+      }
+
+
+      if (
+        !validMoveTryUrl(
+          version.url
+        )
+      ) {
+
+        return (
+          'URL mora biti ' +
+          'https://moveandtry.com/...'
+        );
+
+      }
+
+    }
+
+
+    return null;
+
+  }
+
+
+  async function sessionToken() {
+
+    const {
+      data,
+      error
+    } =
+      await db.auth.getSession();
+
+
+    if (error) {
+      throw error;
+    }
+
+
+    const token =
+      data.session?.access_token;
+
+
+    if (!token) {
+
+      throw new Error(
+        'Nisi prijavljena.'
+      );
+
+    }
+
+
+    return token;
+
+  }
+
+
+  async function callConsole(data) {
+
+    const token =
+      await sessionToken();
+
+
+    const response =
+      await fetch(
+        FUNCTION_URL,
+        {
+
+          method: 'POST',
+
+          headers: {
+
+            'Content-Type':
+              'application/json',
+
+            'Authorization':
+              'Bearer ' + token
+
+          },
+
+          body:
+            JSON.stringify(data),
+
+          cache:
+            'no-store'
+
+        }
+      );
+
+
+    const result =
+      await response
+        .json()
+        .catch(() => ({}));
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        result.error ||
+        'Push Console error: ' +
+        response.status
+      );
+
+    }
+
+
+    return result;
+
+  }
+
+
+  function showAuthenticated(
+    isAuthenticated
+  ) {
+
+    loginCard.classList.toggle(
+      'hidden',
+      isAuthenticated
+    );
+
+    consoleRoot.classList.toggle(
+      'hidden',
+      !isAuthenticated
+    );
+
+    logoutButton.classList.toggle(
+      'hidden',
+      !isAuthenticated
+    );
+
+  }
+
+
+  async function verifyAccess() {
+
+    const { data } =
+      await db.auth.getSession();
+
+
+    if (!data.session) {
+
+      showAuthenticated(false);
+
+      return;
+
+    }
+
+
+    try {
+
+      await callConsole({
+        mode: 'access-check'
+      });
+
+
+      showAuthenticated(true);
+
+      clearStatus(loginStatus);
+
+    } catch (_) {
+
+      showAuthenticated(false);
+
+      await db.auth.signOut();
+
+
+      setStatus(
+
+        loginStatus,
+
+        'Prijava postoji, ali ovaj račun ' +
+        'nema pristup Push Consoleu.',
+
+        'error'
+
+      );
+
+    }
+
+  }
+
+
+  loginForm.addEventListener(
+    'submit',
+    async event => {
+
+      event.preventDefault();
+
+      clearStatus(loginStatus);
+
+
+      loginButton.disabled = true;
+
+      loginButton.textContent =
+        'PRIJAVA…';
+
+
+      try {
+
+        const email =
+          document
+            .getElementById(
+              'login-email'
+            )
+            .value
+            .trim();
+
+
+        const password =
+          document
+            .getElementById(
+              'login-password'
+            )
+            .value;
+
+
+        const { error } =
+          await db.auth
+            .signInWithPassword({
+
+              email,
+              password
+
+            });
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        await verifyAccess();
+
+      } catch (error) {
+
+        setStatus(
+
+          loginStatus,
+
+          error.message ||
+          'Prijava nije uspjela.',
+
+          'error'
+
+        );
+
+      } finally {
+
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+          'PRIJAVI SE';
+
+      }
+
+    }
+  );
+
+
+  logoutButton.addEventListener(
+    'click',
+    async () => {
+
+      await db.auth.signOut();
+
+      showAuthenticated(false);
+
+      preview.classList.add(
+        'hidden'
+      );
+
+      clearStatus(sendStatus);
+
+    }
+  );
+
+
+  previewButton.addEventListener(
+    'click',
+    async () => {
+
+      clearStatus(sendStatus);
+
+
+      previewButton.disabled = true;
+
+      previewButton.textContent =
+        'PROVJERAVAM…';
+
+
+      try {
+
+        const result =
+          await callConsole({
+
+            mode: 'preview',
+
+            category:
+              fields.category.value
+
+          });
+
+
+        document
+          .getElementById(
+            'preview-total'
+          )
+          .textContent =
+            result.total ?? 0;
+
+
+        document
+          .getElementById(
+            'preview-hr'
+          )
+          .textContent =
+            result.hr ?? 0;
+
+
+        document
+          .getElementById(
+            'preview-en'
+          )
+          .textContent =
+            result.en ?? 0;
+
+
+        preview.classList.remove(
+          'hidden'
+        );
+
+      } catch (error) {
+
+        setStatus(
+
+          sendStatus,
+
+          error.message,
+
+          'error'
+
+        );
+
+      } finally {
+
+        previewButton.disabled = false;
+
+        previewButton.textContent =
+          'PROVJERI PRIMATELJE';
+
+      }
+
+    }
+  );
+
+
+  sendButton.addEventListener(
+    'click',
+    async () => {
+
+      clearStatus(sendStatus);
+
+
+      const data =
+        payload('send');
+
+
+      const validationError =
+        validateContent(data);
+
+
+      if (validationError) {
+
+        setStatus(
+
+          sendStatus,
+
+          validationError,
+
+          'error'
+
+        );
+
+        return;
+
+      }
+
+
+      const confirmed =
+        window.confirm(
+
+          'Poslati ovu push obavijest ' +
+          'svim aktivnim pretplatnicima ' +
+          'kategorije ' +
+          data.category +
+          '?\n\n' +
+          'Ova radnja odmah šalje obavijest.'
+
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      sendButton.disabled = true;
+
+      previewButton.disabled = true;
+
+      sendButton.textContent =
+        'ŠALJEM…';
+
+
+      try {
+
+        const result =
+          await callConsole(data);
+
+
+        const message = [
+
+          'Push je obrađen.',
+
+          'Kategorija: ' +
+            data.category,
+
+          'Pronađeno: ' +
+            (result.matched ?? 0),
+
+          'Poslano: ' +
+            (result.sent ?? 0),
+
+          'Neuspjelo: ' +
+            (result.failed ?? 0),
+
+          'Istekle pretplate: ' +
+            (result.expired ?? 0)
+
+        ].join('\n');
+
+
+        setStatus(
+
+          sendStatus,
+
+          message,
+
+          (result.failed ?? 0) === 0
+            ? 'success'
+            : 'error'
+
+        );
+
+
+        preview.classList.add(
+          'hidden'
+        );
+
+      } catch (error) {
+
+        setStatus(
+
+          sendStatus,
+
+          error.message,
+
+          'error'
+
+        );
+
+      } finally {
+
+        sendButton.disabled = false;
+
+        previewButton.disabled = false;
+
+        sendButton.textContent =
+          'POŠALJI PUSH';
+
+      }
+
+    }
+  );
+
+
+  db.auth.onAuthStateChange(
+    () => {
+
+      queueMicrotask(
+        verifyAccess
+      );
+
+    }
+  );
+
+
+  setupCounters();
+
+  verifyAccess();
+
+})();
+</script>
+
+</body>
+</html>
