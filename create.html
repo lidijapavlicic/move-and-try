@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -247,7 +246,8 @@
             opacity: .55;
         }
     </style>
-  <link rel="stylesheet" href="/consent.css">
+
+    <link rel="stylesheet" href="/consent.css">
 </head>
 
 <body>
@@ -255,7 +255,7 @@
     <!-- SITE HEADER -->
     <header class="site-header">
 
-        <a href="/" class="site-logo" aria-label="Move & Try home">
+        <a href="/" class="site-logo" aria-label="Move & Try – home">
             <img src="/images/move-and-try-logo.png" alt="Move & Try">
         </a>
 
@@ -421,7 +421,7 @@
                             <div class="activity-available">
                                 <span>GUIDE ✓</span>
                                 <span>EXPERIENCES ✓</span>
-                                <span>EXPERT</span>
+                                <span>EXPERT ✓</span>
                                 <span>WHERE TO TRY ✓</span>
                             </div>
 
@@ -557,6 +557,18 @@
     <!-- MOVE&TRY PWA NAVIGATION -->
     <script src="/app/app-navigation.js" defer></script>
 
-  <script src="/consent.js" defer></script>
+    <script>
+      /* MOVE&TRY public PWA; private Editor has its own registration. */
+      if ('serviceWorker' in navigator && window.isSecureContext &&
+          !window.location.pathname.startsWith('/editor/')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js', { scope: '/' })
+            .catch(error => console.warn('MOVE&TRY public service worker:', error));
+        });
+      }
+    </script>
+
+    <script src="/consent.js" defer></script>
+
 </body>
 </html>
