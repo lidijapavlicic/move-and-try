@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/consent.css">
 
     <style>
+
         :root {
             --bg: #f5f3ec;
             --card: #fffef9;
@@ -30,6 +31,7 @@
             --muted: #6c746d;
             --line: #d9ddd5;
             --green: #233126;
+            --green-soft: #edf2ed;
             --danger: #8a2f2f;
             --danger-soft: #f6e9e7;
             --success: #315e3c;
@@ -59,7 +61,7 @@
         }
 
         .shell {
-            width: min(calc(100% - 32px), 1020px);
+            width: min(calc(100% - 32px), 1120px);
             margin: 0 auto;
             padding: 30px 0 70px;
         }
@@ -139,6 +141,28 @@
             color: var(--muted);
             font-size: 13px;
             line-height: 1.8;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin: 0 0 18px;
+        }
+
+        .tab {
+            padding: 11px 16px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .09em;
+        }
+
+        .tab.active {
+            border-color: var(--green);
+            background: var(--green);
+            color: #fff;
         }
 
         .card {
@@ -277,19 +301,22 @@
             margin-top: 18px;
         }
 
-        .preview-stat {
+        .preview-stat,
+        .stat {
             padding: 15px;
             border: 1px solid var(--line);
             background: #faf9f4;
         }
 
-        .preview-stat strong {
+        .preview-stat strong,
+        .stat strong {
             display: block;
             margin-bottom: 3px;
             font: 400 30px/1 'DM Serif Display', Georgia, serif;
         }
 
-        .preview-stat span {
+        .preview-stat span,
+        .stat span {
             color: var(--muted);
             font-size: 10px;
             font-weight: 700;
@@ -306,13 +333,127 @@
             line-height: 1.65;
         }
 
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .category-stat {
+            padding: 14px;
+            border: 1px solid var(--line);
+            background: #faf9f4;
+        }
+
+        .category-stat strong {
+            display: block;
+            margin-top: 5px;
+            font: 400 27px/1 'DM Serif Display', Georgia, serif;
+        }
+
+        .category-stat span {
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .08em;
+        }
+
+        .dashboard-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .dashboard-head h2 {
+            margin-bottom: 6px;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        th,
+        td {
+            padding: 13px 11px;
+            border-bottom: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .08em;
+        }
+
+        td {
+            font-size: 11px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 7px;
+            margin: 2px 3px 2px 0;
+            border: 1px solid var(--line);
+            background: #f8f8f4;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: .05em;
+        }
+
+        .badge.active {
+            border-color: #bfd3c1;
+            background: #edf5ed;
+            color: var(--success);
+        }
+
+        .badge.inactive {
+            border-color: #e2c2bd;
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+
+        .empty {
+            padding: 30px 10px;
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+        }
+
         .hidden {
             display: none !important;
         }
 
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
         @media (max-width: 760px) {
+
             .shell {
-                width: min(calc(100% - 22px), 1020px);
+                width: min(calc(100% - 22px), 1120px);
                 padding-top: 20px;
             }
 
@@ -332,7 +473,16 @@
             .private-badge {
                 display: none;
             }
+
+            .dashboard-head {
+                display: block;
+            }
+
+            .dashboard-head .actions {
+                margin-top: 14px;
+            }
         }
+
     </style>
 
 </head>
@@ -378,8 +528,8 @@
         </h1>
 
         <p>
-            Objavljivanje sadržaja i slanje obavijesti ostaju odvojeni.
-            Ovdje biraš što se šalje, kada se šalje i kojoj kategoriji.
+            Upravljaj ručnim push obavijestima i prati aktivne
+            MOVE&TRY pretplatnike na jednom mjestu.
         </p>
 
     </section>
@@ -443,247 +593,401 @@
         class="hidden"
     >
 
-        <section class="card">
+        <div class="tabs">
 
-            <h2>
-                Publika
-            </h2>
-
-            <div class="field">
-
-                <label for="category">
-                    Kategorija
-                </label>
-
-                <select id="category">
-
-                    <option value="MOVE">MOVE</option>
-
-                    <option
-                        value="CREATE"
-                        selected
-                    >
-                        CREATE
-                    </option>
-
-                    <option value="LEARN">LEARN</option>
-                    <option value="EXPLORE">EXPLORE</option>
-                    <option value="DARE">DARE</option>
-                    <option value="CARE">CARE</option>
-                    <option value="JOURNAL">THE JOURNAL</option>
-
-                    <option value="WHERE_TO_TRY">
-                        GDJE PROBATI / WHERE TO TRY
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="actions">
-
-                <button
-                    id="preview-button"
-                    class="button secondary"
-                    type="button"
-                >
-                    PROVJERI PRIMATELJE
-                </button>
-
-            </div>
-
-            <div
-                id="preview"
-                class="preview-grid hidden"
-                aria-live="polite"
+            <button
+                id="tab-send"
+                class="tab active"
+                type="button"
             >
+                SLANJE
+            </button>
 
-                <div class="preview-stat">
-                    <strong id="preview-total">0</strong>
-                    <span>UKUPNO</span>
-                </div>
+            <button
+                id="tab-subscribers"
+                class="tab"
+                type="button"
+            >
+                PRETPLATNICI
+            </button>
 
-                <div class="preview-stat">
-                    <strong id="preview-hr">0</strong>
-                    <span>HR</span>
-                </div>
-
-                <div class="preview-stat">
-                    <strong id="preview-en">0</strong>
-                    <span>EN</span>
-                </div>
-
-            </div>
-
-        </section>
+        </div>
 
 
-        <div class="grid-2">
+        <!-- ======================================
+             SEND VIEW
+        ======================================= -->
 
-            <!-- HR -->
+        <div id="send-view">
 
-            <section class="card language-card">
+            <section class="card">
 
-                <h2>HR</h2>
-
-                <p class="language-note">
-                    Hrvatska verzija ide pretplatnicima
-                    čiji je jezik aplikacije HR.
-                </p>
+                <h2>
+                    Publika
+                </h2>
 
                 <div class="field">
 
-                    <label for="title-hr">
-                        Naslov
+                    <label for="category">
+                        Kategorija
                     </label>
 
-                    <input
-                        id="title-hr"
-                        maxlength="100"
-                        value="Nova Riječ stručnjaka 🌿"
-                    >
+                    <select id="category">
 
-                    <div class="counter">
-                        <span id="title-hr-count">0</span>/100
+                        <option value="MOVE">MOVE</option>
+
+                        <option
+                            value="CREATE"
+                            selected
+                        >
+                            CREATE
+                        </option>
+
+                        <option value="LEARN">LEARN</option>
+                        <option value="EXPLORE">EXPLORE</option>
+                        <option value="DARE">DARE</option>
+                        <option value="CARE">CARE</option>
+                        <option value="JOURNAL">THE JOURNAL</option>
+
+                        <option value="WHERE_TO_TRY">
+                            GDJE PROBATI / WHERE TO TRY
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="actions">
+
+                    <button
+                        id="preview-button"
+                        class="button secondary"
+                        type="button"
+                    >
+                        PROVJERI PRIMATELJE
+                    </button>
+
+                </div>
+
+                <div
+                    id="preview"
+                    class="preview-grid hidden"
+                    aria-live="polite"
+                >
+
+                    <div class="preview-stat">
+                        <strong id="preview-total">0</strong>
+                        <span>UKUPNO</span>
                     </div>
 
-                </div>
-
-
-                <div class="field">
-
-                    <label for="body-hr">
-                        Tekst
-                    </label>
-
-                    <textarea
-                        id="body-hr"
-                        maxlength="300"
-                    >Maja iz Biljarice otkriva zašto prirodni parfem nije samo miris.</textarea>
-
-                    <div class="counter">
-                        <span id="body-hr-count">0</span>/300
+                    <div class="preview-stat">
+                        <strong id="preview-hr">0</strong>
+                        <span>HR</span>
                     </div>
 
-                </div>
-
-
-                <div class="field">
-
-                    <label for="url-hr">
-                        URL
-                    </label>
-
-                    <input
-                        id="url-hr"
-                        type="url"
-                        value="https://moveandtry.com/hr/natural-perfume-making-expert-maja.html"
-                    >
+                    <div class="preview-stat">
+                        <strong id="preview-en">0</strong>
+                        <span>EN</span>
+                    </div>
 
                 </div>
 
             </section>
 
 
-            <!-- EN -->
+            <div class="grid-2">
 
-            <section class="card language-card">
+                <section class="card language-card">
 
-                <h2>EN</h2>
+                    <h2>HR</h2>
+
+                    <p class="language-note">
+                        Hrvatska verzija ide pretplatnicima
+                        čiji je jezik aplikacije HR.
+                    </p>
+
+                    <div class="field">
+
+                        <label for="title-hr">
+                            Naslov
+                        </label>
+
+                        <input
+                            id="title-hr"
+                            maxlength="100"
+                            value="Nova Riječ stručnjaka 🌿"
+                        >
+
+                        <div class="counter">
+                            <span id="title-hr-count">0</span>/100
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="body-hr">
+                            Tekst
+                        </label>
+
+                        <textarea
+                            id="body-hr"
+                            maxlength="300"
+                        >Maja iz Biljarice otkriva zašto prirodni parfem nije samo miris.</textarea>
+
+                        <div class="counter">
+                            <span id="body-hr-count">0</span>/300
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="url-hr">
+                            URL
+                        </label>
+
+                        <input
+                            id="url-hr"
+                            type="url"
+                            value="https://moveandtry.com/hr/natural-perfume-making-expert-maja.html"
+                        >
+
+                    </div>
+
+                </section>
+
+
+                <section class="card language-card">
+
+                    <h2>EN</h2>
+
+                    <p class="language-note">
+                        English version goes to subscribers
+                        whose app language is EN.
+                    </p>
+
+                    <div class="field">
+
+                        <label for="title-en">
+                            Title
+                        </label>
+
+                        <input
+                            id="title-en"
+                            maxlength="100"
+                            value="New Expert Insight 🌿"
+                        >
+
+                        <div class="counter">
+                            <span id="title-en-count">0</span>/100
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="body-en">
+                            Text
+                        </label>
+
+                        <textarea
+                            id="body-en"
+                            maxlength="300"
+                        >Maja from Biljarica shares why natural perfume is more than just a scent.</textarea>
+
+                        <div class="counter">
+                            <span id="body-en-count">0</span>/300
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="url-en">
+                            URL
+                        </label>
+
+                        <input
+                            id="url-en"
+                            type="url"
+                            value="https://moveandtry.com/natural-perfume-making-expert-maja.html"
+                        >
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <section class="card">
+
+                <h2>
+                    Slanje
+                </h2>
 
                 <p class="language-note">
-                    English version goes to subscribers
-                    whose app language is EN.
+                    Ništa se ne šalje automatski.
+                    Klik na gumb traži još jednu potvrdu.
                 </p>
 
-                <div class="field">
+                <div class="actions">
 
-                    <label for="title-en">
-                        Title
-                    </label>
-
-                    <input
-                        id="title-en"
-                        maxlength="100"
-                        value="New Expert Insight 🌿"
+                    <button
+                        id="send-button"
+                        class="button danger"
+                        type="button"
                     >
-
-                    <div class="counter">
-                        <span id="title-en-count">0</span>/100
-                    </div>
+                        POŠALJI PUSH
+                    </button>
 
                 </div>
 
-
-                <div class="field">
-
-                    <label for="body-en">
-                        Text
-                    </label>
-
-                    <textarea
-                        id="body-en"
-                        maxlength="300"
-                    >Maja from Biljarica shares why natural perfume is more than just a scent.</textarea>
-
-                    <div class="counter">
-                        <span id="body-en-count">0</span>/300
-                    </div>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="url-en">
-                        URL
-                    </label>
-
-                    <input
-                        id="url-en"
-                        type="url"
-                        value="https://moveandtry.com/natural-perfume-making-expert-maja.html"
-                    >
-
-                </div>
+                <div
+                    id="send-status"
+                    class="status hidden"
+                    role="status"
+                ></div>
 
             </section>
 
         </div>
 
 
-        <!-- SEND -->
+        <!-- ======================================
+             SUBSCRIBERS VIEW
+        ======================================= -->
 
-        <section class="card">
+        <div
+            id="subscribers-view"
+            class="hidden"
+        >
 
-            <h2>
-                Slanje
-            </h2>
+            <section class="card">
 
-            <p class="language-note">
-                Ništa se ne šalje automatski.
-                Klik na gumb traži još jednu potvrdu.
-            </p>
+                <div class="dashboard-head">
 
-            <div class="actions">
+                    <div>
 
-                <button
-                    id="send-button"
-                    class="button danger"
-                    type="button"
+                        <h2>
+                            Pretplatnici
+                        </h2>
+
+                        <p class="language-note">
+                            Read-only pregled push publike.
+                            Tehnički ključevi pretplata nisu prikazani.
+                        </p>
+
+                    </div>
+
+                    <div class="actions">
+
+                        <button
+                            id="refresh-dashboard"
+                            class="button secondary"
+                            type="button"
+                        >
+                            OSVJEŽI
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat">
+                        <strong id="stat-active">—</strong>
+                        <span>AKTIVNI</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong id="stat-inactive">—</strong>
+                        <span>NEAKTIVNI</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong id="stat-total">—</strong>
+                        <span>UKUPNO</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong id="stat-hr">—</strong>
+                        <span>HR</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong id="stat-en">—</strong>
+                        <span>EN</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="card">
+
+                <h2>
+                    Interesi
+                </h2>
+
+                <div
+                    id="category-stats"
+                    class="category-grid"
+                ></div>
+
+            </section>
+
+
+            <section class="card">
+
+                <h2>
+                    Pretplate
+                </h2>
+
+                <div
+                    id="dashboard-status"
+                    class="status hidden"
+                    role="status"
+                ></div>
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>PRETPLATA</th>
+                                <th>JEZIK</th>
+                                <th>STATUS</th>
+                                <th>KATEGORIJE</th>
+                                <th>ZADNJA IZMJENA</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="subscriber-rows"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div
+                    id="subscriber-empty"
+                    class="empty hidden"
                 >
-                    POŠALJI PUSH
-                </button>
+                    Još nema pretplatnika.
+                </div>
 
-            </div>
+            </section>
 
-            <div
-                id="send-status"
-                class="status hidden"
-                role="status"
-            ></div>
-
-        </section>
+        </div>
 
     </section>
 
@@ -697,120 +1001,108 @@
     'use strict';
 
 
-    /* ==========================================
-       CONFIG
-    ========================================== */
-
     const FUNCTION_URL =
         'https://pdyngeaykfpybeafjtpw.supabase.co/functions/v1/app-push-console-send';
+
+
+    const CATEGORIES = [
+        'MOVE',
+        'CREATE',
+        'LEARN',
+        'EXPLORE',
+        'DARE',
+        'CARE',
+        'JOURNAL',
+        'WHERE_TO_TRY'
+    ];
 
 
     let accessKey = '';
 
 
-    /* ==========================================
-       ELEMENTS
-    ========================================== */
-
     const loginCard =
-        document.getElementById(
-            'login-card'
-        );
+        document.getElementById('login-card');
 
     const consoleRoot =
-        document.getElementById(
-            'console'
-        );
+        document.getElementById('console');
 
     const logoutButton =
-        document.getElementById(
-            'logout'
-        );
+        document.getElementById('logout');
 
     const loginForm =
-        document.getElementById(
-            'login-form'
-        );
+        document.getElementById('login-form');
 
     const loginButton =
-        document.getElementById(
-            'login-button'
-        );
+        document.getElementById('login-button');
 
     const loginStatus =
-        document.getElementById(
-            'login-status'
-        );
+        document.getElementById('login-status');
 
     const accessKeyInput =
-        document.getElementById(
-            'access-key'
-        );
+        document.getElementById('access-key');
 
     const previewButton =
-        document.getElementById(
-            'preview-button'
-        );
+        document.getElementById('preview-button');
 
     const sendButton =
-        document.getElementById(
-            'send-button'
-        );
+        document.getElementById('send-button');
 
     const preview =
-        document.getElementById(
-            'preview'
-        );
+        document.getElementById('preview');
 
     const sendStatus =
-        document.getElementById(
-            'send-status'
-        );
+        document.getElementById('send-status');
+
+    const tabSend =
+        document.getElementById('tab-send');
+
+    const tabSubscribers =
+        document.getElementById('tab-subscribers');
+
+    const sendView =
+        document.getElementById('send-view');
+
+    const subscribersView =
+        document.getElementById('subscribers-view');
+
+    const refreshDashboardButton =
+        document.getElementById('refresh-dashboard');
+
+    const dashboardStatus =
+        document.getElementById('dashboard-status');
+
+    const subscriberRows =
+        document.getElementById('subscriber-rows');
+
+    const subscriberEmpty =
+        document.getElementById('subscriber-empty');
 
 
     const fields = {
 
         category:
-            document.getElementById(
-                'category'
-            ),
+            document.getElementById('category'),
 
         titleHr:
-            document.getElementById(
-                'title-hr'
-            ),
+            document.getElementById('title-hr'),
 
         bodyHr:
-            document.getElementById(
-                'body-hr'
-            ),
+            document.getElementById('body-hr'),
 
         urlHr:
-            document.getElementById(
-                'url-hr'
-            ),
+            document.getElementById('url-hr'),
 
         titleEn:
-            document.getElementById(
-                'title-en'
-            ),
+            document.getElementById('title-en'),
 
         bodyEn:
-            document.getElementById(
-                'body-en'
-            ),
+            document.getElementById('body-en'),
 
         urlEn:
-            document.getElementById(
-                'url-en'
-            )
+            document.getElementById('url-en')
 
     };
 
-
-    /* ==========================================
-       STATUS
-    ========================================== */
 
     function setStatus(
         element,
@@ -828,9 +1120,7 @@
         );
 
         if (type) {
-            element.classList.add(
-                type
-            );
+            element.classList.add(type);
         }
     }
 
@@ -841,9 +1131,7 @@
 
         element.textContent = '';
 
-        element.classList.add(
-            'hidden'
-        );
+        element.classList.add('hidden');
 
         element.classList.remove(
             'error',
@@ -852,19 +1140,13 @@
     }
 
 
-    /* ==========================================
-       COUNTERS
-    ========================================== */
-
     function updateCounter(
         input,
         outputId
     ) {
 
         document
-            .getElementById(
-                outputId
-            )
+            .getElementById(outputId)
             .textContent =
                 input.value.length;
     }
@@ -901,16 +1183,11 @@
                             fields[key],
                             outputId
                         );
-
                     }
                 );
         }
     }
 
-
-    /* ==========================================
-       API
-    ========================================== */
 
     async function callConsole(
         data
@@ -928,23 +1205,18 @@
             await fetch(
                 FUNCTION_URL,
                 {
-                    method:
-                        'POST',
+                    method: 'POST',
 
                     headers: {
-
                         'Content-Type':
                             'application/json',
 
                         'x-push-console-key':
                             accessKey
-
                     },
 
                     body:
-                        JSON.stringify(
-                            data
-                        ),
+                        JSON.stringify(data),
 
                     cache:
                         'no-store'
@@ -973,10 +1245,6 @@
         return result;
     }
 
-
-    /* ==========================================
-       LOCK / UNLOCK
-    ========================================== */
 
     function setUnlocked(
         unlocked
@@ -1097,29 +1365,80 @@
             'click',
             () => {
 
-                accessKey =
-                    '';
+                accessKey = '';
 
-                setUnlocked(
-                    false
-                );
+                setUnlocked(false);
+
+                showSendView();
 
                 preview
                     .classList
-                    .add(
-                        'hidden'
-                    );
+                    .add('hidden');
 
                 clearStatus(
                     sendStatus
+                );
+
+                clearStatus(
+                    dashboardStatus
                 );
             }
         );
 
 
-    /* ==========================================
-       PREVIEW
-    ========================================== */
+    function showSendView() {
+
+        tabSend.classList.add(
+            'active'
+        );
+
+        tabSubscribers.classList.remove(
+            'active'
+        );
+
+        sendView.classList.remove(
+            'hidden'
+        );
+
+        subscribersView.classList.add(
+            'hidden'
+        );
+    }
+
+
+    async function showSubscribersView() {
+
+        tabSubscribers.classList.add(
+            'active'
+        );
+
+        tabSend.classList.remove(
+            'active'
+        );
+
+        subscribersView.classList.remove(
+            'hidden'
+        );
+
+        sendView.classList.add(
+            'hidden'
+        );
+
+        await loadDashboard();
+    }
+
+
+    tabSend.addEventListener(
+        'click',
+        showSendView
+    );
+
+
+    tabSubscribers.addEventListener(
+        'click',
+        showSubscribersView
+    );
+
 
     previewButton
         .addEventListener(
@@ -1177,9 +1496,7 @@
 
                     preview
                         .classList
-                        .remove(
-                            'hidden'
-                        );
+                        .remove('hidden');
 
                 } catch (error) {
 
@@ -1200,10 +1517,6 @@
             }
         );
 
-
-    /* ==========================================
-       CONTENT
-    ========================================== */
 
     function pushPayload() {
 
@@ -1272,9 +1585,7 @@
         try {
 
             const url =
-                new URL(
-                    value
-                );
+                new URL(value);
 
             return (
                 url.protocol === 'https:' &&
@@ -1338,10 +1649,6 @@
         return null;
     }
 
-
-    /* ==========================================
-       SEND
-    ========================================== */
 
     sendButton
         .addEventListener(
@@ -1450,9 +1757,7 @@
 
                     preview
                         .classList
-                        .add(
-                            'hidden'
-                        );
+                        .add('hidden');
 
                 } catch (error) {
 
@@ -1477,20 +1782,389 @@
         );
 
 
-    /* ==========================================
-       INIT
-    ========================================== */
+    function formatDate(
+        value
+    ) {
+
+        if (!value) {
+            return '—';
+        }
+
+
+        const date =
+            new Date(value);
+
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+            return '—';
+        }
+
+
+        return new Intl.DateTimeFormat(
+            'hr-HR',
+            {
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            }
+        ).format(date);
+    }
+
+
+    function shortId(
+        value
+    ) {
+
+        if (!value) {
+            return '—';
+        }
+
+
+        if (value.length <= 12) {
+            return value;
+        }
+
+
+        return (
+            value.slice(0, 6) +
+            '…' +
+            value.slice(-4)
+        );
+    }
+
+
+    function renderCategoryStats(
+        categories
+    ) {
+
+        const root =
+            document.getElementById(
+                'category-stats'
+            );
+
+
+        root.innerHTML = '';
+
+
+        for (
+            const category
+            of CATEGORIES
+        ) {
+
+            const item =
+                document.createElement(
+                    'div'
+                );
+
+
+            item.className =
+                'category-stat';
+
+
+            const label =
+                document.createElement(
+                    'span'
+                );
+
+
+            label.textContent =
+                category === 'WHERE_TO_TRY'
+                    ? 'WHERE TO TRY'
+                    : category;
+
+
+            const count =
+                document.createElement(
+                    'strong'
+                );
+
+
+            count.textContent =
+                categories?.[category] ?? 0;
+
+
+            item.append(
+                label,
+                count
+            );
+
+
+            root.appendChild(
+                item
+            );
+        }
+    }
+
+
+    function renderSubscribers(
+        subscribers
+    ) {
+
+        subscriberRows.innerHTML =
+            '';
+
+
+        subscriberEmpty
+            .classList
+            .toggle(
+                'hidden',
+                subscribers.length > 0
+            );
+
+
+        for (
+            const subscriber
+            of subscribers
+        ) {
+
+            const row =
+                document.createElement(
+                    'tr'
+                );
+
+
+            const idCell =
+                document.createElement(
+                    'td'
+                );
+
+
+            idCell.textContent =
+                shortId(
+                    subscriber.id
+                );
+
+
+            const localeCell =
+                document.createElement(
+                    'td'
+                );
+
+
+            localeCell.textContent =
+                subscriber.locale || 'HR';
+
+
+            const statusCell =
+                document.createElement(
+                    'td'
+                );
+
+
+            const statusBadge =
+                document.createElement(
+                    'span'
+                );
+
+
+            statusBadge.className =
+                'badge ' +
+                (
+                    subscriber.is_active
+                        ? 'active'
+                        : 'inactive'
+                );
+
+
+            statusBadge.textContent =
+                subscriber.is_active
+                    ? 'AKTIVNA'
+                    : 'NEAKTIVNA';
+
+
+            statusCell.appendChild(
+                statusBadge
+            );
+
+
+            const categoryCell =
+                document.createElement(
+                    'td'
+                );
+
+
+            for (
+                const category
+                of subscriber.categories ?? []
+            ) {
+
+                const badge =
+                    document.createElement(
+                        'span'
+                    );
+
+
+                badge.className =
+                    'badge';
+
+
+                badge.textContent =
+                    category === 'WHERE_TO_TRY'
+                        ? 'WHERE TO TRY'
+                        : category;
+
+
+                categoryCell.appendChild(
+                    badge
+                );
+            }
+
+
+            if (
+                !subscriber.categories ||
+                subscriber.categories.length === 0
+            ) {
+
+                categoryCell.textContent =
+                    '—';
+            }
+
+
+            const updatedCell =
+                document.createElement(
+                    'td'
+                );
+
+
+            updatedCell.textContent =
+                formatDate(
+                    subscriber.updated_at
+                );
+
+
+            row.append(
+                idCell,
+                localeCell,
+                statusCell,
+                categoryCell,
+                updatedCell
+            );
+
+
+            subscriberRows.appendChild(
+                row
+            );
+        }
+    }
+
+
+    async function loadDashboard() {
+
+        clearStatus(
+            dashboardStatus
+        );
+
+
+        refreshDashboardButton.disabled =
+            true;
+
+        refreshDashboardButton.textContent =
+            'UČITAVAM…';
+
+
+        try {
+
+            const result =
+                await callConsole({
+                    mode:
+                        'dashboard'
+                });
+
+
+            const summary =
+                result.summary ?? {};
+
+
+            document
+                .getElementById(
+                    'stat-active'
+                )
+                .textContent =
+                    summary.active ?? 0;
+
+
+            document
+                .getElementById(
+                    'stat-inactive'
+                )
+                .textContent =
+                    summary.inactive ?? 0;
+
+
+            document
+                .getElementById(
+                    'stat-total'
+                )
+                .textContent =
+                    summary.total ?? 0;
+
+
+            document
+                .getElementById(
+                    'stat-hr'
+                )
+                .textContent =
+                    summary.hr ?? 0;
+
+
+            document
+                .getElementById(
+                    'stat-en'
+                )
+                .textContent =
+                    summary.en ?? 0;
+
+
+            renderCategoryStats(
+                summary.categories ?? {}
+            );
+
+
+            renderSubscribers(
+                result.subscribers ?? []
+            );
+
+        } catch (error) {
+
+            setStatus(
+                dashboardStatus,
+                error.message,
+                'error'
+            );
+
+        } finally {
+
+            refreshDashboardButton.disabled =
+                false;
+
+            refreshDashboardButton.textContent =
+                'OSVJEŽI';
+        }
+    }
+
+
+    refreshDashboardButton
+        .addEventListener(
+            'click',
+            loadDashboard
+        );
+
 
     setupCounters();
 
-    setUnlocked(
-        false
-    );
+    setUnlocked(false);
+
+    showSendView();
 
 })();
 </script>
 
+
 <script src="/consent.js" defer></script>
 
 </body>
+
 </html>
