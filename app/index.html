@@ -1562,18 +1562,32 @@
       function renderWhere() {
         const hr = language === 'hr';
         // Published WHERE TO TRY listings; add future listings to this array.
-        const providers = [{
-          category: 'CREATE',
-          activity: hr ? 'IZRADA PRIRODNIH PARFEMA' : 'NATURAL PERFUME MAKING',
-          name: 'BILJARICA',
-          city: 'ZAGREB',
-          image: '/images/biljarica-logo.jpg',
-          description: hr
-            ? 'Vođena radionica izrade prirodnog parfema za sve koji žele upoznati prirodne mirise, istražiti mirisne note i napraviti vlastitu kombinaciju.'
-            : 'A guided natural perfume-making workshop to explore natural scents, discover fragrance notes and create your own combination.',
-          url: hr ? '/hr/natural-perfume-making-where-to-try.html' : '/natural-perfume-making-where-to-try.html',
-          publishedAt: '2026-10-30'
-        }];
+       const providers = [
+  {
+    category: 'CREATE',
+    activity: 'TUFTING',
+    name: 'MAGIC TUFTING STUDIO',
+    city: 'ZAGREB',
+    image: '/images/magic-tufting-workshop.jpg',
+    description: hr
+      ? 'Radionica tuftinga za početnike na kojoj uz vođenje upoznaješ tufting gun, tehniku rada i izrađuješ vlastiti motiv.'
+      : 'A beginner-friendly tufting workshop where you learn how to use a tufting gun, explore the technique and create your own design with guidance.',
+    url: hr ? '/hr/tufting-where-to-try.html' : '/tufting-where-to-try.html',
+    publishedAt: '2026-11-02'
+  },
+  {
+    category: 'CREATE',
+    activity: hr ? 'IZRADA PRIRODNIH PARFEMA' : 'NATURAL PERFUME MAKING',
+    name: 'BILJARICA',
+    city: 'ZAGREB',
+    image: '/images/biljarica-logo.jpg',
+    description: hr
+      ? 'Vođena radionica izrade prirodnog parfema za sve koji žele upoznati prirodne mirise, istražiti mirisne note i napraviti vlastitu kombinaciju.'
+      : 'A guided natural perfume-making workshop to explore natural scents, discover fragrance notes and create your own combination.',
+    url: hr ? '/hr/natural-perfume-making-where-to-try.html' : '/natural-perfume-making-where-to-try.html',
+    publishedAt: '2026-10-30'
+  }
+];
         const categories = ['MOVE', 'LEARN', 'CREATE', 'EXPLORE', 'DARE', 'CARE'];
         const query = whereQuery.trim().toLocaleLowerCase();
         const filtered = providers.filter(p =>
