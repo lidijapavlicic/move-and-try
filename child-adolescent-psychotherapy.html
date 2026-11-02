@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Child & Adolescent Psychotherapy | Move & Try</title>
+
+  <meta name="description"
+        content="Explore child and adolescent psychotherapy. Learn when to consider professional support, what to expect from the first meeting and where to find support.">
+
+  <!-- Page has not been activated yet -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="canonical"
+        href="https://moveandtry.com/child-adolescent-psychotherapy.html">
+
+  <link rel="alternate"
+        hreflang="en"
+        href="https://moveandtry.com/child-adolescent-psychotherapy.html">
+
+  <link rel="alternate"
+        hreflang="hr"
+        href="https://moveandtry.com/hr/child-adolescent-psychotherapy.html">
+
+  <link rel="alternate"
+        hreflang="x-default"
+        href="https://moveandtry.com/child-adolescent-psychotherapy.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <!-- Google Analytics -->
+
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/consent.css">
+
+  <style>
+
+    /* =====================================
+       NAVIGATION
+       ===================================== */
+
+    .header-behind-link,
+    .header-behind-link:visited {
+      color:#555;
+      font-family:'Manrope',sans-serif;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-decoration:none;
+      white-space:nowrap;
+      transition:opacity .2s ease;
+    }
+
+    .header-behind-link:hover {
+      opacity:.55;
+    }
+
+
+    /* =====================================
+       PHOTOGRAPHIC HERO
+       ===================================== */
+
+    .activity-page .activity-header.psychotherapy-photo-hero {
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      min-height:420px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:#111;
+      color:#fff;
+      padding:60px 48px;
+    }
+
+    .psychotherapy-photo-hero .psychotherapy-hero-photos {
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      overflow:hidden;
+      pointer-events:none;
+    }
+
+    .psychotherapy-photo-hero .psychotherapy-hero-photo {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      animation:psychotherapyHeroFade 12s ease-in-out infinite;
+    }
+
+    .psychotherapy-photo-hero .psychotherapy-hero-photo:first-child {
+      object-position:center 42%;
+      animation-delay:0s;
+    }
+
+    .psychotherapy-photo-hero .psychotherapy-hero-photo:last-child {
+      object-position:center 38%;
+      animation-delay:-6s;
+    }
+
+    .psychotherapy-photo-hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(10,10,10,.40) 0%,
+          rgba(10,10,10,.60) 48%,
+          rgba(10,10,10,.88) 100%
+        );
+      pointer-events:none;
+    }
+
+
+    /* =====================================
+       TEXT OVER HERO
+       ===================================== */
+
+    .activity-page .psychotherapy-photo-hero .activity-page-type,
+    .activity-page .psychotherapy-photo-hero h1,
+    .activity-page .psychotherapy-photo-hero .activity-page-intro,
+    .activity-page .psychotherapy-photo-hero .activity-page-intro strong,
+    .activity-page .psychotherapy-photo-hero .activity-nav,
+    .activity-page .psychotherapy-photo-hero .activity-nav a,
+    .activity-page .psychotherapy-photo-hero .activity-nav span {
+      position:relative;
+      z-index:1;
+      color:#fff;
+    }
+
+    .activity-page .psychotherapy-photo-hero .activity-page-type {
+      color:#d4c8ae;
+    }
+
+    .activity-page .psychotherapy-photo-hero .activity-page-intro {
+      color:rgba(255,255,255,.9);
+    }
+
+    .activity-page .psychotherapy-photo-hero .activity-nav a,
+    .activity-page .psychotherapy-photo-hero .activity-nav span {
+      border-color:rgba(255,255,255,.42);
+    }
+
+
+    /* =====================================
+       ACTIVE ACTIVITY NAV LINKS
+       ===================================== */
+
+    .activity-page .psychotherapy-photo-hero .activity-nav a {
+      display:inline-block;
+      text-decoration:none;
+      transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+    }
+
+    .activity-page .psychotherapy-photo-hero .activity-nav a:hover {
+      background:#fff;
+      color:#111;
+      border-color:#fff;
+    }
+
+
+    /* =====================================
+       ACTIVE CONTENT CARDS
+       ===================================== */
+
+    .content-card-link {
+      display:block;
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .content-card-link .content-card {
+      height:100%;
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .content-card-link:hover .content-card {
+      transform:translateY(-3px);
+    }
+
+    .content-card-action {
+      display:inline-block;
+      margin-top:18px;
+      font-family:'Manrope',sans-serif;
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:#17251e;
+    }
+
+
+    /* =====================================
+       HERO ANIMATION
+       ===================================== */
+
+    @keyframes psychotherapyHeroFade {
+
+      0%,
+      42% {
+        opacity:1;
+      }
+
+      50%,
+      92% {
+        opacity:0;
+      }
+
+      100% {
+        opacity:1;
+      }
+
+    }
+
+
+    /* =====================================
+       RESPONSIVE
+       ===================================== */
+
+    @media (max-width:900px) {
+
+      .site-header .header-behind-link {
+        display:none !important;
+      }
+
+      .activity-page .activity-header.psychotherapy-photo-hero {
+        min-height:380px;
+        padding:48px 24px;
+      }
+
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      .psychotherapy-photo-hero .psychotherapy-hero-photo {
+        animation:none;
+        opacity:0;
+      }
+
+      .psychotherapy-photo-hero .psychotherapy-hero-photo:first-child {
+        opacity:1;
+      }
+
+      .content-card-link .content-card,
+      .activity-page .psychotherapy-photo-hero .activity-nav a {
+        transition:none;
+      }
+
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="/app/app-navigation.css">
+
+</head>
+
+<body>
+
+<!-- =====================================
+     SITE HEADER
+     ===================================== -->
+
+<header class="site-header">
+
+  <a href="/"
+     class="site-logo"
+     aria-label="Move & Try – home">
+
+    <img src="/images/move-and-try-logo.png"
+         alt="Move & Try">
+
+  </a>
+
+  <nav class="desktop-nav">
+
+    <a href="/#find-your-try">
+      DISCOVER
+    </a>
+
+    <a href="/#be-part-of-it">
+      BE PART OF IT
+    </a>
+
+    <a href="/#where-to-try">
+      WHERE TO TRY
+    </a>
+
+    <a href="/journal.html">
+      THE JOURNAL
+    </a>
+
+  </nav>
+
+  <div class="header-actions">
+
+    <a href="/behind-move-and-try.html"
+       class="header-behind-link">
+      BEHIND MOVE & TRY
+    </a>
+
+    <div class="header-language">
+
+      <span class="language-active">
+        EN
+      </span>
+
+      <span>|</span>
+
+      <a href="/hr/child-adolescent-psychotherapy.html"
+         onclick="setLanguage('hr')">
+        HR
+      </a>
+
+    </div>
+
+    <button class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false">
+
+      <span></span>
+      <span></span>
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================
+     MOBILE MENU
+     ===================================== -->
+
+<div class="mobile-menu">
+
+  <nav>
+
+    <a href="/#find-your-try">
+      DISCOVER
+    </a>
+
+    <a href="/#be-part-of-it">
+      BE PART OF IT
+    </a>
+
+    <a href="/#where-to-try">
+      WHERE TO TRY
+    </a>
+
+    <a href="/journal.html">
+      THE JOURNAL
+    </a>
+
+    <a href="/behind-move-and-try.html">
+      BEHIND MOVE & TRY
+    </a>
+
+  </nav>
+
+  <div class="mobile-menu-language">
+
+    <span class="language-active">
+      EN
+    </span>
+
+    <span>|</span>
+
+    <a href="/hr/child-adolescent-psychotherapy.html"
+       onclick="setLanguage('hr')">
+      HR
+    </a>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================
+     ACTIVITY
+     ===================================== -->
+
+<main class="activity-page">
+
+  <a href="/care.html"
+     class="back-link">
+    ← CARE
+  </a>
+
+
+  <!-- =====================================
+       PHOTOGRAPHIC HERO
+       ===================================== -->
+
+  <header class="activity-header psychotherapy-photo-hero">
+
+    <div class="psychotherapy-hero-photos"
+         aria-hidden="true">
+
+      <img class="psychotherapy-hero-photo"
+           src="/images/care-child-psychotherapy-connection.jpg"
+           alt=""
+           loading="eager"
+           fetchpriority="high">
+
+      <img class="psychotherapy-hero-photo"
+           src="/images/care-child-psychotherapy-light.jpg"
+           alt=""
+           loading="eager">
+
+    </div>
+
+    <p class="activity-page-type">
+      CARE · CHILD & ADOLESCENT PSYCHOTHERAPY
+    </p>
+
+    <h1>
+      CHILD & ADOLESCENT PSYCHOTHERAPY
+    </h1>
+
+    <p class="activity-page-intro">
+      Every child has an inner world of their own.<br>
+      <strong>
+        Sometimes they need a safe space to express it.
+      </strong>
+    </p>
+
+    <div class="activity-nav">
+
+      <a href="/child-adolescent-psychotherapy-guide.html">
+        GUIDE
+      </a>
+
+      <span>
+        EXPERIENCES
+      </span>
+
+      <a href="/child-adolescent-psychotherapy-expert-nikolina.html">
+        EXPERTS
+      </a>
+
+      <a href="/child-adolescent-psychotherapy-where-to-try.html">
+        WHERE TO FIND SUPPORT
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================
+       CONTENT
+       ===================================== -->
+
+  <section class="activity-content-section">
+
+    <p class="section-label">
+      EXPLORE PSYCHOTHERAPY
+    </p>
+
+    <h2>
+      UNDERSTANDING IS THE FIRST STEP.
+    </h2>
+
+    <div class="activity-content-grid">
+
+
+      <!-- =====================================
+           GUIDE
+           ===================================== -->
+
+      <a class="content-card-link"
+         href="/child-adolescent-psychotherapy-guide.html">
+
+        <div class="content-card">
+
+          <span class="content-card-type">
+            START HERE · GUIDE
+          </span>
+
+          <h3>
+            WHEN SHOULD YOU SEEK SUPPORT?
+          </h3>
+
+          <p>
+            When should you consider talking to a professional,
+            what happens at the first meeting,
+            are parents involved and how can you explain
+            psychotherapy to a child?
+          </p>
+
+          <span class="content-card-action">
+            OPEN THE GUIDE →
+          </span>
+
+        </div>
+
+      </a>
+
+
+      <!-- =====================================
+           EXPERIENCES
+           ===================================== -->
+
+      <div class="content-card content-card-coming">
+
+        <span class="content-card-type">
+          REAL EXPERIENCES
+        </span>
+
+        <h3>
+          WHAT CAN THE PATH TO SUPPORT LOOK LIKE?
+        </h3>
+
+        <p>
+          Experiences from parents and caregivers who sought
+          professional support for a child,
+          while respecting privacy and confidentiality.
+        </p>
+
+        <span class="content-card-status">
+          COMING SOON
+        </span>
+
+      </div>
+
+
+      <!-- =====================================
+           EXPERT
+           ===================================== -->
+
+      <a class="content-card-link"
+         href="/child-adolescent-psychotherapy-expert-nikolina.html">
+
+        <div class="content-card">
+
+          <span class="content-card-type">
+            EXPERT INSIGHT
+          </span>
+
+          <h3>
+            PSYCHOTHERAPY IS NOT ONLY FOR THE MOMENTS
+            WHEN LIFE BECOMES DIFFICULT.
+          </h3>
+
+          <p>
+            Nikolina Đurić of Lumos talks about support,
+            understanding ourselves and why we do not
+            have to wait until things become unbearable.
+          </p>
+
+          <span class="content-card-action">
+            READ →
+          </span>
+
+        </div>
+
+      </a>
+
+
+      <!-- =====================================
+           WHERE TO FIND SUPPORT
+           ===================================== -->
+
+      <a class="content-card-link"
+         href="/child-adolescent-psychotherapy-where-to-try.html">
+
+        <div class="content-card">
+
+          <span class="content-card-type">
+            WHERE TO FIND SUPPORT
+          </span>
+
+          <h3>
+            MEET LUMOS.
+          </h3>
+
+          <p>
+            Learn what the first contact looks like,
+            who the support is for and how Lumos works
+            with children, adolescents and their parents.
+          </p>
+
+          <span class="content-card-action">
+            LEARN MORE →
+          </span>
+
+        </div>
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================
+       SHARE EXPERIENCE
+       ===================================== -->
+
+  <section class="activity-contribute">
+
+    <p class="section-label">
+      YOUR PERSPECTIVE
+    </p>
+
+    <h2>
+      WOULD YOU LIKE TO SHARE YOUR EXPERIENCE?
+    </h2>
+
+    <p>
+      The experience of seeking professional support
+      can be valuable to other parents and caregivers too.
+      If you would like to share your perspective,
+      please do so without including personal or identifiable
+      information about the child.
+    </p>
+
+    <a href="/share-experience.html"
+       class="activity-contribute-link">
+      SHARE YOUR EXPERIENCE →
+    </a>
+
+  </section>
+
+</main>
+
+
+<!-- =====================================
+     JAVASCRIPT
+     ===================================== -->
+
+<script src="script.js"></script>
+
+<script src="/consent.js" defer></script>
+
+<script src="/app/app-navigation.js" defer></script>
+
+
+<!-- =====================================
+     PUBLIC PWA SERVICE WORKER
+     ===================================== -->
+
+<script>
+if (
+  'serviceWorker' in navigator &&
+  window.isSecureContext &&
+  !window.location.pathname.startsWith('/editor/')
+) {
+  window.addEventListener('load', () => {
+
+    navigator.serviceWorker
+      .register('/sw.js', { scope: '/' })
+      .catch(error => {
+
+        console.warn(
+          'MOVE&TRY public service worker:',
+          error
+        );
+
+      });
+
+  });
+}
+</script>
+
+</body>
+</html>
