@@ -401,7 +401,6 @@
 
 </header>
 
-
 <div class="mobile-menu">
 
     <nav>
@@ -420,13 +419,11 @@
 
 </div>
 
-
 <main class="guide-page">
 
     <a href="/tufting.html" class="guide-back">
         ← TUFTING
     </a>
-
 
     <header class="guide-hero">
 
@@ -463,7 +460,6 @@
 
     </header>
 
-
     <section class="guide-intro">
 
         <p class="section-label">
@@ -495,7 +491,6 @@
         </p>
 
     </section>
-
 
     <section class="guide-section">
 
@@ -539,11 +534,10 @@
 
     </section>
 
-
     <figure class="guide-photo">
 
         <img
-            src="/images/magic-tufting-process.jpeg"
+            src="/images/magic-tufting-process.jpg"
             alt="Working with a tufting gun on stretched fabric"
             loading="lazy"
         >
@@ -554,7 +548,6 @@
         </figcaption>
 
     </figure>
-
 
     <section class="guide-section">
 
@@ -592,7 +585,6 @@
 
     </section>
 
-
     <section class="guide-section">
 
         <div>
@@ -628,29 +620,27 @@
 
     </section>
 
-
     <div class="guide-gallery">
 
         <img
-            src="/images/magic-tufting-rug-patrick.jpeg"
+            src="/images/magic-tufting-rug-patrick.jpg"
             alt="Tufted rug featuring Patrick"
             loading="lazy"
         >
 
         <img
-            src="/images/magic-tufting-rug-honeycomb.jpeg"
+            src="/images/magic-tufting-rug-honeycomb.jpg"
             alt="Tufted rug with honeycomb and bee design"
             loading="lazy"
         >
 
         <img
-            src="/images/magic-tufting-rug-breakfast.jpeg"
+            src="/images/magic-tufting-rug-breakfast.jpg"
             alt="Tufted rug inspired by breakfast"
             loading="lazy"
         >
 
     </div>
-
 
     <section class="guide-section">
 
@@ -687,7 +677,6 @@
 
     </section>
 
-
     <section class="guide-section">
 
         <div>
@@ -722,7 +711,6 @@
         </div>
 
     </section>
-
 
     <section class="guide-quick">
 
@@ -766,7 +754,6 @@
 
     </section>
 
-
     <section class="guide-closing">
 
         <p class="section-label">
@@ -786,7 +773,6 @@
 
     </section>
 
-
     <p class="guide-provider-note">
         This MOVE&TRY guide was prepared using information and materials
         provided by Magic Tufting Studio in Zagreb.
@@ -794,12 +780,10 @@
 
 </main>
 
-
 <script src="script.js"></script>
 
 <script>
-    if ('serviceWorker' in navigator && window.isSecureContext &&
-        !window.location.pathname.startsWith('/editor/')) {
+    if ('serviceWorker' in navigator && window.location.pathname.startsWith('/editor/') === false) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/sw.js', { scope: '/' })
                 .catch(error => console.warn('MOVE&TRY public service worker:', error));
