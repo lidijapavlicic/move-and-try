@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<title>Vodič za roditelje | Dječja i adolescentska psihoterapija | MOVE&TRY</title>
+
+<meta name="description" content="Kada razmišljati o razgovoru sa stručnjakom, kako izgleda prvi susret i kako djetetu objasniti odlazak psihoterapeutu? Vodič za roditelje uz stručni doprinos Nikoline Đurić iz Lumosa.">
+
+<link rel="canonical" href="https://moveandtry.com/hr/child-adolescent-psychotherapy-guide.html">
+<link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/child-adolescent-psychotherapy-guide.html">
+<link rel="alternate" hreflang="en" href="https://moveandtry.com/child-adolescent-psychotherapy-guide.html">
+<link rel="alternate" hreflang="x-default" href="https://moveandtry.com/child-adolescent-psychotherapy-guide.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="/consent.css">
+
+<style>
+.header-behind-link,
+.header-behind-link:visited {
+    color:#555;
+    font-family:'Manrope',sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.04em;
+    text-decoration:none;
+    white-space:nowrap;
+}
+
+.header-behind-link:hover { opacity:.55; }
+
+.content-page {
+    width:min(1180px,calc(100% - 40px));
+    margin:0 auto;
+    padding:40px 0 90px;
+}
+
+.back-link {
+    display:inline-block;
+    margin-bottom:28px;
+    color:#555;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-decoration:none;
+}
+
+.hero {
+    position:relative;
+    min-height:620px;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding:58px;
+    background:#151515;
+    color:#fff;
+}
+
+.hero img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.hero::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        180deg,
+        rgba(0,0,0,.08),
+        rgba(0,0,0,.25) 45%,
+        rgba(0,0,0,.9)
+    );
+}
+
+.hero-content {
+    position:relative;
+    z-index:1;
+    max-width:820px;
+}
+
+.kicker {
+    margin:0 0 13px;
+    color:#d9c78d;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.16em;
+}
+
+.hero h1 {
+    margin:0;
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(50px,7vw,88px);
+    font-weight:400;
+    line-height:.98;
+}
+
+.hero-intro {
+    max-width:700px;
+    margin:22px 0 0;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.meta {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 24px;
+    margin-top:25px;
+    color:rgba(255,255,255,.76);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.06em;
+}
+
+.intro {
+    max-width:840px;
+    margin:75px auto;
+}
+
+.intro h2,
+.section h2,
+.closing h2 {
+    font-family:'DM Serif Display',serif;
+    font-weight:400;
+}
+
+.intro h2 {
+    margin:0 0 26px;
+    font-size:clamp(38px,6vw,58px);
+    line-height:1.05;
+}
+
+.intro p,
+.section p,
+.section li {
+    font-size:15px;
+    line-height:1.9;
+}
+
+.section {
+    display:grid;
+    grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+    gap:60px;
+    align-items:start;
+    padding:70px 0;
+    border-top:1px solid #d9d9d2;
+}
+
+.section-no {
+    margin:0 0 12px;
+    color:#777;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.16em;
+}
+
+.section h2 {
+    margin:0;
+    font-size:clamp(34px,4vw,48px);
+    line-height:1.05;
+}
+
+.section-content p:first-child {
+    margin-top:0;
+}
+
+.tip {
+    margin-top:28px;
+    padding:24px 26px;
+    border-left:3px solid #8a987f;
+    background:#eff1eb;
+}
+
+.tip strong {
+    display:block;
+    margin-bottom:7px;
+    font-size:10px;
+    letter-spacing:.1em;
+}
+
+.photo {
+    margin:25px 0 75px;
+}
+
+.photo img {
+    display:block;
+    width:100%;
+    max-height:760px;
+    object-fit:cover;
+}
+
+.photo figcaption {
+    margin-top:10px;
+    color:#777;
+    font-size:10px;
+    line-height:1.6;
+}
+
+.gallery {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:55px 0 80px;
+}
+
+.gallery img {
+    display:block;
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+}
+
+.quick {
+    margin:70px 0;
+    padding:42px;
+    background:#171717;
+    color:#fff;
+}
+
+.quick h2 {
+    margin:0 0 30px;
+    font-family:'DM Serif Display',serif;
+    font-size:42px;
+    font-weight:400;
+}
+
+.quick-grid {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+.quick-item {
+    border-top:1px solid rgba(255,255,255,.22);
+    padding-top:17px;
+}
+
+.quick-item strong {
+    display:block;
+    margin-bottom:7px;
+    color:#d9c78d;
+    font-size:10px;
+    letter-spacing:.1em;
+}
+
+.quick-item p {
+    margin:0;
+    color:rgba(255,255,255,.84);
+    font-size:13px;
+    line-height:1.75;
+}
+
+.closing {
+    max-width:860px;
+    margin:80px auto 40px;
+    text-align:center;
+}
+
+.closing h2 {
+    margin:0 0 20px;
+    font-size:clamp(42px,6vw,64px);
+    line-height:1.05;
+}
+
+.closing p {
+    font-size:15px;
+    line-height:1.9;
+}
+
+.provider-note {
+    max-width:760px;
+    margin:50px auto 0;
+    padding-top:30px;
+    border-top:1px solid #d9d9d2;
+    color:#777;
+    font-size:11px;
+    line-height:1.8;
+    text-align:center;
+}
+
+@media(max-width:900px) {
+    .site-header .header-behind-link {
+        display:none !important;
+    }
+
+    .content-page {
+        width:min(100% - 22px,1180px);
+        padding-top:24px;
+    }
+
+    .hero {
+        min-height:560px;
+        padding:30px 24px;
+    }
+
+    .section {
+        grid-template-columns:1fr;
+        gap:28px;
+        padding:52px 0;
+    }
+
+    .gallery,
+    .quick-grid {
+        grid-template-columns:1fr;
+    }
+
+    .gallery img {
+        aspect-ratio:auto;
+    }
+
+    .quick {
+        padding:30px 24px;
+    }
+}
+</style>
+
+<link rel="stylesheet" href="/app/app-navigation.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <a href="/hr/" class="site-logo" aria-label="MOVE&TRY – početna">
+        <img src="/images/move-and-try-logo.png" alt="MOVE&TRY">
+    </a>
+
+    <nav class="desktop-nav">
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
+    </nav>
+
+    <div class="header-actions">
+
+        <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+            IZA MOVE & TRY
+        </a>
+
+        <div class="header-language">
+            <a href="/child-adolescent-psychotherapy-guide.html" onclick="setLanguage('en')">EN</a>
+            <span>|</span>
+            <span class="language-active">HR</span>
+        </div>
+
+        <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+<div class="mobile-menu">
+
+    <nav>
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
+        <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+    </nav>
+
+    <div class="mobile-menu-language">
+        <a href="/child-adolescent-psychotherapy-guide.html" onclick="setLanguage('en')">EN</a>
+        <span>|</span>
+        <span class="language-active">HR</span>
+    </div>
+
+</div>
+
+<main class="content-page">
+
+    <a class="back-link" href="/hr/child-adolescent-psychotherapy.html">
+        ← DJEČJA I ADOLESCENTSKA PSIHOTERAPIJA
+    </a>
+
+    <section class="hero">
+
+        <img src="/images/lumos-space.jpg"
+             alt="Prostor Lumosa za dječju i adolescentnu psihoterapiju">
+
+        <div class="hero-content">
+
+            <p class="kicker">
+                CARE · VODIČ ZA RODITELJE
+            </p>
+
+            <h1>
+                Kada potražiti podršku?
+            </h1>
+
+            <p class="hero-intro">
+                Roditelj ne mora čekati da teškoće postanu velike.
+                Ponekad je dovoljno primijetiti da se nešto promijenilo
+                i poželjeti bolje razumjeti što se događa.
+            </p>
+
+            <div class="meta">
+                <span>STRUČNI DOPRINOS · NIKOLINA ĐURIĆ</span>
+                <span>LUMOS</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="intro">
+
+        <p class="section-no">
+            KRENI OVDJE
+        </p>
+
+        <h2>
+            Ne morate unaprijed imati odgovor.
+        </h2>
+
+        <p>
+            Razgovor sa stručnjakom može pomoći roditelju da dobije
+            jasniju sliku o onome što primjećuje kod djeteta ili adolescenta.
+            Ovaj vodič donosi osnovne informacije o tome kada razmišljati
+            o podršci, kako može izgledati prvi susret i što roditelji mogu
+            očekivati na početku procesa.
+        </p>
+
+        <div class="tip">
+            <strong>VAŽNO</strong>
+            Potražiti razgovor ne znači da je problem velik niti da ste već
+            trebali znati što napraviti. Prvi korak može biti upravo procjena
+            situacije i razgovor o tome što bi djetetu moglo biti korisno.
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div>
+            <p class="section-no">01</p>
+            <h2>Kada razmišljati o razgovoru sa stručnjakom?</h2>
+        </div>
+
+        <div class="section-content">
+
+            <p>
+                Kada roditelj primjećuje promjene u djetetovu ponašanju,
+                raspoloženju, odnosima ili svakodnevnom funkcioniranju
+                koje traju, ponavljaju se ili ga zabrinjavaju.
+            </p>
+
+            <p>
+                To mogu biti povlačenje, pojačana tjeskoba, teškoće u
+                regulaciji emocija, problemi u odnosima, promjene povezane
+                sa školom ili neke veće životne promjene.
+            </p>
+
+            <div class="tip">
+                <strong>NIKOLINA NAGLAŠAVA</strong>
+                Roditelj ne mora čekati da teškoće postanu izražene
+                da bi potražio podršku.
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div>
+            <p class="section-no">02</p>
+            <h2>Kako izgleda prvi susret?</h2>
+        </div>
+
+        <div class="section-content">
+
+            <p>
+                Prvi susret prvenstveno je prilika za upoznavanje,
+                razgovor o razlogu dolaska i stvaranje osjećaja sigurnosti.
+            </p>
+
+            <p>
+                Važno je upoznati dijete ili adolescenta, čuti kako oni
+                doživljavaju situaciju i zajedno s roditeljima steći
+                jasniju sliku o potrebama i očekivanjima.
+            </p>
+
+            <p>
+                Ne očekuje se da dijete odmah sve ispriča niti da se
+                odmah osjeća potpuno opušteno.
+            </p>
+
+        </div>
+
+    </section>
+
+    <figure class="photo">
+
+        <img src="/images/nikolina-djuric-with-child-tools.jpg"
+             alt="Nikolina Đurić u prostoru Lumosa s materijalima za rad">
+
+        <figcaption>
+            Sigurnost i odnos povjerenja grade se postupno.
+        </figcaption>
+
+    </figure>
+
+    <section class="section">
+
+        <div>
+            <p class="section-no">03</p>
+            <h2>Sudjeluju li roditelji?</h2>
+        </div>
+
+        <div class="section-content">
+
+            <p>
+                Da. Roditelji su važan dio procesa, osobito kada je riječ
+                o mlađoj djeci. Način i opseg njihova sudjelovanja
+                prilagođavaju se dobi djeteta, njegovim potrebama
+                i dogovorenim ciljevima rada.
+            </p>
+
+            <p>
+                Kod adolescenata posebno je važno voditi računa o povjerenju,
+                privatnosti i postupnom razvoju njihove autonomije,
+                uz poštovanje sigurnosti i dobrobiti adolescenta.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div>
+            <p class="section-no">04</p>
+            <h2>Kako djetetu objasniti odlazak psihoterapeutu?</h2>
+        </div>
+
+        <div class="section-content">
+
+            <p>
+                Najbolje je jednostavno, iskreno i bez zastrašivanja.
+            </p>
+
+            <div class="tip">
+                <strong>PRIMJER</strong>
+                „Idemo upoznati osobu koja razgovara s djecom i mladima
+                i pomaže im kada im je nešto teško ili kada žele bolje
+                razumjeti svoje osjećaje.”
+            </div>
+
+            <p>
+                Važno je izbjegavati poruke da dijete ide terapeutu zato
+                što je zločesto, problematično ili zato što ga treba
+                „popraviti”.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div>
+            <p class="section-no">05</p>
+            <h2>Mora li dijete imati velik problem?</h2>
+        </div>
+
+        <div class="section-content">
+
+            <p>
+                Ne. Psihoterapija nije namijenjena samo velikim krizama.
+                Može biti korisna i kada dijete ili adolescent prolazi
+                kroz promjenu, teško izražava osjećaje, ima poteškoće
+                u odnosima ili mu treba prostor u kojem će lakše
+                razumjeti sebe i ono što proživljava.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div>
+            <p class="section-no">06</p>
+            <h2>Što očekivati u prvim susretima?</h2>
+        </div>
+
+        <div class="section-content">
+
+            <p>
+                Prvi susreti služe upoznavanju, razumijevanju teškoća
+                i stvaranju temelja za odnos povjerenja. Promjene ne moraju
+                biti trenutačne niti uvijek odmah vidljive.
+            </p>
+
+            <p>
+                Roditelji mogu postavljati pitanja, podijeliti svoja
+                opažanja i razgovarati o tome kako surađivati
+                u interesu djeteta.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div>
+            <p class="section-no">07</p>
+            <h2>Ako samo osjećate da nešto nije u redu?</h2>
+        </div>
+
+        <div class="section-content">
+
+            <p>
+                Ne morate unaprijed znati što se događa niti biti sigurni
+                da je riječ o problemu koji zahtijeva psihoterapiju.
+            </p>
+
+            <p>
+                Ako vas nešto zabrinjava, razgovor sa stručnjakom može
+                pomoći da bolje razumijete situaciju i procijenite
+                što bi vašem djetetu bilo korisno.
+            </p>
+
+            <div class="tip">
+                <strong>ZA PONIJETI</strong>
+                Ne morate čekati da postane jako teško
+                da biste potražili podršku.
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="gallery">
+
+        <img src="/images/nikolina-djuric-lumos.jpg"
+             alt="Nikolina Đurić u Lumosu">
+
+        <img src="/images/lumos-emotion-center.jpg"
+             alt="Emociocentar u prostoru Lumosa">
+
+        <img src="/images/nikolina-djuric-expert.jpg"
+             alt="Nikolina Đurić pred Emociocentrom">
+
+    </div>
+
+    <section class="quick">
+
+        <h2>Ukratko prije prvog koraka</h2>
+
+        <div class="quick-grid">
+
+            <div class="quick-item">
+                <strong>NE MORATE ČEKATI KRIZU</strong>
+                <p>
+                    Podršku možete potražiti i kada želite bolje
+                    razumjeti promjene koje primjećujete.
+                </p>
+            </div>
+
+            <div class="quick-item">
+                <strong>PRVI SUSRET JE UPOZNAVANJE</strong>
+                <p>
+                    Ne očekuje se da dijete odmah sve kaže niti
+                    da se odmah potpuno opusti.
+                </p>
+            </div>
+
+            <div class="quick-item">
+                <strong>RODITELJI SU DIO PROCESA</strong>
+                <p>
+                    Način uključivanja prilagođava se dobi,
+                    potrebama i dogovorenim ciljevima rada.
+                </p>
+            </div>
+
+            <div class="quick-item">
+                <strong>PITANJA SU DOBRODOŠLA</strong>
+                <p>
+                    Roditelj može podijeliti opažanja i pitati
+                    što bi djetetu moglo biti korisno.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="closing">
+
+        <h2>
+            Prvi korak može biti samo razgovor.
+        </h2>
+
+        <p>
+            Ne morate imati dijagnozu, gotov plan ni potpuno objašnjenje
+            onoga što se događa. Dovoljno je da postoji pitanje
+            ili zabrinutost koju želite bolje razumjeti.
+        </p>
+
+    </section>
+
+    <p class="provider-note">
+        Vodič je nastao na temelju stručnog doprinosa Nikoline Đurić,
+        socijalne radnice i vlasnice Lumosa, obrta za dječju i adolescentnu
+        psihoterapiju. Sadržaj je informativan i ne zamjenjuje
+        individualnu stručnu procjenu.
+    </p>
+
+</main>
+
+<script src="../script.js"></script>
+<script src="/consent.js" defer></script>
+<script src="/app/app-navigation.js" defer></script>
+
+</body>
+</html>
