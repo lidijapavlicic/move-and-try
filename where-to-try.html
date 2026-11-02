@@ -188,7 +188,7 @@
 
 
         /* =========================
-           PUBLISHED
+           PUBLISHED — LOCKED DESKTOP
         ========================= */
 
         .where-published {
@@ -206,7 +206,7 @@
             display: grid;
             grid-template-columns: 165px minmax(0, 1fr);
 
-            min-height: 138px;
+            height: 150px;
 
             color: #1f2a18;
             text-decoration: none;
@@ -227,7 +227,8 @@
         }
 
         .where-published-visual {
-            min-height: 138px;
+            width: 165px;
+            height: 150px;
 
             overflow: hidden;
 
@@ -239,7 +240,6 @@
 
             width: 100%;
             height: 100%;
-            min-height: 138px;
 
             object-fit: cover;
 
@@ -253,13 +253,17 @@
         }
 
         .where-published-info {
+            min-width: 0;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
 
             gap: 6px;
 
-            padding: 20px 24px;
+            padding: 18px 24px;
+
+            overflow: hidden;
         }
 
         .where-published-meta {
@@ -281,13 +285,17 @@
         }
 
         .where-published-info p {
-            max-width: 720px;
-
             margin: 0;
+
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
 
             font-family: 'Manrope', sans-serif;
             font-size: 12px;
-            line-height: 1.55;
+            line-height: 1.5;
 
             color: #4d554e;
         }
@@ -309,7 +317,7 @@
 
 
         /* =========================
-           MOBILE
+           MOBILE — KEEP CURRENT
         ========================= */
 
         @media (max-width: 600px) {
@@ -332,10 +340,17 @@
 
             .where-published-item {
                 grid-template-columns: 105px minmax(0, 1fr);
+
+                height: auto;
                 min-height: 145px;
             }
 
-            .where-published-visual,
+            .where-published-visual {
+                width: 105px;
+                height: auto;
+                min-height: 145px;
+            }
+
             .where-published-visual img {
                 min-height: 145px;
             }
@@ -361,6 +376,7 @@
     </style>
 
     <link rel="stylesheet" href="/consent.css">
+
 </head>
 
 
@@ -384,6 +400,7 @@
         >
     </a>
 
+
     <nav class="desktop-nav">
 
         <a href="/#find-your-try">
@@ -404,6 +421,7 @@
 
     </nav>
 
+
     <div class="header-actions">
 
         <a
@@ -412,6 +430,7 @@
         >
             BEHIND MOVE & TRY
         </a>
+
 
         <div class="header-language">
 
@@ -429,6 +448,7 @@
             </a>
 
         </div>
+
 
         <button
             class="menu-toggle"
@@ -474,6 +494,7 @@
         </a>
 
     </nav>
+
 
     <div class="mobile-menu-language">
 
@@ -712,6 +733,10 @@
 
 </main>
 
+
+<!-- =========================
+     SCRIPTS
+========================= -->
 
 <script src="script.js"></script>
 <script src="/app/app-navigation.js" defer></script>
@@ -1017,6 +1042,7 @@
                     </a>
 
                 </div>
+
             `;
 
             providerList.appendChild(card);
