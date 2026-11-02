@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Tufting | MOVE&TRY</title>
+
+  <meta
+    name="description"
+    content="Discover tufting through MOVE&TRY. Learn what your first try looks like, read an expert perspective and find a place where you can experience tufting."
+  >
+
+  <meta name="robots" content="noindex, nofollow">
+
+  <link
+    rel="canonical"
+    href="https://moveandtry.com/tufting.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://moveandtry.com/tufting.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="hr"
+    href="https://moveandtry.com/hr/tufting.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://moveandtry.com/tufting.html"
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/consent.css">
+
+  <style>
+
+    /* ==========================================
+       HEADER
+    ========================================== */
+
+    .header-behind-link {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
+    }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
+
+    /* ==========================================
+       TUFTING — PHOTO HERO
+    ========================================== */
+
+    .activity-page .activity-header.tufting-photo-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+
+      min-height: 420px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      background: #111;
+      color: #fff;
+
+      padding: 60px 48px;
+    }
+
+    .tufting-photo-hero .tufting-hero-photos {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .tufting-photo-hero .tufting-hero-photo {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      filter:
+        brightness(.58)
+        contrast(1.08)
+        saturate(.82);
+
+      animation:
+        tuftingHeroFade 12s ease-in-out infinite;
+    }
+
+    .tufting-photo-hero .tufting-hero-photo:first-child {
+      object-position: center center;
+      animation-delay: 0s;
+    }
+
+    .tufting-photo-hero .tufting-hero-photo:last-child {
+      object-position: center center;
+      animation-delay: -6s;
+    }
+
+    .tufting-photo-hero::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(8, 8, 8, .30) 0%,
+          rgba(8, 8, 8, .55) 46%,
+          rgba(8, 8, 8, .90) 100%
+        );
+
+      pointer-events: none;
+    }
+
+
+    /* ==========================================
+       HERO TEXT
+    ========================================== */
+
+    .activity-page .tufting-photo-hero .activity-page-type,
+    .activity-page .tufting-photo-hero h1,
+    .activity-page .tufting-photo-hero .activity-page-intro,
+    .activity-page .tufting-photo-hero .activity-page-intro strong,
+    .activity-page .tufting-photo-hero .activity-nav,
+    .activity-page .tufting-photo-hero .activity-nav span {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .activity-page .tufting-photo-hero .activity-page-type {
+      color: #f0cf57;
+    }
+
+    .activity-page .tufting-photo-hero .activity-page-intro {
+      color: rgba(255, 255, 255, .90);
+    }
+
+    .activity-page .tufting-photo-hero .activity-page-intro strong {
+      color: #fff;
+    }
+
+    .activity-page .tufting-photo-hero .activity-nav span {
+      border-color: rgba(255, 255, 255, .42);
+    }
+
+
+    /* ==========================================
+       HERO ANIMATION
+    ========================================== */
+
+    @keyframes tuftingHeroFade {
+
+      0%,
+      42% {
+        opacity: 1;
+      }
+
+      50%,
+      92% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+
+    }
+
+
+    /* ==========================================
+       RESPONSIVE
+    ========================================== */
+
+    @media (max-width: 900px) {
+
+      .activity-page .activity-header.tufting-photo-hero {
+        min-height: 380px;
+        padding: 48px 24px;
+      }
+
+      .site-header .header-behind-link {
+        display: none !important;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .tufting-photo-hero .tufting-hero-photo {
+        animation: none;
+        opacity: 0;
+      }
+
+      .tufting-photo-hero .tufting-hero-photo:first-child {
+        opacity: 1;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="site-header">
+
+  <a
+    href="/"
+    class="site-logo"
+    aria-label="MOVE&TRY – home"
+  >
+
+    <img
+      src="/images/move-and-try-logo.png"
+      alt="MOVE&TRY"
+    >
+
+  </a>
+
+
+  <nav class="desktop-nav">
+
+    <a href="/#find-your-try">
+      DISCOVER
+    </a>
+
+    <a href="/#be-part-of-it">
+      BE PART OF IT
+    </a>
+
+    <a href="/where-to-try.html">
+      WHERE TO TRY
+    </a>
+
+    <a href="/journal.html">
+      THE JOURNAL
+    </a>
+
+  </nav>
+
+
+  <div class="header-actions">
+
+    <a
+      href="/behind-move-and-try.html"
+      class="header-behind-link"
+    >
+      BEHIND MOVE & TRY
+    </a>
+
+    <div class="header-language">
+
+      <span class="language-active">
+        EN
+      </span>
+
+      <span>|</span>
+
+      <a
+        href="/hr/tufting.html"
+        onclick="setLanguage('hr')"
+      >
+        HR
+      </a>
+
+    </div>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+  <nav>
+
+    <a href="/#find-your-try">
+      DISCOVER
+    </a>
+
+    <a href="/#be-part-of-it">
+      BE PART OF IT
+    </a>
+
+    <a href="/where-to-try.html">
+      WHERE TO TRY
+    </a>
+
+    <a href="/journal.html">
+      THE JOURNAL
+    </a>
+
+    <a href="/behind-move-and-try.html">
+      BEHIND MOVE & TRY
+    </a>
+
+  </nav>
+
+
+  <div class="mobile-menu-language">
+
+    <span class="language-active">
+      EN
+    </span>
+
+    <span>|</span>
+
+    <a
+      href="/hr/tufting.html"
+      onclick="setLanguage('hr')"
+    >
+      HR
+    </a>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     TUFTING
+========================= -->
+
+<main class="activity-page">
+
+
+  <!-- =========================
+       BACK TO CREATE
+  ========================= -->
+
+  <a
+    href="/create.html"
+    class="back-link"
+  >
+    ← CREATE
+  </a>
+
+
+  <!-- =========================
+       PHOTO HERO
+  ========================= -->
+
+  <header class="activity-header tufting-photo-hero">
+
+
+    <div
+      class="tufting-hero-photos"
+      aria-hidden="true"
+    >
+
+      <img
+        class="tufting-hero-photo"
+        src="/images/tufting-1.jpg"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+      >
+
+      <img
+        class="tufting-hero-photo"
+        src="/images/tufting-2.jpg"
+        alt=""
+        loading="eager"
+      >
+
+    </div>
+
+
+    <p class="activity-page-type">
+      CREATE · TUFTING
+    </p>
+
+
+    <h1>
+      TUFTING
+    </h1>
+
+
+    <p class="activity-page-intro">
+
+      Fabric, yarn and a tool that looks more at home
+      in a workshop than a creative studio.<br>
+
+      <strong>
+        What happens when you pick it up for the first time?
+      </strong>
+
+    </p>
+
+
+    <div class="activity-nav">
+
+      <span>
+        GUIDE
+      </span>
+
+      <span>
+        EXPERIENCES
+      </span>
+
+      <span>
+        EXPERTS
+      </span>
+
+      <span>
+        WHERE TO TRY
+      </span>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       CONTENT
+  ========================= -->
+
+  <section class="activity-content-section">
+
+
+    <p class="section-label">
+      EXPLORE TUFTING
+    </p>
+
+
+    <h2>
+      FROM THE FIRST LINE TO SOMETHING YOURS.
+    </h2>
+
+
+    <div class="activity-content-grid">
+
+
+      <!-- =========================
+           GUIDE — AVAILABLE
+      ========================= -->
+
+      <a
+        href="/tufting-guide.html"
+        class="content-card"
+      >
+
+        <span class="content-card-type">
+          GUIDE ✓
+        </span>
+
+        <h3>
+          TRY TUFTING.
+        </h3>
+
+        <p>
+          Discover what your first encounter with a tufting gun looks like,
+          what kind of design to choose,
+          what to bring
+          and what to expect from your first try.
+        </p>
+
+        <span class="content-card-action">
+          READ THE GUIDE →
+        </span>
+
+      </a>
+
+
+      <!-- =========================
+           EXPERIENCE — COMING SOON
+      ========================= -->
+
+      <div class="content-card content-card-coming">
+
+        <span class="content-card-type">
+          EXPERIENCES
+        </span>
+
+        <h3>
+          WHAT DOES IT FEEL LIKE TO TRY TUFTING FOR THE FIRST TIME?
+        </h3>
+
+        <p>
+          A real first-time experience
+          with the tool, fabric,
+          yarn and your own design.
+        </p>
+
+        <span class="content-card-status">
+          COMING SOON
+        </span>
+
+      </div>
+
+
+      <!-- =========================
+           EXPERT — AVAILABLE
+      ========================= -->
+
+      <a
+        href="/tufting-expert-tomislav.html"
+        class="content-card"
+      >
+
+        <span class="content-card-type">
+          EXPERT INSIGHT ✓
+        </span>
+
+        <h3>
+          FROM CURIOSITY TO HIS OWN STUDIO.
+        </h3>
+
+        <p>
+          Tomislav from Magic Tufting Studio
+          shares how he discovered tufting,
+          learned through trial and error
+          and what beginners should know.
+        </p>
+
+        <span class="content-card-action">
+          READ THE EXPERT INSIGHT →
+        </span>
+
+      </a>
+
+
+      <!-- =========================
+           WHERE TO TRY — AVAILABLE
+      ========================= -->
+
+      <a
+        href="/tufting-where-to-try.html"
+        class="content-card"
+      >
+
+        <span class="content-card-type">
+          WHERE TO TRY ✓
+        </span>
+
+        <h3>
+          WHERE CAN YOU TRY TUFTING?
+        </h3>
+
+        <p>
+          Find a place where you can
+          pick up a tufting gun for the first time,
+          discover the technique
+          and create your own piece.
+        </p>
+
+        <span class="content-card-action">
+          SEE WHERE TO TRY →
+        </span>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SHARE YOUR EXPERIENCE
+  ========================= -->
+
+  <section class="activity-contribute">
+
+
+    <p class="section-label">
+      YOUR EXPERIENCE
+    </p>
+
+
+    <h2>
+      HAVE YOU TRIED TUFTING?
+    </h2>
+
+
+    <p>
+      What was your first try like?
+
+      Was it easier than you expected,
+      completely chaotic,
+      or did you immediately want to make another piece?
+
+      Share your story.
+      Your experience might encourage someone else
+      to give it a try.
+    </p>
+
+
+    <a
+      href="/share-experience.html"
+      class="activity-contribute-link"
+    >
+      SHARE YOUR EXPERIENCE →
+    </a>
+
+
+  </section>
+
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="script.js"></script>
+
+<script>
+  if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+  ) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js', { scope: '/' })
+        .catch(error =>
+          console.warn(
+            'MOVE&TRY public service worker:',
+            error
+          )
+        );
+    });
+  }
+</script>
+
+<script src="/consent.js" defer></script>
+
+</body>
+
+</html>
