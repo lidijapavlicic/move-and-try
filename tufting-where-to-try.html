@@ -7,14 +7,12 @@
 
     <link rel="icon" type="image/png" href="/favicon.png">
 
-    <title>Where to try tufting in Zagreb | MOVE&TRY</title>
+    <title>Where to try tufting | MOVE&TRY</title>
 
     <meta
         name="description"
-        content="Discover where to try tufting in Zagreb. Magic Tufting Studio offers beginner-friendly workshops where you can create your own tufted piece."
+        content="Find places and workshops where you can try tufting. MOVE&TRY connects the activity with people and studios where you can take the first step."
     >
-
-    <meta name="robots" content="noindex, nofollow">
 
     <link
         rel="canonical"
@@ -23,14 +21,14 @@
 
     <link
         rel="alternate"
-        hreflang="hr"
-        href="https://moveandtry.com/hr/tufting-where-to-try.html"
+        hreflang="en"
+        href="https://moveandtry.com/tufting-where-to-try.html"
     >
 
     <link
         rel="alternate"
-        hreflang="en"
-        href="https://moveandtry.com/tufting-where-to-try.html"
+        hreflang="hr"
+        href="https://moveandtry.com/hr/tufting-where-to-try.html"
     >
 
     <link
@@ -48,19 +46,26 @@
     >
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="/consent.css">
+
+    <!-- MOVE&TRY PWA NAVIGATION -->
+    <link rel="stylesheet" href="/app/app-navigation.css">
 
     <style>
 
         :root {
             --wtt-green: #17251e;
-            --wtt-soft: #eef1eb;
+            --wtt-soft-green: #b7c5b3;
             --wtt-paper: #f7f7f4;
             --wtt-ink: #202420;
-            --wtt-muted: #6a706a;
+            --wtt-muted: #687068;
             --wtt-border: #d9ddd5;
-            --wtt-yellow: #f0cf57;
+            --wtt-card: #ffffff;
         }
+
+
+        /* ==========================================
+           HEADER
+        ========================================== */
 
         .header-behind-link,
         .header-behind-link:visited {
@@ -71,298 +76,557 @@
             letter-spacing: .04em;
             text-decoration: none;
             white-space: nowrap;
+            transition: opacity .2s ease;
         }
 
+        .header-behind-link:hover {
+            opacity: .55;
+        }
+
+        @media (max-width: 768px) {
+            .site-header .header-behind-link {
+                display: none !important;
+            }
+        }
+
+
+        /* ==========================================
+           PAGE
+        ========================================== */
+
         .where-page {
-            width: min(1180px, calc(100% - 40px));
+            min-height: 100vh;
+            background: var(--wtt-paper);
+            color: var(--wtt-ink);
+        }
+
+
+        /* ==========================================
+           BACK
+        ========================================== */
+
+        .where-back-wrap {
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 40px 0 90px;
+            padding: 34px 32px 0;
         }
 
         .where-back {
-            display: inline-block;
-            margin-bottom: 30px;
-            color: #555;
-            font-size: 11px;
-            font-weight: 800;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
             letter-spacing: .08em;
+            color: var(--wtt-ink);
             text-decoration: none;
+            transition:
+                opacity .2s ease,
+                transform .2s ease;
         }
 
+        .where-back:hover {
+            opacity: .55;
+            transform: translateX(-3px);
+        }
+
+
+        /* ==========================================
+           HERO
+        ========================================== */
+
         .where-hero {
-            padding: 75px 70px;
-            background: var(--wtt-green);
-            color: #fff;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 72px 32px 66px;
         }
 
         .where-eyebrow {
-            margin: 0 0 18px;
-            color: var(--wtt-yellow);
-            font-size: 11px;
+            margin: 0 0 22px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
             font-weight: 800;
-            letter-spacing: .16em;
+            letter-spacing: .14em;
+            color: #667265;
         }
 
         .where-hero h1 {
             max-width: 920px;
             margin: 0;
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: clamp(50px, 8vw, 88px);
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(48px, 6vw, 86px);
+            line-height: .98;
             font-weight: 400;
-            line-height: .95;
+            color: var(--wtt-green);
         }
 
         .where-intro {
-            max-width: 650px;
-            margin: 30px 0 0;
-            color: rgba(255,255,255,.82);
-            font-size: 15px;
-            line-height: 1.9;
+            max-width: 720px;
+            margin: 32px 0 0;
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            line-height: 1.75;
+            color: #454b45;
         }
 
-        .where-place {
+
+        /* ==========================================
+           PROVIDER
+        ========================================== */
+
+        .provider-section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 32px 82px;
+        }
+
+        .provider-section-label {
+            margin: 0 0 12px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .14em;
+            color: #657064;
+        }
+
+        .provider-section > h2 {
+            max-width: 780px;
+            margin: 0 0 40px;
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(38px, 5vw, 64px);
+            line-height: 1.02;
+            font-weight: 400;
+            color: var(--wtt-green);
+        }
+
+
+        /* ==========================================
+           PROVIDER CARD
+        ========================================== */
+
+        .provider-card {
+            max-width: 980px;
             display: grid;
-            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-            gap: 0;
-            margin-top: 55px;
-            background: #fff;
+            grid-template-columns: 300px minmax(0, 1fr);
+            background: var(--wtt-card);
+            border: 1px solid var(--wtt-border);
+            overflow: hidden;
+        }
+
+        .provider-visual {
+            position: relative;
+            min-height: 100%;
+            overflow: hidden;
+            background: #111;
+            border-right: 1px solid var(--wtt-border);
+        }
+
+        .provider-photo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        .provider-content {
+            padding: 40px 42px 44px;
+        }
+
+        .provider-type {
+            display: block;
+            margin: 0 0 10px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            color: #728071;
+        }
+
+        .provider-content h3 {
+            margin: 0;
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(38px, 4vw, 54px);
+            line-height: 1;
+            font-weight: 400;
+            color: var(--wtt-green);
+        }
+
+        .provider-location {
+            margin: 13px 0 0;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .10em;
+            color: #667066;
+        }
+
+        .provider-description {
+            max-width: 670px;
+            margin: 28px 0 32px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            line-height: 1.75;
+            color: #4d534d;
+        }
+
+
+        /* ==========================================
+           FACTS
+        ========================================== */
+
+        .provider-facts {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1px;
+            margin: 0 0 34px;
+            background: var(--wtt-border);
             border: 1px solid var(--wtt-border);
         }
 
-        .place-image {
-            min-height: 620px;
-            position: relative;
-            overflow: hidden;
-            background: #ddd;
+        .provider-fact {
+            min-height: 118px;
+            padding: 20px;
+            background: #fafaf8;
         }
 
-        .place-image img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .provider-fact-label {
+            display: block;
+            margin-bottom: 9px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            color: #748074;
         }
 
-        .place-content {
-            padding: 58px;
+        .provider-fact-value {
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            line-height: 1.55;
+            font-weight: 600;
+            color: #343a34;
         }
 
-        .place-type {
-            margin: 0 0 13px;
-            color: #777;
+
+        /* ==========================================
+           CONTACT
+        ========================================== */
+
+        .provider-contact-label {
+            margin: 0 0 14px;
+            font-family: 'Manrope', sans-serif;
             font-size: 10px;
             font-weight: 800;
-            letter-spacing: .14em;
+            letter-spacing: .13em;
+            color: #728071;
         }
 
-        .place-content h2 {
-            margin: 0 0 10px;
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: clamp(40px, 5vw, 58px);
-            font-weight: 400;
-            line-height: 1;
+        .provider-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
         }
 
-        .place-location {
-            margin: 0 0 32px;
+        .provider-action {
+            display: inline-block;
+            padding: 0 0 4px;
+            border-bottom: 1px solid var(--wtt-green);
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            color: var(--wtt-green);
+            text-decoration: none;
+            transition:
+                opacity .2s ease,
+                transform .2s ease;
+        }
+
+        .provider-action:hover {
+            opacity: .58;
+            transform: translateX(3px);
+        }
+
+        .provider-note {
+            margin: 24px 0 0;
+            max-width: 650px;
+            font-family: 'Manrope', sans-serif;
             font-size: 12px;
+            line-height: 1.65;
+            color: #727972;
+        }
+
+
+        /* ==========================================
+           RELATED CONTENT
+        ========================================== */
+
+        .related-section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 32px 92px;
+        }
+
+        .related-section > h2 {
+            max-width: 700px;
+            margin: 0 0 34px;
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(36px, 4vw, 54px);
+            line-height: 1.04;
+            font-weight: 400;
+            color: var(--wtt-green);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            max-width: 980px;
+        }
+
+        .related-card {
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 26px;
+            background: #ffffff;
+            border: 1px solid var(--wtt-border);
+            color: var(--wtt-green);
+            text-decoration: none;
+            transition:
+                transform .2s ease,
+                border-color .2s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--wtt-green);
+        }
+
+        .related-card-type {
+            display: block;
+            font-family: 'Manrope', sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            color: #728071;
+        }
+
+        .related-card h3 {
+            margin: 16px 0;
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            line-height: 1.05;
+            font-weight: 400;
+        }
+
+        .related-card-action {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
             font-weight: 800;
             letter-spacing: .08em;
         }
 
-        .place-description {
-            margin: 0 0 34px;
-            color: #444;
-            font-size: 15px;
-            line-height: 1.9;
-        }
 
-        .place-facts {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin: 0 0 36px;
-        }
+        /* ==========================================
+           NOTE
+        ========================================== */
 
-        .place-fact {
-            padding: 18px;
-            background: var(--wtt-soft);
-        }
-
-        .place-fact strong {
-            display: block;
-            margin-bottom: 6px;
-            color: #5d6d60;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: .12em;
-        }
-
-        .place-fact span {
-            display: block;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        .place-contact-label {
-            margin: 0 0 13px;
-            color: #777;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: .13em;
-        }
-
-        .place-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .place-action {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            padding: 0 20px;
-            border: 1px solid var(--wtt-green);
-            color: var(--wtt-green);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: .1em;
-            text-decoration: none;
-            transition: .2s ease;
-        }
-
-        .place-action.primary {
-            background: var(--wtt-green);
-            color: #fff;
-        }
-
-        .place-action:hover {
-            opacity: .7;
+        .where-note-wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 32px 92px;
         }
 
         .where-note {
-            max-width: 840px;
-            margin: 65px auto 0;
-            padding: 35px 38px;
-            background: var(--wtt-paper);
-            border-left: 3px solid #78927b;
+            max-width: 860px;
+            padding: 30px 32px;
+            border-left: 3px solid var(--wtt-soft-green);
+            background: rgba(183, 197, 179, .13);
         }
 
-        .where-note strong {
+        .where-note-label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
+            font-family: 'Manrope', sans-serif;
             font-size: 10px;
+            font-weight: 800;
             letter-spacing: .13em;
+            color: #647062;
         }
 
         .where-note p {
             margin: 0;
-            color: #4d514d;
+            font-family: 'Manrope', sans-serif;
             font-size: 13px;
-            line-height: 1.85;
+            line-height: 1.75;
+            color: #4e554e;
         }
 
-        .where-bottom {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-top: 70px;
+
+        /* ==========================================
+           CONTRIBUTE
+        ========================================== */
+
+        .where-contribute {
+            background: var(--wtt-green);
+            color: #ffffff;
         }
 
-        .where-bottom a,
-        .where-bottom div {
-            min-height: 150px;
-            padding: 24px;
-            border: 1px solid var(--wtt-border);
-            color: var(--wtt-ink);
+        .where-contribute-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 80px 32px 88px;
+        }
+
+        .where-contribute .provider-section-label {
+            color: var(--wtt-soft-green);
+        }
+
+        .where-contribute h2 {
+            max-width: 760px;
+            margin: 0 0 24px;
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(42px, 6vw, 70px);
+            line-height: 1;
+            font-weight: 400;
+            color: #ffffff;
+        }
+
+        .where-contribute p {
+            max-width: 680px;
+            margin: 0 0 28px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .78);
+        }
+
+        .where-contribute-link {
+            display: inline-block;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, .8);
+            font-family: 'Manrope', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            color: #ffffff;
             text-decoration: none;
         }
 
-        .where-bottom span {
-            display: block;
-            margin-bottom: 12px;
-            color: #777;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: .1em;
-        }
 
-        .where-bottom strong {
-            display: block;
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 25px;
-            font-weight: 400;
-            line-height: 1.15;
-        }
+        /* ==========================================
+           MOBILE
+        ========================================== */
 
-        .where-bottom .coming {
-            opacity: .48;
-        }
+        @media (max-width: 820px) {
 
-        @media (max-width: 768px) {
-
-            .site-header .header-behind-link {
-                display: none !important;
+            .provider-card {
+                grid-template-columns: 1fr;
             }
 
-            .where-page {
-                width: min(100% - 22px, 1180px);
-                padding-top: 24px;
+            .provider-visual {
+                min-height: 300px;
+                border-right: 0;
+                border-bottom: 1px solid var(--wtt-border);
+            }
+
+            .provider-photo {
+                min-height: 300px;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+
+            .where-back-wrap {
+                padding: 28px 22px 0;
             }
 
             .where-hero {
-                padding: 48px 25px;
+                padding: 56px 22px 58px;
             }
 
-            .where-place {
+            .where-hero h1 {
+                font-size: clamp(43px, 13vw, 62px);
+            }
+
+            .where-intro {
+                font-size: 16px;
+            }
+
+            .provider-section,
+            .related-section,
+            .where-note-wrap {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .provider-content {
+                padding: 28px 22px 32px;
+            }
+
+            .provider-facts {
                 grid-template-columns: 1fr;
             }
 
-            .place-image {
-                min-height: 440px;
+            .where-note {
+                padding: 24px 22px;
             }
 
-            .place-content {
-                padding: 35px 24px;
-            }
-
-            .place-facts {
-                grid-template-columns: 1fr;
-            }
-
-            .place-actions {
-                flex-direction: column;
-            }
-
-            .place-action {
-                width: 100%;
-            }
-
-            .where-bottom {
-                grid-template-columns: 1fr;
+            .where-contribute-inner {
+                padding: 66px 22px 72px;
             }
         }
 
     </style>
+
+    <link rel="stylesheet" href="/consent.css">
 </head>
 
 <body>
 
 
+<!-- =========================
+     SITE HEADER
+========================= -->
+
 <header class="site-header">
 
-    <a href="/" class="site-logo" aria-label="MOVE&TRY – home">
-        <img src="/images/move-and-try-logo.png" alt="MOVE&TRY">
+    <a
+        href="/"
+        class="site-logo"
+        aria-label="MOVE&TRY – home"
+    >
+        <img
+            src="/images/move-and-try-logo.png"
+            alt="MOVE&TRY"
+        >
     </a>
 
     <nav class="desktop-nav">
-        <a href="/#find-your-try">DISCOVER</a>
-        <a href="/#be-part-of-it">BE PART OF IT</a>
-        <a href="/where-to-try.html">WHERE TO TRY</a>
-        <a href="/journal.html">THE JOURNAL</a>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/where-to-try.html">
+            WHERE TO TRY
+        </a>
+
+        <a href="/journal.html">
+            THE JOURNAL
+        </a>
+
     </nav>
 
     <div class="header-actions">
@@ -406,14 +670,34 @@
 </header>
 
 
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
 <div class="mobile-menu">
 
     <nav>
-        <a href="/#find-your-try">DISCOVER</a>
-        <a href="/#be-part-of-it">BE PART OF IT</a>
-        <a href="/where-to-try.html">WHERE TO TRY</a>
-        <a href="/journal.html">THE JOURNAL</a>
-        <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
+
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
+
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
+
+        <a href="/where-to-try.html">
+            WHERE TO TRY
+        </a>
+
+        <a href="/journal.html">
+            THE JOURNAL
+        </a>
+
+        <a href="/behind-move-and-try.html">
+            BEHIND MOVE & TRY
+        </a>
+
     </nav>
 
     <div class="mobile-menu-language">
@@ -438,13 +722,26 @@
 
 <main class="where-page">
 
-    <a
-        href="/tufting.html"
-        class="where-back"
-    >
-        ← TUFTING
-    </a>
 
+    <!-- =========================
+         BACK
+    ========================= -->
+
+    <div class="where-back-wrap">
+
+        <a
+            href="/tufting.html"
+            class="where-back"
+        >
+            ← TUFTING
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
 
     <header class="where-hero">
 
@@ -459,167 +756,331 @@
 
         <p class="where-intro">
             You know you want to try it.
-            Now you just need to find the place.
+            Now you just need to find the right place.
 
-            Here we connect the activity with people and places
-            where you can actually experience it.
+            Here we connect tufting with people, studios
+            and workshops where you can actually experience it.
         </p>
 
     </header>
 
 
-    <article class="where-place">
+    <!-- =========================
+         PROVIDERS
+    ========================= -->
 
-        <div class="place-image">
+    <section class="provider-section">
 
-            <img
-                src="/images/magic-tufting-workshop.jpg"
-                alt="Tufting workshop at Magic Tufting Studio in Zagreb"
-                loading="eager"
-                fetchpriority="high"
+        <p class="provider-section-label">
+            CURRENTLY ON THE LIST
+        </p>
+
+        <h2>
+            A PLACE WHERE YOU CAN START.
+        </h2>
+
+
+        <article class="provider-card">
+
+            <div class="provider-visual">
+
+                <img
+                    src="/images/magic-tufting-workshop.jpg"
+                    alt="Workshop at Magic Tufting Studio"
+                    class="provider-photo"
+                    loading="lazy"
+                >
+
+            </div>
+
+
+            <div class="provider-content">
+
+                <span class="provider-type">
+                    TUFTING WORKSHOP · BEGINNER FRIENDLY
+                </span>
+
+                <h3>
+                    MAGIC TUFTING STUDIO
+                </h3>
+
+                <p class="provider-location">
+                    TRŽNICA SAVICA · LASTOVSKA 2A · ZAGREB
+                </p>
+
+
+                <p class="provider-description">
+                    A guided workshop where you pick up a tufting gun
+                    for the first time, learn the basic technique
+                    and create your own tufted design.
+
+                    It is suitable for complete beginners
+                    with no previous experience required.
+                </p>
+
+
+                <div class="provider-facts">
+
+                    <div class="provider-fact">
+
+                        <span class="provider-fact-label">
+                            EXPERIENCE
+                        </span>
+
+                        <p class="provider-fact-value">
+                            No previous experience required
+                        </p>
+
+                    </div>
+
+
+                    <div class="provider-fact">
+
+                        <span class="provider-fact-label">
+                            DURATION
+                        </span>
+
+                        <p class="provider-fact-value">
+                            Around 3–4 hours
+                        </p>
+
+                    </div>
+
+
+                    <div class="provider-fact">
+
+                        <span class="provider-fact-label">
+                            EQUIPMENT
+                        </span>
+
+                        <p class="provider-fact-value">
+                            Materials and equipment are provided
+                        </p>
+
+                    </div>
+
+
+                    <div class="provider-fact">
+
+                        <span class="provider-fact-label">
+                            WHAT YOU DO
+                        </span>
+
+                        <p class="provider-fact-value">
+                            Create your own tufted design with guidance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <p class="provider-contact-label">
+                    CONTACT
+                </p>
+
+                <div class="provider-actions">
+
+                    <a
+                        href="https://www.instagram.com/magictuftingstudio/"
+                        class="provider-action"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        INSTAGRAM →
+                    </a>
+
+                    <a
+                        href="mailto:magictuftingstudio@gmail.com"
+                        class="provider-action"
+                    >
+                        SEND AN EMAIL →
+                    </a>
+
+                </div>
+
+
+                <p class="provider-note">
+                    Workshop dates and conditions may change.
+                    For current information, contact Magic Tufting Studio directly.
+                </p>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- =========================
+         RELATED CONTENT
+    ========================= -->
+
+    <section class="related-section">
+
+        <p class="provider-section-label">
+            EXPLORE THE ACTIVITY
+        </p>
+
+        <h2>
+            BEFORE YOU TRY IT.
+        </h2>
+
+
+        <div class="related-grid">
+
+
+            <a
+                href="/tufting-guide.html"
+                class="related-card"
             >
+
+                <div>
+
+                    <span class="related-card-type">
+                        GUIDE ✓
+                    </span>
+
+                    <h3>
+                        TRY TUFTING
+                    </h3>
+
+                </div>
+
+                <span class="related-card-action">
+                    READ THE GUIDE →
+                </span>
+
+            </a>
+
+
+            <a
+                href="/tufting-expert-tomislav.html"
+                class="related-card"
+            >
+
+                <div>
+
+                    <span class="related-card-type">
+                        EXPERT INSIGHT ✓
+                    </span>
+
+                    <h3>
+                        TOMISLAV · MAGIC TUFTING STUDIO
+                    </h3>
+
+                </div>
+
+                <span class="related-card-action">
+                    READ THE STORY →
+                </span>
+
+            </a>
+
+
+            <a
+                href="/tufting.html"
+                class="related-card"
+            >
+
+                <div>
+
+                    <span class="related-card-type">
+                        ACTIVITY
+                    </span>
+
+                    <h3>
+                        TUFTING
+                    </h3>
+
+                </div>
+
+                <span class="related-card-action">
+                    EXPLORE THE ACTIVITY →
+                </span>
+
+            </a>
 
         </div>
 
+    </section>
 
-        <div class="place-content">
 
-            <p class="place-type">
-                TUFTING WORKSHOP · BEGINNER-FRIENDLY
+    <!-- =========================
+         MOVE&TRY NOTE
+    ========================= -->
+
+    <div class="where-note-wrap">
+
+        <aside class="where-note">
+
+            <span class="where-note-label">
+                MOVE&TRY NOTE
+            </span>
+
+            <p>
+                Where to Try is not a ranking or a list of the “best” places.
+                We connect activities with people, studios and organisers
+                where they can actually be experienced.
+
+                The list will grow as we discover new places and opportunities.
+
+                MOVE&TRY does not determine workshop dates, prices
+                or participation conditions, so always check current
+                information directly with the organiser.
+            </p>
+
+        </aside>
+
+    </div>
+
+
+    <!-- =========================
+         CONTRIBUTE
+    ========================= -->
+
+    <section class="where-contribute">
+
+        <div class="where-contribute-inner">
+
+            <p class="provider-section-label">
+                BE PART OF IT
             </p>
 
             <h2>
-                Magic Tufting Studio
+                DO YOU OFFER TUFTING OR ANOTHER ACTIVITY?
             </h2>
 
-            <p class="place-location">
-                TRŽNICA SAVICA · LASTOVSKA 2A · ZAGREB
+            <p>
+                Do you run a studio, club, workshop, course
+                or another place where people can try something new?
+
+                MOVE&TRY wants to connect curiosity
+                with real people and places.
             </p>
 
-            <p class="place-description">
-                Magic Tufting Studio is a place where you can pick up
-                a tufting gun for the first time and create your own
-                tufted piece with guidance throughout the process.
-
-                Workshops are suitable for complete beginners,
-                so no previous experience is required.
-            </p>
-
-
-            <div class="place-facts">
-
-                <div class="place-fact">
-                    <strong>EXPERIENCE</strong>
-                    <span>None required</span>
-                </div>
-
-                <div class="place-fact">
-                    <strong>DURATION</strong>
-                    <span>Approximately 3–4 hours</span>
-                </div>
-
-                <div class="place-fact">
-                    <strong>EQUIPMENT</strong>
-                    <span>Materials and equipment are provided during the workshop</span>
-                </div>
-
-                <div class="place-fact">
-                    <strong>WHAT YOU DO</strong>
-                    <span>Create your own tufted design with guidance</span>
-                </div>
-
-            </div>
-
-
-            <p class="place-contact-label">
-                DATES & BOOKINGS
-            </p>
-
-
-            <div class="place-actions">
-
-                <a
-                    href="https://www.instagram.com/magictuftingstudio/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="place-action primary"
-                >
-                    INSTAGRAM →
-                </a>
-
-                <a
-                    href="mailto:magictuftingstudio@gmail.com"
-                    class="place-action"
-                >
-                    SEND AN EMAIL →
-                </a>
-
-            </div>
+            <a
+                href="/be-part-of-where-to-try.html"
+                class="where-contribute-link"
+            >
+                BE PART OF WHERE TO TRY →
+            </a>
 
         </div>
 
-    </article>
-
-
-    <aside class="where-note">
-
-        <strong>MOVE&TRY NOTE</strong>
-
-        <p>
-            Workshop dates, availability and booking details may change.
-            For current dates and available places, contact
-            Magic Tufting Studio directly.
-        </p>
-
-    </aside>
-
-
-    <div class="where-bottom">
-
-        <a href="/tufting-guide.html">
-
-            <span>
-                GUIDE ✓
-            </span>
-
-            <strong>
-                TRY TUFTING →
-            </strong>
-
-        </a>
-
-
-        <div class="coming">
-
-            <span>
-                EXPERIENCE
-            </span>
-
-            <strong>
-                COMING SOON
-            </strong>
-
-        </div>
-
-
-        <a href="/tufting-expert-tomislav.html">
-
-            <span>
-                EXPERT INSIGHT ✓
-            </span>
-
-            <strong>
-                TOMISLAV →
-            </strong>
-
-        </a>
-
-    </div>
+    </section>
 
 </main>
 
 
+<!-- =========================
+     SCRIPTS
+========================= -->
+
 <script src="script.js"></script>
+
+<!-- MOVE&TRY PWA NAVIGATION -->
+<script src="/app/app-navigation.js" defer></script>
 
 <script>
     if (
@@ -643,4 +1104,5 @@
 <script src="/consent.js" defer></script>
 
 </body>
+
 </html>
