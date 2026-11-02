@@ -541,5 +541,24 @@
 <script src="/consent.js" defer></script>
 <script src="/app/app-navigation.js" defer></script>
 
+<script>
+if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/sw.js', { scope: '/' })
+            .catch(error =>
+                console.warn(
+                    'MOVE&TRY public service worker:',
+                    error
+                )
+            );
+    });
+}
+</script>
+
 </body>
 </html>
