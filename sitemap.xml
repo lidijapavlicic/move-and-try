@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <!-- ENGLISH -->
+    <!-- =========================
+         ENGLISH
+    ========================== -->
 
     <!-- HOMEPAGE -->
     <url>
@@ -33,6 +35,7 @@
         <loc>https://moveandtry.com/care.html</loc>
     </url>
 
+
     <!-- RUNNING -->
     <url>
         <loc>https://moveandtry.com/running.html</loc>
@@ -46,6 +49,7 @@
         <loc>https://moveandtry.com/running-lidija.html</loc>
     </url>
 
+
     <!-- POLE DANCE -->
     <url>
         <loc>https://moveandtry.com/pole-dance.html</loc>
@@ -55,22 +59,76 @@
         <loc>https://moveandtry.com/try-pole-dance.html</loc>
     </url>
 
+
+    <!-- HORSE RIDING -->
+    <url>
+        <loc>https://moveandtry.com/horse-riding.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/horse-riding-experience-kristina.html</loc>
+    </url>
+
+
+    <!-- MEDIATION -->
+    <url>
+        <loc>https://moveandtry.com/mediation.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/mediation-guide.html</loc>
+    </url>
+
+
+    <!-- POTTERY -->
+    <url>
+        <loc>https://moveandtry.com/pottery.html</loc>
+    </url>
+
+
     <!-- NATURAL PERFUME MAKING -->
     <url>
         <loc>https://moveandtry.com/natural-perfume-making.html</loc>
     </url>
 
     <url>
+        <loc>https://moveandtry.com/natural-perfume-making-guide.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/natural-perfume-making-experience-lidija.html</loc>
+    </url>
+
+    <url>
         <loc>https://moveandtry.com/natural-perfume-making-expert-maja.html</loc>
     </url>
 
-    <!-- COMMUNITY -->
     <url>
-        <loc>https://moveandtry.com/share-experience.html</loc>
+        <loc>https://moveandtry.com/natural-perfume-making-where-to-try.html</loc>
+    </url>
+
+
+    <!-- TUFTING -->
+    <url>
+        <loc>https://moveandtry.com/tufting.html</loc>
     </url>
 
     <url>
-        <loc>https://moveandtry.com/behind-move-and-try.html</loc>
+        <loc>https://moveandtry.com/tufting-guide.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/tufting-expert-tomislav.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/tufting-where-to-try.html</loc>
+    </url>
+
+
+    <!-- WHERE TO TRY -->
+    <url>
+        <loc>https://moveandtry.com/where-to-try.html</loc>
     </url>
 
     <url>
@@ -78,12 +136,56 @@
     </url>
 
 
-    <!-- CROATIAN -->
+    <!-- COMMUNITY -->
+    <url>
+        <loc>https://moveandtry.com/share-experience.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/how-to-contribute.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/behind-move-and-try.html</loc>
+    </url>
+
+
+    <!-- THE JOURNAL -->
+    <url>
+        <loc>https://moveandtry.com/journal.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/write-for-the-journal.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/why-adults-find-it-harder-to-try-new-things.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/what-if-i-try.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/from-curiosity-to-your-own-scent.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/where-do-adults-meet.html</loc>
+    </url>
+
+
+
+    <!-- =========================
+         CROATIAN
+    ========================== -->
 
     <!-- HOMEPAGE -->
     <url>
         <loc>https://moveandtry.com/hr/</loc>
     </url>
+
 
     <!-- CATEGORIES -->
     <url>
@@ -110,6 +212,7 @@
         <loc>https://moveandtry.com/hr/care.html</loc>
     </url>
 
+
     <!-- RUNNING -->
     <url>
         <loc>https://moveandtry.com/hr/running.html</loc>
@@ -123,6 +226,7 @@
         <loc>https://moveandtry.com/hr/running-lidija.html</loc>
     </url>
 
+
     <!-- POLE DANCE -->
     <url>
         <loc>https://moveandtry.com/hr/pole-dance.html</loc>
@@ -132,14 +236,82 @@
         <loc>https://moveandtry.com/hr/try-pole-dance.html</loc>
     </url>
 
+
+    <!-- HORSE RIDING -->
+    <url>
+        <loc>https://moveandtry.com/hr/horse-riding.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/horse-riding-experience-kristina.html</loc>
+    </url>
+
+
+    <!-- MEDIATION -->
+    <url>
+        <loc>https://moveandtry.com/hr/mediation.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/mediation-guide.html</loc>
+    </url>
+
+
+    <!-- POTTERY -->
+    <url>
+        <loc>https://moveandtry.com/hr/pottery.html</loc>
+    </url>
+
+
     <!-- IZRADA PRIRODNIH PARFEMA -->
     <url>
         <loc>https://moveandtry.com/hr/natural-perfume-making.html</loc>
     </url>
 
     <url>
+        <loc>https://moveandtry.com/hr/natural-perfume-making-guide.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/natural-perfume-making-experience-lidija.html</loc>
+    </url>
+
+    <url>
         <loc>https://moveandtry.com/hr/natural-perfume-making-expert-maja.html</loc>
     </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/natural-perfume-making-where-to-try.html</loc>
+    </url>
+
+
+    <!-- TUFTING -->
+    <url>
+        <loc>https://moveandtry.com/hr/tufting.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/tufting-guide.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/tufting-expert-tomislav.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/tufting-where-to-try.html</loc>
+    </url>
+
+
+    <!-- GDJE PROBATI -->
+    <url>
+        <loc>https://moveandtry.com/hr/where-to-try.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/be-part-of-where-to-try.html</loc>
+    </url>
+
 
     <!-- COMMUNITY -->
     <url>
@@ -147,11 +319,37 @@
     </url>
 
     <url>
-        <loc>https://moveandtry.com/hr/behind-move-and-try.html</loc>
+        <loc>https://moveandtry.com/hr/how-to-contribute.html</loc>
     </url>
 
     <url>
-        <loc>https://moveandtry.com/hr/be-part-of-where-to-try.html</loc>
+        <loc>https://moveandtry.com/hr/behind-move-and-try.html</loc>
+    </url>
+
+
+    <!-- THE JOURNAL -->
+    <url>
+        <loc>https://moveandtry.com/hr/journal.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/write-for-the-journal.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/why-adults-find-it-harder-to-try-new-things.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/what-if-i-try.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/from-curiosity-to-your-own-scent.html</loc>
+    </url>
+
+    <url>
+        <loc>https://moveandtry.com/hr/where-do-adults-meet.html</loc>
     </url>
 
 </urlset>
