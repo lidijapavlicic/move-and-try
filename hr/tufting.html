@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Tufting | MOVE&TRY</title>
+
+  <meta
+    name="description"
+    content="Otkrij tufting kroz MOVE&TRY. Saznaj kako izgleda prvi pokušaj, pročitaj riječ stručnjaka i pronađi mjesto gdje možeš isprobati tufting."
+  >
+
+  <meta name="robots" content="noindex, nofollow">
+
+  <link
+    rel="canonical"
+    href="https://moveandtry.com/hr/tufting.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="hr"
+    href="https://moveandtry.com/hr/tufting.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://moveandtry.com/tufting.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://moveandtry.com/tufting.html"
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="/consent.css">
+
+  <style>
+
+    /* ==========================================
+       HEADER
+    ========================================== */
+
+    .header-behind-link {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
+    }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
+
+    /* ==========================================
+       TUFTING — PHOTO HERO
+    ========================================== */
+
+    .activity-page .activity-header.tufting-photo-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+
+      min-height: 420px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      background: #111;
+      color: #fff;
+
+      padding: 60px 48px;
+    }
+
+    .tufting-photo-hero .tufting-hero-photos {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .tufting-photo-hero .tufting-hero-photo {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      filter:
+        brightness(.58)
+        contrast(1.08)
+        saturate(.82);
+
+      animation:
+        tuftingHeroFade 12s ease-in-out infinite;
+    }
+
+    .tufting-photo-hero .tufting-hero-photo:first-child {
+      object-position: center center;
+      animation-delay: 0s;
+    }
+
+    .tufting-photo-hero .tufting-hero-photo:last-child {
+      object-position: center center;
+      animation-delay: -6s;
+    }
+
+    .tufting-photo-hero::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(8, 8, 8, .30) 0%,
+          rgba(8, 8, 8, .55) 46%,
+          rgba(8, 8, 8, .90) 100%
+        );
+
+      pointer-events: none;
+    }
+
+
+    /* ==========================================
+       HERO TEXT
+    ========================================== */
+
+    .activity-page .tufting-photo-hero .activity-page-type,
+    .activity-page .tufting-photo-hero h1,
+    .activity-page .tufting-photo-hero .activity-page-intro,
+    .activity-page .tufting-photo-hero .activity-page-intro strong,
+    .activity-page .tufting-photo-hero .activity-nav,
+    .activity-page .tufting-photo-hero .activity-nav span {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .activity-page .tufting-photo-hero .activity-page-type {
+      color: #f0cf57;
+    }
+
+    .activity-page .tufting-photo-hero .activity-page-intro {
+      color: rgba(255, 255, 255, .90);
+    }
+
+    .activity-page .tufting-photo-hero .activity-page-intro strong {
+      color: #fff;
+    }
+
+    .activity-page .tufting-photo-hero .activity-nav span {
+      border-color: rgba(255, 255, 255, .42);
+    }
+
+
+    /* ==========================================
+       HERO ANIMATION
+    ========================================== */
+
+    @keyframes tuftingHeroFade {
+      0%,
+      42% {
+        opacity: 1;
+      }
+
+      50%,
+      92% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+
+    /* ==========================================
+       RESPONSIVE
+    ========================================== */
+
+    @media (max-width: 900px) {
+
+      .activity-page .activity-header.tufting-photo-hero {
+        min-height: 380px;
+        padding: 48px 24px;
+      }
+
+      .site-header .header-behind-link {
+        display: none !important;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .tufting-photo-hero .tufting-hero-photo {
+        animation: none;
+        opacity: 0;
+      }
+
+      .tufting-photo-hero .tufting-hero-photo:first-child {
+        opacity: 1;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="site-header">
+
+  <a
+    href="/hr/"
+    class="site-logo"
+    aria-label="MOVE&TRY – početna"
+  >
+
+    <img
+      src="/images/move-and-try-logo.png"
+      alt="MOVE&TRY"
+    >
+
+  </a>
+
+
+  <nav class="desktop-nav">
+
+    <a href="/hr/#find-your-try">
+      OTKRIJ
+    </a>
+
+    <a href="/hr/#be-part-of-it">
+      BUDI DIO PRIČE
+    </a>
+
+    <a href="/hr/where-to-try.html">
+      GDJE PROBATI
+    </a>
+
+    <a href="/hr/journal.html">
+      THE JOURNAL
+    </a>
+
+  </nav>
+
+
+  <div class="header-actions">
+
+    <a
+      href="/hr/behind-move-and-try.html"
+      class="header-behind-link"
+    >
+      IZA MOVE & TRY
+    </a>
+
+    <div class="header-language">
+
+      <a
+        href="/tufting.html"
+        onclick="setLanguage('en')"
+      >
+        EN
+      </a>
+
+      <span>|</span>
+
+      <span class="language-active">
+        HR
+      </span>
+
+    </div>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Otvori izbornik"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+  <nav>
+
+    <a href="/hr/#find-your-try">
+      OTKRIJ
+    </a>
+
+    <a href="/hr/#be-part-of-it">
+      BUDI DIO PRIČE
+    </a>
+
+    <a href="/hr/where-to-try.html">
+      GDJE PROBATI
+    </a>
+
+    <a href="/hr/journal.html">
+      THE JOURNAL
+    </a>
+
+    <a href="/hr/behind-move-and-try.html">
+      IZA MOVE & TRY
+    </a>
+
+  </nav>
+
+
+  <div class="mobile-menu-language">
+
+    <a
+      href="/tufting.html"
+      onclick="setLanguage('en')"
+    >
+      EN
+    </a>
+
+    <span>|</span>
+
+    <span class="language-active">
+      HR
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     TUFTING
+========================= -->
+
+<main class="activity-page">
+
+
+  <!-- =========================
+       BACK TO CREATE
+  ========================= -->
+
+  <a
+    href="/hr/create.html"
+    class="back-link"
+  >
+    ← CREATE
+  </a>
+
+
+  <!-- =========================
+       PHOTO HERO
+  ========================= -->
+
+  <header class="activity-header tufting-photo-hero">
+
+
+    <div
+      class="tufting-hero-photos"
+      aria-hidden="true"
+    >
+
+      <img
+        class="tufting-hero-photo"
+        src="/images/tufting-1.jpg"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+      >
+
+      <img
+        class="tufting-hero-photo"
+        src="/images/tufting-2.jpg"
+        alt=""
+        loading="eager"
+      >
+
+    </div>
+
+
+    <p class="activity-page-type">
+      CREATE · TUFTING
+    </p>
+
+
+    <h1>
+      TUFTING
+    </h1>
+
+
+    <p class="activity-page-intro">
+
+      Platno, vuna i alat koji izgleda kao da pripada u radionicu,
+      a ne u kreativni studio.<br>
+
+      <strong>
+        Što će nastati kada ga prvi put uzmeš u ruke?
+      </strong>
+
+    </p>
+
+
+    <div class="activity-nav">
+
+      <span>
+        VODIČ
+      </span>
+
+      <span>
+        ISKUSTVA
+      </span>
+
+      <span>
+        STRUČNJACI
+      </span>
+
+      <span>
+        GDJE PROBATI
+      </span>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       CONTENT
+  ========================= -->
+
+  <section class="activity-content-section">
+
+
+    <p class="section-label">
+      ISTRAŽI TUFTING
+    </p>
+
+
+    <h2>
+      OD PRVE LINIJE DO NEČEG TVOG.
+    </h2>
+
+
+    <div class="activity-content-grid">
+
+
+      <!-- =========================
+           GUIDE — AVAILABLE
+      ========================= -->
+
+      <a
+        href="/hr/tufting-guide.html"
+        class="content-card"
+      >
+
+        <span class="content-card-type">
+          VODIČ ✓
+        </span>
+
+        <h3>
+          TRY TUFTING.
+        </h3>
+
+        <p>
+          Kako izgleda prvi susret s tufting gunom,
+          kakav motiv odabrati,
+          što trebaš ponijeti
+          i što očekivati od prvog pokušaja.
+        </p>
+
+        <span class="content-card-action">
+          PROČITAJ VODIČ →
+        </span>
+
+      </a>
+
+
+      <!-- =========================
+           EXPERIENCE — COMING SOON
+      ========================= -->
+
+      <div class="content-card content-card-coming">
+
+        <span class="content-card-type">
+          ISKUSTVA
+        </span>
+
+        <h3>
+          KAKAV JE OSJEĆAJ PRVI PUT PROBATI TUFTING?
+        </h3>
+
+        <p>
+          Stvarno iskustvo prvog susreta s alatom,
+          platnom, vunom
+          i vlastitim motivom.
+        </p>
+
+        <span class="content-card-status">
+          USKORO
+        </span>
+
+      </div>
+
+
+      <!-- =========================
+           EXPERT — AVAILABLE
+      ========================= -->
+
+      <a
+        href="/hr/tufting-expert-tomislav.html"
+        class="content-card"
+      >
+
+        <span class="content-card-type">
+          RIJEČ STRUČNJAKA ✓
+        </span>
+
+        <h3>
+          OD ZNATIŽELJE DO VLASTITOG STUDIJA.
+        </h3>
+
+        <p>
+          Tomislav iz Magic Tufting Studija
+          govori o tome kako je otkrio tufting,
+          učenju kroz pokušaje i pogreške
+          i što bi početnici trebali znati.
+        </p>
+
+        <span class="content-card-action">
+          PROČITAJ RIJEČ STRUČNJAKA →
+        </span>
+
+      </a>
+
+
+      <!-- =========================
+           WHERE TO TRY — AVAILABLE
+      ========================= -->
+
+      <a
+        href="/hr/tufting-where-to-try.html"
+        class="content-card"
+      >
+
+        <span class="content-card-type">
+          GDJE PROBATI ✓
+        </span>
+
+        <h3>
+          GDJE MOŽEŠ PROBATI TUFTING?
+        </h3>
+
+        <p>
+          Pronađi mjesto na kojem možeš
+          prvi put uzeti tufting gun u ruke,
+          upoznati tehniku
+          i izraditi vlastiti rad.
+        </p>
+
+        <span class="content-card-action">
+          POGLEDAJ GDJE PROBATI →
+        </span>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SHARE YOUR EXPERIENCE
+  ========================= -->
+
+  <section class="activity-contribute">
+
+
+    <p class="section-label">
+      TVOJE ISKUSTVO
+    </p>
+
+
+    <h2>
+      PROBAO SI TUFTING?
+    </h2>
+
+
+    <p>
+      Kako je izgledao tvoj prvi pokušaj?
+
+      Je li bilo lakše nego što si očekivao,
+      potpuno kaotično
+      ili si odmah poželio napraviti još jedan rad?
+
+      Podijeli svoju priču.
+      Možda baš tvoje iskustvo nekoga potakne da proba.
+    </p>
+
+
+    <a
+      href="/hr/share-experience.html"
+      class="activity-contribute-link"
+    >
+      PODIJELI SVOJE ISKUSTVO →
+    </a>
+
+
+  </section>
+
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="../script.js"></script>
+
+<script>
+  if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+  ) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js', { scope: '/' })
+        .catch(error =>
+          console.warn(
+            'MOVE&TRY public service worker:',
+            error
+          )
+        );
+    });
+  }
+</script>
+
+<script src="/consent.js" defer></script>
+
+</body>
+
+</html>
