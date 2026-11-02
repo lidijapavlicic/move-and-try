@@ -8,21 +8,35 @@
 
 <title>Riječ stručnjaka: Nikolina Đurić | Psihoterapija | MOVE&TRY</title>
 
-<meta name="description" content="Nikolina Đurić iz Lumosa piše o psihoterapiji kao prostoru podrške, osobnog rasta i boljeg razumijevanja sebe — ne samo kao posljednjoj opciji kada postane teško.">
+<meta name="description"
+      content="Nikolina Đurić iz Lumosa govori o psihoterapiji kao prostoru podrške, osobnog rasta i boljeg razumijevanja sebe — ne samo kao posljednjoj opciji kada postane teško.">
 
-<link rel="canonical" href="https://moveandtry.com/hr/child-adolescent-psychotherapy-expert-nikolina.html">
-<link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/child-adolescent-psychotherapy-expert-nikolina.html">
-<link rel="alternate" hreflang="en" href="https://moveandtry.com/child-adolescent-psychotherapy-expert-nikolina.html">
-<link rel="alternate" hreflang="x-default" href="https://moveandtry.com/child-adolescent-psychotherapy-expert-nikolina.html">
+<link rel="canonical"
+      href="https://moveandtry.com/hr/child-adolescent-psychotherapy-expert-nikolina.html">
+
+<link rel="alternate"
+      hreflang="hr"
+      href="https://moveandtry.com/hr/child-adolescent-psychotherapy-expert-nikolina.html">
+
+<link rel="alternate"
+      hreflang="en"
+      href="https://moveandtry.com/child-adolescent-psychotherapy-expert-nikolina.html">
+
+<link rel="alternate"
+      hreflang="x-default"
+      href="https://moveandtry.com/child-adolescent-psychotherapy-expert-nikolina.html">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
 
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="/consent.css">
 
 <style>
+
 .header-behind-link,
 .header-behind-link:visited {
     color:#555;
@@ -34,216 +48,380 @@
     white-space:nowrap;
 }
 
-.header-behind-link:hover { opacity:.55; }
+.header-behind-link:hover {
+    opacity:.55;
+}
 
-.content-page {
+
+/* =====================================
+   PAGE
+   ===================================== */
+
+.expert-page {
+    background:#f7f6f2;
+    color:#111;
+}
+
+.expert-main {
     width:min(1180px,calc(100% - 40px));
     margin:0 auto;
-    padding:40px 0 90px;
+    padding:40px 0 95px;
 }
 
 .back-link {
     display:inline-block;
     margin-bottom:28px;
     color:#555;
+    font-family:'Manrope',sans-serif;
     font-size:11px;
     font-weight:800;
     letter-spacing:.08em;
     text-decoration:none;
 }
 
-.hero {
-    position:relative;
-    min-height:620px;
+
+/* =====================================
+   HERO
+   ===================================== */
+
+.expert-hero {
+    display:grid;
+    grid-template-columns:minmax(0,1.06fr) minmax(360px,.94fr);
+    min-height:680px;
+    background:#17251e;
     overflow:hidden;
+}
+
+.expert-hero-copy {
     display:flex;
-    align-items:flex-end;
-    padding:58px;
-    background:#151515;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:70px 62px;
     color:#fff;
 }
 
-.hero img {
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.hero::after {
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        180deg,
-        rgba(0,0,0,.08),
-        rgba(0,0,0,.25) 45%,
-        rgba(0,0,0,.9)
-    );
-}
-
-.hero-content {
-    position:relative;
-    z-index:1;
-    max-width:820px;
-}
-
-.kicker {
-    margin:0 0 13px;
-    color:#d9c78d;
-    font-size:11px;
+.expert-kicker {
+    margin:0 0 18px;
+    color:#d8c78e;
+    font-family:'Manrope',sans-serif;
+    font-size:10px;
     font-weight:800;
-    letter-spacing:.16em;
+    letter-spacing:.17em;
 }
 
-.hero h1 {
+.expert-hero h1 {
+    max-width:720px;
     margin:0;
     font-family:'DM Serif Display',serif;
-    font-size:clamp(50px,7vw,88px);
+    font-size:clamp(46px,6.5vw,82px);
     font-weight:400;
-    line-height:.98;
+    line-height:1;
+    letter-spacing:-.025em;
 }
 
-.hero-intro {
-    max-width:700px;
-    margin:22px 0 0;
-    font-size:16px;
-    line-height:1.8;
+.expert-hero-intro {
+    max-width:610px;
+    margin:28px 0 0;
+    color:rgba(255,255,255,.82);
+    font-family:'Manrope',sans-serif;
+    font-size:15px;
+    line-height:1.85;
 }
 
-.meta {
+.expert-meta {
     display:flex;
     flex-wrap:wrap;
-    gap:10px 24px;
-    margin-top:25px;
-    color:rgba(255,255,255,.76);
+    gap:12px 24px;
+    margin-top:32px;
+    color:rgba(255,255,255,.65);
+    font-family:'Manrope',sans-serif;
     font-size:10px;
     font-weight:700;
-    letter-spacing:.06em;
+    letter-spacing:.08em;
 }
 
-.intro {
-    max-width:840px;
-    margin:75px auto;
+.expert-hero-photo {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:0;
+    padding:0;
+    background:#e7e3da;
+    overflow:hidden;
 }
 
-.intro h2,
-.section h2,
-.closing h2 {
-    font-family:'DM Serif Display',serif;
-    font-weight:400;
+.expert-hero-photo img {
+    display:block;
+    width:100%;
+    height:100%;
+    max-height:760px;
+    object-fit:contain;
+    object-position:center center;
 }
 
-.intro h2 {
-    margin:0 0 26px;
-    font-size:clamp(38px,6vw,58px);
-    line-height:1.05;
+
+/* =====================================
+   INTRO
+   ===================================== */
+
+.expert-intro {
+    max-width:860px;
+    margin:90px auto;
 }
 
-.intro p,
-.section p {
-    font-size:15px;
-    line-height:1.9;
-}
-
-.section {
-    display:grid;
-    grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
-    gap:60px;
-    align-items:start;
-    padding:70px 0;
-    border-top:1px solid #d9d9d2;
-}
-
-.section-no {
-    margin:0 0 12px;
-    color:#777;
+.section-label {
+    margin:0 0 18px;
+    color:#728071;
+    font-family:'Manrope',sans-serif;
     font-size:10px;
     font-weight:800;
     letter-spacing:.16em;
 }
 
-.section h2 {
-    margin:0;
-    font-size:clamp(34px,4vw,48px);
-    line-height:1.05;
+.expert-intro h2,
+.expert-section h2,
+.expert-closing h2 {
+    font-family:'DM Serif Display',serif;
+    font-weight:400;
 }
 
-.section-content p:first-child {
+.expert-intro h2 {
+    margin:0 0 30px;
+    font-size:clamp(38px,5vw,58px);
+    line-height:1.1;
+}
+
+.expert-intro p,
+.expert-section p,
+.expert-closing p {
+    font-family:'Manrope',sans-serif;
+    font-size:15px;
+    line-height:1.95;
+    color:#5e5e59;
+}
+
+.expert-intro p {
+    margin:0 0 22px;
+}
+
+
+/* =====================================
+   SECTIONS
+   ===================================== */
+
+.expert-section {
+    display:grid;
+    grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+    gap:65px;
+    padding:72px 0;
+    border-top:1px solid #d8d8d1;
+}
+
+.expert-section-number {
+    margin:0 0 14px;
+    color:#728071;
+    font-family:'Manrope',sans-serif;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.16em;
+}
+
+.expert-section h2 {
+    margin:0;
+    font-size:clamp(34px,4vw,49px);
+    line-height:1.08;
+}
+
+.expert-section-content p:first-child {
     margin-top:0;
 }
 
-.tip {
-    margin-top:28px;
-    padding:24px 26px;
-    border-left:3px solid #8a987f;
-    background:#eff1eb;
+.expert-section-content p:last-child {
+    margin-bottom:0;
 }
 
-.tip strong {
-    display:block;
-    margin-bottom:7px;
-    font-size:10px;
-    letter-spacing:.1em;
+
+/* =====================================
+   NINA PHOTO FEATURES
+   ===================================== */
+
+.expert-photo-feature {
+    display:grid;
+    grid-template-columns:minmax(320px,.9fr) minmax(0,1.1fr);
+    gap:60px;
+    align-items:center;
+    margin:35px 0 90px;
+    padding:55px;
+    background:#edece5;
 }
 
-.photo {
-    margin:25px 0 75px;
+.expert-photo-feature.reverse {
+    grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
 }
 
-.photo img {
-    display:block;
-    width:100%;
-    max-height:760px;
-    object-fit:cover;
-}
-
-.photo figcaption {
-    margin-top:10px;
-    color:#777;
-    font-size:10px;
-    line-height:1.6;
-}
-
-.quote {
-    max-width:820px;
-    margin:70px auto;
-    padding:40px 0;
-    border-top:1px solid #d9d9d2;
-    border-bottom:1px solid #d9d9d2;
-    font-family:'DM Serif Display',serif;
-    font-size:clamp(30px,4vw,48px);
-    line-height:1.2;
-}
-
-.closing {
-    max-width:860px;
-    margin:80px auto 40px;
+.expert-photo-wrap {
+    min-width:0;
     text-align:center;
 }
 
-.closing h2 {
-    margin:0 0 20px;
-    font-size:clamp(42px,6vw,64px);
-    line-height:1.05;
+.expert-photo-wrap img {
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:720px;
+    margin:0 auto;
+    object-fit:contain;
+    object-position:center;
 }
 
-.closing p {
-    font-size:15px;
+.expert-photo-copy h2 {
+    margin:0 0 22px;
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(34px,4vw,50px);
+    font-weight:400;
+    line-height:1.08;
+}
+
+.expert-photo-copy p {
+    margin:0;
+    color:#5e5e59;
+    font-family:'Manrope',sans-serif;
+    font-size:14px;
     line-height:1.9;
 }
 
-.provider-note {
-    max-width:760px;
-    margin:50px auto 0;
-    padding-top:30px;
-    border-top:1px solid #d9d9d2;
+.photo-caption {
+    margin:12px 0 0;
     color:#777;
+    font-family:'Manrope',sans-serif;
+    font-size:10px;
+    line-height:1.6;
+    text-align:left;
+}
+
+
+/* =====================================
+   QUOTE
+   ===================================== */
+
+.expert-quote {
+    max-width:920px;
+    margin:90px auto;
+    padding:54px 0;
+    border-top:1px solid #cfcfc8;
+    border-bottom:1px solid #cfcfc8;
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(34px,5vw,58px);
+    font-weight:400;
+    line-height:1.17;
+    text-align:center;
+    color:#17251e;
+}
+
+
+/* =====================================
+   EMPHASIS
+   ===================================== */
+
+.expert-note {
+    margin-top:30px;
+    padding:27px 30px;
+    background:#e9ece4;
+    border-left:3px solid #728071;
+    font-family:'Manrope',sans-serif;
+    font-size:14px;
+    line-height:1.9;
+    color:#454540;
+}
+
+.expert-note strong {
+    display:block;
+    margin-bottom:8px;
+    color:#17251e;
+    font-size:10px;
+    letter-spacing:.12em;
+}
+
+
+/* =====================================
+   AUTHOR
+   ===================================== */
+
+.expert-author {
+    display:grid;
+    grid-template-columns:210px minmax(0,1fr);
+    gap:38px;
+    align-items:center;
+    max-width:860px;
+    margin:95px auto 60px;
+    padding-top:55px;
+    border-top:1px solid #d8d8d1;
+}
+
+.expert-author img {
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:contain;
+}
+
+.expert-author-label {
+    margin:0 0 12px;
+    color:#728071;
+    font-family:'Manrope',sans-serif;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.14em;
+}
+
+.expert-author h2 {
+    margin:0 0 15px;
+    font-family:'DM Serif Display',serif;
+    font-size:38px;
+    font-weight:400;
+}
+
+.expert-author p {
+    margin:0;
+    color:#5e5e59;
+    font-family:'Manrope',sans-serif;
+    font-size:13px;
+    line-height:1.85;
+}
+
+
+/* =====================================
+   CLOSING
+   ===================================== */
+
+.expert-closing {
+    max-width:860px;
+    margin:90px auto 45px;
+    text-align:center;
+}
+
+.expert-closing h2 {
+    margin:0 0 25px;
+    font-size:clamp(42px,6vw,66px);
+    line-height:1.05;
+}
+
+.expert-credit {
+    max-width:760px;
+    margin:55px auto 0;
+    padding-top:28px;
+    border-top:1px solid #d8d8d1;
+    color:#777;
+    font-family:'Manrope',sans-serif;
     font-size:11px;
     line-height:1.8;
     text-align:center;
 }
+
+
+/* =====================================
+   RESPONSIVE
+   ===================================== */
 
 @media(max-width:900px) {
 
@@ -251,125 +429,246 @@
         display:none !important;
     }
 
-    .content-page {
+    .expert-main {
         width:min(100% - 22px,1180px);
         padding-top:24px;
     }
 
-    .hero {
-        min-height:560px;
-        padding:30px 24px;
+    .expert-hero {
+        grid-template-columns:1fr;
+        min-height:auto;
     }
 
-    .section {
+    .expert-hero-copy {
+        padding:48px 28px;
+    }
+
+    .expert-hero-photo {
+        padding:0;
+    }
+
+    .expert-hero-photo img {
+        width:100%;
+        height:auto;
+        max-height:none;
+        object-fit:contain;
+    }
+
+    .expert-section {
         grid-template-columns:1fr;
         gap:28px;
-        padding:52px 0;
+        padding:55px 0;
     }
+
+    .expert-photo-feature,
+    .expert-photo-feature.reverse {
+        grid-template-columns:1fr;
+        gap:32px;
+        padding:28px 20px;
+    }
+
+    .expert-photo-feature.reverse .expert-photo-wrap {
+        order:1;
+    }
+
+    .expert-photo-feature.reverse .expert-photo-copy {
+        order:2;
+    }
+
+    .expert-photo-wrap img {
+        max-height:none;
+    }
+
+    .expert-author {
+        grid-template-columns:1fr;
+    }
+
+    .expert-author img {
+        max-width:280px;
+    }
+
 }
+
 </style>
 
 <link rel="stylesheet" href="/app/app-navigation.css">
+
 </head>
 
-<body>
+<body class="expert-page">
 
 <header class="site-header">
 
-    <a href="/hr/" class="site-logo" aria-label="MOVE&TRY – početna">
-        <img src="/images/move-and-try-logo.png" alt="MOVE&TRY">
+    <a href="/hr/"
+       class="site-logo"
+       aria-label="MOVE&TRY – početna">
+
+        <img src="/images/move-and-try-logo.png"
+             alt="MOVE&TRY">
+
     </a>
 
     <nav class="desktop-nav">
-        <a href="/hr/#find-your-try">OTKRIJ</a>
-        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
-        <a href="/hr/journal.html">THE JOURNAL</a>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/where-to-try.html">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/journal.html">
+            THE JOURNAL
+        </a>
+
     </nav>
 
     <div class="header-actions">
 
-        <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+        <a href="/hr/behind-move-and-try.html"
+           class="header-behind-link">
             IZA MOVE & TRY
         </a>
 
         <div class="header-language">
-            <a href="/child-adolescent-psychotherapy-expert-nikolina.html" onclick="setLanguage('en')">EN</a>
+
+            <a href="/child-adolescent-psychotherapy-expert-nikolina.html"
+               onclick="setLanguage('en')">
+                EN
+            </a>
+
             <span>|</span>
-            <span class="language-active">HR</span>
+
+            <span class="language-active">
+                HR
+            </span>
+
         </div>
 
-        <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
+        <button class="menu-toggle"
+                type="button"
+                aria-label="Otvori izbornik"
+                aria-expanded="false">
+
             <span></span>
             <span></span>
+
         </button>
 
     </div>
 
 </header>
 
+
 <div class="mobile-menu">
 
     <nav>
-        <a href="/hr/#find-your-try">OTKRIJ</a>
-        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
-        <a href="/hr/journal.html">THE JOURNAL</a>
-        <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/where-to-try.html">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/journal.html">
+            THE JOURNAL
+        </a>
+
+        <a href="/hr/behind-move-and-try.html">
+            IZA MOVE & TRY
+        </a>
+
     </nav>
 
     <div class="mobile-menu-language">
-        <a href="/child-adolescent-psychotherapy-expert-nikolina.html" onclick="setLanguage('en')">EN</a>
+
+        <a href="/child-adolescent-psychotherapy-expert-nikolina.html"
+           onclick="setLanguage('en')">
+            EN
+        </a>
+
         <span>|</span>
-        <span class="language-active">HR</span>
+
+        <span class="language-active">
+            HR
+        </span>
+
     </div>
 
 </div>
 
-<main class="content-page">
 
-    <a class="back-link" href="/hr/child-adolescent-psychotherapy.html">
+<main class="expert-main">
+
+    <a class="back-link"
+       href="/hr/child-adolescent-psychotherapy.html">
         ← DJEČJA I ADOLESCENTSKA PSIHOTERAPIJA
     </a>
 
-    <section class="hero">
 
-        <img src="/images/nikolina-djuric-expert.jpg"
-             alt="Nikolina Đurić u prostoru Lumosa">
+    <!-- =====================================
+         HERO
+         ===================================== -->
 
-        <div class="hero-content">
+    <section class="expert-hero">
 
-            <p class="kicker">
+        <div class="expert-hero-copy">
+
+            <p class="expert-kicker">
                 CARE · RIJEČ STRUČNJAKA
             </p>
 
             <h1>
-                Psihoterapija nije samo za trenutke kada nam postane teško.
+                Psihoterapija nije samo za trenutke
+                kada nam postane teško.
             </h1>
 
-            <p class="hero-intro">
-                O podršci, razumijevanju sebe i zašto ne moramo čekati
-                da postane neizdrživo.
+            <p class="expert-hero-intro">
+                O podršci, razumijevanju sebe i zašto
+                ne moramo čekati da postane neizdrživo.
             </p>
 
-            <div class="meta">
+            <div class="expert-meta">
                 <span>NIKOLINA ĐURIĆ</span>
                 <span>LUMOS</span>
             </div>
 
         </div>
 
+        <div class="expert-hero-photo">
+
+            <img src="/images/nikolina-djuric-expert.jpg"
+                 alt="Nikolina Đurić">
+
+        </div>
+
     </section>
 
-    <section class="intro">
 
-        <p class="section-no">
-            O AUTORICI
+    <!-- =====================================
+         INTRO
+         ===================================== -->
+
+    <section class="expert-intro">
+
+        <p class="section-label">
+            O NIKOLINI
         </p>
 
         <h2>
-            “Voljela bih da o psihoterapiji sve češće govorimo
-            kao o jednom od načina brige o sebi.”
+            Prostor u kojem djeca, adolescenti
+            i njihove obitelji mogu biti saslušani.
         </h2>
 
         <p>
@@ -389,23 +688,35 @@
 
     </section>
 
-    <section class="section">
+
+    <!-- =====================================
+         SECTION 01
+         ===================================== -->
+
+    <section class="expert-section">
 
         <div>
-            <p class="section-no">01</p>
-            <h2>Psihoterapija nije rezervirana samo za krizu.</h2>
+
+            <p class="expert-section-number">
+                01
+            </p>
+
+            <h2>
+                Psihoterapija nije rezervirana samo za krizu.
+            </h2>
+
         </div>
 
-        <div class="section-content">
+        <div class="expert-section-content">
 
             <p>
                 Vjerujem da važnost psihoterapije daleko nadilazi
-                dječju i adolescentnu dob. Svi prolazimo kroz razdoblja
-                u kojima nam je teško razumjeti vlastite osjećaje,
-                odnose ili odluke.
+                dječju i adolescentnu dob.
             </p>
 
             <p>
+                Svi prolazimo kroz razdoblja u kojima nam je teško
+                razumjeti vlastite osjećaje, odnose ili odluke.
                 Ponekad nas opterećuju iskustva iz prošlosti,
                 ponekad se iznova susrećemo s istim obrascima,
                 a ponekad jednostavno osjećamo da smo se udaljili od sebe.
@@ -422,83 +733,127 @@
 
     </section>
 
-    <figure class="photo">
 
-        <img src="/images/nikolina-djuric-portrait.jpg"
-             alt="Portret Nikoline Đurić">
+    <!-- =====================================
+         NINA PHOTO
+         ===================================== -->
 
-        <figcaption>
-            Nikolina Đurić, socijalna radnica i vlasnica Lumosa.
-        </figcaption>
+    <section class="expert-photo-feature">
 
-    </figure>
+        <div class="expert-photo-wrap">
 
-    <section class="section">
+            <img src="/images/nikolina-djuric-with-child-tools.jpg"
+                 alt="Nikolina Đurić u prostoru Lumosa">
 
-        <div>
-            <p class="section-no">02</p>
-            <h2>Nije mjesto gotovih odgovora.</h2>
-        </div>
-
-        <div class="section-content">
-
-            <p>
-                Psihoterapija nije mjesto na kojem ćemo dobiti gotove
-                odgovore ili upute kako trebamo živjeti.
+            <p class="photo-caption">
+                Nikolina Đurić · Lumos
             </p>
 
+        </div>
+
+        <div class="expert-photo-copy">
+
+            <p class="section-label">
+                TERAPIJSKI ODNOS
+            </p>
+
+            <h2>
+                Ne dobivamo gotove odgovore.
+            </h2>
+
             <p>
+                Psihoterapija nije mjesto na kojem ćemo dobiti
+                gotove odgovore ili upute kako trebamo živjeti.
                 To je prostor u kojem, kroz siguran terapijski odnos,
-                možemo istraživati vlastita iskustva i postupno pronalaziti
-                odgovore koji imaju smisla upravo za nas.
+                možemo istraživati vlastita iskustva i postupno
+                pronalaziti odgovore koji imaju smisla upravo za nas.
             </p>
 
         </div>
 
     </section>
 
-    <p class="quote">
+
+    <!-- =====================================
+         QUOTE
+         ===================================== -->
+
+    <blockquote class="expert-quote">
         “Kao da moramo čekati da nam postane neizdrživo
         da bismo sebi dopustili potražiti podršku.
         A što ako ne moramo čekati?”
-    </p>
+    </blockquote>
 
-    <section class="section">
+
+    <!-- =====================================
+         SECTION 03
+         ===================================== -->
+
+    <section class="expert-section">
 
         <div>
-            <p class="section-no">03</p>
-            <h2>Stigma još uvijek postoji.</h2>
+
+            <p class="expert-section-number">
+                02
+            </p>
+
+            <h2>
+                Stigma još uvijek postoji.
+            </h2>
+
         </div>
 
-        <div class="section-content">
+        <div class="expert-section-content">
 
             <p>
-                Psihoterapiju i dalje prati uvjerenje da je namijenjena
+                Psihoterapiju i dalje prati stigma.
+                Još uvijek postoji uvjerenje da je namijenjena
                 samo onima koji su došli do svojih granica,
                 da probleme trebamo rješavati sami ili da traženje pomoći
                 znači da nismo dovoljno snažni.
             </p>
 
             <p>
+                Kao da moramo čekati da nam postane neizdrživo
+                da bismo sebi dopustili potražiti podršku.
+            </p>
+
+            <p>
                 Psihoterapija ne mora biti posljednja opcija kada više
-                ne znamo kako dalje. Može biti i prostor za osobni rast,
-                bolje razumijevanje vlastitih obrazaca, promišljanje odnosa
-                i donošenje odluka koje su više u skladu s onim
-                što nam je važno.
+                ne znamo kako dalje.
+            </p>
+
+            <p>
+                Može biti i prostor za osobni rast,
+                bolje razumijevanje vlastitih obrazaca,
+                promišljanje odnosa i donošenje odluka koje su više
+                u skladu s onim što nam je važno.
             </p>
 
         </div>
 
     </section>
 
-    <section class="section">
+
+    <!-- =====================================
+         CHILDREN
+         ===================================== -->
+
+    <section class="expert-section">
 
         <div>
-            <p class="section-no">04</p>
-            <h2>A što je s djecom?</h2>
+
+            <p class="expert-section-number">
+                03
+            </p>
+
+            <h2>
+                Djeca također ne moraju čekati.
+            </h2>
+
         </div>
 
-        <div class="section-content">
+        <div class="expert-section-content">
 
             <p>
                 Djeca ne moraju čekati da njihove teškoće postanu velike
@@ -512,8 +867,8 @@
             </p>
 
             <p>
-                Zato je važno stvoriti prostor u kojem ne moramo odmah
-                tražiti rješenje, nego prvo pokušati razumjeti
+                Zato je važno stvoriti prostor u kojem ne moramo
+                odmah tražiti rješenje, nego prvo pokušati razumjeti
                 što se događa.
             </p>
 
@@ -521,68 +876,151 @@
 
     </section>
 
-    <figure class="photo">
 
-        <img src="/images/lumos-emotion-center.jpg"
-             alt="Emociocentar u prostoru Lumosa">
+    <!-- =====================================
+         SECOND NINA FEATURE
+         ===================================== -->
 
-        <figcaption>
-            Prostor u kojem se osjećaji mogu imenovati,
-            istraživati i razumjeti.
-        </figcaption>
+    <section class="expert-photo-feature reverse">
 
-    </figure>
+        <div class="expert-photo-copy">
 
-    <section class="section">
-
-        <div>
-            <p class="section-no">05</p>
-            <h2>Briga o sebi može početi ranije.</h2>
-        </div>
-
-        <div class="section-content">
-
-            <p>
-                Voljela bih da o psihoterapiji sve češće govorimo
-                kao o jednom od načina brige o sebi, a ne kao o nečemu
-                čemu pribjegavamo tek kada više ne možemo sami.
+            <p class="section-label">
+                BRIGA O SEBI
             </p>
 
+            <h2>
+                Ne moramo imati sve odgovore.
+            </h2>
+
             <p>
-                Ne moramo imati sve odgovore. Ne moramo znati točno
-                što želimo promijeniti. Ponekad je dovoljno osjetiti
-                da želimo bolje razumjeti sebe, svoje odnose
-                ili način na koji živimo.
+                Ponekad je dovoljno osjetiti da želimo bolje razumjeti
+                sebe, svoje odnose ili način na koji živimo.
             </p>
 
-            <div class="tip">
+            <div class="expert-note">
+
                 <strong>NIKOLININA PORUKA</strong>
+
                 Briga o sebi ne počinje tek onda kada više ne možemo.
                 Može početi i onda kada odlučimo da zaslužujemo
                 bolje upoznati sebe.
+
             </div>
 
         </div>
 
+        <div class="expert-photo-wrap">
+
+            <img src="/images/nikolina-djuric-lumos.jpg"
+                 alt="Nikolina Đurić u Lumosu">
+
+            <p class="photo-caption">
+                Nikolina Đurić u prostoru Lumosa
+            </p>
+
+        </div>
+
     </section>
 
-    <section class="closing">
+
+    <!-- =====================================
+         FINAL SECTION
+         ===================================== -->
+
+    <section class="expert-section">
+
+        <div>
+
+            <p class="expert-section-number">
+                04
+            </p>
+
+            <h2>
+                Psihoterapija kao jedan od načina brige o sebi.
+            </h2>
+
+        </div>
+
+        <div class="expert-section-content">
+
+            <p>
+                Voljela bih da o psihoterapiji sve češće govorimo
+                kao o jednom od načina brige o sebi,
+                a ne kao o nečemu čemu pribjegavamo
+                tek kada više ne možemo sami.
+            </p>
+
+            <p>
+                Ne moramo imati sve odgovore.
+                Ne moramo znati točno što želimo promijeniti.
+            </p>
+
+            <p>
+                Ponekad je dovoljno osjetiti da želimo bolje razumjeti
+                sebe, svoje odnose ili način na koji živimo.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         AUTHOR CARD
+         ===================================== -->
+
+    <section class="expert-author">
+
+        <img src="/images/nikolina-djuric-portrait.jpg"
+             alt="Nikolina Đurić">
+
+        <div>
+
+            <p class="expert-author-label">
+                RIJEČ STRUČNJAKA
+            </p>
+
+            <h2>
+                Nikolina Đurić
+            </h2>
+
+            <p>
+                Socijalna radnica i vlasnica Lumosa,
+                obrta za dječju i adolescentnu psihoterapiju.
+                Njezino profesionalno iskustvo uključuje i rad
+                s djecom u domu za djecu bez odgovarajuće
+                roditeljske skrbi.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         CLOSING
+         ===================================== -->
+
+    <section class="expert-closing">
 
         <h2>
-            Ne moramo čekati da postane neizdrživo.
+            Ne moramo čekati
+            da postane neizdrživo.
         </h2>
 
         <p>
-            Razgovor, podrška i prostor za razumijevanje mogu imati
-            svoje mjesto i prije krize — kada želimo bolje razumjeti
-            sebe, svoje odnose ili ono što prolazimo.
+            Psihoterapija može biti prostor podrške,
+            razumijevanja, osobnog rasta i boljeg upoznavanja sebe —
+            i prije trenutka kada osjećamo da više ne možemo sami.
         </p>
 
     </section>
 
-    <p class="provider-note">
-        Tekst: Nikolina Đurić · Lumos.
-        Urednički prilagođeno za MOVE&TRY uz očuvanje
+
+    <p class="expert-credit">
+        Tekst i stručni doprinos: Nikolina Đurić · Lumos.<br>
+        Urednički oblikovano za MOVE&TRY uz očuvanje
         autoričine poruke i sadržaja.
     </p>
 
