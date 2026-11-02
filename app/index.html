@@ -2494,7 +2494,7 @@
         : 'hr';
 
       const initialTab = new URLSearchParams(location.search).get('tab');
-      if (['home', 'explore', 'journal', 'saved'].includes(initialTab)) activeTab = initialTab;
+      if (['home', 'explore', 'where', 'journal', 'saved'].includes(initialTab)) activeTab = initialTab;
       setLanguage(chosenLanguage);
 
       if (!I18N[savedLanguage]) {

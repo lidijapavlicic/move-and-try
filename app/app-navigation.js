@@ -3,56 +3,32 @@
 
   const path = window.location.pathname;
 
-  // Editor i sama aplikacijska naslovnica imaju
-  // vlastitu navigaciju.
-  if (
-    path.startsWith('/editor/') ||
-    path.startsWith('/app/')
-  ) {
+  // The app shell has its own navigation.
+  if (path.startsWith('/app/')) {
     return;
   }
 
+  // Public pages get the app frame only when they are actually
+  // displayed inside the installed MOVE&TRY PWA.
   const standalone =
     window.matchMedia('(display-mode: standalone)').matches ||
     navigator.standalone === true;
 
-  const params = new URLSearchParams(window.location.search);
-  const sessionKey = 'moveandtry_public_app_session';
-
-  const cameFromApp =
-    params.get('source') === 'moveandtry-app' ||
-    document.referrer.includes('/app/');
-
-  if (cameFromApp) {
-    try {
-      sessionStorage.setItem(sessionKey, '1');
-    } catch (_) {}
-  }
-
-  let activeSession = cameFromApp;
-
-  try {
-    activeSession =
-      activeSession ||
-      sessionStorage.getItem(sessionKey) === '1';
-  } catch (_) {}
-
-  // Obična web-stranica ostaje nepromijenjena.
-  if (!standalone || !activeSession) return;
-
+  if (!standalone) return;
   if (document.getElementById('moveandtry-app-nav')) return;
 
   const isHR = path.startsWith('/hr/');
-  const prefix = isHR ? '/hr/' : '/';
 
   const labels = isHR
     ? ['Početna', 'Istraži', 'Gdje probati', 'Journal', 'Spremljeno']
     : ['Home', 'Explore', 'Where to Try', 'Journal', 'Saved'];
 
+  // Always return to the real app tabs. Public content pages are
+  // detail views inside the app experience, not a second navigation system.
   const links = [
     '/app/',
     '/app/?tab=explore',
-    prefix + 'where-to-try.html',
+    '/app/?tab=where',
     '/app/?tab=journal',
     '/app/?tab=saved'
   ];
@@ -67,7 +43,15 @@
 
   const isWherePage =
     path.endsWith('/where-to-try.html') ||
-    path.endsWith('-where-to-try.html');
+    path.endsWith('-where-to-try.html') ||
+    path.endsWith('/be-part-of-where-to-try.html');
+
+  const bodyClass = document.body?.className || '';
+  const isJournalPage = /(^|\s)journal-/.test(bodyClass);
+
+  // Detail/activity pages belong to Explore by default.
+  // Where to Try and Journal content highlight their own app sections.
+  const selected = isWherePage ? 2 : isJournalPage ? 3 : 1;
 
   const nav = document.createElement('nav');
 
@@ -96,11 +80,8 @@
       </svg>
     `;
 
-    const current =
-      (index === 2 && isWherePage);
-
     const ariaCurrent =
-      current ? ' aria-current="page"' : '';
+      index === selected ? ' aria-current="page"' : '';
 
     return `
       <a href="${links[index]}"${ariaCurrent}>
@@ -112,32 +93,4 @@
 
   document.body.appendChild(nav);
   document.body.classList.add('moveandtry-app-active');
-
-  // Links to public pages remain in the PWA session.
-  const publicLinks = [nav.querySelectorAll('a')[2]];
-
-  publicLinks.forEach(link => {
-    link.addEventListener('click', event => {
-      if (
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey
-      ) {
-        return;
-      }
-
-      event.preventDefault();
-
-      const url = new URL(link.href);
-      url.searchParams.set('source', 'moveandtry-app');
-
-      try {
-        sessionStorage.setItem(sessionKey, '1');
-      } catch (_) {}
-
-      window.location.assign(url.href);
-    });
-  });
 })();
