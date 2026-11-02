@@ -188,7 +188,7 @@
 
 
         /* =========================
-           PUBLISHED
+           PUBLISHED — LOCKED DESKTOP
         ========================= */
 
         .where-published {
@@ -206,7 +206,7 @@
             display: grid;
             grid-template-columns: 165px minmax(0, 1fr);
 
-            min-height: 138px;
+            height: 150px;
 
             color: #1f2a18;
             text-decoration: none;
@@ -227,7 +227,8 @@
         }
 
         .where-published-visual {
-            min-height: 138px;
+            width: 165px;
+            height: 150px;
 
             overflow: hidden;
 
@@ -239,7 +240,6 @@
 
             width: 100%;
             height: 100%;
-            min-height: 138px;
 
             object-fit: cover;
 
@@ -253,13 +253,17 @@
         }
 
         .where-published-info {
+            min-width: 0;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
 
             gap: 6px;
 
-            padding: 20px 24px;
+            padding: 18px 24px;
+
+            overflow: hidden;
         }
 
         .where-published-meta {
@@ -281,13 +285,17 @@
         }
 
         .where-published-info p {
-            max-width: 720px;
-
             margin: 0;
+
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
 
             font-family: 'Manrope', sans-serif;
             font-size: 12px;
-            line-height: 1.55;
+            line-height: 1.5;
 
             color: #4d554e;
         }
@@ -309,7 +317,7 @@
 
 
         /* =========================
-           MOBILE
+           MOBILE — KEEP CURRENT
         ========================= */
 
         @media (max-width: 600px) {
@@ -332,10 +340,17 @@
 
             .where-published-item {
                 grid-template-columns: 105px minmax(0, 1fr);
+
+                height: auto;
                 min-height: 145px;
             }
 
-            .where-published-visual,
+            .where-published-visual {
+                width: 105px;
+                height: auto;
+                min-height: 145px;
+            }
+
             .where-published-visual img {
                 min-height: 145px;
             }
@@ -361,6 +376,7 @@
     </style>
 
     <link rel="stylesheet" href="/consent.css">
+
 </head>
 
 
@@ -384,6 +400,7 @@
         >
     </a>
 
+
     <nav class="desktop-nav">
 
         <a href="/hr/#find-your-try">
@@ -404,6 +421,7 @@
 
     </nav>
 
+
     <div class="header-actions">
 
         <a
@@ -412,6 +430,7 @@
         >
             IZA MOVE & TRY
         </a>
+
 
         <div class="header-language">
 
@@ -429,6 +448,7 @@
             </span>
 
         </div>
+
 
         <button
             class="menu-toggle"
@@ -475,6 +495,7 @@
 
     </nav>
 
+
     <div class="mobile-menu-language">
 
         <a
@@ -502,8 +523,6 @@
 <main class="where-page">
 
 
-    <!-- PAGE HEADER -->
-
     <header class="where-header">
 
         <p class="section-label">
@@ -521,8 +540,6 @@
     </header>
 
 
-    <!-- CATEGORIES -->
-
     <section
         class="where-section"
         id="where-categories"
@@ -536,8 +553,6 @@
             ŠTO ŽELIŠ PROBATI?
         </h2>
 
-
-        <!-- SEARCH -->
 
         <div
             class="where-search"
@@ -627,8 +642,6 @@
     </section>
 
 
-    <!-- CATEGORY ACTIVITIES -->
-
     <section
         class="where-section where-category-results"
         id="category-results"
@@ -655,8 +668,6 @@
 
     </section>
 
-
-    <!-- PROVIDERS -->
 
     <section
         class="where-section where-provider-results"
@@ -695,8 +706,6 @@
     </section>
 
 
-    <!-- PUBLISHED -->
-
     <section
         class="where-section where-more where-published"
         id="where-published"
@@ -718,8 +727,6 @@
 
     </section>
 
-
-    <!-- CONTRIBUTE -->
 
     <section class="where-section where-contribute">
 
@@ -762,10 +769,6 @@
 <script>
 (() => {
 
-    /* =========================
-       PRODUCTION ACTIVITIES
-    ========================= */
-
     const productionActivities = {
 
         move: [],
@@ -791,10 +794,6 @@
 
     };
 
-
-    /* =========================
-       PRODUCTION PROVIDERS
-    ========================= */
 
     const productionProviders = {
 
@@ -887,10 +886,6 @@
         document.getElementById("provider-back");
 
 
-    /* =========================
-       RENDER CATEGORY
-    ========================= */
-
     function renderCategory(category) {
 
         if (
@@ -967,10 +962,6 @@
 
     }
 
-
-    /* =========================
-       RENDER PROVIDERS
-    ========================= */
 
     function renderProviders(activity) {
 
@@ -1075,6 +1066,7 @@
                     </a>
 
                 </div>
+
             `;
 
             providerList.appendChild(card);
@@ -1089,10 +1081,6 @@
 
     }
 
-
-    /* =========================
-       PUBLISHED LIST
-    ========================= */
 
     const whereSearch =
         document.getElementById("where-search-input");
@@ -1314,10 +1302,6 @@
     }
 
 
-    /* =========================
-       SEARCH
-    ========================= */
-
     if (whereSearch) {
 
         whereSearch.addEventListener(
@@ -1382,10 +1366,6 @@
     }
 
 
-    /* =========================
-       CATEGORY BUTTONS
-    ========================= */
-
     categoryButtons.forEach(button => {
 
         button.addEventListener(
@@ -1444,10 +1424,6 @@
 
     });
 
-
-    /* =========================
-       BACK
-    ========================= */
 
     if (providerBack) {
 
