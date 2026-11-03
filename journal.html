@@ -7,41 +7,32 @@
 <title>The Journal | Move & Try</title>
 
 <meta name="description"
-      content="THE JOURNAL by MOVE & TRY. Stories, reflections, personal columns, inspiration and news from the community.">
+      content="THE JOURNAL by MOVE & TRY. Stories, reflections, columns, inspiration and news from the community.">
 
 <link rel="icon" type="image/png" href="/favicon.png">
 
 <link rel="canonical"
       href="https://moveandtry.com/journal.html">
 
-<link rel="alternate"
-      hreflang="en"
+<link rel="alternate" hreflang="en"
       href="https://moveandtry.com/journal.html">
 
-<link rel="alternate"
-      hreflang="hr"
+<link rel="alternate" hreflang="hr"
       href="https://moveandtry.com/hr/journal.html">
 
-<link rel="alternate"
-      hreflang="x-default"
+<link rel="alternate" hreflang="x-default"
       href="https://moveandtry.com/journal.html">
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet">
 
-<link rel="stylesheet"
-      href="style.css">
+<link rel="stylesheet" href="style.css">
 
 <!-- MOVE&TRY PWA NAVIGATION -->
-<link rel="stylesheet"
-      href="/app/app-navigation.css">
+<link rel="stylesheet" href="/app/app-navigation.css">
 
 <style>
 
@@ -55,9 +46,7 @@
     min-height: 100vh;
 }
 
-/* =====================================
-   HEADER
-   ===================================== */
+/* HEADER */
 
 .journal-page .site-header {
     position: sticky;
@@ -85,9 +74,7 @@
     opacity: 0.55;
 }
 
-/* =====================================
-   HERO
-   ===================================== */
+/* HERO */
 
 .journal-hero {
     position: relative;
@@ -104,11 +91,7 @@
     position: absolute;
     inset: -12px;
     z-index: -2;
-
-    background:
-        url('/images/journal.jpg')
-        center center / cover no-repeat;
-
+    background: url('/images/journal.jpg') center center / cover no-repeat;
     filter: blur(4px);
 }
 
@@ -158,9 +141,7 @@
     margin: 36px auto 0;
 }
 
-/* =====================================
-   CATEGORIES
-   ===================================== */
+/* CATEGORIES */
 
 .journal-category-wrap {
     position: relative;
@@ -175,40 +156,28 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-
     gap: 14px 34px;
-
     max-width: 1184px;
     margin: 0 auto;
     padding: 28px 0;
-
     border-top: 1px solid #D5D5D0;
     border-bottom: 1px solid #D5D5D0;
 }
 
 .journal-category {
     appearance: none;
-
     border: 0;
     border-bottom: 1px solid transparent;
     border-radius: 0;
-
     background: transparent;
-
     padding: 8px 0;
-
     cursor: pointer;
-
     font-family: 'Manrope', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.07em;
-
     color: #777777;
-
-    transition:
-        color 0.2s ease,
-        border-color 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .journal-category:hover {
@@ -220,9 +189,93 @@
     border-bottom-color: #6F7967;
 }
 
-/* =====================================
-   CONTENT
-   ===================================== */
+/* COLUMN FILTER */
+
+.journal-column-wrap {
+    max-width: 1184px;
+    margin: 0 auto;
+    padding: 24px 48px 0;
+}
+
+.journal-column-wrap[hidden] {
+    display: none;
+}
+
+.journal-columns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 30px;
+    padding: 0 0 24px;
+    border-bottom: 1px solid #D5D5D0;
+}
+
+.journal-column {
+    appearance: none;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    padding: 7px 0;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #8A8A84;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.journal-column:hover {
+    color: #111111;
+}
+
+.journal-column.active {
+    color: #111111;
+    border-bottom-color: #6F7967;
+}
+
+/* COLUMN PROFILE */
+
+.journal-column-profile {
+    margin: 30px auto 0;
+    padding: 34px 38px 36px;
+    border: 1px solid #BFC4B8;
+    background: rgba(111, 121, 103, 0.045);
+}
+
+.journal-column-profile[hidden] {
+    display: none;
+}
+
+.journal-column-profile-title {
+    margin: 0 0 20px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6F7967;
+}
+
+.journal-column-profile-copy {
+    max-width: 760px;
+}
+
+.journal-column-profile-copy p {
+    margin: 0 0 12px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    line-height: 1.85;
+    color: #555550;
+}
+
+.journal-column-profile-copy p:last-child {
+    margin-bottom: 0;
+}
+
+/* CONTENT */
 
 .journal-content {
     max-width: 1280px;
@@ -234,9 +287,7 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-
     gap: 20px;
-
     margin-bottom: 45px;
 }
 
@@ -246,7 +297,6 @@
     font-weight: 800;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-
     margin: 0;
 }
 
@@ -256,9 +306,7 @@
     color: #888888;
 }
 
-/* =====================================
-   ARTICLES
-   ===================================== */
+/* ARTICLES */
 
 .journal-posts {
     display: flex;
@@ -267,20 +315,12 @@
 
 .journal-post {
     display: grid;
-
-    grid-template-columns:
-        minmax(0, 42%)
-        minmax(0, 1fr);
-
+    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
     align-items: center;
-
     column-gap: clamp(30px, 5vw, 72px);
-
     padding: 0 0 46px;
     margin: 0 0 46px;
-
     border-bottom: 1px solid #D5D5D0;
-
     color: inherit;
     text-decoration: none;
 }
@@ -298,33 +338,23 @@
 .journal-post-image {
     width: 100%;
     aspect-ratio: 4 / 3;
-
     object-fit: cover;
-
     display: block;
-
     background: #EAEAE6;
-
     margin: 0;
 }
 
-/* =====================================
-   TYPOGRAPHIC COVER
-   ===================================== */
+/* TYPOGRAPHIC COVER */
 
 .journal-post-cover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     width: 100%;
     min-width: 0;
     aspect-ratio: 4 / 3;
-
     padding: clamp(22px, 3.5vw, 40px);
-
     background: #E9E7DF;
-
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -339,16 +369,12 @@
 
 .journal-post-cover-title {
     margin: 18px 0;
-
     font-family: 'DM Serif Display', serif;
     font-size: clamp(35px, 4.5vw, 66px);
     font-weight: 400;
-
     line-height: 1.08;
     letter-spacing: -0.035em;
-
     color: #20241F;
-
     text-wrap: balance;
 }
 
@@ -357,7 +383,6 @@
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.1em;
-
     color: #6F7967;
 }
 
@@ -367,16 +392,12 @@
 
 .journal-post-category {
     display: block;
-
     font-family: 'Manrope', sans-serif;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.12em;
-
     color: #6F7967;
-
     text-transform: uppercase;
-
     margin-bottom: 12px;
 }
 
@@ -384,9 +405,7 @@
     font-family: 'DM Serif Display', serif;
     font-size: clamp(29px, 3vw, 40px);
     font-weight: 400;
-
     line-height: 1.2;
-
     margin: 0 0 14px;
 }
 
@@ -394,9 +413,7 @@
     font-family: 'Manrope', sans-serif;
     font-size: 13px;
     line-height: 1.8;
-
     color: #666666;
-
     margin: 0 0 18px;
 }
 
@@ -405,25 +422,18 @@
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.06em;
-
     color: #777777;
 }
 
-/* =====================================
-   EMPTY STATE
-   ===================================== */
+/* EMPTY STATE */
 
 .journal-empty {
     min-height: 320px;
-
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
-
     text-align: center;
-
     padding: 50px 20px;
 }
 
@@ -435,9 +445,7 @@
     font-family: 'DM Serif Display', serif;
     font-size: clamp(32px, 5vw, 52px);
     font-weight: 400;
-
     line-height: 1.2;
-
     margin: 0 0 18px;
 }
 
@@ -445,11 +453,8 @@
     font-family: 'Manrope', sans-serif;
     font-size: 14px;
     line-height: 1.9;
-
     color: #777777;
-
     max-width: 470px;
-
     margin: 0;
 }
 
@@ -458,27 +463,19 @@
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.16em;
-
     margin-top: 35px;
-
     color: #6F7967;
 }
 
-/* =====================================
-   TABLET
-   ===================================== */
+/* TABLET */
 
 @media (max-width: 1100px) {
-
     .journal-behind-link {
         display: none;
     }
-
 }
 
-/* =====================================
-   MOBILE
-   ===================================== */
+/* MOBILE */
 
 @media (max-width: 700px) {
 
@@ -509,6 +506,34 @@
         font-size: 10px;
     }
 
+    .journal-column-wrap {
+        padding: 20px 24px 0;
+    }
+
+    .journal-columns {
+        justify-content: flex-start;
+        gap: 10px 22px;
+        padding-bottom: 20px;
+    }
+
+    .journal-column {
+        font-size: 9px;
+    }
+
+    .journal-column-profile {
+        margin-top: 24px;
+        padding: 26px 24px 28px;
+    }
+
+    .journal-column-profile-title {
+        margin-bottom: 16px;
+    }
+
+    .journal-column-profile-copy p {
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
     .journal-content {
         padding: 55px 24px 80px;
     }
@@ -516,7 +541,6 @@
     .journal-post {
         grid-template-columns: 1fr;
         row-gap: 20px;
-
         padding-bottom: 38px;
         margin-bottom: 38px;
     }
@@ -536,81 +560,59 @@
     .journal-empty {
         min-height: 300px;
     }
-
 }
 
-/* =====================================
-   INVITATION TO CONTRIBUTE
-   ===================================== */
+/* INVITATION TO CONTRIBUTE */
 
 .journal-contribute {
     max-width: 1184px;
-
     margin: 0 auto;
-
     padding: 0 48px 105px;
-
     text-align: center;
 }
 
 .journal-contribute-inner {
     border-top: 1px solid #D5D5D0;
-
     padding: 78px 20px 0;
 }
 
 .journal-contribute-label {
     margin: 0 0 22px;
-
     font-family: 'Manrope', sans-serif;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.18em;
-
     color: #6F7967;
 }
 
 .journal-contribute-title {
     margin: 0 0 20px;
-
     font-family: 'DM Serif Display', serif;
     font-size: clamp(32px, 4.5vw, 52px);
     font-weight: 400;
-
     line-height: 1.12;
 }
 
 .journal-contribute-text {
     max-width: 570px;
-
     margin: 0 auto 28px;
-
     font-family: 'Manrope', sans-serif;
     font-size: 14px;
     line-height: 1.9;
-
     color: #666666;
 }
 
 .journal-contribute-link {
     display: inline-block;
-
     padding: 10px 0;
-
     border-bottom: 1px solid #6F7967;
-
     font-family: 'Manrope', sans-serif;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.12em;
-
     color: #111111;
-
     text-decoration: none;
-
-    transition:
-        color 0.2s ease,
-        border-color 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .journal-contribute-link:hover,
@@ -628,21 +630,15 @@
     .journal-contribute-inner {
         padding: 60px 0 0;
     }
-
 }
 
 </style>
 
-<link rel="stylesheet"
-      href="/consent.css">
+<link rel="stylesheet" href="/consent.css">
 
 </head>
 
 <body class="journal-page">
-
-<!-- =====================================
-     HEADER
-     ===================================== -->
 
 <header class="site-header">
 
@@ -657,22 +653,14 @@
 
     <nav class="desktop-nav">
 
-        <a href="/#find-your-try">
-            DISCOVER
-        </a>
+        <a href="/#find-your-try">DISCOVER</a>
 
-        <a href="/#be-part-of-it">
-            BE PART OF IT
-        </a>
+        <a href="/#be-part-of-it">BE PART OF IT</a>
 
-        <a href="/where-to-try.html">
-            WHERE TO TRY
-        </a>
+        <a href="/where-to-try.html">WHERE TO TRY</a>
 
         <a href="/journal.html"
-           aria-current="page">
-            THE JOURNAL
-        </a>
+           aria-current="page">THE JOURNAL</a>
 
     </nav>
 
@@ -685,9 +673,7 @@
 
         <div class="header-language">
 
-            <span class="language-active">
-                EN
-            </span>
+            <span class="language-active">EN</span>
 
             <span>|</span>
 
@@ -712,29 +698,17 @@
 
 </header>
 
-<!-- =====================================
-     MOBILE MENU
-     ===================================== -->
-
 <div class="mobile-menu">
 
     <nav>
 
-        <a href="/#find-your-try">
-            DISCOVER
-        </a>
+        <a href="/#find-your-try">DISCOVER</a>
 
-        <a href="/#be-part-of-it">
-            BE PART OF IT
-        </a>
+        <a href="/#be-part-of-it">BE PART OF IT</a>
 
-        <a href="/where-to-try.html">
-            WHERE TO TRY
-        </a>
+        <a href="/where-to-try.html">WHERE TO TRY</a>
 
-        <a href="/journal.html">
-            THE JOURNAL
-        </a>
+        <a href="/journal.html">THE JOURNAL</a>
 
         <a href="/behind-move-and-try.html">
             BEHIND MOVE & TRY
@@ -744,9 +718,7 @@
 
     <div class="mobile-menu-language">
 
-        <span class="language-active">
-            EN
-        </span>
+        <span class="language-active">EN</span>
 
         <span>|</span>
 
@@ -760,10 +732,6 @@
 </div>
 
 <main>
-
-    <!-- =====================================
-         HERO
-         ===================================== -->
 
     <section class="journal-hero">
 
@@ -786,10 +754,6 @@
         </div>
 
     </section>
-
-    <!-- =====================================
-         CATEGORIES
-         ===================================== -->
 
     <div class="journal-category-wrap">
 
@@ -814,7 +778,7 @@
                     type="button"
                     data-category="personal"
                     aria-pressed="false">
-                PERSONAL COLUMNS
+                COLUMNS
             </button>
 
             <button class="journal-category"
@@ -842,9 +806,44 @@
 
     </div>
 
-    <!-- =====================================
-         ARTICLES
-         ===================================== -->
+    <div class="journal-column-wrap"
+         id="journal-column-wrap"
+         hidden>
+
+        <nav class="journal-columns"
+             aria-label="Columns">
+
+            <button class="journal-column active"
+                    type="button"
+                    data-column="all"
+                    aria-pressed="true">
+                ALL COLUMNS
+            </button>
+
+            <button class="journal-column"
+                    type="button"
+                    data-column="lidija"
+                    aria-pressed="false">
+                LIDIJA | MOVE&amp;TRY
+            </button>
+
+        </nav>
+
+        <section class="journal-column-profile"
+                 id="journal-column-profile"
+                 hidden>
+
+            <h3 class="journal-column-profile-title"
+                id="journal-column-profile-title">
+            </h3>
+
+            <div class="journal-column-profile-copy"
+                 id="journal-column-profile-copy">
+            </div>
+
+        </section>
+
+    </div>
 
     <section class="journal-content"
              aria-labelledby="journal-section-heading">
@@ -866,11 +865,7 @@
         <div class="journal-posts"
              id="journal-posts">
 
-            <!--
-                SCHEDULED PUBLICATION
-                7 November 2026 at 11:00 Europe/Zagreb
-                11:00 Zagreb = 10:00 UTC
-            -->
+            <!-- SCHEDULED PUBLICATION: 7 November 2026, 11:00 Europe/Zagreb -->
 
             <a class="journal-post"
                href="/care-begins-with-psychotherapy.html"
@@ -902,17 +897,12 @@
                     </p>
 
                     <span class="journal-post-author">
-                        Lidija | MOVE&TRY
+                        Lidija | MOVE&amp;TRY
                     </span>
 
                 </div>
 
             </a>
-
-            <!--
-                PUBLISHED
-                29 October 2026 at 09:00 Europe/Zagreb
-            -->
 
             <a class="journal-post"
                href="/where-do-adults-meet.html"
@@ -936,8 +926,7 @@
                     </h3>
 
                     <p class="journal-post-description">
-                        On making friends after thirty,
-                        life between work and home,
+                        On making friends after thirty, life between work and home,
                         and the people we may never meet.
                     </p>
 
@@ -948,11 +937,6 @@
                 </div>
 
             </a>
-
-            <!--
-                PUBLISHED
-                25 October 2026 at 09:00 Europe/Zagreb
-            -->
 
             <a class="journal-post"
                href="/from-curiosity-to-your-own-scent.html"
@@ -973,7 +957,7 @@
 
                     <h3 class="journal-post-title">
                         From Curiosity to Your Own Scent:
-                        A New Activity on MOVE & TRY
+                        A New Activity on MOVE &amp; TRY
                     </h3>
 
                     <p class="journal-post-description">
@@ -990,13 +974,10 @@
 
             </a>
 
-            <!-- =====================================
-                 PERSONAL COLUMN
-                 ===================================== -->
-
             <a class="journal-post"
                href="/what-if-i-try.html"
-               data-category="personal">
+               data-category="personal"
+               data-column="lidija">
 
                 <div class="journal-post-cover">
 
@@ -1017,7 +998,7 @@
                 <div class="journal-post-copy">
 
                     <span class="journal-post-category">
-                        PERSONAL COLUMNS · 16 OCTOBER 2026
+                        COLUMNS · 16 OCTOBER 2026
                     </span>
 
                     <p class="journal-post-description">
@@ -1032,10 +1013,6 @@
                 </div>
 
             </a>
-
-            <!-- =====================================
-                 EDITORIAL ARTICLE
-                 ===================================== -->
 
             <a class="journal-post"
                href="/why-adults-find-it-harder-to-try-new-things.html"
@@ -1059,8 +1036,7 @@
                     <p class="journal-post-description">
                         On the curiosity we haven't necessarily lost,
                         the fear of failure, and a life in which
-                        we sometimes forget what it feels like
-                        to be a beginner.
+                        we sometimes forget what it feels like to be a beginner.
                     </p>
 
                     <span class="journal-post-author">
@@ -1072,10 +1048,6 @@
             </a>
 
         </div>
-
-        <!-- =====================================
-             EMPTY STATE
-             ===================================== -->
 
         <div class="journal-empty"
              id="journal-empty"
@@ -1096,10 +1068,6 @@
         </div>
 
     </section>
-
-    <!-- =====================================
-         WRITE FOR THE JOURNAL
-         ===================================== -->
 
     <section class="journal-contribute"
              aria-labelledby="journal-contribute-title">
@@ -1133,71 +1101,145 @@
 
 </main>
 
-<!-- =====================================
-     SHARED SITE SCRIPT
-     ===================================== -->
-
 <script src="script.js"></script>
 
-<!-- =====================================
-     MOVE&TRY APP / PWA NAVIGATION
-     ===================================== -->
-
-<script
-    src="/app/app-navigation.js"
-    defer
-></script>
-
-<!-- =====================================
-     JOURNAL FILTER + SCHEDULING
-     ===================================== -->
+<script src="/app/app-navigation.js" defer></script>
 
 <script>
 (function () {
 
-    const buttons =
-        document.querySelectorAll(
-            '.journal-category'
-        );
+    const buttons = document.querySelectorAll(
+        '.journal-category'
+    );
 
-    const posts =
-        document.querySelectorAll(
-            '.journal-post'
-        );
+    const posts = document.querySelectorAll(
+        '.journal-post'
+    );
 
-    const emptyState =
-        document.getElementById(
-            'journal-empty'
-        );
+    const emptyState = document.getElementById(
+        'journal-empty'
+    );
 
-    const heading =
-        document.getElementById(
-            'journal-section-heading'
-        );
+    const heading = document.getElementById(
+        'journal-section-heading'
+    );
 
-    const count =
-        document.getElementById(
-            'journal-count'
-        );
+    const count = document.getElementById(
+        'journal-count'
+    );
+
+    const columnWrap = document.getElementById(
+        'journal-column-wrap'
+    );
+
+    const columnButtons = document.querySelectorAll(
+        '.journal-column'
+    );
+
+    const columnProfile = document.getElementById(
+        'journal-column-profile'
+    );
+
+    const columnProfileTitle = document.getElementById(
+        'journal-column-profile-title'
+    );
+
+    const columnProfileCopy = document.getElementById(
+        'journal-column-profile-copy'
+    );
 
     const labels = {
         all: 'ALL POSTS',
         editorial: 'EDITORIALS',
-        personal: 'PERSONAL COLUMNS',
+        personal: 'COLUMNS',
         guest: 'GUEST STORIES',
         news: 'NEWS',
         inspiration: 'INSPIRATION'
     };
 
-    function countLabel(number) {
+    const columnNames = {
+        lidija: 'LIDIJA | MOVE&TRY'
+    };
 
-        return number +
-            (
-                number === 1
-                    ? ' POST'
-                    : ' POSTS'
+    const columnProfiles = {
+        lidija: {
+            title: 'LIDIJA | MOVE&TRY',
+            paragraphs: [
+                'A personal column by the founder of MOVE&TRY and editor of The Journal.',
+                'On curiosity, new beginnings, people, ideas, and everything that happens between asking “what if?” and deciding to give it a try.',
+                'Sometimes about MOVE&TRY behind the scenes, sometimes about personal experiences, and sometimes simply about the things that make me pause, reflect, or look at something a little differently.'
+            ]
+        }
+    };
+
+    let activeCategory = 'all';
+    let activeColumn = 'all';
+
+    function countLabel(number) {
+        return number + (number === 1 ? ' POST' : ' POSTS');
+    }
+
+    function renderColumnProfile() {
+
+        const profile =
+            columnProfiles[activeColumn];
+
+        if (
+            activeCategory !== 'personal' ||
+            !profile
+        ) {
+            columnProfile.hidden = true;
+            columnProfileTitle.textContent = '';
+            columnProfileCopy.innerHTML = '';
+            return;
+        }
+
+        columnProfileTitle.textContent =
+            profile.title;
+
+        columnProfileCopy.innerHTML = '';
+
+        profile.paragraphs.forEach(function (text) {
+
+            const paragraph =
+                document.createElement('p');
+
+            paragraph.textContent = text;
+
+            columnProfileCopy.appendChild(
+                paragraph
             );
 
+        });
+
+        columnProfile.hidden = false;
+    }
+
+    function updateColumnFilter() {
+
+        const showColumns =
+            activeCategory === 'personal';
+
+        columnWrap.hidden = !showColumns;
+
+        columnButtons.forEach(function (button) {
+
+            const selected =
+                button.dataset.column === activeColumn;
+
+            button.classList.toggle(
+                'active',
+                selected
+            );
+
+            button.setAttribute(
+                'aria-pressed',
+                String(selected)
+            );
+
+        });
+
+        renderColumnProfile();
     }
 
     function isPublished(post) {
@@ -1212,14 +1254,12 @@
         const timestamp =
             Date.parse(publishAt);
 
-        if (!Number.isFinite(timestamp)) {
+        if (Number.isNaN(timestamp)) {
             return false;
         }
 
         return Date.now() >= timestamp;
     }
-
-    let activeCategory = 'all';
 
     function filterPosts(category) {
 
@@ -1227,107 +1267,117 @@
 
         let visibleCount = 0;
 
-        buttons.forEach(
-            function (button) {
+        buttons.forEach(function (button) {
 
-                const selected =
-                    button.dataset.category ===
-                    category;
+            const selected =
+                button.dataset.category === category;
 
-                button.classList.toggle(
-                    'active',
-                    selected
-                );
+            button.classList.toggle(
+                'active',
+                selected
+            );
 
-                button.setAttribute(
-                    'aria-pressed',
-                    String(selected)
-                );
+            button.setAttribute(
+                'aria-pressed',
+                String(selected)
+            );
 
+        });
+
+        posts.forEach(function (post) {
+
+            const published =
+                isPublished(post);
+
+            const categoryMatches =
+                category === 'all' ||
+                post.dataset.category === category;
+
+            const columnMatches =
+                category !== 'personal' ||
+                activeColumn === 'all' ||
+                post.dataset.column === activeColumn;
+
+            const matches =
+                published &&
+                categoryMatches &&
+                columnMatches;
+
+            post.hidden = !matches;
+
+            if (matches) {
+                visibleCount++;
             }
-        );
 
-        posts.forEach(
-            function (post) {
+        });
 
-                const published =
-                    isPublished(post);
+        updateColumnFilter();
 
-                const categoryMatches =
-                    category === 'all' ||
-                    post.dataset.category ===
-                        category;
-
-                const visible =
-                    published &&
-                    categoryMatches;
-
-                post.hidden = !visible;
-
-                if (visible) {
-                    visibleCount += 1;
-                }
-
-            }
-        );
-
-        heading.textContent =
-            labels[category] ||
-            labels.all;
+        if (
+            category === 'personal' &&
+            activeColumn !== 'all'
+        ) {
+            heading.textContent =
+                columnNames[activeColumn] ||
+                labels[category];
+        } else {
+            heading.textContent =
+                labels[category];
+        }
 
         count.textContent =
-            countLabel(
-                visibleCount
-            );
+            countLabel(visibleCount);
 
         emptyState.hidden =
             visibleCount > 0;
-
     }
 
-    buttons.forEach(
-        function (button) {
+    buttons.forEach(function (button) {
 
-            button.addEventListener(
-                'click',
-                function () {
+        button.addEventListener(
+            'click',
+            function () {
 
-                    filterPosts(
-                        button.dataset.category
-                    );
+                const category =
+                    button.dataset.category;
 
+                if (category === 'personal') {
+                    activeColumn = 'all';
                 }
-            );
 
-        }
-    );
+                filterPosts(category);
+
+            }
+        );
+
+    });
+
+    columnButtons.forEach(function (button) {
+
+        button.addEventListener(
+            'click',
+            function () {
+
+                activeColumn =
+                    button.dataset.column;
+
+                filterPosts('personal');
+
+            }
+        );
+
+    });
 
     filterPosts('all');
 
-    /*
-       If the Journal stays open
-       when a scheduled publication
-       goes live, the new post appears
-       without refreshing the page.
-    */
-
-    window.setInterval(
-        function () {
-
-            filterPosts(
-                activeCategory
-            );
-
-        },
-        30000
-    );
+    window.setInterval(function () {
+        filterPosts(activeCategory);
+    }, 30000);
 
 })();
 </script>
 
-<!-- =====================================
-     MOVE&TRY PUBLIC SERVICE WORKER
-     ===================================== -->
+<script src="/consent.js" defer></script>
 
 <script>
 if (
@@ -1335,38 +1385,18 @@ if (
     window.isSecureContext &&
     !window.location.pathname.startsWith('/editor/')
 ) {
-    window.addEventListener(
-        'load',
-        () => {
-
-            navigator.serviceWorker
-                .register(
-                    '/sw.js',
-                    {
-                        scope: '/'
-                    }
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/sw.js', { scope: '/' })
+            .catch(error =>
+                console.warn(
+                    'MOVE&TRY public service worker:',
+                    error
                 )
-                .catch(
-                    error =>
-                        console.warn(
-                            'MOVE&TRY public service worker:',
-                            error
-                        )
-                );
-
-        }
-    );
+            );
+    });
 }
 </script>
-
-<!-- =====================================
-     CONSENT
-     ===================================== -->
-
-<script
-    src="/consent.js"
-    defer
-></script>
 
 </body>
 </html>
