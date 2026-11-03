@@ -1,560 +1,641 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>The Journal | Move & Try</title>
-
-    <meta name="description"
-          content="THE JOURNAL by MOVE & TRY. Stories, reflections, personal columns, inspiration and news from the community.">
-
-    <link rel="icon" type="image/png" href="/favicon.png">
-
-    <link rel="canonical"
-          href="https://moveandtry.com/journal.html">
-
-    <link rel="alternate" hreflang="en"
-          href="https://moveandtry.com/journal.html">
-
-    <link rel="alternate" hreflang="hr"
-          href="https://moveandtry.com/hr/journal.html">
-
-    <link rel="alternate" hreflang="x-default"
-          href="https://moveandtry.com/journal.html">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-
-    <!-- MOVE&TRY PWA NAVIGATION -->
-    <link rel="stylesheet" href="/app/app-navigation.css">
-
-    <!-- Google Analytics -->
-
-
-    <style>
-
-        /* =====================================
-           THE JOURNAL — EN
-           ===================================== */
-
-        .journal-page {
-            background: #F7F6F2;
-            color: #111111;
-            min-height: 100vh;
-        }
-
-        /* =====================================
-           HEADER
-           ===================================== */
-
-        .journal-page .site-header {
-            position: sticky;
-            top: 0;
-        }
-
-        .journal-header-actions {
-            display: flex;
-            align-items: center;
-            gap: 26px;
-        }
-
-        .journal-behind-link {
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-decoration: none;
-            color: #555555;
-            white-space: nowrap;
-            transition: opacity 0.2s ease;
-        }
-
-        .journal-behind-link:hover {
-            opacity: 0.55;
-        }
-
-        /* =====================================
-           HERO
-           ===================================== */
-
-        .journal-hero {
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            width: 100%;
-            background: #F1F0E9;
-            margin-bottom: -65px;
-            padding-bottom: 65px;
-        }
-
-        .journal-hero::before {
-            content: "";
-            position: absolute;
-            inset: -12px;
-            z-index: -2;
-            background: url('/images/journal.jpg') center center / cover no-repeat;
-            filter: blur(4px);
-        }
-
-        .journal-hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background: rgba(247, 246, 242, 0.35);
-        }
-
-        .journal-intro {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 115px 48px 105px;
-            text-align: center;
-        }
-
-        .journal-eyebrow {
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: #6F7967;
-            margin: 0 0 25px;
-        }
-
-        .journal-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(64px, 10vw, 148px);
-            font-weight: 400;
-            line-height: 0.95;
-            letter-spacing: -0.045em;
-            color: #111111;
-            margin: 0;
-        }
-
-        .journal-subtitle {
-            font-family: 'Manrope', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1.9;
-            color: #555550;
-            max-width: 620px;
-            margin: 36px auto 0;
-        }
-
-        /* =====================================
-           CATEGORIES
-           ===================================== */
-
-        .journal-category-wrap {
-            position: relative;
-            max-width: none;
-            margin: 0;
-            padding: 65px 48px 0;
-            background: transparent;
-        }
-
-        .journal-categories {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 14px 34px;
-            max-width: 1184px;
-            margin: 0 auto;
-            padding: 28px 0;
-            border-top: 1px solid #D5D5D0;
-            border-bottom: 1px solid #D5D5D0;
-        }
-
-        .journal-category {
-            appearance: none;
-            border: 0;
-            border-bottom: 1px solid transparent;
-            border-radius: 0;
-            background: transparent;
-            padding: 8px 0;
-            cursor: pointer;
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.07em;
-            color: #777777;
-            transition: color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .journal-category:hover {
-            color: #111111;
-        }
-
-        .journal-category.active {
-            color: #111111;
-            border-bottom-color: #6F7967;
-        }
-
-        /* =====================================
-           CONTENT
-           ===================================== */
-
-        .journal-content {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 75px 48px 100px;
-        }
-
-        .journal-content-heading {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 45px;
-        }
-
-        .journal-section-title {
-            font-family: 'Manrope', sans-serif;
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .journal-count {
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            color: #888888;
-        }
-
-        /* =====================================
-           ARTICLES — ONE BELOW ANOTHER
-           ===================================== */
-
-        .journal-posts {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .journal-post {
-            display: grid;
-            grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
-            align-items: center;
-            column-gap: clamp(30px, 5vw, 72px);
-            padding: 0 0 46px;
-            margin: 0 0 46px;
-            border-bottom: 1px solid #D5D5D0;
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .journal-post:last-child {
-            padding-bottom: 0;
-            margin-bottom: 0;
-            border-bottom: none;
-        }
-
-        .journal-post[hidden] {
-            display: none;
-        }
-
-        .journal-post-image {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-            background: #EAEAE6;
-            margin: 0;
-        }
-
-        /* =====================================
-           TYPOGRAPHIC COVER — PERSONAL COLUMNS
-           ===================================== */
-
-        .journal-post-cover {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 100%;
-            min-width: 0;
-            aspect-ratio: 4 / 3;
-            padding: clamp(22px, 3.5vw, 40px);
-            background: #E9E7DF;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .journal-post-cover-brand {
-            font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.17em;
-            color: #6F7967;
-        }
-
-        .journal-post-cover-title {
-            margin: 18px 0;
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(35px, 4.5vw, 66px);
-            font-weight: 400;
-            line-height: 1.08;
-            letter-spacing: -0.035em;
-            color: #20241F;
-            text-wrap: balance;
-        }
-
-        .journal-post-cover-signature {
-            font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            color: #6F7967;
-        }
-
-        .journal-post-copy {
-            min-width: 0;
-        }
-
-        .journal-post-category {
-            display: block;
-            font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            color: #6F7967;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .journal-post-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(29px, 3vw, 40px);
-            font-weight: 400;
-            line-height: 1.2;
-            margin: 0 0 14px;
-        }
-
-        .journal-post-description {
-            font-family: 'Manrope', sans-serif;
-            font-size: 13px;
-            line-height: 1.8;
-            color: #666666;
-            margin: 0 0 18px;
-        }
-
-        .journal-post-author {
-            font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            color: #777777;
-        }
-
-        /* =====================================
-           PUBLICATION DATES
-           ===================================== */
-
-        .journal-post-date {
-            display: block;
-            margin-top: 8px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            color: #888888;
-        }
-
-        /* =====================================
-           EMPTY STATE
-           ===================================== */
-
-        .journal-empty {
-            min-height: 320px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 50px 20px;
-        }
-
-        .journal-empty[hidden] {
-            display: none;
-        }
-
-        .journal-empty-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(32px, 5vw, 52px);
-            font-weight: 400;
-            line-height: 1.2;
-            margin: 0 0 18px;
-        }
-
-        .journal-empty-text {
-            font-family: 'Manrope', sans-serif;
-            font-size: 14px;
-            line-height: 1.9;
-            color: #777777;
-            max-width: 470px;
-            margin: 0;
-        }
-
-        .journal-empty-signature {
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.16em;
-            margin-top: 35px;
-            color: #6F7967;
-        }
-
-        /* =====================================
-           TABLET
-           ===================================== */
-
-        @media (max-width: 1100px) {
-            .journal-behind-link {
-                display: none;
-            }
-        }
-
-        /* =====================================
-           MOBILE
-           ===================================== */
-
-        @media (max-width: 700px) {
-            .journal-intro {
-                padding: 80px 24px 75px;
-            }
-
-            .journal-title {
-                font-size: clamp(56px, 13vw, 85px);
-            }
-
-            .journal-subtitle {
-                font-size: 14px;
-                margin-top: 25px;
-            }
-
-            .journal-category-wrap {
-                padding: 45px 24px 0;
-            }
-
-            .journal-categories {
-                justify-content: flex-start;
-                gap: 12px 23px;
-                padding: 20px 0;
-            }
-
-            .journal-category {
-                font-size: 10px;
-            }
-
-            .journal-content {
-                padding: 55px 24px 80px;
-            }
-
-            .journal-post {
-                grid-template-columns: 1fr;
-                row-gap: 20px;
-                padding-bottom: 38px;
-                margin-bottom: 38px;
-            }
-
-            .journal-post-cover {
-                padding: 28px;
-            }
-
-            .journal-post-cover-title {
-                font-size: clamp(35px, 9vw, 58px);
-            }
-
-            .journal-post-title {
-                font-size: 29px;
-            }
-
-            .journal-empty {
-                min-height: 300px;
-            }
-        }
-
-        /* =====================================
-           INVITATION TO CONTRIBUTE
-           ===================================== */
-
-        .journal-contribute {
-            max-width: 1184px;
-            margin: 0 auto;
-            padding: 0 48px 105px;
-            text-align: center;
-        }
-
-        .journal-contribute-inner {
-            border-top: 1px solid #D5D5D0;
-            padding: 78px 20px 0;
-        }
-
-        .journal-contribute-label {
-            margin: 0 0 22px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.18em;
-            color: #6F7967;
-        }
-
-        .journal-contribute-title {
-            margin: 0 0 20px;
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(32px, 4.5vw, 52px);
-            font-weight: 400;
-            line-height: 1.12;
-        }
-
-        .journal-contribute-text {
-            max-width: 570px;
-            margin: 0 auto 28px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 14px;
-            line-height: 1.9;
-            color: #666666;
-        }
-
-        .journal-contribute-link {
-            display: inline-block;
-            padding: 10px 0;
-            border-bottom: 1px solid #6F7967;
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            color: #111111;
-            text-decoration: none;
-            transition: color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .journal-contribute-link:hover,
-        .journal-contribute-link:focus-visible {
-            color: #6F7967;
-            border-bottom-color: #111111;
-        }
-
-        @media (max-width: 700px) {
-            .journal-contribute {
-                padding: 0 24px 75px;
-            }
-
-            .journal-contribute-inner {
-                padding: 60px 0 0;
-            }
-        }
-
-    </style>
-  <link rel="stylesheet" href="/consent.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Journal | Move & Try</title>
+
+<meta name="description"
+      content="THE JOURNAL by MOVE & TRY. Stories, reflections, personal columns, inspiration and news from the community.">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<link rel="canonical"
+      href="https://moveandtry.com/journal.html">
+
+<link rel="alternate"
+      hreflang="en"
+      href="https://moveandtry.com/journal.html">
+
+<link rel="alternate"
+      hreflang="hr"
+      href="https://moveandtry.com/hr/journal.html">
+
+<link rel="alternate"
+      hreflang="x-default"
+      href="https://moveandtry.com/journal.html">
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="style.css">
+
+<!-- MOVE&TRY PWA NAVIGATION -->
+<link rel="stylesheet"
+      href="/app/app-navigation.css">
+
+<style>
+
+/* =====================================
+   THE JOURNAL — EN
+   ===================================== */
+
+.journal-page {
+    background: #F7F6F2;
+    color: #111111;
+    min-height: 100vh;
+}
+
+/* =====================================
+   HEADER
+   ===================================== */
+
+.journal-page .site-header {
+    position: sticky;
+    top: 0;
+}
+
+.journal-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.journal-behind-link {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: #555555;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+}
+
+.journal-behind-link:hover {
+    opacity: 0.55;
+}
+
+/* =====================================
+   HERO
+   ===================================== */
+
+.journal-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100%;
+    background: #F1F0E9;
+    margin-bottom: -65px;
+    padding-bottom: 65px;
+}
+
+.journal-hero::before {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    z-index: -2;
+
+    background:
+        url('/images/journal.jpg')
+        center center / cover no-repeat;
+
+    filter: blur(4px);
+}
+
+.journal-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(247, 246, 242, 0.35);
+}
+
+.journal-intro {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 115px 48px 105px;
+    text-align: center;
+}
+
+.journal-eyebrow {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #6F7967;
+    margin: 0 0 25px;
+}
+
+.journal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(64px, 10vw, 148px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    color: #111111;
+    margin: 0;
+}
+
+.journal-subtitle {
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.9;
+    color: #555550;
+    max-width: 620px;
+    margin: 36px auto 0;
+}
+
+/* =====================================
+   CATEGORIES
+   ===================================== */
+
+.journal-category-wrap {
+    position: relative;
+    max-width: none;
+    margin: 0;
+    padding: 65px 48px 0;
+    background: transparent;
+}
+
+.journal-categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 14px 34px;
+
+    max-width: 1184px;
+    margin: 0 auto;
+    padding: 28px 0;
+
+    border-top: 1px solid #D5D5D0;
+    border-bottom: 1px solid #D5D5D0;
+}
+
+.journal-category {
+    appearance: none;
+
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+
+    background: transparent;
+
+    padding: 8px 0;
+
+    cursor: pointer;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+
+    color: #777777;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.journal-category:hover {
+    color: #111111;
+}
+
+.journal-category.active {
+    color: #111111;
+    border-bottom-color: #6F7967;
+}
+
+/* =====================================
+   CONTENT
+   ===================================== */
+
+.journal-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 75px 48px 100px;
+}
+
+.journal-content-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 45px;
+}
+
+.journal-section-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+
+    margin: 0;
+}
+
+.journal-count {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    color: #888888;
+}
+
+/* =====================================
+   ARTICLES
+   ===================================== */
+
+.journal-posts {
+    display: flex;
+    flex-direction: column;
+}
+
+.journal-post {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 42%)
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    column-gap: clamp(30px, 5vw, 72px);
+
+    padding: 0 0 46px;
+    margin: 0 0 46px;
+
+    border-bottom: 1px solid #D5D5D0;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.journal-post:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.journal-post[hidden] {
+    display: none;
+}
+
+.journal-post-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: #EAEAE6;
+
+    margin: 0;
+}
+
+/* =====================================
+   TYPOGRAPHIC COVER
+   ===================================== */
+
+.journal-post-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 4 / 3;
+
+    padding: clamp(22px, 3.5vw, 40px);
+
+    background: #E9E7DF;
+
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.journal-post-cover-brand {
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+    color: #6F7967;
+}
+
+.journal-post-cover-title {
+    margin: 18px 0;
+
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(35px, 4.5vw, 66px);
+    font-weight: 400;
+
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+
+    color: #20241F;
+
+    text-wrap: balance;
+}
+
+.journal-post-cover-signature {
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+
+    color: #6F7967;
+}
+
+.journal-post-copy {
+    min-width: 0;
+}
+
+.journal-post-category {
+    display: block;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+
+    color: #6F7967;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+.journal-post-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(29px, 3vw, 40px);
+    font-weight: 400;
+
+    line-height: 1.2;
+
+    margin: 0 0 14px;
+}
+
+.journal-post-description {
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    line-height: 1.8;
+
+    color: #666666;
+
+    margin: 0 0 18px;
+}
+
+.journal-post-author {
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+
+    color: #777777;
+}
+
+/* =====================================
+   EMPTY STATE
+   ===================================== */
+
+.journal-empty {
+    min-height: 320px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+}
+
+.journal-empty[hidden] {
+    display: none;
+}
+
+.journal-empty-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 400;
+
+    line-height: 1.2;
+
+    margin: 0 0 18px;
+}
+
+.journal-empty-text {
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    line-height: 1.9;
+
+    color: #777777;
+
+    max-width: 470px;
+
+    margin: 0;
+}
+
+.journal-empty-signature {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+
+    margin-top: 35px;
+
+    color: #6F7967;
+}
+
+/* =====================================
+   TABLET
+   ===================================== */
+
+@media (max-width: 1100px) {
+
+    .journal-behind-link {
+        display: none;
+    }
+
+}
+
+/* =====================================
+   MOBILE
+   ===================================== */
+
+@media (max-width: 700px) {
+
+    .journal-intro {
+        padding: 80px 24px 75px;
+    }
+
+    .journal-title {
+        font-size: clamp(56px, 13vw, 85px);
+    }
+
+    .journal-subtitle {
+        font-size: 14px;
+        margin-top: 25px;
+    }
+
+    .journal-category-wrap {
+        padding: 45px 24px 0;
+    }
+
+    .journal-categories {
+        justify-content: flex-start;
+        gap: 12px 23px;
+        padding: 20px 0;
+    }
+
+    .journal-category {
+        font-size: 10px;
+    }
+
+    .journal-content {
+        padding: 55px 24px 80px;
+    }
+
+    .journal-post {
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+
+        padding-bottom: 38px;
+        margin-bottom: 38px;
+    }
+
+    .journal-post-cover {
+        padding: 28px;
+    }
+
+    .journal-post-cover-title {
+        font-size: clamp(35px, 9vw, 58px);
+    }
+
+    .journal-post-title {
+        font-size: 29px;
+    }
+
+    .journal-empty {
+        min-height: 300px;
+    }
+
+}
+
+/* =====================================
+   INVITATION TO CONTRIBUTE
+   ===================================== */
+
+.journal-contribute {
+    max-width: 1184px;
+
+    margin: 0 auto;
+
+    padding: 0 48px 105px;
+
+    text-align: center;
+}
+
+.journal-contribute-inner {
+    border-top: 1px solid #D5D5D0;
+
+    padding: 78px 20px 0;
+}
+
+.journal-contribute-label {
+    margin: 0 0 22px;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+
+    color: #6F7967;
+}
+
+.journal-contribute-title {
+    margin: 0 0 20px;
+
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 400;
+
+    line-height: 1.12;
+}
+
+.journal-contribute-text {
+    max-width: 570px;
+
+    margin: 0 auto 28px;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    line-height: 1.9;
+
+    color: #666666;
+}
+
+.journal-contribute-link {
+    display: inline-block;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #6F7967;
+
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+
+    color: #111111;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.journal-contribute-link:hover,
+.journal-contribute-link:focus-visible {
+    color: #6F7967;
+    border-bottom-color: #111111;
+}
+
+@media (max-width: 700px) {
+
+    .journal-contribute {
+        padding: 0 24px 75px;
+    }
+
+    .journal-contribute-inner {
+        padding: 60px 0 0;
+    }
+
+}
+
+</style>
+
+<link rel="stylesheet"
+      href="/consent.css">
+
 </head>
 
 <body class="journal-page">
@@ -576,14 +657,22 @@
 
     <nav class="desktop-nav">
 
-        <a href="/#find-your-try">DISCOVER</a>
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
 
-        <a href="/#be-part-of-it">BE PART OF IT</a>
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
 
-        <a href="/where-to-try.html">WHERE TO TRY</a>
+        <a href="/where-to-try.html">
+            WHERE TO TRY
+        </a>
 
         <a href="/journal.html"
-           aria-current="page">THE JOURNAL</a>
+           aria-current="page">
+            THE JOURNAL
+        </a>
 
     </nav>
 
@@ -596,7 +685,9 @@
 
         <div class="header-language">
 
-            <span class="language-active">EN</span>
+            <span class="language-active">
+                EN
+            </span>
 
             <span>|</span>
 
@@ -629,13 +720,21 @@
 
     <nav>
 
-        <a href="/#find-your-try">DISCOVER</a>
+        <a href="/#find-your-try">
+            DISCOVER
+        </a>
 
-        <a href="/#be-part-of-it">BE PART OF IT</a>
+        <a href="/#be-part-of-it">
+            BE PART OF IT
+        </a>
 
-        <a href="/where-to-try.html">WHERE TO TRY</a>
+        <a href="/where-to-try.html">
+            WHERE TO TRY
+        </a>
 
-        <a href="/journal.html">THE JOURNAL</a>
+        <a href="/journal.html">
+            THE JOURNAL
+        </a>
 
         <a href="/behind-move-and-try.html">
             BEHIND MOVE & TRY
@@ -645,7 +744,9 @@
 
     <div class="mobile-menu-language">
 
-        <span class="language-active">EN</span>
+        <span class="language-active">
+            EN
+        </span>
 
         <span>|</span>
 
@@ -658,13 +759,11 @@
 
 </div>
 
-<!-- =====================================
-     THE JOURNAL
-     ===================================== -->
-
 <main>
 
-    <!-- HERO -->
+    <!-- =====================================
+         HERO
+         ===================================== -->
 
     <section class="journal-hero">
 
@@ -759,7 +858,7 @@
 
             <span class="journal-count"
                   id="journal-count">
-                3 POSTS
+                4 POSTS
             </span>
 
         </div>
@@ -767,7 +866,54 @@
         <div class="journal-posts"
              id="journal-posts">
 
-            <!-- SCHEDULED PUBLICATION: 29 October 2026, 09:00 Europe/Zagreb (08:00 UTC) -->
+            <!--
+                SCHEDULED PUBLICATION
+                7 November 2026 at 11:00 Europe/Zagreb
+                11:00 Zagreb = 10:00 UTC
+            -->
+
+            <a class="journal-post"
+               href="/care-begins-with-psychotherapy.html"
+               data-category="news"
+               data-publish-at="2026-11-07T10:00:00Z"
+               hidden>
+
+                <img class="journal-post-image"
+                     src="/images/lumos-emotion-center.jpg"
+                     alt="A space with emotion cards and children's drawings at Lumos"
+                     loading="lazy">
+
+                <div class="journal-post-copy">
+
+                    <span class="journal-post-category">
+                        NEWS · 7 NOVEMBER 2026
+                    </span>
+
+                    <h3 class="journal-post-title">
+                        The First CARE Topic:
+                        Child and Adolescent Psychotherapy
+                    </h3>
+
+                    <p class="journal-post-description">
+                        CARE begins with psychotherapy.
+                        The new topic brings together a guide for parents,
+                        an expert perspective and information
+                        on where to find support.
+                    </p>
+
+                    <span class="journal-post-author">
+                        Lidija | MOVE&TRY
+                    </span>
+
+                </div>
+
+            </a>
+
+            <!--
+                PUBLISHED
+                29 October 2026 at 09:00 Europe/Zagreb
+            -->
+
             <a class="journal-post"
                href="/where-do-adults-meet.html"
                data-category="editorial"
@@ -780,6 +926,7 @@
                      loading="lazy">
 
                 <div class="journal-post-copy">
+
                     <span class="journal-post-category">
                         EDITORIALS · 29 OCTOBER 2026
                     </span>
@@ -789,17 +936,24 @@
                     </h3>
 
                     <p class="journal-post-description">
-                        On making friends after thirty, life between work and home,
+                        On making friends after thirty,
+                        life between work and home,
                         and the people we may never meet.
                     </p>
 
                     <span class="journal-post-author">
                         MOVE&amp;TRY Editorial
                     </span>
+
                 </div>
+
             </a>
 
-            <!-- SCHEDULED PUBLICATION: 25 October 2026, 09:00 Europe/Zagreb (08:00 UTC) -->
+            <!--
+                PUBLISHED
+                25 October 2026 at 09:00 Europe/Zagreb
+            -->
+
             <a class="journal-post"
                href="/from-curiosity-to-your-own-scent.html"
                data-category="news"
@@ -812,13 +966,14 @@
                      loading="lazy">
 
                 <div class="journal-post-copy">
+
                     <span class="journal-post-category">
                         NEWS · 25 OCTOBER 2026
                     </span>
 
                     <h3 class="journal-post-title">
                         From Curiosity to Your Own Scent:
-                        A New Activity on MOVE &amp; TRY
+                        A New Activity on MOVE & TRY
                     </h3>
 
                     <p class="journal-post-description">
@@ -830,12 +985,13 @@
                     <span class="journal-post-author">
                         MOVE&amp;TRY Editorial
                     </span>
+
                 </div>
+
             </a>
 
             <!-- =====================================
-                 ARTICLE 2 — PERSONAL COLUMN
-                 Published: 16 October 2026
+                 PERSONAL COLUMN
                  ===================================== -->
 
             <a class="journal-post"
@@ -878,8 +1034,7 @@
             </a>
 
             <!-- =====================================
-                 ARTICLE 1 — EDITORIAL
-                 Published: 14 October 2026
+                 EDITORIAL ARTICLE
                  ===================================== -->
 
             <a class="journal-post"
@@ -904,7 +1059,8 @@
                     <p class="journal-post-description">
                         On the curiosity we haven't necessarily lost,
                         the fear of failure, and a life in which
-                        we sometimes forget what it feels like to be a beginner.
+                        we sometimes forget what it feels like
+                        to be a beginner.
                     </p>
 
                     <span class="journal-post-author">
@@ -978,65 +1134,105 @@
 </main>
 
 <!-- =====================================
-     EXISTING SITE SCRIPT
+     SHARED SITE SCRIPT
      ===================================== -->
 
 <script src="script.js"></script>
 
-<!-- MOVE&TRY PWA NAVIGATION -->
-<script src="/app/app-navigation.js" defer></script>
+<!-- =====================================
+     MOVE&TRY APP / PWA NAVIGATION
+     ===================================== -->
+
+<script
+    src="/app/app-navigation.js"
+    defer
+></script>
 
 <!-- =====================================
-     JOURNAL CATEGORY FILTER
+     JOURNAL FILTER + SCHEDULING
      ===================================== -->
 
 <script>
-    (function () {
+(function () {
 
-        const buttons = document.querySelectorAll(
+    const buttons =
+        document.querySelectorAll(
             '.journal-category'
         );
 
-        const posts = document.querySelectorAll(
+    const posts =
+        document.querySelectorAll(
             '.journal-post'
         );
 
-        const emptyState = document.getElementById(
+    const emptyState =
+        document.getElementById(
             'journal-empty'
         );
 
-        const heading = document.getElementById(
+    const heading =
+        document.getElementById(
             'journal-section-heading'
         );
 
-        const count = document.getElementById(
+    const count =
+        document.getElementById(
             'journal-count'
         );
 
-        const labels = {
-            all: 'ALL POSTS',
-            editorial: 'EDITORIALS',
-            personal: 'PERSONAL COLUMNS',
-            guest: 'GUEST STORIES',
-            news: 'NEWS',
-            inspiration: 'INSPIRATION'
-        };
+    const labels = {
+        all: 'ALL POSTS',
+        editorial: 'EDITORIALS',
+        personal: 'PERSONAL COLUMNS',
+        guest: 'GUEST STORIES',
+        news: 'NEWS',
+        inspiration: 'INSPIRATION'
+    };
 
-        function countLabel(number) {
-            return number + (number === 1 ? ' POST' : ' POSTS');
+    function countLabel(number) {
+
+        return number +
+            (
+                number === 1
+                    ? ' POST'
+                    : ' POSTS'
+            );
+
+    }
+
+    function isPublished(post) {
+
+        const publishAt =
+            post.dataset.publishAt;
+
+        if (!publishAt) {
+            return true;
         }
 
-        let activeCategory = 'all';
+        const timestamp =
+            Date.parse(publishAt);
 
-        function filterPosts(category) {
+        if (!Number.isFinite(timestamp)) {
+            return false;
+        }
 
-            activeCategory = category;
-            let visibleCount = 0;
+        return Date.now() >= timestamp;
+    }
 
-            buttons.forEach(function (button) {
+    let activeCategory = 'all';
+
+    function filterPosts(category) {
+
+        activeCategory = category;
+
+        let visibleCount = 0;
+
+        buttons.forEach(
+            function (button) {
 
                 const selected =
-                    button.dataset.category === category;
+                    button.dataset.category ===
+                    category;
 
                 button.classList.toggle(
                     'active',
@@ -1048,55 +1244,129 @@
                     String(selected)
                 );
 
-            });
+            }
+        );
 
-            posts.forEach(function (post) {
+        posts.forEach(
+            function (post) {
 
-                const publishAt = post.dataset.publishAt;
                 const published =
-                    !publishAt ||
-                    Date.now() >= Date.parse(publishAt);
+                    isPublished(post);
 
-                const matches =
+                const categoryMatches =
+                    category === 'all' ||
+                    post.dataset.category ===
+                        category;
+
+                const visible =
                     published &&
-                    (category === 'all' ||
-                     post.dataset.category === category);
+                    categoryMatches;
 
-                post.hidden = !matches;
+                post.hidden = !visible;
 
-                if (matches) {
-                    visibleCount++;
+                if (visible) {
+                    visibleCount += 1;
                 }
 
-            });
+            }
+        );
 
-            heading.textContent = labels[category];
-            count.textContent = countLabel(visibleCount);
-            emptyState.hidden = visibleCount > 0;
+        heading.textContent =
+            labels[category] ||
+            labels.all;
 
-        }
+        count.textContent =
+            countLabel(
+                visibleCount
+            );
 
-        buttons.forEach(function (button) {
+        emptyState.hidden =
+            visibleCount > 0;
+
+    }
+
+    buttons.forEach(
+        function (button) {
 
             button.addEventListener(
                 'click',
                 function () {
-                    filterPosts(button.dataset.category);
+
+                    filterPosts(
+                        button.dataset.category
+                    );
+
                 }
             );
 
-        });
+        }
+    );
 
-        filterPosts('all');
+    filterPosts('all');
 
-        // Refresh scheduled posts while the page remains open.
-        window.setInterval(function () {
-            filterPosts(activeCategory);
-        }, 30000);
+    /*
+       If the Journal stays open
+       when a scheduled publication
+       goes live, the new post appears
+       without refreshing the page.
+    */
 
-    })();
+    window.setInterval(
+        function () {
+
+            filterPosts(
+                activeCategory
+            );
+
+        },
+        30000
+    );
+
+})();
 </script>
 
-  <script src="/consent.js" defer></script>
+<!-- =====================================
+     MOVE&TRY PUBLIC SERVICE WORKER
+     ===================================== -->
+
+<script>
+if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+) {
+    window.addEventListener(
+        'load',
+        () => {
+
+            navigator.serviceWorker
+                .register(
+                    '/sw.js',
+                    {
+                        scope: '/'
+                    }
+                )
+                .catch(
+                    error =>
+                        console.warn(
+                            'MOVE&TRY public service worker:',
+                            error
+                        )
+                );
+
+        }
+    );
+}
+</script>
+
+<!-- =====================================
+     CONSENT
+     ===================================== -->
+
+<script
+    src="/consent.js"
+    defer
+></script>
+
 </body>
 </html>
