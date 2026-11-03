@@ -227,23 +227,43 @@
     border-bottom-color: #6F7967;
 }
 
-.journal-column-intro {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 30px 0 8px;
-    text-align: center;
+/* COLUMN PROFILE */
+
+.journal-column-profile {
+    margin: 30px auto 0;
+    padding: 34px 38px 36px;
+    border: 1px solid #BFC4B8;
+    background: rgba(111, 121, 103, 0.045);
 }
 
-.journal-column-intro[hidden] {
+.journal-column-profile[hidden] {
     display: none;
 }
 
-.journal-column-intro p {
-    margin: 0;
+.journal-column-profile-title {
+    margin: 0 0 20px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6F7967;
+}
+
+.journal-column-profile-copy {
+    max-width: 760px;
+}
+
+.journal-column-profile-copy p {
+    margin: 0 0 12px;
     font-family: 'Manrope', sans-serif;
     font-size: 13px;
-    line-height: 1.8;
-    color: #666666;
+    line-height: 1.85;
+    color: #555550;
+}
+
+.journal-column-profile-copy p:last-child {
+    margin-bottom: 0;
 }
 
 /* CONTENT */
@@ -491,13 +511,18 @@
         font-size: 9px;
     }
 
-    .journal-column-intro {
-        padding: 24px 0 4px;
-        text-align: left;
+    .journal-column-profile {
+        margin-top: 24px;
+        padding: 26px 24px 28px;
     }
 
-    .journal-column-intro p {
+    .journal-column-profile-title {
+        margin-bottom: 16px;
+    }
+
+    .journal-column-profile-copy p {
         font-size: 12px;
+        line-height: 1.8;
     }
 
     .journal-content {
@@ -605,8 +630,6 @@
 
 <body class="journal-page">
 
-<!-- HEADER -->
-
 <header class="site-header">
 
     <a href="/hr/"
@@ -649,8 +672,6 @@
     </div>
 </header>
 
-<!-- MOBILE MENU -->
-
 <div class="mobile-menu">
 
     <nav>
@@ -674,8 +695,6 @@
 
 <main>
 
-    <!-- HERO -->
-
     <section class="journal-hero">
         <div class="journal-intro">
 
@@ -695,8 +714,6 @@
 
         </div>
     </section>
-
-    <!-- CATEGORIES -->
 
     <div class="journal-category-wrap">
 
@@ -748,8 +765,6 @@
         </nav>
     </div>
 
-    <!-- COLUMN FILTER -->
-
     <div class="journal-column-wrap"
          id="journal-column-wrap"
          hidden>
@@ -773,17 +788,21 @@
 
         </nav>
 
-        <div class="journal-column-intro"
-             id="journal-column-intro"
-             hidden>
+        <section class="journal-column-profile"
+                 id="journal-column-profile"
+                 hidden>
 
-            <p id="journal-column-intro-text"></p>
+            <h3 class="journal-column-profile-title"
+                id="journal-column-profile-title">
+            </h3>
 
-        </div>
+            <div class="journal-column-profile-copy"
+                 id="journal-column-profile-copy">
+            </div>
+
+        </section>
 
     </div>
-
-    <!-- ARTICLES -->
 
     <section class="journal-content"
              aria-labelledby="journal-section-heading">
@@ -804,8 +823,6 @@
 
         <div class="journal-posts"
              id="journal-posts">
-
-            <!-- ZAKAZANA OBJAVA: 7. 11. 2026. u 11:00 Europe/Zagreb (10:00 UTC) -->
 
             <a class="journal-post"
                href="/hr/care-begins-with-psychotherapy.html"
@@ -840,8 +857,6 @@
                 </div>
             </a>
 
-            <!-- ZAKAZANA OBJAVA: 29. 10. 2026. u 09:00 Europe/Zagreb (08:00 UTC) -->
-
             <a class="journal-post"
                href="/hr/where-do-adults-meet.html"
                data-category="editorial"
@@ -874,14 +889,6 @@
 
                 </div>
             </a>
-
-            <!--
-                ZAKAZANA OBJAVA
-                25. 10. 2026. u 09:00 Europe/Zagreb
-
-                Hrvatska tada prelazi na zimsko vrijeme.
-                09:00 Zagreb = 08:00 UTC.
-            -->
 
             <a class="journal-post"
                href="/hr/from-curiosity-to-your-own-scent.html"
@@ -917,8 +924,6 @@
 
                 </div>
             </a>
-
-            <!-- PERSONAL COLUMN -->
 
             <a class="journal-post"
                href="/hr/what-if-i-try.html"
@@ -959,8 +964,6 @@
                 </div>
             </a>
 
-            <!-- EDITORIAL ARTICLE -->
-
             <a class="journal-post"
                href="/hr/why-adults-find-it-harder-to-try-new-things.html"
                data-category="editorial">
@@ -995,8 +998,6 @@
 
         </div>
 
-        <!-- EMPTY STATE -->
-
         <div class="journal-empty"
              id="journal-empty"
              hidden>
@@ -1016,8 +1017,6 @@
         </div>
 
     </section>
-
-    <!-- WRITE FOR THE JOURNAL -->
 
     <section class="journal-contribute"
              aria-labelledby="journal-contribute-title">
@@ -1050,15 +1049,9 @@
 
 </main>
 
-<!-- SHARED SITE SCRIPT -->
-
 <script src="../script.js"></script>
 
-<!-- MOVE&TRY PWA NAVIGATION -->
-
 <script src="/app/app-navigation.js" defer></script>
-
-<!-- JOURNAL CATEGORY FILTER AND SCHEDULING -->
 
 <script>
 (function () {
@@ -1091,12 +1084,16 @@
         '.journal-column'
     );
 
-    const columnIntro = document.getElementById(
-        'journal-column-intro'
+    const columnProfile = document.getElementById(
+        'journal-column-profile'
     );
 
-    const columnIntroText = document.getElementById(
-        'journal-column-intro-text'
+    const columnProfileTitle = document.getElementById(
+        'journal-column-profile-title'
+    );
+
+    const columnProfileCopy = document.getElementById(
+        'journal-column-profile-copy'
     );
 
     const labels = {
@@ -1107,6 +1104,24 @@
         news: 'NOVOSTI',
         inspiration: 'INSPIRACIJA'
     };
+
+    const columnNames = {
+        lidija: 'LIDIJA | MOVE&TRY'
+    };
+
+    const columnProfiles = {
+        lidija: {
+            title: 'LIDIJA | MOVE&TRY',
+            paragraphs: [
+                'Osobna kolumna osnivačice MOVE&TRY i urednice The Journala.',
+                'O znatiželji, novim počecima, ljudima, idejama i svemu što nastaje između pitanja „što ako?” i odluke da ipak probamo.',
+                'Ponekad o MOVE&TRY-u iza kulisa, ponekad o vlastitim iskustvima, a ponekad jednostavno o stvarima koje me natjeraju da zastanem, razmislim ili pogledam nešto malo drukčije.'
+            ]
+        }
+    };
+
+    let activeCategory = 'all';
+    let activeColumn = 'all';
 
     function countLabel(number) {
 
@@ -1128,12 +1143,41 @@
         return number + ' OBJAVA';
     }
 
-    const columnIntros = {
-        lidija: 'Osobna kolumna osnivačice MOVE&TRY i urednice The Journala.'
-    };
+    function renderColumnProfile() {
 
-    let activeCategory = 'all';
-    let activeColumn = 'all';
+        const profile =
+            columnProfiles[activeColumn];
+
+        if (
+            activeCategory !== 'personal' ||
+            !profile
+        ) {
+            columnProfile.hidden = true;
+            columnProfileTitle.textContent = '';
+            columnProfileCopy.innerHTML = '';
+            return;
+        }
+
+        columnProfileTitle.textContent =
+            profile.title;
+
+        columnProfileCopy.innerHTML = '';
+
+        profile.paragraphs.forEach(function (text) {
+
+            const paragraph =
+                document.createElement('p');
+
+            paragraph.textContent = text;
+
+            columnProfileCopy.appendChild(
+                paragraph
+            );
+
+        });
+
+        columnProfile.hidden = false;
+    }
 
     function updateColumnFilter() {
 
@@ -1159,19 +1203,32 @@
 
         });
 
-        const intro =
-            activeColumn !== 'all'
-                ? columnIntros[activeColumn]
-                : '';
+        renderColumnProfile();
+    }
 
-        columnIntroText.textContent = intro || '';
-        columnIntro.hidden = !showColumns || !intro;
+    function isPublished(post) {
 
+        const publishAt =
+            post.dataset.publishAt;
+
+        if (!publishAt) {
+            return true;
+        }
+
+        const timestamp =
+            Date.parse(publishAt);
+
+        if (Number.isNaN(timestamp)) {
+            return false;
+        }
+
+        return Date.now() >= timestamp;
     }
 
     function filterPosts(category) {
 
         activeCategory = category;
+
         let visibleCount = 0;
 
         buttons.forEach(function (button) {
@@ -1193,11 +1250,8 @@
 
         posts.forEach(function (post) {
 
-            const publishAt = post.dataset.publishAt;
-
             const published =
-                !publishAt ||
-                Date.now() >= Date.parse(publishAt);
+                isPublished(post);
 
             const categoryMatches =
                 category === 'all' ||
@@ -1223,10 +1277,23 @@
 
         updateColumnFilter();
 
-        heading.textContent = labels[category];
-        count.textContent = countLabel(visibleCount);
-        emptyState.hidden = visibleCount > 0;
+        if (
+            category === 'personal' &&
+            activeColumn !== 'all'
+        ) {
+            heading.textContent =
+                columnNames[activeColumn] ||
+                labels[category];
+        } else {
+            heading.textContent =
+                labels[category];
+        }
 
+        count.textContent =
+            countLabel(visibleCount);
+
+        emptyState.hidden =
+            visibleCount > 0;
     }
 
     buttons.forEach(function (button) {
@@ -1267,9 +1334,6 @@
 
     filterPosts('all');
 
-    // Provjerava zakazane objave svakih 30 sekundi.
-    // Radi i ako posjetitelj ostavi Journal otvoren.
-
     window.setInterval(function () {
         filterPosts(activeCategory);
     }, 30000);
@@ -1278,6 +1342,25 @@
 </script>
 
 <script src="/consent.js" defer></script>
+
+<script>
+if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/sw.js', { scope: '/' })
+            .catch(error =>
+                console.warn(
+                    'MOVE&TRY public service worker:',
+                    error
+                )
+            );
+    });
+}
+</script>
 
 </body>
 </html>
