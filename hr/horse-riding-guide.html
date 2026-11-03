@@ -41,6 +41,9 @@
 <meta property="og:description"
       content="Osnovne informacije o prvom satu jahanja, opremi, sigurnosti i ponašanju u blizini konja.">
 
+<meta property="og:image"
+      content="https://moveandtry.com/images/horse-riding-guide-hero.jpg">
+
 <link rel="preconnect"
       href="https://fonts.googleapis.com">
 
@@ -51,244 +54,1535 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet">
 
+<!-- Google Analytics -->
+<script async
+        src="https://www.googletagmanager.com/gtag/js?id=G-PREYRXPPN8">
+</script>
+
+<script>
+
+window.dataLayer =
+    window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag(
+    'js',
+    new Date()
+);
+
+gtag(
+    'config',
+    'G-PREYRXPPN8'
+);
+
+</script>
+
 <link rel="stylesheet"
       href="../style.css">
 
 <link rel="stylesheet"
       href="/app/app-navigation.css">
 
+
 <style>
 
 /* ==========================================
-   HORSE RIDING GUIDE
+   MOVE & TRY
+   HORSE RIDING GUIDE / HR
 ========================================== */
 
-.horse-guide-author {
-    margin-top: 34px;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255,255,255,.28);
-    color: rgba(255,255,255,.82);
-    font-family: 'Manrope', sans-serif;
-}
+.try-page.mt-editorial-try {
 
-.horse-guide-author strong {
-    display: block;
-    margin-bottom: 5px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: .04em;
-}
+    --try-green: #17251E;
+    --try-green-soft: #B7C5B3;
+    --try-paper: #F7F7F4;
+    --try-ink: #202420;
+    --try-border: #D9DDD5;
 
-.horse-guide-author span {
-    display: block;
-    font-size: 12px;
-    line-height: 1.6;
-}
-
-.horse-guide-intro {
-    max-width: 760px;
-}
-
-.horse-guide-intro p:last-child {
-    margin-bottom: 0;
-}
-
-.horse-guide-list {
-    margin: 22px 0 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     padding: 0;
-    list-style: none;
+
+    background: var(--try-paper);
+    color: var(--try-ink);
+
 }
 
-.horse-guide-list li {
-    position: relative;
-    margin: 0 0 14px;
-    padding-left: 24px;
-    color: #343832;
-    font-family: 'Manrope', sans-serif;
-    font-size: 16px;
-    line-height: 1.75;
+
+.mt-editorial-try,
+.mt-editorial-try * {
+    box-sizing: border-box;
 }
 
-.horse-guide-list li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #17251e;
-    font-weight: 800;
+
+/* ==========================================
+   BACK
+========================================== */
+
+.mt-editorial-try .try-back-wrap {
+
+    background:
+        var(--try-paper);
+
 }
+
+
+.mt-editorial-try .try-back {
+
+    display: block;
+
+    width:
+        min(100% - 48px, 1100px);
+
+    margin:
+        0 auto;
+
+    padding:
+        29px 0;
+
+    color:
+        var(--try-green);
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .10em;
+
+    text-decoration:
+        none;
+
+}
+
+
+.mt-editorial-try .try-back:hover {
+
+    text-decoration:
+        underline;
+
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.mt-editorial-try .try-editorial-hero {
+
+    width:
+        100%;
+
+    max-width:
+        none;
+
+    margin:
+        0;
+
+    padding:
+        76px 24px 84px;
+
+    background:
+        var(--try-green);
+
+    color:
+        #FFFFFF;
+
+}
+
+
+.mt-editorial-try .try-editorial-hero-inner {
+
+    width:
+        min(100%, 1100px);
+
+    margin:
+        0 auto;
+
+}
+
+
+.mt-editorial-try .try-editorial-top {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        16px;
+
+    padding-bottom:
+        20px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.22);
+
+}
+
+
+.mt-editorial-try
+.try-editorial-top span {
+
+    color:
+        var(--try-green-soft);
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .15em;
+
+}
+
+
+.mt-editorial-try
+.try-editorial-category {
+
+    margin:
+        43px 0 18px;
+
+    color:
+        #C9D6C4;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .17em;
+
+}
+
+
+.mt-editorial-try
+.try-editorial-hero h1 {
+
+    max-width:
+        980px;
+
+    margin:
+        0 0 26px;
+
+    color:
+        #FFFFFF;
+
+    font-family:
+        'DM Serif Display',
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            48px,
+            7vw,
+            88px
+        );
+
+    font-weight:
+        400;
+
+    line-height:
+        1.06;
+
+    letter-spacing:
+        -.025em;
+
+}
+
+
+.mt-editorial-try
+.try-editorial-intro {
+
+    max-width:
+        720px;
+
+    margin:
+        0 0 36px;
+
+    color:
+        rgba(255,255,255,.88);
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        clamp(
+            16px,
+            1.8vw,
+            19px
+        );
+
+    line-height:
+        1.85;
+
+}
+
+
+.mt-editorial-try
+.try-editorial-scroll {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    color:
+        #C9D6C4;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .15em;
+
+    text-decoration:
+        none;
+
+}
+
+
+.mt-editorial-try
+.try-editorial-scroll::before {
+
+    content:
+        "";
+
+    width:
+        34px;
+
+    height:
+        2px;
+
+    background:
+        #A5B9A3;
+
+}
+
+
+/* ==========================================
+   HERO PHOTO
+========================================== */
+
+.horse-guide-hero-photo-wrap {
+
+    width:
+        100%;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    background:
+        #E8E9E2;
+
+    overflow:
+        hidden;
+
+}
+
+
+.horse-guide-hero-photo {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        min(62vw, 760px);
+
+    object-fit:
+        cover;
+
+    object-position:
+        center 48%;
+
+}
+
+
+/* ==========================================
+   ARTICLE
+========================================== */
+
+.mt-editorial-try
+.try-editorial-article {
+
+    width:
+        min(100% - 48px, 760px);
+
+    margin:
+        0 auto;
+
+    padding:
+        78px 0 96px;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.95;
+
+}
+
+
+.mt-editorial-try
+.try-section {
+
+    width:
+        100%;
+
+    max-width:
+        none;
+
+    margin:
+        0 0 76px;
+
+    padding:
+        0;
+
+    background:
+        transparent;
+
+    border:
+        0;
+
+    box-shadow:
+        none;
+
+}
+
+
+.mt-editorial-try
+.try-section:last-child {
+
+    margin-bottom:
+        0;
+
+}
+
+
+.mt-editorial-try
+.try-section .section-label {
+
+    display:
+        block;
+
+    margin:
+        0 0 14px;
+
+    color:
+        #607665;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .17em;
+
+    line-height:
+        1.6;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.mt-editorial-try
+.try-section h2 {
+
+    margin:
+        0 0 26px;
+
+    color:
+        #18231B;
+
+    font-family:
+        'DM Serif Display',
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            31px,
+            4vw,
+            43px
+        );
+
+    font-weight:
+        400;
+
+    line-height:
+        1.22;
+
+    letter-spacing:
+        -.02em;
+
+}
+
+
+.mt-editorial-try
+.try-section h3 {
+
+    color:
+        #1D281F;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-weight:
+        800;
+
+}
+
+
+.mt-editorial-try
+.try-section p {
+
+    margin:
+        0 0 22px;
+
+    color:
+        #414941;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    line-height:
+        1.9;
+
+}
+
+
+.mt-editorial-try
+.try-section p:last-child {
+
+    margin-bottom:
+        0;
+
+}
+
+
+/* ==========================================
+   EQUIPMENT
+========================================== */
+
+.mt-editorial-try
+.need-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        18px;
+
+    margin:
+        32px 0;
+
+}
+
+
+.mt-editorial-try
+.need-box {
+
+    min-width:
+        0;
+
+    margin:
+        0;
+
+    padding:
+        27px 25px;
+
+    background:
+        #E9EDE6;
+
+    border:
+        1px solid #D9E0D6;
+
+    box-shadow:
+        none;
+
+}
+
+
+.mt-editorial-try
+.need-box:nth-child(2) {
+
+    background:
+        #F0F0EC;
+
+    border-color:
+        #E0E0DB;
+
+}
+
+
+.mt-editorial-try
+.need-box h3 {
+
+    margin:
+        0 0 18px;
+
+    font-size:
+        13px;
+
+    letter-spacing:
+        .10em;
+
+}
+
+
+.mt-editorial-try
+.need-box p {
+
+    margin:
+        0 0 13px;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.65;
+
+}
+
+
+.mt-editorial-try
+.need-box p:last-child {
+
+    margin-bottom:
+        0;
+
+}
+
+
+/* ==========================================
+   INTRO / SUBSECTIONS
+========================================== */
 
 .horse-guide-subsection {
-    margin-top: 42px;
+
+    margin-top:
+        42px;
+
 }
+
 
 .horse-guide-subsection h3 {
-    margin: 0 0 15px;
-    color: #17251e;
-    font-family: 'Manrope', sans-serif;
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: .035em;
-    line-height: 1.4;
-    text-transform: uppercase;
+
+    margin:
+        0 0 15px;
+
+    color:
+        #17251E;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        14px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .07em;
+
+    line-height:
+        1.45;
+
+    text-transform:
+        uppercase;
+
 }
+
+
+/* ==========================================
+   FIRST LESSON PHOTO
+========================================== */
+
+.horse-guide-inline-photo {
+
+    margin:
+        42px 0 8px;
+
+}
+
+
+.horse-guide-inline-photo img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        auto;
+
+}
+
+
+.horse-guide-inline-photo figcaption {
+
+    margin-top:
+        11px;
+
+    color:
+        #747B74;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        11px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* ==========================================
+   FUN FACT
+========================================== */
 
 .horse-guide-fun {
-    margin: 42px 0 0;
-    padding: 30px;
-    border: 1px solid #cfd3ca;
-    background: #f1f1ec;
+
+    margin:
+        38px 0 0;
+
+    padding:
+        28px 30px;
+
+    background:
+        #E9EDE6;
+
+    border-left:
+        3px solid #78927B;
+
 }
+
 
 .horse-guide-fun-label {
-    margin: 0 0 12px !important;
-    color: #74776f !important;
-    font-family: 'Manrope', sans-serif !important;
-    font-size: 10px !important;
-    font-weight: 800 !important;
-    letter-spacing: .15em !important;
-    text-transform: uppercase;
+
+    margin:
+        0 0 10px !important;
+
+    color:
+        #607665 !important;
+
+    font-family:
+        'Manrope',
+        sans-serif !important;
+
+    font-size:
+        10px !important;
+
+    font-weight:
+        800 !important;
+
+    letter-spacing:
+        .16em !important;
+
+    text-transform:
+        uppercase;
+
 }
 
-.horse-guide-fun p:last-child {
-    margin-bottom: 0;
-}
+
+/* ==========================================
+   QUOTES
+========================================== */
 
 .horse-guide-quote {
-    margin: 35px 0 0;
-    padding: 28px 30px;
-    border-left: 3px solid #17251e;
-    background: #f1f1ec;
+
+    margin:
+        35px 0 0;
+
+    padding:
+        28px 30px;
+
+    background:
+        #F0F0EC;
+
+    border-left:
+        3px solid #819B83;
+
 }
+
 
 .horse-guide-quote p {
-    margin-bottom: 15px !important;
+
+    margin:
+        0 0 15px !important;
+
 }
+
 
 .horse-guide-quote cite {
-    color: #74776f;
-    font-family: 'Manrope', sans-serif;
-    font-size: 11px;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: .05em;
-    text-transform: uppercase;
+
+    display:
+        block;
+
+    color:
+        #6E756D;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        11px;
+
+    font-style:
+        normal;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .08em;
+
+    text-transform:
+        uppercase;
+
 }
+
+
+/* ==========================================
+   LIST
+========================================== */
+
+.horse-guide-list {
+
+    margin:
+        20px 0 0;
+
+    padding:
+        0;
+
+    list-style:
+        none;
+
+}
+
+
+.horse-guide-list li {
+
+    position:
+        relative;
+
+    margin:
+        0 0 13px;
+
+    padding-left:
+        24px;
+
+    color:
+        #414941;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    line-height:
+        1.75;
+
+}
+
+
+.horse-guide-list li::before {
+
+    content:
+        "→";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    color:
+        #607665;
+
+    font-weight:
+        800;
+
+}
+
+
+/* ==========================================
+   PERSONAL TIPS
+========================================== */
 
 .horse-guide-numbered {
-    counter-reset: horse-tip;
-    margin-top: 30px;
+
+    margin-top:
+        32px;
+
+    counter-reset:
+        horse-tip;
+
 }
+
 
 .horse-guide-tip {
-    counter-increment: horse-tip;
-    margin: 0 0 42px;
-    padding-top: 30px;
-    border-top: 1px solid #d6d9d2;
+
+    counter-increment:
+        horse-tip;
+
+    margin:
+        0;
+
+    padding:
+        30px 0;
+
+    border-top:
+        1px solid
+        var(--try-border);
+
 }
+
+
+.horse-guide-tip:last-child {
+
+    border-bottom:
+        1px solid
+        var(--try-border);
+
+}
+
 
 .horse-guide-tip h3 {
-    margin: 0 0 15px;
-    color: #17251e;
-    font-family: 'DM Serif Display', serif;
-    font-size: 27px;
-    font-weight: 400;
-    line-height: 1.2;
+
+    margin:
+        0 0 14px;
+
+    color:
+        #17251E;
+
+    font-family:
+        'DM Serif Display',
+        Georgia,
+        serif;
+
+    font-size:
+        26px;
+
+    font-weight:
+        400;
+
+    line-height:
+        1.25;
+
 }
+
 
 .horse-guide-tip h3::before {
-    content: counter(horse-tip, decimal-leading-zero) " / ";
-    color: #8b9088;
-    font-family: 'Manrope', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .12em;
-    vertical-align: middle;
+
+    content:
+        counter(
+            horse-tip,
+            decimal-leading-zero
+        ) " / ";
+
+    color:
+        #65816B;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .12em;
+
+    vertical-align:
+        middle;
+
 }
 
-.horse-guide-author-box {
-    margin-top: 70px;
-    padding: 40px;
-    border: 1px solid #bfc4b8;
-    background: rgba(111,121,103,.045);
+
+/* ==========================================
+   AUTHOR
+========================================== */
+
+.horse-guide-author-section {
+
+    margin:
+        84px 0 0;
+
+    padding:
+        0;
+
+    border:
+        1px solid #BFC4B8;
+
+    background:
+        rgba(111,121,103,.045);
+
 }
+
+
+.horse-guide-author-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        220px minmax(0, 1fr);
+
+    min-height:
+        285px;
+
+}
+
+
+.horse-guide-author-photo {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    min-height:
+        285px;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+}
+
+
+.horse-guide-author-copy {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    padding:
+        38px 40px;
+
+}
+
 
 .horse-guide-author-label {
-    margin: 0 0 14px !important;
-    color: #6f7967 !important;
-    font-family: 'Manrope', sans-serif !important;
-    font-size: 10px !important;
-    font-weight: 800 !important;
-    letter-spacing: .15em !important;
-    text-transform: uppercase;
+
+    margin:
+        0 0 13px !important;
+
+    color:
+        #6F7967 !important;
+
+    font-family:
+        'Manrope',
+        sans-serif !important;
+
+    font-size:
+        10px !important;
+
+    font-weight:
+        800 !important;
+
+    letter-spacing:
+        .16em !important;
+
+    text-transform:
+        uppercase;
+
 }
 
-.horse-guide-author-box h2 {
-    margin: 0 0 8px;
-    color: #17251e;
-    font-family: 'DM Serif Display', serif;
-    font-size: 34px;
-    font-weight: 400;
+
+.horse-guide-author-copy h2 {
+
+    margin:
+        0 0 10px;
+
+    color:
+        #17251E;
+
+    font-family:
+        'DM Serif Display',
+        Georgia,
+        serif;
+
+    font-size:
+        35px;
+
+    font-weight:
+        400;
+
+    line-height:
+        1.15;
+
 }
+
 
 .horse-guide-author-role {
-    margin: 0 !important;
-    color: #60655e !important;
-    font-size: 14px !important;
+
+    margin:
+        0 !important;
+
+    color:
+        #60675F !important;
+
+    font-size:
+        14px !important;
+
+    line-height:
+        1.7 !important;
+
 }
+
+
+/* ==========================================
+   SOURCES
+========================================== */
 
 .horse-guide-sources {
-    margin-top: 70px;
-    padding-top: 35px;
-    border-top: 1px solid #cfd3ca;
+
+    margin:
+        70px 0 0;
+
+    padding:
+        35px 0 0;
+
+    border-top:
+        1px solid
+        var(--try-border);
+
 }
+
 
 .horse-guide-sources h2 {
-    margin: 0 0 25px;
-    color: #17251e;
-    font-family: 'DM Serif Display', serif;
-    font-size: 32px;
-    font-weight: 400;
+
+    margin:
+        0 0 24px;
+
+    color:
+        #17251E;
+
+    font-family:
+        'DM Serif Display',
+        Georgia,
+        serif;
+
+    font-size:
+        32px;
+
+    font-weight:
+        400;
+
 }
+
 
 .horse-guide-sources ol {
-    margin: 0;
-    padding-left: 22px;
+
+    margin:
+        0;
+
+    padding-left:
+        21px;
+
 }
+
 
 .horse-guide-sources li {
-    margin-bottom: 12px;
-    color: #555a53;
-    font-family: 'Manrope', sans-serif;
-    font-size: 13px;
-    line-height: 1.7;
+
+    margin:
+        0 0 11px;
+
+    color:
+        #5B625A;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+
 }
 
+
 .horse-guide-sources a {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+
+    color:
+        inherit;
+
+    text-decoration:
+        underline;
+
+    text-underline-offset:
+        3px;
+
 }
+
+
+/* ==========================================
+   FOOTER NAV
+========================================== */
+
+.mt-editorial-try
+.guide-footer-nav {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    max-width:
+        none;
+
+    margin:
+        0;
+
+    padding:
+        36px 24px;
+
+    background:
+        var(--try-paper);
+
+    text-align:
+        center;
+
+}
+
+
+.mt-editorial-try
+.guide-footer-nav a,
+.mt-editorial-try
+.guide-footer-nav a:visited {
+
+    display:
+        inline-block;
+
+    color:
+        var(--try-green);
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.6;
+
+    letter-spacing:
+        .10em;
+
+    text-decoration:
+        none;
+
+}
+
+
+.mt-editorial-try
+.guide-footer-nav a:hover {
+
+    text-decoration:
+        underline;
+
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.header-actions
+.header-behind-link {
+
+    color:
+        #555;
+
+    font-family:
+        'Manrope',
+        sans-serif;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .04em;
+
+    text-decoration:
+        none;
+
+    white-space:
+        nowrap;
+
+    transition:
+        opacity .2s ease;
+
+}
+
+
+.header-actions
+.header-behind-link:hover {
+
+    opacity:
+        .55;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .mt-editorial-try
+    .try-back {
+
+        width:
+            calc(100% - 40px);
+
+        padding:
+            24px 0;
+
+    }
+
+
+    .mt-editorial-try
+    .try-editorial-hero {
+
+        padding:
+            52px 20px 64px;
+
+    }
+
+
+    .mt-editorial-try
+    .try-editorial-top {
+
+        gap:
+            10px;
+
+    }
+
+
+    .mt-editorial-try
+    .try-editorial-top span {
+
+        font-size:
+            10px;
+
+    }
+
+
+    .mt-editorial-try
+    .try-editorial-category {
+
+        margin-top:
+            35px;
+
+    }
+
+
+    .mt-editorial-try
+    .try-editorial-hero h1 {
+
+        font-size:
+            clamp(
+                43px,
+                11vw,
+                64px
+            );
+
+    }
+
+
+    .horse-guide-hero-photo {
+
+        height:
+            60vh;
+
+        max-height:
+            620px;
+
+        object-position:
+            58% center;
+
+    }
+
+
+    .mt-editorial-try
+    .try-editorial-article {
+
+        width:
+            calc(100% - 40px);
+
+        padding:
+            56px 0 75px;
+
+        font-size:
+            15px;
+
+    }
+
+
+    .mt-editorial-try
+    .try-section {
+
+        margin-bottom:
+            56px;
+
+    }
+
+
+    .mt-editorial-try
+    .need-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .horse-guide-author-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .horse-guide-author-photo {
+
+        height:
+            380px;
+
+        min-height:
+            0;
+
+        object-position:
+            center 30%;
+
+    }
+
+
+    .horse-guide-author-copy {
+
+        padding:
+            30px 25px;
+
+    }
+
+}
+
 
 @media (max-width: 768px) {
 
-    .horse-guide-author-box {
-        padding: 30px 24px;
-    }
+    .site-header
+    .header-behind-link {
 
-    .horse-guide-fun,
-    .horse-guide-quote {
-        padding: 24px 22px;
-    }
+        display:
+            none !important;
 
-    .horse-guide-tip h3 {
-        font-size: 24px;
     }
 
 }
 
 </style>
+
 
 <link rel="stylesheet"
       href="/consent.css">
@@ -359,10 +1653,12 @@
         </div>
 
 
-        <button class="menu-toggle"
-                type="button"
-                aria-label="Otvori izbornik"
-                aria-expanded="false">
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Otvori izbornik"
+            aria-expanded="false"
+        >
 
             <span></span>
             <span></span>
@@ -475,7 +1771,7 @@
 
             <p class="try-editorial-intro">
                 Vodič za početnike u jahanju.<br>
-                Osnove koje je dobro znati prije prvog sjedanja u sedlo.
+                Osnovne informacije o konjima, opremi i prvom susretu sa sedlom.
             </p>
 
 
@@ -484,22 +1780,26 @@
                 ISTRAŽI VODIČ ↓
             </a>
 
-
-            <div class="horse-guide-author">
-
-                <strong>
-                    Autorica vodiča · Kristina Rom
-                </strong>
-
-                <span>
-                    Knjižničarka i strastvena zaljubljenica u konje (equestrian)
-                </span>
-
-            </div>
-
         </div>
 
     </header>
+
+
+    <!-- ==========================================
+         HERO IMAGE
+    ========================================== -->
+
+    <figure class="horse-guide-hero-photo-wrap">
+
+        <img
+            class="horse-guide-hero-photo"
+            src="/images/horse-riding-guide-hero.jpg"
+            alt="Kristina jaše konja na otvorenom"
+            loading="eager"
+            fetchpriority="high"
+        >
+
+    </figure>
 
 
     <!-- ==========================================
@@ -513,8 +1813,10 @@
              01 / INTRO
         ========================================== -->
 
-        <section class="try-section"
-                 id="first-step">
+        <section
+            class="try-section"
+            id="first-step"
+        >
 
             <p class="section-label">
                 01 / PRVI PUT U SEDLU
@@ -525,35 +1827,31 @@
             </h2>
 
 
-            <div class="horse-guide-intro">
+            <p>
+                Odlučili ste prvi put sjesti u sedlo.
+            </p>
 
-                <p>
-                    Odlučili ste prvi put sjesti u sedlo.
-                </p>
+            <p>
+                Svaki početak je težak, ali ako još dodate
+                životinju sa svojom voljom tešku 550 kg,
+                vjerujem da odabir za ovaj sport nije bio lagan.
+                Ali napravili ste prvi korak i pokazali interes –
+                što je pravi pristup.
+            </p>
 
-                <p>
-                    Svaki početak je težak, ali ako još dodate
-                    životinju sa svojom voljom tešku 550 kg,
-                    vjerujem da odabir za ovaj sport nije bio lagan.
-                    Ali napravili ste prvi korak i pokazali interes –
-                    što je pravi pristup.
-                </p>
+            <p>
+                Cilj ovog vodiča je da vam pruži osnovan pregled
+                konjičkog sporta i jahanja općenito.
+                Naići ćete na osnovne informacije o konjima,
+                potrebnoj opremi i osnovama ponašanja
+                prilikom pristupa konju.
+            </p>
 
-                <p>
-                    Cilj ovog vodiča je da vam pruži osnovan pregled
-                    konjičkog sporta i jahanja općenito.
-                    Naići ćete na osnovne informacije o konjima,
-                    potrebnoj opremi i osnovama ponašanja
-                    prilikom pristupa konju.
-                </p>
-
-                <p>
-                    Svrha je zainteresirati djecu i odrasle
-                    da isprobaju ovaj sport i istodobno poboljšaju
-                    fizičku i mentalnu kondiciju.
-                </p>
-
-            </div>
+            <p>
+                Svrha je zainteresirati djecu i odrasle
+                da isprobaju ovaj sport i istodobno poboljšaju
+                fizičku i mentalnu kondiciju.
+            </p>
 
         </section>
 
@@ -574,6 +1872,7 @@
 
 
             <div class="need-grid">
+
 
                 <div class="need-box">
 
@@ -634,11 +1933,12 @@
 
                 </div>
 
+
             </div>
 
 
             <p>
-                Povoljnije su uže i rastezljive hlače
+                Pogodnije su uže i rastezljive hlače
                 kako vas šavovi ne bi žuljali.
                 Izbjegavajte traperice jer mogu izazvati
                 neugodno trenje.
@@ -653,8 +1953,8 @@
 
             <p>
                 Tenisice ili niske gležnjače ne smiju imati
-                preširok ili nazubljen đon koji bi mogao
-                zapeti u stremenu.
+                preširok ili nazubljen đon
+                koji bi mogao zapeti u stremenu.
             </p>
 
             <p>
@@ -694,9 +1994,22 @@
 
             <p>
                 Upoznajete se s konjem i pravilnim pristupom:
-                kako prići konju, kako se ponašati i držati,
-                kako uzjahati i sjahati te lagani hod koralom.
+                kako prići konju,
+                kako se ponašati i držati,
+                kako uzjahati i sjahati
+                te lagani hod koralom.
             </p>
+
+
+            <figure class="horse-guide-inline-photo">
+
+                <img
+                    src="/images/horse-riding-first-lesson.jpg"
+                    alt="Kristina na konju tijekom jahanja"
+                    loading="lazy"
+                >
+
+            </figure>
 
 
             <div class="horse-guide-fun">
@@ -708,7 +2021,8 @@
                 <p>
                     Nagradite konja kojeg ste jahali
                     malom poslasticom u znak zahvale.
-                    Konji obožavaju mrkve, jabuke i kocke šećera.
+                    Konji obožavaju mrkve,
+                    jabuke i kocke šećera.
                 </p>
 
             </div>
@@ -727,14 +2041,15 @@
             </p>
 
             <h2>
-                TREBA LI BITI U FORMI?
+                TREBA LI IMATI PREDZNANJE ILI POSEBNU FIZIČKU SPREMU?
             </h2>
 
             <p>
                 Za početno jahanje nije vam potrebno
                 nikakvo prethodno znanje niti posebna fizička sprema.
-                Škole jahanja i konjički klubovi prilagođavaju programe
-                apsolutnim početnicima, a obuka kreće od samih osnova –
+                Škole jahanja i konjički klubovi
+                prilagođavaju programe apsolutnim početnicima,
+                a obuka kreće od samih osnova –
                 od upoznavanja i sedlanja konja
                 pa do prvih koraka u sedlu.
             </p>
@@ -751,8 +2066,8 @@
                     jahanje je aktivnost koja aktivira cijelo tijelo.
                     Najviše rade mišići nogu,
                     pogotovo unutarnja strana bedara,
-                    trbušni i leđni mišići koji služe
-                    za održavanje ravnoteže.
+                    trbušni i leđni mišići
+                    koji služe za održavanje ravnoteže.
                 </p>
 
                 <p>
@@ -773,7 +2088,8 @@
                     Gornja dobna granica za jahanje ne postoji.
                     Odrasle osobe mogu početi jahati
                     u bilo kojem trenutku života
-                    radi rekreacije, oslobađanja od stresa
+                    radi rekreacije,
+                    oslobađanja od stresa
                     i boravka u prirodi.
                 </p>
 
@@ -809,8 +2125,9 @@
                 </p>
 
                 <p>
-                    Sve što vam uistinu treba na samom početku
-                    su dobra volja, malo strpljenja
+                    Sve što vam uistinu treba
+                    na samom početku su dobra volja,
+                    malo strpljenja
                     i opuštenost u blizini životinja.
                 </p>
 
@@ -820,7 +2137,7 @@
 
 
         <!-- ==========================================
-             05 / CHOOSING CLUB
+             05 / CLUB
         ========================================== -->
 
         <section class="try-section">
@@ -834,7 +2151,8 @@
             </h2>
 
             <p>
-                Odabir konjičkog kluba ovisi o nekoliko faktora.
+                Odabir konjičkog kluba
+                ovisi o nekoliko faktora.
             </p>
 
 
@@ -843,12 +2161,16 @@
                 <p>
                     „Prilikom odabira konjičkog kluba,
                     važno je razmotriti nekoliko čimbenika:
-                    lokacija, ponuđene usluge
+                    lokacija,
+                    ponuđene usluge
                     (škola jahanja, rekreacija, sport),
-                    iskustvo trenera, uvjete smještaja za konje
+                    iskustvo trenera,
+                    uvjete smještaja za konje
                     i opću atmosferu.
-                    Posjetite ergele, razgovarajte s trenerima
-                    i uvidite jesu li konji zdravi i dobro njegovani.
+                    Posjetite ergele,
+                    razgovarajte s trenerima
+                    i uvidite jesu li konji zdravi
+                    i dobro njegovani.
                     Dobar konjički klub će prije svega
                     voljeti i poštovati svoje konje,
                     a tek onda nuditi usluge.“
@@ -882,11 +2204,13 @@
                     </li>
 
                     <li>
-                        KK Trajbar Team, Zaprešić
+                        KK Trajbar Team,
+                        Zaprešić
                     </li>
 
                     <li>
-                        Konjički klub M Stables, Samobor
+                        Konjički klub M Stables,
+                        Samobor
                     </li>
 
                 </ul>
@@ -903,28 +2227,31 @@
         <section class="try-section">
 
             <p class="section-label">
-                06 / ŠTO ODJENUTI
+                06 / ODJEĆA I OPREMA
             </p>
 
             <h2>
-                TREBA LI ODMAH KUPOVATI OPREMU?
+                ŠTO ODJENUTI I TREBA LI ODMAH KUPOVATI OPREMU?
             </h2>
 
             <p>
-                Od odjeće vam je potrebna udobna trenirka ili tajice.
-                Izbjegavajte traperice i odjeću
-                koja ograničava pokret.
+                Od odjeće vam je potrebna
+                udobna trenirka ili tajice.
             </p>
 
             <p>
-                Lagana vjetrovka ili gornji dio trenirke
+                Izbjegavajte traperice
+                i odjeću koja ograničava pokret.
+                Lagana vjetrovka
+                ili gornji dio trenirke
                 ovise o vremenskim uvjetima.
             </p>
 
             <p>
                 Od obuće su prikladne tenisice
                 ili niske gležnjače s ravnim potplatom.
-                Ne smiju imati preširok ili nazubljen đon
+                Ne smiju imati preširok
+                ili nazubljen đon
                 koji bi mogao zapeti u stremenu.
             </p>
 
@@ -933,11 +2260,15 @@
             </p>
 
             <p>
-                Kupovanje jahaće opreme se ne preporučuje odmah.
+                Kupovanje jahaće opreme
+                se ne preporučuje odmah.
                 Ako se odlučite ozbiljnije baviti jahanjem
                 ili upisati školu jahanja,
-                tek onda će vam biti potrebna dodatna oprema –
-                jahaće čizme, kaciga i jahaće rukavice.
+                tek onda će vam biti potrebna
+                dodatna oprema –
+                jahaće čizme,
+                kaciga
+                i jahaće rukavice.
             </p>
 
         </section>
@@ -975,12 +2306,15 @@
 
             <p>
                 U boks ili na vezište ulazi se
-                samo ako je to potrebno i uz pratnju trenera.
+                samo ako je to potrebno
+                i uz pratnju trenera.
             </p>
 
             <p>
-                Veliki nakit koji može smetati prilikom jahanja
-                i upotreba mobitela u staji nisu preporučljivi.
+                Veliki nakit
+                koji može smetati prilikom jahanja
+                i upotreba mobitela u staji
+                nisu preporučljivi.
             </p>
 
 
@@ -1001,11 +2335,13 @@
                     </li>
 
                     <li>
-                        Pravilno protumačite govor konjskoga tijela.
+                        Pravilno protumačite
+                        govor konjskoga tijela.
                     </li>
 
                     <li>
-                        Priđite konju s njegove prednje strane.
+                        Priđite konju
+                        s njegove prednje strane.
                     </li>
 
                 </ul>
@@ -1030,21 +2366,24 @@
             </p>
 
             <h2>
-                ŠTO AKO SE BOJIŠ KONJA ILI SJEDANJA U SEDLO?
+                ŠTO AKO SE NETKO BOJI KONJA ILI GA JE STRAH SJESTI U SEDLO?
             </h2>
 
             <p>
                 Strah je reakcija organizma
-                na neku zamišljenu ili stvarnu prijetnju.
+                na neku zamišljenu
+                ili stvarnu prijetnju.
             </p>
 
             <p>
                 Strah se rađa u glavi.
-                I tu najbolje kreće i rješavanje straha.
+                I tu najbolje kreće
+                i rješavanje straha.
             </p>
 
             <p>
-                Kod rezervacije termina prvog sata jahanja,
+                Kod rezervacije termina
+                prvog sata jahanja,
                 naglasite treneru svoj strah.
             </p>
 
@@ -1054,14 +2393,17 @@
                 <p>
                     „Opetovano izlaganje strašnim situacijama
                     na konju u kojeg su se u međuvremenu uvjerili
-                    da je sposoban i siguran i da ih čuva
-                    ubrzo dovodi do gubitka straha,
-                    i to gubitka straha na polju kojeg su prije
-                    te osobe ocjenjivale ocjenom 10…
+                    da je sposoban i siguran
+                    i da ih čuva
+                    ubrzo dovodi do gubitka straha
+                    i to gubitka straha na polju
+                    kojeg su prije te osobe
+                    ocjenjivale ocjenom 10 …
                     najstrašniji strah koji postoji.
                     Naravno da su ljudi nakon apsolutne pobjede
-                    nad tako jakim strahom sada u stanju
-                    istraživati svoje granice i na drugim područjima
+                    nad tako jakim strahom
+                    sada u stanju istraživati svoje granice
+                    i na drugim područjima
                     uz sve novootkrivene blagodati života
                     bez razumno bezrazložnih strahova.“
                 </p>
@@ -1104,7 +2446,8 @@
                 </p>
 
                 <p>
-                    Ravnoteža se drži tijelom i sjedištem,
+                    Ravnoteža se drži tijelom
+                    i sjedištem,
                     a ne rukama.
                 </p>
 
@@ -1126,7 +2469,8 @@
                 <p>
                     Zbog toga se gubi ravnoteža,
                     leđa se savijaju,
-                    a gubite i pregled nad prostorom oko sebe.
+                    a gubite i pregled
+                    nad prostorom oko sebe.
                 </p>
 
             </div>
@@ -1140,8 +2484,8 @@
 
                 <p>
                     Kada se uplaše,
-                    početnici često instinktivno stisnu konja
-                    bedrima i listovima.
+                    početnici često instinktivno
+                    stisnu konja bedrima i listovima.
                 </p>
 
                 <p>
@@ -1161,10 +2505,11 @@
 
                 <p>
                     Držanje peta podignutih uvis
-                    umjesto spuštenih prema dolje
-                    može dovesti do toga da noga
-                    lakše sklizne kroz stremen,
-                    što može biti opasno ako padnete.
+                    umjesto spuštenih prema dolje.
+                    Zbog ovoga noga lako sklizne
+                    kroz stremen,
+                    što može biti opasno
+                    ako padnete.
                 </p>
 
             </div>
@@ -1177,13 +2522,15 @@
                 </h3>
 
                 <p>
-                    Labave uzde znače da nemate kontrolu,
+                    Labave uzde znače
+                    da nemate kontrolu,
                     dok prekratke i napete uzde
                     stalno kažnjavaju konja.
                 </p>
 
                 <p>
-                    Pronalaženje prave mjere je ključno.
+                    Pronalaženje prave mjere
+                    je ključno.
                 </p>
 
             </div>
@@ -1192,7 +2539,7 @@
 
 
         <!-- ==========================================
-             10 / WHAT I WISH I KNEW
+             10 / EXPERIENCE
         ========================================== -->
 
         <section class="try-section">
@@ -1217,14 +2564,18 @@
 
                     <p>
                         Konji su životinje plijena
-                        i nevjerojatno dobro čitaju govor tijela i energiju.
+                        i nevjerojatno dobro čitaju
+                        govor tijela i energiju.
                     </p>
 
                     <p>
-                        Ako si napeta, uplašena ili ljuta,
-                        konj će to osjetiti i postati nervozan.
+                        Ako si napeta,
+                        uplašena ili ljuta,
+                        konj će to osjetiti
+                        i postati nervozan.
                         Smirenost i duboko disanje
-                        najbolji su alati za kontrolu konja.
+                        najbolji su alati
+                        za kontrolu konja.
                     </p>
 
                 </div>
@@ -1242,11 +2593,13 @@
 
                     <p>
                         On ima svoje „dobre i loše dane”,
-                        svoje strahove i svoju osobnost.
+                        svoje strahove
+                        i svoju osobnost.
                     </p>
 
                     <p>
-                        Umjesto da pokušavaš na silu nadvladati konja,
+                        Umjesto da pokušavaš
+                        na silu nadvladati konja,
                         moraš naučiti komunicirati s njim.
                     </p>
 
@@ -1261,19 +2614,22 @@
 
                     <p>
                         Neki dani bit će savršeni,
-                        a neki će izgledati kao da si se vratila
-                        na prvi sat.
+                        a neki će izgledati
+                        kao da si se vratila na prvi sat.
                     </p>
 
                     <p>
                         Bit će upala mišića,
-                        frustracija, a možda i padova.
-                        Sve je to dio procesa i potpuno je normalno.
+                        frustracija,
+                        a možda i padova.
+                        Sve je to dio procesa
+                        i potpuno je normalno.
                     </p>
 
                     <p>
                         Kroz godine stječete iskustvo,
-                        ali to ne znači da ćete sve odjednom naučiti
+                        ali to ne znači
+                        da ćete sve odjednom naučiti
                         i više nikada nećete ništa pitati.
                     </p>
 
@@ -1291,10 +2647,12 @@
                     </h3>
 
                     <p>
-                        Kvalitetne tajice za jahanje s gripom
+                        Kvalitetne tajice za jahanje
+                        s gripom
                         i čizme s malom petom
                         nisu tu zbog mode,
-                        već zbog sigurnosti i stabilnosti u sedlu.
+                        već zbog sigurnosti
+                        i stabilnosti u sedlu.
                     </p>
 
                     <p>
@@ -1318,7 +2676,8 @@
 
                     <p>
                         Strah od pada često koči napredak.
-                        U školama jahanja naučit ćeš i kako pravilno pasti
+                        U školama jahanja naučit ćeš
+                        i kako pravilno pasti
                         kako bi smanjila rizik od ozljeda.
                     </p>
 
@@ -1339,7 +2698,7 @@
 
 
         <!-- ==========================================
-             11 / NEXT STEP
+             11 / NEXT
         ========================================== -->
 
         <section class="try-section">
@@ -1354,7 +2713,8 @@
 
             <p>
                 Ako vam se nakon prvog sata
-                jahanje toliko svidjelo – čestitam!
+                jahanje toliko svidjelo –
+                čestitam!
             </p>
 
             <p>
@@ -1363,9 +2723,11 @@
             </p>
 
             <p>
-                Sljedeći korak je iskazivanje zainteresiranosti
+                Sljedeći korak
+                je iskazivanje zainteresiranosti
                 za školu jahanja.
-                Slijedi razgovor s trenerom jahanja.
+                Slijedi razgovor
+                s trenerom jahanja.
             </p>
 
             <p>
@@ -1376,14 +2738,19 @@
             </p>
 
             <p>
-                Tijekom početnog tečaja korisnik će se
-                upoznati s konjem,
-                naučiti samostalno sedlanje i uzdanje konja,
-                kretanje, zaustavljanje i upravljanje konjem,
+                Tijekom početnog tečaja
+                korisnik će se upoznati s konjem,
+                naučiti samostalno sedlanje
+                i uzdanje konja,
+                kretanje,
+                zaustavljanje
+                i upravljanje konjem,
                 osnovne maneške radnje,
                 vježbe za ravnotežu u kasu,
-                prelazak iz lakog jahanja u polusjedeći stav
-                i iz polusjedećeg stava u lako jahanje,
+                prelazak iz lakog jahanja
+                u polusjedeći stav
+                i iz polusjedećeg stava
+                u lako jahanje,
                 uz ponavljanje svih obrađenih cjelina.
             </p>
 
@@ -1394,19 +2761,36 @@
              AUTHOR
         ========================================== -->
 
-        <section class="horse-guide-author-box">
+        <section class="horse-guide-author-section">
 
-            <p class="horse-guide-author-label">
-                AUTORICA VODIČA
-            </p>
+            <div class="horse-guide-author-grid">
 
-            <h2>
-                Kristina Rom
-            </h2>
+                <img
+                    src="/images/horse-riding-author-kristina.jpg"
+                    alt="Kristina Rom uz konja"
+                    class="horse-guide-author-photo"
+                    loading="lazy"
+                >
 
-            <p class="horse-guide-author-role">
-                Knjižničarka i strastvena zaljubljenica u konje (equestrian)
-            </p>
+
+                <div class="horse-guide-author-copy">
+
+                    <p class="horse-guide-author-label">
+                        AUTORICA VODIČA
+                    </p>
+
+                    <h2>
+                        Kristina Rom
+                    </h2>
+
+                    <p class="horse-guide-author-role">
+                        Knjižničarka i strastvena zaljubljenica
+                        u konje (equestrian).
+                    </p>
+
+                </div>
+
+            </div>
 
         </section>
 
@@ -1425,20 +2809,28 @@
 
                 <li>
                     Don Kihot. 2026.
-                    <em>Pravila ponašanja na jahalištu.</em>
-                    <a href="https://www.donkihot.hr/pravila-ponasanja-na-jahalistu/"
-                       target="_blank"
-                       rel="noopener noreferrer">
+                    <em>
+                        Pravila ponašanja na jahalištu.
+                    </em>
+                    <a
+                        href="https://www.donkihot.hr/pravila-ponasanja-na-jahalistu/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         donkihot.hr
                     </a>
                 </li>
 
                 <li>
                     Geronimo. 2026.
-                    <em>Strahovi.</em>
-                    <a href="https://geronimo.hr/pitanja-i-odgovori/o-svemu-i-svacemu/strahovi/"
-                       target="_blank"
-                       rel="noopener noreferrer">
+                    <em>
+                        Strahovi.
+                    </em>
+                    <a
+                        href="https://geronimo.hr/pitanja-i-odgovori/o-svemu-i-svacemu/strahovi/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         geronimo.hr
                     </a>
                 </li>
@@ -1451,22 +2843,28 @@
 
                 <li>
                     Hrvatski konjički savez.
-                    <em>Udžbenik Jahačka dozvola HKS.</em>
-                    <a href="https://www.konjicki-savez.hr/Content/Documents/Ud%C5%BEbenik%20Jaha%C4%8Dka%20dozvola%20HKS.pdf"
-                       target="_blank"
-                       rel="noopener noreferrer">
+                    <em>
+                        Udžbenik Jahačka dozvola HKS.
+                    </em>
+                    <a
+                        href="https://www.konjicki-savez.hr/Content/Documents/Ud%C5%BEbenik%20Jaha%C4%8Dka%20dozvola%20HKS.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         konjicki-savez.hr
                     </a>
                 </li>
 
                 <li>
-                    Udžbenik za polaganje Natjecateljske licence,
+                    Udžbenik za polaganje
+                    Natjecateljske licence,
                     odabrana poglavlja –
                     izdavač Hrvatski konjički savez.
                 </li>
 
                 <li>
-                    Udžbenik za polaganje Trenerske licence,
+                    Udžbenik za polaganje
+                    Trenerske licence,
                     odabrana poglavlja –
                     izdavač Hrvatski konjički savez.
                 </li>
@@ -1483,9 +2881,11 @@
                         Vodič kroz najbolje konjičke klubove u Hrvatskoj:
                         za sport, rekreaciju i ljubav prema konjima.
                     </em>
-                    <a href="https://www.horses.hr"
-                       target="_blank"
-                       rel="noopener noreferrer">
+                    <a
+                        href="https://www.horses.hr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         horses.hr
                     </a>
                 </li>
@@ -1495,20 +2895,21 @@
         </section>
 
 
-        <!-- ==========================================
-             FINAL NAV
-        ========================================== -->
+    </div>
 
-        <div class="guide-footer-nav">
 
-            <a href="/hr/horse-riding.html">
-                ← NATRAG NA JAHANJE
-            </a>
+    <!-- ==========================================
+         FINAL NAVIGATION
+    ========================================== -->
 
-        </div>
+    <div class="guide-footer-nav">
 
+        <a href="/hr/horse-riding.html">
+            ← NATRAG NA JAHANJE
+        </a>
 
     </div>
+
 
 </main>
 
@@ -1525,22 +2926,37 @@
 ></script>
 
 <script>
+
 if (
     'serviceWorker' in navigator &&
     window.isSecureContext &&
     !window.location.pathname.startsWith('/editor/')
 ) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker
-            .register('/sw.js', { scope: '/' })
-            .catch(error =>
-                console.warn(
-                    'MOVE&TRY public service worker:',
-                    error
+
+    window.addEventListener(
+        'load',
+        () => {
+
+            navigator.serviceWorker
+                .register(
+                    '/sw.js',
+                    {
+                        scope: '/'
+                    }
                 )
-            );
-    });
+                .catch(
+                    error =>
+                        console.warn(
+                            'MOVE&TRY public service worker:',
+                            error
+                        )
+                );
+
+        }
+    );
+
 }
+
 </script>
 
 <script
