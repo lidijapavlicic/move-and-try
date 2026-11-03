@@ -10,25 +10,41 @@
       content="THE JOURNAL by MOVE & TRY. Priče, razmišljanja, osobne kolumne, inspiracija i novosti iz zajednice.">
 
 <link rel="icon" type="image/png" href="/favicon.png">
-<link rel="canonical" href="https://moveandtry.com/hr/journal.html">
-<link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/journal.html">
-<link rel="alternate" hreflang="en" href="https://moveandtry.com/journal.html">
-<link rel="alternate" hreflang="x-default" href="https://moveandtry.com/journal.html">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="canonical"
+      href="https://moveandtry.com/hr/journal.html">
+
+<link rel="alternate"
+      hreflang="hr"
+      href="https://moveandtry.com/hr/journal.html">
+
+<link rel="alternate"
+      hreflang="en"
+      href="https://moveandtry.com/journal.html">
+
+<link rel="alternate"
+      hreflang="x-default"
+      href="https://moveandtry.com/journal.html">
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet">
 
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet"
+      href="../style.css">
 
 <!-- MOVE&TRY PWA NAVIGATION -->
-<link rel="stylesheet" href="/app/app-navigation.css">
-
-<!-- Google Analytics -->
-
+<link rel="stylesheet"
+      href="/app/app-navigation.css">
 
 <style>
+
 /* =====================================
    THE JOURNAL — HR
    ===================================== */
@@ -39,7 +55,9 @@
     min-height: 100vh;
 }
 
-/* HEADER */
+/* =====================================
+   HEADER
+   ===================================== */
 
 .journal-page .site-header {
     position: sticky;
@@ -67,7 +85,9 @@
     opacity: 0.55;
 }
 
-/* HERO */
+/* =====================================
+   HERO
+   ===================================== */
 
 .journal-hero {
     position: relative;
@@ -84,7 +104,9 @@
     position: absolute;
     inset: -12px;
     z-index: -2;
-    background: url('/images/journal.jpg') center center / cover no-repeat;
+    background:
+        url('/images/journal.jpg')
+        center center / cover no-repeat;
     filter: blur(4px);
 }
 
@@ -134,7 +156,9 @@
     margin: 36px auto 0;
 }
 
-/* CATEGORIES */
+/* =====================================
+   CATEGORIES
+   ===================================== */
 
 .journal-category-wrap {
     position: relative;
@@ -165,12 +189,16 @@
     background: transparent;
     padding: 8px 0;
     cursor: pointer;
+
     font-family: 'Manrope', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.07em;
     color: #777777;
-    transition: color 0.2s ease, border-color 0.2s ease;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .journal-category:hover {
@@ -182,7 +210,9 @@
     border-bottom-color: #6F7967;
 }
 
-/* CONTENT */
+/* =====================================
+   CONTENT
+   ===================================== */
 
 .journal-content {
     max-width: 1280px;
@@ -213,7 +243,9 @@
     color: #888888;
 }
 
-/* ARTICLES */
+/* =====================================
+   ARTICLES
+   ===================================== */
 
 .journal-posts {
     display: flex;
@@ -222,12 +254,18 @@
 
 .journal-post {
     display: grid;
-    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+    grid-template-columns:
+        minmax(0, 42%)
+        minmax(0, 1fr);
+
     align-items: center;
     column-gap: clamp(30px, 5vw, 72px);
+
     padding: 0 0 46px;
     margin: 0 0 46px;
+
     border-bottom: 1px solid #D5D5D0;
+
     color: inherit;
     text-decoration: none;
 }
@@ -251,16 +289,21 @@
     margin: 0;
 }
 
-/* TYPOGRAPHIC COVER */
+/* =====================================
+   TYPOGRAPHIC COVER
+   ===================================== */
 
 .journal-post-cover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     width: 100%;
     min-width: 0;
     aspect-ratio: 4 / 3;
+
     padding: clamp(22px, 3.5vw, 40px);
+
     background: #E9E7DF;
     box-sizing: border-box;
     overflow: hidden;
@@ -276,11 +319,13 @@
 
 .journal-post-cover-title {
     margin: 18px 0;
+
     font-family: 'DM Serif Display', serif;
     font-size: clamp(35px, 4.5vw, 66px);
     font-weight: 400;
     line-height: 1.08;
     letter-spacing: -0.035em;
+
     color: #20241F;
     text-wrap: balance;
 }
@@ -299,12 +344,15 @@
 
 .journal-post-category {
     display: block;
+
     font-family: 'Manrope', sans-serif;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.12em;
+
     color: #6F7967;
     text-transform: uppercase;
+
     margin-bottom: 12px;
 }
 
@@ -313,6 +361,7 @@
     font-size: clamp(29px, 3vw, 40px);
     font-weight: 400;
     line-height: 1.2;
+
     margin: 0 0 14px;
 }
 
@@ -320,7 +369,9 @@
     font-family: 'Manrope', sans-serif;
     font-size: 13px;
     line-height: 1.8;
+
     color: #666666;
+
     margin: 0 0 18px;
 }
 
@@ -332,15 +383,20 @@
     color: #777777;
 }
 
-/* EMPTY STATE */
+/* =====================================
+   EMPTY STATE
+   ===================================== */
 
 .journal-empty {
     min-height: 320px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     text-align: center;
+
     padding: 50px 20px;
 }
 
@@ -353,6 +409,7 @@
     font-size: clamp(32px, 5vw, 52px);
     font-weight: 400;
     line-height: 1.2;
+
     margin: 0 0 18px;
 }
 
@@ -360,7 +417,9 @@
     font-family: 'Manrope', sans-serif;
     font-size: 14px;
     line-height: 1.9;
+
     color: #777777;
+
     max-width: 470px;
     margin: 0;
 }
@@ -370,21 +429,30 @@
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.16em;
+
     margin-top: 35px;
+
     color: #6F7967;
 }
 
-/* TABLET */
+/* =====================================
+   TABLET
+   ===================================== */
 
 @media (max-width: 1100px) {
+
     .journal-behind-link {
         display: none;
     }
+
 }
 
-/* MOBILE */
+/* =====================================
+   MOBILE
+   ===================================== */
 
 @media (max-width: 700px) {
+
     .journal-intro {
         padding: 80px 24px 75px;
     }
@@ -419,6 +487,7 @@
     .journal-post {
         grid-template-columns: 1fr;
         row-gap: 20px;
+
         padding-bottom: 38px;
         margin-bottom: 38px;
     }
@@ -438,14 +507,19 @@
     .journal-empty {
         min-height: 300px;
     }
+
 }
 
-/* INVITATION TO CONTRIBUTE */
+/* =====================================
+   INVITATION TO CONTRIBUTE
+   ===================================== */
 
 .journal-contribute {
     max-width: 1184px;
     margin: 0 auto;
+
     padding: 0 48px 105px;
+
     text-align: center;
 }
 
@@ -456,15 +530,18 @@
 
 .journal-contribute-label {
     margin: 0 0 22px;
+
     font-family: 'Manrope', sans-serif;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.18em;
+
     color: #6F7967;
 }
 
 .journal-contribute-title {
     margin: 0 0 20px;
+
     font-family: 'DM Serif Display', serif;
     font-size: clamp(32px, 4.5vw, 52px);
     font-weight: 400;
@@ -473,24 +550,34 @@
 
 .journal-contribute-text {
     max-width: 570px;
+
     margin: 0 auto 28px;
+
     font-family: 'Manrope', sans-serif;
     font-size: 14px;
     line-height: 1.9;
+
     color: #666666;
 }
 
 .journal-contribute-link {
     display: inline-block;
+
     padding: 10px 0;
+
     border-bottom: 1px solid #6F7967;
+
     font-family: 'Manrope', sans-serif;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.12em;
+
     color: #111111;
     text-decoration: none;
-    transition: color 0.2s ease, border-color 0.2s ease;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .journal-contribute-link:hover,
@@ -500,6 +587,7 @@
 }
 
 @media (max-width: 700px) {
+
     .journal-contribute {
         padding: 0 24px 75px;
     }
@@ -507,30 +595,52 @@
     .journal-contribute-inner {
         padding: 60px 0 0;
     }
+
 }
+
 </style>
-  <link rel="stylesheet" href="/consent.css">
+
+<link rel="stylesheet"
+      href="/consent.css">
+
 </head>
 
 <body class="journal-page">
 
-<!-- HEADER -->
+<!-- =====================================
+     HEADER
+     ===================================== -->
 
 <header class="site-header">
 
     <a href="/hr/"
        class="site-logo"
        aria-label="Move & Try – početna">
+
         <img src="/images/move-and-try-logo.png"
              alt="Move & Try">
+
     </a>
 
     <nav class="desktop-nav">
-        <a href="/hr/#find-your-try">OTKRIJ</a>
-        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/where-to-try.html">
+            GDJE PROBATI
+        </a>
+
         <a href="/hr/journal.html"
-           aria-current="page">THE JOURNAL</a>
+           aria-current="page">
+            THE JOURNAL
+        </a>
+
     </nav>
 
     <div class="header-actions journal-header-actions">
@@ -541,51 +651,89 @@
         </a>
 
         <div class="header-language">
+
             <a href="/journal.html"
-               onclick="setLanguage('en')">EN</a>
+               onclick="setLanguage('en')">
+                EN
+            </a>
+
             <span>|</span>
-            <span class="language-active">HR</span>
+
+            <span class="language-active">
+                HR
+            </span>
+
         </div>
 
         <button class="menu-toggle"
                 type="button"
                 aria-label="Otvori izbornik"
                 aria-expanded="false">
+
             <span></span>
             <span></span>
+
         </button>
 
     </div>
+
 </header>
 
-<!-- MOBILE MENU -->
+<!-- =====================================
+     MOBILE MENU
+     ===================================== -->
 
 <div class="mobile-menu">
 
     <nav>
-        <a href="/hr/#find-your-try">OTKRIJ</a>
-        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
-        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
-        <a href="/hr/journal.html">THE JOURNAL</a>
+
+        <a href="/hr/#find-your-try">
+            OTKRIJ
+        </a>
+
+        <a href="/hr/#be-part-of-it">
+            BUDI DIO PRIČE
+        </a>
+
+        <a href="/hr/where-to-try.html">
+            GDJE PROBATI
+        </a>
+
+        <a href="/hr/journal.html">
+            THE JOURNAL
+        </a>
+
         <a href="/hr/behind-move-and-try.html">
             IZA MOVE & TRY
         </a>
+
     </nav>
 
     <div class="mobile-menu-language">
+
         <a href="/journal.html"
-           onclick="setLanguage('en')">EN</a>
+           onclick="setLanguage('en')">
+            EN
+        </a>
+
         <span>|</span>
-        <span class="language-active">HR</span>
+
+        <span class="language-active">
+            HR
+        </span>
+
     </div>
 
 </div>
 
 <main>
 
-    <!-- HERO -->
+    <!-- =====================================
+         HERO
+         ===================================== -->
 
     <section class="journal-hero">
+
         <div class="journal-intro">
 
             <p class="journal-eyebrow">
@@ -603,9 +751,12 @@
             </p>
 
         </div>
+
     </section>
 
-    <!-- CATEGORIES -->
+    <!-- =====================================
+         CATEGORIES
+         ===================================== -->
 
     <div class="journal-category-wrap">
 
@@ -655,9 +806,12 @@
             </button>
 
         </nav>
+
     </div>
 
-    <!-- ARTICLES -->
+    <!-- =====================================
+         ARTICLES
+         ===================================== -->
 
     <section class="journal-content"
              aria-labelledby="journal-section-heading">
@@ -671,7 +825,7 @@
 
             <span class="journal-count"
                   id="journal-count">
-                3 OBJAVE
+                4 OBJAVE
             </span>
 
         </div>
@@ -679,7 +833,54 @@
         <div class="journal-posts"
              id="journal-posts">
 
-            <!-- ZAKAZANA OBJAVA: 29. 10. 2026. u 09:00 Europe/Zagreb (08:00 UTC) -->
+            <!--
+                ZAKAZANA OBJAVA
+                7. 11. 2026. u 11:00 Europe/Zagreb
+                11:00 Zagreb = 10:00 UTC
+            -->
+
+            <a class="journal-post"
+               href="/hr/care-begins-with-psychotherapy.html"
+               data-category="news"
+               data-publish-at="2026-11-07T10:00:00Z"
+               hidden>
+
+                <img class="journal-post-image"
+                     src="/images/lumos-emotion-center.jpg"
+                     alt="Prostor s prikazima emocija i dječjim crtežima u Lumosu"
+                     loading="lazy">
+
+                <div class="journal-post-copy">
+
+                    <span class="journal-post-category">
+                        NOVOSTI · 7. 11. 2026.
+                    </span>
+
+                    <h3 class="journal-post-title">
+                        Prva CARE tema:
+                        dječja i adolescentska psihoterapija
+                    </h3>
+
+                    <p class="journal-post-description">
+                        CARE počinje psihoterapijom.
+                        Nova tema donosi vodič za roditelje,
+                        stručnu perspektivu i informacije
+                        o tome gdje potražiti podršku.
+                    </p>
+
+                    <span class="journal-post-author">
+                        Lidija | MOVE&TRY
+                    </span>
+
+                </div>
+
+            </a>
+
+            <!--
+                OBJAVLJENO
+                29. 10. 2026. u 09:00 Europe/Zagreb
+            -->
+
             <a class="journal-post"
                href="/hr/where-do-adults-meet.html"
                data-category="editorial"
@@ -692,6 +893,7 @@
                      loading="lazy">
 
                 <div class="journal-post-copy">
+
                     <span class="journal-post-category">
                         UREDNIČKI TEKSTOVI · 29. 10. 2026.
                     </span>
@@ -701,22 +903,22 @@
                     </h3>
 
                     <p class="journal-post-description">
-                        O prijateljstvima nakon tridesete, životu između
-                        posla i doma te ljudima koje možda nikada nećemo upoznati.
+                        O prijateljstvima nakon tridesete,
+                        životu između posla i doma
+                        te ljudima koje možda nikada nećemo upoznati.
                     </p>
 
                     <span class="journal-post-author">
                         MOVE&amp;TRY Editorial
                     </span>
+
                 </div>
+
             </a>
 
             <!--
-                ZAKAZANA OBJAVA
+                OBJAVLJENO
                 25. 10. 2026. u 09:00 Europe/Zagreb
-
-                Hrvatska tada prelazi na zimsko vrijeme.
-                09:00 Zagreb = 08:00 UTC.
             -->
 
             <a class="journal-post"
@@ -738,7 +940,7 @@
 
                     <h3 class="journal-post-title">
                         Od znatiželje do vlastitog mirisa:
-                        nova aktivnost na MOVE &amp; TRY
+                        nova aktivnost na MOVE & TRY
                     </h3>
 
                     <p class="journal-post-description">
@@ -752,9 +954,12 @@
                     </span>
 
                 </div>
+
             </a>
 
-            <!-- PERSONAL COLUMN -->
+            <!-- =====================================
+                 PERSONAL COLUMN
+                 ===================================== -->
 
             <a class="journal-post"
                href="/hr/what-if-i-try.html"
@@ -792,9 +997,12 @@
                     </span>
 
                 </div>
+
             </a>
 
-            <!-- EDITORIAL ARTICLE -->
+            <!-- =====================================
+                 EDITORIAL ARTICLE
+                 ===================================== -->
 
             <a class="journal-post"
                href="/hr/why-adults-find-it-harder-to-try-new-things.html"
@@ -826,11 +1034,14 @@
                     </span>
 
                 </div>
+
             </a>
 
         </div>
 
-        <!-- EMPTY STATE -->
+        <!-- =====================================
+             EMPTY STATE
+             ===================================== -->
 
         <div class="journal-empty"
              id="journal-empty"
@@ -852,7 +1063,9 @@
 
     </section>
 
-    <!-- WRITE FOR THE JOURNAL -->
+    <!-- =====================================
+         WRITE FOR THE JOURNAL
+         ===================================== -->
 
     <section class="journal-contribute"
              aria-labelledby="journal-contribute-title">
@@ -881,41 +1094,57 @@
             </a>
 
         </div>
+
     </section>
 
 </main>
 
-<!-- SHARED SITE SCRIPT -->
+<!-- =====================================
+     SHARED SITE SCRIPT
+     ===================================== -->
 
 <script src="../script.js"></script>
 
-<!-- MOVE&TRY PWA NAVIGATION -->
-<script src="/app/app-navigation.js" defer></script>
+<!-- =====================================
+     MOVE&TRY APP / PWA NAVIGATION
+     ===================================== -->
 
-<!-- JOURNAL CATEGORY FILTER AND SCHEDULING -->
+<script
+    src="/app/app-navigation.js"
+    defer
+></script>
+
+<!-- =====================================
+     JOURNAL FILTER + SCHEDULING
+     ===================================== -->
 
 <script>
 (function () {
 
-    const buttons = document.querySelectorAll(
-        '.journal-category'
-    );
+    const buttons =
+        document.querySelectorAll(
+            '.journal-category'
+        );
 
-    const posts = document.querySelectorAll(
-        '.journal-post'
-    );
+    const posts =
+        document.querySelectorAll(
+            '.journal-post'
+        );
 
-    const emptyState = document.getElementById(
-        'journal-empty'
-    );
+    const emptyState =
+        document.getElementById(
+            'journal-empty'
+        );
 
-    const heading = document.getElementById(
-        'journal-section-heading'
-    );
+    const heading =
+        document.getElementById(
+            'journal-section-heading'
+        );
 
-    const count = document.getElementById(
-        'journal-count'
-    );
+    const count =
+        document.getElementById(
+            'journal-count'
+        );
 
     const labels = {
         all: 'SVE OBJAVE',
@@ -946,17 +1175,38 @@
         return number + ' OBJAVA';
     }
 
+    function isPublished(post) {
+
+        const publishAt =
+            post.dataset.publishAt;
+
+        if (!publishAt) {
+            return true;
+        }
+
+        const timestamp =
+            Date.parse(publishAt);
+
+        if (!Number.isFinite(timestamp)) {
+            return false;
+        }
+
+        return Date.now() >= timestamp;
+    }
+
     let activeCategory = 'all';
 
     function filterPosts(category) {
 
         activeCategory = category;
+
         let visibleCount = 0;
 
         buttons.forEach(function (button) {
 
             const selected =
-                button.dataset.category === category;
+                button.dataset.category ===
+                category;
 
             button.classList.toggle(
                 'active',
@@ -972,56 +1222,121 @@
 
         posts.forEach(function (post) {
 
-            const publishAt = post.dataset.publishAt;
-
             const published =
-                !publishAt ||
-                Date.now() >= Date.parse(publishAt);
+                isPublished(post);
 
-            const matches =
+            const categoryMatches =
+                category === 'all' ||
+                post.dataset.category ===
+                    category;
+
+            const visible =
                 published &&
-                (
-                    category === 'all' ||
-                    post.dataset.category === category
-                );
+                categoryMatches;
 
-            post.hidden = !matches;
+            post.hidden = !visible;
 
-            if (matches) {
-                visibleCount++;
+            if (visible) {
+                visibleCount += 1;
             }
 
         });
 
-        heading.textContent = labels[category];
-        count.textContent = countLabel(visibleCount);
-        emptyState.hidden = visibleCount > 0;
+        heading.textContent =
+            labels[category] ||
+            labels.all;
+
+        count.textContent =
+            countLabel(
+                visibleCount
+            );
+
+        emptyState.hidden =
+            visibleCount > 0;
 
     }
 
-    buttons.forEach(function (button) {
+    buttons.forEach(
+        function (button) {
 
-        button.addEventListener(
-            'click',
-            function () {
-                filterPosts(button.dataset.category);
-            }
-        );
+            button.addEventListener(
+                'click',
+                function () {
 
-    });
+                    filterPosts(
+                        button.dataset.category
+                    );
+
+                }
+            );
+
+        }
+    );
 
     filterPosts('all');
 
-    // Provjerava zakazane objave svakih 30 sekundi.
-    // Radi i ako posjetitelj ostavi Journal otvoren.
+    /*
+       Ako je Journal otvoren u trenutku
+       zakazane objave, kartica se pojavi
+       bez refreshanja stranice.
+    */
 
-    window.setInterval(function () {
-        filterPosts(activeCategory);
-    }, 30000);
+    window.setInterval(
+        function () {
+
+            filterPosts(
+                activeCategory
+            );
+
+        },
+        30000
+    );
 
 })();
 </script>
 
-  <script src="/consent.js" defer></script>
+<!-- =====================================
+     MOVE&TRY PUBLIC SERVICE WORKER
+     ===================================== -->
+
+<script>
+if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+) {
+    window.addEventListener(
+        'load',
+        () => {
+
+            navigator.serviceWorker
+                .register(
+                    '/sw.js',
+                    {
+                        scope: '/'
+                    }
+                )
+                .catch(
+                    error =>
+                        console.warn(
+                            'MOVE&TRY public service worker:',
+                            error
+                        )
+                );
+
+        }
+    );
+}
+</script>
+
+<!-- =====================================
+     CONSENT
+     ===================================== -->
+
+<script
+    src="/consent.js"
+    defer
+></script>
+
 </body>
 </html>
