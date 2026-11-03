@@ -901,6 +901,37 @@
       color: white;
     }
 
+    .app-journal-column-filters {
+      margin-top: -10px;
+    }
+
+    .app-journal-column-profile {
+      margin: -4px 0 25px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(111,121,103,.035);
+    }
+
+    .app-journal-column-profile strong {
+      display: block;
+      margin-bottom: 13px;
+      color: #6f7967;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+
+    .app-journal-column-profile p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .app-journal-column-profile p:last-child {
+      margin-bottom: 0;
+    }
+
     .app-journal-post {
       display: block;
       color: inherit;
@@ -1430,6 +1461,7 @@
       let language = getStored(APP_LANGUAGE_KEY) === 'en' ? 'en' : 'hr';
       let activeTab = 'home';
       let journalFilter = 'all';
+      let journalColumn = 'all';
       let journalPosts = null;
       let journalLoading = false;
 
@@ -1645,17 +1677,69 @@
             <p class="app-journal-message">${language === 'hr' ? 'Učitavanje članaka…' : 'Loading articles…'}</p>
           </section>`;
         }
+
         const labels = language === 'hr'
-          ? { all: 'Sve', editorial: 'Urednički tekstovi', personal: 'Osobne kolumne', guest: 'Gostujuće priče', news: 'Novosti', inspiration: 'Inspiracija' }
-          : { all: 'All', editorial: 'Editorial', personal: 'Personal columns', guest: 'Guest stories', news: 'News', inspiration: 'Inspiration' };
-        const filtered = journalFilter === 'all' ? journalPosts : journalPosts.filter(post => post.type === journalFilter);
+          ? { all: 'Sve', editorial: 'Urednički tekstovi', personal: 'Kolumne', guest: 'Gostujuće priče', news: 'Novosti', inspiration: 'Inspiracija' }
+          : { all: 'All', editorial: 'Editorial', personal: 'Columns', guest: 'Guest stories', news: 'News', inspiration: 'Inspiration' };
+
+        const columnLabels = language === 'hr'
+          ? { all: 'Sve kolumne', lidija: 'Lidija | MOVE&TRY' }
+          : { all: 'All columns', lidija: 'Lidija | MOVE&TRY' };
+
+        const columnProfiles = {
+          hr: {
+            lidija: [
+              'Osobna kolumna osnivačice MOVE&TRY i urednice The Journala.',
+              'O znatiželji, novim počecima, ljudima, idejama i svemu što nastaje između pitanja „što ako?” i odluke da ipak probamo.',
+              'Ponekad o MOVE&TRY-u iza kulisa, ponekad o vlastitim iskustvima, a ponekad jednostavno o stvarima koje me natjeraju da zastanem, razmislim ili pogledam nešto malo drukčije.'
+            ]
+          },
+          en: {
+            lidija: [
+              'A personal column by the founder of MOVE&TRY and editor of The Journal.',
+              'On curiosity, new beginnings, people, ideas, and everything that happens between asking “what if?” and deciding to give it a try.',
+              'Sometimes about MOVE&TRY behind the scenes, sometimes about personal experiences, and sometimes simply about the things that make me pause, reflect, or look at something a little differently.'
+            ]
+          }
+        };
+
+        let filtered = journalFilter === 'all'
+          ? journalPosts
+          : journalPosts.filter(post => post.type === journalFilter);
+
+        if (journalFilter === 'personal' && journalColumn !== 'all') {
+          filtered = filtered.filter(post => post.column === journalColumn);
+        }
+
+        const activeProfile =
+          journalFilter === 'personal' && journalColumn !== 'all'
+            ? columnProfiles[language]?.[journalColumn]
+            : null;
+
         return `<section class="app-journal">
           <div class="eyebrow">MOVE&TRY</div>
           <h1>THE JOURNAL.</h1>
           <p class="app-journal-intro">${escapeHTML(t.journalDesc)}</p>
+
           <div class="app-journal-filters">${Object.entries(labels).map(([key, label]) => `
             <button type="button" class="app-journal-filter" data-journal-filter="${key}"
               aria-pressed="${journalFilter === key}">${escapeHTML(label)}</button>`).join('')}</div>
+
+          ${journalFilter === 'personal' ? `
+            <div class="app-journal-filters app-journal-column-filters">
+              ${Object.entries(columnLabels).map(([key, label]) => `
+                <button type="button" class="app-journal-filter" data-journal-column="${key}"
+                  aria-pressed="${journalColumn === key}">${escapeHTML(label)}</button>`).join('')}
+            </div>
+          ` : ''}
+
+          ${activeProfile ? `
+            <div class="app-journal-column-profile">
+              <strong>${escapeHTML(columnLabels[journalColumn])}</strong>
+              ${activeProfile.map(paragraph => `<p>${escapeHTML(paragraph)}</p>`).join('')}
+            </div>
+          ` : ''}
+
           ${filtered.length ? filtered.map(post => `
             <a class="app-journal-post" href="${escapeHTML(post.url)}">
               ${post.image ? `<img src="${escapeHTML(post.image)}" alt="" loading="lazy">`
@@ -1701,6 +1785,7 @@
               description: link.querySelector('.journal-post-description')?.textContent?.trim() || '',
               category,
               author: link.querySelector('.journal-post-author')?.textContent?.trim() || '',
+              column: (link.dataset.column || '').toLowerCase(),
               type: ['editorial', 'personal', 'guest', 'news', 'inspiration'].includes(kind) ? kind : 'editorial'
             };
           }).filter(Boolean);
@@ -1751,6 +1836,7 @@
         journalLoading = false;
         journalPosts = null;
         journalFilter = 'all';
+        journalColumn = 'all';
         document.querySelectorAll('[data-nav]').forEach(node => {
           node.textContent = translations()[node.dataset.nav];
         });
@@ -2367,6 +2453,19 @@
 
         if (filter) {
           journalFilter = filter.dataset.journalFilter;
+          if (journalFilter !== 'personal') {
+            journalColumn = 'all';
+          }
+          render();
+          return;
+        }
+
+        const columnFilter = event.target.closest(
+          '[data-journal-column]'
+        );
+
+        if (columnFilter) {
+          journalColumn = columnFilter.dataset.journalColumn;
           render();
           return;
         }
