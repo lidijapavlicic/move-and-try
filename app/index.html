@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -242,6 +241,7 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
+
     .category {
       position: relative;
       isolation: isolate;
@@ -256,6 +256,7 @@
       border: 1px solid rgba(40, 50, 36, .14);
       text-decoration: none;
     }
+
     .category::before {
       content: "";
       position: absolute;
@@ -268,6 +269,7 @@
       opacity: .30;
       transition: opacity .35s ease, transform .35s ease;
     }
+
     .category::after {
       content: "";
       position: absolute;
@@ -275,12 +277,14 @@
       inset: 0;
       background: linear-gradient(0deg, rgba(247,247,242,.84), rgba(247,247,242,.06) 80%);
     }
+
     .category-number {
       font-size: 11px;
       letter-spacing: .14em;
       font-weight: 700;
       margin-bottom: auto;
     }
+
     .category strong {
       display: block;
       font-family: 'DM Serif Display', Georgia, serif;
@@ -288,6 +292,7 @@
       font-weight: 400;
       line-height: 1.12;
     }
+
     .category small {
       display: block;
       margin-top: 9px;
@@ -295,6 +300,7 @@
       font-weight: 500;
       line-height: 1.45;
     }
+
     .category-action {
       display: block;
       margin-top: 17px;
@@ -302,9 +308,11 @@
       font-weight: 800;
       letter-spacing: .09em;
     }
+
     @media (hover: hover) and (pointer: fine) {
       .category:hover::before { opacity: .55; transform: scale(1.035); }
     }
+
     @media (prefers-reduced-motion: reduce) {
       .category::before { transition: none; }
     }
@@ -346,6 +354,7 @@
       border: 1px solid #202b1b;
       margin-top: 12px;
     }
+
     .journal-entry-button strong { color: #fff; font-size: 15px; }
     .journal-entry-button small { color: #e2e7db; font-size: 12px; }
 
@@ -644,7 +653,6 @@
 
     .hint {
       margin-top: 17px;
-
       font-size: 11px !important;
     }
 
@@ -1001,7 +1009,6 @@
       padding: 20px 0;
     }
 
-    /* Journal cards: editorial layout, original website taxonomy */
     @media (min-width: 720px) {
       .app-journal-post {
         display: grid;
@@ -1009,64 +1016,313 @@
         column-gap: 26px;
         align-items: center;
       }
-      .app-journal-post img, .app-journal-post .app-journal-cover {
+
+      .app-journal-post img,
+      .app-journal-post .app-journal-cover {
         grid-row: 1;
         margin-bottom: 0;
       }
     }
 
     /* WHERE TO TRY — native app view, public website untouched */
-    .app-where-search-wrap { display:flex; align-items:center; gap:12px; border:1px solid var(--line); padding:13px 16px; margin:0 0 18px; background:transparent; }
-    .app-where-search-wrap span { color:var(--muted); font-size:24px; line-height:1; }
-    .app-where-search { width:100%; min-width:0; border:0; outline:0; background:transparent; color:inherit; font:inherit; font-size:13px; }
-    .app-where-search::placeholder { color:var(--muted); opacity:1; }
-    .app-where-categories { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; margin-bottom:0; }
-    .app-where-reset-wrap { min-height:34px; display:flex; justify-content:center; align-items:center; margin-bottom:16px; }
-    .app-where-reset { border:0; background:transparent; color:var(--muted); font-size:10px; font-weight:800; letter-spacing:.1em; padding:9px 12px; }
+
+    .app-where-search-wrap {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      border:1px solid var(--line);
+      padding:13px 16px;
+      margin:0 0 18px;
+      background:transparent;
+    }
+
+    .app-where-search-wrap span {
+      color:var(--muted);
+      font-size:24px;
+      line-height:1;
+    }
+
+    .app-where-search {
+      width:100%;
+      min-width:0;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:inherit;
+      font:inherit;
+      font-size:13px;
+    }
+
+    .app-where-search::placeholder {
+      color:var(--muted);
+      opacity:1;
+    }
+
+    .app-where-categories {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:9px;
+      margin-bottom:0;
+    }
+
+    .app-where-reset-wrap {
+      min-height:34px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-bottom:16px;
+    }
+
+    .app-where-reset {
+      border:0;
+      background:transparent;
+      color:var(--muted);
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.1em;
+      padding:9px 12px;
+    }
+
     .app-where-reset:hover { color:var(--green); }
-    .app-where-category { min-width:0; padding:16px 5px; border:1px solid var(--green); background:transparent; color:inherit; font-size:11px; font-weight:700; letter-spacing:.12em; cursor:pointer; }
-    .app-where-category[aria-pressed="true"] { background:var(--green); color:#fff; }
-    .app-where-empty { color:var(--muted); font-size:13px; padding:22px 0; }
-    @media (min-width:720px) { .app-where-categories { grid-template-columns:repeat(6,minmax(0,1fr)); } }
-    .app-where { padding: 30px 22px 70px; }
-    .app-where h1 { font: 400 clamp(35px, 9vw, 49px)/1.06 'DM Serif Display', Georgia, serif; margin: 12px 0 15px; }
-    .app-where-intro { color: var(--muted); font-size: 13px; line-height: 1.85; max-width: 520px; margin: 0 0 30px; }
-    .app-where-count { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 18px; color: var(--muted); font-size: 10px; letter-spacing: .15em; font-weight: 800; }
-    .app-where-card { display: grid; grid-template-columns: minmax(90px, 35%) minmax(0, 1fr); gap: 17px; padding: 18px 0 25px; border-bottom: 1px solid var(--line); align-items: start; }
-    .app-where-photo { width: 100%; aspect-ratio: 1/1; background: #ebe9e1; display: grid; place-items: center; overflow: hidden; }
-    .app-where-photo img { display: block; width: 100%; height: 100%; object-fit: contain; padding: 12px; }
-    .app-where-meta { font-size: 9px; letter-spacing: .12em; color: var(--muted); font-weight: 800; margin: 2px 0 8px; }
-    .app-where-details { min-width: 0; }
-    .app-where-details h2 { font: 400 clamp(19px, 5vw, 28px)/1.15 'DM Serif Display', Georgia, serif; margin: 0 0 9px; }
-    .app-where-provider { font-size: 11px; font-weight: 800; letter-spacing: .08em; margin-bottom: 9px; }
-    .app-where-details p { color: var(--muted); font-size: 11px; line-height: 1.7; margin: 0 0 14px; }
-    .app-where-action { display: inline-block; color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: .05em; }
-    .app-where-contribute { margin-top: 45px; padding: 24px 20px; background: #eeeee7; }
-    .app-where-contribute h2 { font: 400 27px/1.15 'DM Serif Display', Georgia, serif; margin: 12px 0; }
-    .app-where-contribute p { color: var(--muted); font-size: 12px; line-height: 1.8; }
-    .app-where-contribute a { display: inline-block; margin-top: 12px; font-size: 10px; font-weight: 800; border-bottom: 1px solid var(--green); padding-bottom: 5px; }
-    @media (max-width: 380px) { .app-where-card { grid-template-columns: 1fr; } .app-where-photo { aspect-ratio: 2/1; } }
+
+    .app-where-category {
+      min-width:0;
+      padding:16px 5px;
+      border:1px solid var(--green);
+      background:transparent;
+      color:inherit;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.12em;
+      cursor:pointer;
+    }
+
+    .app-where-category[aria-pressed="true"] {
+      background:var(--green);
+      color:#fff;
+    }
+
+    .app-where-empty {
+      color:var(--muted);
+      font-size:13px;
+      padding:22px 0;
+    }
+
+    @media (min-width:720px) {
+      .app-where-categories {
+        grid-template-columns:repeat(6,minmax(0,1fr));
+      }
+    }
+
+    .app-where {
+      padding: 30px 22px 70px;
+    }
+
+    .app-where h1 {
+      font: 400 clamp(35px, 9vw, 49px)/1.06 'DM Serif Display', Georgia, serif;
+      margin: 12px 0 15px;
+    }
+
+    .app-where-intro {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.85;
+      max-width: 520px;
+      margin: 0 0 30px;
+    }
+
+    .app-where-count {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .15em;
+      font-weight: 800;
+    }
+
+    .app-where-card {
+      display: grid;
+      grid-template-columns: minmax(90px, 35%) minmax(0, 1fr);
+      gap: 17px;
+      padding: 18px 0 25px;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+
+    .app-where-photo {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #ebe9e1;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .app-where-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 12px;
+    }
+
+    .app-where-meta {
+      font-size: 9px;
+      letter-spacing: .12em;
+      color: var(--muted);
+      font-weight: 800;
+      margin: 2px 0 8px;
+    }
+
+    .app-where-details {
+      min-width: 0;
+    }
+
+    .app-where-details h2 {
+      font: 400 clamp(19px, 5vw, 28px)/1.15 'DM Serif Display', Georgia, serif;
+      margin: 0 0 9px;
+    }
+
+    .app-where-provider {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      margin-bottom: 9px;
+    }
+
+    .app-where-details p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+      margin: 0 0 14px;
+    }
+
+    .app-where-action {
+      display: inline-block;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .05em;
+    }
+
+    .app-where-contribute {
+      margin-top: 45px;
+      padding: 24px 20px;
+      background: #eeeee7;
+    }
+
+    .app-where-contribute h2 {
+      font: 400 27px/1.15 'DM Serif Display', Georgia, serif;
+      margin: 12px 0;
+    }
+
+    .app-where-contribute p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .app-where-contribute a {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 10px;
+      font-weight: 800;
+      border-bottom: 1px solid var(--green);
+      padding-bottom: 5px;
+    }
+
+    @media (max-width: 380px) {
+      .app-where-card {
+        grid-template-columns: 1fr;
+      }
+
+      .app-where-photo {
+        aspect-ratio: 2/1;
+      }
+    }
 
     /* Installation-only entry for regular browser tabs. */
-    .mt-browser .shell, .mt-browser .bottom, .mt-browser #welcome,
-    .mt-browser #notifications-panel, .mt-browser #settings-panel { display: none !important; }
-    #mt-install-gate { display: none; }
-    .mt-browser #mt-install-gate {
-      display: flex; min-height: 100dvh; align-items: center; justify-content: center;
-      padding: 34px 22px; text-align: center;
+
+    .mt-browser .shell,
+    .mt-browser .bottom,
+    .mt-browser #welcome,
+    .mt-browser #notifications-panel,
+    .mt-browser #settings-panel {
+      display: none !important;
     }
-    .mt-install-inner { width: 100%; max-width: 480px; }
-    .mt-install-logo { display: block; width: min(230px, 78%); height: auto; margin: 0 auto 46px; }
-    .mt-install-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .17em; }
-    .mt-install-inner h1 { font: 400 clamp(38px, 10vw, 56px)/1.1 'DM Serif Display', Georgia, serif; margin: 18px 0; }
-    .mt-install-inner p { color: var(--muted); font-size: 13px; line-height: 1.9; }
-    .mt-install-button { display: block; width: 100%; margin: 32px auto 16px; padding: 19px;
-      background: var(--green); color: #fff; border: 1px solid var(--green);
-      font-size: 11px; font-weight: 800; letter-spacing: .08em; }
-    .mt-install-button[hidden] { display: none; }
-    .mt-install-help { padding: 15px 12px; border-top: 1px solid var(--line); }
-    .mt-install-home { display: inline-block; margin-top: 25px; font-size: 10px;
-      font-weight: 800; letter-spacing: .1em; border-bottom: 1px solid currentColor; padding-bottom: 5px; }
+
+    #mt-install-gate { display: none; }
+
+    .mt-browser #mt-install-gate {
+      display: flex;
+      min-height: 100dvh;
+      align-items: center;
+      justify-content: center;
+      padding: 34px 22px;
+      text-align: center;
+    }
+
+    .mt-install-inner {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .mt-install-logo {
+      display: block;
+      width: min(230px, 78%);
+      height: auto;
+      margin: 0 auto 46px;
+    }
+
+    .mt-install-eyebrow {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .17em;
+    }
+
+    .mt-install-inner h1 {
+      font: 400 clamp(38px, 10vw, 56px)/1.1 'DM Serif Display', Georgia, serif;
+      margin: 18px 0;
+    }
+
+    .mt-install-inner p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .mt-install-button {
+      display: block;
+      width: 100%;
+      margin: 32px auto 16px;
+      padding: 19px;
+      background: var(--green);
+      color: #fff;
+      border: 1px solid var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .mt-install-button[hidden] {
+      display: none;
+    }
+
+    .mt-install-help {
+      padding: 15px 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .mt-install-home {
+      display: inline-block;
+      margin-top: 25px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 5px;
+    }
   </style>
 
   <link rel="stylesheet" href="/consent.css">
@@ -1075,7 +1331,6 @@
 
 <body>
 
-  <!-- Browser visitors see installation guidance; installed PWA shows the existing app. -->
   <section id="mt-install-gate" aria-labelledby="mt-install-title">
     <div class="mt-install-inner">
       <img class="mt-install-logo" src="/images/move-and-try-logo.png" alt="MOVE&TRY">
@@ -1087,9 +1342,6 @@
       <a class="mt-install-home" id="mt-install-home" href="/hr/">NATRAG NA WEB →</a>
     </div>
   </section>
-
-
-  <!-- FIRST-LAUNCH LANGUAGE SELECTION -->
 
   <div class="overlay" id="welcome" hidden>
     <div class="welcome">
@@ -1132,8 +1384,6 @@
       </p>
     </div>
   </div>
-
-  <!-- MAIN APP -->
 
   <div class="shell">
 
@@ -1181,8 +1431,6 @@
 
   </div>
 
-  <!-- FIVE-ITEM APP NAVIGATION -->
-
   <nav class="bottom" aria-label="App navigation">
 
     <button type="button" data-tab="home" aria-current="page">
@@ -1226,8 +1474,6 @@
 
   </nav>
 
-  <!-- NOTIFICATIONS PANEL -->
-
   <div class="panel-backdrop" id="notifications-panel" hidden>
     <section
       class="panel"
@@ -1241,6 +1487,7 @@
           <div class="eyebrow">MOVE&TRY</div>
           <h2 id="notifications-title">Obavijesti</h2>
         </div>
+
         <button
           class="close-button"
           type="button"
@@ -1261,11 +1508,13 @@
       </fieldset>
 
       <div id="app-notification-history" aria-live="polite"></div>
+
       <div class="empty-notifications" hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
           <path d="M10 21h4"/>
         </svg>
+
         <p id="notifications-empty">
           Još nema obavijesti.
         </p>
@@ -1273,14 +1522,11 @@
     </section>
   </div>
 
-  <!-- SETTINGS PANEL -->
-
   <div class="panel-backdrop" id="settings-panel" hidden>
     <section
       class="panel"
       role="dialog"
       aria-modal="true"
-
       aria-labelledby="settings-title"
       tabindex="-1"
     >
@@ -1289,6 +1535,7 @@
           <div class="eyebrow">MOVE&TRY</div>
           <h2 id="settings-title">Postavke</h2>
         </div>
+
         <button
           class="close-button"
           type="button"
@@ -1307,6 +1554,7 @@
         >
           🇭🇷 Hrvatski
         </button>
+
         <button
           class="setting-choice"
           type="button"
@@ -1321,7 +1569,12 @@
       </p>
 
       <div class="setting-label" id="privacy-label">Privatnost</div>
-      <button class="setting-choice privacy-choice" id="privacy-settings-button" type="button">
+
+      <button
+        class="setting-choice privacy-choice"
+        id="privacy-settings-button"
+        type="button"
+      >
         Privatnost i kolačići →
       </button>
     </section>
@@ -1335,133 +1588,335 @@
       const WEB_LANGUAGE_KEY = 'moveandtry_language';
       const SESSION_KEY = 'moveandtry_public_app_session';
 
-      // Public catalogue is maintained in /data/activities.json.
       let surpriseActivities = [];
       let lastSurpriseId = null;
       let diceBusy = false;
       let diceTurns = 0;
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      const reducedMotion =
+        window.matchMedia('(prefers-reduced-motion: reduce)');
 
       async function loadSurpriseActivities() {
         try {
-          const response = await fetch('/data/activities.json', { cache: 'no-cache' });
-          if (!response.ok) throw new Error('Catalogue HTTP ' + response.status);
+          const response =
+            await fetch('/data/activities.json', {
+              cache: 'no-cache'
+            });
+
+          if (!response.ok) {
+            throw new Error(
+              'Catalogue HTTP ' + response.status
+            );
+          }
+
           const data = await response.json();
-          if (!data || !Array.isArray(data.activities)) throw new Error('Invalid catalogue');
-          surpriseActivities = data.activities.filter(item =>
-            item.published === true && item.includeInSurprise === true &&
-            item.id && item.name && item.name.hr && item.name.en &&
-            item.url && /^\/hr\/[a-z0-9-]+\.html$/.test(item.url.hr) &&
-            /^\/[a-z0-9-]+\.html$/.test(item.url.en)
-          );
+
+          if (
+            !data ||
+            !Array.isArray(data.activities)
+          ) {
+            throw new Error('Invalid catalogue');
+          }
+
+          surpriseActivities =
+            data.activities.filter(item =>
+              item.published === true &&
+              item.includeInSurprise === true &&
+              item.id &&
+              item.name &&
+              item.name.hr &&
+              item.name.en &&
+              item.url &&
+              /^\/hr\/[a-z0-9-]+\.html$/.test(item.url.hr) &&
+              /^\/[a-z0-9-]+\.html$/.test(item.url.en)
+            );
+
         } catch (error) {
-          console.warn('MOVE&TRY activity catalogue:', error);
+          console.warn(
+            'MOVE&TRY activity catalogue:',
+            error
+          );
+
           surpriseActivities = [];
         }
-        const pick = document.getElementById('surprise-pick');
-        if (pick) pick.disabled = !surpriseActivities.length;
-        const note = document.getElementById('dice-caption');
-        if (note) note.textContent = surpriseActivities.length
-          ? translations().diceReady
-          : translations().diceUnavailable;
+
+        const pick =
+          document.getElementById('surprise-pick');
+
+        if (pick) {
+          pick.disabled =
+            !surpriseActivities.length;
+        }
+
+        const note =
+          document.getElementById('dice-caption');
+
+        if (note) {
+          note.textContent =
+            surpriseActivities.length
+              ? translations().diceReady
+              : translations().diceUnavailable;
+        }
       }
 
       function diceFaces() {
         const layouts = [
-          [5], [1,9], [1,5,9], [1,3,7,9], [1,3,5,7,9], [1,3,4,6,7,9]
+          [5],
+          [1,9],
+          [1,5,9],
+          [1,3,7,9],
+          [1,3,5,7,9],
+          [1,3,4,6,7,9]
         ];
-        return layouts.map((positions, index) => `
-          <div class="dice-face" aria-hidden="true"><div class="dice-pips">
-            ${positions.map(position => `<i class="dice-pip" style="grid-area:${Math.ceil(position/3)} / ${((position-1)%3)+1}"></i>`).join('')}
-          </div></div>`).join('');
+
+        return layouts
+          .map((positions, index) => `
+            <div class="dice-face" aria-hidden="true">
+              <div class="dice-pips">
+                ${positions.map(position => `
+                  <i
+                    class="dice-pip"
+                    style="grid-area:${Math.ceil(position/3)} / ${((position-1)%3)+1}"
+                  ></i>
+                `).join('')}
+              </div>
+            </div>
+          `)
+          .join('');
       }
 
       const I18N = {
         hr: {
-          home: 'Početna', explore: 'Istraži', where: 'Gdje probati', journal: 'Journal', saved: 'Spremljeno',
-          hello: 'Tvoja sljedeća priča počinje ovdje.', intro: 'Otkrij aktivnosti, ideje i ljude koji te mogu potaknuti da isprobaš nešto novo.',
-          discover: 'OTKRIJ NEŠTO NOVO', categories: 'Istraži po kategorijama',
-          categoryHint: 'Odaberi ono što te zanima.', journalTitle: 'The Journal',
-          journalDesc: 'Priče, iskustva i ljudi iza novih početaka.', journalOpen: 'Otvori Journal',
-          exploreTitle: 'Što želiš isprobati?', exploreDesc: 'Pronađi inspiraciju u šest MOVE&TRY kategorija.',
-          diceTitle: 'Iznenadi me', diceDesc: 'Prepusti slučajnosti izbor svoje sljedeće aktivnosti.',
-          diceButton: 'BACI KOCKICU', diceBusy: 'KOCKICA SE VRTI…', diceReady: 'Pritisni gumb i otkrij aktivnost.',
+          home: 'Početna',
+          explore: 'Istraži',
+          where: 'Gdje probati',
+          journal: 'Journal',
+          saved: 'Spremljeno',
+
+          hello: 'Tvoja sljedeća priča počinje ovdje.',
+          intro: 'Otkrij aktivnosti, ideje i ljude koji te mogu potaknuti da isprobaš nešto novo.',
+
+          discover: 'OTKRIJ NEŠTO NOVO',
+          categories: 'Istraži po kategorijama',
+          categoryHint: 'Odaberi ono što te zanima.',
+
+          journalTitle: 'The Journal',
+          journalDesc: 'Priče, iskustva i ljudi iza novih početaka.',
+          journalOpen: 'Otvori Journal',
+
+          exploreTitle: 'Što želiš isprobati?',
+          exploreDesc: 'Pronađi inspiraciju u šest MOVE&TRY kategorija.',
+
+          diceTitle: 'Iznenadi me',
+          diceDesc: 'Prepusti slučajnosti izbor svoje sljedeće aktivnosti.',
+          diceButton: 'BACI KOCKICU',
+          diceBusy: 'KOCKICA SE VRTI…',
+          diceReady: 'Pritisni gumb i otkrij aktivnost.',
           diceUnavailable: 'Trenutačno nema dostupnih aktivnosti za nasumičan odabir.',
-          diceResult: 'Tvoj prijedlog:', diceOpen: 'Pogledaj aktivnost', diceAgain: 'PONOVNO BACI KOCKICU',
-          whereTitle: 'Gdje probati?', whereDesc: 'Otkrij mjesta i ljude uz koje možeš napraviti prvi korak.',
-          whereOpen: 'Istraži mogućnosti', savedTitle: 'Spremljeno',
+          diceResult: 'Tvoj prijedlog:',
+          diceOpen: 'Pogledaj aktivnost',
+          diceAgain: 'PONOVNO BACI KOCKICU',
+
+          whereTitle: 'Gdje probati?',
+          whereDesc: 'Otkrij mjesta i ljude uz koje možeš napraviti prvi korak.',
+          whereOpen: 'Istraži mogućnosti',
+
+          savedTitle: 'Spremljeno',
           savedDesc: 'Tvoje spremljene aktivnosti i članci pojavit će se ovdje kada omogućimo spremanje sadržaja.',
-          settings: 'Postavke', notifications: 'Obavijesti', noNotifications: 'Još nema obavijesti.',
-          languageLabel: 'Jezik aplikacije', settingsNote: 'Jezik možeš promijeniti u bilo kojem trenutku.',
-          privacyLabel: 'Privatnost', privacyButton: 'Privatnost i kolačići →',
-          close: 'Zatvori', pushUnsupported: 'Push obavijesti nisu podržane u ovom pregledniku.',
+
+          settings: 'Postavke',
+          notifications: 'Obavijesti',
+          noNotifications: 'Još nema obavijesti.',
+
+          languageLabel: 'Jezik aplikacije',
+          settingsNote: 'Jezik možeš promijeniti u bilo kojem trenutku.',
+
+          privacyLabel: 'Privatnost',
+          privacyButton: 'Privatnost i kolačići →',
+
+          close: 'Zatvori',
+
+          pushUnsupported: 'Push obavijesti nisu podržane u ovom pregledniku.',
           pushDenied: 'Obavijesti su blokirane u postavkama preglednika.',
           pushEnabled: 'Obavijesti su dopuštene na ovom uređaju.',
           pushNotEnabled: 'Obavijesti još nisu uključene na ovom uređaju.',
           pushExisting: 'Pretplata na push obavijesti aktivna je na ovom uređaju.',
           pushManage: 'Upravljaj obavijestima u postavkama uređaja.',
-          pushCheck: 'Provjeri status obavijesti', pushChecking: 'Provjeravam…',
-          pushTurnOn: 'Uključi obavijesti', pushTurnOff: 'Isključi obavijesti', pushSave: 'Spremi kategorije',
-          pushCategories: 'Odaberi kategorije obavijesti', pushSaving: 'Spremam…', pushSaved: 'Kategorije su spremljene.',
-          pushSelect: 'Odaberi barem jednu kategoriju.', pushError: 'Spremanje nije uspjelo. Provjeri vezu i pokušaj ponovno.',
+          pushCheck: 'Provjeri status obavijesti',
+          pushChecking: 'Provjeravam…',
+          pushTurnOn: 'Uključi obavijesti',
+          pushTurnOff: 'Isključi obavijesti',
+          pushSave: 'Spremi kategorije',
+          pushCategories: 'Odaberi kategorije obavijesti',
+          pushSaving: 'Spremam…',
+          pushSaved: 'Kategorije su spremljene.',
+          pushSelect: 'Odaberi barem jednu kategoriju.',
+          pushError: 'Spremanje nije uspjelo. Provjeri vezu i pokušaj ponovno.',
+
           privacyUnavailable: 'Postavke privatnosti trenutačno nisu dostupne. Pokušaj ponovno nakon učitavanja stranice.',
-          categoryMove: 'Pokreni se', categoryCreate: 'Stvaraj', categoryLearn: 'Nauči',
-          categoryExplore: 'Istraži', categoryDare: 'Odvaži se', categoryCare: 'Brini o sebi',
-          openCategory: 'Otvori kategoriju', access: 'Pristupačnost'
+
+          categoryMove: 'Pokreni se',
+          categoryCreate: 'Stvaraj',
+          categoryLearn: 'Nauči',
+          categoryExplore: 'Istraži',
+          categoryDare: 'Odvaži se',
+          categoryCare: 'Brini o sebi',
+
+          openCategory: 'Otvori kategoriju',
+          access: 'Pristupačnost'
         },
+
         en: {
-          home: 'Home', explore: 'Explore', where: 'Where to Try', journal: 'Journal', saved: 'Saved',
-          hello: 'Your next story starts here.', intro: 'Discover activities, ideas and people who might inspire you to try something new.',
-          discover: 'DISCOVER SOMETHING NEW', categories: 'Explore by category',
-          categoryHint: 'Choose what interests you.', journalTitle: 'The Journal',
-          journalDesc: 'Stories, experiences and the people behind new beginnings.', journalOpen: 'Open the Journal',
-          exploreTitle: 'What would you like to try?', exploreDesc: 'Find inspiration across six MOVE&TRY categories.',
-          diceTitle: 'Surprise Me', diceDesc: 'Let chance choose your next activity.',
-          diceButton: 'ROLL THE DICE', diceBusy: 'ROLLING…', diceReady: 'Roll the dice to discover an activity.',
+          home: 'Home',
+          explore: 'Explore',
+          where: 'Where to Try',
+          journal: 'Journal',
+          saved: 'Saved',
+
+          hello: 'Your next story starts here.',
+          intro: 'Discover activities, ideas and people who might inspire you to try something new.',
+
+          discover: 'DISCOVER SOMETHING NEW',
+          categories: 'Explore by category',
+          categoryHint: 'Choose what interests you.',
+
+          journalTitle: 'The Journal',
+          journalDesc: 'Stories, experiences and the people behind new beginnings.',
+          journalOpen: 'Open the Journal',
+
+          exploreTitle: 'What would you like to try?',
+          exploreDesc: 'Find inspiration across six MOVE&TRY categories.',
+
+          diceTitle: 'Surprise Me',
+          diceDesc: 'Let chance choose your next activity.',
+          diceButton: 'ROLL THE DICE',
+          diceBusy: 'ROLLING…',
+          diceReady: 'Roll the dice to discover an activity.',
           diceUnavailable: 'No published activities are currently available for a random pick.',
-          diceResult: 'Your suggestion:', diceOpen: 'View activity', diceAgain: 'ROLL AGAIN',
-          whereTitle: 'Where to Try', whereDesc: 'Discover places and people who can help you take the first step.',
-          whereOpen: 'Explore opportunities', savedTitle: 'Saved',
+          diceResult: 'Your suggestion:',
+          diceOpen: 'View activity',
+          diceAgain: 'ROLL AGAIN',
+
+          whereTitle: 'Where to Try',
+          whereDesc: 'Discover places and people who can help you take the first step.',
+          whereOpen: 'Explore opportunities',
+
+          savedTitle: 'Saved',
           savedDesc: 'Your saved activities and articles will appear here when saving content becomes available.',
-          settings: 'Settings', notifications: 'Notifications', noNotifications: 'No notifications yet.',
-          languageLabel: 'App language', settingsNote: 'You can change your language at any time.',
-          privacyLabel: 'Privacy', privacyButton: 'Privacy and cookies →',
-          close: 'Close', pushUnsupported: 'Push notifications are not supported in this browser.',
+
+          settings: 'Settings',
+          notifications: 'Notifications',
+          noNotifications: 'No notifications yet.',
+
+          languageLabel: 'App language',
+          settingsNote: 'You can change your language at any time.',
+
+          privacyLabel: 'Privacy',
+          privacyButton: 'Privacy and cookies →',
+
+          close: 'Close',
+
+          pushUnsupported: 'Push notifications are not supported in this browser.',
           pushDenied: 'Notifications are blocked in your browser settings.',
           pushEnabled: 'Notifications are allowed on this device.',
           pushNotEnabled: 'Notifications are not enabled on this device yet.',
           pushExisting: 'Push subscription is active on this device.',
           pushManage: 'Manage notifications in your device settings.',
-          pushCheck: 'Check notification status', pushChecking: 'Checking…',
-          pushTurnOn: 'Enable notifications', pushTurnOff: 'Disable notifications', pushSave: 'Save categories',
-          pushCategories: 'Choose notification categories', pushSaving: 'Saving…', pushSaved: 'Categories saved.',
-          pushSelect: 'Select at least one category.', pushError: 'Could not save. Check your connection and try again.',
+          pushCheck: 'Check notification status',
+          pushChecking: 'Checking…',
+          pushTurnOn: 'Enable notifications',
+          pushTurnOff: 'Disable notifications',
+          pushSave: 'Save categories',
+          pushCategories: 'Choose notification categories',
+          pushSaving: 'Saving…',
+          pushSaved: 'Categories saved.',
+          pushSelect: 'Select at least one category.',
+          pushError: 'Could not save. Check your connection and try again.',
+
           privacyUnavailable: 'Privacy settings are currently unavailable. Try again after the page has loaded.',
-          categoryMove: 'Get moving', categoryCreate: 'Create', categoryLearn: 'Learn',
-          categoryExplore: 'Explore', categoryDare: 'Dare', categoryCare: 'Take care',
-          openCategory: 'Open category', access: 'Accessibility'
+
+          categoryMove: 'Get moving',
+          categoryCreate: 'Create',
+          categoryLearn: 'Learn',
+          categoryExplore: 'Explore',
+          categoryDare: 'Dare',
+          categoryCare: 'Take care',
+
+          openCategory: 'Open category',
+          access: 'Accessibility'
         }
       };
 
       const CATEGORY_DATA = [
-        { id: 'MOVE', key: 'categoryMove', image: '/images/category-move.webp', hr: '/hr/move.html', en: '/move.html' },
-        { id: 'CREATE', key: 'categoryCreate', image: '/images/category-create.webp', hr: '/hr/create.html', en: '/create.html' },
-        { id: 'LEARN', key: 'categoryLearn', image: '/images/category-learn.webp', hr: '/hr/learn.html', en: '/learn.html' },
-        { id: 'EXPLORE', key: 'categoryExplore', image: '/images/category-explore.webp', hr: '/hr/explore.html', en: '/explore.html' },
-        { id: 'DARE', key: 'categoryDare', image: '/images/category-dare.webp', hr: '/hr/dare.html', en: '/dare.html' },
-        { id: 'CARE', key: 'categoryCare', image: '/images/category-care.webp', hr: '/hr/care.html', en: '/care.html' }
+        {
+          id: 'MOVE',
+          key: 'categoryMove',
+          image: '/images/category-move.webp',
+          hr: '/hr/move.html',
+          en: '/move.html'
+        },
+        {
+          id: 'CREATE',
+          key: 'categoryCreate',
+          image: '/images/category-create.webp',
+          hr: '/hr/create.html',
+          en: '/create.html'
+        },
+        {
+          id: 'LEARN',
+          key: 'categoryLearn',
+          image: '/images/category-learn.webp',
+          hr: '/hr/learn.html',
+          en: '/learn.html'
+        },
+        {
+          id: 'EXPLORE',
+          key: 'categoryExplore',
+          image: '/images/category-explore.webp',
+          hr: '/hr/explore.html',
+          en: '/explore.html'
+        },
+        {
+          id: 'DARE',
+          key: 'categoryDare',
+          image: '/images/category-dare.webp',
+          hr: '/hr/dare.html',
+          en: '/dare.html'
+        },
+        {
+          id: 'CARE',
+          key: 'categoryCare',
+          image: '/images/category-care.webp',
+          hr: '/hr/care.html',
+          en: '/care.html'
+        }
       ];
 
-      const view = document.getElementById('view');
-      const welcome = document.getElementById('welcome');
-      const notificationsPanel = document.getElementById('notifications-panel');
-      const settingsPanel = document.getElementById('settings-panel');
-      const navButtons = [...document.querySelectorAll('[data-tab]')];
+      const view =
+        document.getElementById('view');
 
-      let language = getStored(APP_LANGUAGE_KEY) === 'en' ? 'en' : 'hr';
+      const welcome =
+        document.getElementById('welcome');
+
+      const notificationsPanel =
+        document.getElementById('notifications-panel');
+
+      const settingsPanel =
+        document.getElementById('settings-panel');
+
+      const navButtons =
+        [...document.querySelectorAll('[data-tab]')];
+
+      let language =
+        getStored(APP_LANGUAGE_KEY) === 'en'
+          ? 'en'
+          : 'hr';
+
       let activeTab = 'home';
+
       let journalFilter = 'all';
       let journalColumn = 'all';
+
       let journalPosts = null;
       let journalLoading = false;
 
@@ -1470,28 +1925,74 @@
       }
 
       function escapeHTML(value) {
-        return String(value ?? '').replace(/[&<>"']/g, character => ({
-          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-        })[character]);
+        return String(value ?? '')
+          .replace(
+            /[&<>"']/g,
+            character => ({
+              '&': '&amp;',
+              '<': '&lt;',
+              '>': '&gt;',
+              '"': '&quot;',
+              "'": '&#39;'
+            })[character]
+          );
       }
 
       function categoryCards() {
         const t = translations();
-        const descriptions = language === 'hr'
-          ? ['Trči. Pleši. Penji se. Kreni.', 'Stvaraj. Slikaj. Oblikuj.', 'Uči. Pitaj. Otkrij.', 'Kreni drugim putem. Istraži.', 'Usudi se pokušati.', 'Zastani. Razgovaraj. Brini o sebi.']
-          : ['Run. Dance. Climb. Move.', 'Make. Paint. Create.', 'Learn. Ask. Discover.', 'Take a different path. Explore.', 'Dare to try.', 'Pause. Talk. Take care.'];
-        return `<div class="categories">${CATEGORY_DATA.map((category, index) => `
-          <a class="category" href="${language === 'hr' ? category.hr : category.en}?source=moveandtry-app"
-             style="--category-image:url('${category.image}')"
-             aria-label="${escapeHTML(t.openCategory)}: ${category.id}">
-            <span class="category-number">${String(index + 1).padStart(2, '0')}</span>
-            <strong>${category.id}</strong>
-            <small>${escapeHTML(descriptions[index])}</small>
-            <span class="category-action">${language === 'hr' ? 'ISTRAŽI' : 'EXPLORE'} ${category.id} →</span>
-          </a>`).join('')}</div>`;
+
+        const descriptions =
+          language === 'hr'
+            ? [
+                'Trči. Pleši. Penji se. Kreni.',
+                'Stvaraj. Slikaj. Oblikuj.',
+                'Uči. Pitaj. Otkrij.',
+                'Kreni drugim putem. Istraži.',
+                'Usudi se pokušati.',
+                'Zastani. Razgovaraj. Brini o sebi.'
+              ]
+            : [
+                'Run. Dance. Climb. Move.',
+                'Make. Paint. Create.',
+                'Learn. Ask. Discover.',
+                'Take a different path. Explore.',
+                'Dare to try.',
+                'Pause. Talk. Take care.'
+              ];
+
+        return `
+          <div class="categories">
+            ${CATEGORY_DATA.map(
+              (category, index) => `
+                <a
+                  class="category"
+                  href="${language === 'hr' ? category.hr : category.en}?source=moveandtry-app"
+                  style="--category-image:url('${category.image}')"
+                  aria-label="${escapeHTML(t.openCategory)}: ${category.id}"
+                >
+                  <span class="category-number">
+                    ${String(index + 1).padStart(2, '0')}
+                  </span>
+
+                  <strong>
+                    ${category.id}
+                  </strong>
+
+                  <small>
+                    ${escapeHTML(descriptions[index])}
+                  </small>
+
+                  <span class="category-action">
+                    ${language === 'hr' ? 'ISTRAŽI' : 'EXPLORE'}
+                    ${category.id} →
+                  </span>
+                </a>
+              `
+            ).join('')}
+          </div>
+        `;
       }
 
-      // Homepage messages: bilingual, rotating over the existing hero image.
       const HERO_MESSAGES = {
         hr: [
           'A ŠTO AKO PROBAŠ?',
@@ -1507,6 +2008,7 @@
           'JEDAN POKUŠAJ MOŽE PROMIJENITI SVE.',
           'ZNATIŽELJA JE DOBAR POČETAK.'
         ],
+
         en: [
           'WHAT IF YOU TRY?',
           'WHEN WAS THE LAST TIME YOU DID SOMETHING FOR THE FIRST TIME?',
@@ -1522,169 +2024,544 @@
           'CURIOSITY IS A GOOD PLACE TO START.'
         ]
       };
+
       let heroMessageIndex = 0;
+
       function heroMessage() {
-        return HERO_MESSAGES[language][heroMessageIndex % HERO_MESSAGES[language].length];
+        return HERO_MESSAGES[language][
+          heroMessageIndex %
+          HERO_MESSAGES[language].length
+        ];
       }
+
       window.setInterval(() => {
-        if (document.hidden || activeTab !== 'home') return;
-        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-        const target = document.getElementById('hero-message');
-        if (!target) return;
-        heroMessageIndex = (heroMessageIndex + 1) % HERO_MESSAGES[language].length;
-        target.textContent = heroMessage();
+        if (
+          document.hidden ||
+          activeTab !== 'home'
+        ) {
+          return;
+        }
+
+        if (
+          window.matchMedia?.(
+            '(prefers-reduced-motion: reduce)'
+          ).matches
+        ) {
+          return;
+        }
+
+        const target =
+          document.getElementById('hero-message');
+
+        if (!target) {
+          return;
+        }
+
+        heroMessageIndex =
+          (
+            heroMessageIndex + 1
+          ) %
+          HERO_MESSAGES[language].length;
+
+        target.textContent =
+          heroMessage();
+
       }, 5500);
 
       function renderHome() {
         const t = translations();
+
         return `
           <section class="intro">
-            <div class="eyebrow">MOVE&TRY</div>
-            <h1>${escapeHTML(t.hello)}</h1>
-            <p>${escapeHTML(t.intro)}</p>
+            <div class="eyebrow">
+              MOVE&TRY
+            </div>
+
+            <h1>
+              ${escapeHTML(t.hello)}
+            </h1>
+
+            <p>
+              ${escapeHTML(t.intro)}
+            </p>
           </section>
-          <div class="hero"><span id="hero-message" aria-live="off">${escapeHTML(heroMessage())}</span></div>
+
+          <div class="hero">
+            <span id="hero-message" aria-live="off">
+              ${escapeHTML(heroMessage())}
+            </span>
+          </div>
+
           <section class="section">
-            <div class="eyebrow">MOVE · CREATE · LEARN · EXPLORE · DARE · CARE</div>
-            <h2>${escapeHTML(t.categories)}</h2>
+            <div class="eyebrow">
+              MOVE · CREATE · LEARN · EXPLORE · DARE · CARE
+            </div>
+
+            <h2>
+              ${escapeHTML(t.categories)}
+            </h2>
+
             ${categoryCards()}
           </section>
+
           <section class="section journal-section">
-            <div class="eyebrow">MOVE&TRY STORIES</div>
-            <h2>${escapeHTML(t.journalTitle)}</h2>
-            <a class="feature journal-entry-button" href="#journal" data-open-tab="journal">
-              <span><strong>${escapeHTML(t.journalDesc)}</strong>
-              <small>${escapeHTML(t.journalOpen)}</small></span>
-              <span aria-hidden="true">↗</span>
+            <div class="eyebrow">
+              MOVE&TRY STORIES
+            </div>
+
+            <h2>
+              ${escapeHTML(t.journalTitle)}
+            </h2>
+
+            <a
+              class="feature journal-entry-button"
+              href="#journal"
+              data-open-tab="journal"
+            >
+              <span>
+                <strong>
+                  ${escapeHTML(t.journalDesc)}
+                </strong>
+
+                <small>
+                  ${escapeHTML(t.journalOpen)}
+                </small>
+              </span>
+
+              <span aria-hidden="true">
+                ↗
+              </span>
             </a>
-          </section>`;
+          </section>
+        `;
       }
 
       function renderExplore() {
         const t = translations();
+
         return `
           <section class="placeholder">
-            <div class="eyebrow">EXPLORE</div>
-            <h1>${escapeHTML(t.exploreTitle)}</h1>
-            <p>${escapeHTML(t.exploreDesc)}</p>
+
+            <div class="eyebrow">
+              EXPLORE
+            </div>
+
+            <h1>
+              ${escapeHTML(t.exploreTitle)}
+            </h1>
+
+            <p>
+              ${escapeHTML(t.exploreDesc)}
+            </p>
+
             <div class="surprise-box">
-              <div class="eyebrow">MOVE&TRY</div>
-              <h2>${escapeHTML(t.diceTitle)}</h2>
-              <p>${escapeHTML(t.diceDesc)}</p>
+
+              <div class="eyebrow">
+                MOVE&TRY
+              </div>
+
+              <h2>
+                ${escapeHTML(t.diceTitle)}
+              </h2>
+
+              <p>
+                ${escapeHTML(t.diceDesc)}
+              </p>
+
               <div class="dice-area">
+
                 <div class="dice-stage">
-                  <div class="dice-cube" id="dice-cube">${diceFaces()}</div>
+                  <div
+                    class="dice-cube"
+                    id="dice-cube"
+                  >
+                    ${diceFaces()}
+                  </div>
                 </div>
-                <button type="button" class="surprise-button dice-trigger"
-                  id="surprise-pick" ${surpriseActivities.length ? '' : 'disabled'}>
+
+                <button
+                  type="button"
+                  class="surprise-button dice-trigger"
+                  id="surprise-pick"
+                  ${surpriseActivities.length ? '' : 'disabled'}
+                >
                   ${escapeHTML(t.diceButton)}
                 </button>
-                <p class="dice-caption" id="dice-caption">
-                  ${escapeHTML(surpriseActivities.length ? t.diceReady : t.diceUnavailable)}
+
+                <p
+                  class="dice-caption"
+                  id="dice-caption"
+                >
+                  ${escapeHTML(
+                    surpriseActivities.length
+                      ? t.diceReady
+                      : t.diceUnavailable
+                  )}
                 </p>
               </div>
-              <div id="surprise-result" class="surprise-result" hidden></div>
+
+              <div
+                id="surprise-result"
+                class="surprise-result"
+                hidden
+              ></div>
+
             </div>
+
             ${categoryCards()}
-          </section>`;
+
+          </section>
+        `;
       }
 
       let whereCategory = 'all';
       let whereQuery = '';
+
       function renderWhere() {
-        const hr = language === 'hr';
-        // Published WHERE TO TRY listings; add future listings to this array.
-       const providers = [
-  {
-    category: 'CREATE',
-    activity: 'TUFTING',
-    name: 'MAGIC TUFTING STUDIO',
-    city: 'ZAGREB',
-    image: '/images/magic-tufting-workshop.jpg',
-    description: hr
-      ? 'Radionica tuftinga za početnike na kojoj uz vođenje upoznaješ tufting gun, tehniku rada i izrađuješ vlastiti motiv.'
-      : 'A beginner-friendly tufting workshop where you learn how to use a tufting gun, explore the technique and create your own design with guidance.',
-    url: hr ? '/hr/tufting-where-to-try.html' : '/tufting-where-to-try.html',
-    publishedAt: '2026-11-02'
-  },
-  {
-    category: 'CREATE',
-    activity: hr ? 'IZRADA PRIRODNIH PARFEMA' : 'NATURAL PERFUME MAKING',
-    name: 'BILJARICA',
-    city: 'ZAGREB',
-    image: '/images/biljarica-logo.jpg',
-    description: hr
-      ? 'Vođena radionica izrade prirodnog parfema za sve koji žele upoznati prirodne mirise, istražiti mirisne note i napraviti vlastitu kombinaciju.'
-      : 'A guided natural perfume-making workshop to explore natural scents, discover fragrance notes and create your own combination.',
-    url: hr ? '/hr/natural-perfume-making-where-to-try.html' : '/natural-perfume-making-where-to-try.html',
-    publishedAt: '2026-10-30'
-  }
-];
-        const categories = ['MOVE', 'LEARN', 'CREATE', 'EXPLORE', 'DARE', 'CARE'];
-        const query = whereQuery.trim().toLocaleLowerCase();
-        const filtered = providers.filter(p =>
-          (whereCategory === 'all' || p.category === whereCategory) &&
-          (!query || [p.category, p.activity, p.name, p.city, p.description].some(value => value.toLocaleLowerCase().includes(query)))
-        ).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
-        return `<section class="app-where">
-          <div class="eyebrow">MOVE&TRY</div>
-          <h1>${hr ? 'GDJE PROBATI' : 'WHERE TO TRY'}</h1>
-          <p class="app-where-intro">${hr
-            ? 'Otkrij stvarna mjesta i ljude uz koje možeš napraviti prvi korak.'
-            : 'Discover real places and people who can help you take the first step.'}</p>
-          <div class="app-where-search-wrap">
-            <span aria-hidden="true">⌕</span>
-            <input class="app-where-search" id="app-where-search" type="search"
-              value="${escapeHTML(whereQuery).replace(/&quot;/g, '&quot;')}"
-              placeholder="${hr ? 'Pretraži aktivnosti, mjesta i organizatore...' : 'Search activities, places and providers...'}"
-              aria-label="${hr ? 'Pretraži gdje probati' : 'Search where to try'}">
-          </div>
-          <div class="app-where-categories" aria-label="${hr ? 'Filtriraj po kategoriji' : 'Filter by category'}">
-            ${categories.map(category => `<button type="button" class="app-where-category" data-where-category="${category}"
-              aria-pressed="${whereCategory === category}">${category}</button>`).join('')}
-          </div>
-          <div class="app-where-reset-wrap">${whereCategory !== 'all' ? `<button type="button" class="app-where-reset" data-where-category="all">${hr ? '× PONIŠTI ODABIR' : '× CLEAR SELECTION'}</button>` : ''}</div>
-          <div class="app-where-count">${hr ? 'OBJAVLJENO U GDJE PROBATI' : 'PUBLISHED IN WHERE TO TRY'} · ${filtered.length}</div>
-          <div class="app-where-list">${filtered.length ? filtered.map(provider => `
-            <a class="app-where-card" href="${provider.url}">
-              <div class="app-where-photo"><img src="${provider.image}" alt="${escapeHTML(provider.name)}" loading="lazy"></div>
-              <div class="app-where-details">
-                <div class="app-where-meta">${provider.category} · ${escapeHTML(provider.city)}</div>
-                <h2>${escapeHTML(provider.activity)}</h2>
-                <div class="app-where-provider">${escapeHTML(provider.name)}</div>
-                <p>${escapeHTML(provider.description)}</p>
-                <span class="app-where-action">${hr ? 'POGLEDAJ GDJE PROBATI' : 'SEE WHERE TO TRY'} →</span>
-              </div>
-            </a>`).join('') : `<p class="app-where-empty">${hr ? 'Nema objava za odabranu pretragu ili kategoriju.' : 'No published listings match your search or category.'}</p>`}</div>
-        </section>`;
+        const hr =
+          language === 'hr';
+
+        const providers = [
+          {
+            category: 'CREATE',
+            activity: 'TUFTING',
+            name: 'MAGIC TUFTING STUDIO',
+            city: 'ZAGREB',
+            image: '/images/magic-tufting-workshop.jpg',
+
+            description: hr
+              ? 'Radionica tuftinga za početnike na kojoj uz vođenje upoznaješ tufting gun, tehniku rada i izrađuješ vlastiti motiv.'
+              : 'A beginner-friendly tufting workshop where you learn how to use a tufting gun, explore the technique and create your own design with guidance.',
+
+            url: hr
+              ? '/hr/tufting-where-to-try.html'
+              : '/tufting-where-to-try.html',
+
+            publishedAt:
+              '2026-11-02'
+          },
+
+          {
+            category: 'CREATE',
+
+            activity: hr
+              ? 'IZRADA PRIRODNIH PARFEMA'
+              : 'NATURAL PERFUME MAKING',
+
+            name: 'BILJARICA',
+            city: 'ZAGREB',
+
+            image:
+              '/images/biljarica-logo.jpg',
+
+            description: hr
+              ? 'Vođena radionica izrade prirodnog parfema za sve koji žele upoznati prirodne mirise, istražiti mirisne note i napraviti vlastitu kombinaciju.'
+              : 'A guided natural perfume-making workshop to explore natural scents, discover fragrance notes and create your own combination.',
+
+            url: hr
+              ? '/hr/natural-perfume-making-where-to-try.html'
+              : '/natural-perfume-making-where-to-try.html',
+
+            publishedAt:
+              '2026-10-30'
+          },
+
+          {
+            category: 'CARE',
+
+            activity: hr
+              ? 'DJEČJA I ADOLESCENTNA PSIHOTERAPIJA'
+              : 'CHILD & ADOLESCENT PSYCHOTHERAPY',
+
+            name: 'LUMOS',
+            city: 'ZAGREB',
+
+            image:
+              '/images/lumos-space.jpg',
+
+            description: hr
+              ? 'Dječja i adolescentna psihoterapijska podrška Nikoline Đurić za djecu, adolescente i njihove roditelje, uživo i online ovisno o vrsti podrške i dobi.'
+              : 'Child and adolescent psychotherapy support by Nikolina Đurić for children, adolescents and their parents, in person and online depending on the type of support and age.',
+
+            url: hr
+              ? '/hr/child-adolescent-psychotherapy-where-to-try.html'
+              : '/child-adolescent-psychotherapy-where-to-try.html',
+
+            publishedAt:
+              '2026-11-06'
+          }
+        ];
+
+        const categories = [
+          'MOVE',
+          'LEARN',
+          'CREATE',
+          'EXPLORE',
+          'DARE',
+          'CARE'
+        ];
+
+        const query =
+          whereQuery
+            .trim()
+            .toLocaleLowerCase();
+
+        const filtered =
+          providers
+            .filter(p =>
+              (
+                whereCategory === 'all' ||
+                p.category === whereCategory
+              ) &&
+              (
+                !query ||
+                [
+                  p.category,
+                  p.activity,
+                  p.name,
+                  p.city,
+                  p.description
+                ]
+                  .some(
+                    value =>
+                      value
+                        .toLocaleLowerCase()
+                        .includes(query)
+                  )
+              )
+            )
+            .sort(
+              (a, b) =>
+                b.publishedAt.localeCompare(
+                  a.publishedAt
+                )
+            );
+
+        return `
+          <section class="app-where">
+
+            <div class="eyebrow">
+              MOVE&TRY
+            </div>
+
+            <h1>
+              ${hr
+                ? 'GDJE PROBATI'
+                : 'WHERE TO TRY'}
+            </h1>
+
+            <p class="app-where-intro">
+              ${hr
+                ? 'Otkrij stvarna mjesta i ljude uz koje možeš napraviti prvi korak.'
+                : 'Discover real places and people who can help you take the first step.'}
+            </p>
+
+            <div class="app-where-search-wrap">
+
+              <span aria-hidden="true">
+                ⌕
+              </span>
+
+              <input
+                class="app-where-search"
+                id="app-where-search"
+                type="search"
+                value="${escapeHTML(whereQuery).replace(/&quot;/g, '&quot;')}"
+                placeholder="${hr
+                  ? 'Pretraži aktivnosti, mjesta i organizatore...'
+                  : 'Search activities, places and providers...'}"
+                aria-label="${hr
+                  ? 'Pretraži gdje probati'
+                  : 'Search where to try'}"
+              >
+
+            </div>
+
+            <div
+              class="app-where-categories"
+              aria-label="${hr
+                ? 'Filtriraj po kategoriji'
+                : 'Filter by category'}"
+            >
+              ${categories.map(
+                category => `
+                  <button
+                    type="button"
+                    class="app-where-category"
+                    data-where-category="${category}"
+                    aria-pressed="${whereCategory === category}"
+                  >
+                    ${category}
+                  </button>
+                `
+              ).join('')}
+            </div>
+
+            <div class="app-where-reset-wrap">
+              ${whereCategory !== 'all'
+                ? `
+                  <button
+                    type="button"
+                    class="app-where-reset"
+                    data-where-category="all"
+                  >
+                    ${hr
+                      ? '× PONIŠTI ODABIR'
+                      : '× CLEAR SELECTION'}
+                  </button>
+                `
+                : ''}
+            </div>
+
+            <div class="app-where-count">
+              ${hr
+                ? 'OBJAVLJENO U GDJE PROBATI'
+                : 'PUBLISHED IN WHERE TO TRY'}
+              ·
+              ${filtered.length}
+            </div>
+
+            <div class="app-where-list">
+
+              ${filtered.length
+                ? filtered.map(
+                    provider => `
+                      <a
+                        class="app-where-card"
+                        href="${provider.url}"
+                      >
+
+                        <div class="app-where-photo">
+                          <img
+                            src="${provider.image}"
+                            alt="${escapeHTML(provider.name)}"
+                            loading="lazy"
+                          >
+                        </div>
+
+                        <div class="app-where-details">
+
+                          <div class="app-where-meta">
+                            ${provider.category}
+                            ·
+                            ${escapeHTML(provider.city)}
+                          </div>
+
+                          <h2>
+                            ${escapeHTML(provider.activity)}
+                          </h2>
+
+                          <div class="app-where-provider">
+                            ${escapeHTML(provider.name)}
+                          </div>
+
+                          <p>
+                            ${escapeHTML(provider.description)}
+                          </p>
+
+                          <span class="app-where-action">
+                            ${hr
+                              ? 'POGLEDAJ GDJE PROBATI'
+                              : 'SEE WHERE TO TRY'}
+                            →
+                          </span>
+
+                        </div>
+
+                      </a>
+                    `
+                  ).join('')
+                : `
+                  <p class="app-where-empty">
+                    ${hr
+                      ? 'Nema objava za odabranu pretragu ili kategoriju.'
+                      : 'No published listings match your search or category.'}
+                  </p>
+                `
+              }
+
+            </div>
+
+          </section>
+        `;
       }
 
       function renderSaved() {
         const t = translations();
-        return `<section class="placeholder">
-          <div class="eyebrow">MOVE&TRY</div>
-          <h1>${escapeHTML(t.savedTitle)}</h1>
-          <p>${escapeHTML(t.savedDesc)}</p>
-        </section>`;
+
+        return `
+          <section class="placeholder">
+            <div class="eyebrow">
+              MOVE&TRY
+            </div>
+
+            <h1>
+              ${escapeHTML(t.savedTitle)}
+            </h1>
+
+            <p>
+              ${escapeHTML(t.savedDesc)}
+            </p>
+          </section>
+        `;
       }
 
       function renderJournal() {
         const t = translations();
+
         if (!journalPosts) {
-          if (!journalLoading) loadJournalPosts();
-          return `<section class="app-journal"><div class="eyebrow">THE JOURNAL</div>
-            <h1>THE JOURNAL.</h1>
-            <p class="app-journal-message">${language === 'hr' ? 'Učitavanje članaka…' : 'Loading articles…'}</p>
-          </section>`;
+          if (!journalLoading) {
+            loadJournalPosts();
+          }
+
+          return `
+            <section class="app-journal">
+              <div class="eyebrow">
+                THE JOURNAL
+              </div>
+
+              <h1>
+                THE JOURNAL.
+              </h1>
+
+              <p class="app-journal-message">
+                ${language === 'hr'
+                  ? 'Učitavanje članaka…'
+                  : 'Loading articles…'}
+              </p>
+            </section>
+          `;
         }
 
-        const labels = language === 'hr'
-          ? { all: 'Sve', editorial: 'Urednički tekstovi', personal: 'Kolumne', guest: 'Gostujuće priče', news: 'Novosti', inspiration: 'Inspiracija' }
-          : { all: 'All', editorial: 'Editorial', personal: 'Columns', guest: 'Guest stories', news: 'News', inspiration: 'Inspiration' };
+        const labels =
+          language === 'hr'
+            ? {
+                all: 'Sve',
+                editorial: 'Urednički tekstovi',
+                personal: 'Kolumne',
+                guest: 'Gostujuće priče',
+                news: 'Novosti',
+                inspiration: 'Inspiracija'
+              }
+            : {
+                all: 'All',
+                editorial: 'Editorial',
+                personal: 'Columns',
+                guest: 'Guest stories',
+                news: 'News',
+                inspiration: 'Inspiration'
+              };
 
-        const columnLabels = language === 'hr'
-          ? { all: 'Sve kolumne', lidija: 'Lidija | MOVE&TRY' }
-          : { all: 'All columns', lidija: 'Lidija | MOVE&TRY' };
+        const columnLabels =
+          language === 'hr'
+            ? {
+                all: 'Sve kolumne',
+                lidija: 'Lidija | MOVE&TRY'
+              }
+            : {
+                all: 'All columns',
+                lidija: 'Lidija | MOVE&TRY'
+              };
 
         const columnProfiles = {
           hr: {
@@ -1694,6 +2571,7 @@
               'Ponekad o MOVE&TRY-u iza kulisa, ponekad o vlastitim iskustvima, a ponekad jednostavno o stvarima koje me natjeraju da zastanem, razmislim ili pogledam nešto malo drukčije.'
             ]
           },
+
           en: {
             lidija: [
               'A personal column by the founder of MOVE&TRY and editor of The Journal.',
@@ -1703,100 +2581,382 @@
           }
         };
 
-        let filtered = journalFilter === 'all'
-          ? journalPosts
-          : journalPosts.filter(post => post.type === journalFilter);
+        let filtered =
+          journalFilter === 'all'
+            ? journalPosts
+            : journalPosts.filter(
+                post =>
+                  post.type === journalFilter
+              );
 
-        if (journalFilter === 'personal' && journalColumn !== 'all') {
-          filtered = filtered.filter(post => post.column === journalColumn);
+        if (
+          journalFilter === 'personal' &&
+          journalColumn !== 'all'
+        ) {
+          filtered =
+            filtered.filter(
+              post =>
+                post.column === journalColumn
+            );
         }
 
         const activeProfile =
-          journalFilter === 'personal' && journalColumn !== 'all'
+          journalFilter === 'personal' &&
+          journalColumn !== 'all'
             ? columnProfiles[language]?.[journalColumn]
             : null;
 
-        return `<section class="app-journal">
-          <div class="eyebrow">MOVE&TRY</div>
-          <h1>THE JOURNAL.</h1>
-          <p class="app-journal-intro">${escapeHTML(t.journalDesc)}</p>
+        return `
+          <section class="app-journal">
 
-          <div class="app-journal-filters">${Object.entries(labels).map(([key, label]) => `
-            <button type="button" class="app-journal-filter" data-journal-filter="${key}"
-              aria-pressed="${journalFilter === key}">${escapeHTML(label)}</button>`).join('')}</div>
-
-          ${journalFilter === 'personal' ? `
-            <div class="app-journal-filters app-journal-column-filters">
-              ${Object.entries(columnLabels).map(([key, label]) => `
-                <button type="button" class="app-journal-filter" data-journal-column="${key}"
-                  aria-pressed="${journalColumn === key}">${escapeHTML(label)}</button>`).join('')}
+            <div class="eyebrow">
+              MOVE&TRY
             </div>
-          ` : ''}
 
-          ${activeProfile ? `
-            <div class="app-journal-column-profile">
-              <strong>${escapeHTML(columnLabels[journalColumn])}</strong>
-              ${activeProfile.map(paragraph => `<p>${escapeHTML(paragraph)}</p>`).join('')}
+            <h1>
+              THE JOURNAL.
+            </h1>
+
+            <p class="app-journal-intro">
+              ${escapeHTML(t.journalDesc)}
+            </p>
+
+            <div class="app-journal-filters">
+              ${Object.entries(labels)
+                .map(
+                  ([key, label]) => `
+                    <button
+                      type="button"
+                      class="app-journal-filter"
+                      data-journal-filter="${key}"
+                      aria-pressed="${journalFilter === key}"
+                    >
+                      ${escapeHTML(label)}
+                    </button>
+                  `
+                )
+                .join('')}
             </div>
-          ` : ''}
 
-          ${filtered.length ? filtered.map(post => `
-            <a class="app-journal-post" href="${escapeHTML(post.url)}">
-              ${post.image ? `<img src="${escapeHTML(post.image)}" alt="" loading="lazy">`
-                : `<div class="app-journal-cover"><small>THE JOURNAL.</small><strong>${escapeHTML(post.title)}</strong></div>`}
-              <div class="app-journal-copy">
-                <div class="app-journal-meta">${escapeHTML(post.category || 'THE JOURNAL')}</div>
-                <h2>${escapeHTML(post.title)}</h2>
-                <p>${escapeHTML(post.description || '')}</p>
-                <span class="app-journal-author">${escapeHTML(post.author || 'MOVE&TRY')}</span>
-              </div>
-            </a>`).join('') : `<p class="app-journal-message">${language === 'hr' ? 'Još nema članaka u ovoj kategoriji.' : 'No articles in this category yet.'}</p>`}
-        </section>`;
+            ${journalFilter === 'personal'
+              ? `
+                <div class="app-journal-filters app-journal-column-filters">
+                  ${Object.entries(columnLabels)
+                    .map(
+                      ([key, label]) => `
+                        <button
+                          type="button"
+                          class="app-journal-filter"
+                          data-journal-column="${key}"
+                          aria-pressed="${journalColumn === key}"
+                        >
+                          ${escapeHTML(label)}
+                        </button>
+                      `
+                    )
+                    .join('')}
+                </div>
+              `
+              : ''
+            }
+
+            ${activeProfile
+              ? `
+                <div class="app-journal-column-profile">
+
+                  <strong>
+                    ${escapeHTML(
+                      columnLabels[journalColumn]
+                    )}
+                  </strong>
+
+                  ${activeProfile
+                    .map(
+                      paragraph => `
+                        <p>
+                          ${escapeHTML(paragraph)}
+                        </p>
+                      `
+                    )
+                    .join('')}
+
+                </div>
+              `
+              : ''
+            }
+
+            ${filtered.length
+              ? filtered.map(
+                  post => `
+                    <a
+                      class="app-journal-post"
+                      href="${escapeHTML(post.url)}"
+                    >
+
+                      ${post.image
+                        ? `
+                          <img
+                            src="${escapeHTML(post.image)}"
+                            alt=""
+                            loading="lazy"
+                          >
+                        `
+                        : `
+                          <div class="app-journal-cover">
+                            <small>
+                              THE JOURNAL.
+                            </small>
+
+                            <strong>
+                              ${escapeHTML(post.title)}
+                            </strong>
+                          </div>
+                        `
+                      }
+
+                      <div class="app-journal-copy">
+
+                        <div class="app-journal-meta">
+                          ${escapeHTML(
+                            post.category ||
+                            'THE JOURNAL'
+                          )}
+                        </div>
+
+                        <h2>
+                          ${escapeHTML(post.title)}
+                        </h2>
+
+                        <p>
+                          ${escapeHTML(
+                            post.description || ''
+                          )}
+                        </p>
+
+                        <span class="app-journal-author">
+                          ${escapeHTML(
+                            post.author ||
+                            'MOVE&TRY'
+                          )}
+                        </span>
+
+                      </div>
+
+                    </a>
+                  `
+                ).join('')
+              : `
+                <p class="app-journal-message">
+                  ${language === 'hr'
+                    ? 'Još nema članaka u ovoj kategoriji.'
+                    : 'No articles in this category yet.'}
+                </p>
+              `
+            }
+
+          </section>
+        `;
       }
 
       let journalRequest = 0;
+
       async function loadJournalPosts() {
-        if (journalLoading) return;
+        if (journalLoading) {
+          return;
+        }
+
         journalLoading = true;
-        const requestId = ++journalRequest;
-        const requestedLanguage = language;
+
+        const requestId =
+          ++journalRequest;
+
+        const requestedLanguage =
+          language;
+
         try {
-          const url = requestedLanguage === 'hr' ? '/hr/journal.html' : '/journal.html';
-          const response = await fetch(url, { cache: 'no-cache' });
-          if (!response.ok) throw new Error('Journal HTTP ' + response.status);
-          const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
-          const now = Date.now();
-          const seen = new Set();
-          const posts = [...doc.querySelectorAll('a.journal-post[href]')].map(link => {
-            const publishAt = link.dataset.publishAt;
-            if (publishAt && (!Number.isFinite(Date.parse(publishAt)) || Date.parse(publishAt) > now)) return null;
-            const target = new URL(link.getAttribute('href'), response.url);
-            if (target.origin !== location.origin || seen.has(target.pathname)) return null;
-            const title = link.querySelector('.journal-post-title,.journal-post-cover-title,h2,h3')?.textContent?.trim();
-            if (!title) return null;
-            seen.add(target.pathname);
-            const image = link.querySelector('img')?.getAttribute('src');
-            const category = link.querySelector('.journal-post-category')?.textContent?.trim() || '';
-            const kind = (link.dataset.category || '').toLowerCase();
-            return {
-              url: target.pathname + target.search + target.hash,
-              title,
-              image: image ? new URL(image, response.url).pathname : '',
-              description: link.querySelector('.journal-post-description')?.textContent?.trim() || '',
-              category,
-              author: link.querySelector('.journal-post-author')?.textContent?.trim() || '',
-              column: (link.dataset.column || '').toLowerCase(),
-              type: ['editorial', 'personal', 'guest', 'news', 'inspiration'].includes(kind) ? kind : 'editorial'
-            };
-          }).filter(Boolean);
-          if (requestId === journalRequest && requestedLanguage === language) journalPosts = posts;
+          const url =
+            requestedLanguage === 'hr'
+              ? '/hr/journal.html'
+              : '/journal.html';
+
+          const response =
+            await fetch(
+              url,
+              { cache: 'no-cache' }
+            );
+
+          if (!response.ok) {
+            throw new Error(
+              'Journal HTTP ' +
+              response.status
+            );
+          }
+
+          const doc =
+            new DOMParser()
+              .parseFromString(
+                await response.text(),
+                'text/html'
+              );
+
+          const now =
+            Date.now();
+
+          const seen =
+            new Set();
+
+          const posts =
+            [
+              ...doc.querySelectorAll(
+                'a.journal-post[href]'
+              )
+            ]
+              .map(link => {
+
+                const publishAt =
+                  link.dataset.publishAt;
+
+                if (
+                  publishAt &&
+                  (
+                    !Number.isFinite(
+                      Date.parse(publishAt)
+                    ) ||
+                    Date.parse(publishAt) > now
+                  )
+                ) {
+                  return null;
+                }
+
+                const target =
+                  new URL(
+                    link.getAttribute('href'),
+                    response.url
+                  );
+
+                if (
+                  target.origin !== location.origin ||
+                  seen.has(target.pathname)
+                ) {
+                  return null;
+                }
+
+                const title =
+                  link.querySelector(
+                    '.journal-post-title,.journal-post-cover-title,h2,h3'
+                  )
+                    ?.textContent
+                    ?.trim();
+
+                if (!title) {
+                  return null;
+                }
+
+                seen.add(
+                  target.pathname
+                );
+
+                const image =
+                  link.querySelector('img')
+                    ?.getAttribute('src');
+
+                const category =
+                  link.querySelector(
+                    '.journal-post-category'
+                  )
+                    ?.textContent
+                    ?.trim() || '';
+
+                const kind =
+                  (
+                    link.dataset.category ||
+                    ''
+                  ).toLowerCase();
+
+                return {
+                  url:
+                    target.pathname +
+                    target.search +
+                    target.hash,
+
+                  title,
+
+                  image: image
+                    ? new URL(
+                        image,
+                        response.url
+                      ).pathname
+                    : '',
+
+                  description:
+                    link.querySelector(
+                      '.journal-post-description'
+                    )
+                      ?.textContent
+                      ?.trim() || '',
+
+                  category,
+
+                  author:
+                    link.querySelector(
+                      '.journal-post-author'
+                    )
+                      ?.textContent
+                      ?.trim() || '',
+
+                  column:
+                    (
+                      link.dataset.column ||
+                      ''
+                    ).toLowerCase(),
+
+                  type:
+                    [
+                      'editorial',
+                      'personal',
+                      'guest',
+                      'news',
+                      'inspiration'
+                    ]
+                      .includes(kind)
+                        ? kind
+                        : 'editorial'
+                };
+              })
+              .filter(Boolean);
+
+          if (
+            requestId === journalRequest &&
+            requestedLanguage === language
+          ) {
+            journalPosts =
+              posts;
+          }
+
         } catch (error) {
-          console.warn('MOVE&TRY Journal:', error);
-          if (requestId === journalRequest && requestedLanguage === language) journalPosts = [];
+          console.warn(
+            'MOVE&TRY Journal:',
+            error
+          );
+
+          if (
+            requestId === journalRequest &&
+            requestedLanguage === language
+          ) {
+            journalPosts = [];
+          }
+
         } finally {
-          if (requestId === journalRequest) {
+          if (
+            requestId === journalRequest
+          ) {
             journalLoading = false;
-            if (activeTab === 'journal') render();
+
+            if (
+              activeTab === 'journal'
+            ) {
+              render();
+            }
           }
         }
       }
@@ -1809,60 +2969,156 @@
           journal: renderJournal,
           saved: renderSaved
         };
-        view.innerHTML = (content[activeTab] || renderHome)();
+
+        view.innerHTML =
+          (
+            content[activeTab] ||
+            renderHome
+          )();
+
         navButtons.forEach(button => {
-          if (button.dataset.tab === activeTab) button.setAttribute('aria-current', 'page');
-          else button.removeAttribute('aria-current');
+          if (
+            button.dataset.tab ===
+            activeTab
+          ) {
+            button.setAttribute(
+              'aria-current',
+              'page'
+            );
+          } else {
+            button.removeAttribute(
+              'aria-current'
+            );
+          }
         });
-        document.documentElement.lang = language;
+
+        document.documentElement.lang =
+          language;
       }
 
       function setTab(tab) {
-        // A new visit to Explore or Where to Try starts without a retained filter.
         if (tab === 'where') {
           whereCategory = 'all';
           whereQuery = '';
         }
+
         activeTab = tab;
+
         render();
-        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'instant'
+        });
       }
 
       function setLanguage(next) {
-        language = next === 'en' ? 'en' : 'hr';
-        setStored(APP_LANGUAGE_KEY, language);
-        setStored(WEB_LANGUAGE_KEY, language);
+        language =
+          next === 'en'
+            ? 'en'
+            : 'hr';
+
+        setStored(
+          APP_LANGUAGE_KEY,
+          language
+        );
+
+        setStored(
+          WEB_LANGUAGE_KEY,
+          language
+        );
+
         journalRequest += 1;
         journalLoading = false;
         journalPosts = null;
         journalFilter = 'all';
         journalColumn = 'all';
-        document.querySelectorAll('[data-nav]').forEach(node => {
-          node.textContent = translations()[node.dataset.nav];
-        });
-        document.getElementById('notifications-title').textContent = translations().notifications;
-        document.getElementById('settings-title').textContent = translations().settings;
-        document.getElementById('language-label').textContent = translations().languageLabel;
-        document.getElementById('settings-note').textContent = translations().settingsNote;
-        document.getElementById('privacy-label').textContent = translations().privacyLabel;
-        document.getElementById('privacy-settings-button').textContent = translations().privacyButton;
-        document.getElementById('notifications-empty').textContent = translations().noNotifications;
-        document.querySelectorAll('[data-setting-language]').forEach(button => {
-          button.setAttribute('aria-pressed', String(button.dataset.settingLanguage === language));
-        });
-        window.MoveTryNotifications?.setLocale(language);
+
+        document.querySelectorAll(
+          '[data-nav]'
+        )
+          .forEach(node => {
+            node.textContent =
+              translations()[
+                node.dataset.nav
+              ];
+          });
+
+        document.getElementById(
+          'notifications-title'
+        ).textContent =
+          translations().notifications;
+
+        document.getElementById(
+          'settings-title'
+        ).textContent =
+          translations().settings;
+
+        document.getElementById(
+          'language-label'
+        ).textContent =
+          translations().languageLabel;
+
+        document.getElementById(
+          'settings-note'
+        ).textContent =
+          translations().settingsNote;
+
+        document.getElementById(
+          'privacy-label'
+        ).textContent =
+          translations().privacyLabel;
+
+        document.getElementById(
+          'privacy-settings-button'
+        ).textContent =
+          translations().privacyButton;
+
+        document.getElementById(
+          'notifications-empty'
+        ).textContent =
+          translations().noNotifications;
+
+        document.querySelectorAll(
+          '[data-setting-language]'
+        )
+          .forEach(button => {
+            button.setAttribute(
+              'aria-pressed',
+              String(
+                button.dataset.settingLanguage ===
+                language
+              )
+            );
+          });
+
+        window.MoveTryNotifications
+          ?.setLocale(language);
+
         render();
         refreshPushStatus();
         syncPushLocale();
       }
 
       function showPanel(panel) {
-        notificationsPanel.hidden = panel !== notificationsPanel;
-        settingsPanel.hidden = panel !== settingsPanel;
-        document.body.classList.toggle('dialog-open', !!panel);
-        if (panel === notificationsPanel) {
+        notificationsPanel.hidden =
+          panel !== notificationsPanel;
+
+        settingsPanel.hidden =
+          panel !== settingsPanel;
+
+        document.body.classList.toggle(
+          'dialog-open',
+          !!panel
+        );
+
+        if (
+          panel === notificationsPanel
+        ) {
           refreshPushStatus();
-          window.MoveTryNotifications?.refresh();
+
+          window.MoveTryNotifications
+            ?.refresh();
         }
       }
 
@@ -1872,17 +3128,28 @@
 
       function getStored(key) {
         try {
-          return localStorage.getItem(key);
+          return localStorage
+            .getItem(key);
         } catch (_) {
           return null;
         }
       }
 
-      function setStored(key, value) {
+      function setStored(
+        key,
+        value
+      ) {
         try {
-          localStorage.setItem(key, value);
+          localStorage
+            .setItem(
+              key,
+              value
+            );
         } catch (error) {
-          console.warn('MOVE&TRY storage:', error);
+          console.warn(
+            'MOVE&TRY storage:',
+            error
+          );
         }
       }
 
@@ -1911,26 +3178,44 @@
       let chosenLanguage = language;
 
       function pushSupported() {
-        return window.isSecureContext &&
+        return (
+          window.isSecureContext &&
           'Notification' in window &&
           'serviceWorker' in navigator &&
-          'PushManager' in window;
+          'PushManager' in window
+        );
       }
 
       function pushToken() {
-        let token = getStored(PUSH_TOKEN_KEY);
-
-        if (!token || !/^[a-f0-9]{64}$/.test(token)) {
-          const bytes = crypto.getRandomValues(
-            new Uint8Array(32)
+        let token =
+          getStored(
+            PUSH_TOKEN_KEY
           );
 
-          token = Array.from(
-            bytes,
-            b => b.toString(16).padStart(2, '0')
-          ).join('');
+        if (
+          !token ||
+          !/^[a-f0-9]{64}$/.test(
+            token
+          )
+        ) {
+          const bytes =
+            crypto.getRandomValues(
+              new Uint8Array(32)
+            );
 
-          setStored(PUSH_TOKEN_KEY, token);
+          token =
+            Array.from(
+              bytes,
+              b =>
+                b.toString(16)
+                  .padStart(2, '0')
+            )
+              .join('');
+
+          setStored(
+            PUSH_TOKEN_KEY,
+            token
+          );
         }
 
         return token;
@@ -1941,122 +3226,181 @@
           document.querySelectorAll(
             '#push-category-grid input:checked'
           )
-        ).map(input => input.value);
+        ).map(
+          input =>
+            input.value
+        );
       }
 
       function storedPushCategories() {
         try {
-          const stored = JSON.parse(
-            getStored(PUSH_CATEGORY_KEY) || '[]'
-          );
+          const stored =
+            JSON.parse(
+              getStored(
+                PUSH_CATEGORY_KEY
+              ) ||
+              '[]'
+            );
 
           return Array.isArray(stored)
             ? stored.filter(
-                category => PUSH_CATEGORIES.includes(category)
+                category =>
+                  PUSH_CATEGORIES.includes(
+                    category
+                  )
               )
             : [];
+
         } catch (_) {
           return [];
         }
       }
 
       function renderPushCategories() {
-        const t = translations();
-        const selected = getStored(PUSH_CATEGORY_KEY) === null
-          ? [...PUSH_CATEGORIES]
-          : storedPushCategories();
+        const t =
+          translations();
+
+        const selected =
+          getStored(
+            PUSH_CATEGORY_KEY
+          ) === null
+            ? [...PUSH_CATEGORIES]
+            : storedPushCategories();
 
         document.getElementById(
           'push-categories-title'
-        ).textContent = t.pushCategories;
+        ).textContent =
+          t.pushCategories;
 
         document.getElementById(
           'push-save'
-        ).textContent = t.pushSave;
+        ).textContent =
+          t.pushSave;
 
         document.getElementById(
           'push-category-grid'
-        ).innerHTML = PUSH_CATEGORIES.map(category => `
-          <label>
-            <input
-              type="checkbox"
-              value="${category}"
-              ${selected.includes(category) ? 'checked' : ''}
-            >
-            ${category === 'WHERE_TO_TRY'
-              ? (language === 'hr' ? 'GDJE PROBATI' : 'WHERE TO TRY')
-              : category === 'JOURNAL'
-                ? 'THE JOURNAL'
-                : category}
-          </label>
-        `).join('');
+        ).innerHTML =
+          PUSH_CATEGORIES
+            .map(category => `
+              <label>
+                <input
+                  type="checkbox"
+                  value="${category}"
+                  ${selected.includes(category)
+                    ? 'checked'
+                    : ''}
+                >
+
+                ${
+                  category === 'WHERE_TO_TRY'
+                    ? (
+                        language === 'hr'
+                          ? 'GDJE PROBATI'
+                          : 'WHERE TO TRY'
+                      )
+                    : category === 'JOURNAL'
+                      ? 'THE JOURNAL'
+                      : category
+                }
+
+              </label>
+            `)
+            .join('');
       }
 
-      async function pushApi(name, options = {}) {
-        const response = await fetch(
-          APP_PUSH_API + name,
-          {
-            ...options,
-            mode: 'cors',
-            cache: 'no-store',
-            headers: {
-              'Content-Type': 'application/json',
-              ...(options.headers || {})
-            }
-          }
-        );
+      async function pushApi(
+        name,
+        options = {}
+      ) {
+        const response =
+          await fetch(
+            APP_PUSH_API + name,
+            {
+              ...options,
+              mode: 'cors',
+              cache: 'no-store',
 
-        const result = await response.json()
-          .catch(() => ({}));
+              headers: {
+                'Content-Type':
+                  'application/json',
+                ...(options.headers || {})
+              }
+            }
+          );
+
+        const result =
+          await response
+            .json()
+            .catch(() => ({}));
 
         if (!response.ok) {
           throw new Error(
             result.error ||
-            'Push API error: ' + response.status
+            'Push API error: ' +
+            response.status
           );
         }
 
         return result;
       }
 
-      function urlBase64ToUint8Array(base64) {
-        const padding = '='.repeat(
-          (4 - base64.length % 4) % 4
-        );
+      function urlBase64ToUint8Array(
+        base64
+      ) {
+        const padding =
+          '='.repeat(
+            (
+              4 -
+              base64.length % 4
+            ) % 4
+          );
 
-        const binary = atob(
-          (base64 + padding)
-            .replace(/-/g, '+')
-            .replace(/_/g, '/')
-        );
+        const binary =
+          atob(
+            (
+              base64 +
+              padding
+            )
+              .replace(/-/g, '+')
+              .replace(/_/g, '/')
+          );
 
         return Uint8Array.from(
           binary,
-          char => char.charCodeAt(0)
+          char =>
+            char.charCodeAt(0)
         );
       }
 
       async function appPushRegistration() {
-        return navigator.serviceWorker.register(
-          '/app/sw.js',
-          { scope: '/app/' }
-        );
+        return navigator
+          .serviceWorker
+          .register(
+            '/app/sw.js',
+            {
+              scope: '/app/'
+            }
+          );
       }
 
       async function refreshPushStatus() {
-        const t = translations();
+        const t =
+          translations();
 
-        const status = document.getElementById(
-          'push-status'
-        );
+        const status =
+          document.getElementById(
+            'push-status'
+          );
 
-        const button = document.getElementById(
-          'push-toggle'
-        );
+        const button =
+          document.getElementById(
+            'push-toggle'
+          );
 
-        const fieldset = document.getElementById(
-          'push-categories'
-        );
+        const fieldset =
+          document.getElementById(
+            'push-categories'
+          );
 
         if (
           !document.querySelector(
@@ -2067,24 +3411,35 @@
         } else {
           document.getElementById(
             'push-categories-title'
-          ).textContent = t.pushCategories;
+          ).textContent =
+            t.pushCategories;
 
           document.getElementById(
             'push-save'
-          ).textContent = t.pushSave;
+          ).textContent =
+            t.pushSave;
         }
 
         if (!pushSupported()) {
-          status.textContent = t.pushUnsupported;
+          status.textContent =
+            t.pushUnsupported;
+
           button.hidden = true;
           fieldset.hidden = true;
+
           return;
         }
 
-        if (Notification.permission === 'denied') {
-          status.textContent = t.pushDenied;
+        if (
+          Notification.permission ===
+          'denied'
+        ) {
+          status.textContent =
+            t.pushDenied;
+
           button.hidden = true;
           fieldset.hidden = true;
+
           return;
         }
 
@@ -2093,28 +3448,42 @@
             await appPushRegistration();
 
           const subscription =
-            await registration.pushManager.getSubscription();
+            await registration
+              .pushManager
+              .getSubscription();
 
-          const active = !!subscription;
+          const active =
+            !!subscription;
 
           button.hidden = false;
           button.disabled = pushBusy;
-          button.textContent = active
-            ? t.pushTurnOff
-            : t.pushTurnOn;
+
+          button.textContent =
+            active
+              ? t.pushTurnOff
+              : t.pushTurnOn;
 
           fieldset.hidden = false;
 
           document.getElementById(
             'push-save'
-          ).hidden = !active;
+          ).hidden =
+            !active;
 
-          status.textContent = active
-            ? t.pushExisting
-            : t.pushNotEnabled;
+          status.textContent =
+            active
+              ? t.pushExisting
+              : t.pushNotEnabled;
+
         } catch (error) {
-          console.warn('Push status:', error);
-          status.textContent = t.pushError;
+          console.warn(
+            'Push status:',
+            error
+          );
+
+          status.textContent =
+            t.pushError;
+
           button.hidden = true;
           fieldset.hidden = true;
         }
@@ -2125,7 +3494,8 @@
           localeSyncInProgress ||
           pushBusy ||
           !pushSupported() ||
-          Notification.permission !== 'granted'
+          Notification.permission !==
+          'granted'
         ) {
           return;
         }
@@ -2134,191 +3504,303 @@
 
         try {
           const registration =
-            await navigator.serviceWorker.getRegistration(
-              '/app/'
-            );
+            await navigator
+              .serviceWorker
+              .getRegistration(
+                '/app/'
+              );
 
           const subscription =
-            await registration?.pushManager.getSubscription();
+            await registration
+              ?.pushManager
+              .getSubscription();
 
-          if (!subscription) return;
+          if (!subscription) {
+            return;
+          }
 
-          const categories = getStored(PUSH_CATEGORY_KEY) === null
-            ? [...PUSH_CATEGORIES]
-            : storedPushCategories();
+          const categories =
+            getStored(
+              PUSH_CATEGORY_KEY
+            ) === null
+              ? [...PUSH_CATEGORIES]
+              : storedPushCategories();
 
-          await pushApi('app-push-subscribe', {
-            method: 'POST',
-            body: JSON.stringify({
-              action: 'subscribe',
-              deviceToken: pushToken(),
-              subscription: subscription.toJSON(),
-              categories,
-              locale: language
-            })
-          });
+          await pushApi(
+            'app-push-subscribe',
+            {
+              method: 'POST',
+
+              body: JSON.stringify({
+                action: 'subscribe',
+                deviceToken: pushToken(),
+                subscription:
+                  subscription.toJSON(),
+                categories,
+                locale: language
+              })
+            }
+          );
+
         } catch (error) {
-          console.warn('Push locale sync:', error);
+          console.warn(
+            'Push locale sync:',
+            error
+          );
+
         } finally {
-          localeSyncInProgress = false;
+          localeSyncInProgress =
+            false;
         }
       }
 
       async function togglePush() {
-        if (pushBusy || !pushSupported()) return;
+        if (
+          pushBusy ||
+          !pushSupported()
+        ) {
+          return;
+        }
 
-        const t = translations();
-        const status = document.getElementById(
-          'push-status'
-        );
+        const t =
+          translations();
 
-        const button = document.getElementById(
-          'push-toggle'
-        );
+        const status =
+          document.getElementById(
+            'push-status'
+          );
+
+        const button =
+          document.getElementById(
+            'push-toggle'
+          );
 
         pushBusy = true;
         button.disabled = true;
-        status.textContent = t.pushChecking;
+
+        status.textContent =
+          t.pushChecking;
 
         try {
           const registration =
             await appPushRegistration();
 
           let subscription =
-            await registration.pushManager.getSubscription();
+            await registration
+              .pushManager
+              .getSubscription();
 
           if (subscription) {
-            await pushApi('app-push-subscribe', {
-              method: 'POST',
-              body: JSON.stringify({
-                action: 'unsubscribe',
-                deviceToken: pushToken(),
-                subscription: subscription.toJSON()
-              })
-            });
+
+            await pushApi(
+              'app-push-subscribe',
+              {
+                method: 'POST',
+
+                body: JSON.stringify({
+                  action: 'unsubscribe',
+                  deviceToken:
+                    pushToken(),
+                  subscription:
+                    subscription.toJSON()
+                })
+              }
+            );
 
             const removed =
-              await subscription.unsubscribe();
+              await subscription
+                .unsubscribe();
 
             if (!removed) {
-              throw new Error('Browser unsubscribe failed');
+              throw new Error(
+                'Browser unsubscribe failed'
+              );
             }
+
           } else {
-            // First activation: all categories are selected and saved by default.
-            // Re-enabling after a previous choice restores that choice, including [].
-            const previousSelection = getStored(PUSH_CATEGORY_KEY);
-            const categories = previousSelection === null
-              ? [...PUSH_CATEGORIES]
-              : storedPushCategories();
+
+            const previousSelection =
+              getStored(
+                PUSH_CATEGORY_KEY
+              );
+
+            const categories =
+              previousSelection === null
+                ? [...PUSH_CATEGORIES]
+                : storedPushCategories();
 
             const permission =
-              await Notification.requestPermission();
+              await Notification
+                .requestPermission();
 
-            if (permission !== 'granted') {
-              status.textContent = t.pushDenied;
+            if (
+              permission !== 'granted'
+            ) {
+              status.textContent =
+                t.pushDenied;
+
               return;
             }
 
             const config =
-              await pushApi('app-push-config');
+              await pushApi(
+                'app-push-config'
+              );
 
             if (
-              !/^[A-Za-z0-9_-]{87}$/.test(
-                config.publicKey || ''
-              )
+              !/^[A-Za-z0-9_-]{87}$/
+                .test(
+                  config.publicKey ||
+                  ''
+                )
             ) {
-              throw new Error('Invalid VAPID key');
+              throw new Error(
+                'Invalid VAPID key'
+              );
             }
 
             subscription =
-              await registration.pushManager.subscribe({
-                userVisibleOnly: true,
-                applicationServerKey:
-                  urlBase64ToUint8Array(config.publicKey)
-              });
+              await registration
+                .pushManager
+                .subscribe({
+                  userVisibleOnly: true,
+
+                  applicationServerKey:
+                    urlBase64ToUint8Array(
+                      config.publicKey
+                    )
+                });
 
             try {
-              await pushApi('app-push-subscribe', {
-                method: 'POST',
-                body: JSON.stringify({
-                  action: 'subscribe',
-                  deviceToken: pushToken(),
-                  subscription: subscription.toJSON(),
-                  categories,
-                  locale: language
-                })
-              });
+              await pushApi(
+                'app-push-subscribe',
+                {
+                  method: 'POST',
+
+                  body: JSON.stringify({
+                    action: 'subscribe',
+                    deviceToken:
+                      pushToken(),
+                    subscription:
+                      subscription.toJSON(),
+                    categories,
+                    locale: language
+                  })
+                }
+              );
+
             } catch (error) {
-              await subscription.unsubscribe();
+              await subscription
+                .unsubscribe();
+
               throw error;
             }
 
             setStored(
               PUSH_CATEGORY_KEY,
-              JSON.stringify(categories)
+              JSON.stringify(
+                categories
+              )
             );
+
             renderPushCategories();
           }
+
         } catch (error) {
-          console.error('Push toggle:', error);
-          status.textContent = t.pushError;
+          console.error(
+            'Push toggle:',
+            error
+          );
+
+          status.textContent =
+            t.pushError;
+
         } finally {
           pushBusy = false;
+
           await refreshPushStatus();
         }
       }
 
       async function savePushCategories() {
-        if (pushBusy) return;
+        if (pushBusy) {
+          return;
+        }
 
-        const t = translations();
-        const categories = selectedPushCategories();
-        const status = document.getElementById(
-          'push-status'
-        );
+        const t =
+          translations();
 
-        // An empty selection is intentional: keep push enabled but opt out
-        // of all category notifications. Persist [] to the backend.
+        const categories =
+          selectedPushCategories();
+
+        const status =
+          document.getElementById(
+            'push-status'
+          );
+
         pushBusy = true;
 
-        const button = document.getElementById(
-          'push-save'
-        );
+        const button =
+          document.getElementById(
+            'push-save'
+          );
 
         button.disabled = true;
-        status.textContent = t.pushSaving;
+
+        status.textContent =
+          t.pushSaving;
 
         try {
           const registration =
             await appPushRegistration();
 
           const subscription =
-            await registration.pushManager.getSubscription();
+            await registration
+              .pushManager
+              .getSubscription();
 
           if (!subscription) {
-            throw new Error('No active subscription');
+            throw new Error(
+              'No active subscription'
+            );
           }
 
-          await pushApi('app-push-subscribe', {
-            method: 'POST',
-            body: JSON.stringify({
-              action: 'subscribe',
-              deviceToken: pushToken(),
-              subscription: subscription.toJSON(),
-              categories,
-              locale: language
-            })
-          });
+          await pushApi(
+            'app-push-subscribe',
+            {
+              method: 'POST',
+
+              body: JSON.stringify({
+                action: 'subscribe',
+                deviceToken:
+                  pushToken(),
+                subscription:
+                  subscription.toJSON(),
+                categories,
+                locale: language
+              })
+            }
+          );
 
           setStored(
             PUSH_CATEGORY_KEY,
-            JSON.stringify(categories)
+            JSON.stringify(
+              categories
+            )
           );
 
-          status.textContent = t.pushSaved;
+          status.textContent =
+            t.pushSaved;
+
         } catch (error) {
-          console.error('Push categories:', error);
-          status.textContent = t.pushError;
+          console.error(
+            'Push categories:',
+            error
+          );
+
+          status.textContent =
+            t.pushError;
+
         } finally {
           pushBusy = false;
           button.disabled = false;
@@ -2326,60 +3808,113 @@
       }
 
       async function rollDice() {
-        if (diceBusy || !surpriseActivities.length) {
+        if (
+          diceBusy ||
+          !surpriseActivities.length
+        ) {
           return;
         }
 
-        const t = translations();
-        const button = document.getElementById(
-          'surprise-pick'
-        );
-        const cube = document.getElementById(
-          'dice-cube'
-        );
-        const caption = document.getElementById(
-          'dice-caption'
-        );
-        const result = document.getElementById(
-          'surprise-result'
-        );
+        const t =
+          translations();
 
-        const candidates = surpriseActivities.filter(
-          item => item.id !== lastSurpriseId
-        );
+        const button =
+          document.getElementById(
+            'surprise-pick'
+          );
 
-        const pool = candidates.length
-          ? candidates
-          : surpriseActivities;
+        const cube =
+          document.getElementById(
+            'dice-cube'
+          );
 
-        const selected = pool[
-          Math.floor(Math.random() * pool.length)
-        ];
+        const caption =
+          document.getElementById(
+            'dice-caption'
+          );
 
-        lastSurpriseId = selected.id;
+        const result =
+          document.getElementById(
+            'surprise-result'
+          );
+
+        const candidates =
+          surpriseActivities.filter(
+            item =>
+              item.id !== lastSurpriseId
+          );
+
+        const pool =
+          candidates.length
+            ? candidates
+            : surpriseActivities;
+
+        const selected =
+          pool[
+            Math.floor(
+              Math.random() *
+              pool.length
+            )
+          ];
+
+        lastSurpriseId =
+          selected.id;
+
         diceBusy = true;
         button.disabled = true;
-        button.textContent = t.diceBusy;
+
+        button.textContent =
+          t.diceBusy;
+
         result.hidden = true;
-        caption.textContent = t.diceBusy;
+
+        caption.textContent =
+          t.diceBusy;
 
         diceTurns += 1;
 
-        const face = (surpriseActivities.findIndex(item => item.id === selected.id) % 6) + 1;
+        const face =
+          (
+            surpriseActivities.findIndex(
+              item =>
+                item.id === selected.id
+            ) % 6
+          ) + 1;
+
         const orientations = [
-          [0, 0], [0, 180], [0, -90], [0, 90], [-90, 0], [90, 0]
+          [0, 0],
+          [0, 180],
+          [0, -90],
+          [0, 90],
+          [-90, 0],
+          [90, 0]
         ];
-        const [faceX, faceY] = orientations[face - 1];
+
+        const [
+          faceX,
+          faceY
+        ] =
+          orientations[
+            face - 1
+          ];
+
         cube.style.transform =
           `rotateX(${diceTurns * 720 + faceX}deg) ` +
           `rotateY(${diceTurns * 720 + faceY}deg)`;
 
-        await new Promise(resolve => setTimeout(
-          resolve,
-          reducedMotion.matches ? 0 : 1400
-        ));
+        await new Promise(
+          resolve =>
+            setTimeout(
+              resolve,
+              reducedMotion.matches
+                ? 0
+                : 1400
+            )
+        );
 
-        if (activeTab !== 'explore') {
+        if (
+          activeTab !== 'explore'
+        ) {
           diceBusy = false;
           return;
         }
@@ -2387,20 +3922,33 @@
         result.innerHTML = `
           <strong>
             ${escapeHTML(t.diceResult)}
-            ${escapeHTML(selected.name[language])}
+            ${escapeHTML(
+              selected.name[language]
+            )}
           </strong>
+
           <div class="surprise-actions">
             <a
               class="surprise-button surprise-activity-link"
-              href="${escapeHTML(selected.url[language])}"
-            >${escapeHTML(t.diceOpen)} →</a>
+              href="${escapeHTML(
+                selected.url[language]
+              )}"
+            >
+              ${escapeHTML(t.diceOpen)} →
+            </a>
           </div>
         `;
 
         result.hidden = false;
-        caption.textContent = t.diceReady;
-        button.textContent = t.diceAgain;
+
+        caption.textContent =
+          t.diceReady;
+
+        button.textContent =
+          t.diceAgain;
+
         button.disabled = false;
+
         diceBusy = false;
       }
 
@@ -2409,194 +3957,345 @@
 
         if (
           window.MoveTryConsent &&
-          typeof window.MoveTryConsent.openSettings === 'function'
+          typeof window
+            .MoveTryConsent
+            .openSettings ===
+            'function'
         ) {
-          window.MoveTryConsent.openSettings(
-            document.getElementById(
-              'privacy-settings-button'
-            )
-          );
+          window.MoveTryConsent
+            .openSettings(
+              document.getElementById(
+                'privacy-settings-button'
+              )
+            );
         } else {
-          alert(translations().privacyUnavailable);
+          alert(
+            translations()
+              .privacyUnavailable
+          );
         }
       }
 
-      // NAVIGATION
-
       navButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          setTab(button.dataset.tab);
-        });
-      });
-
-      view.addEventListener('click', event => {
-        const tabLink = event.target.closest(
-          '[data-open-tab]'
-        );
-
-        if (tabLink) {
-          event.preventDefault();
-          setTab(tabLink.dataset.openTab);
-          return;
-        }
-
-        const whereButton = event.target.closest('[data-where-category]');
-        if (whereButton) {
-          whereCategory = whereButton.dataset.whereCategory === 'all' || whereCategory === whereButton.dataset.whereCategory ? 'all' : whereButton.dataset.whereCategory;
-          render();
-          return;
-        }
-
-        const filter = event.target.closest(
-          '[data-journal-filter]'
-        );
-
-        if (filter) {
-          journalFilter = filter.dataset.journalFilter;
-          if (journalFilter !== 'personal') {
-            journalColumn = 'all';
+        button.addEventListener(
+          'click',
+          () => {
+            setTab(
+              button.dataset.tab
+            );
           }
-          render();
-          return;
-        }
-
-        const columnFilter = event.target.closest(
-          '[data-journal-column]'
         );
+      });
 
-        if (columnFilter) {
-          journalColumn = columnFilter.dataset.journalColumn;
+      view.addEventListener(
+        'click',
+        event => {
+
+          const tabLink =
+            event.target.closest(
+              '[data-open-tab]'
+            );
+
+          if (tabLink) {
+            event.preventDefault();
+
+            setTab(
+              tabLink.dataset.openTab
+            );
+
+            return;
+          }
+
+          const whereButton =
+            event.target.closest(
+              '[data-where-category]'
+            );
+
+          if (whereButton) {
+
+            whereCategory =
+              whereButton.dataset.whereCategory === 'all' ||
+              whereCategory === whereButton.dataset.whereCategory
+                ? 'all'
+                : whereButton.dataset.whereCategory;
+
+            render();
+
+            return;
+          }
+
+          const filter =
+            event.target.closest(
+              '[data-journal-filter]'
+            );
+
+          if (filter) {
+            journalFilter =
+              filter.dataset.journalFilter;
+
+            if (
+              journalFilter !== 'personal'
+            ) {
+              journalColumn =
+                'all';
+            }
+
+            render();
+
+            return;
+          }
+
+          const columnFilter =
+            event.target.closest(
+              '[data-journal-column]'
+            );
+
+          if (columnFilter) {
+            journalColumn =
+              columnFilter
+                .dataset
+                .journalColumn;
+
+            render();
+
+            return;
+          }
+
+          if (
+            event.target.closest(
+              '#surprise-pick, #dice-again'
+            )
+          ) {
+            rollDice();
+          }
+        }
+      );
+
+      view.addEventListener(
+        'input',
+        event => {
+
+          if (
+            event.target.id !==
+            'app-where-search'
+          ) {
+            return;
+          }
+
+          whereQuery =
+            event.target.value;
+
+          const cursor =
+            event.target.selectionStart;
+
           render();
-          return;
-        }
 
-        if (
-          event.target.closest(
-            '#surprise-pick, #dice-again'
-          )
-        ) {
-          rollDice();
-        }
-      });
+          const search =
+            document.getElementById(
+              'app-where-search'
+            );
 
-      view.addEventListener('input', event => {
-        if (event.target.id !== 'app-where-search') return;
-        whereQuery = event.target.value;
-        const cursor = event.target.selectionStart;
-        render();
-        const search = document.getElementById('app-where-search');
-        if (search) {
-          search.focus();
-          try { search.setSelectionRange(cursor, cursor); } catch (_) {}
-        }
-      });
+          if (search) {
+            search.focus();
 
-      // PANELS
+            try {
+              search.setSelectionRange(
+                cursor,
+                cursor
+              );
+            } catch (_) {}
+          }
+        }
+      );
 
       document.getElementById(
         'notifications-button'
-      ).addEventListener('click', () => {
-        showPanel(notificationsPanel);
-      });
+      ).addEventListener(
+        'click',
+        () => {
+          showPanel(
+            notificationsPanel
+          );
+        }
+      );
 
       document.getElementById(
         'settings-button'
-      ).addEventListener('click', () => {
-        showPanel(settingsPanel);
-      });
+      ).addEventListener(
+        'click',
+        () => {
+          showPanel(
+            settingsPanel
+          );
+        }
+      );
 
       document.querySelectorAll(
         '[data-close-panel]'
-      ).forEach(button => {
-        button.addEventListener('click', closePanels);
-      });
+      )
+        .forEach(button => {
+          button.addEventListener(
+            'click',
+            closePanels
+          );
+        });
 
-      [notificationsPanel, settingsPanel].forEach(panel => {
-        panel.addEventListener('click', event => {
-          if (event.target === panel) {
+      [
+        notificationsPanel,
+        settingsPanel
+      ]
+        .forEach(panel => {
+          panel.addEventListener(
+            'click',
+            event => {
+              if (
+                event.target === panel
+              ) {
+                closePanels();
+              }
+            }
+          );
+        });
+
+      document.addEventListener(
+        'keydown',
+        event => {
+          if (
+            event.key === 'Escape'
+          ) {
             closePanels();
           }
-        });
-      });
-
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-          closePanels();
         }
-      });
-
-      // LANGUAGE AND PRIVACY
+      );
 
       document.querySelectorAll(
         '[data-setting-language]'
-      ).forEach(button => {
-        button.addEventListener('click', () => {
-          setLanguage(button.dataset.settingLanguage);
+      )
+        .forEach(button => {
+          button.addEventListener(
+            'click',
+            () => {
+              setLanguage(
+                button
+                  .dataset
+                  .settingLanguage
+              );
+            }
+          );
         });
-      });
 
       document.getElementById(
         'privacy-settings-button'
-      ).addEventListener('click', openPrivacySettings);
-
-      // PUSH CONTROLS
+      )
+        .addEventListener(
+          'click',
+          openPrivacySettings
+        );
 
       document.getElementById(
         'push-toggle'
-      ).addEventListener('click', togglePush);
+      )
+        .addEventListener(
+          'click',
+          togglePush
+        );
 
       document.getElementById(
         'push-save'
-      ).addEventListener('click', savePushCategories);
-
-      // WELCOME
+      )
+        .addEventListener(
+          'click',
+          savePushCategories
+        );
 
       document.querySelectorAll(
         '[data-choice]'
-      ).forEach(button => {
-        button.addEventListener('click', () => {
-          chosenLanguage = button.dataset.choice;
+      )
+        .forEach(button => {
+          button.addEventListener(
+            'click',
+            () => {
+              chosenLanguage =
+                button.dataset.choice;
 
-          document.querySelectorAll(
-            '[data-choice]'
-          ).forEach(item => {
-            item.setAttribute(
-              'aria-pressed',
-              String(
-                item.dataset.choice === chosenLanguage
+              document.querySelectorAll(
+                '[data-choice]'
               )
-            );
-          });
+                .forEach(item => {
+                  item.setAttribute(
+                    'aria-pressed',
+                    String(
+                      item.dataset.choice ===
+                      chosenLanguage
+                    )
+                  );
+                });
+            }
+          );
         });
-      });
 
       document.getElementById(
         'continue'
-      ).addEventListener('click', () => {
-        setLanguage(chosenLanguage);
-        welcome.hidden = true;
-        setStored(SESSION_KEY, '1');
+      )
+        .addEventListener(
+          'click',
+          () => {
 
-        document.querySelector(
-          '[data-tab="home"]'
-        ).focus();
-      });
+            setLanguage(
+              chosenLanguage
+            );
 
-      // INITIALIZATION
+            welcome.hidden = true;
+
+            setStored(
+              SESSION_KEY,
+              '1'
+            );
+
+            document.querySelector(
+              '[data-tab="home"]'
+            ).focus();
+          }
+        );
 
       const savedLanguage =
-        getStored(APP_LANGUAGE_KEY) ||
-        getStored(WEB_LANGUAGE_KEY);
+        getStored(
+          APP_LANGUAGE_KEY
+        ) ||
+        getStored(
+          WEB_LANGUAGE_KEY
+        );
 
-      chosenLanguage = I18N[savedLanguage]
-        ? savedLanguage
-        : 'hr';
+      chosenLanguage =
+        I18N[savedLanguage]
+          ? savedLanguage
+          : 'hr';
 
-      const initialTab = new URLSearchParams(location.search).get('tab');
-      if (['home', 'explore', 'where', 'journal', 'saved'].includes(initialTab)) activeTab = initialTab;
-      setLanguage(chosenLanguage);
+      const initialTab =
+        new URLSearchParams(
+          location.search
+        ).get('tab');
 
-      if (!I18N[savedLanguage]) {
+      if (
+        [
+          'home',
+          'explore',
+          'where',
+          'journal',
+          'saved'
+        ].includes(initialTab)
+      ) {
+        activeTab =
+          initialTab;
+      }
+
+      setLanguage(
+        chosenLanguage
+      );
+
+      if (
+        !I18N[savedLanguage]
+      ) {
         welcome.hidden = false;
 
         document.querySelector(
@@ -2609,91 +4308,234 @@
     })();
   </script>
 
-
   <script>
     (() => {
-      if (!window.MT_BROWSER_MODE) return;
-      const lang = (localStorage.getItem('moveandtry_language') || navigator.language || 'hr')
-        .toLowerCase().startsWith('hr') ? 'hr' : 'en';
-      const en = lang === 'en';
-      document.documentElement.lang = lang;
-      const set = (id, hr, eng) => { document.getElementById(id).textContent = en ? eng : hr; };
-      set('mt-install-title', 'Ponesi znatiželju sa sobom.', 'Take curiosity with you.');
-      set('mt-install-description', 'Instaliraj MOVE&TRY na svoj uređaj i otvori aplikaciju s početnog zaslona.',
-        'Install MOVE&TRY on your device and launch it from your home screen.');
-      set('mt-install-button', 'INSTALIRAJ APLIKACIJU →', 'INSTALL THE APP →');
-      set('mt-install-home', 'NATRAG NA WEB →', 'BACK TO WEBSITE →');
-      document.getElementById('mt-install-home').href = en ? '/' : '/hr/';
-      const button = document.getElementById('mt-install-button');
-      const help = document.getElementById('mt-install-help');
-      const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      const android = /Android/i.test(navigator.userAgent);
-      const showHelp = () => {
-        help.textContent = ios
-          ? (en ? 'In Safari, tap Share, then Add to Home Screen.' : 'U Safariju dodirni Dijeli, zatim Dodaj na početni zaslon.')
-          : android
-            ? (en ? 'Open this page in Chrome and choose Install app or Add to Home screen from the browser menu.'
-                  : 'Otvori ovu stranicu u Chromeu i u izborniku preglednika odaberi Instaliraj aplikaciju ili Dodaj na početni zaslon.')
-            : (en ? 'Open your browser menu and select Install app, if available.'
-                  : 'U izborniku preglednika odaberi Instaliraj aplikaciju, ako je dostupno.');
+      if (!window.MT_BROWSER_MODE) {
+        return;
+      }
+
+      const lang =
+        (
+          localStorage.getItem(
+            'moveandtry_language'
+          ) ||
+          navigator.language ||
+          'hr'
+        )
+          .toLowerCase()
+          .startsWith('hr')
+            ? 'hr'
+            : 'en';
+
+      const en =
+        lang === 'en';
+
+      document.documentElement.lang =
+        lang;
+
+      const set = (
+        id,
+        hr,
+        eng
+      ) => {
+        document.getElementById(
+          id
+        ).textContent =
+          en
+            ? eng
+            : hr;
       };
+
+      set(
+        'mt-install-title',
+        'Ponesi znatiželju sa sobom.',
+        'Take curiosity with you.'
+      );
+
+      set(
+        'mt-install-description',
+        'Instaliraj MOVE&TRY na svoj uređaj i otvori aplikaciju s početnog zaslona.',
+        'Install MOVE&TRY on your device and launch it from your home screen.'
+      );
+
+      set(
+        'mt-install-button',
+        'INSTALIRAJ APLIKACIJU →',
+        'INSTALL THE APP →'
+      );
+
+      set(
+        'mt-install-home',
+        'NATRAG NA WEB →',
+        'BACK TO WEBSITE →'
+      );
+
+      document.getElementById(
+        'mt-install-home'
+      ).href =
+        en
+          ? '/'
+          : '/hr/';
+
+      const button =
+        document.getElementById(
+          'mt-install-button'
+        );
+
+      const help =
+        document.getElementById(
+          'mt-install-help'
+        );
+
+      const ios =
+        /iPad|iPhone|iPod/
+          .test(
+            navigator.userAgent
+          ) ||
+        (
+          navigator.platform ===
+          'MacIntel' &&
+          navigator.maxTouchPoints >
+          1
+        );
+
+      const android =
+        /Android/i
+          .test(
+            navigator.userAgent
+          );
+
+      const showHelp = () => {
+        help.textContent =
+          ios
+            ? (
+                en
+                  ? 'In Safari, tap Share, then Add to Home Screen.'
+                  : 'U Safariju dodirni Dijeli, zatim Dodaj na početni zaslon.'
+              )
+            : android
+              ? (
+                  en
+                    ? 'Open this page in Chrome and choose Install app or Add to Home screen from the browser menu.'
+                    : 'Otvori ovu stranicu u Chromeu i u izborniku preglednika odaberi Instaliraj aplikaciju ili Dodaj na početni zaslon.'
+                )
+              : (
+                  en
+                    ? 'Open your browser menu and select Install app, if available.'
+                    : 'U izborniku preglednika odaberi Instaliraj aplikaciju, ako je dostupno.'
+                );
+      };
+
       showHelp();
-      let deferredPrompt = null;
-      window.addEventListener('beforeinstallprompt', event => {
-        event.preventDefault();
-        deferredPrompt = event;
-        button.hidden = false;
-      });
-      button.addEventListener('click', async () => {
-        if (!deferredPrompt) return;
-        const prompt = deferredPrompt;
-        deferredPrompt = null;
-        button.hidden = true;
-        try {
-          await prompt.prompt();
-          const choice = await prompt.userChoice;
-          if (choice?.outcome !== 'accepted') showHelp();
-        } catch (error) {
-          console.warn('MOVE&TRY install prompt:', error);
-          showHelp();
+
+      let deferredPrompt =
+        null;
+
+      window.addEventListener(
+        'beforeinstallprompt',
+        event => {
+
+          event.preventDefault();
+
+          deferredPrompt =
+            event;
+
+          button.hidden =
+            false;
         }
-      });
-      window.addEventListener('appinstalled', () => {
-        button.hidden = true;
-        help.textContent = en
-          ? 'Installed! Open MOVE&TRY from your home screen.'
-          : 'Instalirano! Otvori MOVE&TRY s početnog zaslona.';
-      });
+      );
+
+      button.addEventListener(
+        'click',
+        async () => {
+
+          if (!deferredPrompt) {
+            return;
+          }
+
+          const prompt =
+            deferredPrompt;
+
+          deferredPrompt =
+            null;
+
+          button.hidden =
+            true;
+
+          try {
+            await prompt.prompt();
+
+            const choice =
+              await prompt.userChoice;
+
+            if (
+              choice?.outcome !==
+              'accepted'
+            ) {
+              showHelp();
+            }
+
+          } catch (error) {
+            console.warn(
+              'MOVE&TRY install prompt:',
+              error
+            );
+
+            showHelp();
+          }
+        }
+      );
+
+      window.addEventListener(
+        'appinstalled',
+        () => {
+
+          button.hidden =
+            true;
+
+          help.textContent =
+            en
+              ? 'Installed! Open MOVE&TRY from your home screen.'
+              : 'Instalirano! Otvori MOVE&TRY s početnog zaslona.';
+        }
+      );
+
     })();
   </script>
 
   <script src="/app/notifications.js"></script>
 
   <script>
-    if (!window.MT_BROWSER_MODE) window.MoveTryNotifications?.init({
-      locale: document.documentElement.lang === 'en'
-        ? 'en'
-        : 'hr'
-    });
+    if (!window.MT_BROWSER_MODE) {
+      window.MoveTryNotifications?.init({
+        locale:
+          document.documentElement.lang === 'en'
+            ? 'en'
+            : 'hr'
+      });
+    }
 
     if (
       'serviceWorker' in navigator &&
       window.isSecureContext
     ) {
-      navigator.serviceWorker.register(
-        '/app/sw.js',
-        { scope: '/app/' }
-      )
-      .then(() => {
-        window.MoveTryNotifications?.refresh();
-      })
-      .catch(error => {
-        console.warn(
-          'MOVE&TRY app service worker:',
-          error
-        );
-      });
+      navigator.serviceWorker
+        .register(
+          '/app/sw.js',
+          {
+            scope: '/app/'
+          }
+        )
+        .then(() => {
+          window.MoveTryNotifications
+            ?.refresh();
+        })
+        .catch(error => {
+          console.warn(
+            'MOVE&TRY app service worker:',
+            error
+          );
+        });
     }
   </script>
 
