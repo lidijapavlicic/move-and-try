@@ -83,16 +83,12 @@
       position: relative;
       isolation: isolate;
       overflow: hidden;
-
       display: flex;
       flex-direction: column;
-
       min-height: 340px;
       margin-top: 18px;
-
       background: #151417;
       color: #fff;
-
       text-decoration: none;
     }
 
@@ -103,18 +99,13 @@
     .home-intro .whats-new .new-card.latest-update-card::before,
     .home-intro .whats-new .new-card.latest-update-card::after {
       content: "";
-
       position: absolute;
       inset: 0;
-
       z-index: 0;
-
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-
       pointer-events: none;
-
       animation: latestPhotoFade 12s ease-in-out infinite;
     }
 
@@ -126,9 +117,8 @@
       animation-delay: -6s;
     }
 
-
     /* ==========================================
-       DJEČJA I ADOLESCENTNA PSIHOTERAPIJA — NOVA AKTIVNOST
+       DJEČJA I ADOLESCENTNA PSIHOTERAPIJA
     ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-psychotherapy {
@@ -162,7 +152,7 @@
     }
 
     /* ==========================================
-       TUFTING — NOVA AKTIVNOST
+       TUFTING
     ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-tufting {
@@ -230,7 +220,7 @@
     }
 
     /* ==========================================
-       NATURAL PERFUME MAKING — WHERE TO TRY
+       PRIRODNI PARFEMI
     ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-natural-perfume {
@@ -277,23 +267,12 @@
     }
 
     @keyframes latestPhotoFade {
-      0%,
-      42% {
-        opacity: 1;
-      }
-
-      50%,
-      92% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-
       .home-intro .whats-new .new-card.latest-update-card::before,
       .home-intro .whats-new .new-card.latest-update-card::after {
         animation: none;
@@ -307,7 +286,6 @@
         opacity: 0;
       }
     }
-
 
     /* ==========================================
        ILUSTRACIJE KATEGORIJA
@@ -324,15 +302,11 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-
       background-repeat: no-repeat;
       background-position: right center;
       background-size: cover;
-
       opacity: .40;
-
       pointer-events: none;
-
       transition:
         opacity .5s ease,
         transform .5s ease;
@@ -387,7 +361,6 @@
       }
     }
 
-
     /* ==========================================
        ZAVRŠNA FOTOGRAFIJA
     ========================================== */
@@ -395,20 +368,16 @@
     section.suggest {
       position: relative;
       isolation: isolate;
-
       background-color: #17251d;
-
       background-image:
         linear-gradient(
           rgba(9,19,15,.40),
           rgba(9,19,15,.50)
         ),
         url('/images/home-final-background.jpg');
-
       background-size: cover;
       background-position: center 50%;
       background-repeat: no-repeat;
-
       color: #fff;
     }
 
@@ -444,7 +413,6 @@
     @media (max-width: 768px) {
       section.suggest {
         background-position: center center;
-
         background-image:
           linear-gradient(
             rgba(9,19,15,.64),
@@ -454,46 +422,35 @@
       }
     }
 
-
     /* ==========================================
        NASLOVNA FOTOGRAFIJA
     ========================================== */
 
     section.home-hero-image {
       display: block;
-
       width: 100vw;
       max-width: none;
-
       margin: 0 0 0 calc(50% - 50vw);
-
       padding: 0;
-
       border: 0;
       border-radius: 0;
-
       overflow: hidden;
     }
 
     section.home-hero-image img {
       display: block;
-
       width: 100%;
       max-width: none;
       height: auto;
-
       margin: 0;
       padding: 0;
-
       border: 0;
       border-radius: 0;
-
       object-fit: contain;
     }
 
-
     /* ==========================================
-       MOVE&TRY APP — INDEPENDENT HOMEPAGE SECTION
+       MOVE&TRY APP
     ========================================== */
 
     #move-try-app {
@@ -583,23 +540,18 @@
       }
     }
 
-
     /* ==========================================
        HEADER
     ========================================== */
 
     .header-behind-link {
       color: #555;
-
       font-family: 'Manrope', sans-serif;
       font-size: 11px;
       font-weight: 700;
-
       letter-spacing: .04em;
-
       text-decoration: none;
       white-space: nowrap;
-
       transition: opacity .2s ease;
     }
 
@@ -608,13 +560,11 @@
     }
 
     @media (min-width: 769px) {
-
       .site-header {
         grid-template-columns:
           minmax(120px,1fr)
           auto
           minmax(120px,1fr);
-
         gap: 16px;
       }
 
@@ -639,7 +589,6 @@
       }
     }
 
-
     /* ==========================================
        BUDI DIO PRIČE
     ========================================== */
@@ -648,25 +597,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-
       width: fit-content;
       max-width: 100%;
-
       padding: 15px 22px;
-
       background: #1f2a18;
       border: 1px solid #1f2a18;
-
       color: #fff;
-
       font-size: 11px;
       font-weight: 800;
-
       letter-spacing: .05em;
       line-height: 1.6;
-
       text-decoration: none;
-
       transition:
         background .2s ease,
         color .2s ease;
@@ -693,9 +634,8 @@
       margin-top: 7px;
     }
 
-
     /* ==========================================
-       WHERE TO TRY — ACTIVE
+       WHERE TO TRY
     ========================================== */
 
     #where-to-try {
@@ -710,9 +650,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-
       gap: 14px;
-
       margin-top: 26px;
     }
 
@@ -720,25 +658,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-
       width: fit-content;
       max-width: 100%;
-
       padding: 15px 22px;
-
       background: #1f2a18;
       border: 1px solid #1f2a18;
-
       color: #ffffff;
-
       font-size: 11px;
       font-weight: 800;
-
       letter-spacing: .05em;
       line-height: 1.6;
-
       text-decoration: none;
-
       transition:
         background .2s ease,
         color .2s ease;
@@ -751,25 +681,19 @@
 
     #where-to-try .where-home-current {
       display: inline-block;
-
       color: #1f2a18;
-
       font-size: 10px;
       font-weight: 800;
-
       letter-spacing: .05em;
       line-height: 1.6;
-
       text-decoration: underline;
       text-underline-offset: 4px;
-
       transition: opacity .2s ease;
     }
 
     #where-to-try .where-home-current:hover {
       opacity: .55;
     }
-
 
     .mobile-privacy-link {
       display: block;
@@ -793,9 +717,7 @@
   <link rel="stylesheet" href="/consent.css">
 </head>
 
-
 <body>
-
 
 <header class="site-header">
 
@@ -837,7 +759,6 @@
 
 </header>
 
-
 <div class="mobile-menu">
 
   <nav>
@@ -865,14 +786,12 @@
 
 </div>
 
-
 <section class="home-hero-image">
   <img
     src="/images/home-discover.png"
     alt="Zaigrani prikaz različitih aktivnosti i stvari koje možemo otkriti"
   >
 </section>
-
 
 <section class="home-intro" aria-label="Kako funkcionira i što je novo">
 
@@ -962,7 +881,6 @@
 
     </div>
 
-
     <div class="home-intro-news">
 
       <div class="whats-new">
@@ -1000,7 +918,6 @@
 
         </a>
 
-
         <a
           href="/hr/horse-riding-guide.html"
           class="new-card latest-update-card latest-update-horse-riding"
@@ -1032,7 +949,6 @@
   </div>
 
 </section>
-
 
 <section class="categories" id="find-your-try">
 
@@ -1100,7 +1016,6 @@
 
 </section>
 
-
 <section id="move-try-app" aria-labelledby="move-try-app-title">
   <div class="app-install-inner">
 
@@ -1153,7 +1068,6 @@
 
   </div>
 </section>
-
 
 <section class="community">
 
@@ -1210,7 +1124,6 @@
 
     </div>
 
-
     <div
       class="community-panel where-panel"
       id="where-to-try"
@@ -1249,7 +1162,7 @@
           href="/hr/where-to-try.html"
           class="where-home-current"
         >
-          TRENUTNO DOSTUPNO: TUFTING · IZRADA PRIRODNIH PARFEMA →
+          TRENUTNO DOSTUPNO: TUFTING · IZRADA PRIRODNIH PARFEMA · DJEČJA I ADOLESCENTNA PSIHOTERAPIJA →
         </a>
 
       </div>
@@ -1259,7 +1172,6 @@
   </div>
 
 </section>
-
 
 <section class="suggest">
 
@@ -1312,7 +1224,6 @@
 
 </section>
 
-
 <footer class="site-footer">
 
   <p>
@@ -1339,9 +1250,7 @@
 
 </footer>
 
-
 <script src="../script.js"></script>
-
 
 <script>
 
@@ -1357,7 +1266,8 @@
       "/hr/mediation.html",
       "/hr/horse-riding.html",
       "/hr/natural-perfume-making.html",
-      "/hr/tufting.html"
+      "/hr/tufting.html",
+      "/hr/child-adolescent-psychotherapy.html"
     ];
 
     const storageKey =
@@ -1394,7 +1304,6 @@
       randomActivity;
 
   }
-
 
   /* ==========================================
      WHAT'S NEW — EQUAL CARD HEIGHTS
@@ -1443,7 +1352,6 @@
 
 </script>
 
-
 <script>
   /* MOVE&TRY public PWA; private Editor has its own registration. */
   if ('serviceWorker' in navigator && window.isSecureContext &&
@@ -1458,5 +1366,4 @@
 <script src="/consent.js" defer></script>
 
 </body>
-
 </html>
