@@ -681,28 +681,20 @@
         "tufting": [
             {
                 name: "MAGIC TUFTING STUDIO",
-
                 city: "ZAGREB",
-
                 area: "SAVICA",
-
                 address: "Lastovska 2A",
-
                 postalCode: "10000",
-
                 image: "/images/magic-tufting-workshop.jpg",
-
                 imageFit: "cover",
-
+                publishedAt: "2026-11-02",
                 description:
                     "A beginner-friendly tufting workshop where you learn how to use a tufting gun, explore the technique and create your own design with guidance.",
-
                 tags: [
                     "WORKSHOP",
                     "BEGINNER FRIENDLY",
                     "TUFTING"
                 ],
-
                 href:
                     "/tufting-where-to-try.html"
             }
@@ -711,28 +703,20 @@
         "natural-perfume-making": [
             {
                 name: "BILJARICA",
-
                 city: "ZAGREB",
-
                 area: "",
-
                 address: "",
-
                 postalCode: "",
-
                 image: "/images/biljarica-logo.jpg",
-
                 imageFit: "contain",
-
+                publishedAt: "2026-10-30",
                 description:
                     "A guided natural perfume-making workshop for anyone curious about natural scents, fragrance notes and creating their own unique blend.",
-
                 tags: [
                     "WORKSHOP",
                     "BEGINNER FRIENDLY",
                     "NATURAL PERFUMES"
                 ],
-
                 href:
                     "/natural-perfume-making-where-to-try.html"
             }
@@ -741,28 +725,20 @@
         "child-adolescent-psychotherapy": [
             {
                 name: "LUMOS",
-
                 city: "ZAGREB",
-
                 area: "",
-
                 address: "",
-
                 postalCode: "",
-
                 image: "/images/lumos-space.jpg",
-
                 imageFit: "cover",
-
+                publishedAt: "2026-11-06",
                 description:
                     "Child and adolescent psychotherapy support by Nikolina Đurić for children, adolescents and their parents, in person and online depending on the type of support and age.",
-
                 tags: [
                     "PSYCHOTHERAPY",
                     "CHILDREN & ADOLESCENTS",
                     "PARENTS"
                 ],
-
                 href:
                     "/child-adolescent-psychotherapy-where-to-try.html"
             }
@@ -1009,6 +985,11 @@
                                     })
                                 )
                     )
+            )
+            .sort(
+                (a, b) =>
+                    new Date(b.provider.publishedAt || 0) -
+                    new Date(a.provider.publishedAt || 0)
             );
 
     function renderPublished() {
