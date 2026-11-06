@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "providers": [
+    {
+      "id": "lumos-child-adolescent-psychotherapy",
+      "category": "CARE",
+      "activity": {
+        "hr": "DJEČJA I ADOLESCENTNA PSIHOTERAPIJA",
+        "en": "CHILD & ADOLESCENT PSYCHOTHERAPY"
+      },
+      "name": "LUMOS",
+      "city": "ZAGREB",
+      "area": "",
+      "address": "",
+      "postalCode": "",
+      "image": "/images/lumos-space.jpg",
+      "imageFit": "cover",
+      "description": {
+        "hr": "Dječja i adolescentna psihoterapijska podrška Nikoline Đurić za djecu, adolescente i njihove roditelje, uživo i online ovisno o vrsti podrške i dobi.",
+        "en": "Child and adolescent psychotherapy support by Nikolina Đurić for children, adolescents and their parents, in person and online depending on the type of support and age."
+      },
+      "tags": {
+        "hr": [
+          "PSIHOTERAPIJA",
+          "DJECA I ADOLESCENTI",
+          "RODITELJI"
+        ],
+        "en": [
+          "PSYCHOTHERAPY",
+          "CHILDREN & ADOLESCENTS",
+          "PARENTS"
+        ]
+      },
+      "url": {
+        "hr": "/hr/child-adolescent-psychotherapy-where-to-try.html",
+        "en": "/child-adolescent-psychotherapy-where-to-try.html"
+      },
+      "publishedAt": "2026-11-06",
+      "published": true
+    },
+    {
+      "id": "magic-tufting-studio",
+      "category": "CREATE",
+      "activity": {
+        "hr": "TUFTING",
+        "en": "TUFTING"
+      },
+      "name": "MAGIC TUFTING STUDIO",
+      "city": "ZAGREB",
+      "area": "SAVICA",
+      "address": "Lastovska 2A",
+      "postalCode": "10000",
+      "image": "/images/magic-tufting-workshop.jpg",
+      "imageFit": "cover",
+      "description": {
+        "hr": "Radionica tuftinga za početnike na kojoj uz vođenje upoznaješ tufting gun, tehniku rada i izrađuješ vlastiti motiv.",
+        "en": "A beginner-friendly tufting workshop where you learn how to use a tufting gun, explore the technique and create your own design with guidance."
+      },
+      "tags": {
+        "hr": [
+          "RADIONICA",
+          "ZA POČETNIKE",
+          "TUFTING"
+        ],
+        "en": [
+          "WORKSHOP",
+          "BEGINNER FRIENDLY",
+          "TUFTING"
+        ]
+      },
+      "url": {
+        "hr": "/hr/tufting-where-to-try.html",
+        "en": "/tufting-where-to-try.html"
+      },
+      "publishedAt": "2026-11-02",
+      "published": true
+    },
+    {
+      "id": "biljarica-natural-perfume-making",
+      "category": "CREATE",
+      "activity": {
+        "hr": "IZRADA PRIRODNIH PARFEMA",
+        "en": "NATURAL PERFUME MAKING"
+      },
+      "name": "BILJARICA",
+      "city": "ZAGREB",
+      "area": "",
+      "address": "",
+      "postalCode": "",
+      "image": "/images/biljarica-logo.jpg",
+      "imageFit": "contain",
+      "description": {
+        "hr": "Vođena radionica izrade prirodnog parfema za sve koji žele upoznati prirodne mirise, istražiti mirisne note i napraviti vlastitu kombinaciju.",
+        "en": "A guided natural perfume-making workshop for anyone curious about natural scents, fragrance notes and creating their own unique blend."
+      },
+      "tags": {
+        "hr": [
+          "RADIONICA",
+          "ZA POČETNIKE",
+          "PRIRODNI PARFEMI"
+        ],
+        "en": [
+          "WORKSHOP",
+          "BEGINNER FRIENDLY",
+          "NATURAL PERFUMES"
+        ]
+      },
+      "url": {
+        "hr": "/hr/natural-perfume-making-where-to-try.html",
+        "en": "/natural-perfume-making-where-to-try.html"
+      },
+      "publishedAt": "2026-10-30",
+      "published": true
+    }
+  ]
+}
