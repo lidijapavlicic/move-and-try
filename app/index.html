@@ -2218,274 +2218,343 @@
       let whereQuery = '';
 
       function renderWhere() {
-        const hr =
-          language === 'hr';
+  const hr =
+    language === 'hr';
 
-        const providers = [
-          {
-            category: 'CREATE',
-            activity: 'TUFTING',
-            name: 'MAGIC TUFTING STUDIO',
-            city: 'ZAGREB',
-            image: '/images/magic-tufting-workshop.jpg',
+  const categories = [
+    'MOVE',
+    'LEARN',
+    'CREATE',
+    'EXPLORE',
+    'DARE',
+    'CARE'
+  ];
 
-            description: hr
-              ? 'Radionica tuftinga za početnike na kojoj uz vođenje upoznaješ tufting gun, tehniku rada i izrađuješ vlastiti motiv.'
-              : 'A beginner-friendly tufting workshop where you learn how to use a tufting gun, explore the technique and create your own design with guidance.',
+  /*
+   * Where to Try podatke više ne držimo
+   * unutar app/index.html.
+   *
+   * Učitavaju se iz:
+   * /data/where-to-try.json
+   *
+   * preko:
+   * /app/where-to-try.js
+   */
 
-            url: hr
-              ? '/hr/tufting-where-to-try.html'
-              : '/tufting-where-to-try.html',
+  if (
+    !window.MoveTryWhereToTry ||
+    !window.MoveTryWhereToTry.isLoaded()
+  ) {
 
-            publishedAt:
-              '2026-11-02'
-          },
+    if (window.MoveTryWhereToTry) {
 
-          {
-            category: 'CREATE',
-
-            activity: hr
-              ? 'IZRADA PRIRODNIH PARFEMA'
-              : 'NATURAL PERFUME MAKING',
-
-            name: 'BILJARICA',
-            city: 'ZAGREB',
-
-            image:
-              '/images/biljarica-logo.jpg',
-
-            description: hr
-              ? 'Vođena radionica izrade prirodnog parfema za sve koji žele upoznati prirodne mirise, istražiti mirisne note i napraviti vlastitu kombinaciju.'
-              : 'A guided natural perfume-making workshop to explore natural scents, discover fragrance notes and create your own combination.',
-
-            url: hr
-              ? '/hr/natural-perfume-making-where-to-try.html'
-              : '/natural-perfume-making-where-to-try.html',
-
-            publishedAt:
-              '2026-10-30'
-          },
-
-          {
-            category: 'CARE',
-
-            activity: hr
-              ? 'DJEČJA I ADOLESCENTNA PSIHOTERAPIJA'
-              : 'CHILD & ADOLESCENT PSYCHOTHERAPY',
-
-            name: 'LUMOS',
-            city: 'ZAGREB',
-
-            image:
-              '/images/lumos-space.jpg',
-
-            description: hr
-              ? 'Dječja i adolescentna psihoterapijska podrška Nikoline Đurić za djecu, adolescente i njihove roditelje, uživo i online ovisno o vrsti podrške i dobi.'
-              : 'Child and adolescent psychotherapy support by Nikolina Đurić for children, adolescents and their parents, in person and online depending on the type of support and age.',
-
-            url: hr
-              ? '/hr/child-adolescent-psychotherapy-where-to-try.html'
-              : '/child-adolescent-psychotherapy-where-to-try.html',
-
-            publishedAt:
-              '2026-11-06'
+      window.MoveTryWhereToTry
+        .load()
+        .then(() => {
+          if (activeTab === 'where') {
+            render();
           }
-        ];
+        })
+        .catch(error => {
+          console.warn(
+            'MOVE&TRY Where to Try:',
+            error
+          );
 
-        const categories = [
-          'MOVE',
-          'LEARN',
-          'CREATE',
-          'EXPLORE',
-          'DARE',
-          'CARE'
-        ];
+          if (activeTab === 'where') {
+            render();
+          }
+        });
 
-        const query =
-          whereQuery
-            .trim()
-            .toLocaleLowerCase();
+    }
 
-        const filtered =
-          providers
-            .filter(p =>
-              (
-                whereCategory === 'all' ||
-                p.category === whereCategory
-              ) &&
-              (
-                !query ||
-                [
-                  p.category,
-                  p.activity,
-                  p.name,
-                  p.city,
-                  p.description
-                ]
-                  .some(
-                    value =>
-                      value
-                        .toLocaleLowerCase()
-                        .includes(query)
-                  )
+    return `
+      <section class="app-where">
+
+        <div class="eyebrow">
+          MOVE&TRY
+        </div>
+
+        <h1>
+          ${hr
+            ? 'GDJE PROBATI'
+            : 'WHERE TO TRY'}
+        </h1>
+
+        <p class="app-where-intro">
+          ${hr
+            ? 'Otkrij stvarna mjesta i ljude uz koje možeš napraviti prvi korak.'
+            : 'Discover real places and people who can help you take the first step.'}
+        </p>
+
+        <p class="app-where-empty">
+          ${window.MoveTryWhereToTry
+            ? (
+                hr
+                  ? 'Učitavanje mjesta…'
+                  : 'Loading places…'
+              )
+            : (
+                hr
+                  ? 'Podaci za Gdje probati trenutačno nisu dostupni.'
+                  : 'Where to Try data is currently unavailable.'
+              )}
+        </p>
+
+      </section>
+    `;
+  }
+
+  const providers =
+    window.MoveTryWhereToTry
+      .getProviders(language);
+
+  const query =
+    whereQuery
+      .trim()
+      .toLocaleLowerCase();
+
+  const filtered =
+    providers
+      .filter(provider =>
+        (
+          whereCategory === 'all' ||
+          provider.category === whereCategory
+        ) &&
+        (
+          !query ||
+          [
+            provider.category,
+            provider.activity,
+            provider.name,
+            provider.city,
+            provider.area,
+            provider.address,
+            provider.description,
+            ...(provider.tags || [])
+          ]
+            .filter(Boolean)
+            .some(value =>
+              String(value)
+                .toLocaleLowerCase()
+                .includes(query)
+            )
+        )
+      )
+      .sort(
+        (a, b) =>
+          String(
+            b.publishedAt || ''
+          )
+            .localeCompare(
+              String(
+                a.publishedAt || ''
               )
             )
-            .sort(
-              (a, b) =>
-                b.publishedAt.localeCompare(
-                  a.publishedAt
-                )
-            );
+      );
 
-        return `
-          <section class="app-where">
+  return `
+    <section class="app-where">
 
-            <div class="eyebrow">
-              MOVE&TRY
-            </div>
+      <div class="eyebrow">
+        MOVE&TRY
+      </div>
 
-            <h1>
-              ${hr
-                ? 'GDJE PROBATI'
-                : 'WHERE TO TRY'}
-            </h1>
+      <h1>
+        ${hr
+          ? 'GDJE PROBATI'
+          : 'WHERE TO TRY'}
+      </h1>
 
-            <p class="app-where-intro">
-              ${hr
-                ? 'Otkrij stvarna mjesta i ljude uz koje možeš napraviti prvi korak.'
-                : 'Discover real places and people who can help you take the first step.'}
-            </p>
+      <p class="app-where-intro">
+        ${hr
+          ? 'Otkrij stvarna mjesta i ljude uz koje možeš napraviti prvi korak.'
+          : 'Discover real places and people who can help you take the first step.'}
+      </p>
 
-            <div class="app-where-search-wrap">
+      <div class="app-where-search-wrap">
 
-              <span aria-hidden="true">
-                ⌕
-              </span>
+        <span aria-hidden="true">
+          ⌕
+        </span>
 
-              <input
-                class="app-where-search"
-                id="app-where-search"
-                type="search"
-                value="${escapeHTML(whereQuery).replace(/&quot;/g, '&quot;')}"
-                placeholder="${hr
-                  ? 'Pretraži aktivnosti, mjesta i organizatore...'
-                  : 'Search activities, places and providers...'}"
-                aria-label="${hr
-                  ? 'Pretraži gdje probati'
-                  : 'Search where to try'}"
-              >
+        <input
+          class="app-where-search"
+          id="app-where-search"
+          type="search"
+          value="${escapeHTML(whereQuery).replace(/&quot;/g, '&quot;')}"
+          placeholder="${hr
+            ? 'Pretraži aktivnosti, mjesta i organizatore...'
+            : 'Search activities, places and providers...'}"
+          aria-label="${hr
+            ? 'Pretraži gdje probati'
+            : 'Search where to try'}"
+        >
 
-            </div>
+      </div>
 
-            <div
-              class="app-where-categories"
-              aria-label="${hr
-                ? 'Filtriraj po kategoriji'
-                : 'Filter by category'}"
+      <div
+        class="app-where-categories"
+        aria-label="${hr
+          ? 'Filtriraj po kategoriji'
+          : 'Filter by category'}"
+      >
+
+        ${categories.map(
+          category => `
+            <button
+              type="button"
+              class="app-where-category"
+              data-where-category="${category}"
+              aria-pressed="${whereCategory === category}"
             >
-              ${categories.map(
-                category => `
-                  <button
-                    type="button"
-                    class="app-where-category"
-                    data-where-category="${category}"
-                    aria-pressed="${whereCategory === category}"
-                  >
-                    ${category}
-                  </button>
-                `
-              ).join('')}
-            </div>
+              ${category}
+            </button>
+          `
+        ).join('')}
 
-            <div class="app-where-reset-wrap">
-              ${whereCategory !== 'all'
-                ? `
-                  <button
-                    type="button"
-                    class="app-where-reset"
-                    data-where-category="all"
-                  >
-                    ${hr
-                      ? '× PONIŠTI ODABIR'
-                      : '× CLEAR SELECTION'}
-                  </button>
-                `
-                : ''}
-            </div>
+      </div>
 
-            <div class="app-where-count">
+      <div class="app-where-reset-wrap">
+
+        ${whereCategory !== 'all'
+          ? `
+            <button
+              type="button"
+              class="app-where-reset"
+              data-where-category="all"
+            >
               ${hr
-                ? 'OBJAVLJENO U GDJE PROBATI'
-                : 'PUBLISHED IN WHERE TO TRY'}
-              ·
-              ${filtered.length}
-            </div>
+                ? '× PONIŠTI ODABIR'
+                : '× CLEAR SELECTION'}
+            </button>
+          `
+          : ''
+        }
 
-            <div class="app-where-list">
+      </div>
 
-              ${filtered.length
-                ? filtered.map(
-                    provider => `
-                      <a
-                        class="app-where-card"
-                        href="${provider.url}"
-                      >
+      <div class="app-where-count">
 
-                        <div class="app-where-photo">
-                          <img
-                            src="${provider.image}"
-                            alt="${escapeHTML(provider.name)}"
-                            loading="lazy"
-                          >
-                        </div>
+        ${hr
+          ? 'OBJAVLJENO U GDJE PROBATI'
+          : 'PUBLISHED IN WHERE TO TRY'}
 
-                        <div class="app-where-details">
+        ·
 
-                          <div class="app-where-meta">
-                            ${provider.category}
-                            ·
-                            ${escapeHTML(provider.city)}
-                          </div>
+        ${filtered.length}
 
-                          <h2>
-                            ${escapeHTML(provider.activity)}
-                          </h2>
+      </div>
 
-                          <div class="app-where-provider">
-                            ${escapeHTML(provider.name)}
-                          </div>
+      <div class="app-where-list">
 
-                          <p>
-                            ${escapeHTML(provider.description)}
-                          </p>
+        ${filtered.length
+          ? filtered.map(
+              provider => `
+                <a
+                  class="app-where-card"
+                  href="${escapeHTML(provider.url)}"
+                >
 
-                          <span class="app-where-action">
-                            ${hr
-                              ? 'POGLEDAJ GDJE PROBATI'
-                              : 'SEE WHERE TO TRY'}
-                            →
-                          </span>
+                  <div
+                    class="app-where-photo"
+                    data-image-fit="${escapeHTML(
+                      provider.imageFit || 'cover'
+                    )}"
+                  >
 
-                        </div>
+                    <img
+                      src="${escapeHTML(provider.image)}"
+                      alt="${escapeHTML(provider.name)}"
+                      loading="lazy"
+                      style="
+                        object-fit:
+                          ${provider.imageFit === 'contain'
+                            ? 'contain'
+                            : 'cover'};
+                      "
+                    >
 
-                      </a>
-                    `
-                  ).join('')
-                : `
-                  <p class="app-where-empty">
-                    ${hr
-                      ? 'Nema objava za odabranu pretragu ili kategoriju.'
-                      : 'No published listings match your search or category.'}
-                  </p>
-                `
-              }
+                  </div>
 
-            </div>
+                  <div class="app-where-details">
 
-          </section>
-        `;
-      }
+                    <div class="app-where-meta">
 
+                      ${escapeHTML(
+                        provider.category
+                      )}
+
+                      ${provider.city
+                        ? `
+                          ·
+                          ${escapeHTML(
+                            provider.city
+                          )}
+                        `
+                        : ''
+                      }
+
+                      ${provider.area
+                        ? `
+                          ·
+                          ${escapeHTML(
+                            provider.area
+                          )}
+                        `
+                        : ''
+                      }
+
+                    </div>
+
+                    <h2>
+                      ${escapeHTML(
+                        provider.activity
+                      )}
+                    </h2>
+
+                    <div class="app-where-provider">
+                      ${escapeHTML(
+                        provider.name
+                      )}
+                    </div>
+
+                    <p>
+                      ${escapeHTML(
+                        provider.description
+                      )}
+                    </p>
+
+                    <span class="app-where-action">
+
+                      ${hr
+                        ? 'POGLEDAJ GDJE PROBATI'
+                        : 'SEE WHERE TO TRY'}
+
+                      →
+
+                    </span>
+
+                  </div>
+
+                </a>
+              `
+            ).join('')
+          : `
+            <p class="app-where-empty">
+              ${hr
+                ? 'Nema objava za odabranu pretragu ili kategoriju.'
+                : 'No published listings match your search or category.'}
+            </p>
+          `
+        }
+
+      </div>
+
+    </section>
+  `;
+}
+      
       function renderSaved() {
         const t = translations();
 
