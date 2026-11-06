@@ -32,10 +32,6 @@
 
     <style>
 
-        /* =========================
-           HEADER
-        ========================= */
-
         .header-actions .header-behind-link {
             color: #555;
             font-family: 'Manrope', sans-serif;
@@ -56,11 +52,6 @@
                 display: none !important;
             }
         }
-
-
-        /* =========================
-           SEARCH
-        ========================= */
 
         .where-header {
             padding-bottom: 42px;
@@ -90,22 +81,18 @@
         .where-search label {
             display: block;
             margin-bottom: 10px;
-
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: .12em;
-
             color: #1f2a18;
         }
 
         .where-search-field {
             display: flex;
             align-items: center;
-
             border: 1px solid #1f2a18;
             background: #ffffff;
-
             transition:
                 border-color .2s ease,
                 box-shadow .2s ease;
@@ -118,42 +105,27 @@
         .where-search-field input {
             width: 100%;
             min-width: 0;
-
             padding: 18px;
-
             border: 0;
             outline: 0;
-
             background: transparent;
-
             font-family: 'Manrope', sans-serif;
             font-size: 14px;
             font-weight: 500;
-
             color: #1f2a18;
         }
 
         .where-search-clear {
             flex-shrink: 0;
-
             padding: 15px 20px;
-
             border: 0;
             background: transparent;
-
             cursor: pointer;
-
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
             font-weight: 700;
-
             color: #1f2a18;
         }
-
-
-        /* =========================
-           PROVIDER RESULT
-        ========================= */
 
         .where-provider-address:empty {
             display: none;
@@ -167,11 +139,8 @@
             width: 100%;
             height: 100%;
             min-height: 210px;
-
             display: block;
-
             object-fit: cover;
-
             background: #ffffff;
         }
 
@@ -186,11 +155,6 @@
             line-height: 1.7;
         }
 
-
-        /* =========================
-           PUBLISHED — LOCKED DESKTOP
-        ========================= */
-
         .where-published {
             text-align: left;
         }
@@ -198,24 +162,18 @@
         .where-published-list {
             display: grid;
             gap: 14px;
-
             margin-top: 32px;
         }
 
         .where-published-item {
             display: grid;
             grid-template-columns: 165px minmax(0, 1fr);
-
             height: 150px;
-
             color: #1f2a18;
             text-decoration: none;
-
             background: #ffffff;
             border: 1px solid rgba(28, 43, 23, .20);
-
             overflow: hidden;
-
             transition:
                 border-color .2s ease,
                 transform .2s ease;
@@ -229,20 +187,15 @@
         .where-published-visual {
             width: 165px;
             height: 150px;
-
             overflow: hidden;
-
             background: #ffffff;
         }
 
         .where-published-visual img {
             display: block;
-
             width: 100%;
             height: 100%;
-
             object-fit: cover;
-
             background: #ffffff;
         }
 
@@ -254,15 +207,11 @@
 
         .where-published-info {
             min-width: 0;
-
             display: flex;
             flex-direction: column;
             justify-content: center;
-
             gap: 6px;
-
             padding: 18px 24px;
-
             overflow: hidden;
         }
 
@@ -271,13 +220,11 @@
             font-size: 9px;
             font-weight: 700;
             letter-spacing: .12em;
-
             color: #656a61;
         }
 
         .where-published-info h3 {
             margin: 0;
-
             font-family: 'DM Serif Display', serif;
             font-size: 27px;
             font-weight: 400;
@@ -286,23 +233,18 @@
 
         .where-published-info p {
             margin: 0;
-
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-
             overflow: hidden;
-
             font-family: 'Manrope', sans-serif;
             font-size: 12px;
             line-height: 1.5;
-
             color: #4d554e;
         }
 
         .where-published-action {
             margin-top: 3px;
-
             font-family: 'Manrope', sans-serif;
             font-size: 9px;
             font-weight: 800;
@@ -314,11 +256,6 @@
             font-size: 14px;
             line-height: 1.7;
         }
-
-
-        /* =========================
-           MOBILE — KEEP CURRENT
-        ========================= */
 
         @media (max-width: 600px) {
 
@@ -340,7 +277,6 @@
 
             .where-published-item {
                 grid-template-columns: 105px minmax(0, 1fr);
-
                 height: auto;
                 min-height: 145px;
             }
@@ -379,13 +315,7 @@
 
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     SITE HEADER
-========================= -->
 
 <header class="site-header">
 
@@ -399,7 +329,6 @@
             alt="MOVE&TRY"
         >
     </a>
-
 
     <nav class="desktop-nav">
 
@@ -421,7 +350,6 @@
 
     </nav>
 
-
     <div class="header-actions">
 
         <a
@@ -430,7 +358,6 @@
         >
             IZA MOVE & TRY
         </a>
-
 
         <div class="header-language">
 
@@ -449,7 +376,6 @@
 
         </div>
 
-
         <button
             class="menu-toggle"
             type="button"
@@ -463,11 +389,6 @@
     </div>
 
 </header>
-
-
-<!-- =========================
-     MOBILE MENU
-========================= -->
 
 <div class="mobile-menu">
 
@@ -495,7 +416,6 @@
 
     </nav>
 
-
     <div class="mobile-menu-language">
 
         <a
@@ -515,13 +435,7 @@
 
 </div>
 
-
-<!-- =========================
-     WHERE TO TRY
-========================= -->
-
 <main class="where-page">
-
 
     <header class="where-header">
 
@@ -539,7 +453,6 @@
 
     </header>
 
-
     <section
         class="where-section"
         id="where-categories"
@@ -552,7 +465,6 @@
         <h2>
             ŠTO ŽELIŠ PROBATI?
         </h2>
-
 
         <div
             class="where-search"
@@ -586,61 +498,35 @@
 
         </div>
 
-
         <div class="where-category-grid">
 
-            <button
-                type="button"
-                class="where-category"
-                data-category="move"
-            >
+            <button type="button" class="where-category" data-category="move">
                 MOVE
             </button>
 
-            <button
-                type="button"
-                class="where-category"
-                data-category="learn"
-            >
+            <button type="button" class="where-category" data-category="learn">
                 LEARN
             </button>
 
-            <button
-                type="button"
-                class="where-category"
-                data-category="create"
-            >
+            <button type="button" class="where-category" data-category="create">
                 CREATE
             </button>
 
-            <button
-                type="button"
-                class="where-category"
-                data-category="explore"
-            >
+            <button type="button" class="where-category" data-category="explore">
                 EXPLORE
             </button>
 
-            <button
-                type="button"
-                class="where-category"
-                data-category="dare"
-            >
+            <button type="button" class="where-category" data-category="dare">
                 DARE
             </button>
 
-            <button
-                type="button"
-                class="where-category"
-                data-category="care"
-            >
+            <button type="button" class="where-category" data-category="care">
                 CARE
             </button>
 
         </div>
 
     </section>
-
 
     <section
         class="where-section where-category-results"
@@ -667,7 +553,6 @@
         ></div>
 
     </section>
-
 
     <section
         class="where-section where-provider-results"
@@ -705,7 +590,6 @@
 
     </section>
 
-
     <section
         class="where-section where-more where-published"
         id="where-published"
@@ -726,7 +610,6 @@
         ></div>
 
     </section>
-
 
     <section class="where-section where-contribute">
 
@@ -757,14 +640,8 @@
 
 </main>
 
-
-<!-- =========================
-     SCRIPTS
-========================= -->
-
 <script src="../script.js"></script>
 <script src="/app/app-navigation.js" defer></script>
-
 
 <script>
 (() => {
@@ -790,10 +667,14 @@
 
         dare: [],
 
-        care: []
+        care: [
+            {
+                title: "DJEČJA I ADOLESCENTNA PSIHOTERAPIJA",
+                slug: "child-adolescent-psychotherapy"
+            }
+        ]
 
     };
-
 
     const productionProviders = {
 
@@ -827,7 +708,6 @@
             }
         ],
 
-
         "natural-perfume-making": [
             {
                 name: "BILJARICA",
@@ -856,10 +736,39 @@
                 href:
                     "/hr/natural-perfume-making-where-to-try.html"
             }
+        ],
+
+        "child-adolescent-psychotherapy": [
+            {
+                name: "LUMOS",
+
+                city: "ZAGREB",
+
+                area: "",
+
+                address: "",
+
+                postalCode: "",
+
+                image: "/images/lumos-space.jpg",
+
+                imageFit: "cover",
+
+                description:
+                    "Dječja i adolescentna psihoterapijska podrška Nikoline Đurić za djecu, adolescente i njihove roditelje, uživo i online ovisno o vrsti podrške i dobi.",
+
+                tags: [
+                    "PSIHOTERAPIJA",
+                    "DJECA I ADOLESCENTI",
+                    "RODITELJI"
+                ],
+
+                href:
+                    "/hr/child-adolescent-psychotherapy-where-to-try.html"
+            }
         ]
 
     };
-
 
     const categoryButtons =
         document.querySelectorAll(".where-category");
@@ -885,7 +794,6 @@
     const providerBack =
         document.getElementById("provider-back");
 
-
     function renderCategory(category) {
 
         if (
@@ -910,7 +818,6 @@
 
         activityGrid.innerHTML = "";
 
-
         if (!activities.length) {
 
             activityGrid.innerHTML = `
@@ -924,7 +831,6 @@
 
             return;
         }
-
 
         activities.forEach(activity => {
 
@@ -962,7 +868,6 @@
 
     }
 
-
     function renderProviders(activity) {
 
         if (
@@ -987,7 +892,6 @@
 
         providerList.innerHTML = "";
 
-
         providers.forEach(provider => {
 
             const card =
@@ -999,14 +903,12 @@
             card.dataset.imageFit =
                 provider.imageFit || "cover";
 
-
             const location = [
                 provider.city,
                 provider.area
             ]
                 .filter(Boolean)
                 .join(" · ");
-
 
             const address = [
                 provider.address,
@@ -1015,12 +917,10 @@
                 .filter(Boolean)
                 .join("<br>");
 
-
             const tags =
                 provider.tags
                     .map(tag => `<span>${tag}</span>`)
                     .join("");
-
 
             card.innerHTML = `
 
@@ -1034,7 +934,6 @@
                     >
 
                 </div>
-
 
                 <div class="where-provider-content">
 
@@ -1073,14 +972,12 @@
 
         });
 
-
         providerResults.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
 
     }
-
 
     const whereSearch =
         document.getElementById("where-search-input");
@@ -1092,7 +989,6 @@
         document.getElementById("where-published-list");
 
     let activeWhereCategory = "";
-
 
     const publishedEntries =
         Object.entries(productionActivities)
@@ -1115,26 +1011,22 @@
                     )
             );
 
-
     function renderPublished() {
 
         if (!wherePublishedList) {
             return;
         }
 
-
         const query =
             (whereSearch?.value || "")
                 .trim()
                 .toLocaleLowerCase();
-
 
         if (whereSearchClear) {
             whereSearchClear.hidden =
                 !query &&
                 !activeWhereCategory;
         }
-
 
         const matches =
             publishedEntries.filter(
@@ -1150,7 +1042,6 @@
                     ) {
                         return false;
                     }
-
 
                     return (
                         !query ||
@@ -1171,9 +1062,7 @@
                 }
             );
 
-
         wherePublishedList.replaceChildren();
-
 
         if (!matches.length) {
 
@@ -1190,7 +1079,6 @@
 
             return;
         }
-
 
         matches.forEach(
             ({
@@ -1211,13 +1099,11 @@
                 link.dataset.imageFit =
                     provider.imageFit || "cover";
 
-
                 const visual =
                     document.createElement("div");
 
                 visual.className =
                     "where-published-visual";
-
 
                 const img =
                     document.createElement("img");
@@ -1231,16 +1117,13 @@
                 img.loading =
                     "lazy";
 
-
                 visual.appendChild(img);
-
 
                 const info =
                     document.createElement("div");
 
                 info.className =
                     "where-published-info";
-
 
                 const meta =
                     document.createElement("span");
@@ -1253,20 +1136,17 @@
                     " · " +
                     activity.title;
 
-
                 const title =
                     document.createElement("h3");
 
                 title.textContent =
                     provider.name;
 
-
                 const description =
                     document.createElement("p");
 
                 description.textContent =
                     provider.description;
-
 
                 const action =
                     document.createElement("span");
@@ -1277,7 +1157,6 @@
                 action.textContent =
                     "POGLEDAJ GDJE PROBATI →";
 
-
                 info.append(
                     meta,
                     title,
@@ -1285,12 +1164,10 @@
                     action
                 );
 
-
                 link.append(
                     visual,
                     info
                 );
-
 
                 wherePublishedList.appendChild(
                     link
@@ -1300,7 +1177,6 @@
         );
 
     }
-
 
     if (whereSearch) {
 
@@ -1329,7 +1205,6 @@
         );
 
     }
-
 
     if (whereSearchClear) {
 
@@ -1365,7 +1240,6 @@
 
     }
 
-
     categoryButtons.forEach(button => {
 
         button.addEventListener(
@@ -1376,29 +1250,23 @@
 
                 event.stopImmediatePropagation();
 
-
                 const category =
                     button.dataset.category;
 
-
                 const wasSelected =
                     activeWhereCategory === category;
-
 
                 activeWhereCategory =
                     wasSelected
                         ? ""
                         : category;
 
-
                 renderPublished();
-
 
                 categoryButtons.forEach(
                     item =>
                         item.classList.remove("active")
                 );
-
 
                 if (activeWhereCategory) {
 
@@ -1423,7 +1291,6 @@
         );
 
     });
-
 
     if (providerBack) {
 
@@ -1450,12 +1317,10 @@
 
     }
 
-
     renderPublished();
 
 })();
 </script>
-
 
 <script src="/consent.js" defer></script>
 
