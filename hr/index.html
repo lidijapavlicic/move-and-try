@@ -128,6 +128,40 @@
 
 
     /* ==========================================
+       DJEČJA I ADOLESCENTNA PSIHOTERAPIJA — NOVA AKTIVNOST
+    ========================================== */
+
+    .home-intro .whats-new .new-card.latest-update-psychotherapy {
+      background: #18201d;
+    }
+
+    .home-intro .whats-new .new-card.latest-update-psychotherapy::before {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(9,14,12,.42) 0%,
+          rgba(9,14,12,.60) 48%,
+          rgba(9,14,12,.88) 100%
+        ),
+        url('/images/care-child-psychotherapy-connection.jpg');
+
+      background-position: center 52%;
+    }
+
+    .home-intro .whats-new .new-card.latest-update-psychotherapy::after {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(9,14,12,.42) 0%,
+          rgba(9,14,12,.60) 48%,
+          rgba(9,14,12,.88) 100%
+        ),
+        url('/images/care-child-psychotherapy-light.jpg');
+
+      background-position: center 50%;
+    }
+
+    /* ==========================================
        TUFTING — NOVA AKTIVNOST
     ========================================== */
 
@@ -161,7 +195,7 @@
       background-position: center;
     }
 
-        /* ==========================================
+    /* ==========================================
        JAHANJE — VODIČ
     ========================================== */
 
@@ -228,7 +262,6 @@
 
       background-position: center;
     }
-
 
     .home-intro .whats-new .new-card.latest-update-card .new-type,
     .home-intro .whats-new .new-card.latest-update-card h3,
@@ -460,6 +493,98 @@
 
 
     /* ==========================================
+       MOVE&TRY APP — INDEPENDENT HOMEPAGE SECTION
+    ========================================== */
+
+    #move-try-app {
+      padding: clamp(60px, 8vw, 110px) max(24px, calc((100vw - 1220px) / 2));
+      background: #eeeee8;
+      color: #1b2118;
+      border-top: 1px solid #d5d6cd;
+      border-bottom: 1px solid #d5d6cd;
+      scroll-margin-top: 90px;
+    }
+
+    #move-try-app .app-install-inner {
+      max-width: 850px;
+    }
+
+    #move-try-app .app-install-eyebrow {
+      font: 800 11px/1.5 'Manrope', sans-serif;
+      letter-spacing: .19em;
+      color: #586a50;
+      margin: 0 0 20px;
+    }
+
+    #move-try-app h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(36px, 5.2vw, 70px);
+      line-height: 1.08;
+      margin: 0 0 24px;
+    }
+
+    #move-try-app .app-install-description {
+      max-width: 650px;
+      font: 400 clamp(15px, 1.5vw, 18px)/1.85 'Manrope', sans-serif;
+      margin: 0 0 28px;
+    }
+
+    #move-try-app .app-install-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 17px 25px;
+      background: #1f2a18;
+      border: 1px solid #1f2a18;
+      color: white;
+      text-decoration: none;
+      font: 800 11px/1.5 'Manrope', sans-serif;
+      letter-spacing: .07em;
+      transition: background .2s, color .2s;
+    }
+
+    #move-try-app .app-install-link:hover {
+      background: transparent;
+      color: #1f2a18;
+    }
+
+    #move-try-app .app-install-note {
+      font: 600 11px/1.8 'Manrope', sans-serif;
+      margin: 15px 0 0;
+      color: #586250;
+    }
+
+    #move-try-app details {
+      max-width: 650px;
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid #c9cec4;
+      font: 400 13px/1.9 'Manrope', sans-serif;
+    }
+
+    #move-try-app summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    #move-try-app details p {
+      margin: 10px 0;
+    }
+
+    @media (max-width: 768px) {
+      #move-try-app {
+        padding: 62px 24px;
+      }
+
+      #move-try-app .app-install-link {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+
+    /* ==========================================
        HEADER
     ========================================== */
 
@@ -682,6 +807,7 @@
     <a href="#find-your-try">OTKRIJ</a>
     <a href="#be-part-of-it">BUDI DIO PRIČE</a>
     <a href="#where-to-try">GDJE PROBATI</a>
+    <a href="#move-try-app">APP</a>
     <a href="/hr/journal.html">THE JOURNAL</a>
   </nav>
 
@@ -718,6 +844,7 @@
     <a href="#find-your-try">OTKRIJ</a>
     <a href="#be-part-of-it">BUDI DIO PRIČE</a>
     <a href="#where-to-try">GDJE PROBATI</a>
+    <a href="#move-try-app">APP</a>
     <a href="/hr/journal.html">THE JOURNAL</a>
     <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
 
@@ -838,7 +965,7 @@
 
     <div class="home-intro-news">
 
-          <div class="whats-new">
+      <div class="whats-new">
 
         <p class="section-label">
           ŠTO JE NOVO
@@ -848,6 +975,30 @@
           NEŠTO NOVO<br>
           ZA OTKRITI.
         </h2>
+
+        <a
+          href="/hr/child-adolescent-psychotherapy.html"
+          class="new-card latest-update-card latest-update-psychotherapy"
+        >
+
+          <span class="new-type">
+            CARE · NOVA AKTIVNOST
+          </span>
+
+          <h3>
+            DJEČJA I ADOLESCENTNA PSIHOTERAPIJA
+          </h3>
+
+          <p>
+            Kada potražiti podršku, kako izgleda prvi korak
+            i što psihoterapija može značiti za dijete ili adolescenta.
+          </p>
+
+          <span class="new-action">
+            ISTRAŽI PSIHOTERAPIJU →
+          </span>
+
+        </a>
 
 
         <a
@@ -873,33 +1024,6 @@
           </span>
 
         </a>
-
-
-        <a
-          href="/hr/tufting.html"
-          class="new-card latest-update-card latest-update-tufting"
-        >
-
-          <span class="new-type">
-            CREATE · NOVA AKTIVNOST
-          </span>
-
-          <h3>
-            TUFTING
-          </h3>
-
-          <p>
-            Upoznaj tufting, pročitaj vodič,
-            upoznaj Tomislava i pronađi mjesto gdje ga možeš probati.
-          </p>
-
-          <span class="new-action">
-            ISTRAŽI TUFTING →
-          </span>
-
-        </a>
-
-      </div>
 
       </div>
 
@@ -974,6 +1098,60 @@
     🎲 IZNENADI ME
   </button>
 
+</section>
+
+
+<section id="move-try-app" aria-labelledby="move-try-app-title">
+  <div class="app-install-inner">
+
+    <p class="app-install-eyebrow">
+      MOVE&TRY · APLIKACIJA
+    </p>
+
+    <h2 id="move-try-app-title">
+      PONESI ZNATIŽELJU SA SOBOM.
+    </h2>
+
+    <p class="app-install-description">
+      Otkrij aktivnosti, pronađi gdje ih možeš isprobati,
+      spremi ono što te zanima i prati nove priče —
+      sve na jednom mjestu.
+    </p>
+
+    <a class="app-install-link" href="/app/">
+      INSTALIRAJ MOVE&TRY →
+    </a>
+
+    <p class="app-install-note">
+      Besplatno · Izravno s naše web stranice · Bez trgovine aplikacija
+    </p>
+
+    <details>
+      <summary>Kako instalirati aplikaciju?</summary>
+
+      <p>
+        <strong>Android:</strong>
+        otvori aplikaciju gumbom iznad i u pregledniku odaberi
+        „Instaliraj aplikaciju” ili „Dodaj na početni zaslon”,
+        ako je ponuđeno.
+      </p>
+
+      <p>
+        <strong>iPhone:</strong>
+        otvori aplikaciju u Safariju, odaberi Dijeli
+        i zatim „Dodaj na početni zaslon”.
+      </p>
+
+      <p>
+        <strong>Računalo:</strong>
+        otvori aplikaciju u Chromeu ili Edgeu
+        i odaberi instalaciju u adresnoj traci
+        ili izborniku preglednika, ako je dostupna.
+      </p>
+
+    </details>
+
+  </div>
 </section>
 
 
