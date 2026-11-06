@@ -83,16 +83,12 @@
       position: relative;
       isolation: isolate;
       overflow: hidden;
-
       display: flex;
       flex-direction: column;
-
       min-height: 340px;
       margin-top: 18px;
-
       background: #151417;
       color: #fff;
-
       text-decoration: none;
     }
 
@@ -103,18 +99,13 @@
     .home-intro .whats-new .new-card.latest-update-card::before,
     .home-intro .whats-new .new-card.latest-update-card::after {
       content: "";
-
       position: absolute;
       inset: 0;
-
       z-index: 0;
-
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-
       pointer-events: none;
-
       animation: latestPhotoFade 12s ease-in-out infinite;
     }
 
@@ -126,9 +117,42 @@
       animation-delay: -6s;
     }
 
+    /* ==========================================
+       CHILD & ADOLESCENT PSYCHOTHERAPY
+    ========================================== */
+
+    .home-intro .whats-new .new-card.latest-update-psychotherapy {
+      background: #18201d;
+    }
+
+    .home-intro .whats-new .new-card.latest-update-psychotherapy::before {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(9,14,12,.42) 0%,
+          rgba(9,14,12,.60) 48%,
+          rgba(9,14,12,.88) 100%
+        ),
+        url('/images/care-child-psychotherapy-connection.jpg');
+
+      background-position: center 52%;
+    }
+
+    .home-intro .whats-new .new-card.latest-update-psychotherapy::after {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(9,14,12,.42) 0%,
+          rgba(9,14,12,.60) 48%,
+          rgba(9,14,12,.88) 100%
+        ),
+        url('/images/care-child-psychotherapy-light.jpg');
+
+      background-position: center 50%;
+    }
 
     /* ==========================================
-       TUFTING — NEW ACTIVITY
+       TUFTING
     ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-tufting {
@@ -161,7 +185,7 @@
       background-position: center;
     }
 
-        /* ==========================================
+    /* ==========================================
        HORSE RIDING — GUIDE
     ========================================== */
 
@@ -196,7 +220,7 @@
     }
 
     /* ==========================================
-       NATURAL PERFUME MAKING — WHERE TO TRY
+       NATURAL PERFUME
     ========================================== */
 
     .home-intro .whats-new .new-card.latest-update-natural-perfume {
@@ -229,7 +253,6 @@
       background-position: center;
     }
 
-
     .home-intro .whats-new .new-card.latest-update-card .new-type,
     .home-intro .whats-new .new-card.latest-update-card h3,
     .home-intro .whats-new .new-card.latest-update-card p,
@@ -244,23 +267,12 @@
     }
 
     @keyframes latestPhotoFade {
-      0%,
-      42% {
-        opacity: 1;
-      }
-
-      50%,
-      92% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-
       .home-intro .whats-new .new-card.latest-update-card::before,
       .home-intro .whats-new .new-card.latest-update-card::after {
         animation: none;
@@ -274,7 +286,6 @@
         opacity: 0;
       }
     }
-
 
     /* ==========================================
        CATEGORY IMAGES
@@ -291,15 +302,11 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-
       background-repeat: no-repeat;
       background-position: right center;
       background-size: cover;
-
       opacity: .40;
-
       pointer-events: none;
-
       transition:
         opacity .5s ease,
         transform .5s ease;
@@ -354,28 +361,23 @@
       }
     }
 
-
     /* ==========================================
-       FINAL IMAGE
+       FINAL PHOTO
     ========================================== */
 
     section.suggest {
       position: relative;
       isolation: isolate;
-
       background-color: #17251d;
-
       background-image:
         linear-gradient(
           rgba(9,19,15,.40),
           rgba(9,19,15,.50)
         ),
         url('/images/home-final-background.jpg');
-
       background-size: cover;
       background-position: center 50%;
       background-repeat: no-repeat;
-
       color: #fff;
     }
 
@@ -411,7 +413,6 @@
     @media (max-width: 768px) {
       section.suggest {
         background-position: center center;
-
         background-image:
           linear-gradient(
             rgba(9,19,15,.64),
@@ -421,43 +422,123 @@
       }
     }
 
-
     /* ==========================================
-       HERO IMAGE
+       HOMEPAGE HERO
     ========================================== */
 
     section.home-hero-image {
       display: block;
-
       width: 100vw;
       max-width: none;
-
       margin: 0 0 0 calc(50% - 50vw);
-
       padding: 0;
-
       border: 0;
       border-radius: 0;
-
       overflow: hidden;
     }
 
     section.home-hero-image img {
       display: block;
-
       width: 100%;
       max-width: none;
       height: auto;
-
       margin: 0;
       padding: 0;
-
       border: 0;
       border-radius: 0;
-
       object-fit: contain;
     }
 
+    /* ==========================================
+       MOVE&TRY APP
+    ========================================== */
+
+    #move-try-app {
+      padding: clamp(60px, 8vw, 110px) max(24px, calc((100vw - 1220px) / 2));
+      background: #eeeee8;
+      color: #1b2118;
+      border-top: 1px solid #d5d6cd;
+      border-bottom: 1px solid #d5d6cd;
+      scroll-margin-top: 90px;
+    }
+
+    #move-try-app .app-install-inner {
+      max-width: 850px;
+    }
+
+    #move-try-app .app-install-eyebrow {
+      font: 800 11px/1.5 'Manrope', sans-serif;
+      letter-spacing: .19em;
+      color: #586a50;
+      margin: 0 0 20px;
+    }
+
+    #move-try-app h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(36px, 5.2vw, 70px);
+      line-height: 1.08;
+      margin: 0 0 24px;
+    }
+
+    #move-try-app .app-install-description {
+      max-width: 650px;
+      font: 400 clamp(15px, 1.5vw, 18px)/1.85 'Manrope', sans-serif;
+      margin: 0 0 28px;
+    }
+
+    #move-try-app .app-install-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 17px 25px;
+      background: #1f2a18;
+      border: 1px solid #1f2a18;
+      color: white;
+      text-decoration: none;
+      font: 800 11px/1.5 'Manrope', sans-serif;
+      letter-spacing: .07em;
+      transition: background .2s, color .2s;
+    }
+
+    #move-try-app .app-install-link:hover {
+      background: transparent;
+      color: #1f2a18;
+    }
+
+    #move-try-app .app-install-note {
+      font: 600 11px/1.8 'Manrope', sans-serif;
+      margin: 15px 0 0;
+      color: #586250;
+    }
+
+    #move-try-app details {
+      max-width: 650px;
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid #c9cec4;
+      font: 400 13px/1.9 'Manrope', sans-serif;
+    }
+
+    #move-try-app summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    #move-try-app details p {
+      margin: 10px 0;
+    }
+
+    @media (max-width: 768px) {
+      #move-try-app {
+        padding: 62px 24px;
+      }
+
+      #move-try-app .app-install-link {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
 
     /* ==========================================
        HEADER
@@ -465,16 +546,12 @@
 
     .header-behind-link {
       color: #555;
-
       font-family: 'Manrope', sans-serif;
       font-size: 11px;
       font-weight: 700;
-
       letter-spacing: .04em;
-
       text-decoration: none;
       white-space: nowrap;
-
       transition: opacity .2s ease;
     }
 
@@ -483,13 +560,11 @@
     }
 
     @media (min-width: 769px) {
-
       .site-header {
         grid-template-columns:
           minmax(120px,1fr)
           auto
           minmax(120px,1fr);
-
         gap: 16px;
       }
 
@@ -514,7 +589,6 @@
       }
     }
 
-
     /* ==========================================
        BE PART OF IT
     ========================================== */
@@ -523,25 +597,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-
       width: fit-content;
       max-width: 100%;
-
       padding: 15px 22px;
-
       background: #1f2a18;
       border: 1px solid #1f2a18;
-
       color: #fff;
-
       font-size: 11px;
       font-weight: 800;
-
       letter-spacing: .05em;
       line-height: 1.6;
-
       text-decoration: none;
-
       transition:
         background .2s ease,
         color .2s ease;
@@ -568,9 +634,8 @@
       margin-top: 7px;
     }
 
-
     /* ==========================================
-       WHERE TO TRY — ACTIVE
+       WHERE TO TRY
     ========================================== */
 
     #where-to-try {
@@ -585,9 +650,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-
       gap: 14px;
-
       margin-top: 26px;
     }
 
@@ -595,25 +658,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-
       width: fit-content;
       max-width: 100%;
-
       padding: 15px 22px;
-
       background: #1f2a18;
       border: 1px solid #1f2a18;
-
       color: #ffffff;
-
       font-size: 11px;
       font-weight: 800;
-
       letter-spacing: .05em;
       line-height: 1.6;
-
       text-decoration: none;
-
       transition:
         background .2s ease,
         color .2s ease;
@@ -626,29 +681,19 @@
 
     #where-to-try .where-home-current {
       display: inline-block;
-
       color: #1f2a18;
-
       font-size: 10px;
       font-weight: 800;
-
       letter-spacing: .05em;
       line-height: 1.6;
-
       text-decoration: underline;
       text-underline-offset: 4px;
-
       transition: opacity .2s ease;
     }
 
     #where-to-try .where-home-current:hover {
       opacity: .55;
     }
-
-
-    /* ==========================================
-       ACCESSIBILITY & PRIVACY SETTINGS
-    ========================================== */
 
     .mobile-privacy-link {
       display: block;
@@ -672,9 +717,7 @@
   <link rel="stylesheet" href="/consent.css">
 </head>
 
-
 <body>
-
 
 <header class="site-header">
 
@@ -686,6 +729,7 @@
     <a href="#find-your-try">DISCOVER</a>
     <a href="#be-part-of-it">BE PART OF IT</a>
     <a href="#where-to-try">WHERE TO TRY</a>
+    <a href="#move-try-app">APP</a>
     <a href="/journal.html">THE JOURNAL</a>
   </nav>
 
@@ -698,10 +742,7 @@
     <div class="header-language">
       <span class="language-active">EN</span>
       <span>|</span>
-
-      <a href="/hr/" onclick="setLanguage('hr')">
-        HR
-      </a>
+      <a href="/hr/" onclick="setLanguage('hr')">HR</a>
     </div>
 
     <button
@@ -718,13 +759,13 @@
 
 </header>
 
-
 <div class="mobile-menu">
 
   <nav>
     <a href="#find-your-try">DISCOVER</a>
     <a href="#be-part-of-it">BE PART OF IT</a>
     <a href="#where-to-try">WHERE TO TRY</a>
+    <a href="#move-try-app">APP</a>
     <a href="/journal.html">THE JOURNAL</a>
     <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
 
@@ -738,36 +779,21 @@
   </nav>
 
   <div class="mobile-menu-language">
-
-    <span class="language-active">
-      EN
-    </span>
-
+    <span class="language-active">EN</span>
     <span>|</span>
-
-    <a href="/hr/" onclick="setLanguage('hr')">
-      HR
-    </a>
-
+    <a href="/hr/" onclick="setLanguage('hr')">HR</a>
   </div>
 
 </div>
 
-
 <section class="home-hero-image">
-
   <img
     src="/images/home-discover.png"
-    alt="A playful view of different activities and things to discover"
+    alt="A playful collection of different activities and things to discover"
   >
-
 </section>
 
-
-<section
-  class="home-intro"
-  aria-label="How it works and what's new"
->
+<section class="home-intro" aria-label="How it works and what's new">
 
   <div class="home-intro-grid">
 
@@ -787,101 +813,62 @@
         <div class="how-steps">
 
           <div class="how-step">
-
-            <span class="how-step-number">
-              01
-            </span>
-
-            <h3>
-              DISCOVER
-            </h3>
+            <span class="how-step-number">01</span>
+            <h3>DISCOVER</h3>
 
             <p>
-              Explore activities and find something that sparks your curiosity.
+              Explore activities and find something that sparks your interest.
             </p>
 
             <a class="how-step-link" href="#find-your-try">
               EXPLORE ACTIVITIES →
             </a>
-
           </div>
 
-
           <div class="how-step">
-
-            <span class="how-step-number">
-              02
-            </span>
-
-            <h3>
-              GET INSPIRED
-            </h3>
+            <span class="how-step-number">02</span>
+            <h3>GET INSPIRED</h3>
 
             <p>
-              Read real experiences, tips and stories from others.
+              Read experiences, advice and stories from others.
             </p>
-
           </div>
 
-
           <div class="how-step">
-
-            <span class="how-step-number">
-              03
-            </span>
-
-            <h3>
-              FIND A PLACE
-            </h3>
+            <span class="how-step-number">03</span>
+            <h3>FIND A PLACE</h3>
 
             <p>
-              Find where your curiosity can become a real experience.
+              Find where you can turn your curiosity
+              into a real experience.
             </p>
 
             <a class="how-step-link" href="#where-to-try">
               WHERE TO TRY →
             </a>
-
           </div>
 
-
           <div class="how-step">
-
-            <span class="how-step-number">
-              04
-            </span>
-
-            <h3>
-              TRY IT
-            </h3>
+            <span class="how-step-number">04</span>
+            <h3>TRY IT</h3>
 
             <p>
               Take the first step.
               You don't have to be good at it.
             </p>
-
           </div>
 
-
           <div class="how-step">
-
-            <div class="how-step-number">
-              05
-            </div>
-
-            <h3>
-              SHARE YOUR EXPERIENCE
-            </h3>
+            <span class="how-step-number">05</span>
+            <h3>SHARE YOUR EXPERIENCE</h3>
 
             <p>
-              Your story might inspire someone else
-              to give it a try.
+              Your story might inspire someone else to try.
             </p>
 
             <a class="how-step-link" href="/share-experience.html">
               SHARE YOUR STORY →
             </a>
-
           </div>
 
         </div>
@@ -894,10 +881,9 @@
 
     </div>
 
-
     <div class="home-intro-news">
 
-           <div class="whats-new">
+      <div class="whats-new">
 
         <p class="section-label">
           WHAT'S NEW
@@ -908,6 +894,29 @@
           TO DISCOVER.
         </h2>
 
+        <a
+          href="/child-adolescent-psychotherapy.html"
+          class="new-card latest-update-card latest-update-psychotherapy"
+        >
+
+          <span class="new-type">
+            CARE · NEW ACTIVITY
+          </span>
+
+          <h3>
+            CHILD &amp; ADOLESCENT PSYCHOTHERAPY
+          </h3>
+
+          <p>
+            When to seek support, what the first step can look like
+            and what psychotherapy can offer a child or teenager.
+          </p>
+
+          <span class="new-action">
+            EXPLORE PSYCHOTHERAPY →
+          </span>
+
+        </a>
 
         <a
           href="/horse-riding-guide.html"
@@ -933,31 +942,6 @@
 
         </a>
 
-
-        <a
-          href="/tufting.html"
-          class="new-card latest-update-card latest-update-tufting"
-        >
-
-          <span class="new-type">
-            CREATE · NEW ACTIVITY
-          </span>
-
-          <h3>
-            TUFTING
-          </h3>
-
-          <p>
-            Discover tufting, read the beginner guide,
-            meet Tomislav and find a place where you can try it.
-          </p>
-
-          <span class="new-action">
-            EXPLORE TUFTING →
-          </span>
-
-        </a>
-
       </div>
 
     </div>
@@ -965,7 +949,6 @@
   </div>
 
 </section>
-
 
 <section class="categories" id="find-your-try">
 
@@ -1033,6 +1016,59 @@
 
 </section>
 
+<section id="move-try-app" aria-labelledby="move-try-app-title">
+  <div class="app-install-inner">
+
+    <p class="app-install-eyebrow">
+      MOVE&TRY · APP
+    </p>
+
+    <h2 id="move-try-app-title">
+      TAKE YOUR CURIOSITY WITH YOU.
+    </h2>
+
+    <p class="app-install-description">
+      Discover activities, find places to try them,
+      save what interests you and follow new stories —
+      all in one place.
+    </p>
+
+    <a class="app-install-link" href="/app/">
+      INSTALL MOVE&TRY →
+    </a>
+
+    <p class="app-install-note">
+      Free · Directly from our website · No app store required
+    </p>
+
+    <details>
+      <summary>How do I install the app?</summary>
+
+      <p>
+        <strong>Android:</strong>
+        open the app using the button above,
+        then choose “Install app” or “Add to Home screen”
+        in your browser, when available.
+      </p>
+
+      <p>
+        <strong>iPhone:</strong>
+        open the app in Safari,
+        tap Share,
+        then “Add to Home Screen”.
+      </p>
+
+      <p>
+        <strong>Desktop:</strong>
+        open the app in Chrome or Edge,
+        then use the install option in the address bar
+        or browser menu, when available.
+      </p>
+
+    </details>
+
+  </div>
+</section>
 
 <section class="community">
 
@@ -1089,7 +1125,6 @@
 
     </div>
 
-
     <div
       class="community-panel where-panel"
       id="where-to-try"
@@ -1128,7 +1163,7 @@
           href="/where-to-try.html"
           class="where-home-current"
         >
-          CURRENTLY AVAILABLE: TUFTING · NATURAL PERFUME MAKING →
+          CURRENTLY AVAILABLE: TUFTING · NATURAL PERFUME MAKING · CHILD &amp; ADOLESCENT PSYCHOTHERAPY →
         </a>
 
       </div>
@@ -1138,7 +1173,6 @@
   </div>
 
 </section>
-
 
 <section class="suggest">
 
@@ -1191,7 +1225,6 @@
 
 </section>
 
-
 <footer class="site-footer">
 
   <p>
@@ -1218,9 +1251,7 @@
 
 </footer>
 
-
 <script src="script.js"></script>
-
 
 <script>
 
@@ -1236,7 +1267,8 @@
       "/mediation.html",
       "/horse-riding.html",
       "/natural-perfume-making.html",
-      "/tufting.html"
+      "/tufting.html",
+      "/child-adolescent-psychotherapy.html"
     ];
 
     const storageKey =
@@ -1273,7 +1305,6 @@
       randomActivity;
 
   }
-
 
   /* ==========================================
      WHAT'S NEW — EQUAL CARD HEIGHTS
@@ -1322,7 +1353,6 @@
 
 </script>
 
-
 <script>
   /*
    * MOVE&TRY public PWA registration.
@@ -1346,5 +1376,4 @@
 <script src="/consent.js" defer></script>
 
 </body>
-
 </html>
