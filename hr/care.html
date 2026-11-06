@@ -25,6 +25,95 @@
   <link rel="stylesheet" href="/app/app-navigation.css">
 
   <style>
+    /* ISTE DIMENZIJE I STRUKTURA KAO OSTALE AKTIVNE KATEGORIJE */
+
+    .move-app-page .activity-card.psychotherapy-photo-card {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 285px;
+      color: #ffffff;
+      background: #18201d;
+    }
+
+    .psychotherapy-photo-card .psychotherapy-card-photos {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .psychotherapy-photo-card .psychotherapy-card-photo {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: psychotherapyCardFade 12s ease-in-out infinite;
+    }
+
+    .psychotherapy-photo-card .psychotherapy-card-photo:first-child {
+      object-position: center 52%;
+      animation-delay: 0s;
+    }
+
+    .psychotherapy-photo-card .psychotherapy-card-photo:last-child {
+      object-position: center 50%;
+      animation-delay: -6s;
+    }
+
+    .psychotherapy-photo-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        180deg,
+        rgba(9, 14, 12, 0.42) 0%,
+        rgba(9, 14, 12, 0.60) 48%,
+        rgba(9, 14, 12, 0.88) 100%
+      );
+      pointer-events: none;
+    }
+
+    .psychotherapy-photo-card .activity-content,
+    .psychotherapy-photo-card .activity-content h3,
+    .psychotherapy-photo-card .activity-description,
+    .psychotherapy-photo-card .activity-available,
+    .psychotherapy-photo-card .activity-available span,
+    .psychotherapy-photo-card .activity-action {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+    }
+
+    .psychotherapy-photo-card .activity-description {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .psychotherapy-photo-card .activity-available span {
+      border-color: rgba(255, 255, 255, 0.42);
+    }
+
+    @keyframes psychotherapyCardFade {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .psychotherapy-photo-card .psychotherapy-card-photo {
+        animation: none;
+        opacity: 0;
+      }
+
+      .psychotherapy-photo-card .psychotherapy-card-photo:first-child {
+        opacity: 1;
+      }
+    }
+
     .header-behind-link {
       color:#555; font-family:'Manrope',sans-serif; font-size:11px;
       font-weight:700; letter-spacing:.04em; text-decoration:none;
@@ -107,8 +196,23 @@
 
       <div class="activity-grid">
 
-        <a href="/hr/child-adolescent-psychotherapy.html" class="activity-card">
-          <span class="activity-number">01 · CARE</span>
+        <a href="/hr/child-adolescent-psychotherapy.html" class="activity-card psychotherapy-photo-card">
+
+          <div class="psychotherapy-card-photos" aria-hidden="true">
+            <img
+              class="psychotherapy-card-photo"
+              src="/images/care-child-psychotherapy-connection.jpg"
+              alt=""
+              loading="lazy"
+            >
+
+            <img
+              class="psychotherapy-card-photo"
+              src="/images/care-child-psychotherapy-light.jpg"
+              alt=""
+              loading="lazy"
+            >
+          </div>
 
           <div class="activity-content">
             <h3>DJEČJA I ADOLESCENTNA PSIHOTERAPIJA</h3>
@@ -118,23 +222,25 @@
               kada potražiti podršku i kako izgleda prvi korak.
             </p>
 
-            <span class="activity-available">
-              ISTRAŽI →
-            </span>
+            <div class="activity-available">
+              <span>VODIČ ✓</span>
+              <span>ISKUSTVA</span>
+              <span>STRUČNJACI ✓</span>
+              <span>GDJE PROBATI ✓</span>
+            </div>
           </div>
+
+          <span class="activity-action">
+            ISTRAŽI PSIHOTERAPIJU →
+          </span>
+
         </a>
 
-        <div class="activity-card category-coming-card">
-          <span class="activity-number">USKORO U OVOJ KATEGORIJI</span>
-
-          <div class="activity-content">
-            <h3>NOVE AKTIVNOSTI STIŽU.</h3>
-            <p class="activity-description">Pripremamo ideje, vodiče i iskustva koja će ti pomoći otkriti nove načine brige o sebi. U međuvremenu, možda baš ti imaš prijedlog što bismo trebali dodati.</p>
-            <span class="activity-available">MOVE &amp; TRY · CARE</span>
-          </div>
-        </div>
-
       </div>
+
+      <p class="move-app-more">
+        USKORO JOŠ AKTIVNOSTI
+      </p>
     </section>
 
   </div>
