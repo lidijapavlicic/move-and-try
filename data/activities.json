@@ -98,6 +98,20 @@
       },
       "published": true,
       "includeInSurprise": true
+    },
+    {
+      "id": "child-adolescent-psychotherapy",
+      "category": "care",
+      "name": {
+        "hr": "Dječja i adolescentna psihoterapija",
+        "en": "Child & adolescent psychotherapy"
+      },
+      "url": {
+        "hr": "/hr/child-adolescent-psychotherapy.html",
+        "en": "/child-adolescent-psychotherapy.html"
+      },
+      "published": true,
+      "includeInSurprise": true
     }
   ]
 }
