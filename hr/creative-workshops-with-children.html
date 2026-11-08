@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Kreativne radionice s djecom | MOVE&TRY</title>
+
+  <meta
+    name="description"
+    content="Otkrij kreativne radionice s djecom kroz MOVE&TRY. Zajedničko stvaranje, igra bojama i kreativne aktivnosti koje možeš isprobati s djetetom."
+  >
+
+  <link
+    rel="canonical"
+    href="https://moveandtry.com/hr/creative-workshops-with-children.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="hr"
+    href="https://moveandtry.com/hr/creative-workshops-with-children.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://moveandtry.com/creative-workshops-with-children.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://moveandtry.com/creative-workshops-with-children.html"
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="/consent.css">
+  <link rel="stylesheet" href="/app/app-navigation.css">
+
+  <style>
+
+    /* ==========================================
+       HEADER
+    ========================================== */
+
+    .header-behind-link {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
+    }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
+
+    /* ==========================================
+       CREATIVE WORKSHOPS — PHOTO HERO
+    ========================================== */
+
+    .activity-page .activity-header.creative-workshops-photo-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+
+      min-height: 420px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      background: #111;
+      color: #fff;
+
+      padding: 60px 48px;
+    }
+
+    .creative-workshops-photo-hero
+    .creative-workshops-hero-photos {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .creative-workshops-photo-hero
+    .creative-workshops-hero-photo {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      filter:
+        brightness(.58)
+        contrast(1.06)
+        saturate(.86);
+
+      animation:
+        creativeWorkshopsHeroFade
+        12s
+        ease-in-out
+        infinite;
+    }
+
+    .creative-workshops-photo-hero
+    .creative-workshops-hero-photo:first-child {
+      object-position: center center;
+      animation-delay: 0s;
+    }
+
+    .creative-workshops-photo-hero
+    .creative-workshops-hero-photo:last-child {
+      object-position: center center;
+      animation-delay: -6s;
+    }
+
+    .creative-workshops-photo-hero::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(8, 8, 8, .28) 0%,
+          rgba(8, 8, 8, .54) 46%,
+          rgba(8, 8, 8, .90) 100%
+        );
+
+      pointer-events: none;
+    }
+
+
+    /* ==========================================
+       HERO TEXT
+    ========================================== */
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-page-type,
+
+    .activity-page
+    .creative-workshops-photo-hero
+    h1,
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-page-intro,
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-page-intro strong,
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-nav,
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-nav span {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-page-type {
+      color: #f0cf57;
+    }
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-page-intro {
+      color: rgba(255, 255, 255, .90);
+    }
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-page-intro strong {
+      color: #fff;
+    }
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-nav span {
+      border-color: rgba(255, 255, 255, .42);
+    }
+
+
+    /* ==========================================
+       HERO ANIMATION
+    ========================================== */
+
+    @keyframes creativeWorkshopsHeroFade {
+
+      0%,
+      42% {
+        opacity: 1;
+      }
+
+      50%,
+      92% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+
+    }
+
+
+    /* ==========================================
+       RESPONSIVE
+    ========================================== */
+
+    @media (max-width: 900px) {
+
+      .activity-page
+      .activity-header.creative-workshops-photo-hero {
+        min-height: 380px;
+        padding: 48px 24px;
+      }
+
+      .site-header .header-behind-link {
+        display: none !important;
+      }
+
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .creative-workshops-photo-hero
+      .creative-workshops-hero-photo {
+        animation: none;
+        opacity: 0;
+      }
+
+      .creative-workshops-photo-hero
+      .creative-workshops-hero-photo:first-child {
+        opacity: 1;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="site-header">
+
+  <a
+    href="/hr/"
+    class="site-logo"
+    aria-label="MOVE&TRY – početna"
+  >
+
+    <img
+      src="/images/move-and-try-logo.png"
+      alt="MOVE&TRY"
+    >
+
+  </a>
+
+
+  <nav class="desktop-nav">
+
+    <a href="/hr/#find-your-try">
+      OTKRIJ
+    </a>
+
+    <a href="/hr/#be-part-of-it">
+      BUDI DIO PRIČE
+    </a>
+
+    <a href="/hr/where-to-try.html">
+      GDJE PROBATI
+    </a>
+
+    <a href="/hr/journal.html">
+      THE JOURNAL
+    </a>
+
+  </nav>
+
+
+  <div class="header-actions">
+
+    <a
+      href="/hr/behind-move-and-try.html"
+      class="header-behind-link"
+    >
+      IZA MOVE & TRY
+    </a>
+
+    <div class="header-language">
+
+      <a
+        href="/creative-workshops-with-children.html"
+        onclick="setLanguage('en')"
+      >
+        EN
+      </a>
+
+      <span>|</span>
+
+      <span class="language-active">
+        HR
+      </span>
+
+    </div>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Otvori izbornik"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu">
+
+  <nav>
+
+    <a href="/hr/#find-your-try">
+      OTKRIJ
+    </a>
+
+    <a href="/hr/#be-part-of-it">
+      BUDI DIO PRIČE
+    </a>
+
+    <a href="/hr/where-to-try.html">
+      GDJE PROBATI
+    </a>
+
+    <a href="/hr/journal.html">
+      THE JOURNAL
+    </a>
+
+    <a href="/hr/behind-move-and-try.html">
+      IZA MOVE & TRY
+    </a>
+
+  </nav>
+
+
+  <div class="mobile-menu-language">
+
+    <a
+      href="/creative-workshops-with-children.html"
+      onclick="setLanguage('en')"
+    >
+      EN
+    </a>
+
+    <span>|</span>
+
+    <span class="language-active">
+      HR
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     CREATIVE WORKSHOPS WITH CHILDREN
+========================= -->
+
+<main class="activity-page">
+
+
+  <!-- =========================
+       BACK TO CREATE
+  ========================= -->
+
+  <a
+    href="/hr/create.html"
+    class="back-link"
+  >
+    ← CREATE
+  </a>
+
+
+  <!-- =========================
+       PHOTO HERO
+  ========================= -->
+
+  <header
+    class="
+      activity-header
+      creative-workshops-photo-hero
+    "
+  >
+
+
+    <div
+      class="creative-workshops-hero-photos"
+      aria-hidden="true"
+    >
+
+      <img
+        class="creative-workshops-hero-photo"
+        src="/images/creative-workshops-with-children-1.jpg"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+      >
+
+      <img
+        class="creative-workshops-hero-photo"
+        src="/images/creative-workshops-with-children-2.jpg"
+        alt=""
+        loading="eager"
+      >
+
+    </div>
+
+
+    <p class="activity-page-type">
+      CREATE · KREATIVNE RADIONICE S DJECOM
+    </p>
+
+
+    <h1>
+      KREATIVNE RADIONICE S DJECOM
+    </h1>
+
+
+    <p class="activity-page-intro">
+
+      Boje, materijali i zajedničko stvaranje.<br>
+
+      <strong>
+        Što ćete napraviti kada krenete stvarati zajedno?
+      </strong>
+
+    </p>
+
+
+    <div class="activity-nav">
+
+      <span>
+        VODIČ
+      </span>
+
+      <span>
+        ISKUSTVA
+      </span>
+
+      <span>
+        STRUČNJACI
+      </span>
+
+      <span class="activity-nav-active">
+        GDJE PROBATI ✓
+      </span>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       CONTENT
+  ========================= -->
+
+  <section class="activity-content-section">
+
+
+    <p class="section-label">
+      ISTRAŽI KREATIVNE RADIONICE S DJECOM
+    </p>
+
+
+    <h2>
+      ZAJEDNO STVARATI. ZAJEDNO PROBATI.
+    </h2>
+
+
+    <div class="activity-content-grid">
+
+
+      <!-- =========================
+           GUIDE — COMING SOON
+      ========================= -->
+
+      <div class="content-card content-card-coming">
+
+        <span class="content-card-type">
+          VODIČ
+        </span>
+
+        <h3>
+          KAKO IZGLEDA PRVA KREATIVNA RADIONICA S DJETETOM?
+        </h3>
+
+        <p>
+          Prvi koraci, materijali
+          i što možeš očekivati
+          kada prvi put krenete stvarati zajedno.
+        </p>
+
+        <span class="content-card-status">
+          USKORO
+        </span>
+
+      </div>
+
+
+      <!-- =========================
+           EXPERIENCE — COMING SOON
+      ========================= -->
+
+      <div class="content-card content-card-coming">
+
+        <span class="content-card-type">
+          ISKUSTVA
+        </span>
+
+        <h3>
+          KAKO IZGLEDA STVARATI ZAJEDNO?
+        </h3>
+
+        <p>
+          Stvarna iskustva roditelja
+          i djece s kreativnih radionica.
+        </p>
+
+        <span class="content-card-status">
+          USKORO
+        </span>
+
+      </div>
+
+
+      <!-- =========================
+           EXPERT — COMING SOON
+      ========================= -->
+
+      <div class="content-card content-card-coming">
+
+        <span class="content-card-type">
+          RIJEČ STRUČNJAKA
+        </span>
+
+        <h3>
+          KREATIVNOST KROZ IGRU I ZAJEDNIČKO STVARANJE.
+        </h3>
+
+        <p>
+          Razgovori s ljudima
+          koji osmišljavaju i vode
+          kreativne radionice za djecu.
+        </p>
+
+        <span class="content-card-status">
+          USKORO
+        </span>
+
+      </div>
+
+
+      <!-- =========================
+           WHERE TO TRY — AVAILABLE
+      ========================= -->
+
+      <a
+        href="/hr/creative-workshops-with-children-where-to-try.html"
+        class="content-card"
+      >
+
+        <span class="content-card-type">
+          GDJE PROBATI ✓
+        </span>
+
+        <h3>
+          GDJE MOŽEŠ PROBATI KREATIVNE RADIONICE S DJECOM?
+        </h3>
+
+        <p>
+          Pronađi mjesto
+          na kojem roditelj i dijete
+          mogu zajedno sudjelovati
+          u kreativnoj radionici.
+        </p>
+
+        <span class="content-card-action">
+          POGLEDAJ GDJE PROBATI →
+        </span>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SHARE YOUR EXPERIENCE
+  ========================= -->
+
+  <section class="activity-contribute">
+
+
+    <p class="section-label">
+      TVOJE ISKUSTVO
+    </p>
+
+
+    <h2>
+      BIO SI NA KREATIVNOJ RADIONICI S DJETETOM?
+    </h2>
+
+
+    <p>
+      Kako je izgledalo zajedničko stvaranje?
+
+      Što ste radili,
+      što je dijete najviše zainteresiralo
+      i biste li ponovno otišli na radionicu?
+
+      Podijeli svoju priču.
+      Možda baš tvoje iskustvo
+      nekoga potakne da proba.
+    </p>
+
+
+    <a
+      href="/hr/share-experience.html"
+      class="activity-contribute-link"
+    >
+      PODIJELI SVOJE ISKUSTVO →
+    </a>
+
+
+  </section>
+
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="../script.js"></script>
+
+<script>
+  if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+  ) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js', { scope: '/' })
+        .catch(error =>
+          console.warn(
+            'MOVE&TRY public service worker:',
+            error
+          )
+        );
+    });
+  }
+</script>
+
+<script src="/consent.js" defer></script>
+
+<script src="/app/app-navigation.js" defer></script>
+
+</body>
+
+</html>
