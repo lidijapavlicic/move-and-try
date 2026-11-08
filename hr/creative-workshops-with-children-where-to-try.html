@@ -55,7 +55,6 @@
             --wtt-soft-green: #b7c5b3;
             --wtt-paper: #f7f7f4;
             --wtt-ink: #202420;
-            --wtt-muted: #687068;
             --wtt-border: #d9ddd5;
             --wtt-card: #ffffff;
         }
@@ -101,12 +100,6 @@
             letter-spacing: .08em;
             color: var(--wtt-ink);
             text-decoration: none;
-            transition: opacity .2s ease, transform .2s ease;
-        }
-
-        .where-back:hover {
-            opacity: .55;
-            transform: translateX(-3px);
         }
 
         .where-hero {
@@ -178,7 +171,6 @@
         }
 
         .provider-visual {
-            position: relative;
             min-height: 100%;
             overflow: hidden;
             background: #111;
@@ -186,12 +178,12 @@
         }
 
         .provider-photo {
-            display: block;
             width: 100%;
             height: 100%;
             min-height: 100%;
+            display: block;
             object-fit: cover;
-            object-position: center center;
+            object-position: center;
         }
 
         .provider-content {
@@ -200,7 +192,7 @@
 
         .provider-type {
             display: block;
-            margin: 0 0 10px;
+            margin-bottom: 10px;
             font-family: 'Manrope', sans-serif;
             font-size: 10px;
             font-weight: 800;
@@ -239,7 +231,7 @@
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1px;
-            margin: 0 0 34px;
+            margin-bottom: 34px;
             background: var(--wtt-border);
             border: 1px solid var(--wtt-border);
         }
@@ -271,8 +263,8 @@
 
         .current-workshop {
             margin-top: 36px;
-            border-top: 1px solid var(--wtt-border);
             padding-top: 34px;
+            border-top: 1px solid var(--wtt-border);
         }
 
         .current-workshop-label {
@@ -299,7 +291,7 @@
             width: 100%;
             max-width: 520px;
             height: auto;
-            margin: 0 0 24px;
+            margin-bottom: 24px;
             border: 1px solid var(--wtt-border);
         }
 
@@ -334,6 +326,13 @@
             line-height: 1.55;
             font-weight: 600;
             color: #343a34;
+        }
+
+        .current-workshop-detail a {
+            color: var(--wtt-green);
+            font-weight: 800;
+            text-decoration: underline;
+            text-underline-offset: 3px;
         }
 
         .provider-note {
@@ -378,12 +377,6 @@
             border: 1px solid var(--wtt-border);
             color: var(--wtt-green);
             text-decoration: none;
-            transition: transform .2s ease, border-color .2s ease;
-        }
-
-        .related-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--wtt-green);
         }
 
         .related-card-type {
@@ -411,13 +404,8 @@
         }
 
         .related-card.coming-soon {
-            cursor: default;
             opacity: .68;
-        }
-
-        .related-card.coming-soon:hover {
-            transform: none;
-            border-color: var(--wtt-border);
+            cursor: default;
         }
 
         .where-note-wrap {
@@ -453,17 +441,13 @@
 
         .where-contribute {
             background: var(--wtt-green);
-            color: #ffffff;
+            color: #fff;
         }
 
         .where-contribute-inner {
             max-width: 1180px;
             margin: 0 auto;
             padding: 80px 32px 88px;
-        }
-
-        .where-contribute .provider-section-label {
-            color: var(--wtt-soft-green);
         }
 
         .where-contribute h2 {
@@ -473,7 +457,7 @@
             font-size: clamp(42px, 6vw, 70px);
             line-height: 1;
             font-weight: 400;
-            color: #ffffff;
+            color: #fff;
         }
 
         .where-contribute p {
@@ -482,23 +466,22 @@
             font-family: 'Manrope', sans-serif;
             font-size: 15px;
             line-height: 1.75;
-            color: rgba(255, 255, 255, .78);
+            color: rgba(255,255,255,.78);
         }
 
         .where-contribute-link {
             display: inline-block;
             padding-bottom: 5px;
-            border-bottom: 1px solid rgba(255, 255, 255, .8);
+            border-bottom: 1px solid rgba(255,255,255,.8);
             font-family: 'Manrope', sans-serif;
             font-size: 11px;
             font-weight: 800;
             letter-spacing: .08em;
-            color: #ffffff;
+            color: #fff;
             text-decoration: none;
         }
 
         @media (max-width: 820px) {
-
             .provider-card {
                 grid-template-columns: 1fr;
             }
@@ -509,31 +492,18 @@
                 border-bottom: 1px solid var(--wtt-border);
             }
 
-            .provider-photo {
-                min-height: 320px;
-            }
-
             .related-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 720px) {
-
             .where-back-wrap {
                 padding: 28px 22px 0;
             }
 
             .where-hero {
                 padding: 56px 22px 58px;
-            }
-
-            .where-hero h1 {
-                font-size: clamp(43px, 13vw, 62px);
-            }
-
-            .where-intro {
-                font-size: 16px;
             }
 
             .provider-section,
@@ -552,10 +522,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .where-note {
-                padding: 24px 22px;
-            }
-
             .where-contribute-inner {
                 padding: 66px 22px 72px;
             }
@@ -570,48 +536,24 @@
 
 <header class="site-header">
 
-    <a
-        href="/hr/"
-        class="site-logo"
-        aria-label="MOVE&TRY – početna"
-    >
-        <img
-            src="/images/move-and-try-logo.png"
-            alt="MOVE&TRY"
-        >
+    <a href="/hr/" class="site-logo" aria-label="MOVE&TRY – početna">
+        <img src="/images/move-and-try-logo.png" alt="MOVE&TRY">
     </a>
 
     <nav class="desktop-nav">
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/where-to-try.html">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
     </nav>
 
     <div class="header-actions">
 
-        <a
-            href="/hr/behind-move-and-try.html"
-            class="header-behind-link"
-        >
+        <a href="/hr/behind-move-and-try.html" class="header-behind-link">
             IZA MOVE & TRY
         </a>
 
         <div class="header-language">
-
             <a
                 href="/creative-workshops-with-children-where-to-try.html"
                 onclick="setLanguage('en')"
@@ -621,10 +563,7 @@
 
             <span>|</span>
 
-            <span class="language-active">
-                HR
-            </span>
-
+            <span class="language-active">HR</span>
         </div>
 
         <button
@@ -645,31 +584,14 @@
 <div class="mobile-menu">
 
     <nav>
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/where-to-try.html">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
-        <a href="/hr/behind-move-and-try.html">
-            IZA MOVE & TRY
-        </a>
-
+        <a href="/hr/#find-your-try">OTKRIJ</a>
+        <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+        <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+        <a href="/hr/journal.html">THE JOURNAL</a>
+        <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
 
     <div class="mobile-menu-language">
-
         <a
             href="/creative-workshops-with-children-where-to-try.html"
             onclick="setLanguage('en')"
@@ -679,10 +601,7 @@
 
         <span>|</span>
 
-        <span class="language-active">
-            HR
-        </span>
-
+        <span class="language-active">HR</span>
     </div>
 
 </div>
@@ -691,14 +610,12 @@
 <main class="where-page">
 
     <div class="where-back-wrap">
-
         <a
             href="/hr/creative-workshops-with-children.html"
             class="where-back"
         >
             ← KREATIVNE RADIONICE S DJECOM
         </a>
-
     </div>
 
 
@@ -715,7 +632,6 @@
 
         <p class="where-intro">
             Od ideje do stvarnog zajedničkog iskustva.
-
             Ovdje povezujemo kreativne radionice
             s ljudima i mjestima na kojima roditelji
             i djeca mogu zajedno stvarati i probati nešto novo.
@@ -738,14 +654,12 @@
         <article class="provider-card">
 
             <div class="provider-visual">
-
                 <img
                     src="/images/bakart-creative-workshop-1.jpg"
                     alt="Kreativna radionica u Bakart Studiju"
                     class="provider-photo"
                     loading="lazy"
                 >
-
             </div>
 
 
@@ -755,76 +669,51 @@
                     KREATIVNE RADIONICE · DJECA I RODITELJI
                 </span>
 
-                <h3>
-                    BAKART STUDIO
-                </h3>
+                <h3>BAKART STUDIO</h3>
 
                 <p class="provider-location">
                     KNEZA BORNE 14 · ZAGREB
                 </p>
 
-
                 <p class="provider-description">
-                    Bakart Studio organizira kreativne radionice
-                    na kojima djeca kroz različite materijale,
-                    boje i zadatke stvaraju vlastite radove.
+                    Bakart Studio organizira kreativne radionice za djecu,
+                    a pojedine radionice osmišljene su i kao zajedničko
+                    iskustvo roditelja i djeteta.
 
-                    Dio radionica osmišljen je kao zajedničko iskustvo
-                    roditelja i djeteta.
+                    Aktualne radionice i termini mijenjaju se tijekom vremena,
+                    a na MOVE&TRY ovdje ističemo mogućnosti koje je trenutačno
+                    moguće isprobati.
                 </p>
 
 
                 <div class="provider-facts">
 
                     <div class="provider-fact">
-
-                        <span class="provider-fact-label">
-                            ZA KOGA
-                        </span>
-
+                        <span class="provider-fact-label">ZA KOGA</span>
                         <p class="provider-fact-value">
                             Djeca i roditelji, ovisno o radionici
                         </p>
-
                     </div>
 
-
                     <div class="provider-fact">
-
-                        <span class="provider-fact-label">
-                            ŠTO SE RADI
-                        </span>
-
+                        <span class="provider-fact-label">FORMAT</span>
                         <p class="provider-fact-value">
-                            Kreativni rad s bojama, različitim materijalima i tehnikama
+                            Kreativne radionice i zajedničko stvaranje
                         </p>
-
                     </div>
 
-
                     <div class="provider-fact">
-
-                        <span class="provider-fact-label">
-                            MATERIJALI
-                        </span>
-
+                        <span class="provider-fact-label">TERMINI</span>
                         <p class="provider-fact-value">
-                            Ovise o pojedinoj radionici
+                            Ovise o aktualnoj radionici
                         </p>
-
                     </div>
 
-
                     <div class="provider-fact">
-
-                        <span class="provider-fact-label">
-                            GDJE
-                        </span>
-
+                        <span class="provider-fact-label">GDJE</span>
                         <p class="provider-fact-value">
                             Bakart Studio · Kneza Borne 14 · Zagreb
                         </p>
-
                     </div>
 
                 </div>
@@ -836,9 +725,7 @@
                         AKTUALNA RADIONICA
                     </span>
 
-                    <h4>
-                        MORSKO KRALJEVSTVO
-                    </h4>
+                    <h4>MORSKO KRALJEVSTVO</h4>
 
                     <img
                         src="/images/bakart-morsko-kraljevstvo-workshop.png"
@@ -890,7 +777,16 @@
 
                         <div class="current-workshop-detail">
                             <span>PRIJAVA</span>
-                            <p>Porukom Bakart Studiju</p>
+                            <p>
+                                Putem Instagram DM-a:
+                                <a
+                                    href="https://www.instagram.com/bakart.art/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    @bakart.art
+                                </a>
+                            </p>
                         </div>
 
                     </div>
@@ -900,7 +796,8 @@
 
                 <p class="provider-note">
                     Termini, cijene i sadržaj radionica mogu se mijenjati.
-                    Za aktualne informacije i prijavu javi se izravno Bakart Studiju.
+                    Za aktualne informacije i prijavu javi se izravno
+                    Bakart Studiju putem Instagrama.
                 </p>
 
             </div>
@@ -926,7 +823,6 @@
             <div class="related-card coming-soon">
 
                 <div>
-
                     <span class="related-card-type">
                         VODIČ
                     </span>
@@ -934,7 +830,6 @@
                     <h3>
                         KREATIVNE RADIONICE S DJECOM
                     </h3>
-
                 </div>
 
                 <span class="related-card-action">
@@ -947,7 +842,6 @@
             <div class="related-card coming-soon">
 
                 <div>
-
                     <span class="related-card-type">
                         ISKUSTVA
                     </span>
@@ -955,7 +849,6 @@
                     <h3>
                         KAKO IZGLEDA STVARATI ZAJEDNO?
                     </h3>
-
                 </div>
 
                 <span class="related-card-action">
@@ -971,7 +864,6 @@
             >
 
                 <div>
-
                     <span class="related-card-type">
                         AKTIVNOST
                     </span>
@@ -979,7 +871,6 @@
                     <h3>
                         KREATIVNE RADIONICE S DJECOM
                     </h3>
-
                 </div>
 
                 <span class="related-card-action">
@@ -1052,7 +943,6 @@
 
 
 <script src="../script.js"></script>
-
 <script src="/app/app-navigation.js" defer></script>
 
 <script>
@@ -1077,5 +967,4 @@
 <script src="/consent.js" defer></script>
 
 </body>
-
 </html>
