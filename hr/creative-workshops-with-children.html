@@ -51,10 +51,6 @@
 
   <style>
 
-    /* ==========================================
-       HEADER
-    ========================================== */
-
     .header-behind-link {
       color: #555;
       font-family: 'Manrope', sans-serif;
@@ -69,11 +65,6 @@
     .header-behind-link:hover {
       opacity: .55;
     }
-
-
-    /* ==========================================
-       CREATIVE WORKSHOPS — PHOTO HERO
-    ========================================== */
 
     .activity-page .activity-header.creative-workshops-photo-hero {
       position: relative;
@@ -111,7 +102,6 @@
       height: 100%;
 
       display: block;
-
       object-fit: cover;
 
       filter:
@@ -156,11 +146,6 @@
       pointer-events: none;
     }
 
-
-    /* ==========================================
-       HERO TEXT
-    ========================================== */
-
     .activity-page
     .creative-workshops-photo-hero
     .activity-page-type,
@@ -183,7 +168,11 @@
 
     .activity-page
     .creative-workshops-photo-hero
-    .activity-nav span {
+    .activity-nav span,
+
+    .activity-page
+    .creative-workshops-photo-hero
+    .activity-nav a {
       position: relative;
       z-index: 1;
       color: #fff;
@@ -203,20 +192,12 @@
 
     .activity-page
     .creative-workshops-photo-hero
-    .activity-page-intro strong {
-      color: #fff;
-    }
-
+    .activity-nav span,
     .activity-page
     .creative-workshops-photo-hero
-    .activity-nav span {
+    .activity-nav a {
       border-color: rgba(255, 255, 255, .42);
     }
-
-
-    /* ==========================================
-       HERO ANIMATION
-    ========================================== */
 
     @keyframes creativeWorkshopsHeroFade {
 
@@ -236,11 +217,6 @@
 
     }
 
-
-    /* ==========================================
-       RESPONSIVE
-    ========================================== */
-
     @media (max-width: 900px) {
 
       .activity-page
@@ -254,7 +230,6 @@
       }
 
     }
-
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -277,11 +252,6 @@
 
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="site-header">
 
   <a
@@ -289,35 +259,20 @@
     class="site-logo"
     aria-label="MOVE&TRY – početna"
   >
-
     <img
       src="/images/move-and-try-logo.png"
       alt="MOVE&TRY"
     >
-
   </a>
-
 
   <nav class="desktop-nav">
 
-    <a href="/hr/#find-your-try">
-      OTKRIJ
-    </a>
-
-    <a href="/hr/#be-part-of-it">
-      BUDI DIO PRIČE
-    </a>
-
-    <a href="/hr/where-to-try.html">
-      GDJE PROBATI
-    </a>
-
-    <a href="/hr/journal.html">
-      THE JOURNAL
-    </a>
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
 
   </nav>
-
 
   <div class="header-actions">
 
@@ -360,36 +315,17 @@
 </header>
 
 
-<!-- =========================
-     MOBILE MENU
-========================= -->
-
 <div class="mobile-menu">
 
   <nav>
 
-    <a href="/hr/#find-your-try">
-      OTKRIJ
-    </a>
-
-    <a href="/hr/#be-part-of-it">
-      BUDI DIO PRIČE
-    </a>
-
-    <a href="/hr/where-to-try.html">
-      GDJE PROBATI
-    </a>
-
-    <a href="/hr/journal.html">
-      THE JOURNAL
-    </a>
-
-    <a href="/hr/behind-move-and-try.html">
-      IZA MOVE & TRY
-    </a>
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+    <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
 
   </nav>
-
 
   <div class="mobile-menu-language">
 
@@ -411,16 +347,7 @@
 </div>
 
 
-<!-- =========================
-     CREATIVE WORKSHOPS WITH CHILDREN
-========================= -->
-
 <main class="activity-page">
-
-
-  <!-- =========================
-       BACK TO CREATE
-  ========================= -->
 
   <a
     href="/hr/create.html"
@@ -430,17 +357,9 @@
   </a>
 
 
-  <!-- =========================
-       PHOTO HERO
-  ========================= -->
-
   <header
-    class="
-      activity-header
-      creative-workshops-photo-hero
-    "
+    class="activity-header creative-workshops-photo-hero"
   >
-
 
     <div
       class="creative-workshops-hero-photos"
@@ -464,16 +383,13 @@
 
     </div>
 
-
     <p class="activity-page-type">
       CREATE · KREATIVNE RADIONICE S DJECOM
     </p>
 
-
     <h1>
       KREATIVNE RADIONICE S DJECOM
     </h1>
-
 
     <p class="activity-page-intro">
 
@@ -485,12 +401,14 @@
 
     </p>
 
-
     <div class="activity-nav">
 
-      <span>
-        VODIČ
-      </span>
+      <a
+        href="/hr/creative-workshops-with-children-guide.html"
+        class="activity-nav-active"
+      >
+        VODIČ ✓
+      </a>
 
       <span>
         ISKUSTVA
@@ -500,43 +418,38 @@
         STRUČNJACI
       </span>
 
-      <span class="activity-nav-active">
+      <a
+        href="/hr/creative-workshops-with-children-where-to-try.html"
+        class="activity-nav-active"
+      >
         GDJE PROBATI ✓
-      </span>
+      </a>
 
     </div>
 
   </header>
 
 
-  <!-- =========================
-       CONTENT
-  ========================= -->
-
   <section class="activity-content-section">
-
 
     <p class="section-label">
       ISTRAŽI KREATIVNE RADIONICE S DJECOM
     </p>
 
-
     <h2>
       ZAJEDNO STVARATI. ZAJEDNO PROBATI.
     </h2>
 
-
     <div class="activity-content-grid">
 
 
-      <!-- =========================
-           GUIDE — COMING SOON
-      ========================= -->
-
-      <div class="content-card content-card-coming">
+      <a
+        href="/hr/creative-workshops-with-children-guide.html"
+        class="content-card"
+      >
 
         <span class="content-card-type">
-          VODIČ
+          VODIČ ✓
         </span>
 
         <h3>
@@ -544,21 +457,17 @@
         </h3>
 
         <p>
-          Prvi koraci, materijali
-          i što možeš očekivati
-          kada prvi put krenete stvarati zajedno.
+          Što očekivati, treba li se pripremiti
+          i zašto je najvažnije jednostavno
+          provesti dobro vrijeme zajedno.
         </p>
 
-        <span class="content-card-status">
-          USKORO
+        <span class="content-card-action">
+          PROČITAJ VODIČ →
         </span>
 
-      </div>
+      </a>
 
-
-      <!-- =========================
-           EXPERIENCE — COMING SOON
-      ========================= -->
 
       <div class="content-card content-card-coming">
 
@@ -582,10 +491,6 @@
       </div>
 
 
-      <!-- =========================
-           EXPERT — COMING SOON
-      ========================= -->
-
       <div class="content-card content-card-coming">
 
         <span class="content-card-type">
@@ -608,10 +513,6 @@
 
       </div>
 
-
-      <!-- =========================
-           WHERE TO TRY — AVAILABLE
-      ========================= -->
 
       <a
         href="/hr/creative-workshops-with-children-where-to-try.html"
@@ -639,28 +540,20 @@
 
       </a>
 
-
     </div>
 
   </section>
 
 
-  <!-- =========================
-       SHARE YOUR EXPERIENCE
-  ========================= -->
-
   <section class="activity-contribute">
-
 
     <p class="section-label">
       TVOJE ISKUSTVO
     </p>
 
-
     <h2>
       BIO SI NA KREATIVNOJ RADIONICI S DJETETOM?
     </h2>
-
 
     <p>
       Kako je izgledalo zajedničko stvaranje?
@@ -674,7 +567,6 @@
       nekoga potakne da proba.
     </p>
 
-
     <a
       href="/hr/share-experience.html"
       class="activity-contribute-link"
@@ -682,18 +574,14 @@
       PODIJELI SVOJE ISKUSTVO →
     </a>
 
-
   </section>
-
 
 </main>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script src="../script.js"></script>
+
+<script src="/app/app-navigation.js" defer></script>
 
 <script>
   if (
@@ -716,8 +604,5 @@
 
 <script src="/consent.js" defer></script>
 
-<script src="/app/app-navigation.js" defer></script>
-
 </body>
-
 </html>
