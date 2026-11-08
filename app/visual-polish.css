@@ -1,0 +1,110 @@
+
+/* MOVE&TRY App — visual polish, 2026-11-08.
+   Presentation only. No application logic or provider data changed. */
+
+/* Preserve the complete panoramic hero image on narrow screens. */
+.hero {
+  min-height: 0;
+  aspect-ratio: 1881 / 836;
+  background-size: contain;
+  background-position: center;
+}
+
+@media (min-width: 720px) {
+  .hero {
+    min-height: 0;
+  }
+}
+
+.hero span {
+  right: 18px;
+  bottom: 13px;
+  left: 18px;
+  font-size: clamp(9px, 2.5vw, 12px);
+  line-height: 1.45;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, .6);
+}
+
+/* Match the web order:
+   MOVE, LEARN, CREATE, EXPLORE, DARE, CARE. */
+
+.categories > .category:nth-child(2) {
+  order: 3;
+}
+
+.categories > .category:nth-child(3) {
+  order: 2;
+}
+
+/* Change visual numbering without changing existing links or content. */
+
+.categories > .category:nth-child(2) .category-number,
+.categories > .category:nth-child(3) .category-number {
+  font-size: 0;
+}
+
+.categories > .category:nth-child(2) .category-number::after {
+  content: "03";
+  font-size: 11px;
+}
+
+.categories > .category:nth-child(3) .category-number::after {
+  content: "02";
+  font-size: 11px;
+}
+
+/* Align home category strapline with the card order. */
+
+.hero + .section > .eyebrow {
+  font-size: 0;
+}
+
+.hero + .section > .eyebrow::after {
+  content: "MOVE · LEARN · CREATE · EXPLORE · DARE · CARE";
+  font-size: 10px;
+}
+
+/* Surprise Me: refined spacing.
+   Existing dice and animation stay untouched. */
+
+.surprise-box {
+  padding: clamp(20px, 5vw, 28px);
+}
+
+.surprise-box h2 {
+  margin: 8px 0 9px;
+}
+
+.dice-area {
+  gap: 10px;
+  padding: 0 0 10px;
+}
+
+.dice-stage {
+  width: 108px;
+  height: 108px;
+}
+
+.dice-trigger {
+  max-width: none;
+  min-height: 48px;
+}
+
+.dice-caption {
+  line-height: 1.5;
+}
+
+/* Where to Try: remove the nested photo frame.
+   Preserve each provider's cover / contain setting. */
+
+.app-where-photo {
+  background: transparent;
+}
+
+.app-where-photo img {
+  padding: 0;
+}
+
+.app-where-photo[data-image-fit="contain"] {
+  background: #f1f0e9;
+}
