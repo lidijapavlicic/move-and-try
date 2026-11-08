@@ -28,12 +28,28 @@
 /* Match the web order:
    MOVE, LEARN, CREATE, EXPLORE, DARE, CARE. */
 
+.categories > .category:nth-child(1) {
+  order: 1;
+}
+
 .categories > .category:nth-child(2) {
   order: 3;
 }
 
 .categories > .category:nth-child(3) {
   order: 2;
+}
+
+.categories > .category:nth-child(4) {
+  order: 4;
+}
+
+.categories > .category:nth-child(5) {
+  order: 5;
+}
+
+.categories > .category:nth-child(6) {
+  order: 6;
 }
 
 /* Change visual numbering without changing existing links or content. */
