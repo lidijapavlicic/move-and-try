@@ -2,6 +2,43 @@
   "version": 1,
   "providers": [
     {
+      "id": "bakart-creative-workshops-with-children",
+      "category": "CREATE",
+      "activity": {
+        "hr": "KREATIVNE RADIONICE S DJECOM",
+        "en": "CREATIVE WORKSHOPS WITH CHILDREN"
+      },
+      "name": "BAKART STUDIO",
+      "city": "ZAGREB",
+      "area": "",
+      "address": "Kneza Borne 14",
+      "postalCode": "",
+      "image": "/images/bakart-creative-workshop-1.jpg",
+      "imageFit": "cover",
+      "description": {
+        "hr": "Bakart Studio organizira kreativne radionice za djecu, a pojedine radionice osmišljene su i kao zajedničko iskustvo roditelja i djeteta.",
+        "en": "Bakart Studio organises creative workshops for children, while some workshops are designed as a shared experience for a parent and child."
+      },
+      "tags": {
+        "hr": [
+          "KREATIVNE RADIONICE",
+          "DJECA I RODITELJI",
+          "ZAGREB"
+        ],
+        "en": [
+          "CREATIVE WORKSHOPS",
+          "CHILDREN & PARENTS",
+          "ZAGREB"
+        ]
+      },
+      "url": {
+        "hr": "/hr/creative-workshops-with-children-where-to-try.html",
+        "en": "/creative-workshops-with-children-where-to-try.html"
+      },
+      "publishedAt": "2026-11-08",
+      "published": true
+    },
+    {
       "id": "lumos-child-adolescent-psychotherapy",
       "category": "CARE",
       "activity": {
