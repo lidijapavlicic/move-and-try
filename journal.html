@@ -827,6 +827,13 @@
                 LIDIJA | MOVE&amp;TRY
             </button>
 
+            <button class="journal-column"
+                    type="button"
+                    data-column="nikolina"
+                    aria-pressed="false">
+                NIKOLINA ĐURIĆ
+            </button>
+
         </nav>
 
         <section class="journal-column-profile"
@@ -1158,7 +1165,8 @@
     };
 
     const columnNames = {
-        lidija: 'LIDIJA | MOVE&TRY'
+        lidija: 'LIDIJA | MOVE&TRY',
+        nikolina: 'NIKOLINA ĐURIĆ'
     };
 
     const columnProfiles = {
@@ -1168,6 +1176,14 @@
                 'A personal column by the founder of MOVE&TRY and editor of The Journal.',
                 'On curiosity, new beginnings, people, ideas, and everything that happens between asking “what if?” and deciding to give it a try.',
                 'Sometimes about MOVE&TRY behind the scenes, sometimes about personal experiences, and sometimes simply about the things that make me pause, reflect, or look at something a little differently.'
+            ]
+        },
+        nikolina: {
+            title: 'BEYOND WHAT WE SEE · NIKOLINA ĐURIĆ',
+            paragraphs: [
+                'A column by Nikolina Đurić, an integrative child and adolescent psychotherapist, social worker and founder of Lumos.',
+                'On children, adolescents, parents, emotions and relationships — with expertise, warmth and clarity.',
+                'On what may lie behind behaviour, silence, anger, withdrawal or big emotions, and what we cannot always see at first glance.'
             ]
         }
     };
@@ -1327,6 +1343,24 @@
 
         count.textContent =
             countLabel(visibleCount);
+
+        if (
+            category === 'personal' &&
+            activeColumn === 'nikolina' &&
+            visibleCount === 0
+        ) {
+            emptyState.querySelector('.journal-empty-title').textContent =
+                'First article coming soon.';
+
+            emptyState.querySelector('.journal-empty-text').textContent =
+                'The new column “Beyond What We See” will publish its first article soon.';
+        } else {
+            emptyState.querySelector('.journal-empty-title').textContent =
+                'No posts in this category yet.';
+
+            emptyState.querySelector('.journal-empty-text').textContent =
+                'Explore another category or check back soon.';
+        }
 
         emptyState.hidden =
             visibleCount > 0;
