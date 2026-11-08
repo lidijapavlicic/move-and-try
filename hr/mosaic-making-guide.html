@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Izrada mozaika — TRY vodič | MOVE&TRY</title>
+  <meta name="description" content="Kako izgleda prva radionica izrade mozaika? Uz savjete Miroslava Bušića otkrij izbor motiva, rad s pločicama, alatima i završno fugiranje.">
+
+  <link rel="canonical" href="https://moveandtry.com/hr/mosaic-making-guide.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/mosaic-making-guide.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/mosaic-making-guide.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/mosaic-making-guide.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="/app/app-navigation.css">
+  <link rel="stylesheet" href="/consent.css">
+
+  <style>
+    .try-page.mt-editorial-try {
+      --try-green: #17251e;
+      --try-green-soft: #b7c5b3;
+      --try-paper: #f7f7f4;
+      --try-ink: #202420;
+      --try-border: #d9ddd5;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      background: var(--try-paper);
+      color: var(--try-ink);
+    }
+
+    .mt-editorial-try,
+    .mt-editorial-try * {
+      box-sizing: border-box;
+    }
+
+    .header-behind-link,
+    .header-behind-link:visited {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .mt-editorial-try .try-back-wrap {
+      background: var(--try-paper);
+    }
+
+    .mt-editorial-try .try-back {
+      display: block;
+      width: min(100% - 48px, 1100px);
+      margin: 0 auto;
+      padding: 29px 0;
+      color: var(--try-green);
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .10em;
+      text-decoration: none;
+    }
+
+    .mt-editorial-try .try-back:hover {
+      text-decoration: underline;
+    }
+
+    .mt-editorial-try .try-editorial-hero {
+      width: 100%;
+      margin: 0;
+      padding: 76px 24px 84px;
+      background: var(--try-green);
+      color: #fff;
+    }
+
+    .mt-editorial-try .try-editorial-hero-inner {
+      width: min(100%, 1100px);
+      margin: 0 auto;
+    }
+
+    .mt-editorial-try .try-editorial-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.22);
+    }
+
+    .mt-editorial-try .try-editorial-top span {
+      color: var(--try-green-soft);
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+    }
+
+    .mt-editorial-try .try-editorial-category {
+      margin: 43px 0 18px;
+      color: #c9d6c4;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .17em;
+    }
+
+    .mt-editorial-try .try-editorial-hero h1 {
+      max-width: 980px;
+      margin: 0 0 26px;
+      color: #fff;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 400;
+      line-height: 1.06;
+      letter-spacing: -.025em;
+    }
+
+    .mt-editorial-try .try-editorial-intro {
+      max-width: 720px;
+      margin: 0 0 36px;
+      color: rgba(255,255,255,.88);
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.85;
+    }
+
+    .mt-editorial-try .try-editorial-scroll {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #c9d6c4;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-decoration: none;
+    }
+
+    .mt-editorial-try .try-editorial-scroll::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: #a5b9a3;
+    }
+
+    .mt-editorial-try .try-editorial-article {
+      width: min(100% - 48px, 760px);
+      margin: 0 auto;
+      padding: 78px 0 96px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      line-height: 1.95;
+    }
+
+    .mt-editorial-try .try-section {
+      margin: 0 0 72px;
+    }
+
+    .mt-editorial-try .try-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .mt-editorial-try .section-label {
+      display: block;
+      margin: 0 0 14px;
+      color: #607665;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .17em;
+    }
+
+    .mt-editorial-try .try-section h2 {
+      margin: 0 0 26px;
+      color: #18231b;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(31px, 4vw, 43px);
+      font-weight: 400;
+      line-height: 1.22;
+    }
+
+    .mt-editorial-try .try-section p {
+      color: #414941;
+      line-height: 1.9;
+    }
+
+    .mt-editorial-try .try-note {
+      margin: 30px 0;
+      padding: 28px 30px;
+      background: #e9ede6;
+      border-left: 3px solid #78927b;
+      color: #414941;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .mt-editorial-try .try-highlight {
+      margin: 38px 0;
+      padding: 10px 0 10px 26px;
+      border-left: 3px solid #819b83;
+      color: #203326;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(27px, 3vw, 36px);
+      line-height: 1.45;
+    }
+
+    .mt-editorial-try .simple-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 32px 0;
+    }
+
+    .mt-editorial-try .simple-card {
+      padding: 26px 24px;
+      background: #e9ede6;
+      border: 1px solid #d9e0d6;
+    }
+
+    .mt-editorial-try .simple-card:nth-child(2) {
+      background: #f0f0ec;
+    }
+
+    .mt-editorial-try .simple-card h3 {
+      margin: 0 0 12px;
+      color: #1d281f;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .mt-editorial-try .simple-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .mt-editorial-try .try-photo {
+      margin: 36px 0;
+    }
+
+    .mt-editorial-try .try-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 560px;
+      object-fit: cover;
+    }
+
+    .mt-editorial-try .try-photo figcaption {
+      margin-top: 12px;
+      color: #687268;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .mt-editorial-try .try-section.verdict {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 85px 24px 92px;
+      background: var(--try-green);
+      color: #fff;
+    }
+
+    .mt-editorial-try .try-verdict-inner {
+      width: min(100%, 900px);
+      margin: 0 auto;
+    }
+
+    .mt-editorial-try .try-section.verdict .section-label {
+      color: var(--try-green-soft);
+    }
+
+    .mt-editorial-try .try-section.verdict h2 {
+      margin: 0 0 27px;
+      color: #fff;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 400;
+    }
+
+    .mt-editorial-try .try-section.verdict p {
+      color: rgba(255,255,255,.85);
+    }
+
+    .mt-editorial-try .verdict-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 24px;
+      border: 1px solid rgba(255,255,255,.55);
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-decoration: none;
+    }
+
+    .mt-editorial-try .verdict-link:hover {
+      background: rgba(255,255,255,.12);
+    }
+
+    .mt-editorial-try .guide-footer-nav {
+      width: 100%;
+      padding: 36px 24px;
+      background: var(--try-paper);
+      text-align: center;
+    }
+
+    .mt-editorial-try .guide-footer-nav a {
+      color: var(--try-green);
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .10em;
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .mt-editorial-try .try-back {
+        width: calc(100% - 40px);
+        padding: 24px 0;
+      }
+
+      .mt-editorial-try .try-editorial-hero {
+        padding: 52px 20px 64px;
+      }
+
+      .mt-editorial-try .try-editorial-article {
+        width: calc(100% - 40px);
+        padding: 56px 0 75px;
+        font-size: 15px;
+      }
+
+      .mt-editorial-try .try-section {
+        margin-bottom: 56px;
+      }
+
+      .mt-editorial-try .simple-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mt-editorial-try .try-section.verdict {
+        padding: 67px 20px 76px;
+      }
+
+      .site-header .header-behind-link {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a href="/hr/" class="site-logo" aria-label="MOVE&TRY – početna">
+    <img src="/images/move-and-try-logo.png" alt="MOVE&TRY">
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+      IZA MOVE & TRY
+    </a>
+
+    <div class="header-language">
+      <a href="/mosaic-making-guide.html" onclick="setLanguage('en')">EN</a>
+      <span>|</span>
+      <span class="language-active">HR</span>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <nav>
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+    <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+  </nav>
+
+  <div class="mobile-menu-language">
+    <a href="/mosaic-making-guide.html" onclick="setLanguage('en')">EN</a>
+    <span>|</span>
+    <span class="language-active">HR</span>
+  </div>
+</div>
+
+<main class="try-page mt-editorial-try">
+
+  <div class="try-back-wrap">
+    <a href="/hr/mosaic-making.html" class="try-back">
+      ← IZRADA MOZAIKA
+    </a>
+  </div>
+
+  <header class="try-editorial-hero">
+    <div class="try-editorial-hero-inner">
+
+      <div class="try-editorial-top">
+        <span>MOVE & TRY / THE GUIDE</span>
+        <span>CREATE · IZRADA MOZAIKA</span>
+      </div>
+
+      <p class="try-editorial-category">TRY · CREATE</p>
+
+      <h1>TVOJ PRVI MOZAIK.</h1>
+
+      <p class="try-editorial-intro">
+        Nekoliko pločica, malo boje i motiv koji si sam odabrao.
+        Kako zapravo izgleda prvi susret s izradom mozaika?
+      </p>
+
+      <a href="#first-step" class="try-editorial-scroll">
+        ISTRAŽI VODIČ ↓
+      </a>
+
+    </div>
+  </header>
+
+  <div class="try-editorial-article">
+
+    <section class="try-section" id="first-step">
+      <p class="section-label">01 / PRVI SUSRET</p>
+
+      <h2>OD VEĆIH PLOČICA DO PRVE IDEJE.</h2>
+
+      <p>
+        Na prvoj radionici najprije se upoznaješ s tehnikom,
+        materijalima i alatima. Zatim dolazi prvi kreativni
+        zadatak: odabrati motiv koji želiš napraviti.
+      </p>
+
+      <p>
+        Veći komadi pločica pretvaraju se u manje, prilagođavaju
+        odabranom obliku i postupno slažu u cjelinu.
+        Tako počinje nastajati tvoj prvi mozaik.
+      </p>
+
+      <p>
+        Upravo tako početak radionice opisuje Miroslav Bušić,
+        samouki zaljubljenik u mozaik koji ovom tehnikom
+        izrađuje radove više od deset godina.
+      </p>
+
+      <figure class="try-photo">
+        <img
+          src="/images/mosaic-workshop-participants.jpg"
+          alt="Polaznice radionice slažu pločice i izrađuju mozaike."
+          loading="lazy"
+        >
+        <figcaption>
+          Izrada mozaika na radionici — fotografija ustupljena za MOVE&TRY.
+        </figcaption>
+      </figure>
+
+      <div class="try-note">
+        Prvi susret s mozaikom nije provjera umjetničkog talenta.
+        To je prilika da upoznaš novi materijal i vidiš
+        što se sve može napraviti od malih komadića.
+      </div>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">02 / TREBA LI PREDZNANJE?</p>
+
+      <h2>NE MORAŠ ZNATI CRTATI.</h2>
+
+      <p>
+        Za početak nisu potrebna specifična znanja ni prethodno
+        iskustvo s mozaikom. Miroslav kaže da je dobro imati
+        malo osjećaja za prostor i slaganje boja,
+        ali i tu početnicima može pomoći.
+      </p>
+
+      <div class="simple-grid">
+        <div class="simple-card">
+          <h3>ŠTO TI TREBA?</h3>
+          <p>
+            Znatiželja, spremnost na isprobavanje
+            i malo strpljenja dok komadići ne pronađu svoje mjesto.
+          </p>
+        </div>
+
+        <div class="simple-card">
+          <h3>ŠTO TI NE TREBA?</h3>
+          <p>
+            Umjetničko obrazovanje, iskustvo u crtanju
+            ili unaprijed osmišljen savršen rezultat.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        Na radionici ćeš se upoznati s materijalima i alatima.
+        Prije dolaska ipak provjeri informacije organizatora
+        o tome što je uključeno u cijenu i trebaš li što ponijeti.
+      </p>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">03 / ODABIR MOTIVA</p>
+
+      <h2>ZA POČETAK — NEŠTO JEDNOSTAVNO.</h2>
+
+      <p>
+        Cvijet, jednostavan ornament, stilizirana ribica
+        ili leptir. To su motivi koje Miroslav preporučuje
+        onima koji prvi put izrađuju mozaik.
+      </p>
+
+      <p>
+        Boje biraš sam. Ako, primjerice, izrađuješ pticu,
+        ne moraš ponavljati boje kakve ona ima u prirodi.
+        Možeš se poigrati vlastitom kombinacijom,
+        uz malo pažnje na sklad boja.
+      </p>
+
+      <figure class="try-photo">
+        <img
+          src="/images/mosaic-art-birds-and-cups.jpg"
+          alt="Mozaičke ptice izrađene od raznobojnih pločica s dekorativnim šalicama."
+          loading="lazy"
+        >
+        <figcaption>
+          Primjeri mozaičkih radova — ustupljena fotografija.
+        </figcaption>
+      </figure>
+
+      <div class="try-highlight">
+        Motiv je početak.<br>
+        Boje su tvoj izbor.
+      </div>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">04 / RAD S MATERIJALIMA</p>
+
+      <h2>NAJVEĆI IZAZOV? KLJEŠTA.</h2>
+
+      <p>
+        Komadi pločica ne dolaze uvijek u obliku koji ti treba.
+        Zato se režu i prilagođavaju motivu.
+      </p>
+
+      <p>
+        Prema Miroslavovu iskustvu, početnicima je upravo
+        rukovanje posebnim kliještima za rezanje pločica
+        često najizazovniji dio procesa.
+      </p>
+
+      <p>
+        Alat se koristi uz upute voditelja radionice.
+        Ne treba žuriti: cilj je upoznati tehniku
+        i postupno steći osjećaj za rad s materijalom.
+      </p>
+
+      <div class="try-note">
+        Kod rezanja pločica važno je slijediti sigurnosne
+        upute voditelja, osobito zbog oštrih rubova
+        i sitnih komadića materijala.
+      </div>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">05 / ZAVRŠNI DIO</p>
+
+      <h2>A ONDA MOZAIK ZABLISTA.</h2>
+
+      <p>
+        Kad su pločice složene i rad spreman za završnu obradu,
+        dolazi dio koji je početnicima, prema Miroslavu,
+        često najzanimljiviji: fugiranje.
+      </p>
+
+      <p>
+        Prostor između pločica ispunjava se masom za fugiranje.
+        Upravo tada rad dobiva povezan, dovršen izgled
+        i motiv počinje dolaziti do izražaja.
+      </p>
+
+      <figure class="try-photo">
+        <img
+          src="/images/mosaic-art-floral-panel.jpg"
+          alt="Gotov cvjetni mozaik sa zelenim, bijelim i narančastim pločicama."
+          loading="lazy"
+        >
+        <figcaption>
+          Gotov mozaik — primjer kako se pojedini komadići povezuju u cjelinu.
+        </figcaption>
+      </figure>
+
+      <p>
+        Ne mora svaki rad biti savršeno precizan.
+        Važno je dobiti osjećaj za tehniku
+        i uživati u onome što nastaje.
+      </p>
+
+      <div class="try-highlight">
+        „Potrebno je malo preciznosti, ali to ne treba nikoga plašiti.
+        Ipak ne radimo mozaike za starorimske vile.”
+      </div>
+
+      <p>
+        — Miroslav Bušić
+      </p>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">06 / ŠTO PONOSIŠ KUĆI?</p>
+
+      <h2>VIŠE OD GOTOVOG RADA.</h2>
+
+      <p>
+        Jedna radionica neće te pretvoriti u majstora mozaika.
+        I Miroslav to otvoreno govori.
+      </p>
+
+      <p>
+        Ali upoznat ćeš osnove tehnike, materijale i alate,
+        naučiti nešto novo i, kako on opisuje,
+        ponijeti kući vlastiti rad i puno korisnih savjeta.
+      </p>
+
+      <p>
+        Ono što Miroslav posebno voli kod vođenja radionica
+        jest promatrati kako svaka osoba istom zadatku
+        pristupa na svoj način. Zato, kaže, nikad ne nastanu
+        dva potpuno ista rada.
+      </p>
+
+      <div class="try-note">
+        Jedna je polaznica iskustvo na radionici
+        opisala riječima: „Ovo je terapija za mozak.”
+        Lijep opis vremena u kojem si usredotočen
+        na nešto sasvim drukčije od svakodnevice.
+      </div>
+    </section>
+
+  </div>
+
+  <section class="try-section verdict">
+    <div class="try-verdict-inner">
+      <p class="section-label">07 / TVOJ SLJEDEĆI KORAK</p>
+
+      <h2>HOĆEŠ LI PROBATI?</h2>
+
+      <p>
+        Ako te privukla ideja da od malih komada pločica
+        napraviš nešto svoje, možda je baš mozaik
+        tvoj sljedeći TRY.
+      </p>
+
+      <p>
+        Upoznaj radionice Miroslava Bušića
+        i provjeri gdje se možeš okušati u ovoj tehnici.
+      </p>
+
+      <a href="/hr/mosaic-making-where-to-try.html" class="verdict-link">
+        GDJE PROBATI →
+      </a>
+    </div>
+  </section>
+
+  <div class="guide-footer-nav">
+    <a href="/hr/mosaic-making.html">
+      ← NATRAG NA IZRADU MOZAIKA
+    </a>
+  </div>
+
+</main>
+
+<script src="../script.js"></script>
+<script src="/app/app-navigation.js" defer></script>
+<script src="/consent.js" defer></script>
+
+</body>
+</html>
