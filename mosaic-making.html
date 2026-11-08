@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>Mosaic Making | MOVE&TRY</title>
+  <meta name="description" content="Discover mosaic making with MOVE&TRY. Learn what to expect from your first mosaic workshop, explore the process and find out where to try it.">
+  <link rel="canonical" href="https://moveandtry.com/mosaic-making.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/mosaic-making.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/mosaic-making.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/mosaic-making.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/consent.css">
+  <link rel="stylesheet" href="/app/app-navigation.css">
+
+  <style>
+    .header-behind-link {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
+    }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
+    .activity-page .activity-header.mosaic-photo-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #111;
+      color: #fff;
+      padding: 60px 48px;
+    }
+
+    .mosaic-photo-hero .mosaic-hero-photos {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .mosaic-photo-hero .mosaic-hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: brightness(.58) contrast(1.06) saturate(.86);
+      animation: mosaicHeroFade 12s ease-in-out infinite;
+    }
+
+    .mosaic-photo-hero .mosaic-hero-photo:first-child {
+      object-position: center center;
+      animation-delay: 0s;
+    }
+
+    .mosaic-photo-hero .mosaic-hero-photo:last-child {
+      object-position: center center;
+      animation-delay: -6s;
+    }
+
+    .mosaic-photo-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        180deg,
+        rgba(8, 8, 8, .28) 0%,
+        rgba(8, 8, 8, .54) 46%,
+        rgba(8, 8, 8, .90) 100%
+      );
+      pointer-events: none;
+    }
+
+    .activity-page .mosaic-photo-hero .activity-page-type,
+    .activity-page .mosaic-photo-hero h1,
+    .activity-page .mosaic-photo-hero .activity-page-intro,
+    .activity-page .mosaic-photo-hero .activity-page-intro strong,
+    .activity-page .mosaic-photo-hero .activity-nav,
+    .activity-page .mosaic-photo-hero .activity-nav span,
+    .activity-page .mosaic-photo-hero .activity-nav a {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .activity-page .mosaic-photo-hero .activity-page-type {
+      color: #f0cf57;
+    }
+
+    .activity-page .mosaic-photo-hero .activity-page-intro {
+      color: rgba(255, 255, 255, .90);
+    }
+
+    .activity-page .mosaic-photo-hero .activity-nav span,
+    .activity-page .mosaic-photo-hero .activity-nav a {
+      border-color: rgba(255, 255, 255, .42);
+    }
+
+    @keyframes mosaicHeroFade {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      .activity-page .activity-header.mosaic-photo-hero {
+        min-height: 380px;
+        padding: 48px 24px;
+      }
+
+      .site-header .header-behind-link {
+        display: none !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mosaic-photo-hero .mosaic-hero-photo {
+        animation: none;
+        opacity: 0;
+      }
+
+      .mosaic-photo-hero .mosaic-hero-photo:first-child {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo" aria-label="MOVE&TRY home">
+    <img src="/images/move-and-try-logo.png" alt="MOVE&TRY">
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/where-to-try.html">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="/behind-move-and-try.html" class="header-behind-link">
+      BEHIND MOVE & TRY
+    </a>
+
+    <div class="header-language">
+      <span class="language-active">EN</span>
+      <span>|</span>
+      <a href="/hr/mosaic-making.html" onclick="setLanguage('hr')">HR</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <nav>
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/where-to-try.html">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+    <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
+  </nav>
+
+  <div class="mobile-menu-language">
+    <span class="language-active">EN</span>
+    <span>|</span>
+    <a href="/hr/mosaic-making.html" onclick="setLanguage('hr')">HR</a>
+  </div>
+</div>
+
+<main class="activity-page">
+
+  <a href="/create.html" class="back-link">
+    ← CREATE
+  </a>
+
+  <header class="activity-header mosaic-photo-hero">
+
+    <div class="mosaic-hero-photos" aria-hidden="true">
+      <img
+        class="mosaic-hero-photo"
+        src="/images/mosaic-making-detail.jpg"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+      >
+      <img
+        class="mosaic-hero-photo"
+        src="/images/mosaic-making-process.jpg"
+        alt=""
+        loading="eager"
+      >
+    </div>
+
+    <p class="activity-page-type">
+      CREATE · MOSAIC MAKING
+    </p>
+
+    <h1>MOSAIC MAKING</h1>
+
+    <p class="activity-page-intro">
+      Small pieces, colours and a single idea.<br>
+      <strong>What will you create when you start putting them together your way?</strong>
+    </p>
+
+    <div class="activity-nav">
+      <a href="/mosaic-making-guide.html" class="activity-nav-active">
+        GUIDE ✓
+      </a>
+
+      <span>EXPERIENCES</span>
+
+      <a href="/mosaic-making-expert.html" class="activity-nav-active">
+        EXPERT ✓
+      </a>
+
+      <a href="/mosaic-making-where-to-try.html" class="activity-nav-active">
+        WHERE TO TRY ✓
+      </a>
+    </div>
+
+  </header>
+
+  <section class="activity-content-section">
+
+    <p class="section-label">
+      EXPLORE MOSAIC MAKING
+    </p>
+
+    <h2>
+      PIECE BY PIECE. SOMETHING UNIQUELY YOURS.
+    </h2>
+
+    <div class="activity-content-grid">
+
+      <a href="/mosaic-making-guide.html" class="content-card">
+        <span class="content-card-type">GUIDE ✓</span>
+
+        <h3>
+          WHAT DOES MAKING YOUR FIRST MOSAIC LOOK LIKE?
+        </h3>
+
+        <p>
+          From choosing a design and colours to cutting tiles,
+          arranging pieces and grouting. Discover what to expect
+          and why you don't need any previous experience.
+        </p>
+
+        <span class="content-card-action">
+          READ THE GUIDE →
+        </span>
+      </a>
+
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">EXPERIENCES</span>
+
+        <h3>
+          WHAT DOES IT FEEL LIKE TO MAKE YOUR FIRST MOSAIC?
+        </h3>
+
+        <p>
+          Stories from people who picked up tiles
+          and tools for the first time and discovered
+          what they could create.
+        </p>
+
+        <span class="content-card-status">
+          COMING SOON
+        </span>
+      </div>
+
+      <a href="/mosaic-making-expert.html" class="content-card">
+        <span class="content-card-type">EXPERT VOICE ✓</span>
+
+        <h3>
+          MIROSLAV BUŠIĆ: FROM LEFTOVER TILES TO MOSAICS.
+        </h3>
+
+        <p>
+          More than ten years ago, he began exploring
+          mosaic making on his own. Today, he shares
+          his experience with people making their first mosaic.
+        </p>
+
+        <span class="content-card-action">
+          MEET MIROSLAV →
+        </span>
+      </a>
+
+      <a href="/mosaic-making-where-to-try.html" class="content-card">
+        <span class="content-card-type">WHERE TO TRY ✓</span>
+
+        <h3>
+          WHERE CAN YOU TRY MOSAIC MAKING?
+        </h3>
+
+        <p>
+          Discover mosaic-making workshops
+          with Miroslav Bušić at the Luce Sunce
+          creative centre in Zagreb.
+        </p>
+
+        <span class="content-card-action">
+          SEE WHERE TO TRY →
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="activity-contribute">
+
+    <p class="section-label">
+      YOUR EXPERIENCE
+    </p>
+
+    <h2>
+      HAVE YOU ALREADY MADE YOUR FIRST MOSAIC?
+    </h2>
+
+    <p>
+      Which design did you choose?
+      Did you enjoy arranging the tiles,
+      choosing colours or seeing the finished piece most?
+
+      Share your experience.
+      Your story might be just what encourages
+      someone else to try mosaic making.
+    </p>
+
+    <a href="/share-experience.html" class="activity-contribute-link">
+      SHARE YOUR EXPERIENCE →
+    </a>
+
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+<script src="/app/app-navigation.js" defer></script>
+
+<script>
+  if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+  ) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js', { scope: '/' })
+        .catch(error =>
+          console.warn('MOVE&TRY public service worker:', error)
+        );
+    });
+  }
+</script>
+
+<script src="/consent.js" defer></script>
+
+</body>
+</html>
