@@ -2621,15 +2621,18 @@
                 inspiration: 'Inspiration'
               };
 
+       
         const columnLabels =
           language === 'hr'
             ? {
                 all: 'Sve kolumne',
-                lidija: 'Lidija | MOVE&TRY'
+                lidija: 'Lidija | MOVE&TRY',
+                nikolina: 'Ne samo ono što vidimo'
               }
             : {
                 all: 'All columns',
-                lidija: 'Lidija | MOVE&TRY'
+                lidija: 'Lidija | MOVE&TRY',
+                nikolina: 'Beyond What We See'
               };
 
         const columnProfiles = {
@@ -2638,6 +2641,11 @@
               'Osobna kolumna osnivačice MOVE&TRY i urednice The Journala.',
               'O znatiželji, novim počecima, ljudima, idejama i svemu što nastaje između pitanja „što ako?” i odluke da ipak probamo.',
               'Ponekad o MOVE&TRY-u iza kulisa, ponekad o vlastitim iskustvima, a ponekad jednostavno o stvarima koje me natjeraju da zastanem, razmislim ili pogledam nešto malo drukčije.'
+            ],
+            nikolina: [
+              'Kolumnu „Ne samo ono što vidimo” piše Nikolina Đurić, dječja i adolescentna integrativna psihoterapeutkinja, socijalna radnica i osnivačica Lumosa.',
+              'O djetinjstvu, adolescenciji, roditeljstvu, emocijama i odnosima — i svemu što se krije ispod površine svakodnevnih ponašanja.',
+              'O prostoru za razumijevanje onoga što nije uvijek vidljivo na prvi pogled.'
             ]
           },
 
@@ -2646,9 +2654,15 @@
               'A personal column by the founder of MOVE&TRY and editor of The Journal.',
               'On curiosity, new beginnings, people, ideas, and everything that happens between asking “what if?” and deciding to give it a try.',
               'Sometimes about MOVE&TRY behind the scenes, sometimes about personal experiences, and sometimes simply about the things that make me pause, reflect, or look at something a little differently.'
+            ],
+            nikolina: [
+              '“Beyond What We See” is a column by Nikolina Đurić, an integrative child and adolescent psychotherapist, social worker and founder of Lumos.',
+              'On childhood, adolescence, parenting, emotions and relationships — and everything that lies beneath everyday behaviours.',
+              'A space to explore what is not always visible at first glance.'
             ]
           }
         };
+
 
         let filtered =
           journalFilter === 'all'
@@ -2815,10 +2829,15 @@
                   `
                 ).join('')
               : `
+                
                 <p class="app-journal-message">
-                  ${language === 'hr'
-                    ? 'Još nema članaka u ovoj kategoriji.'
-                    : 'No articles in this category yet.'}
+                  ${journalFilter === 'personal' && journalColumn === 'nikolina'
+                    ? (language === 'hr'
+                        ? 'PRVI TEKST STIŽE USKORO'
+                        : 'FIRST ARTICLE COMING SOON')
+                    : (language === 'hr'
+                        ? 'Još nema članaka u ovoj kategoriji.'
+                        : 'No articles in this category yet.')}
                 </p>
               `
             }
