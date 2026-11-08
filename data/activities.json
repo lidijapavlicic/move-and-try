@@ -58,6 +58,20 @@
       "includeInSurprise": true
     },
     {
+      "id": "creative-workshops-with-children",
+      "category": "create",
+      "name": {
+        "hr": "Kreativne radionice s djecom",
+        "en": "Creative workshops with children"
+      },
+      "url": {
+        "hr": "/hr/creative-workshops-with-children.html",
+        "en": "/creative-workshops-with-children.html"
+      },
+      "published": true,
+      "includeInSurprise": true
+    },
+    {
       "id": "mediation",
       "category": "learn",
       "name": {
