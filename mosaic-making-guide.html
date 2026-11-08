@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <title>Mosaic Making — TRY Guide | MOVE&TRY</title>
+  <meta name="description" content="What happens at your first mosaic-making workshop? Explore designs, tiles, tools and grouting with practical insights from mosaic maker Miroslav Bušić.">
+
+  <link rel="canonical" href="https://moveandtry.com/mosaic-making-guide.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/mosaic-making-guide.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/mosaic-making-guide.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/mosaic-making-guide.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/app/app-navigation.css">
+  <link rel="stylesheet" href="/consent.css">
+
+  <style>
+    .try-page.mt-editorial-try {
+      --try-green: #17251e;
+      --try-green-soft: #b7c5b3;
+      --try-paper: #f7f7f4;
+      --try-ink: #202420;
+      --try-border: #d9ddd5;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      background: var(--try-paper);
+      color: var(--try-ink);
+    }
+
+    .mt-editorial-try,
+    .mt-editorial-try * {
+      box-sizing: border-box;
+    }
+
+    .header-behind-link,
+    .header-behind-link:visited {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .mt-editorial-try .try-back-wrap {
+      background: var(--try-paper);
+    }
+
+    .mt-editorial-try .try-back {
+      display: block;
+      width: min(100% - 48px, 1100px);
+      margin: 0 auto;
+      padding: 29px 0;
+      color: var(--try-green);
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .10em;
+      text-decoration: none;
+    }
+
+    .mt-editorial-try .try-back:hover {
+      text-decoration: underline;
+    }
+
+    .mt-editorial-try .try-editorial-hero {
+      width: 100%;
+      margin: 0;
+      padding: 76px 24px 84px;
+      background: var(--try-green);
+      color: #fff;
+    }
+
+    .mt-editorial-try .try-editorial-hero-inner {
+      width: min(100%, 1100px);
+      margin: 0 auto;
+    }
+
+    .mt-editorial-try .try-editorial-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.22);
+    }
+
+    .mt-editorial-try .try-editorial-top span {
+      color: var(--try-green-soft);
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+    }
+
+    .mt-editorial-try .try-editorial-category {
+      margin: 43px 0 18px;
+      color: #c9d6c4;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .17em;
+    }
+
+    .mt-editorial-try .try-editorial-hero h1 {
+      max-width: 980px;
+      margin: 0 0 26px;
+      color: #fff;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 400;
+      line-height: 1.06;
+      letter-spacing: -.025em;
+    }
+
+    .mt-editorial-try .try-editorial-intro {
+      max-width: 720px;
+      margin: 0 0 36px;
+      color: rgba(255,255,255,.88);
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.85;
+    }
+
+    .mt-editorial-try .try-editorial-scroll {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #c9d6c4;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-decoration: none;
+    }
+
+    .mt-editorial-try .try-editorial-scroll::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: #a5b9a3;
+    }
+
+    .mt-editorial-try .try-editorial-article {
+      width: min(100% - 48px, 760px);
+      margin: 0 auto;
+      padding: 78px 0 96px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      line-height: 1.95;
+    }
+
+    .mt-editorial-try .try-section {
+      margin: 0 0 72px;
+    }
+
+    .mt-editorial-try .try-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .mt-editorial-try .section-label {
+      display: block;
+      margin: 0 0 14px;
+      color: #607665;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .17em;
+    }
+
+    .mt-editorial-try .try-section h2 {
+      margin: 0 0 26px;
+      color: #18231b;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(31px, 4vw, 43px);
+      font-weight: 400;
+      line-height: 1.22;
+    }
+
+    .mt-editorial-try .try-section p {
+      color: #414941;
+      line-height: 1.9;
+    }
+
+    .mt-editorial-try .try-note {
+      margin: 30px 0;
+      padding: 28px 30px;
+      background: #e9ede6;
+      border-left: 3px solid #78927b;
+      color: #414941;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .mt-editorial-try .try-highlight {
+      margin: 38px 0;
+      padding: 10px 0 10px 26px;
+      border-left: 3px solid #819b83;
+      color: #203326;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(27px, 3vw, 36px);
+      line-height: 1.45;
+    }
+
+    .mt-editorial-try .simple-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 32px 0;
+    }
+
+    .mt-editorial-try .simple-card {
+      padding: 26px 24px;
+      background: #e9ede6;
+      border: 1px solid #d9e0d6;
+    }
+
+    .mt-editorial-try .simple-card:nth-child(2) {
+      background: #f0f0ec;
+    }
+
+    .mt-editorial-try .simple-card h3 {
+      margin: 0 0 12px;
+      color: #1d281f;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .mt-editorial-try .simple-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .mt-editorial-try .try-photo {
+      margin: 36px 0;
+    }
+
+    .mt-editorial-try .try-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 560px;
+      object-fit: cover;
+    }
+
+    .mt-editorial-try .try-photo figcaption {
+      margin-top: 12px;
+      color: #687268;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .mt-editorial-try .try-section.verdict {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 85px 24px 92px;
+      background: var(--try-green);
+      color: #fff;
+    }
+
+    .mt-editorial-try .try-verdict-inner {
+      width: min(100%, 900px);
+      margin: 0 auto;
+    }
+
+    .mt-editorial-try .try-section.verdict .section-label {
+      color: var(--try-green-soft);
+    }
+
+    .mt-editorial-try .try-section.verdict h2 {
+      margin: 0 0 27px;
+      color: #fff;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 400;
+    }
+
+    .mt-editorial-try .try-section.verdict p {
+      color: rgba(255,255,255,.85);
+    }
+
+    .mt-editorial-try .verdict-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 24px;
+      border: 1px solid rgba(255,255,255,.55);
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-decoration: none;
+    }
+
+    .mt-editorial-try .verdict-link:hover {
+      background: rgba(255,255,255,.12);
+    }
+
+    .mt-editorial-try .guide-footer-nav {
+      width: 100%;
+      padding: 36px 24px;
+      background: var(--try-paper);
+      text-align: center;
+    }
+
+    .mt-editorial-try .guide-footer-nav a {
+      color: var(--try-green);
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .10em;
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .mt-editorial-try .try-back {
+        width: calc(100% - 40px);
+        padding: 24px 0;
+      }
+
+      .mt-editorial-try .try-editorial-hero {
+        padding: 52px 20px 64px;
+      }
+
+      .mt-editorial-try .try-editorial-article {
+        width: calc(100% - 40px);
+        padding: 56px 0 75px;
+        font-size: 15px;
+      }
+
+      .mt-editorial-try .try-section {
+        margin-bottom: 56px;
+      }
+
+      .mt-editorial-try .simple-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mt-editorial-try .try-section.verdict {
+        padding: 67px 20px 76px;
+      }
+
+      .site-header .header-behind-link {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo" aria-label="MOVE&TRY home">
+    <img src="/images/move-and-try-logo.png" alt="MOVE&TRY">
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/where-to-try.html">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="/behind-move-and-try.html" class="header-behind-link">
+      BEHIND MOVE & TRY
+    </a>
+
+    <div class="header-language">
+      <span class="language-active">EN</span>
+      <span>|</span>
+      <a href="/hr/mosaic-making-guide.html" onclick="setLanguage('hr')">HR</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <nav>
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/where-to-try.html">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+    <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
+  </nav>
+
+  <div class="mobile-menu-language">
+    <span class="language-active">EN</span>
+    <span>|</span>
+    <a href="/hr/mosaic-making-guide.html" onclick="setLanguage('hr')">HR</a>
+  </div>
+</div>
+
+<main class="try-page mt-editorial-try">
+
+  <div class="try-back-wrap">
+    <a href="/mosaic-making.html" class="try-back">
+      ← MOSAIC MAKING
+    </a>
+  </div>
+
+  <header class="try-editorial-hero">
+    <div class="try-editorial-hero-inner">
+
+      <div class="try-editorial-top">
+        <span>MOVE & TRY / THE GUIDE</span>
+        <span>CREATE · MOSAIC MAKING</span>
+      </div>
+
+      <p class="try-editorial-category">TRY · CREATE</p>
+
+      <h1>YOUR FIRST MOSAIC.</h1>
+
+      <p class="try-editorial-intro">
+        A few tiles, a little colour and a design you chose yourself.
+        What is it really like to try mosaic making for the first time?
+      </p>
+
+      <a href="#first-step" class="try-editorial-scroll">
+        EXPLORE THE GUIDE ↓
+      </a>
+
+    </div>
+  </header>
+
+  <div class="try-editorial-article">
+
+    <section class="try-section" id="first-step">
+      <p class="section-label">01 / GETTING STARTED</p>
+
+      <h2>FROM LARGER TILES TO YOUR FIRST IDEA.</h2>
+
+      <p>
+        At your first workshop, you'll get to know
+        the technique, materials and tools.
+        Then comes your first creative decision:
+        choosing a design you'd like to make.
+      </p>
+
+      <p>
+        Larger pieces of tile are cut into smaller ones,
+        shaped to fit your chosen design and gradually
+        arranged into a complete composition.
+        That's how your first mosaic begins to take shape.
+      </p>
+
+      <p>
+        This is how Miroslav Bušić describes the beginning
+        of a workshop. A self-taught mosaic maker,
+        he has been working with the technique for more
+        than ten years.
+      </p>
+
+      <figure class="try-photo">
+        <img
+          src="/images/mosaic-workshop-participants.jpg"
+          alt="Workshop participants arranging small tiles and making mosaics."
+          loading="lazy"
+        >
+        <figcaption>
+          Mosaic making at a workshop — photograph provided for MOVE&TRY.
+        </figcaption>
+      </figure>
+
+      <div class="try-note">
+        Your first mosaic isn't a test of artistic talent.
+        It's a chance to discover a new material
+        and see what you can make from small pieces.
+      </div>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">02 / DO YOU NEED EXPERIENCE?</p>
+
+      <h2>YOU DON'T NEED TO KNOW HOW TO DRAW.</h2>
+
+      <p>
+        No specific knowledge or previous mosaic-making
+        experience is required. Miroslav says a little
+        sense of space and colour coordination is helpful,
+        but he's happy to guide beginners with that too.
+      </p>
+
+      <div class="simple-grid">
+        <div class="simple-card">
+          <h3>WHAT DO YOU NEED?</h3>
+          <p>
+            Curiosity, a willingness to try something new
+            and a little patience while the pieces find their place.
+          </p>
+        </div>
+
+        <div class="simple-card">
+          <h3>WHAT DON'T YOU NEED?</h3>
+          <p>
+            Art training, drawing experience
+            or a perfectly planned result.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        You'll be introduced to the materials and tools
+        during the workshop. Before attending, check
+        the organiser's information to find out what's included
+        and whether you need to bring anything.
+      </p>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">03 / CHOOSING YOUR DESIGN</p>
+
+      <h2>START WITH SOMETHING SIMPLE.</h2>
+
+      <p>
+        A flower, a simple ornament, a stylised fish
+        or a butterfly. These are the kinds of designs
+        Miroslav recommends to first-time mosaic makers.
+      </p>
+
+      <p>
+        The colours are up to you. If you're making a bird,
+        for example, you don't need to copy its real-life colours.
+        You can create your own combination,
+        while keeping an eye on how the colours work together.
+      </p>
+
+      <figure class="try-photo">
+        <img
+          src="/images/mosaic-art-birds-and-cups.jpg"
+          alt="Colourful mosaic birds featuring decorative teacups."
+          loading="lazy"
+        >
+        <figcaption>
+          Examples of mosaic artwork — photograph provided for MOVE&TRY.
+        </figcaption>
+      </figure>
+
+      <div class="try-highlight">
+        The design is your starting point.<br>
+        The colours are your choice.
+      </div>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">04 / WORKING WITH MATERIALS</p>
+
+      <h2>THE BIGGEST CHALLENGE? THE NIPPERS.</h2>
+
+      <p>
+        Tiles don't always come in the shapes you need.
+        That's why they're cut and adjusted to fit the design.
+      </p>
+
+      <p>
+        According to Miroslav, beginners often find
+        handling the special tile-cutting nippers
+        the most challenging part of the process.
+      </p>
+
+      <p>
+        You'll use the tools with guidance from the workshop leader.
+        There's no need to rush: the aim is to get familiar
+        with the technique and gradually become comfortable
+        working with the material.
+      </p>
+
+      <div class="try-note">
+        When cutting tiles, follow your instructor's safety
+        guidance, especially when handling sharp edges
+        and small fragments.
+      </div>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">05 / THE FINISHING TOUCH</p>
+
+      <h2>AND THEN THE MOSAIC COMES TO LIFE.</h2>
+
+      <p>
+        Once the tiles have been arranged
+        and the piece is ready for finishing,
+        it's time for the part beginners often enjoy most,
+        according to Miroslav: grouting.
+      </p>
+
+      <p>
+        The spaces between the tiles are filled with grout.
+        This is when the artwork takes on a finished,
+        unified appearance and the design really stands out.
+      </p>
+
+      <figure class="try-photo">
+        <img
+          src="/images/mosaic-art-floral-panel.jpg"
+          alt="Finished floral mosaic with green, white and orange tiles."
+          loading="lazy"
+        >
+        <figcaption>
+          A finished mosaic — an example of small pieces becoming a whole.
+        </figcaption>
+      </figure>
+
+      <p>
+        Every piece doesn't need to be perfectly precise.
+        What matters is getting a feel for the technique
+        and enjoying the process.
+      </p>
+
+      <div class="try-highlight">
+        “A little precision is needed, but that shouldn't scare anyone.
+        After all, we're not making mosaics for ancient Roman villas.”
+      </div>
+
+      <p>
+        — Miroslav Bušić
+      </p>
+    </section>
+
+    <section class="try-section">
+      <p class="section-label">06 / WHAT DO YOU TAKE HOME?</p>
+
+      <h2>MORE THAN A FINISHED PIECE.</h2>
+
+      <p>
+        One workshop won't turn you into a master mosaic maker.
+        Miroslav is quite open about that.
+      </p>
+
+      <p>
+        But you'll discover the basics of the technique,
+        get to know the materials and tools,
+        learn something new and take home your own creation
+        along with plenty of useful advice.
+      </p>
+
+      <p>
+        What Miroslav particularly enjoys about leading
+        workshops is watching how each person approaches
+        the same challenge differently. That's why,
+        he says, no two finished pieces are ever exactly alike.
+      </p>
+
+      <div class="try-note">
+        One participant described the workshop
+        as “therapy for the brain”.
+        A lovely way of describing time spent
+        focusing on something completely different
+        from everyday life.
+      </div>
+    </section>
+
+  </div>
+
+  <section class="try-section verdict">
+    <div class="try-verdict-inner">
+      <p class="section-label">07 / YOUR NEXT STEP</p>
+
+      <h2>READY TO GIVE IT A TRY?</h2>
+
+      <p>
+        If the idea of creating something of your own
+        from little pieces of tile appeals to you,
+        mosaic making might be your next TRY.
+      </p>
+
+      <p>
+        Discover workshops with Miroslav Bušić
+        and find out where you can try the technique.
+      </p>
+
+      <a href="/mosaic-making-where-to-try.html" class="verdict-link">
+        WHERE TO TRY →
+      </a>
+    </div>
+  </section>
+
+  <div class="guide-footer-nav">
+    <a href="/mosaic-making.html">
+      ← BACK TO MOSAIC MAKING
+    </a>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+<script src="/app/app-navigation.js" defer></script>
+<script src="/consent.js" defer></script>
+
+</body>
+</html>
