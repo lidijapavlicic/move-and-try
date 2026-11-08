@@ -786,6 +786,13 @@
                 LIDIJA | MOVE&amp;TRY
             </button>
 
+            <button class="journal-column"
+                    type="button"
+                    data-column="nikolina"
+                    aria-pressed="false">
+                NIKOLINA ĐURIĆ
+            </button>
+
         </nav>
 
         <section class="journal-column-profile"
@@ -1106,7 +1113,8 @@
     };
 
     const columnNames = {
-        lidija: 'LIDIJA | MOVE&TRY'
+        lidija: 'LIDIJA | MOVE&TRY',
+        nikolina: 'NIKOLINA ĐURIĆ'
     };
 
     const columnProfiles = {
@@ -1116,6 +1124,14 @@
                 'Osobna kolumna osnivačice MOVE&TRY i urednice The Journala.',
                 'O znatiželji, novim počecima, ljudima, idejama i svemu što nastaje između pitanja „što ako?” i odluke da ipak probamo.',
                 'Ponekad o MOVE&TRY-u iza kulisa, ponekad o vlastitim iskustvima, a ponekad jednostavno o stvarima koje me natjeraju da zastanem, razmislim ili pogledam nešto malo drukčije.'
+            ]
+        },
+        nikolina: {
+            title: 'NE SAMO ONO ŠTO VIDIMO · NIKOLINA ĐURIĆ',
+            paragraphs: [
+                'Kolumna Nikoline Đurić, dječje i adolescentne integrativne psihoterapeutkinje, socijalne radnice i osnivačice Lumosa.',
+                'O djeci, adolescentima, roditeljima, emocijama i odnosima — stručno, toplo i razumljivo.',
+                'O onome što se ponekad krije iza ponašanja, šutnje, ljutnje, povlačenja ili velikih emocija i što ne možemo uvijek vidjeti na prvi pogled.'
             ]
         }
     };
@@ -1291,6 +1307,24 @@
 
         count.textContent =
             countLabel(visibleCount);
+
+        if (
+            category === 'personal' &&
+            activeColumn === 'nikolina' &&
+            visibleCount === 0
+        ) {
+            emptyState.querySelector('.journal-empty-title').textContent =
+                'Prvi tekst stiže uskoro.';
+
+            emptyState.querySelector('.journal-empty-text').textContent =
+                'Nova kolumna „Ne samo ono što vidimo” uskoro donosi svoj prvi tekst.';
+        } else {
+            emptyState.querySelector('.journal-empty-title').textContent =
+                'U ovoj kategoriji još nema objava.';
+
+            emptyState.querySelector('.journal-empty-text').textContent =
+                'Istraži druge kategorije ili nam se vrati uskoro.';
+        }
 
         emptyState.hidden =
             visibleCount > 0;
