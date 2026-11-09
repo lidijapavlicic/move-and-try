@@ -162,56 +162,85 @@
     const instance = {spec,field,bar,paper,heading,excerpt,canvas,selection:null,loaded:null};
     const styleButtons = new Map();
 
-    function updateToolbarState() {
+    function topBlock() {
       const selection = window.getSelection();
-      const node = selection?.anchorNode;
-      const inCanvas = !!(node && canvas.contains(node) &&
-        selection.focusNode && canvas.contains(selection.focusNode));
-      const element = inCanvas
-        ? (node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement)
-        : null;
-
-      const ancestor = selector => !!element?.closest(selector) &&
-        canvas.contains(element.closest(selector));
-      const state = commandName => {
-        try {
-          return inCanvas && !!document.queryCommandState(commandName);
-        } catch (_) {
-          return false;
-        }
-      };
-      const active = {
-        bold: state('bold') || ancestor('b,strong'),
-        italic: state('italic') || ancestor('i,em'),
-        h2: ancestor('h2'),
-        h3: ancestor('h3'),
-        quote: ancestor('blockquote'),
-        bullets: ancestor('ul'),
-        numbers: ancestor('ol'),
-        link: ancestor('a[href]')
-      };
-
-      for (const [action, control] of styleButtons) {
-        control.setAttribute('aria-pressed', String(!!active[action]));
+      let node = selection?.anchorNode;
+      if (!node || !canvas.contains(node)) return null;
+      if (node.nodeType !== Node.ELEMENT_NODE) node = node.parentElement;
+      if (node === canvas) return null;
+      while (node?.parentElement && node.parentElement !== canvas) {
+        node = node.parentElement;
       }
+      return node?.parentElement === canvas ? node : null;
+    }
+
+    function blockKind() {
+      const block = topBlock();
+      if (!block) return 'p';
+      const tag = block.tagName.toLowerCase();
+      if (tag === 'h2') return 'h2';
+      if (tag === 'blockquote') return 'thought';
+      if (tag === 'ol') return 'ordered';
+      return 'p';
     }
 
     function saveSelection() {
-      const s = window.getSelection();
-      if (s && s.rangeCount && canvas.contains(s.anchorNode) && canvas.contains(s.focusNode)) {
-        instance.selection = s.getRangeAt(0).cloneRange();
+      const selection = window.getSelection();
+      if (selection && selection.rangeCount &&
+          canvas.contains(selection.anchorNode) &&
+          canvas.contains(selection.focusNode)) {
+        instance.selection = selection.getRangeAt(0).cloneRange();
       }
     }
+
     function restoreSelection() {
       canvas.focus();
       if (!instance.selection) return;
       try {
         if (!canvas.contains(instance.selection.commonAncestorContainer)) return;
-        const s = window.getSelection();
-        s.removeAllRanges();
-        s.addRange(instance.selection);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(instance.selection);
       } catch (_) {}
     }
+
+    function placeCaretAtEnd(element) {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      range.collapse(false);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      instance.selection = range.cloneRange();
+    }
+
+    function updateToolbarState() {
+      const selection = window.getSelection();
+      const node = selection?.anchorNode;
+      const active = !!(node && canvas.contains(node) &&
+        selection.focusNode && canvas.contains(selection.focusNode));
+      const element = active
+        ? (node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement)
+        : null;
+      const has = selector => {
+        const match = element?.closest(selector);
+        return !!(match && canvas.contains(match));
+      };
+      const execState = command => {
+        try { return active && !!document.queryCommandState(command); }
+        catch (_) { return false; }
+      };
+      for (const [action, control] of styleButtons) {
+        const pressed = action === 'bold'
+          ? execState('bold') || has('strong,b')
+          : action === 'italic'
+            ? execState('italic') || has('em,i')
+            : has('a[href]');
+        control.setAttribute('aria-pressed', String(pressed));
+      }
+      if (active) styleSelect.value = blockKind();
+    }
+
     function sync() {
       const value = serialize(canvas);
       if (field.value !== value) {
@@ -222,53 +251,112 @@
       updateToolbarState();
     }
 
+    function setParagraphStyle(style) {
+      restoreSelection();
+      let block = topBlock();
+      if (!block) {
+        block = document.createElement('p');
+        block.append(document.createElement('br'));
+        canvas.append(block);
+      }
+
+      if (style === blockKind()) {
+        updateToolbarState();
+        return;
+      }
+
+      // Switching styles replaces a whole block rather than nesting them.
+      // This also repairs the nested quote/list structure that the old toolbar allowed.
+      const tag = style === 'h2' ? 'h2'
+        : style === 'thought' ? 'blockquote'
+          : style === 'ordered' ? 'ol' : 'p';
+      const replacement = document.createElement(tag);
+
+      if (tag === 'ol') {
+        const item = document.createElement('li');
+        if (block.tagName === 'OL' || block.tagName === 'UL') {
+          for (const li of Array.from(block.querySelectorAll(':scope > li'))) {
+            const copy = document.createElement('li');
+            while (li.firstChild) copy.append(li.firstChild);
+            replacement.append(copy);
+          }
+        } else {
+          while (block.firstChild) item.append(block.firstChild);
+          replacement.append(item);
+        }
+      } else if (block.tagName === 'OL' || block.tagName === 'UL') {
+        // Convert an entire list back to normal text to avoid trapped lists.
+        const parts = Array.from(block.children)
+          .filter(child => child.tagName === 'LI')
+          .map(child => child.textContent.trim())
+          .filter(Boolean);
+        replacement.textContent = parts.join(' ');
+      } else if (block.querySelector('blockquote,ul,ol')) {
+        // Clean up legacy nested blocks rather than carrying their borders forward.
+        replacement.textContent = block.textContent.trim();
+      } else {
+        while (block.firstChild) replacement.append(block.firstChild);
+      }
+
+      block.replaceWith(replacement);
+      placeCaretAtEnd(tag === 'ol' ? replacement.lastElementChild : replacement);
+      styleSelect.value = style;
+      sync();
+      canvas.focus();
+    }
+
     function command(action) {
       restoreSelection();
       if (action === 'link') {
-        const s = window.getSelection();
-        if (!s || s.isCollapsed || !s.toString().trim()) {
-          alert('Najprije označi tekst koji želiš pretvoriti u poveznicu.');
+        const selection = window.getSelection();
+        if (!selection || selection.isCollapsed || !selection.toString().trim()) {
+          alert('Prvo označi tekst koji želiš povezati.');
           return;
         }
-        const raw = prompt('Poveznica (https://...)');
-        if (raw === null) return;
-        const url = validUrl(raw,false);
+        const input = prompt('Poveznica (https://...)');
+        if (input === null) return;
+        const url = validUrl(input,false);
         if (!url) { alert('Unesi valjanu HTTPS poveznicu.'); return; }
         restoreSelection();
         document.execCommand('createLink', false, url);
-      } else {
-        const commands = {
-          bold:['bold',null], italic:['italic',null],
-          h2:['formatBlock','h2'],h3:['formatBlock','h3'],
-          quote:['formatBlock','blockquote'],
-          bullets:['insertUnorderedList',null],
-          numbers:['insertOrderedList',null]
-        };
-        const info = commands[action];
-        if (info) document.execCommand(info[0], false, info[1]);
+      } else if (action === 'bold' || action === 'italic') {
+        document.execCommand(action, false, null);
       }
       sync();
       canvas.focus();
       updateToolbarState();
     }
 
-    const items = [
+    const styleSelect = document.createElement('select');
+    styleSelect.className = 'mt-rich-style-select';
+    styleSelect.setAttribute('aria-label','Vrsta odlomka');
+    styleSelect.title = 'Vrsta odlomka — odaberi običan tekst za povratak';
+    [
+      ['p','Običan tekst'],
+      ['h2','Podnaslov'],
+      ['thought','Istaknuta misao'],
+      ['ordered','Numerirani popis']
+    ].forEach(([value,label]) => {
+      const option = document.createElement('option');
+      option.value=value;
+      option.textContent=label;
+      styleSelect.append(option);
+    });
+    styleSelect.addEventListener('change', () => setParagraphStyle(styleSelect.value));
+    bar.append(styleSelect);
+
+    for (const [action,caption,title] of [
       ['bold','B','Podebljaj'],
       ['italic','I','Kurziv'],
-      ['h2','H2','Podnaslov'],
-      ['h3','H3','Manji podnaslov'],
-      ['quote','❝','Citat'],
-      ['bullets','•','Popis'],
-      ['numbers','1.','Numerirani popis'],
-      ['link','🔗','Poveznica']
-    ];
-    for (const item of items) {
-      const b = button(item[1],item[2],() => command(item[0]));
-      b.setAttribute('aria-pressed', 'false');
-      styleButtons.set(item[0], b);
-      b.addEventListener('mousedown',event => event.preventDefault());
-      bar.append(b);
+      ['link','🔗','Dodaj poveznicu']
+    ]) {
+      const control = button(caption,title,() => command(action));
+      control.setAttribute('aria-pressed','false');
+      control.addEventListener('mousedown',e => e.preventDefault());
+      styleButtons.set(action,control);
+      bar.append(control);
     }
+
     bar.append(button('PREGLEDAJ ČLANAK','Završni pregled preko cijelog ekrana',openPreview,'mt-rich-preview-button'));
 
     instance.load = function () {
