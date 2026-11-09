@@ -70,6 +70,10 @@
       }
       if (node.nodeType !== Node.ELEMENT_NODE) continue;
       const tag = node.tagName.toLowerCase();
+      if (tag === 'hr') {
+        blocks.push('---');
+        continue;
+      }
       if (tag === 'figure') {
         const img = node.querySelector('img');
         const url = img && validUrl(img.getAttribute('src'), true);
@@ -357,6 +361,25 @@
       bar.append(control);
     }
 
+    bar.append(button('— CRTA', 'Umetni razdjelnu crtu između odlomaka', () => {
+      restoreSelection();
+      const block = topBlock();
+      const hr = document.createElement('hr');
+      hr.className = 'mt-article-divider';
+      hr.contentEditable = 'false';
+      hr.title = 'Klikni za uklanjanje crte';
+      const next = document.createElement('p');
+      next.append(document.createElement('br'));
+      if (block) {
+        block.after(hr, next);
+      } else {
+        canvas.append(hr, next);
+      }
+      placeCaretAtEnd(next);
+      sync();
+      canvas.focus();
+    }, 'mt-rich-divider-button'));
+
     bar.append(button('PREGLEDAJ ČLANAK','Završni pregled preko cijelog ekrana',openPreview,'mt-rich-preview-button'));
 
     instance.load = function () {
@@ -368,6 +391,13 @@
       updateToolbarState();
     };
 
+    canvas.addEventListener('click', event => {
+      const rule = event.target;
+      if (rule?.tagName !== 'HR' || rule.parentElement !== canvas) return;
+      if (!confirm('Ukloniti razdjelnu crtu iz članka?')) return;
+      rule.remove();
+      sync();
+    });
     canvas.addEventListener('input',sync);
     canvas.addEventListener('keyup', () => {saveSelection();updateToolbarState();});
     canvas.addEventListener('mouseup', () => {saveSelection();updateToolbarState();});
