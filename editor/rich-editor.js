@@ -382,6 +382,8 @@
 
     bar.append(button('PREGLEDAJ ČLANAK','Završni pregled preko cijelog ekrana',openPreview,'mt-rich-preview-button'));
 
+    instance.sync = sync;
+
     instance.load = function () {
       render(canvas,field.value);
       updateHead(instance);
@@ -514,15 +516,22 @@
     specs.forEach(createInstance);
     const panel=$('editor-panel');
     if(panel){
+      // Opening a new article can happen while the panel is already visible.
+      // A hidden-attribute observer alone misses that transition.
+      panel.addEventListener('journal-editor-open', () => {
+        closePreview();
+        instances.forEach(instance => instance.load());
+      });
       const observer=new MutationObserver(() => {
-        if(!panel.hidden){
-          instances.forEach(instance => instance.load());
-        } else {
-          closePreview();
-        }
+        if (panel.hidden) closePreview();
       });
       observer.observe(panel,{attributes:true,attributeFilter:['hidden']});
     }
+    // Keep the actual persisted textareas aligned with the visible editor,
+    // including when Save is clicked immediately after a toolbar action.
+    $('article-form')?.addEventListener('submit', () => {
+      instances.forEach(instance => instance.sync());
+    }, true);
   }
   window.MoveTryJournalRichEditor={enabled:true,initialize};
   document.addEventListener('DOMContentLoaded',initialize,{once:true});
