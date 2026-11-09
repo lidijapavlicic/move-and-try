@@ -133,6 +133,7 @@
 
     let list = null;
     let paragraph = null;
+    let quoteBlock = null;
 
     for (const line of lines) {
       const clean = line.trim();
@@ -140,6 +141,7 @@
       if (!clean) {
         list = null;
         paragraph = null;
+        quoteBlock = null;
         continue;
       }
 
@@ -205,6 +207,12 @@
       if (heading || quote) {
         list = null;
         paragraph = null;
+        if (quote && quoteBlock) {
+          quoteBlock.append(document.createElement('br'));
+          renderInline(quoteBlock, quote[1]);
+          continue;
+        }
+        quoteBlock = null;
 
         const tag = heading
           ? heading[1].length === 2
@@ -220,20 +228,22 @@
         );
 
         container.append(element);
+        if (quote) quoteBlock = element;
         continue;
       }
 
       if (bullet) {
         paragraph = null;
+        quoteBlock = null;
 
-        const tag =
-          /^\d/.test(bullet[1]) ? 'ol' : 'ul';
+        const tag = /^\d/.test(bullet[1]) ? 'ol' : 'ul';
+        const dashes = bullet[1] === '*';
 
-        if (
-          !list ||
-          list.tagName.toLowerCase() !== tag
-        ) {
+        if (!list ||
+            list.tagName.toLowerCase() !== tag ||
+            (tag === 'ul' && list.classList.contains('mt-list-dashes') !== dashes)) {
           list = document.createElement(tag);
+          if (dashes) list.classList.add('mt-list-dashes');
           container.append(list);
         }
 
@@ -246,6 +256,7 @@
       }
 
       list = null;
+      quoteBlock = null;
 
       if (!paragraph) {
         paragraph = document.createElement('p');
