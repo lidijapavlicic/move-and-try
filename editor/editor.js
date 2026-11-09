@@ -626,6 +626,9 @@
 
     setMessage('editor-message', '');
     $('editor-panel').hidden = false;
+    // Always reload the visual surface from this article, even if the editor
+    // was already visible when switching from one article to another.
+    $('editor-panel').dispatchEvent(new Event('journal-editor-open'));
 
     $('editor-panel').scrollIntoView({
       behavior: 'smooth'
