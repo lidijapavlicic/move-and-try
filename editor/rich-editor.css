@@ -13,6 +13,14 @@
 .mt-rich-toolbar button:hover,.mt-rich-toolbar button:focus-visible {
   background:var(--soft,#eeefe9);border-color:var(--green,#687b61);
 }
+.mt-rich-toolbar button[aria-pressed="true"] {
+  background:var(--green,#687b61);color:#fff;border-color:var(--green,#687b61);
+  box-shadow:inset 0 0 0 1px var(--green,#687b61);
+}
+.mt-rich-toolbar button[aria-pressed="true"]:hover,
+.mt-rich-toolbar button[aria-pressed="true"]:focus-visible {
+  background:#52674e;color:#fff;border-color:#52674e;
+}
 .mt-rich-toolbar button.mt-rich-preview-button {
   margin-left:auto;background:var(--green,#687b61);border-color:var(--green,#687b61);
   color:#fff;padding-inline:15px;
