@@ -1,0 +1,91 @@
+
+/* MOVE&TRY | The Journal — visual writing surface */
+.mt-rich-wrapper { margin: 0 0 16px; }
+.mt-rich-toolbar {
+  display:flex;align-items:center;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;
+  padding:8px 0 13px;scrollbar-width:thin;white-space:nowrap;
+}
+.mt-rich-toolbar button {
+  flex:0 0 auto;min-width:38px;min-height:38px;padding:7px 10px;
+  border:1px solid var(--line,#dcded6);background:#fff;color:var(--ink,#171916);
+  font:700 11px/1.3 Manrope,Arial,sans-serif;letter-spacing:0;
+}
+.mt-rich-toolbar button:hover,.mt-rich-toolbar button:focus-visible {
+  background:var(--soft,#eeefe9);border-color:var(--green,#687b61);
+}
+.mt-rich-toolbar button.mt-rich-preview-button {
+  margin-left:auto;background:var(--green,#687b61);border-color:var(--green,#687b61);
+  color:#fff;padding-inline:15px;
+}
+.mt-rich-paper {
+  background:#fff;border:1px solid var(--line,#dcded6);
+  padding:clamp(24px,5vw,58px);max-width:880px;margin-inline:auto;
+  min-height:450px;overflow-wrap:anywhere;
+}
+.mt-rich-paper-title,.mt-rich-reader-title {
+  font:400 clamp(33px,5vw,52px)/1.15 "DM Serif Display",Georgia,serif;
+  color:var(--ink,#171916);margin:0 0 20px;
+}
+.mt-rich-paper-excerpt,.mt-rich-reader-excerpt {
+  font:400 15px/1.85 Manrope,Arial,sans-serif;color:var(--muted,#6d716a);
+  margin:0 0 35px;white-space:pre-wrap;
+}
+.mt-rich-canvas,.mt-rich-reader-body {
+  font:400 16px/1.95 Manrope,Arial,sans-serif;color:var(--ink,#171916);
+  min-height:210px;outline:none;overflow-wrap:anywhere;
+}
+.mt-rich-canvas:empty::before {
+  content:attr(data-placeholder);color:#989b94;pointer-events:none;
+}
+.mt-rich-canvas:focus-visible {outline:2px solid #b4c4ad;outline-offset:10px;}
+.mt-rich-canvas p,.mt-rich-reader-body p {margin:0 0 16px;line-height:1.95;}
+.mt-rich-canvas h2,.mt-rich-reader-body h2 {
+  font:400 clamp(24px,3.5vw,32px)/1.3 "DM Serif Display",Georgia,serif;
+  margin:28px 0 14px;
+}
+.mt-rich-canvas h3,.mt-rich-reader-body h3 {
+  font:400 clamp(21px,3vw,25px)/1.35 "DM Serif Display",Georgia,serif;
+  margin:24px 0 12px;
+}
+.mt-rich-canvas blockquote,.mt-rich-reader-body blockquote {
+  margin:22px 0;padding:4px 0 4px 20px;border-left:3px solid var(--green,#687b61);
+  color:var(--muted,#6d716a);
+}
+.mt-rich-canvas ul,.mt-rich-canvas ol,.mt-rich-reader-body ul,.mt-rich-reader-body ol {
+  margin:10px 0 20px;padding-left:26px;
+}
+.mt-rich-canvas li,.mt-rich-reader-body li {margin:5px 0;}
+.mt-rich-canvas a,.mt-rich-reader-body a {color:inherit;text-decoration:underline;text-underline-offset:3px;}
+.mt-rich-canvas figure,.mt-rich-reader-body figure {margin:25px 0;text-align:center;}
+.mt-rich-canvas figure img,.mt-rich-reader-body figure img {max-width:100%;height:auto;}
+.mt-rich-canvas figcaption,.mt-rich-reader-body figcaption {
+  color:var(--muted,#6d716a);font-size:12px;
+}
+.mt-rich-help {color:var(--muted,#6d716a);font-size:11px;line-height:1.6;margin:10px 0 0;}
+.mt-rich-preview {position:fixed;inset:0;z-index:10000;background:#f7f6f2;overflow-y:auto;}
+.mt-rich-preview[hidden] {display:none!important;}
+.mt-rich-preview-top {
+  position:sticky;top:0;z-index:1;padding:12px clamp(14px,4vw,40px);
+  background:#fff;border-bottom:1px solid #dcded6;display:flex;
+  align-items:center;gap:8px;flex-wrap:wrap;
+}
+.mt-rich-preview-top button {
+  background:#fff;border:1px solid #dcded6;padding:8px 13px;min-height:38px;
+  font:700 11px Manrope,Arial,sans-serif;cursor:pointer;
+}
+.mt-rich-preview-top button[aria-pressed="true"] {background:#687b61;color:#fff;}
+.mt-rich-reader {
+  max-width:910px;margin:32px auto 64px;padding:clamp(26px,5vw,65px);
+  background:#fff;border:1px solid #dcded6;min-height:70vh;
+}
+.mt-rich-preview.mobile .mt-rich-reader {max-width:420px;}
+.mt-rich-reader-kicker {font:700 11px Manrope,Arial,sans-serif;letter-spacing:.2em;color:#687b61;margin-bottom:20px;}
+.mt-rich-reader-cover {display:block;width:100%;max-height:460px;object-fit:cover;margin:18px 0 32px;}
+@media(max-width:600px) {
+  .mt-rich-toolbar button {min-height:42px;min-width:42px;}
+  .mt-rich-paper {padding:24px 19px;min-height:400px;}
+  .mt-rich-paper-title {font-size:35px;}
+  .mt-rich-canvas,.mt-rich-reader-body {font-size:15px;}
+  .mt-rich-reader {margin:10px;padding:28px 22px;}
+  .mt-rich-preview-top button {padding:7px 9px;}
+}
