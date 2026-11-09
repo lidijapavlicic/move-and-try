@@ -2,11 +2,11 @@
 /* MOVE&TRY | The Journal — visual writing surface */
 .mt-rich-wrapper { margin: 0 0 16px; }
 .mt-rich-toolbar {
-  display:flex;align-items:center;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;
-  padding:8px 0 13px;scrollbar-width:thin;white-space:nowrap;
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  overflow-x:visible;padding:8px 0 13px;white-space:normal;
 }
 .mt-rich-style-select {
-  flex:0 0 auto;min-height:38px;min-width:176px;
+  flex:0 1 205px;width:205px;max-width:100%;min-width:150px;min-height:38px;
   padding:8px 32px 8px 12px;
   border:1px solid var(--line,#dcded6);background:#fff;
   color:var(--ink,#171916);
