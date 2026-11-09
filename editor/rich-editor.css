@@ -87,6 +87,18 @@
   margin:10px 0 20px;padding-left:26px;
 }
 .mt-rich-canvas li,.mt-rich-reader-body li {margin:5px 0;}
+.mt-rich-canvas ul.mt-list-dashes,.mt-rich-reader-body ul.mt-list-dashes {
+  list-style:none;padding-left:24px;
+}
+.mt-rich-canvas ul.mt-list-dashes li,.mt-rich-reader-body ul.mt-list-dashes li {
+  position:relative;
+}
+.mt-rich-canvas ul.mt-list-dashes li::before,.mt-rich-reader-body ul.mt-list-dashes li::before {
+  content:"–";position:absolute;left:-20px;
+}
+.mt-rich-cover-notice {
+  font:400 12px/1.7 Manrope,Arial,sans-serif;color:#a13d3d;margin:6px 0 30px;
+}
 .mt-rich-canvas a,.mt-rich-reader-body a {color:inherit;text-decoration:underline;text-underline-offset:3px;}
 .mt-rich-canvas figure,.mt-rich-reader-body figure {margin:25px 0;text-align:center;}
 .mt-rich-canvas figure img,.mt-rich-reader-body figure img {max-width:100%;height:auto;}
