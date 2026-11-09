@@ -88,7 +88,7 @@
         const rows = [];
         for (const li of Array.from(node.children).filter(el => el.tagName === 'LI')) {
           const line = inline(li).trim();
-          if (line) rows.push((tag === 'ol' ? String(i++) + '. ' : '- ') + line);
+          if (line) rows.push((tag === 'ol' ? String(i++) + '. ' : (node.classList.contains('mt-list-dashes') ? '* ' : '- ')) + line);
         }
         if (rows.length) blocks.push(rows.join('\n'));
         continue;
@@ -185,6 +185,7 @@
       if (tag === 'h2') return 'h2';
       if (tag === 'blockquote') return 'thought';
       if (tag === 'ol') return 'ordered';
+      if (tag === 'ul') return block.classList.contains('mt-list-dashes') ? 'dashes' : 'bullets';
       return 'p';
     }
 
@@ -273,10 +274,12 @@
       // This also repairs the nested quote/list structure that the old toolbar allowed.
       const tag = style === 'h2' ? 'h2'
         : style === 'thought' ? 'blockquote'
-          : style === 'ordered' ? 'ol' : 'p';
+          : style === 'ordered' ? 'ol'
+            : (style === 'bullets' || style === 'dashes') ? 'ul' : 'p';
       const replacement = document.createElement(tag);
+      if (style === 'dashes') replacement.classList.add('mt-list-dashes');
 
-      if (tag === 'ol') {
+      if (tag === 'ol' || tag === 'ul') {
         const item = document.createElement('li');
         if (block.tagName === 'OL' || block.tagName === 'UL') {
           for (const li of Array.from(block.querySelectorAll(':scope > li'))) {
@@ -303,7 +306,7 @@
       }
 
       block.replaceWith(replacement);
-      placeCaretAtEnd(tag === 'ol' ? replacement.lastElementChild : replacement);
+      placeCaretAtEnd((tag === 'ol' || tag === 'ul') ? replacement.lastElementChild : replacement);
       styleSelect.value = style;
       sync();
       canvas.focus();
@@ -339,7 +342,9 @@
       ['p','Običan tekst'],
       ['h2','Podnaslov'],
       ['thought','Istaknuta misao'],
-      ['ordered','Numerirani popis']
+      ['ordered','Numerirani popis'],
+      ['bullets','Popis s točkicama'],
+      ['dashes','Popis s crticama']
     ].forEach(([value,label]) => {
       const option = document.createElement('option');
       option.value=value;
@@ -399,6 +404,18 @@
       if (!confirm('Ukloniti razdjelnu crtu iz članka?')) return;
       rule.remove();
       sync();
+    });
+    canvas.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' || event.shiftKey || blockKind() !== 'thought') return;
+      event.preventDefault();
+      const block = topBlock();
+      if (!block || block.tagName !== 'BLOCKQUOTE') return;
+      const paragraph = document.createElement('p');
+      paragraph.append(document.createElement('br'));
+      block.after(paragraph);
+      placeCaretAtEnd(paragraph);
+      sync();
+      canvas.focus();
     });
     canvas.addEventListener('input',sync);
     canvas.addEventListener('keyup', () => {saveSelection();updateToolbarState();});
@@ -460,12 +477,20 @@
     excerpt.className = 'mt-rich-reader-excerpt';
     const cover = document.createElement('img');
     cover.className = 'mt-rich-reader-cover';
+    const coverNotice = document.createElement('p');
+    coverNotice.className = 'mt-rich-cover-notice';
+    coverNotice.hidden = true;
+    coverNotice.textContent = 'Naslovna fotografija nije dostupna. Provjeri poveznicu prije objave.';
+    cover.addEventListener('error', () => {
+      cover.hidden = true;
+      coverNotice.hidden = false;
+    });
     const body = document.createElement('div');
     body.className = 'mt-rich-reader-body';
-    article.append(kicker,title,excerpt,cover,body);
+    article.append(kicker,title,excerpt,cover,coverNotice,body);
     preview.append(top,article);
     document.body.append(preview);
-    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,body};
+    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body};
     preview.addEventListener('keydown',e => {if(e.key==='Escape') closePreview();});
   }
 
@@ -483,6 +508,7 @@
     r.title.textContent = $(en?'article-title-en':'article-title').value || (en?'Article title':'Naslov članka');
     r.excerpt.textContent = $(en?'article-excerpt-en':'article-excerpt').value || '';
     r.cover.hidden = true;
+    r.coverNotice.hidden = true;
     r.cover.removeAttribute('src');
     const coverUrl=validUrl($('article-cover').value,true);
     if(coverUrl){r.cover.src=coverUrl;r.cover.alt='Naslovna fotografija';r.cover.hidden=false;}
