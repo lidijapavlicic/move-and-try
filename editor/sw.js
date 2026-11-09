@@ -1,7 +1,8 @@
 
 'use strict';
 
-const EDITOR_PATH = '/editor/';
+const EDITOR_PATH = new URL(self.registration.scope).pathname;
+const ICON_URL = new URL('icon-192.png', self.registration.scope).href;
 
 function getNotificationUrl(data) {
   const articleId =
@@ -10,6 +11,27 @@ function getNotificationUrl(data) {
       : null;
 
   let requestedUrl = data?.url || EDITOR_PATH;
+
+  // Podrška za stare poveznice /editor/
+  // nakon preseljenja na novu poddomenu.
+  if (EDITOR_PATH === '/') {
+    try {
+      const legacy = new URL(requestedUrl, self.location.origin);
+
+      if (
+        (legacy.origin === self.location.origin ||
+          legacy.origin === 'https://moveandtry.com') &&
+        legacy.pathname.startsWith('/editor/')
+      ) {
+        requestedUrl =
+          legacy.pathname.slice('/editor'.length) +
+          legacy.search +
+          legacy.hash;
+      }
+    } catch (_) {
+      // Provjera adrese nastavlja se ispod.
+    }
+  }
 
   if (articleId && requestedUrl === EDITOR_PATH) {
     requestedUrl =
@@ -52,8 +74,8 @@ self.addEventListener('push', event => {
   event.waitUntil(
     self.registration.showNotification(title, {
       body: data.body || 'Imaš novu uredničku obavijest.',
-      icon: '/editor/icon-192.png',
-      badge: '/editor/icon-192.png',
+      icon: ICON_URL,
+      badge: ICON_URL,
       data: {
         url: getNotificationUrl(data)
       }
