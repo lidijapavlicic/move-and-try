@@ -570,7 +570,8 @@
     $('submit-article-btn').disabled =
       busy ||
       !currentArticleId ||
-      currentEditorMode !== 'author';
+      currentEditorMode !== 'author' ||
+      isAdmin();
   }
 
   function openEditor(article = null, adminEdit = false) {
@@ -619,7 +620,8 @@
 
     editorInitialValues = readEditorValues();
 
-    $('submit-article-btn').hidden = adminEdit;
+    // Admin writes directly as an editor and never submits work to herself.
+    $('submit-article-btn').hidden = isAdmin() || adminEdit;
     $('submit-article-btn').disabled = !currentArticleId;
 
     setMessage('editor-message', '');
@@ -708,7 +710,7 @@
   }
 
   async function submitArticle() {
-    if (!currentArticleId || busy) return;
+    if (!currentArticleId || busy || isAdmin()) return;
 
     if (editorValuesChanged()) {
       setMessage(
