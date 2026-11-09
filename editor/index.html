@@ -7,9 +7,11 @@
   <title>Urednički prostor | MOVE&TRY</title>
 
   <!-- THE JOURNAL PWA -->
-  <link rel="manifest" href="/editor/manifest.webmanifest">
-  <link rel="icon" href="/editor/icon-192.png" type="image/png">
-  <link rel="apple-touch-icon" href="/editor/apple-touch-icon.png">
+  
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
   <meta name="theme-color" content="#687b61">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -2339,7 +2341,7 @@
       return;
     }
     try {
-      const registration = await navigator.serviceWorker.getRegistration('/editor/');
+      const registration = await navigator.serviceWorker.getRegistration('./');
       const subscription = registration && await registration.pushManager.getSubscription();
       const enabled = Boolean(subscription);
       button.disabled = pushBusy || (!enabled && Notification.permission === 'denied');
@@ -2359,7 +2361,7 @@
     pushBusy = true;
     $('push-enable-btn').disabled = true;
     try {
-      const registration = await navigator.serviceWorker.getRegistration('/editor/');
+      const registration = await navigator.serviceWorker.getRegistration('./');
       const existing = registration && await registration.pushManager.getSubscription();
       const { data: sessionData, error: sessionError } = await db.auth.getSession();
       const token = sessionData?.session?.access_token;
@@ -2381,7 +2383,7 @@
         const permission = Notification.permission === 'granted'
           ? 'granted' : await Notification.requestPermission();
         if (permission !== 'granted') throw new Error('Nisi dopustila obavijesti.');
-        const reg = await navigator.serviceWorker.register('/editor/sw.js', { scope: '/editor/' });
+        const reg = await navigator.serviceWorker.register('./sw.js', { scope: './' });
         const { data: keyData, error: keyError } = await db.functions.invoke('journal-push-subscribe', {
           method: 'GET', headers: { Authorization: `Bearer ${token}` }
         });
@@ -2630,7 +2632,7 @@
           email,
           {
             redirectTo:
-              'https://moveandtry.com/editor/'
+              	new URL('./', window.location.href).href
           }
         );
 
@@ -2900,7 +2902,7 @@
   initialize();
 })();
 </script>
-<script src="/editor/formatting.js" defer></script>
+<script src="./formatting.js" defer></script>
 </body>
 </html>
   
