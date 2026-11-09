@@ -58,6 +58,17 @@
 }
 .mt-rich-canvas:focus-visible {outline:2px solid #b4c4ad;outline-offset:10px;}
 .mt-rich-canvas p,.mt-rich-reader-body p {margin:0 0 16px;line-height:1.95;}
+.mt-rich-canvas hr.mt-article-divider,.mt-rich-reader-body hr.mt-article-divider {
+  height:0;border:0;border-top:1px solid #cfd3ca;
+  margin:46px 0 42px;clear:both;
+}
+.mt-rich-canvas hr.mt-article-divider {
+  cursor:pointer;position:relative;
+}
+.mt-rich-canvas hr.mt-article-divider:hover {
+  border-top-color:#687b61;border-top-width:2px;
+}
+.mt-rich-toolbar button.mt-rich-divider-button {font-size:11px;min-width:62px;}
 .mt-rich-canvas h2,.mt-rich-reader-body h2 {
   font:400 clamp(24px,3.5vw,32px)/1.3 "DM Serif Display",Georgia,serif;
   margin:28px 0 14px;
