@@ -5,6 +5,17 @@
   display:flex;align-items:center;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;
   padding:8px 0 13px;scrollbar-width:thin;white-space:nowrap;
 }
+.mt-rich-style-select {
+  flex:0 0 auto;min-height:38px;min-width:176px;
+  padding:8px 32px 8px 12px;
+  border:1px solid var(--line,#dcded6);background:#fff;
+  color:var(--ink,#171916);
+  font:700 11px/1.35 Manrope,Arial,sans-serif;
+  cursor:pointer;
+}
+.mt-rich-style-select:focus-visible {
+  outline:2px solid var(--green,#687b61);outline-offset:2px;
+}
 .mt-rich-toolbar button {
   flex:0 0 auto;min-width:38px;min-height:38px;padding:7px 10px;
   border:1px solid var(--line,#dcded6);background:#fff;color:var(--ink,#171916);
@@ -56,8 +67,10 @@
   margin:24px 0 12px;
 }
 .mt-rich-canvas blockquote,.mt-rich-reader-body blockquote {
-  margin:22px 0;padding:4px 0 4px 20px;border-left:3px solid var(--green,#687b61);
-  color:var(--muted,#6d716a);
+  margin:40px 0 43px;padding:10px 0 10px 27px;
+  border-left:2px solid #6f7967;
+  font:400 clamp(22px,3vw,29px)/1.48 "DM Serif Display",Georgia,serif;
+  color:#282f27;
 }
 .mt-rich-canvas ul,.mt-rich-canvas ol,.mt-rich-reader-body ul,.mt-rich-reader-body ol {
   margin:10px 0 20px;padding-left:26px;
