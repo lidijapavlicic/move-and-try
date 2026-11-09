@@ -787,6 +787,8 @@
   }
 
   function initialize() {
+    // The new visual editor owns the writing surface; retain renderText for previews.
+    if (window.MoveTryJournalRichEditor?.enabled) return;
     if (!$('article-form')) return;
 
     installStyles();
