@@ -143,6 +143,16 @@
         continue;
       }
 
+      // A standalone rule is the Journal's optional section divider.
+      if (clean === '---') {
+        list = null;
+        paragraph = null;
+        const rule = document.createElement('hr');
+        rule.className = 'mt-article-divider';
+        container.append(rule);
+        continue;
+      }
+
       const image =
         /^!\[([^\]]*)\]\(([^)]+)\)$/.exec(clean);
 
