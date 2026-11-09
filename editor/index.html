@@ -2,6 +2,20 @@
 <html lang="hr">
 <head>
   <meta charset="UTF-8">
+  
+<script>
+  if (
+    location.hostname === 'moveandtry.com' ||
+    location.hostname === 'www.moveandtry.com'
+  ) {
+    location.replace(
+      'https://editor.moveandtry.com/' +
+      location.search +
+      location.hash
+    );
+  }
+</script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Urednički prostor | MOVE&TRY</title>
