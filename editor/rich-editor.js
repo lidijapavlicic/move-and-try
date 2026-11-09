@@ -160,6 +160,41 @@
     field.insertAdjacentElement('afterend', wrapper);
 
     const instance = {spec,field,bar,paper,heading,excerpt,canvas,selection:null,loaded:null};
+    const styleButtons = new Map();
+
+    function updateToolbarState() {
+      const selection = window.getSelection();
+      const node = selection?.anchorNode;
+      const inCanvas = !!(node && canvas.contains(node) &&
+        selection.focusNode && canvas.contains(selection.focusNode));
+      const element = inCanvas
+        ? (node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement)
+        : null;
+
+      const ancestor = selector => !!element?.closest(selector) &&
+        canvas.contains(element.closest(selector));
+      const state = commandName => {
+        try {
+          return inCanvas && !!document.queryCommandState(commandName);
+        } catch (_) {
+          return false;
+        }
+      };
+      const active = {
+        bold: state('bold') || ancestor('b,strong'),
+        italic: state('italic') || ancestor('i,em'),
+        h2: ancestor('h2'),
+        h3: ancestor('h3'),
+        quote: ancestor('blockquote'),
+        bullets: ancestor('ul'),
+        numbers: ancestor('ol'),
+        link: ancestor('a[href]')
+      };
+
+      for (const [action, control] of styleButtons) {
+        control.setAttribute('aria-pressed', String(!!active[action]));
+      }
+    }
 
     function saveSelection() {
       const s = window.getSelection();
@@ -184,6 +219,7 @@
         field.dispatchEvent(new Event('input',{bubbles:true}));
       }
       saveSelection();
+      updateToolbarState();
     }
 
     function command(action) {
@@ -213,6 +249,7 @@
       }
       sync();
       canvas.focus();
+      updateToolbarState();
     }
 
     const items = [
@@ -227,6 +264,8 @@
     ];
     for (const item of items) {
       const b = button(item[1],item[2],() => command(item[0]));
+      b.setAttribute('aria-pressed', 'false');
+      styleButtons.set(item[0], b);
       b.addEventListener('mousedown',event => event.preventDefault());
       bar.append(b);
     }
@@ -238,12 +277,18 @@
       instance.selection = null;
       instance.loaded = field.value;
       field.hidden = true;
+      updateToolbarState();
     };
 
     canvas.addEventListener('input',sync);
-    canvas.addEventListener('keyup',saveSelection);
-    canvas.addEventListener('mouseup',saveSelection);
-    canvas.addEventListener('touchend',saveSelection,{passive:true});
+    canvas.addEventListener('keyup', () => {saveSelection();updateToolbarState();});
+    canvas.addEventListener('mouseup', () => {saveSelection();updateToolbarState();});
+    canvas.addEventListener('touchend', () => {
+      saveSelection();
+      updateToolbarState();
+    }, {passive:true});
+    canvas.addEventListener('focus',updateToolbarState);
+    document.addEventListener('selectionchange',updateToolbarState);
     canvas.addEventListener('paste',function(event){
       const text = event.clipboardData && event.clipboardData.getData('text/plain');
       if (text == null) return;
