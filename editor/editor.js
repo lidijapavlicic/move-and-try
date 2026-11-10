@@ -859,27 +859,42 @@
 
     $('detail-meta').textContent = meta.join(' · ');
     $('detail-excerpt').textContent = article.excerpt || '';
-    $('detail-content').textContent =
-      article.content || 'Članak nema teksta.';
+    const hrBody = $('detail-content');
+    if (window.MoveTryJournalFormatting?.renderText) {
+      window.MoveTryJournalFormatting.renderText(hrBody,article.content || '');
+      window.MoveTryJournalMedia?.hydrate(hrBody);
+    } else {
+      hrBody.textContent = article.content || 'Članak nema teksta.';
+    }
     $('detail-en-section').hidden = !isAdmin() && !article.title_en && !article.excerpt_en && !article.content_en;
     $('detail-title-en').textContent = article.title_en || 'Engleski naslov nije unesen';
     $('detail-excerpt-en').textContent = article.excerpt_en || '';
-    $('detail-content-en').textContent = article.content_en || 'Engleski tekst nije unesen.';
+    const enBody = $('detail-content-en');
+    if (window.MoveTryJournalFormatting?.renderText) {
+      window.MoveTryJournalFormatting.renderText(enBody,article.content_en || '');
+      window.MoveTryJournalMedia?.hydrate(enBody);
+    } else {
+      enBody.textContent = article.content_en || 'Engleski tekst nije unesen.';
+    }
 
     const cover = $('detail-cover');
     cover.hidden = true;
     cover.removeAttribute('src');
 
     if (article.cover_image) {
-      try {
-        const url = new URL(article.cover_image);
-
-        if (['https:', 'http:'].includes(url.protocol)) {
-          cover.src = url.href;
-          cover.hidden = false;
+      if (window.MoveTryJournalMedia?.isMediaRef(article.cover_image)) {
+        cover.dataset.mtMediaRequested=article.cover_image;
+        void window.MoveTryJournalMedia.setImage(cover,article.cover_image);
+      } else {
+        try {
+          const url = new URL(article.cover_image);
+          if (url.protocol === 'https:') {
+            cover.src = url.href;
+            cover.hidden = false;
+          }
+        } catch (_) {
+          // Ne prikazujemo neispravnu poveznicu.
         }
-      } catch (_) {
-        // Ne prikazujemo neispravnu poveznicu.
       }
     }
 
