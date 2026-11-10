@@ -240,7 +240,7 @@
 
     const { data, error } = await db
       .from('journal_articles')
-      .select('id, author_id, title, excerpt, content, title_en, excerpt_en, content_en, category, cover_image, status, updated_at, created_at, revision_number, scheduled_at, published_at')
+      .select('id, author_id, title, excerpt, content, title_en, excerpt_en, content_en, category, cover_image, column_id, status, updated_at, created_at, revision_number, scheduled_at, published_at')
       .order('updated_at', { ascending: false })
       .limit(1000);
 
@@ -1083,6 +1083,14 @@
     if (isAdmin()) {
       meta.push(personName(article.author_id));
     }
+    const assignedColumn = columns.find(c => c.id === article.column_id);
+    const byline = article.category === 'personal'
+      ? assignedColumn?.public_byline || personName(article.author_id)
+      : profiles.find(p => p.id === article.author_id)?.role === 'admin'
+        ? 'MOVE&TRY Editorial'
+        : authorPermissions.get(article.author_id)?.contributor_byline ||
+          personName(article.author_id);
+    meta.push('Potpis: ' + byline);
 
     $('detail-meta').textContent = meta.join(' · ');
     $('detail-excerpt').textContent = article.excerpt || '';
