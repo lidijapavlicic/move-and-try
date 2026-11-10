@@ -1,6 +1,12 @@
 
 /* MOVE&TRY | The Journal — visual writing surface */
 .mt-rich-wrapper { margin: 0 0 16px; }
+.mt-draft-status {
+  margin:8px 0 17px;
+  font:500 11px/1.6 Manrope,Arial,sans-serif;
+  color:var(--muted,#6d716a);
+}
+.mt-draft-status.error {color:#a13d3d;}
 .mt-rich-toolbar {
   display:flex;align-items:center;gap:6px;flex-wrap:wrap;
   overflow-x:visible;padding:8px 0 13px;white-space:normal;
