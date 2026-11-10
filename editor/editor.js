@@ -730,7 +730,9 @@
       currentArticleRevision =
         updated?.revision_number ?? currentArticleRevision;
 
-      editorInitialValues = readEditorValues();
+      // Only the values actually sent to Supabase are considered saved.
+      // Later typing while the request is in flight must remain unsaved.
+      editorInitialValues = values;
       $('editor-panel').dispatchEvent(new CustomEvent('journal-editor-saved', {
         detail: { previousArticleId, articleId: currentArticleId }
       }));
