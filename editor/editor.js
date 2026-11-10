@@ -497,6 +497,10 @@
     const writer=$('column-writer');
     const prior=writer.value;
     writer.replaceChildren();
+    const noAccount=document.createElement('option');
+    noAccount.value='';
+    noAccount.textContent='Bez računa — javna kolumnistica';
+    writer.append(noAccount);
     profiles.filter(p=>p.is_active &&
       (p.role==='admin'||authorPermissions.get(p.id)?.can_write_column) &&
       !columns.some(c=>c.columnist_id===p.id)).forEach(p=>{
@@ -506,7 +510,7 @@
       writer.append(option);
     });
     if([...writer.options].some(x=>x.value===prior))writer.value=prior;
-    $('column-create-btn').disabled=busy||!writer.options.length;
+    $('column-create-btn').disabled=busy;
     const list=$('columns-list');list.replaceChildren();
     if(!columns.length)list.append(emptyMessage('Još nema dodijeljenih kolumni.'));
     for(const c of columns){
@@ -514,11 +518,18 @@
       const info=createElement('div');
       info.append(createElement('strong','article-title',c.title),
         createElement('p','article-meta',
-          personName(c.columnist_id)+' · '+c.public_byline+' · /'+c.slug+
+          (c.columnist_id ? personName(c.columnist_id) : 'Bez pristupa Editoru')+
+          ' · '+c.public_byline+' · /'+c.slug+
           (c.is_active?' · aktivna':' · neaktivna')));
       const button=makeButton(c.is_active?'DEAKTIVIRAJ':'AKTIVIRAJ',
         ()=>toggleColumn(c.id),'btn secondary small-btn');
-      button.disabled=busy;row.append(info,button);list.append(row);
+      button.disabled=busy;
+      const link=makeButton('DODIJELI PRISTUP',()=>assignColumnAccount(c.id),
+        'btn secondary small-btn');
+      link.disabled=busy;
+      const controls=createElement('div','top-actions');
+      controls.append(button,link);
+      row.append(info,controls);list.append(row);
     }
   }
   async function saveColumnRpc(name,params){
@@ -533,6 +544,34 @@
     }catch(error){
       setMessage('column-message',friendlyError(error),true);
     }finally{busy=false;renderColumns();}
+  }
+  function assignColumnAccount(columnId){
+    if(!isAdmin()||busy)return;
+    const column=columns.find(c=>c.id===columnId);
+    if(!column)return;
+    const assigned=column.columnist_id ? personName(column.columnist_id) : 'bez računa';
+    const choices=profiles.filter(p=>p.is_active &&
+      (p.role==='admin' || authorPermissions.get(p.id)?.can_write_column) &&
+      (!columns.some(c=>c.columnist_id===p.id) || p.id===column.columnist_id));
+    const lines=choices.map((p,i)=>String(i+1)+'. '+(p.display_name||'Bez imena'));
+    const selected=prompt(
+      'Pristup kolumni: '+column.title+'\nTrenutno: '+assigned+
+      '\n\nUpiši broj postojećeg korisnika ili 0 za uklanjanje pristupa:\n'+
+      '0. Bez računa\n'+lines.join('\n'),
+      column.columnist_id
+        ? String(choices.findIndex(p=>p.id===column.columnist_id)+1) : '0'
+    );
+    if(selected===null)return;
+    if(!/^\\d+$/.test(selected.trim())){setMessage('column-message','Odaberi broj računa.',true);return;}
+    const index=Number(selected);
+    if(index<0||index>choices.length){
+      setMessage('column-message','Nepostojeći broj računa.',true);return;
+    }
+    const userId=index===0?null:choices[index-1].id;
+    if(!confirm('Promijeniti pristup kolumni? Javno autorstvo i članci ostaju nepromijenjeni.'))return;
+    void saveColumnRpc('journal_admin_link_column_account',{
+      p_column_id:columnId,p_user_id:userId
+    });
   }
   function toggleColumn(id){
     const c=columns.find(x=>x.id===id);
@@ -2246,7 +2285,7 @@
     }
     if(!confirm('Dodijeliti kolumnu odabranom autoru?'))return;
     void saveColumnRpc('journal_admin_create_column',{
-      p_columnist_id:writer,p_title:title,p_slug:slug,
+      p_columnist_id:writer||null,p_title:title,p_slug:slug,
       p_public_byline:byline,p_description:description});
   });
 
