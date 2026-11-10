@@ -793,6 +793,8 @@
 
   function renderCollaborators() {
     const target = $('collaborators-list');
+    const count = $('collaborators-count');
+    if (count) count.textContent = profiles.length === 1 ? '1 račun' : profiles.length + ' računa';
     target.replaceChildren();
 
     if (!profiles.length) {
@@ -2525,6 +2527,31 @@
     $('article-category').dispatchEvent(new Event('input',{bubbles:true}));
   });
 
+  function toggleEntryForm(panelId, triggerId, open) {
+    const panel = $(panelId);
+    const trigger = $(triggerId);
+    if (!panel || !trigger) return;
+    panel.hidden = !open;
+    trigger.setAttribute('aria-expanded', String(open));
+    if (open) {
+      panel.querySelector('input, select, textarea')?.focus();
+      panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+  }
+
+  $('column-create-toggle').addEventListener('click', () => {
+    toggleEntryForm('column-create-wrap','column-create-toggle',$('column-create-wrap').hidden);
+  });
+  $('column-create-cancel').addEventListener('click', () => {
+    toggleEntryForm('column-create-wrap','column-create-toggle',false);
+  });
+  $('invite-toggle').addEventListener('click', () => {
+    toggleEntryForm('invite-wrap','invite-toggle',$('invite-wrap').hidden);
+  });
+  $('invite-cancel').addEventListener('click', () => {
+    toggleEntryForm('invite-wrap','invite-toggle',false);
+  });
+
   $('column-create-form').addEventListener('submit',event=>{
     event.preventDefault();
     if(!isAdmin()||!columnsAvailable||busy)return;
@@ -2541,7 +2568,13 @@
       : 'Stvoriti javnu kolumnu bez korisničkog računa?'))return;
     void saveColumnRpc('journal_admin_create_column',{
       p_columnist_id:writer||null,p_title:title,p_slug:slug,
-      p_public_byline:byline,p_description:description});
+      p_public_byline:byline,p_description:description
+    }).then(success => {
+      if (success) {
+        $('column-create-form').reset();
+        toggleEntryForm('column-create-wrap','column-create-toggle',false);
+      }
+    });
   });
 
   $('invite-form').addEventListener('submit', async event => {
@@ -2603,6 +2636,7 @@
 
       setMessage('invite-message', data.message || 'Pozivnica je obrađena.');
       $('invite-form').reset();
+      toggleEntryForm('invite-wrap','invite-toggle',false);
       try {
         await refreshDashboard();
       } catch (refreshError) {
