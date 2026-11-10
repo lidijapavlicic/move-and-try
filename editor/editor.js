@@ -100,7 +100,9 @@
         const field = $(inputs[key]);
         if (field) field.value = values[key] || '';
       }
-      configureWritingMode(currentArticleId ? articleById(currentArticleId) : null);
+      // Preserve the recovered category without silently switching authorship.
+      configureWritingMode(currentArticleId ? articleById(currentArticleId) : null,
+        values.p_category === 'personal' ? 'column' : 'contribution');
       $('editor-panel').dispatchEvent(new Event('journal-editor-restore'));
     }
   };
@@ -540,7 +542,7 @@
       p_public_byline:c.public_byline,p_description:c.description||'',
       p_is_active:!c.is_active});
   }
-  function configureWritingMode(article){
+  function configureWritingMode(article, selectedMode = null){
     const field=$('writing-mode-field');
     const category=$('article-category');
     const mode=$('article-writing-mode');
@@ -552,7 +554,9 @@
     const options=currentAuthorOptions();
     const canColumn=options.columnist && !!options.column;
     currentWritingMode=article ? (article.category==='personal'?'column':'contribution')
-      : canColumn&&!options.contributor ? 'column' : 'contribution';
+      : (selectedMode === 'column' && canColumn ? 'column'
+        : selectedMode === 'contribution' && options.contributor ? 'contribution'
+        : canColumn && !options.contributor ? 'column' : 'contribution');
     field.hidden=!!article || !(canColumn && options.contributor);
     mode.value=currentWritingMode;
     category.disabled=currentWritingMode==='column';
@@ -2186,19 +2190,9 @@
 
   $('article-writing-mode').addEventListener('change',()=>{
     if(isAdmin()||currentArticleId)return;
-    currentWritingMode=$('article-writing-mode').value;
-    configureWritingMode(null);
-    // configureWritingMode defaults to contributor for dual-role authors;
-    // reapply the explicit selection and lock the category accordingly.
-    currentWritingMode=$('article-writing-mode').value;
-    const isColumn=currentWritingMode==='column';
-    $('article-category').disabled=isColumn;
-    $('article-category').value=isColumn?'personal':'guest';
-    for(const option of $('article-category').options){
-      option.disabled=option.value==='personal'&&!isColumn;
-      option.hidden=option.disabled;
-    }
-    $('editor-panel').dispatchEvent(new Event('input',{bubbles:true}));
+    const chosen=$('article-writing-mode').value;
+    configureWritingMode(null,chosen);
+    $('article-category').dispatchEvent(new Event('input',{bubbles:true}));
   });
 
   $('column-create-form').addEventListener('submit',event=>{
