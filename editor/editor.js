@@ -63,6 +63,42 @@
 
   const isAdmin = () => currentProfile?.role === 'admin';
 
+  // Minimal interface for isolated autosave module; same authenticated Supabase client.
+  window.MoveTryJournalDraftBridge = {
+    db,
+    getContext: () => currentUser && currentProfile && !$('editor-panel').hidden
+      ? {
+          ownerId: currentUser.id,
+          articleId: currentArticleId,
+          revision: currentArticleRevision,
+          mode: currentEditorMode
+        }
+      : null,
+    getValues: () => readEditorValues(),
+    hasChanges: () => editorValuesChanged(),
+    applyValues: values => {
+      const inputs = {
+        p_title: 'article-title',
+        p_excerpt: 'article-excerpt',
+        p_content: 'article-content',
+        p_category: 'article-category',
+        p_cover_image: 'article-cover',
+        p_title_en: 'article-title-en',
+        p_excerpt_en: 'article-excerpt-en',
+        p_content_en: 'article-content-en'
+      };
+      const allowed = currentEditorMode === 'admin'
+        ? Object.keys(inputs)
+        : Object.keys(inputs).filter(key => !key.endsWith('_en'));
+      for (const key of allowed) {
+        if (!Object.prototype.hasOwnProperty.call(values, key)) continue;
+        const field = $(inputs[key]);
+        if (field) field.value = values[key] || '';
+      }
+      $('editor-panel').dispatchEvent(new Event('journal-editor-restore'));
+    }
+  };
+
   // Filter za autorske članke.
   // Dodaje se u postojeću sekciju bez promjene njezina izgleda.
   const myArticlesSection = $('tab-mine');
@@ -638,6 +674,7 @@
   function closeEditor() {
     if (busy) return;
 
+    $('editor-panel').dispatchEvent(new Event('journal-editor-closing'));
     $('editor-panel').hidden = true;
     $('admin-en-fields').hidden = true;
     currentArticleId = null;
@@ -657,6 +694,7 @@
 
     try {
       const values = readEditorValues();
+      const previousArticleId = currentArticleId;
       let result;
 
       if (currentEditorMode === 'admin') {
@@ -693,6 +731,9 @@
         updated?.revision_number ?? currentArticleRevision;
 
       editorInitialValues = readEditorValues();
+      $('editor-panel').dispatchEvent(new CustomEvent('journal-editor-saved', {
+        detail: { previousArticleId, articleId: currentArticleId }
+      }));
 
       $('editor-context').textContent =
         `${statusLabel(updated?.status)} · Revizija ${currentArticleRevision ?? '—'}`;
@@ -1806,6 +1847,7 @@
   $('logout-btn').addEventListener(
     'click',
     async () => {
+      $('editor-panel').dispatchEvent(new Event('journal-editor-logout'));
       await db.auth.signOut();
 
       dashboardRequest++;
