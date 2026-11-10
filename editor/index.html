@@ -284,6 +284,37 @@
 
       <div id="collaborators-list" style="margin-top:25px"></div>
 
+      <section class="editor-panel" id="column-management-panel" style="margin-top:25px">
+        <p class="eyebrow">OSOBNE KOLUMNE</p>
+        <h3>Dodijeli kolumnu</h3>
+        <p class="muted small">Jedna osobna kolumna po kolumnistu. Potpis određuješ ti, a kolumnist ga ne može mijenjati.</p>
+        <form id="column-create-form">
+          <div class="field">
+            <label for="column-writer">Kolumnist</label>
+            <select id="column-writer" required></select>
+          </div>
+          <div class="field">
+            <label for="column-title">Naziv kolumne</label>
+            <input id="column-title" type="text" maxlength="160" required>
+          </div>
+          <div class="field">
+            <label for="column-slug">URL oznaka (engleski slug)</label>
+            <input id="column-slug" type="text" pattern="[a-z0-9]+(-[a-z0-9]+)*" maxlength="120" placeholder="moja-kolumna" required>
+          </div>
+          <div class="field">
+            <label for="column-byline">Javni potpis autora</label>
+            <input id="column-byline" type="text" maxlength="160" placeholder="Ime | MOVE&amp;TRY" required>
+          </div>
+          <div class="field">
+            <label for="column-description">Kratak opis (opcionalno)</label>
+            <textarea id="column-description"></textarea>
+          </div>
+          <button class="btn green" type="submit" id="column-create-btn">DODIJELI KOLUMNU</button>
+        </form>
+        <p class="message" id="column-message" role="status" aria-live="polite"></p>
+        <div id="columns-list" class="article-list" style="margin-top:20px"></div>
+      </section>
+
       <div class="info-box" style="margin-top:30px">
         <strong>Upravljanje suradnicima</strong>
         <p>Postojećem korisniku možeš uključiti ili isključiti mogućnost pisanja kolumne i pojedinačnih članaka, bez slanja nove pozivnice. Aktivacija i deaktivacija pristupa ostaju zasebne radnje. Administratorsku ulogu nije moguće dodijeliti ovim putem.</p>
@@ -382,6 +413,14 @@
       <p class="muted small" id="editor-context"></p>
 
       <form id="article-form">
+        <div class="field" id="writing-mode-field" hidden>
+          <label for="article-writing-mode">Pišem kao</label>
+          <select id="article-writing-mode">
+            <option value="column">Kolumnist — moja kolumna</option>
+            <option value="contribution">Suradnik — pojedinačni članak</option>
+          </select>
+          <p class="muted small" id="writing-mode-description"></p>
+        </div>
         <p class="eyebrow">HRVATSKA VERZIJA</p>
         <div class="field">
           <label for="article-title">Naslov</label>
