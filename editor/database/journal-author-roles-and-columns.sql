@@ -86,7 +86,8 @@ grant select on public.journal_columns to authenticated;
 create or replace function public.journal_admin_set_author_permissions(
   p_user_id uuid,
   p_columnist boolean,
-  p_contributor boolean
+  p_contributor boolean,
+  p_public_byline text
 )
 returns void
 language plpgsql
@@ -112,67 +113,31 @@ begin
     raise exception 'Target user must be an existing editor account';
   end if;
 
-  insert into public.journal_author_permissions
-    (user_id,can_write_column,can_contribute,updated_at,updated_by)
-  values
-    (p_user_id,coalesce(p_columnist,false),
-     coalesce(p_contributor,false),now(),auth.uid())
-  on conflict (user_id) do update
-    set can_write_column = excluded.can_write_column,
-        can_contribute = excluded.can_contribute,
-        updated_at = excluded.updated_at,
-        updated_by = excluded.updated_by;
-end;
-$$;
-
-revoke all on function public.journal_admin_set_author_permissions(
-  uuid,boolean,boolean
-) from public, anon;
-grant execute on function public.journal_admin_set_author_permissions(
-  uuid,boolean,boolean
-) to authenticated;
-
--- Set the public signature of a collaborator, independently of the
--- columnist signature. This function is admin-only.
-create or replace function public.journal_admin_set_contributor_byline(
-  p_user_id uuid, p_byline text
-)
-returns void
-language plpgsql
-security definer
-set search_path = ''
-as $$
-begin
-  if not exists (
-    select 1 from public.journal_profiles p
-    where p.id = auth.uid() and p.role = 'admin' and p.is_active = true
-  ) then
-    raise exception 'Administrator permission required';
-  end if;
-  if p_user_id = auth.uid() or not exists (
-    select 1 from public.journal_profiles p
-    where p.id = p_user_id and p.role = 'editor'
-  ) then
-    raise exception 'Target user must be an existing editor';
-  end if;
-  if p_byline is null or length(btrim(p_byline)) not between 1 and 160 then
+  if p_public_byline is null or
+     length(btrim(p_public_byline)) not between 1 and 160 then
     raise exception 'Public signature must contain 1-160 characters';
   end if;
 
   insert into public.journal_author_permissions
     (user_id,can_write_column,can_contribute,contributor_byline,updated_at,updated_by)
   values
-    (p_user_id,false,false,btrim(p_byline),now(),auth.uid())
+    (p_user_id,coalesce(p_columnist,false),
+     coalesce(p_contributor,false),btrim(p_public_byline),now(),auth.uid())
   on conflict (user_id) do update
-    set contributor_byline=excluded.contributor_byline,
-        updated_at=excluded.updated_at,
-        updated_by=excluded.updated_by;
+    set can_write_column = excluded.can_write_column,
+        can_contribute = excluded.can_contribute,
+        contributor_byline = excluded.contributor_byline,
+        updated_at = excluded.updated_at,
+        updated_by = excluded.updated_by;
 end;
 $$;
-revoke all on function public.journal_admin_set_contributor_byline(uuid,text)
-  from public, anon;
-grant execute on function public.journal_admin_set_contributor_byline(uuid,text)
-  to authenticated;
+
+revoke all on function public.journal_admin_set_author_permissions(
+  uuid,boolean,boolean,text
+) from public, anon;
+grant execute on function public.journal_admin_set_author_permissions(
+  uuid,boolean,boolean,text
+) to authenticated;
 
 -- Columns are created by the administrator and assigned to a real columnist.
 -- The columnist cannot choose someone else's column.
