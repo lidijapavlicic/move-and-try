@@ -652,10 +652,16 @@
         return;
       }
       if(!confirm('Spremiti promjene kolumne '+c.title+'?'))return;
+      save.disabled = true;
       void saveColumnRpc('journal_admin_update_column',{
         p_column_id:c.id,p_title:title,p_slug:slug,
         p_public_byline:byline,p_description:description,
         p_is_active:c.is_active
+      }).then(success => {
+        // Refresh replaces the row on success and closes the edit form.
+        // Keep the form and all typed values available on failure.
+        if (success) form.remove();
+        else save.disabled = false;
       });
     });
     row.append(form);
@@ -676,7 +682,7 @@
     });
   }
   async function saveColumnRpc(name,params){
-    if(!isAdmin()||busy)return;
+    if(!isAdmin()||busy)return false;
     busy=true;
     try{
       setMessage('column-message','Spremanje kolumne...');
@@ -684,9 +690,14 @@
       if(error)throw error;
       await refreshDashboard();
       setMessage('column-message','Kolumna je spremljena.');
+      return true;
     }catch(error){
       setMessage('column-message',friendlyError(error),true);
-    }finally{busy=false;renderColumns();}
+      return false;
+    }finally{
+      busy=false;
+      // Only refreshDashboard may replace rows. On failure preserve open form.
+    }
   }
   function assignColumnAccount(columnId){
     if(!isAdmin()||busy)return;
