@@ -193,6 +193,7 @@ Deno.serve(async (req: Request) => {
         user_id: invitedId,
         can_write_column: columnist,
         can_contribute: contributor,
+        contributor_byline: displayName,
         updated_at: new Date().toISOString(),
         updated_by: userData.user.id,
       }, { onConflict: "user_id" });
