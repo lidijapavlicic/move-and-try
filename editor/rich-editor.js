@@ -548,6 +548,10 @@
         closePreview();
         instances.forEach(instance => instance.load());
       });
+      panel.addEventListener('journal-editor-restore', () => {
+        closePreview();
+        instances.forEach(instance => instance.load());
+      });
       const observer=new MutationObserver(() => {
         if (panel.hidden) closePreview();
       });
