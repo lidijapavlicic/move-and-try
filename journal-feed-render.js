@@ -1,106 +1,118 @@
 /*
- * MOVE&TRY The Journal — published article card renderer.
- * The build-generated manifest contains public editorial metadata only.
- * This never uses any Supabase secret or renders unpublished database data.
- * Load AFTER journal-feed.js and BEFORE the existing Journal filter script.
+ * MOVE&TRY · The Journal — public-only feed.
+ * Supabase RPC returns published/scheduled-elapsed articles WITH safe public
+ * media snapshots. Existing manually authored cards remain untouched.
  */
 (() => {
   'use strict';
-  const feed = window.MoveTryJournalFeed;
-  const root = document.getElementById('journal-posts');
-  const nav = document.querySelector('#journal-column-wrap .journal-columns');
-  if (!feed || !Array.isArray(feed.items) || !root) return;
-  const locale = document.documentElement.lang === 'hr' ? 'hr' : 'en';
-  const categories = {
-    hr: { editorial:'UREDNIČKI TEKSTOVI', personal:'KOLUMNE',
-      guest:'GOSTUJUĆE PRIČE', news:'NOVOSTI', inspiration:'INSPIRACIJA' },
-    en: { editorial:'EDITORIAL', personal:'COLUMNS',
-      guest:'GUEST STORIES', news:'NEWS', inspiration:'INSPIRATION' }
+  const API='https://pdyngeaykfpybeafjtpw.supabase.co/rest/v1/rpc/journal_public_articles_feed';
+  const KEY='sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK';
+  const root=document.getElementById('journal-posts');
+  const nav=document.querySelector('#journal-column-wrap .journal-columns');
+  if(!root)return;
+  const lang=document.documentElement.lang==='hr'?'hr':'en';
+  const categories={
+    hr:{editorial:'UREDNIČKI TEKSTOVI',personal:'KOLUMNE',guest:'GOSTUJUĆE PRIČE',news:'NOVOSTI',inspiration:'INSPIRACIJA'},
+    en:{editorial:'EDITORIAL',personal:'COLUMNS',guest:'GUEST STORIES',news:'NEWS',inspiration:'INSPIRATION'}
   };
-  const seen = new Set([...root.querySelectorAll('.journal-post')].map(node => node.getAttribute('href')));
-  const columnNames = {};
-  const columnProfiles = {};
-
-  function textEl(tag, cls, value) {
-    const el=document.createElement(tag);
-    if(cls)el.className=cls;
-    el.textContent=String(value||'');
-    return el;
+  const added={names:{},profiles:{}};
+  function el(tag,cls,txt){
+    const node=document.createElement(tag);
+    if(cls)node.className=cls;
+    if(txt!==undefined)node.textContent=String(txt||'');
+    return node;
   }
-  function safeImage(value) {
-    if (typeof value!=='string' || !/^\/images\/journal-published\/[a-z0-9/_\-.]+$/i.test(value)) return null;
-    return value;
+  function internalUrl(u){
+    return typeof u==='string' && /^\/(?:hr\/)?journal\/article\.html\?id=[0-9a-f-]{36}$/i.test(u) ? u : null;
   }
-  function readUrl(value) {
-    if (typeof value!=='string' || !/^\/(?:hr\/)?journal\/[a-z0-9-]+\.html$/.test(value)) return null;
-    return value;
+  function publicImage(u){
+    try{
+      const x=new URL(String(u||''),location.origin);
+      if(x.protocol!=='https:')return null;
+      if(x.hostname==='pdyngeaykfpybeafjtpw.supabase.co' &&
+         /^\/storage\/v1\/object\/public\/journal-published\/[a-z0-9/_\-.]+$/i.test(x.pathname))
+        return x.href;
+      // Original public images from the main MOVE&TRY site.
+      if(x.origin===location.origin && x.pathname.startsWith('/images/'))return x.href;
+      return null;
+    }catch(_){return null;}
   }
-  function postCard(entry) {
-    const href=readUrl(locale==='hr' ? entry.hrUrl : entry.enUrl);
-    if(!href || seen.has(href))return;
-    const category=String(entry.category||'');
-    if(!categories[locale][category])return;
-    const title=locale==='hr' ? entry.titleHr : entry.titleEn;
-    const excerpt=locale==='hr' ? entry.excerptHr : entry.excerptEn;
-    if(!title || !excerpt)return;
-    seen.add(href);
-    const node=document.createElement('a');
-    node.className='journal-post';
+  function card(a){
+    if(!a || !categories[lang][a.category])return null;
+    const href=internalUrl(lang==='hr'?a.hrUrl:a.enUrl);
+    const title=lang==='hr'?a.titleHr:a.titleEn;
+    const summary=lang==='hr'?a.excerptHr:a.excerptEn;
+    if(!href||!title||!summary)return null;
+    const node=el('a','journal-post');
     node.href=href;
+    node.dataset.category=a.category;
+    node.dataset.journalGenerated='true';
     node.hidden=true;
-    node.dataset.category=category;
-    if(category==='personal' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(entry.columnSlug||'')) {
-      node.dataset.column=entry.columnSlug;
+    if(a.columnSlug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(a.columnSlug))
+      node.dataset.column=a.columnSlug;
+    if(a.publishedAt && !Number.isNaN(Date.parse(a.publishedAt)))
+      node.dataset.publishAt=a.publishedAt;
+    const cover=publicImage(a.cover);
+    if(cover){
+      const photo=el('img','journal-post-image');
+      photo.src=cover;photo.alt=String(title);photo.loading='lazy';
+      node.append(photo);
     }
-    if(entry.publishedAt && !Number.isNaN(Date.parse(entry.publishedAt)))node.dataset.publishAt=entry.publishedAt;
-    const photo=safeImage(entry.cover);
-    if(photo){
-      const img=document.createElement('img');
-      img.className='journal-post-image';
-      img.src=photo;img.alt=String(title);img.loading='lazy';
-      node.append(img);
-    } else {
-      node.append(textEl('div','journal-post-image journal-post-placeholder','THE JOURNAL'));
-    }
-    const copy=textEl('div','journal-post-copy','');
-    const displayDate=entry.publishedAt
-      ? new Date(entry.publishedAt).toLocaleDateString(locale==='hr'?'hr-HR':'en-GB')
-      : '';
-    copy.append(textEl('span','journal-post-category',
-      categories[locale][category]+' · '+displayDate));
-    copy.append(textEl('h3','journal-post-title',title));
-    copy.append(textEl('p','journal-post-description',excerpt));
-    copy.append(textEl('span','journal-post-author',entry.byline||'MOVE&TRY Editorial'));
+    const copy=el('div','journal-post-copy');
+    const dt=a.publishedAt ? new Date(a.publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB') : '';
+    copy.append(el('span','journal-post-category',categories[lang][a.category]+' · '+dt));
+    copy.append(el('h3','journal-post-title',title));
+    copy.append(el('p','journal-post-description',summary));
+    copy.append(el('span','journal-post-author',a.byline||'MOVE&TRY Editorial'));
     node.append(copy);
-    root.prepend(node);
+    return node;
   }
-  for(const entry of feed.items) {
-    if(entry && typeof entry==='object')postCard(entry);
-  }
-  if(nav && Array.isArray(feed.columns)){
-    const known=new Set([...nav.querySelectorAll('[data-column]')].map(el=>el.dataset.column));
-    for(const c of feed.columns){
-      if(!c || c.listed!==true)continue;
-      if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(c.slug||''))continue;
-      const visible=feed.items.some(i=>i.category==='personal' &&
-        i.columnSlug===c.slug && !!readUrl(locale==='hr'?i.hrUrl:i.enUrl));
-      if(!visible)continue;
-      columnNames[c.slug]=c.title||c.byline||c.slug;
-      columnProfiles[c.slug]={
-        title:c.title||c.byline||c.slug,
-        paragraphs:c.description ? [c.description] : []
-      };
-      if(known.has(c.slug))continue;
-      known.add(c.slug);
-      const button=document.createElement('button');
-      button.type='button';
-      button.className='journal-column';
-      button.dataset.column=c.slug;
-      button.setAttribute('aria-pressed','false');
-      button.textContent=c.title||c.byline||c.slug;
-      nav.append(button);
+  async function load(){
+    try{
+      const res=await fetch(API,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','apikey':KEY,
+          'Authorization':'Bearer '+KEY},
+        body:'{}',
+        cache:'no-store'
+      });
+      if(!res.ok)throw new Error('Feed '+res.status);
+      const payload=await res.json();
+      const items=Array.isArray(payload?.items)?payload.items:[];
+      const columns=Array.isArray(payload?.columns)?payload.columns:[];
+      const known=new Set([...root.querySelectorAll('.journal-post:not([data-journal-generated])')]
+        .map(x=>x.getAttribute('href')));
+      root.querySelectorAll('[data-journal-generated]').forEach(x=>x.remove());
+      const fragment=document.createDocumentFragment();
+      for(const a of items){
+        const node=card(a);
+        if(node&&!known.has(node.getAttribute('href')))fragment.append(node);
+      }
+      root.prepend(fragment);
+      if(nav){
+        nav.querySelectorAll('[data-journal-generated]').forEach(x=>x.remove());
+        const existing=new Set([...nav.querySelectorAll('[data-column]')].map(x=>x.dataset.column));
+        for(const col of columns){
+          if(col?.listed!==true||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(col.slug||''))continue;
+          added.names[col.slug]=col.title||col.byline||col.slug;
+          added.profiles[col.slug]={title:col.title||col.byline||col.slug,
+            paragraphs:col.description?[col.description]:[]};
+          if(existing.has(col.slug))continue;
+          const button=el('button','journal-column',col.title||col.byline||col.slug);
+          button.type='button';button.dataset.column=col.slug;
+          button.dataset.journalGenerated='true';
+          button.setAttribute('aria-pressed','false');
+          nav.append(button);
+        }
+      }
+      window.MoveTryJournalAddedColumnNames=added.names;
+      window.MoveTryJournalAddedColumnProfiles=added.profiles;
+      window.dispatchEvent(new Event('move-try-journal-feed-ready'));
+    }catch(error){
+      // Existing manually published articles stay fully accessible if the
+      // public feed is offline or migrations have not yet been applied.
+      console.warn('The Journal: dynamic feed unavailable; keeping static posts',error);
     }
   }
-  window.MoveTryJournalAddedColumnNames=columnNames;
-  window.MoveTryJournalAddedColumnProfiles=columnProfiles;
+  void load();
 })();
