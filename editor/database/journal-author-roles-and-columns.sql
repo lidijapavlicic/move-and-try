@@ -187,7 +187,7 @@ returns void
 language plpgsql
 security definer
 set search_path = ''
-as $
+as $$
 declare
   target_id uuid;
 begin
@@ -227,7 +227,7 @@ begin
       updated_at=now()
   where id=p_column_id;
 end;
-$;
+$$;
 
 revoke all on function public.journal_admin_update_column(
   uuid,text,text,text,text,boolean
