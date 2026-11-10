@@ -7,7 +7,7 @@ create table if not exists public.journal_draft_autosaves (
   owner_id uuid not null references auth.users(id) on delete cascade,
   draft_key text not null check (char_length(draft_key) between 1 and 100),
   article_id uuid null references public.journal_articles(id) on delete cascade,
-  base_revision integer null,
+  base_revision bigint null,
   snapshot jsonb not null check (jsonb_typeof(snapshot) = 'object'),
   saved_at timestamptz not null default now(),
   primary key (owner_id, draft_key)
