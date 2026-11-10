@@ -681,14 +681,10 @@
         const { error } = await db.rpc('journal_admin_set_author_permissions', {
           p_user_id:userId,
           p_columnist:columnist.checked,
-          p_contributor:contributor.checked
+          p_contributor:contributor.checked,
+          p_public_byline:byline
         });
         if (error) throw error;
-        const { error: bylineError } = await db.rpc('journal_admin_set_contributor_byline',{
-          p_user_id:userId,
-          p_byline:byline
-        });
-        if(bylineError)throw bylineError;
         await refreshDashboard();
         setMessage('dashboard-message','Autorske ovlasti i javni potpis su ažurirani.');
       } catch (error) {
