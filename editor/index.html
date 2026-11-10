@@ -290,8 +290,11 @@
         <p class="muted small">Jedna osobna kolumna po kolumnistu. Potpis određuješ ti, a kolumnist ga ne može mijenjati.</p>
         <form id="column-create-form">
           <div class="field">
-            <label for="column-writer">Kolumnist</label>
-            <select id="column-writer" required></select>
+            <label for="column-writer">Pristup Editoru (neobavezno)</label>
+            <select id="column-writer">
+              <option value="">Bez korisničkog računa — samo javna kolumna</option>
+            </select>
+            <p class="muted small">Nina može biti kolumnistica bez računa. Kasnije joj možeš dodijeliti prijavu.</p>
           </div>
           <div class="field">
             <label for="column-title">Naziv kolumne</label>
@@ -413,6 +416,13 @@
       <p class="muted small" id="editor-context"></p>
 
       <form id="article-form">
+        <div class="field" id="admin-column-field" hidden>
+          <label for="admin-column-choice">Javno autorstvo članka</label>
+          <select id="admin-column-choice">
+            <option value="">MOVE&amp;TRY Editorial — urednički članak</option>
+          </select>
+          <p class="muted small">Odaberi Nininu kolumnu i piši pod njezinim javnim potpisom. Sustav bilježi da si ti unijela tekst.</p>
+        </div>
         <div class="field" id="writing-mode-field" hidden>
           <label for="article-writing-mode">Pišem kao</label>
           <select id="article-writing-mode">
