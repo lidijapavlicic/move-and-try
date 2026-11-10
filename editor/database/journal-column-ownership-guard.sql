@@ -16,6 +16,33 @@ alter table public.journal_articles
 create index if not exists journal_articles_column_id_idx
   on public.journal_articles(column_id);
 
+-- Explicitly snapshot only drafts that existed BEFORE this guard was installed.
+-- Without a snapshot, any future article with a null column_id would bypass
+-- permission revocation via the old "legacy draft" condition.
+create table if not exists public.journal_legacy_draft_snapshot (
+  article_id uuid primary key references public.journal_articles(id) on delete cascade,
+  author_id uuid not null,
+  category text not null,
+  captured_at timestamptz not null default now()
+);
+revoke all on public.journal_legacy_draft_snapshot from anon, authenticated;
+
+do $
+begin
+  if not exists (
+    select 1 from pg_catalog.pg_trigger
+    where tgname = 'journal_enforce_author_capabilities_trigger'
+      and tgrelid = 'public.journal_articles'::regclass
+  ) then
+    insert into public.journal_legacy_draft_snapshot (article_id, author_id, category)
+      select id, author_id, category
+      from public.journal_articles
+      where status in ('draft', 'revision')
+    on conflict (article_id) do nothing;
+  end if;
+end
+$;
+
 create or replace function public.journal_enforce_author_capabilities()
 returns trigger
 language plpgsql
@@ -53,6 +80,14 @@ begin
     raise exception 'Promjena autora clanka nije dopustena';
   end if;
 
+  -- The column / standalone-publication identity is fixed after creation.
+  -- Ordinary contributor category changes remain possible.
+  if TG_OP = 'UPDATE'
+     and ((old.category = 'personal' and new.category <> 'personal')
+          or (old.category <> 'personal' and new.category = 'personal')) then
+    raise exception 'Nije moguce promijeniti vrstu clanka nakon stvaranja';
+  end if;
+
   if actor_role = 'admin' then
     -- Administrator edits as editor, without assuming another columnist's
     -- identity or replacing historical column ownership.
@@ -87,11 +122,18 @@ begin
   from public.journal_author_permissions p
   where p.user_id = actor_id;
 
-  -- Legacy drafts from before author capability rollout must remain editable
-  -- by their original authors. They keep their existing null column_id.
-  -- They cannot be turned into a different writing type as a workaround.
+  -- Only pre-migration drafts are grandfathered, and only while the author
+  -- STILL holds the appropriate capability. Revoked writers cannot use this.
   if TG_OP = 'UPDATE' and old.column_id is null
-     and old.category = new.category then
+     and old.category = new.category
+     and exists (
+       select 1 from public.journal_legacy_draft_snapshot legacy
+       where legacy.article_id = old.id
+         and legacy.author_id = actor_id
+         and legacy.category = old.category
+     )
+     and ((old.category = 'personal' and writer_column is true)
+          or (old.category <> 'personal' and writer_contributor is true)) then
     new.column_id := null;
     return new;
   end if;
