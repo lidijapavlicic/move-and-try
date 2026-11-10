@@ -71,8 +71,7 @@
     try{
       const res=await fetch(API,{
         method:'POST',
-        headers:{'Content-Type':'application/json','apikey':KEY,
-          'Authorization':'Bearer '+KEY},
+        headers:{'Content-Type':'application/json','apikey':KEY},
         body:'{}',
         cache:'no-store'
       });
