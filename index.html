@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="theme-color" content="#f7f6f2">
-
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <title>Move & Try | You don't have to be good at it. Just try.</title>
-
-  <meta
-    name="description"
-    content="Move & Try is a place to discover something new you can try. Move, learn, create, explore, dare or take care of yourself. You don't have to be good at it. Just try."
-  >
+  <meta name="description" content="Move & Try is a place to discover something new you can try. Move, learn, create, explore, dare or take care of yourself. You don't have to be good at it. Just try.">
 
   <link rel="canonical" href="https://moveandtry.com/">
-
   <link rel="alternate" hreflang="en" href="https://moveandtry.com/">
   <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/">
   <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/">
@@ -28,7 +20,6 @@
   <meta property="og:description" content="Discover something new you can try. You don't have to be good at it. Just try.">
   <meta property="og:url" content="https://moveandtry.com/">
   <meta property="og:image" content="https://moveandtry.com/images/move-and-try-share.png">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Move & Try | You don't have to be good at it. Just try.">
   <meta name="twitter:description" content="Discover something new you can try. You don't have to be good at it. Just try.">
@@ -65,20 +56,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <style>
-
-    /* ==========================================
-       WHAT'S NEW
-    ========================================== */
-
+    /* WHAT'S NEW */
     .home-intro .whats-new .new-card.latest-update-card {
       position: relative;
       isolation: isolate;
@@ -117,10 +99,36 @@
       animation-delay: -6s;
     }
 
-    /* ==========================================
-       KREATIVNE RADIONICE S DJECOM
-    ========================================== */
+    /* MOSAIC MAKING */
+    .home-intro .whats-new .new-card.latest-update-mosaic {
+      background: #171717;
+    }
 
+    .home-intro .whats-new .new-card.latest-update-mosaic::before {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(8,8,9,.38) 0%,
+          rgba(8,8,9,.60) 48%,
+          rgba(8,8,9,.91) 100%
+        ),
+        url('/images/mosaic-making-detail.jpg');
+      background-position: center;
+    }
+
+    .home-intro .whats-new .new-card.latest-update-mosaic::after {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(8,8,9,.38) 0%,
+          rgba(8,8,9,.60) 48%,
+          rgba(8,8,9,.91) 100%
+        ),
+        url('/images/mosaic-making-process.jpg');
+      background-position: center;
+    }
+
+    /* CREATIVE WORKSHOPS WITH CHILDREN */
     .home-intro .whats-new .new-card.latest-update-creative-workshops {
       background: #171717;
     }
@@ -134,7 +142,6 @@
           rgba(8,8,9,.91) 100%
         ),
         url('/images/creative-workshops-with-children-1.jpg');
-
       background-position: center;
     }
 
@@ -147,14 +154,10 @@
           rgba(8,8,9,.91) 100%
         ),
         url('/images/creative-workshops-with-children-2.jpg');
-
       background-position: center;
     }
 
-    /* ==========================================
-       CHILD & ADOLESCENT PSYCHOTHERAPY
-    ========================================== */
-
+    /* CHILD AND ADOLESCENT PSYCHOTHERAPY */
     .home-intro .whats-new .new-card.latest-update-psychotherapy {
       background: #18201d;
     }
@@ -168,7 +171,6 @@
           rgba(9,14,12,.88) 100%
         ),
         url('/images/care-child-psychotherapy-connection.jpg');
-
       background-position: center 52%;
     }
 
@@ -181,14 +183,10 @@
           rgba(9,14,12,.88) 100%
         ),
         url('/images/care-child-psychotherapy-light.jpg');
-
       background-position: center 50%;
     }
 
-    /* ==========================================
-       TUFTING
-    ========================================== */
-
+    /* TUFTING */
     .home-intro .whats-new .new-card.latest-update-tufting {
       background: #171717;
     }
@@ -202,7 +200,6 @@
           rgba(10,10,10,.88) 100%
         ),
         url('/images/tufting-1.png');
-
       background-position: center;
     }
 
@@ -215,14 +212,10 @@
           rgba(10,10,10,.88) 100%
         ),
         url('/images/tufting-2.png');
-
       background-position: center;
     }
 
-    /* ==========================================
-       HORSE RIDING — GUIDE
-    ========================================== */
-
+    /* HORSE RIDING */
     .home-intro .whats-new .new-card.latest-update-horse-riding {
       background: #18241e;
     }
@@ -236,7 +229,6 @@
           rgba(9,19,15,.88) 100%
         ),
         url('/images/horse-riding-guide-hero.jpg');
-
       background-position: center 48%;
     }
 
@@ -249,14 +241,10 @@
           rgba(9,19,15,.88) 100%
         ),
         url('/images/horse-riding-first-lesson.jpg');
-
       background-position: center;
     }
 
-    /* ==========================================
-       NATURAL PERFUME
-    ========================================== */
-
+    /* NATURAL PERFUMES */
     .home-intro .whats-new .new-card.latest-update-natural-perfume {
       background: #211b19;
     }
@@ -270,7 +258,6 @@
           rgba(20,15,13,.90) 100%
         ),
         url('/images/natural-perfume-spray.jpg');
-
       background-position: center;
     }
 
@@ -283,7 +270,6 @@
           rgba(20,15,13,.90) 100%
         ),
         url('/images/natural-perfume-bottle.jpg');
-
       background-position: center;
     }
 
@@ -321,10 +307,7 @@
       }
     }
 
-    /* ==========================================
-       CATEGORY IMAGES
-    ========================================== */
-
+    /* CATEGORY ILLUSTRATIONS */
     #find-your-try .category-card {
       position: relative;
       isolation: isolate;
@@ -341,9 +324,7 @@
       background-size: cover;
       opacity: .40;
       pointer-events: none;
-      transition:
-        opacity .5s ease,
-        transform .5s ease;
+      transition: opacity .5s ease, transform .5s ease;
     }
 
     #find-your-try .category-move::before {
@@ -395,19 +376,13 @@
       }
     }
 
-    /* ==========================================
-       FINAL PHOTO
-    ========================================== */
-
+    /* FINAL BACKGROUND */
     section.suggest {
       position: relative;
       isolation: isolate;
       background-color: #17251d;
       background-image:
-        linear-gradient(
-          rgba(9,19,15,.40),
-          rgba(9,19,15,.50)
-        ),
+        linear-gradient(rgba(9,19,15,.40), rgba(9,19,15,.50)),
         url('/images/home-final-background.jpg');
       background-size: cover;
       background-position: center 50%;
@@ -448,18 +423,12 @@
       section.suggest {
         background-position: center center;
         background-image:
-          linear-gradient(
-            rgba(9,19,15,.64),
-            rgba(9,19,15,.73)
-          ),
+          linear-gradient(rgba(9,19,15,.64), rgba(9,19,15,.73)),
           url('/images/home-final-background.jpg');
       }
     }
 
-    /* ==========================================
-       HOMEPAGE HERO
-    ========================================== */
-
+    /* HERO IMAGE */
     section.home-hero-image {
       display: block;
       width: 100vw;
@@ -483,10 +452,7 @@
       object-fit: contain;
     }
 
-    /* ==========================================
-       MOVE&TRY APP
-    ========================================== */
-
+    /* MOVE&TRY APP */
     #move-try-app {
       padding: clamp(60px, 8vw, 110px) max(24px, calc((100vw - 1220px) / 2));
       background: #eeeee8;
@@ -574,10 +540,7 @@
       }
     }
 
-    /* ==========================================
-       HEADER
-    ========================================== */
-
+    /* HEADER */
     .header-behind-link {
       color: #555;
       font-family: 'Manrope', sans-serif;
@@ -623,10 +586,7 @@
       }
     }
 
-    /* ==========================================
-       BE PART OF IT
-    ========================================== */
-
+    /* BE PART OF IT */
     #be-part-of-it .community-actions .community-link-primary {
       display: inline-flex;
       align-items: center;
@@ -642,9 +602,7 @@
       letter-spacing: .05em;
       line-height: 1.6;
       text-decoration: none;
-      transition:
-        background .2s ease,
-        color .2s ease;
+      transition: background .2s ease, color .2s ease;
     }
 
     #be-part-of-it .community-actions .community-link-primary:hover {
@@ -668,10 +626,7 @@
       margin-top: 7px;
     }
 
-    /* ==========================================
-       WHERE TO TRY
-    ========================================== */
-
+    /* WHERE TO TRY */
     #where-to-try {
       scroll-margin-top: 110px;
     }
@@ -703,9 +658,7 @@
       letter-spacing: .05em;
       line-height: 1.6;
       text-decoration: none;
-      transition:
-        background .2s ease,
-        color .2s ease;
+      transition: background .2s ease, color .2s ease;
     }
 
     #where-to-try .where-home-primary:hover {
@@ -745,669 +698,487 @@
       outline: 3px solid #587349;
       outline-offset: 3px;
     }
-
   </style>
 
   <link rel="stylesheet" href="/consent.css">
 </head>
 
 <body>
-
-<header class="site-header">
-
-  <a href="/" class="site-logo" aria-label="Move & Try home">
-    <img src="/images/move-and-try-logo.png" alt="Move & Try">
-  </a>
-
-  <nav class="desktop-nav">
-    <a href="#find-your-try">DISCOVER</a>
-    <a href="#be-part-of-it">BE PART OF IT</a>
-    <a href="#where-to-try">WHERE TO TRY</a>
-    <a href="#move-try-app">APP</a>
-    <a href="/journal.html">THE JOURNAL</a>
-  </nav>
-
-  <div class="header-actions">
-
-    <a href="/behind-move-and-try.html" class="header-behind-link">
-      BEHIND MOVE & TRY
+  <header class="site-header">
+    <a href="/" class="site-logo" aria-label="Move & Try home">
+      <img src="/images/move-and-try-logo.png" alt="Move & Try">
     </a>
 
-    <div class="header-language">
+    <nav class="desktop-nav">
+      <a href="#find-your-try">DISCOVER</a>
+      <a href="#be-part-of-it">BE PART OF IT</a>
+      <a href="#where-to-try">WHERE TO TRY</a>
+      <a href="#move-try-app">APP</a>
+      <a href="/journal.html">THE JOURNAL</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="/behind-move-and-try.html" class="header-behind-link">
+        BEHIND MOVE & TRY
+      </a>
+
+      <div class="header-language">
+        <span class="language-active">EN</span>
+        <span>|</span>
+        <a href="/hr/" onclick="setLanguage('hr')">HR</a>
+      </div>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <nav>
+      <a href="#find-your-try">DISCOVER</a>
+      <a href="#be-part-of-it">BE PART OF IT</a>
+      <a href="#where-to-try">WHERE TO TRY</a>
+      <a href="#move-try-app">APP</a>
+      <a href="/journal.html">THE JOURNAL</a>
+      <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
+      <button
+        type="button"
+        class="mobile-privacy-link"
+        onclick="window.MoveTryConsent?.openSettings(this)"
+      >
+        PRIVACY SETTINGS
+      </button>
+    </nav>
+
+    <div class="mobile-menu-language">
       <span class="language-active">EN</span>
       <span>|</span>
       <a href="/hr/" onclick="setLanguage('hr')">HR</a>
     </div>
-
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-    >
-      <span></span>
-      <span></span>
-    </button>
-
   </div>
 
-</header>
-
-<div class="mobile-menu">
-
-  <nav>
-    <a href="#find-your-try">DISCOVER</a>
-    <a href="#be-part-of-it">BE PART OF IT</a>
-    <a href="#where-to-try">WHERE TO TRY</a>
-    <a href="#move-try-app">APP</a>
-    <a href="/journal.html">THE JOURNAL</a>
-    <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
-
-    <button
-      type="button"
-      class="mobile-privacy-link"
-      onclick="window.MoveTryConsent?.openSettings(this)"
+  <section class="home-hero-image">
+    <img
+      src="/images/home-discover.png"
+      alt="A playful collection of different activities and things to discover"
     >
-      PRIVACY SETTINGS
-    </button>
-  </nav>
+  </section>
 
-  <div class="mobile-menu-language">
-    <span class="language-active">EN</span>
-    <span>|</span>
-    <a href="/hr/" onclick="setLanguage('hr')">HR</a>
-  </div>
+  <section class="home-intro" aria-label="How it works and what's new">
+    <div class="home-intro-grid">
+      <div class="how-it-works" aria-labelledby="how-it-works-title">
+        <div class="how-it-works-inner">
+          <p class="section-label">HOW IT WORKS</p>
 
-</div>
+          <h2 id="how-it-works-title">
+            A LITTLE CURIOSITY.<br>
+            A NEW EXPERIENCE.
+          </h2>
 
-<section class="home-hero-image">
-  <img
-    src="/images/home-discover.png"
-    alt="A playful collection of different activities and things to discover"
-  >
-</section>
+          <div class="how-steps">
+            <div class="how-step">
+              <span class="how-step-number">01</span>
+              <h3>DISCOVER</h3>
+              <p>Explore activities and find something that sparks your interest.</p>
+              <a class="how-step-link" href="#find-your-try">
+                EXPLORE ACTIVITIES →
+              </a>
+            </div>
 
-<section class="home-intro" aria-label="How it works and what's new">
+            <div class="how-step">
+              <span class="how-step-number">02</span>
+              <h3>GET INSPIRED</h3>
+              <p>Read experiences, advice and stories from others.</p>
+            </div>
 
-  <div class="home-intro-grid">
+            <div class="how-step">
+              <span class="how-step-number">03</span>
+              <h3>FIND A PLACE</h3>
+              <p>
+                Find where you can turn your curiosity
+                into a real experience.
+              </p>
+              <a class="how-step-link" href="#where-to-try">
+                WHERE TO TRY →
+              </a>
+            </div>
 
-    <div class="how-it-works" aria-labelledby="how-it-works-title">
+            <div class="how-step">
+              <span class="how-step-number">04</span>
+              <h3>TRY IT</h3>
+              <p>
+                Take the first step.
+                You don't have to be good at it.
+              </p>
+            </div>
 
-      <div class="how-it-works-inner">
-
-        <p class="section-label">
-          HOW IT WORKS
-        </p>
-
-        <h2 id="how-it-works-title">
-          A LITTLE CURIOSITY.<br>
-          A NEW EXPERIENCE.
-        </h2>
-
-        <div class="how-steps">
-
-          <div class="how-step">
-            <span class="how-step-number">01</span>
-            <h3>DISCOVER</h3>
-
-            <p>
-              Explore activities and find something that sparks your interest.
-            </p>
-
-            <a class="how-step-link" href="#find-your-try">
-              EXPLORE ACTIVITIES →
-            </a>
+            <div class="how-step">
+              <span class="how-step-number">05</span>
+              <h3>SHARE YOUR EXPERIENCE</h3>
+              <p>Your story might inspire someone else to try.</p>
+              <a class="how-step-link" href="/share-experience.html">
+                SHARE YOUR STORY →
+              </a>
+            </div>
           </div>
 
-          <div class="how-step">
-            <span class="how-step-number">02</span>
-            <h3>GET INSPIRED</h3>
-
-            <p>
-              Read experiences, advice and stories from others.
-            </p>
-          </div>
-
-          <div class="how-step">
-            <span class="how-step-number">03</span>
-            <h3>FIND A PLACE</h3>
-
-            <p>
-              Find where you can turn your curiosity
-              into a real experience.
-            </p>
-
-            <a class="how-step-link" href="#where-to-try">
-              WHERE TO TRY →
-            </a>
-          </div>
-
-          <div class="how-step">
-            <span class="how-step-number">04</span>
-            <h3>TRY IT</h3>
-
-            <p>
-              Take the first step.
-              You don't have to be good at it.
-            </p>
-          </div>
-
-          <div class="how-step">
-            <span class="how-step-number">05</span>
-            <h3>SHARE YOUR EXPERIENCE</h3>
-
-            <p>
-              Your story might inspire someone else to try.
-            </p>
-
-            <a class="how-step-link" href="/share-experience.html">
-              SHARE YOUR STORY →
-            </a>
-          </div>
-
+          <p class="how-it-works-ending">
+            You don't need experience. Just curiosity.
+          </p>
         </div>
-
-        <p class="how-it-works-ending">
-          You don't need experience. Just curiosity.
-        </p>
-
       </div>
 
+      <div class="home-intro-news">
+        <div class="whats-new">
+          <p class="section-label">WHAT'S NEW</p>
+
+          <h2>
+            SOMETHING NEW<br>
+            TO DISCOVER.
+          </h2>
+
+          <a
+            href="/mosaic-making.html"
+            class="new-card latest-update-card latest-update-mosaic"
+          >
+            <span class="new-type">CREATE · NEW ACTIVITY</span>
+            <h3>MOSAIC MAKING</h3>
+            <p>
+              Small pieces of tile, endless possibilities.
+              Explore mosaics, meet Miroslav Bušić and find out where to try.
+            </p>
+            <span class="new-action">EXPLORE MOSAIC MAKING →</span>
+          </a>
+
+          <a
+            href="/creative-workshops-with-children-guide.html"
+            class="new-card latest-update-card latest-update-creative-workshops"
+          >
+            <span class="new-type">CREATE · GUIDE</span>
+            <h3>CREATIVE WORKSHOPS WITH CHILDREN</h3>
+            <p>
+              A short, easy guide to creating together,
+              having fun with your child and trying something creative.
+            </p>
+            <span class="new-action">READ THE GUIDE →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories" id="find-your-try">
+    <p class="section-label">FIND YOUR NEXT TRY</p>
+    <h2>WHAT DO YOU FEEL LIKE DOING TODAY?</h2>
+
+    <div class="category-grid">
+      <a href="/move.html" class="category-card category-move">
+        <span class="category-number">01</span>
+        <h3>MOVE</h3>
+        <p>Run. Climb. Dance. Hike. Ride.</p>
+        <span class="category-action">EXPLORE MOVE →</span>
+      </a>
+
+      <a href="/learn.html" class="category-card category-learn">
+        <span class="category-number">02</span>
+        <h3>LEARN</h3>
+        <p>Code. Cook. Speak. Build. Understand.</p>
+        <span class="category-action">EXPLORE LEARN →</span>
+      </a>
+
+      <a href="/create.html" class="category-card category-create">
+        <span class="category-number">03</span>
+        <h3>CREATE</h3>
+        <p>Write. Paint. Photograph. Make.</p>
+        <span class="category-action">EXPLORE CREATE →</span>
+      </a>
+
+      <a href="/explore.html" class="category-card category-explore">
+        <span class="category-number">04</span>
+        <h3>EXPLORE</h3>
+        <p>Go somewhere. Take a different path. Stay curious.</p>
+        <span class="category-action">EXPLORE EXPLORE →</span>
+      </a>
+
+      <a href="/dare.html" class="category-card category-dare">
+        <span class="category-number">05</span>
+        <h3>DARE</h3>
+        <p>Do the thing you've been talking yourself out of.</p>
+        <span class="category-action">EXPLORE DARE →</span>
+      </a>
+
+      <a href="/care.html" class="category-card category-care">
+        <span class="category-number">06</span>
+        <h3>CARE</h3>
+        <p>Pause. Talk. Rest. Recover. Take care of yourself.</p>
+        <span class="category-action">EXPLORE CARE →</span>
+      </a>
     </div>
 
-    <div class="home-intro-news">
+    <button
+      class="surprise-button"
+      type="button"
+      onclick="surpriseMeHome()"
+    >
+      🎲 SURPRISE ME
+    </button>
+  </section>
 
-      <div class="whats-new">
+  <section id="move-try-app" aria-labelledby="move-try-app-title">
+    <div class="app-install-inner">
+      <p class="app-install-eyebrow">MOVE&TRY · APP</p>
+      <h2 id="move-try-app-title">TAKE YOUR CURIOSITY WITH YOU.</h2>
 
-        <p class="section-label">
-          WHAT'S NEW
+      <p class="app-install-description">
+        Discover activities, find places to try them,
+        save what interests you and follow new stories —
+        all in one place.
+      </p>
+
+      <a class="app-install-link" href="/app/">
+        INSTALL MOVE&TRY →
+      </a>
+
+      <p class="app-install-note">
+        Free · Directly from our website · No app store required
+      </p>
+
+      <details>
+        <summary>How do I install the app?</summary>
+
+        <p>
+          <strong>Android:</strong>
+          open the app using the button above,
+          then choose “Install app” or “Add to Home screen”
+          in your browser, when available.
         </p>
+
+        <p>
+          <strong>iPhone:</strong>
+          open the app in Safari,
+          tap Share,
+          then “Add to Home Screen”.
+        </p>
+
+        <p>
+          <strong>Desktop:</strong>
+          open the app in Chrome or Edge,
+          then use the install option in the address bar
+          or browser menu, when available.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <section class="community">
+    <div class="community-grid">
+      <div class="community-panel contribute-panel" id="be-part-of-it">
+        <p class="section-label">BE PART OF IT</p>
 
         <h2>
-          SOMETHING NEW<br>
-          TO DISCOVER.
+          THERE ARE MANY WAYS<br>
+          TO BE PART OF MOVE & TRY.
         </h2>
 
-        <a
-          href="/creative-workshops-with-children-guide.html"
-          class="new-card latest-update-card latest-update-creative-workshops"
-        >
+        <p class="community-text">
+          Share your experience. Pass on what you know. Suggest something new.<br>
+          Show us a place worth discovering.<br>
+          Every story, idea and perspective could inspire someone to take the first step.
+        </p>
 
-          <span class="new-type">
-            CREATE · GUIDE
-          </span>
+        <p class="community-highlight">
+          Move & Try isn't just built for people.
+          It's built with them.
+        </p>
 
-          <h3>
-            CREATIVE WORKSHOPS WITH CHILDREN
-          </h3>
+        <div class="community-actions">
+          <a href="/how-to-contribute.html" class="community-link community-link-primary">
+            DISCOVER HOW TO GET INVOLVED →
+          </a>
 
-          <p>
-            A short, easy guide to creating together,
-            having fun with your child and trying something creative.
-          </p>
+          <a
+            class="community-instagram-link"
+            href="https://www.instagram.com/moveandtry/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            OR REACH OUT ON INSTAGRAM →
+          </a>
+        </div>
 
-          <span class="new-action">
-            READ THE GUIDE →
-          </span>
-
-        </a>
-
-        <a
-          href="/child-adolescent-psychotherapy.html"
-          class="new-card latest-update-card latest-update-psychotherapy"
-        >
-
-          <span class="new-type">
-            CARE · NEW ACTIVITY
-          </span>
-
-          <h3>
-            CHILD &amp; ADOLESCENT PSYCHOTHERAPY
-          </h3>
-
-          <p>
-            When to seek support, what the first step can look like
-            and what psychotherapy can offer a child or teenager.
-          </p>
-
-          <span class="new-action">
-            EXPLORE PSYCHOTHERAPY →
-          </span>
-
-        </a>
-
+        <p class="community-note">
+          Stories · Knowledge · Photos · Ideas · Places · People
+        </p>
       </div>
 
-    </div>
+      <div class="community-panel where-panel" id="where-to-try">
+        <p class="section-label">WHERE TO TRY</p>
 
-  </div>
+        <h2>
+          FOUND SOMETHING<br>
+          YOU WANT TO TRY?
+        </h2>
 
-</section>
+        <p class="community-text">
+          From an idea to a real experience.<br>
+          Find workshops, studios, clubs,
+          experts and other places
+          where you can take the first step.
+        </p>
 
-<section class="categories" id="find-your-try">
+        <p class="community-highlight">
+          Discover here. Try there.
+        </p>
 
-  <p class="section-label">
-    FIND YOUR NEXT TRY
-  </p>
+        <div class="where-home-actions">
+          <a href="/where-to-try.html" class="where-home-primary">
+            FIND WHERE TO TRY →
+          </a>
 
-  <h2>
-    WHAT DO YOU FEEL LIKE DOING TODAY?
-  </h2>
-
-  <div class="category-grid">
-
-    <a href="/move.html" class="category-card category-move">
-      <span class="category-number">01</span>
-      <h3>MOVE</h3>
-      <p>Run. Climb. Dance. Hike. Ride.</p>
-      <span class="category-action">EXPLORE MOVE →</span>
-    </a>
-
-    <a href="/learn.html" class="category-card category-learn">
-      <span class="category-number">02</span>
-      <h3>LEARN</h3>
-      <p>Code. Cook. Speak. Build. Understand.</p>
-      <span class="category-action">EXPLORE LEARN →</span>
-    </a>
-
-    <a href="/create.html" class="category-card category-create">
-      <span class="category-number">03</span>
-      <h3>CREATE</h3>
-      <p>Write. Paint. Photograph. Make.</p>
-      <span class="category-action">EXPLORE CREATE →</span>
-    </a>
-
-    <a href="/explore.html" class="category-card category-explore">
-      <span class="category-number">04</span>
-      <h3>EXPLORE</h3>
-      <p>Go somewhere. Take a different path. Stay curious.</p>
-      <span class="category-action">EXPLORE EXPLORE →</span>
-    </a>
-
-    <a href="/dare.html" class="category-card category-dare">
-      <span class="category-number">05</span>
-      <h3>DARE</h3>
-      <p>Do the thing you've been talking yourself out of.</p>
-      <span class="category-action">EXPLORE DARE →</span>
-    </a>
-
-    <a href="/care.html" class="category-card category-care">
-      <span class="category-number">06</span>
-      <h3>CARE</h3>
-      <p>Pause. Talk. Rest. Recover. Take care of yourself.</p>
-      <span class="category-action">EXPLORE CARE →</span>
-    </a>
-
-  </div>
-
-  <button
-    class="surprise-button"
-    type="button"
-    onclick="surpriseMeHome()"
-  >
-    🎲 SURPRISE ME
-  </button>
-
-</section>
-
-<section id="move-try-app" aria-labelledby="move-try-app-title">
-  <div class="app-install-inner">
-
-    <p class="app-install-eyebrow">
-      MOVE&TRY · APP
-    </p>
-
-    <h2 id="move-try-app-title">
-      TAKE YOUR CURIOSITY WITH YOU.
-    </h2>
-
-    <p class="app-install-description">
-      Discover activities, find places to try them,
-      save what interests you and follow new stories —
-      all in one place.
-    </p>
-
-    <a class="app-install-link" href="/app/">
-      INSTALL MOVE&TRY →
-    </a>
-
-    <p class="app-install-note">
-      Free · Directly from our website · No app store required
-    </p>
-
-    <details>
-      <summary>How do I install the app?</summary>
-
-      <p>
-        <strong>Android:</strong>
-        open the app using the button above,
-        then choose “Install app” or “Add to Home screen”
-        in your browser, when available.
-      </p>
-
-      <p>
-        <strong>iPhone:</strong>
-        open the app in Safari,
-        tap Share,
-        then “Add to Home Screen”.
-      </p>
-
-      <p>
-        <strong>Desktop:</strong>
-        open the app in Chrome or Edge,
-        then use the install option in the address bar
-        or browser menu, when available.
-      </p>
-
-    </details>
-
-  </div>
-</section>
-
-<section class="community">
-
-  <div class="community-grid">
-
-    <div
-      class="community-panel contribute-panel"
-      id="be-part-of-it"
-    >
-
-      <p class="section-label">
-        BE PART OF IT
-      </p>
-
-      <h2>
-        THERE ARE MANY WAYS<br>
-        TO BE PART OF MOVE & TRY.
-      </h2>
-
-      <p class="community-text">
-        Share your experience. Pass on what you know. Suggest something new.<br>
-        Show us a place worth discovering.<br>
-        Every story, idea and perspective could inspire someone to take the first step.
-      </p>
-
-      <p class="community-highlight">
-        Move & Try isn't just built for people.
-        It's built with them.
-      </p>
-
-      <div class="community-actions">
-
-        <a
-          href="/how-to-contribute.html"
-          class="community-link community-link-primary"
-        >
-          DISCOVER HOW TO GET INVOLVED →
-        </a>
-
-        <a
-          class="community-instagram-link"
-          href="https://www.instagram.com/moveandtry/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          OR REACH OUT ON INSTAGRAM →
-        </a>
-
+          <a href="/where-to-try.html" class="where-home-current">
+            CURRENTLY AVAILABLE: MOSAIC MAKING · CREATIVE WORKSHOPS WITH CHILDREN · TUFTING · NATURAL PERFUME MAKING · CHILD &amp; ADOLESCENT PSYCHOTHERAPY →
+          </a>
+        </div>
       </div>
-
-      <p class="community-note">
-        Stories · Knowledge · Photos · Ideas · Places · People
-      </p>
-
     </div>
+  </section>
 
-    <div
-      class="community-panel where-panel"
-      id="where-to-try"
+  <section class="suggest">
+    <p class="section-label">YOUR TURN</p>
+    <h2>WHAT SHOULD WE TRY NEXT?</h2>
+
+    <p class="suggest-intro">
+      Is there something you've been thinking about trying?<br>
+      Something you're curious about but haven't taken the first step yet?
+      <br><br>
+      <strong>Tell us.</strong><br>
+      Your idea might become our next TRY.
+    </p>
+
+    <form id="try-form">
+      <input
+        type="text"
+        aria-label="What would you like to try?"
+        id="try-input"
+        name="try"
+        placeholder="I'd love to try..."
+        required
+      >
+      <button type="submit">SEND →</button>
+    </form>
+
+    <p id="suggestion-message" role="status" aria-live="polite"></p>
+
+    <p class="suggest-note">
+      You suggest. We explore.
+      Together, we build Move & Try.
+    </p>
+
+    <p class="privacy-note">
+      We don't ask for your name or email.
+    </p>
+  </section>
+
+  <footer class="site-footer">
+    <p>MOVE & TRY</p>
+
+    <p class="footer-tagline">
+      You don't have to be good at it.
+      You just have to try.
+    </p>
+
+    <a href="mailto:hello@moveandtry.com">
+      hello@moveandtry.com
+    </a>
+
+    <a
+      class="footer-instagram-link"
+      href="https://www.instagram.com/moveandtry/"
+      target="_blank"
+      rel="noopener noreferrer"
     >
+      Instagram · @moveandtry
+    </a>
+  </footer>
 
-      <p class="section-label">
-        WHERE TO TRY
-      </p>
+  <script src="script.js"></script>
 
-      <h2>
-        FOUND SOMETHING<br>
-        YOU WANT TO TRY?
-      </h2>
-
-      <p class="community-text">
-        From an idea to a real experience.<br>
-        Find workshops, studios, clubs,
-        experts and other places
-        where you can take the first step.
-      </p>
-
-      <p class="community-highlight">
-        Discover here. Try there.
-      </p>
-
-      <div class="where-home-actions">
-
-        <a
-          href="/where-to-try.html"
-          class="where-home-primary"
-        >
-          FIND WHERE TO TRY →
-        </a>
-
-        <a
-          href="/where-to-try.html"
-          class="where-home-current"
-        >
-          CURRENTLY AVAILABLE: CREATIVE WORKSHOPS WITH CHILDREN · TUFTING · NATURAL PERFUME MAKING · CHILD &amp; ADOLESCENT PSYCHOTHERAPY →
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="suggest">
-
-  <p class="section-label">
-    YOUR TURN
-  </p>
-
-  <h2>
-    WHAT SHOULD WE TRY NEXT?
-  </h2>
-
-  <p class="suggest-intro">
-    Is there something you've been thinking about trying?<br>
-    Something you're curious about but haven't taken the first step yet?
-
-    <br><br>
-
-    <strong>Tell us.</strong><br>
-
-    Your idea might become our next TRY.
-  </p>
-
-  <form id="try-form">
-
-    <input
-      type="text"
-      aria-label="What would you like to try?"
-      id="try-input"
-      name="try"
-      placeholder="I'd love to try..."
-      required
-    >
-
-    <button type="submit">
-      SEND →
-    </button>
-
-  </form>
-
-  <p id="suggestion-message" role="status" aria-live="polite"></p>
-
-  <p class="suggest-note">
-    You suggest. We explore.
-    Together, we build Move & Try.
-  </p>
-
-  <p class="privacy-note">
-    We don't ask for your name or email.
-  </p>
-
-</section>
-
-<footer class="site-footer">
-
-  <p>
-    MOVE & TRY
-  </p>
-
-  <p class="footer-tagline">
-    You don't have to be good at it.
-    You just have to try.
-  </p>
-
-  <a href="mailto:hello@moveandtry.com">
-    hello@moveandtry.com
-  </a>
-
-  <a
-    class="footer-instagram-link"
-    href="https://www.instagram.com/moveandtry/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Instagram · @moveandtry
-  </a>
-
-</footer>
-
-<script src="script.js"></script>
-
-<script>
-
-  /* ==========================================
-     SURPRISE ME — HOME
-  ========================================== */
-
-  function surpriseMeHome() {
-
-    const activities = [
-      "/running.html",
-      "/pole-dance.html",
-      "/mediation.html",
-      "/horse-riding.html",
-      "/natural-perfume-making.html",
-      "/tufting.html",
-      "/child-adolescent-psychotherapy.html"
-    ];
-
-    const storageKey =
-      "moveAndTryLastSurpriseEn";
-
-    const lastActivity =
-      sessionStorage.getItem(storageKey);
-
-    const availableActivities =
-      activities.filter(
-        activity =>
-          activity !== lastActivity
-      );
-
-    const pool =
-      availableActivities.length
-        ? availableActivities
-        : activities;
-
-    const randomActivity =
-      pool[
-        Math.floor(
-          Math.random() *
-          pool.length
-        )
+  <script>
+    function surpriseMeHome() {
+      const activities = [
+        "/running.html",
+        "/pole-dance.html",
+        "/mediation.html",
+        "/horse-riding.html",
+        "/natural-perfume-making.html",
+        "/tufting.html",
+        "/child-adolescent-psychotherapy.html",
+        "/mosaic-making.html"
       ];
 
-    sessionStorage.setItem(
-      storageKey,
-      randomActivity
-    );
+      const storageKey = "moveAndTryLastSurpriseEn";
+      const lastActivity = sessionStorage.getItem(storageKey);
+      const availableActivities = activities.filter(
+        activity => activity !== lastActivity
+      );
+      const pool = availableActivities.length ? availableActivities : activities;
+      const randomActivity = pool[Math.floor(Math.random() * pool.length)];
 
-    window.location.href =
-      randomActivity;
+      sessionStorage.setItem(storageKey, randomActivity);
+      window.location.href = randomActivity;
+    }
 
-  }
-
-  /* ==========================================
-     WHAT'S NEW — EQUAL CARD HEIGHTS
-  ========================================== */
-
-  function equalizeWhatsNewCards() {
-
-    const cards =
-      document.querySelectorAll(
+    function equalizeWhatsNewCards() {
+      const cards = document.querySelectorAll(
         '.home-intro .whats-new .new-card.latest-update-card'
       );
 
-    if (!cards.length) {
-      return;
+      if (!cards.length) {
+        return;
+      }
+
+      cards.forEach(card => {
+        card.style.minHeight = '';
+      });
+
+      let maxHeight = 340;
+
+      cards.forEach(card => {
+        maxHeight = Math.max(maxHeight, card.offsetHeight);
+      });
+
+      cards.forEach(card => {
+        card.style.minHeight = `${maxHeight}px`;
+      });
     }
 
-    cards.forEach(card => {
-      card.style.minHeight = '';
-    });
+    window.addEventListener('load', equalizeWhatsNewCards);
+    window.addEventListener('resize', equalizeWhatsNewCards);
+  </script>
 
-    let maxHeight = 340;
-
-    cards.forEach(card => {
-      maxHeight = Math.max(
-        maxHeight,
-        card.offsetHeight
-      );
-    });
-
-    cards.forEach(card => {
-      card.style.minHeight =
-        `${maxHeight}px`;
-    });
-
-  }
-
-  window.addEventListener(
-    'load',
-    equalizeWhatsNewCards
-  );
-
-  window.addEventListener(
-    'resize',
-    equalizeWhatsNewCards
-  );
-
-</script>
-
-<script>
-  /*
-   * MOVE&TRY public PWA registration.
-   * The Journal Editor uses its own separate service worker.
-   */
-  if (
-    'serviceWorker' in navigator &&
-    window.isSecureContext &&
-    !window.location.pathname.startsWith('/editor/')
-  ) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js', {
-        scope: '/'
-      }).catch(error => {
-        console.warn('MOVE&TRY public service worker:', error);
+  <script>
+    if (
+      'serviceWorker' in navigator &&
+      window.isSecureContext &&
+      !window.location.pathname.startsWith('/editor/')
+    ) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js', {
+          scope: '/'
+        }).catch(error => {
+          console.warn('MOVE&TRY public service worker:', error);
+        });
       });
-    });
-  }
-</script>
+    }
+  </script>
 
-<script src="/consent.js" defer></script>
-
+  <script src="/consent.js" defer></script>
 </body>
 </html>
