@@ -36,6 +36,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./editor.css">
+<link rel="stylesheet" href="./rich-editor.css">
 </head>
 <body>
 <header class="topbar">
@@ -160,7 +161,8 @@
     <nav class="tabs" id="dashboard-tabs" aria-label="Urednički izbornik">
       <button class="tab active" type="button" data-tab="home">PREGLED</button>
       <button class="tab" type="button" data-tab="mine">MOJI ČLANCI</button>
-      <button class="tab admin-only" type="button" data-tab="all" hidden>SVI ČLANCI</button>
+      <button class="tab admin-only" type="button" data-tab="all" hidden>ČLANCI</button>
+      <button class="tab" type="button" data-tab="published" id="tab-published-button">OBJAVLJENI ČLANCI</button>
       <button class="tab admin-only" type="button" data-tab="pending" hidden>ZA ODOBRENJE</button>
       <button class="tab admin-only" type="button" data-tab="people" hidden>SURADNICI</button>
     </nav>
@@ -214,7 +216,7 @@
 
     <section id="tab-all" class="section" hidden>
       <p class="eyebrow">ADMINISTRACIJA</p>
-      <h2>Svi članci</h2>
+      <h2>Članci</h2>
 
       <div class="filters">
         <input id="article-search" type="search" placeholder="Pretraži naslove i autore...">
@@ -234,6 +236,12 @@
       <div id="all-articles" class="article-list"></div>
     </section>
 
+    <section id="tab-published" class="section" hidden>
+      <p class="eyebrow" id="published-section-label">OBJAVLJENI RADOVI</p>
+      <h2 id="published-section-title">Objavljeni članci</h2>
+      <div id="published-articles" class="article-list"></div>
+    </section>
+
     <section id="tab-pending" class="section" hidden>
       <p class="eyebrow">ADMINISTRACIJA</p>
       <h2>Čekaju tvoje odobrenje</h2>
@@ -251,7 +259,7 @@
       <div class="editor-panel" style="margin-top:25px">
         <p class="eyebrow">PRISTUP UREDNIČKOM PROSTORU</p>
         <h3>Pozovi suradnika</h3>
-        <p class="muted small">Pozivnicu može poslati samo aktivni administrator. Novi suradnik dobiva ulogu autora / urednika.</p>
+        <p class="muted small">Odaberi koje autorske mogućnosti novi korisnik dobiva. Obje mogu biti uključene. Postojećim korisnicima ovlasti mijenjaš niže bez nove pozivnice.</p>
         <form id="invite-form">
           <div class="field">
             <label for="invite-name">Ime suradnika</label>
@@ -261,6 +269,12 @@
             <label for="invite-email">E-mail suradnika</label>
             <input id="invite-email" type="email" maxlength="254" autocomplete="off" required>
           </div>
+          <fieldset class="journal-role-options">
+            <legend>Autorske mogućnosti</legend>
+            <label><input id="invite-columnist" type="checkbox"> Kolumnist — vlastita dodijeljena kolumna</label>
+            <label><input id="invite-contributor" type="checkbox" checked> Suradnik — pojedinačni članci</label>
+            <p class="muted small">Možeš označiti obje mogućnosti. Kolumnu dodjeljujemo zasebno.</p>
+          </fieldset>
           <div class="actions">
             <button class="btn green" id="invite-submit-btn" type="submit">POŠALJI POZIVNICU →</button>
           </div>
@@ -270,9 +284,53 @@
 
       <div id="collaborators-list" style="margin-top:25px"></div>
 
+      <section class="editor-panel" id="column-management-panel" style="margin-top:25px">
+        <p class="eyebrow">OSOBNE KOLUMNE</p>
+        <h3>Dodijeli kolumnu</h3>
+        <p class="muted small">Jedna osobna kolumna po kolumnistu. Potpis određuješ ti, a kolumnist ga ne može mijenjati.</p>
+        <form id="column-create-form">
+          <div class="field">
+            <label for="column-writer">Pristup Editoru (neobavezno)</label>
+            <select id="column-writer">
+              <option value="">Bez korisničkog računa — samo javna kolumna</option>
+            </select>
+            <p class="muted small">Nina može biti kolumnistica bez računa. Kasnije joj možeš dodijeliti prijavu.</p>
+          </div>
+          <div class="field">
+            <label for="column-title">Naziv kolumne</label>
+            <input id="column-title" type="text" maxlength="160" required>
+          </div>
+          <div class="field">
+            <label for="column-slug">URL oznaka (engleski slug)</label>
+            <input id="column-slug" type="text" pattern="[a-z0-9]+(-[a-z0-9]+)*" maxlength="120" placeholder="moja-kolumna" required>
+          </div>
+          <div class="field">
+            <label for="column-byline">Javni potpis autora</label>
+            <input id="column-byline" type="text" maxlength="160" placeholder="Ime | MOVE&amp;TRY" required>
+          </div>
+          <div class="field">
+            <label for="column-description">Kratak opis (opcionalno)</label>
+            <textarea id="column-description"></textarea>
+          </div>
+          <button class="btn green" type="submit" id="column-create-btn">DODIJELI KOLUMNU</button>
+        </form>
+        <p class="message" id="column-message" role="status" aria-live="polite"></p>
+        <div class="journal-columns-directory" id="columns-directory">
+          <div class="journal-columns-directory-head">
+            <div>
+              <p class="eyebrow">UREDNIČKA EVIDENCIJA</p>
+              <h3>Sve kolumne</h3>
+              <p class="muted small">Kolumne ostaju na popisu bez obzira ima li autor pristup Editoru. Javna vidljivost uređuje se zasebno.</p>
+            </div>
+            <span class="journal-columns-count" id="columns-count">0 kolumni</span>
+          </div>
+          <div id="columns-list" class="journal-columns-list"></div>
+        </div>
+      </section>
+
       <div class="info-box" style="margin-top:30px">
         <strong>Upravljanje suradnicima</strong>
-        <p>Suradnike možeš aktivirati i deaktivirati izravno u Editoru. Njihovi članci, komentari i povijest ostaju sačuvani. Trajno brisanje korisnika i promjena uloga nisu dostupni u Editoru.</p>
+        <p>Postojećem korisniku možeš uključiti ili isključiti mogućnost pisanja kolumne i pojedinačnih članaka, bez slanja nove pozivnice. Aktivacija i deaktivacija pristupa ostaju zasebne radnje. Administratorsku ulogu nije moguće dodijeliti ovim putem.</p>
         <p>E-mail adrese postojećih suradnika nisu dio tablice uredničkih profila, pa se ovdje prikazuju imena, uloge i status pristupa.</p>
       </div>
     </section>
@@ -368,6 +426,21 @@
       <p class="muted small" id="editor-context"></p>
 
       <form id="article-form">
+        <div class="field" id="admin-column-field" hidden>
+          <label for="admin-column-choice">Javno autorstvo članka</label>
+          <select id="admin-column-choice">
+            <option value="">MOVE&amp;TRY Editorial — urednički članak</option>
+          </select>
+          <p class="muted small">Odaberi Nininu kolumnu i piši pod njezinim javnim potpisom. Sustav bilježi da si ti unijela tekst.</p>
+        </div>
+        <div class="field" id="writing-mode-field" hidden>
+          <label for="article-writing-mode">Pišem kao</label>
+          <select id="article-writing-mode">
+            <option value="column">Kolumnist — moja kolumna</option>
+            <option value="contribution">Suradnik — pojedinačni članak</option>
+          </select>
+          <p class="muted small" id="writing-mode-description"></p>
+        </div>
         <p class="eyebrow">HRVATSKA VERZIJA</p>
         <div class="field">
           <label for="article-title">Naslov</label>
@@ -398,6 +471,11 @@
         <section class="subsection" id="admin-en-fields" hidden>
           <p class="eyebrow">ENGLISH VERSION · ADMINISTRATOR</p>
           <p class="muted small">Englesku verziju uređuje administrator. Za objavljivanje su obvezni naslov, opis i tekst na oba jezika.</p>
+          <div class="mt-en-photo-transfer">
+            <button type="button" class="btn secondary small-btn" id="copy-hr-photos-to-en">PREUZMI FOTOGRAFIJE I RASPORED IZ HR</button>
+            <p class="muted small">Preuzima mjesta, redoslijed i veličine fotografija bez ponovnog učitavanja. Postojeći EN tekst ostaje sačuvan; opise fotografija prevedi nakon prijenosa.</p>
+            <p id="copy-hr-photos-message" class="muted small" role="status" aria-live="polite"></p>
+          </div>
           <div class="field">
             <label for="article-title-en">Title (EN)</label>
             <input id="article-title-en" type="text" maxlength="180">
@@ -442,7 +520,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
   <script src="./editor.js"></script>
+<script src="./rich-editor.js" defer></script>
 <script src="./formatting.js" defer></script>
+<script src="./autosave.js" defer></script>
+<script src="./media.js" defer></script>
+<script src="./hr-en-photos.js" defer></script>
+<script src="./journal-publish-assets.js" defer></script>
 </body>
 </html>
   

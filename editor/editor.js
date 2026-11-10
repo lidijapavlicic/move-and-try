@@ -47,6 +47,13 @@
   let currentProfile = null;
   let articles = [];
   let profiles = [];
+  let authorPermissions = new Map();
+  let permissionManagementAvailable = false;
+  let columns = [];
+  let columnsAvailable = false;
+  let columnPublicListingAvailable = false;
+  let currentWritingMode = 'contribution';
+  let currentArticleColumnId = null;
   let activeTab = 'home';
   let selectedArticleId = null;
   let currentArticleId = null;
@@ -62,6 +69,52 @@
 
 
   const isAdmin = () => currentProfile?.role === 'admin';
+
+  // Minimal interface for isolated autosave module; same authenticated Supabase client.
+  window.MoveTryJournalDraftBridge = {
+    db,
+    getContext: () => currentUser && currentProfile && !$('editor-panel').hidden
+      ? {
+          ownerId: currentUser.id,
+          articleId: currentArticleId,
+          revision: currentArticleRevision,
+          mode: currentEditorMode
+        }
+      : null,
+    getValues: () => readEditorValues(),
+    hasChanges: () => editorValuesChanged(),
+    applyValues: values => {
+      const inputs = {
+        p_title: 'article-title',
+        p_excerpt: 'article-excerpt',
+        p_content: 'article-content',
+        p_category: 'article-category',
+        p_cover_image: 'article-cover',
+        p_title_en: 'article-title-en',
+        p_excerpt_en: 'article-excerpt-en',
+        p_content_en: 'article-content-en'
+      };
+      const allowed = currentEditorMode === 'admin'
+        ? Object.keys(inputs)
+        : Object.keys(inputs).filter(key => !key.endsWith('_en'));
+      for (const key of allowed) {
+        if (!Object.prototype.hasOwnProperty.call(values, key)) continue;
+        const field = $(inputs[key]);
+        if (field) field.value = values[key] || '';
+      }
+      // Restore selected public column as well as the body and cover.
+      if(isAdmin()){
+        const savedColumn=values.ui_column_id || null;
+        if(savedColumn && columns.some(c=>c.id===savedColumn)){
+          currentArticleColumnId=savedColumn;
+          $('admin-column-choice').value=savedColumn;
+        }
+      }
+      configureWritingMode(currentArticleId ? articleById(currentArticleId) : null,
+        values.p_category === 'personal' ? 'column' : 'contribution');
+      $('editor-panel').dispatchEvent(new Event('journal-editor-restore'));
+    }
+  };
 
   // Filter za autorske članke.
   // Dodaje se u postojeću sekciju bez promjene njezina izgleda.
@@ -196,7 +249,7 @@
 
     const { data, error } = await db
       .from('journal_articles')
-      .select('id, author_id, title, excerpt, content, title_en, excerpt_en, content_en, category, cover_image, status, updated_at, created_at, revision_number, scheduled_at, published_at')
+      .select('id, author_id, title, excerpt, content, title_en, excerpt_en, content_en, category, cover_image, column_id, status, updated_at, created_at, revision_number, scheduled_at, published_at')
       .order('updated_at', { ascending: false })
       .limit(1000);
 
@@ -228,6 +281,38 @@
       profiles = [currentProfile];
     }
 
+    {
+      const result = await db.from('journal_author_permissions')
+        .select('user_id,can_write_column,can_contribute,contributor_byline').limit(1000);
+      if (request !== dashboardRequest) return;
+      if (result.error) {
+        authorPermissions = new Map();
+        permissionManagementAvailable = false;
+        setMessage('dashboard-message',
+          'Upravljanje autorskim ovlastima još nije dostupno u bazi. Postojeći članci su učitani.',
+          true);
+      } else {
+        authorPermissions = new Map((result.data || []).map(p => [p.user_id, p]));
+        permissionManagementAvailable = true;
+      }
+    }
+
+    let columnsResult = await db.from('journal_columns')
+      .select('id,columnist_id,title,slug,public_byline,description,is_active,public_listing_enabled')
+      .order('title',{ascending:true}).limit(1000);
+    if (request !== dashboardRequest) return;
+    columnPublicListingAvailable = !columnsResult.error;
+    if (columnsResult.error && /public_listing_enabled|column.*does not exist|schema cache/i
+        .test(String(columnsResult.error.message || ''))) {
+      // First migration is already live; public listing stage may not be.
+      columnsResult = await db.from('journal_columns')
+        .select('id,columnist_id,title,slug,public_byline,description,is_active')
+        .order('title',{ascending:true}).limit(1000);
+    }
+    if (request !== dashboardRequest) return;
+    columnsAvailable = !columnsResult.error;
+    columns = columnsResult.data || [];
+
     renderDashboard();
 
     if (selectedArticleId && !articleById(selectedArticleId)) {
@@ -235,10 +320,26 @@
     }
   }
 
+  function canSeeAssignedColumnArticle(article) {
+    const assigned=activeColumnFor(currentUser?.id);
+    return !!assigned && !!authorPermissions.get(currentUser?.id)?.can_write_column &&
+      article.column_id === assigned.id;
+  }
+
+  function isMyArticle(article) {
+    return article.author_id === currentUser?.id ||
+      canSeeAssignedColumnArticle(article);
+  }
+
+  function canEditArticle(article) {
+    return ['draft','revision'].includes(article.status) &&
+      isMyArticle(article);
+  }
+
   function renderDashboard() {
     const visible = isAdmin()
       ? articles
-      : articles.filter(a => a.author_id === currentUser.id);
+      : articles.filter(isMyArticle);
 
     const drafts = visible.filter(a =>
       ['draft', 'revision'].includes(a.status)
@@ -263,11 +364,13 @@
 
     renderArticleList('recent-articles', visible.slice(0, 5));
     renderMyArticles();
+    renderPublishedArticles();
 
     if (isAdmin()) {
       renderAllArticles();
       renderArticleList('pending-articles', pending);
       renderCollaborators();
+      renderColumns();
     }
   }
 
@@ -306,9 +409,7 @@
       makeButton('PREGLEDAJ', () => openDetail(article.id))
     );
 
-    const canEditOwn =
-      article.author_id === currentUser.id &&
-      ['draft', 'revision'].includes(article.status);
+    const canEditOwn = canEditArticle(article);
 
     if (canEditOwn) {
       actions.appendChild(
@@ -350,11 +451,27 @@
     return article.status === status;
   }
 
+  function renderPublishedArticles() {
+    // This tab is intentionally read-only and never displays other authors'
+    // publications to a non-admin user.
+    const published = articles.filter(article =>
+      article.status === 'published' &&
+      (isAdmin() || isMyArticle(article))
+    );
+    $('published-section-title').textContent = isAdmin()
+      ? 'Svi objavljeni članci'
+      : 'Moji objavljeni članci';
+    $('published-section-label').textContent = isAdmin()
+      ? 'THE JOURNAL · OBJAVLJENO'
+      : 'MOJI OBJAVLJENI RADOVI';
+    renderArticleList('published-articles', published);
+  }
+
   function renderMyArticles() {
     const status = $('my-article-status-filter').value;
 
     const mine = articles.filter(article =>
-      article.author_id === currentUser.id &&
+      isMyArticle(article) &&
       matchesStatusFilter(article, status)
     );
 
@@ -395,6 +512,285 @@
     renderArticleList('all-articles', filtered);
   }
 
+  function activeColumnFor(userId) {
+    return columns.find(c => c.columnist_id === userId && c.is_active);
+  }
+  function currentAuthorOptions() {
+    const p=authorPermissions.get(currentUser?.id);
+    return {columnist:isAdmin() || !!p?.can_write_column,
+      contributor:isAdmin() || !!p?.can_contribute,
+      column:activeColumnFor(currentUser?.id)};
+  }
+  function renderColumns() {
+    if (!isAdmin()) return;
+    const panel=$('column-management-panel');
+    panel.hidden=!permissionManagementAvailable || !columnsAvailable;
+    if(panel.hidden)return;
+    const writer=$('column-writer');
+    const prior=writer.value;
+    writer.replaceChildren();
+    const noAccount=document.createElement('option');
+    noAccount.value='';
+    noAccount.textContent='Bez računa — javni autor';
+    writer.append(noAccount);
+    profiles.filter(p=>p.is_active &&
+      (p.role==='admin'||authorPermissions.get(p.id)?.can_write_column) &&
+      !columns.some(c=>c.columnist_id===p.id)).forEach(p=>{
+      const option=document.createElement('option');
+      option.value=p.id;
+      option.textContent=p.display_name||'Bez imena';
+      writer.append(option);
+    });
+    if([...writer.options].some(x=>x.value===prior))writer.value=prior;
+    $('column-create-btn').disabled=busy;
+    $('columns-count').textContent=columns.length===1 ? '1 kolumna' : columns.length+' kolumni';
+
+    const list=$('columns-list');
+    list.replaceChildren();
+    if(!columns.length){
+      list.append(emptyMessage('Nema evidentiranih kolumni. Stvori prvu iznad.'));
+      return;
+    }
+    for(const column of columns){
+      const count=articles.filter(a=>a.column_id===column.id).length;
+      const published=articles.filter(a=>a.column_id===column.id && a.status==='published').length;
+      const row=createElement('section','journal-column-row');
+      row.dataset.columnId=column.id;
+      const detail=createElement('div','journal-column-info');
+      detail.append(createElement('strong','journal-column-name',column.title));
+      detail.append(createElement('p','journal-column-byline','Potpis: '+column.public_byline));
+      detail.append(createElement('p','article-meta',
+        (column.columnist_id ? 'Pristup Editoru: '+personName(column.columnist_id)
+          : 'Bez korisničkog računa')+
+        ' · '+count+' članaka · '+published+' objavljenih · /'+column.slug));
+      if(column.description){
+        detail.append(createElement('p','muted small',column.description));
+      }
+
+      const statuses=createElement('div','journal-column-statuses');
+      statuses.append(createElement('span',
+        column.is_active ? 'pill' : 'pill inactive',
+        column.is_active ? 'AKTIVNA U EDITORU' : 'DEAKTIVIRANA'));
+      const liveReady=columnPublicListingAvailable &&
+        column.public_listing_enabled===true && published>0 && column.is_active;
+      statuses.append(createElement('span','pill inactive',
+        liveReady ? 'SPREMNA ZA JAVNI POPIS'
+          : columnPublicListingAvailable && column.public_listing_enabled
+            ? 'ČEKA OBJAVLJEN ČLANAK' : 'NIJE NA JAVNOM POPISU'));
+      detail.append(statuses);
+
+      const actions=createElement('div','journal-column-actions');
+      const edit=makeButton('UREDI KOLUMNU',()=>editColumnInline(column.id),
+        'btn secondary small-btn');
+      const account=makeButton('PRISTUP AUTORA',()=>assignColumnAccount(column.id),
+        'btn secondary small-btn');
+      const toggle=makeButton(column.is_active?'DEAKTIVIRAJ':'AKTIVIRAJ',
+        ()=>toggleColumn(column.id),'btn secondary small-btn');
+      for(const button of [edit,account,toggle]){
+        button.disabled=busy;
+        actions.append(button);
+      }
+      if(columnPublicListingAvailable){
+        const publish=makeButton(column.public_listing_enabled
+          ? 'MAKNI S JAVNOG POPISA' : 'PRIPREMI JAVNI POPIS',
+          ()=>toggleColumnPublicListing(column.id),'btn secondary small-btn');
+        publish.disabled=busy;
+        actions.append(publish);
+      }
+      row.append(detail,actions);
+      list.append(row);
+    }
+  }
+
+  function editColumnInline(columnId){
+    if(!isAdmin() || busy)return;
+    const c=columns.find(x=>x.id===columnId);
+    if(!c)return;
+    const list=$('columns-list');
+    const current=list.querySelector('.journal-column-edit');
+    if(current)current.remove();
+    const row=[...list.children].find(el=>el.dataset.columnId===c.id);
+    if(!row)return;
+
+    const form=document.createElement('form');
+    form.className='journal-column-edit';
+    const fields=[
+      ['Naziv kolumne',c.title,160],
+      ['URL oznaka',c.slug,120],
+      ['Javni potpis autora',c.public_byline,160],
+      ['Kratak opis',c.description||'',500]
+    ];
+    const inputs=[];
+    for(const [name,value,max] of fields){
+      const label=document.createElement('label');
+      label.textContent=name;
+      const input=document.createElement(name==='Kratak opis'?'textarea':'input');
+      if(input.tagName==='INPUT')input.type='text';
+      input.value=value;input.maxLength=max;
+      if(name!=='Kratak opis')input.required=true;
+      label.append(input);
+      form.append(label);
+      inputs.push(input);
+    }
+    const controls=createElement('div','actions');
+    const save=document.createElement('button');
+    save.type='submit';
+    save.className='btn green small-btn';
+    save.textContent='SPREMI IZMJENE';
+    const cancel=document.createElement('button');
+    cancel.type='button';
+    cancel.className='btn secondary small-btn';
+    cancel.textContent='ODUSTANI';
+    cancel.addEventListener('click',()=>form.remove());
+    controls.append(save,cancel);
+    form.append(controls);
+    form.addEventListener('submit',event=>{
+      event.preventDefault();
+      const [title,slug,byline,description]=inputs.map(input=>input.value.trim());
+      if(!title||!byline||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)){
+        setMessage('column-message','Provjeri naziv, javni potpis i engleski slug.',true);
+        return;
+      }
+      if(!confirm('Spremiti promjene kolumne '+c.title+'?'))return;
+      save.disabled = true;
+      void saveColumnRpc('journal_admin_update_column',{
+        p_column_id:c.id,p_title:title,p_slug:slug,
+        p_public_byline:byline,p_description:description,
+        p_is_active:c.is_active
+      }).then(success => {
+        // Refresh replaces the row on success and closes the edit form.
+        // Keep the form and all typed values available on failure.
+        if (success) form.remove();
+        else save.disabled = false;
+      });
+    });
+    row.append(form);
+    form.querySelector('input')?.focus();
+  }
+
+  function toggleColumnPublicListing(id){
+    if(!columnPublicListingAvailable||!isAdmin()||busy)return;
+    const c=columns.find(x=>x.id===id);
+    if(!c)return;
+    const desired=!c.public_listing_enabled;
+    const question=desired
+      ? 'Pripremiti ovu kolumnu za javni popis? Sama promjena još ne objavljuje web-stranicu; prikazivat će se tek uz objavljen članak i povezan sustav objave.'
+      : 'Maknuti kolumnu iz budućeg javnog popisa? Članci i dalje ostaju spremljeni.';
+    if(!confirm(question))return;
+    void saveColumnRpc('journal_admin_set_column_public_listing',{
+      p_column_id:id,p_enabled:desired
+    });
+  }
+  async function saveColumnRpc(name,params){
+    if(!isAdmin()||busy)return false;
+    busy=true;
+    try{
+      setMessage('column-message','Spremanje kolumne...');
+      const {error}=await db.rpc(name,params);
+      if(error)throw error;
+      await refreshDashboard();
+      setMessage('column-message','Kolumna je spremljena.');
+      return true;
+    }catch(error){
+      setMessage('column-message',friendlyError(error),true);
+      return false;
+    }finally{
+      busy=false;
+      // Only refreshDashboard may replace rows. On failure preserve open form.
+    }
+  }
+  function assignColumnAccount(columnId){
+    if(!isAdmin()||busy)return;
+    const column=columns.find(c=>c.id===columnId);
+    if(!column)return;
+    const assigned=column.columnist_id ? personName(column.columnist_id) : 'bez računa';
+    const choices=profiles.filter(p=>p.is_active &&
+      (p.role==='admin' || authorPermissions.get(p.id)?.can_write_column) &&
+      (!columns.some(c=>c.columnist_id===p.id) || p.id===column.columnist_id));
+    const lines=choices.map((p,i)=>String(i+1)+'. '+(p.display_name||'Bez imena'));
+    const selected=prompt(
+      'Pristup kolumni: '+column.title+'\nTrenutno: '+assigned+
+      '\n\nUpiši broj postojećeg korisnika ili 0 za uklanjanje pristupa:\n'+
+      '0. Bez računa\n'+lines.join('\n'),
+      column.columnist_id
+        ? String(choices.findIndex(p=>p.id===column.columnist_id)+1) : '0'
+    );
+    if(selected===null)return;
+    if(!/^[0-9]+$/.test(selected.trim())){setMessage('column-message','Odaberi broj računa.',true);return;}
+    const index=Number(selected);
+    if(index<0||index>choices.length){
+      setMessage('column-message','Nepostojeći broj računa.',true);return;
+    }
+    const userId=index===0?null:choices[index-1].id;
+    if(!confirm('Promijeniti pristup kolumni? Javno autorstvo i članci ostaju nepromijenjeni.'))return;
+    void saveColumnRpc('journal_admin_link_column_account',{
+      p_column_id:columnId,p_user_id:userId
+    });
+  }
+  function toggleColumn(id){
+    const c=columns.find(x=>x.id===id);
+    if(!c||!confirm((c.is_active?'Deaktivirati':'Aktivirati')+' kolumnu '+c.title+'?'))return;
+    void saveColumnRpc('journal_admin_update_column',{
+      p_column_id:id,p_title:c.title,p_slug:c.slug,
+      p_public_byline:c.public_byline,p_description:c.description||'',
+      p_is_active:!c.is_active});
+  }
+  function configureAdminColumn(article) {
+    const field=$('admin-column-field');
+    const select=$('admin-column-choice');
+    field.hidden=!isAdmin();
+    if(!isAdmin())return;
+    select.replaceChildren();
+    const editorial=document.createElement('option');
+    editorial.value='';
+    editorial.textContent='MOVE&TRY Editorial — urednički članak';
+    select.append(editorial);
+    for(const c of columns.filter(c=>c.is_active || c.id===article?.column_id)){
+      const option=document.createElement('option');
+      option.value=c.id;
+      option.textContent=c.public_byline+' — '+c.title;
+      select.append(option);
+    }
+    const value=article?.column_id || '';
+    select.value=value;
+    if(select.value!==value)select.value='';
+    select.disabled=!!article;
+    currentArticleColumnId=select.value||null;
+    if(currentArticleColumnId){
+      $('article-category').value='personal';
+      $('article-category').disabled=true;
+    }
+  }
+
+  function configureWritingMode(article, selectedMode = null){
+    const field=$('writing-mode-field');
+    const category=$('article-category');
+    const mode=$('article-writing-mode');
+    if(isAdmin()||currentEditorMode==='admin'){
+      currentWritingMode='admin';field.hidden=true;
+      category.disabled=!!currentArticleColumnId;
+      for(const option of category.options){option.hidden=false;option.disabled=false;}
+      return;
+    }
+    const options=currentAuthorOptions();
+    const canColumn=options.columnist && !!options.column;
+    currentWritingMode=article ? (article.category==='personal'?'column':'contribution')
+      : (selectedMode === 'column' && canColumn ? 'column'
+        : selectedMode === 'contribution' && options.contributor ? 'contribution'
+        : canColumn && !options.contributor ? 'column' : 'contribution');
+    field.hidden=!!article || !(canColumn && options.contributor);
+    mode.value=currentWritingMode;
+    category.disabled=currentWritingMode==='column';
+    if(currentWritingMode==='column'){
+      category.value='personal';
+      $('writing-mode-description').textContent=options.column?.title||'Moja kolumna';
+    }else if(category.value==='personal'){category.value='guest';}
+    for(const option of category.options){
+      option.disabled=option.value==='personal'&&currentWritingMode!=='column';
+      option.hidden=option.disabled;
+    }
+  }
+
   function renderCollaborators() {
     const target = $('collaborators-list');
     target.replaceChildren();
@@ -406,6 +802,7 @@
 
     profiles.forEach(profile => {
       const row = createElement('div', 'collaborator');
+      row.dataset.profileId = profile.id;
       const info = createElement('div');
 
       info.appendChild(createElement(
@@ -413,7 +810,12 @@
       ));
 
       const authored = articles.filter(a => a.author_id === profile.id).length;
-      const role = profile.role === 'admin' ? 'Administrator' : 'Autor / urednik';
+      const perms = authorPermissions.get(profile.id);
+      const role = profile.role === 'admin'
+        ? 'Administrator'
+        : !permissionManagementAvailable ? 'Autor / urednik'
+        : [perms?.can_write_column ? 'Kolumnist' : '',
+           perms?.can_contribute ? 'Suradnik' : ''].filter(Boolean).join(' + ') || 'Bez autorskih ovlasti';
 
       info.appendChild(createElement(
         'div', 'article-meta',
@@ -429,6 +831,15 @@
       controls.appendChild(status);
 
       if (isAdmin() && profile.role === 'editor' && profile.id !== currentUser.id) {
+        if (permissionManagementAvailable) {
+          const permissionsButton = makeButton(
+            'UREDI OVLASTI',
+            () => editAuthorPermissions(profile.id),
+            'btn secondary small-btn'
+          );
+          permissionsButton.disabled = busy;
+          controls.appendChild(permissionsButton);
+        }
         const button = makeButton(
           profile.is_active ? 'DEAKTIVIRAJ' : 'AKTIVIRAJ',
           () => setCollaboratorStatus(profile.id, !profile.is_active),
@@ -441,6 +852,79 @@
       row.append(info, controls);
       target.appendChild(row);
     });
+  }
+
+  async function editAuthorPermissions(userId) {
+    if (!isAdmin() || !permissionManagementAvailable || busy) return;
+    const profile = profiles.find(p => p.id === userId);
+    if (!profile || profile.role !== 'editor' || userId === currentUser.id) return;
+    const previous = authorPermissions.get(userId) || {
+      can_write_column: false, can_contribute: false
+    };
+    const container = document.createElement('div');
+    container.className = 'journal-permission-editor';
+    const heading = document.createElement('strong');
+    heading.textContent = 'Autorske mogućnosti: ' + (profile.display_name || 'Korisnik');
+    const columnist = document.createElement('input');
+    columnist.type = 'checkbox'; columnist.checked = !!previous.can_write_column;
+    const contributor = document.createElement('input');
+    contributor.type = 'checkbox'; contributor.checked = !!previous.can_contribute;
+    const makeChoice = (control,labelText) => {
+      const label = document.createElement('label');
+      label.append(control,document.createTextNode(' ' + labelText));
+      return label;
+    };
+    container.append(heading,
+      makeChoice(columnist,'Kolumnist — dodijeljena kolumna'),
+      makeChoice(contributor,'Suradnik — pojedinačni članci'));
+    const bylineLabel=document.createElement('label');
+    bylineLabel.textContent='Javni potpis za pojedinačne članke';
+    const bylineInput=document.createElement('input');
+    bylineInput.type='text';
+    bylineInput.maxLength=160;
+    bylineInput.value=previous.contributor_byline || profile.display_name || '';
+    bylineInput.setAttribute('aria-label','Javni potpis suradnika');
+    container.append(bylineLabel,bylineInput);
+    const buttons = document.createElement('div');
+    buttons.className = 'actions';
+    const save = makeButton('SPREMI OVLASTI',async () => {
+      if (!columnist.checked && !contributor.checked &&
+          !confirm('Korisnik neće imati nijednu autorsku mogućnost. Nastaviti?')) return;
+      if (busy) return;
+      const byline=bylineInput.value.trim();
+      if(!byline || byline.length>160){
+        setMessage('dashboard-message','Unesi javni potpis suradnika (1–160 znakova).',true);
+        return;
+      }
+      busy = true;
+      save.disabled = true;
+      try {
+        const { error } = await db.rpc('journal_admin_set_author_permissions', {
+          p_user_id:userId,
+          p_columnist:columnist.checked,
+          p_contributor:contributor.checked,
+          p_public_byline:byline
+        });
+        if (error) throw error;
+        await refreshDashboard();
+        setMessage('dashboard-message','Autorske ovlasti i javni potpis su ažurirani.');
+      } catch (error) {
+        setMessage('dashboard-message',friendlyError(error),true);
+      } finally {
+        busy = false;
+        renderCollaborators();
+      }
+    },'btn green small-btn');
+    const cancel = makeButton('ODUSTANI', () => {
+      container.remove();
+    },'btn secondary small-btn');
+    buttons.append(save,cancel);
+    container.append(buttons);
+    const target = document.getElementById('collaborators-list');
+    target.querySelector('.journal-permission-editor')?.remove();
+    const row = Array.from(target.children)
+      .find(el => el.dataset.profileId === userId);
+    if (row) row.append(container);
   }
 
   async function setCollaboratorStatus(collaboratorId, isActive) {
@@ -505,6 +989,7 @@
     const allowed = [
       'home',
       'mine',
+      'published',
       'all',
       'pending',
       'people'
@@ -512,7 +997,7 @@
 
     if (!allowed.includes(name)) return;
 
-    if (!isAdmin() && !['home', 'mine'].includes(name)) {
+    if (!isAdmin() && !['home', 'mine', 'published'].includes(name)) {
       name = 'home';
     }
 
@@ -549,6 +1034,7 @@
       p_category: $('article-category').value,
       p_cover_image: $('article-cover').value.trim() || null
     };
+    if (isAdmin()) values.ui_column_id = currentArticleColumnId;
     if (currentEditorMode === 'admin') {
       values.p_title_en = $('article-title-en').value.trim() || null;
       values.p_excerpt_en = $('article-excerpt-en').value.trim() || null;
@@ -570,7 +1056,8 @@
     $('submit-article-btn').disabled =
       busy ||
       !currentArticleId ||
-      currentEditorMode !== 'author';
+      currentEditorMode !== 'author' ||
+      isAdmin();
   }
 
   function openEditor(article = null, adminEdit = false) {
@@ -578,10 +1065,24 @@
 
     if (adminEdit && !isAdmin()) return;
 
+    if (!article && !isAdmin()) {
+      if (!permissionManagementAvailable || !columnsAvailable) {
+        setMessage('dashboard-message',
+          'Autorske ovlasti još nisu pripremljene. Novi članak zasad nije dostupan.',true);
+        return;
+      }
+      const options=currentAuthorOptions();
+      if (!options.contributor && !(options.columnist && options.column)) {
+        setMessage('dashboard-message',
+          options.columnist
+            ? 'Kolumna ti još nije dodijeljena. Obrati se administratorici.'
+            : 'Nemaš ovlast za pisanje novog članka.',true);
+        return;
+      }
+    }
+
     if (!adminEdit && article) {
-      const allowed =
-        article.author_id === currentUser.id &&
-        ['draft', 'revision'].includes(article.status);
+      const allowed = canEditArticle(article);
 
       if (!allowed) {
         setMessage(
@@ -610,7 +1111,9 @@
     $('article-title').value = article?.title || '';
     $('article-excerpt').value = article?.excerpt || '';
     $('article-content').value = article?.content || '';
-    $('article-category').value = article?.category || 'personal';
+    $('article-category').value = article?.category || (isAdmin()?'editorial':'guest');
+    configureAdminColumn(article);
+    configureWritingMode(article);
     $('article-cover').value = article?.cover_image || '';
     $('admin-en-fields').hidden = !adminEdit;
     $('article-title-en').value = article?.title_en || '';
@@ -619,11 +1122,15 @@
 
     editorInitialValues = readEditorValues();
 
-    $('submit-article-btn').hidden = adminEdit;
+    // Admin writes directly as an editor and never submits work to herself.
+    $('submit-article-btn').hidden = isAdmin() || adminEdit;
     $('submit-article-btn').disabled = !currentArticleId;
 
     setMessage('editor-message', '');
     $('editor-panel').hidden = false;
+    // Always reload the visual surface from this article, even if the editor
+    // was already visible when switching from one article to another.
+    $('editor-panel').dispatchEvent(new Event('journal-editor-open'));
 
     $('editor-panel').scrollIntoView({
       behavior: 'smooth'
@@ -633,11 +1140,13 @@
   function closeEditor() {
     if (busy) return;
 
+    $('editor-panel').dispatchEvent(new Event('journal-editor-closing'));
     $('editor-panel').hidden = true;
     $('admin-en-fields').hidden = true;
     currentArticleId = null;
     currentArticleRevision = null;
     currentEditorMode = 'author';
+    currentArticleColumnId = null;
     editorInitialValues = null;
 
     setMessage('editor-message', '');
@@ -652,32 +1161,49 @@
 
     try {
       const values = readEditorValues();
+      const previousArticleId = currentArticleId;
       let result;
 
-      if (currentEditorMode === 'admin') {
+      if (isAdmin() && !currentArticleId && currentArticleColumnId) {
+        const { ui_column_id, ...body } = values;
+        result = await db.rpc('journal_admin_create_column_draft', {
+          p_column_id: ui_column_id,
+          p_title: body.p_title,
+          p_excerpt: body.p_excerpt,
+          p_content: body.p_content,
+          p_cover_image: body.p_cover_image
+        });
+      } else if (currentEditorMode === 'admin') {
         result = await db.rpc(
           'journal_admin_edit_article_bilingual_checked',
           {
             p_article_id: currentArticleId,
             p_expected_revision: currentArticleRevision,
-            ...values
+            ...Object.fromEntries(Object.entries(values).filter(([key])=>key!=='ui_column_id'))
           }
         );
       } else {
+        const { ui_column_id, ...saveValues } = values;
+        const editingAssignedColumn = currentArticleId &&
+          articleById(currentArticleId)?.author_id !== currentUser.id &&
+          canSeeAssignedColumnArticle(articleById(currentArticleId));
         result = await db.rpc(
-          'journal_save_draft_bilingual_checked',
+          editingAssignedColumn
+            ? 'journal_save_assigned_column_draft_checked'
+            : 'journal_save_draft_bilingual_checked',
           {
             p_article_id: currentArticleId,
             p_expected_revision: currentArticleRevision,
-            ...values
+            ...saveValues
           }
         );
       }
 
       if (result.error) throw result.error;
 
-      if (currentEditorMode === 'author' && !currentArticleId) {
+      if (!currentArticleId) {
         currentArticleId = result.data;
+        if (isAdmin()) $('admin-column-choice').disabled = true;
       }
 
       await refreshDashboard();
@@ -687,7 +1213,12 @@
       currentArticleRevision =
         updated?.revision_number ?? currentArticleRevision;
 
-      editorInitialValues = readEditorValues();
+      // Only the values actually sent to Supabase are considered saved.
+      // Later typing while the request is in flight must remain unsaved.
+      editorInitialValues = values;
+      $('editor-panel').dispatchEvent(new CustomEvent('journal-editor-saved', {
+        detail: { previousArticleId, articleId: currentArticleId }
+      }));
 
       $('editor-context').textContent =
         `${statusLabel(updated?.status)} · Revizija ${currentArticleRevision ?? '—'}`;
@@ -708,7 +1239,7 @@
   }
 
   async function submitArticle() {
-    if (!currentArticleId || busy) return;
+    if (!currentArticleId || busy || isAdmin()) return;
 
     if (editorValuesChanged()) {
       setMessage(
@@ -732,11 +1263,15 @@
     );
 
     try {
+      const owned=articleById(currentArticleId);
+      const delegated=owned &&
+        owned.author_id !== currentUser.id &&
+        canSeeAssignedColumnArticle(owned);
       const { error } = await db.rpc(
-        'journal_submit_article',
-        {
-          p_article_id: currentArticleId
-        }
+        delegated
+          ? 'journal_submit_assigned_column'
+          : 'journal_submit_article',
+        {p_article_id: currentArticleId}
       );
 
       if (error) throw error;
@@ -790,30 +1325,53 @@
     if (isAdmin()) {
       meta.push(personName(article.author_id));
     }
+    const assignedColumn = columns.find(c => c.id === article.column_id);
+    const byline = article.category === 'personal'
+      ? assignedColumn?.public_byline || personName(article.author_id)
+      : profiles.find(p => p.id === article.author_id)?.role === 'admin'
+        ? 'MOVE&TRY Editorial'
+        : authorPermissions.get(article.author_id)?.contributor_byline ||
+          personName(article.author_id);
+    meta.push('Potpis: ' + byline);
 
     $('detail-meta').textContent = meta.join(' · ');
     $('detail-excerpt').textContent = article.excerpt || '';
-    $('detail-content').textContent =
-      article.content || 'Članak nema teksta.';
+    const hrBody = $('detail-content');
+    if (window.MoveTryJournalFormatting?.renderText) {
+      window.MoveTryJournalFormatting.renderText(hrBody,article.content || '');
+      window.MoveTryJournalMedia?.hydrate(hrBody);
+    } else {
+      hrBody.textContent = article.content || 'Članak nema teksta.';
+    }
     $('detail-en-section').hidden = !isAdmin() && !article.title_en && !article.excerpt_en && !article.content_en;
     $('detail-title-en').textContent = article.title_en || 'Engleski naslov nije unesen';
     $('detail-excerpt-en').textContent = article.excerpt_en || '';
-    $('detail-content-en').textContent = article.content_en || 'Engleski tekst nije unesen.';
+    const enBody = $('detail-content-en');
+    if (window.MoveTryJournalFormatting?.renderText) {
+      window.MoveTryJournalFormatting.renderText(enBody,article.content_en || '');
+      window.MoveTryJournalMedia?.hydrate(enBody);
+    } else {
+      enBody.textContent = article.content_en || 'Engleski tekst nije unesen.';
+    }
 
     const cover = $('detail-cover');
     cover.hidden = true;
     cover.removeAttribute('src');
 
     if (article.cover_image) {
-      try {
-        const url = new URL(article.cover_image);
-
-        if (['https:', 'http:'].includes(url.protocol)) {
-          cover.src = url.href;
-          cover.hidden = false;
+      if (window.MoveTryJournalMedia?.isMediaRef(article.cover_image)) {
+        cover.dataset.mtMediaRequested=article.cover_image;
+        void window.MoveTryJournalMedia.setImage(cover,article.cover_image);
+      } else {
+        try {
+          const url = new URL(article.cover_image);
+          if (url.protocol === 'https:') {
+            cover.src = url.href;
+            cover.hidden = false;
+          }
+        } catch (_) {
+          // Ne prikazujemo neispravnu poveznicu.
         }
-      } catch (_) {
-        // Ne prikazujemo neispravnu poveznicu.
       }
     }
 
@@ -841,6 +1399,15 @@
         }, 'btn secondary'));
       }
 
+      if (['draft','revision'].includes(article.status) &&
+          article.author_id === currentUser.id) {
+        actions.appendChild(makeButton(
+          'SPREMNO ZA OBJAVU',
+          () => markOwnDraftReady(id),
+          'btn green small-btn'
+        ));
+      }
+
       if (article.status === 'submitted') {
         actions.appendChild(
           makeButton(
@@ -863,10 +1430,7 @@
       }
     }
 
-    if (
-      article.author_id === currentUser.id &&
-      ['draft', 'revision'].includes(article.status)
-    ) {
+    if (canEditArticle(article)) {
       actions.appendChild(
         makeButton(
           'UREDI SVOJ ČLANAK',
@@ -1148,11 +1712,21 @@
     }
     const question = schedule
       ? `Zakaži objavu članka za ${dateLabel(scheduledAt)} (Zagreb)?`
-      : 'Objaviti članak odmah? Ova radnja mijenja status u Objavljeno.';
+      : 'Objaviti članak odmah na javnom HR i EN Journalu? Fotografije će postati javne.';
     if (!confirm(question)) return;
     setBusy(true);
-    setMessage('detail-message', schedule ? 'Zakazivanje objave...' : 'Objavljivanje...');
+    setMessage('detail-message', 'Priprema javnog članka i fotografija...');
     try {
+      if (!window.MoveTryJournalPublishing?.prepare) {
+        throw Error('Modul javnog objavljivanja nije učitan. Osvježi Editor.');
+      }
+      await window.MoveTryJournalPublishing.prepare(
+        db, article, columns,
+        message => setMessage('detail-message',message)
+      );
+      setMessage('detail-message', schedule
+        ? 'Javna verzija pripremljena. Zakazivanje...'
+        : 'Javna verzija pripremljena. Objavljivanje...');
       const { error } = await db.rpc('journal_publish_or_schedule', {
         p_article_id: id,
         p_expected_revision: article.revision_number,
@@ -1163,11 +1737,37 @@
       setBusy(false);
       await openDetail(id);
       setMessage('detail-message', schedule
-        ? `Objava je zakazana za ${dateLabel(scheduledAt)}.`
-        : 'Članak je objavljen u bazi. Prikaz na javnom Journalu povezujemo zasebno.');
+        ? `Objava je zakazana za ${dateLabel(scheduledAt)}. Javna stranica pojavit će se nakon zakazanog vremena.`
+        : 'Članak je objavljen. Provjeri HR i EN javne stranice The Journala.');
     } catch (error) {
       setMessage('detail-message', friendlyError(error), true);
     } finally { setBusy(false); }
+  }
+
+  async function markOwnDraftReady(id) {
+    const article=articleById(id);
+    if (!isAdmin() || busy || !article ||
+        article.author_id !== currentUser.id ||
+        !['draft','revision'].includes(article.status)) return;
+    if (!confirm('Označiti svoj urednički tekst kao spreman za objavu?')) return;
+    setBusy(true);
+    setMessage('detail-message','Priprema za objavljivanje...');
+    try {
+      const {error}=await db.rpc('journal_admin_mark_ready',{
+        p_article_id:id,
+        p_expected_revision:article.revision_number
+      });
+      if(error)throw error;
+      await refreshDashboard();
+      setBusy(false);
+      await openDetail(id);
+      setMessage('detail-message',
+        'Tekst je spreman za objavu. Još nije javno objavljen.');
+    } catch(error){
+      setMessage('detail-message',friendlyError(error),true);
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function approveArticle(id) {
@@ -1801,6 +2401,7 @@
   $('logout-btn').addEventListener(
     'click',
     async () => {
+      $('editor-panel').dispatchEvent(new Event('journal-editor-logout'));
       await db.auth.signOut();
 
       dashboardRequest++;
@@ -1909,18 +2510,65 @@
     renderAllArticles
   );
 
+  $('admin-column-choice').addEventListener('change',()=>{
+    if(!isAdmin() || currentArticleId)return;
+    currentArticleColumnId=$('admin-column-choice').value||null;
+    $('article-category').disabled=!!currentArticleColumnId;
+    $('article-category').value=currentArticleColumnId?'personal':'editorial';
+    $('article-category').dispatchEvent(new Event('input',{bubbles:true}));
+  });
+
+  $('article-writing-mode').addEventListener('change',()=>{
+    if(isAdmin()||currentArticleId)return;
+    const chosen=$('article-writing-mode').value;
+    configureWritingMode(null,chosen);
+    $('article-category').dispatchEvent(new Event('input',{bubbles:true}));
+  });
+
+  $('column-create-form').addEventListener('submit',event=>{
+    event.preventDefault();
+    if(!isAdmin()||!columnsAvailable||busy)return;
+    const writer=$('column-writer').value;
+    const title=$('column-title').value.trim();
+    const slug=$('column-slug').value.trim();
+    const byline=$('column-byline').value.trim();
+    const description=$('column-description').value.trim();
+    if(!title||!byline||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)){
+      setMessage('column-message','Provjeri kolumnista, naziv, potpis i URL oznaku.',true);return;
+    }
+    if(!confirm(writer
+      ? 'Dodijeliti kolumnu odabranom korisniku?'
+      : 'Stvoriti javnu kolumnu bez korisničkog računa?'))return;
+    void saveColumnRpc('journal_admin_create_column',{
+      p_columnist_id:writer||null,p_title:title,p_slug:slug,
+      p_public_byline:byline,p_description:description});
+  });
+
   $('invite-form').addEventListener('submit', async event => {
     event.preventDefault();
     if (!isAdmin() || busy) return;
 
     const name = $('invite-name').value.trim();
     const email = $('invite-email').value.trim().toLowerCase();
+    const canWriteColumn = $('invite-columnist').checked;
+    const canContribute = $('invite-contributor').checked;
     if (!name || !email || !$('invite-email').checkValidity()) {
       setMessage('invite-message', 'Upiši ime i ispravnu e-mail adresu.', true);
       return;
     }
 
-    if (!confirm(`Poslati pozivnicu na ${email}?`)) return;
+    if (!canWriteColumn && !canContribute) {
+      setMessage('invite-message','Odaberi kolumnista, suradnika ili obje mogućnosti.',true);
+      return;
+    }
+    if (!permissionManagementAvailable) {
+      setMessage('invite-message','Autorske ovlasti još nisu pripremljene u Supabaseu. Pozivnica nije poslana.',true);
+      return;
+    }
+    if (!confirm(`Poslati pozivnicu na ${email}?\n\nOvlasti: ${[
+      canWriteColumn ? 'Kolumnist' : '',
+      canContribute ? 'Suradnik' : ''
+    ].filter(Boolean).join(' + ')}`)) return;
 
     const button = $('invite-submit-btn');
     button.disabled = true;
@@ -1932,8 +2580,10 @@
         throw new Error('Sesija je istekla. Prijavi se ponovno.');
       }
 
-      const { data, error } = await db.functions.invoke('journal-invite-collaborator', {
-        body: { email, display_name: name },
+      const { data, error } = await db.functions.invoke('journal-invite-collaborator-v2', {
+        body: { email, display_name: name,
+          can_write_column: canWriteColumn,
+          can_contribute: canContribute },
         headers: { Authorization: `Bearer ${sessionData.session.access_token}` }
       });
 

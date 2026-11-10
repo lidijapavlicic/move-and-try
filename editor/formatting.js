@@ -133,6 +133,7 @@
 
     let list = null;
     let paragraph = null;
+    let quoteBlock = null;
 
     for (const line of lines) {
       const clean = line.trim();
@@ -140,41 +141,54 @@
       if (!clean) {
         list = null;
         paragraph = null;
+        quoteBlock = null;
         continue;
       }
 
-      const image =
-        /^!\[([^\]]*)\]\(([^)]+)\)$/.exec(clean);
+      // A standalone rule is the Journal's optional section divider.
+      if (clean === '---') {
+        list = null;
+        paragraph = null;
+        const rule = document.createElement('hr');
+        rule.className = 'mt-article-divider';
+        container.append(rule);
+        continue;
+      }
+
+      const privateImage = /^!\[([^\]]*)\]\((mtmedia:[0-9a-f-]{36}\/[0-9a-f-]{36}\.(?:jpg|png|webp))\)(?:\{size=(small|medium|large)\})?$/i.exec(clean);
+      const image = privateImage || /^!\[([^\]]*)\]\(([^)]+)\)$/.exec(clean);
 
       if (image) {
         list = null;
         paragraph = null;
+        quoteBlock = null;
 
-        const url = safeUrl(image[2], true);
+        const isPrivate = !!privateImage;
+        const path = isPrivate ? image[2].slice('mtmedia:'.length) : null;
+        const url = isPrivate ? null : safeUrl(image[2],true);
 
-        if (!url) {
+        if (!isPrivate && !url) {
           const note = document.createElement('p');
-
-          note.textContent =
-            'Fotografija: neispravna ili nesigurna poveznica.';
-
+          note.textContent = 'Fotografija: neispravna ili nesigurna poveznica.';
           container.append(note);
           continue;
         }
 
         const figure = document.createElement('figure');
         const img = document.createElement('img');
-
-        img.src = url;
         img.alt = image[1];
         img.loading = 'lazy';
-
+        if (isPrivate) {
+          figure.dataset.mtMediaPath=path;
+          figure.dataset.mtMediaSize=image[3] || 'medium';
+          img.dataset.mtMediaRequested=image[2];
+        } else {
+          img.src=url;
+        }
         figure.append(img);
 
         if (image[1]) {
-          const caption =
-            document.createElement('figcaption');
-
+          const caption = document.createElement('figcaption');
           caption.textContent = image[1];
           figure.append(caption);
         }
@@ -195,6 +209,12 @@
       if (heading || quote) {
         list = null;
         paragraph = null;
+        if (quote && quoteBlock) {
+          quoteBlock.append(document.createElement('br'));
+          renderInline(quoteBlock, quote[1]);
+          continue;
+        }
+        quoteBlock = null;
 
         const tag = heading
           ? heading[1].length === 2
@@ -210,20 +230,22 @@
         );
 
         container.append(element);
+        if (quote) quoteBlock = element;
         continue;
       }
 
       if (bullet) {
         paragraph = null;
+        quoteBlock = null;
 
-        const tag =
-          /^\d/.test(bullet[1]) ? 'ol' : 'ul';
+        const tag = /^\d/.test(bullet[1]) ? 'ol' : 'ul';
+        const dashes = bullet[1] === '*';
 
-        if (
-          !list ||
-          list.tagName.toLowerCase() !== tag
-        ) {
+        if (!list ||
+            list.tagName.toLowerCase() !== tag ||
+            (tag === 'ul' && list.classList.contains('mt-list-dashes') !== dashes)) {
           list = document.createElement(tag);
+          if (dashes) list.classList.add('mt-list-dashes');
           container.append(list);
         }
 
@@ -236,6 +258,7 @@
       }
 
       list = null;
+      quoteBlock = null;
 
       if (!paragraph) {
         paragraph = document.createElement('p');
@@ -787,6 +810,8 @@
   }
 
   function initialize() {
+    // The new visual editor owns the writing surface; retain renderText for previews.
+    if (window.MoveTryJournalRichEditor?.enabled) return;
     if (!$('article-form')) return;
 
     installStyles();
