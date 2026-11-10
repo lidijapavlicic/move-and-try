@@ -172,7 +172,15 @@ Deno.serve(async (req: Request) => {
       }, 409);
     }
 
-    if (!existingProfile) {
+    if (existingProfile) {
+      // Never treat a second invitation as an account-management command.
+      // The administrator must update permissions via the separate RPC.
+      return respond(req, {
+        error: "Ovaj korisnički profil već postoji. Uredi njegove ovlasti izravno u kartici Suradnici.",
+      }, 409);
+    }
+
+    {
       const { error: profileError } = await adminClient
         .from("journal_profiles")
         .insert({
