@@ -471,6 +471,11 @@
         <section class="subsection" id="admin-en-fields" hidden>
           <p class="eyebrow">ENGLISH VERSION · ADMINISTRATOR</p>
           <p class="muted small">Englesku verziju uređuje administrator. Za objavljivanje su obvezni naslov, opis i tekst na oba jezika.</p>
+          <div class="mt-en-photo-transfer">
+            <button type="button" class="btn secondary small-btn" id="copy-hr-photos-to-en">PREUZMI FOTOGRAFIJE I RASPORED IZ HR</button>
+            <p class="muted small">Preuzima mjesta, redoslijed i veličine fotografija bez ponovnog učitavanja. Postojeći EN tekst ostaje sačuvan; opise fotografija prevedi nakon prijenosa.</p>
+            <p id="copy-hr-photos-message" class="muted small" role="status" aria-live="polite"></p>
+          </div>
           <div class="field">
             <label for="article-title-en">Title (EN)</label>
             <input id="article-title-en" type="text" maxlength="180">
@@ -519,6 +524,7 @@
 <script src="./formatting.js" defer></script>
 <script src="./autosave.js" defer></script>
 <script src="./media.js" defer></script>
+<script src="./hr-en-photos.js" defer></script>
 </body>
 </html>
   
