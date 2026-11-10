@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="hr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="theme-color" content="#f7f6f2">
-
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <title>Move & Try | Ne moraš biti dobar u tome. Samo probaj.</title>
-
-  <meta
-    name="description"
-    content="Move & Try je mjesto za otkrivanje nečeg novog što možeš probati. Kreći se, uči, stvaraj, istražuj, usudi se ili brini o sebi. Ne moraš biti dobar u tome. Samo probaj."
-  >
+  <meta name="description" content="Move & Try je mjesto za otkrivanje nečeg novog što možeš probati. Kreći se, uči, stvaraj, istražuj, usudi se ili brini o sebi. Ne moraš biti dobar u tome. Samo probaj.">
 
   <link rel="canonical" href="https://moveandtry.com/hr/">
-
   <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/">
   <link rel="alternate" hreflang="en" href="https://moveandtry.com/">
   <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/">
@@ -28,7 +20,6 @@
   <meta property="og:description" content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj.">
   <meta property="og:url" content="https://moveandtry.com/hr/">
   <meta property="og:image" content="https://moveandtry.com/images/move-and-try-share.png">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Move & Try | Ne moraš biti dobar u tome. Samo probaj.">
   <meta name="twitter:description" content="Otkrij nešto novo što možeš probati. Ne moraš biti dobar u tome. Samo probaj.">
@@ -65,20 +56,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
 
   <style>
-
-    /* ==========================================
-       ŠTO JE NOVO
-    ========================================== */
-
+    /* WHAT'S NEW */
     .home-intro .whats-new .new-card.latest-update-card {
       position: relative;
       isolation: isolate;
@@ -117,10 +99,36 @@
       animation-delay: -6s;
     }
 
-    /* ==========================================
-       KREATIVNE RADIONICE S DJECOM
-    ========================================== */
+    /* MOSAIC MAKING */
+    .home-intro .whats-new .new-card.latest-update-mosaic {
+      background: #171717;
+    }
 
+    .home-intro .whats-new .new-card.latest-update-mosaic::before {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(8,8,9,.38) 0%,
+          rgba(8,8,9,.60) 48%,
+          rgba(8,8,9,.91) 100%
+        ),
+        url('/images/mosaic-making-detail.jpg');
+      background-position: center;
+    }
+
+    .home-intro .whats-new .new-card.latest-update-mosaic::after {
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(8,8,9,.38) 0%,
+          rgba(8,8,9,.60) 48%,
+          rgba(8,8,9,.91) 100%
+        ),
+        url('/images/mosaic-making-process.jpg');
+      background-position: center;
+    }
+
+    /* CREATIVE WORKSHOPS WITH CHILDREN */
     .home-intro .whats-new .new-card.latest-update-creative-workshops {
       background: #171717;
     }
@@ -134,7 +142,6 @@
           rgba(8,8,9,.91) 100%
         ),
         url('/images/creative-workshops-with-children-1.jpg');
-
       background-position: center;
     }
 
@@ -147,14 +154,10 @@
           rgba(8,8,9,.91) 100%
         ),
         url('/images/creative-workshops-with-children-2.jpg');
-
       background-position: center;
     }
 
-    /* ==========================================
-       DJEČJA I ADOLESCENTNA PSIHOTERAPIJA
-    ========================================== */
-
+    /* CHILD AND ADOLESCENT PSYCHOTHERAPY */
     .home-intro .whats-new .new-card.latest-update-psychotherapy {
       background: #18201d;
     }
@@ -168,7 +171,6 @@
           rgba(9,14,12,.88) 100%
         ),
         url('/images/care-child-psychotherapy-connection.jpg');
-
       background-position: center 52%;
     }
 
@@ -181,14 +183,10 @@
           rgba(9,14,12,.88) 100%
         ),
         url('/images/care-child-psychotherapy-light.jpg');
-
       background-position: center 50%;
     }
 
-    /* ==========================================
-       TUFTING
-    ========================================== */
-
+    /* TUFTING */
     .home-intro .whats-new .new-card.latest-update-tufting {
       background: #171717;
     }
@@ -202,7 +200,6 @@
           rgba(10,10,10,.88) 100%
         ),
         url('/images/tufting-1.png');
-
       background-position: center;
     }
 
@@ -215,14 +212,10 @@
           rgba(10,10,10,.88) 100%
         ),
         url('/images/tufting-2.png');
-
       background-position: center;
     }
 
-    /* ==========================================
-       JAHANJE — VODIČ
-    ========================================== */
-
+    /* HORSE RIDING */
     .home-intro .whats-new .new-card.latest-update-horse-riding {
       background: #18241e;
     }
@@ -236,7 +229,6 @@
           rgba(9,19,15,.88) 100%
         ),
         url('/images/horse-riding-guide-hero.jpg');
-
       background-position: center 48%;
     }
 
@@ -249,14 +241,10 @@
           rgba(9,19,15,.88) 100%
         ),
         url('/images/horse-riding-first-lesson.jpg');
-
       background-position: center;
     }
 
-    /* ==========================================
-       PRIRODNI PARFEMI
-    ========================================== */
-
+    /* NATURAL PERFUMES */
     .home-intro .whats-new .new-card.latest-update-natural-perfume {
       background: #211b19;
     }
@@ -270,7 +258,6 @@
           rgba(20,15,13,.90) 100%
         ),
         url('/images/natural-perfume-spray.jpg');
-
       background-position: center;
     }
 
@@ -283,7 +270,6 @@
           rgba(20,15,13,.90) 100%
         ),
         url('/images/natural-perfume-bottle.jpg');
-
       background-position: center;
     }
 
@@ -321,10 +307,7 @@
       }
     }
 
-    /* ==========================================
-       ILUSTRACIJE KATEGORIJA
-    ========================================== */
-
+    /* CATEGORY ILLUSTRATIONS */
     #find-your-try .category-card {
       position: relative;
       isolation: isolate;
@@ -341,9 +324,7 @@
       background-size: cover;
       opacity: .40;
       pointer-events: none;
-      transition:
-        opacity .5s ease,
-        transform .5s ease;
+      transition: opacity .5s ease, transform .5s ease;
     }
 
     #find-your-try .category-move::before {
@@ -395,19 +376,13 @@
       }
     }
 
-    /* ==========================================
-       ZAVRŠNA FOTOGRAFIJA
-    ========================================== */
-
+    /* FINAL BACKGROUND */
     section.suggest {
       position: relative;
       isolation: isolate;
       background-color: #17251d;
       background-image:
-        linear-gradient(
-          rgba(9,19,15,.40),
-          rgba(9,19,15,.50)
-        ),
+        linear-gradient(rgba(9,19,15,.40), rgba(9,19,15,.50)),
         url('/images/home-final-background.jpg');
       background-size: cover;
       background-position: center 50%;
@@ -448,18 +423,12 @@
       section.suggest {
         background-position: center center;
         background-image:
-          linear-gradient(
-            rgba(9,19,15,.64),
-            rgba(9,19,15,.73)
-          ),
+          linear-gradient(rgba(9,19,15,.64), rgba(9,19,15,.73)),
           url('/images/home-final-background.jpg');
       }
     }
 
-    /* ==========================================
-       NASLOVNA FOTOGRAFIJA
-    ========================================== */
-
+    /* HERO IMAGE */
     section.home-hero-image {
       display: block;
       width: 100vw;
@@ -483,10 +452,7 @@
       object-fit: contain;
     }
 
-    /* ==========================================
-       MOVE&TRY APP
-    ========================================== */
-
+    /* MOVE&TRY APP */
     #move-try-app {
       padding: clamp(60px, 8vw, 110px) max(24px, calc((100vw - 1220px) / 2));
       background: #eeeee8;
@@ -574,10 +540,7 @@
       }
     }
 
-    /* ==========================================
-       HEADER
-    ========================================== */
-
+    /* HEADER */
     .header-behind-link {
       color: #555;
       font-family: 'Manrope', sans-serif;
@@ -623,10 +586,7 @@
       }
     }
 
-    /* ==========================================
-       BUDI DIO PRIČE
-    ========================================== */
-
+    /* BE PART OF IT */
     #be-part-of-it .community-actions .community-link-primary {
       display: inline-flex;
       align-items: center;
@@ -642,9 +602,7 @@
       letter-spacing: .05em;
       line-height: 1.6;
       text-decoration: none;
-      transition:
-        background .2s ease,
-        color .2s ease;
+      transition: background .2s ease, color .2s ease;
     }
 
     #be-part-of-it .community-actions .community-link-primary:hover {
@@ -668,10 +626,7 @@
       margin-top: 7px;
     }
 
-    /* ==========================================
-       WHERE TO TRY
-    ========================================== */
-
+    /* WHERE TO TRY */
     #where-to-try {
       scroll-margin-top: 110px;
     }
@@ -703,9 +658,7 @@
       letter-spacing: .05em;
       line-height: 1.6;
       text-decoration: none;
-      transition:
-        background .2s ease,
-        color .2s ease;
+      transition: background .2s ease, color .2s ease;
     }
 
     #where-to-try .where-home-primary:hover {
@@ -745,659 +698,486 @@
       outline: 3px solid #587349;
       outline-offset: 3px;
     }
-
   </style>
 
   <link rel="stylesheet" href="/consent.css">
 </head>
 
 <body>
-
-<header class="site-header">
-
-  <a href="/hr/" class="site-logo" aria-label="Move & Try početna">
-    <img src="/images/move-and-try-logo.png" alt="Move & Try">
-  </a>
-
-  <nav class="desktop-nav">
-    <a href="#find-your-try">OTKRIJ</a>
-    <a href="#be-part-of-it">BUDI DIO PRIČE</a>
-    <a href="#where-to-try">GDJE PROBATI</a>
-    <a href="#move-try-app">APP</a>
-    <a href="/hr/journal.html">THE JOURNAL</a>
-  </nav>
-
-  <div class="header-actions">
-
-    <a href="/hr/behind-move-and-try.html" class="header-behind-link">
-      IZA MOVE & TRY
+  <header class="site-header">
+    <a href="/hr/" class="site-logo" aria-label="Move & Try početna">
+      <img src="/images/move-and-try-logo.png" alt="Move & Try">
     </a>
 
-    <div class="header-language">
+    <nav class="desktop-nav">
+      <a href="#find-your-try">OTKRIJ</a>
+      <a href="#be-part-of-it">BUDI DIO PRIČE</a>
+      <a href="#where-to-try">GDJE PROBATI</a>
+      <a href="#move-try-app">APP</a>
+      <a href="/hr/journal.html">THE JOURNAL</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+        IZA MOVE & TRY
+      </a>
+
+      <div class="header-language">
+        <a href="/" onclick="setLanguage('en')">EN</a>
+        <span>|</span>
+        <span class="language-active">HR</span>
+      </div>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Otvori izbornik"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <nav>
+      <a href="#find-your-try">OTKRIJ</a>
+      <a href="#be-part-of-it">BUDI DIO PRIČE</a>
+      <a href="#where-to-try">GDJE PROBATI</a>
+      <a href="#move-try-app">APP</a>
+      <a href="/hr/journal.html">THE JOURNAL</a>
+      <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
+      <button
+        type="button"
+        class="mobile-privacy-link"
+        onclick="window.MoveTryConsent?.openSettings(this)"
+      >
+        POSTAVKE PRIVATNOSTI
+      </button>
+    </nav>
+
+    <div class="mobile-menu-language">
       <a href="/" onclick="setLanguage('en')">EN</a>
       <span>|</span>
       <span class="language-active">HR</span>
     </div>
-
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-label="Otvori izbornik"
-      aria-expanded="false"
-    >
-      <span></span>
-      <span></span>
-    </button>
-
   </div>
 
-</header>
-
-<div class="mobile-menu">
-
-  <nav>
-    <a href="#find-your-try">OTKRIJ</a>
-    <a href="#be-part-of-it">BUDI DIO PRIČE</a>
-    <a href="#where-to-try">GDJE PROBATI</a>
-    <a href="#move-try-app">APP</a>
-    <a href="/hr/journal.html">THE JOURNAL</a>
-    <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
-
-    <button
-      type="button"
-      class="mobile-privacy-link"
-      onclick="window.MoveTryConsent?.openSettings(this)"
+  <section class="home-hero-image">
+    <img
+      src="/images/home-discover.png"
+      alt="Zaigrani prikaz različitih aktivnosti i stvari koje možemo otkriti"
     >
-      POSTAVKE PRIVATNOSTI
-    </button>
-  </nav>
+  </section>
 
-  <div class="mobile-menu-language">
-    <a href="/" onclick="setLanguage('en')">EN</a>
-    <span>|</span>
-    <span class="language-active">HR</span>
-  </div>
+  <section class="home-intro" aria-label="Kako funkcionira i što je novo">
+    <div class="home-intro-grid">
+      <div class="how-it-works" aria-labelledby="how-it-works-title">
+        <div class="how-it-works-inner">
+          <p class="section-label">KAKO FUNKCIONIRA</p>
 
-</div>
+          <h2 id="how-it-works-title">
+            MALO ZNATIŽELJE.<br>
+            NOVO ISKUSTVO.
+          </h2>
 
-<section class="home-hero-image">
-  <img
-    src="/images/home-discover.png"
-    alt="Zaigrani prikaz različitih aktivnosti i stvari koje možemo otkriti"
-  >
-</section>
+          <div class="how-steps">
+            <div class="how-step">
+              <span class="how-step-number">01</span>
+              <h3>OTKRIJ</h3>
+              <p>Istraži aktivnosti i pronađi nešto što te zanima.</p>
+              <a class="how-step-link" href="#find-your-try">
+                ISTRAŽI AKTIVNOSTI →
+              </a>
+            </div>
 
-<section class="home-intro" aria-label="Kako funkcionira i što je novo">
+            <div class="how-step">
+              <span class="how-step-number">02</span>
+              <h3>INSPIRIRAJ SE</h3>
+              <p>Pročitaj iskustva, savjete i priče drugih.</p>
+            </div>
 
-  <div class="home-intro-grid">
+            <div class="how-step">
+              <span class="how-step-number">03</span>
+              <h3>PRONAĐI MJESTO</h3>
+              <p>
+                Pronađi gdje svoju znatiželju možeš
+                pretvoriti u stvarno iskustvo.
+              </p>
+              <a class="how-step-link" href="#where-to-try">
+                GDJE PROBATI →
+              </a>
+            </div>
 
-    <div class="how-it-works" aria-labelledby="how-it-works-title">
+            <div class="how-step">
+              <span class="how-step-number">04</span>
+              <h3>ISPROBAJ</h3>
+              <p>
+                Napravi prvi korak.
+                Ne moraš biti dobar u tome.
+              </p>
+            </div>
 
-      <div class="how-it-works-inner">
-
-        <p class="section-label">
-          KAKO FUNKCIONIRA
-        </p>
-
-        <h2 id="how-it-works-title">
-          MALO ZNATIŽELJE.<br>
-          NOVO ISKUSTVO.
-        </h2>
-
-        <div class="how-steps">
-
-          <div class="how-step">
-            <span class="how-step-number">01</span>
-            <h3>OTKRIJ</h3>
-
-            <p>
-              Istraži aktivnosti i pronađi nešto što te zanima.
-            </p>
-
-            <a class="how-step-link" href="#find-your-try">
-              ISTRAŽI AKTIVNOSTI →
-            </a>
+            <div class="how-step">
+              <span class="how-step-number">05</span>
+              <h3>PODIJELI ISKUSTVO</h3>
+              <p>Tvoja priča možda nekoga potakne da i sam proba.</p>
+              <a class="how-step-link" href="/hr/share-experience.html">
+                PODIJELI SVOJU PRIČU →
+              </a>
+            </div>
           </div>
 
-          <div class="how-step">
-            <span class="how-step-number">02</span>
-            <h3>INSPIRIRAJ SE</h3>
-
-            <p>
-              Pročitaj iskustva, savjete i priče drugih.
-            </p>
-          </div>
-
-          <div class="how-step">
-            <span class="how-step-number">03</span>
-            <h3>PRONAĐI MJESTO</h3>
-
-            <p>
-              Pronađi gdje svoju znatiželju možeš
-              pretvoriti u stvarno iskustvo.
-            </p>
-
-            <a class="how-step-link" href="#where-to-try">
-              GDJE PROBATI →
-            </a>
-          </div>
-
-          <div class="how-step">
-            <span class="how-step-number">04</span>
-            <h3>ISPROBAJ</h3>
-
-            <p>
-              Napravi prvi korak.
-              Ne moraš biti dobar u tome.
-            </p>
-          </div>
-
-          <div class="how-step">
-            <span class="how-step-number">05</span>
-            <h3>PODIJELI ISKUSTVO</h3>
-
-            <p>
-              Tvoja priča možda nekoga potakne da i sam proba.
-            </p>
-
-            <a class="how-step-link" href="/hr/share-experience.html">
-              PODIJELI SVOJU PRIČU →
-            </a>
-          </div>
-
+          <p class="how-it-works-ending">
+            Ne treba ti iskustvo. Samo znatiželja.
+          </p>
         </div>
-
-        <p class="how-it-works-ending">
-          Ne treba ti iskustvo. Samo znatiželja.
-        </p>
-
       </div>
 
+      <div class="home-intro-news">
+        <div class="whats-new">
+          <p class="section-label">ŠTO JE NOVO</p>
+
+          <h2>
+            NEŠTO NOVO<br>
+            ZA OTKRITI.
+          </h2>
+
+          <a
+            href="/hr/mosaic-making.html"
+            class="new-card latest-update-card latest-update-mosaic"
+          >
+            <span class="new-type">CREATE · NOVA AKTIVNOST</span>
+            <h3>IZRADA MOZAIKA</h3>
+            <p>
+              Mali komadići pločica, bezbroj mogućnosti.
+              Upoznaj mozaik i Miroslava Bušića te otkrij gdje probati.
+            </p>
+            <span class="new-action">ISTRAŽI MOZAIK →</span>
+          </a>
+
+          <a
+            href="/hr/creative-workshops-with-children-guide.html"
+            class="new-card latest-update-card latest-update-creative-workshops"
+          >
+            <span class="new-type">CREATE · VODIČ</span>
+            <h3>KREATIVNE RADIONICE S DJECOM</h3>
+            <p>
+              Kratak i neopterećen vodič za zajedničko stvaranje,
+              zabavno vrijeme s djetetom i prvi kreativni try.
+            </p>
+            <span class="new-action">PROČITAJ VODIČ →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories" id="find-your-try">
+    <p class="section-label">PRONAĐI SVOJ SLJEDEĆI TRY</p>
+    <h2>ŠTO TI SE DANAS RADI?</h2>
+
+    <div class="category-grid">
+      <a href="/hr/move.html" class="category-card category-move">
+        <span class="category-number">01</span>
+        <h3>MOVE</h3>
+        <p>Trči. Penji se. Pleši. Planinari. Vozi.</p>
+        <span class="category-action">ISTRAŽI MOVE →</span>
+      </a>
+
+      <a href="/hr/learn.html" class="category-card category-learn">
+        <span class="category-number">02</span>
+        <h3>LEARN</h3>
+        <p>Kodiraj. Kuhaj. Govori. Gradi. Razumij.</p>
+        <span class="category-action">ISTRAŽI LEARN →</span>
+      </a>
+
+      <a href="/hr/create.html" class="category-card category-create">
+        <span class="category-number">03</span>
+        <h3>CREATE</h3>
+        <p>Piši. Slikaj. Fotografiraj. Stvaraj.</p>
+        <span class="category-action">ISTRAŽI CREATE →</span>
+      </a>
+
+      <a href="/hr/explore.html" class="category-card category-explore">
+        <span class="category-number">04</span>
+        <h3>EXPLORE</h3>
+        <p>Otiđi nekamo. Kreni drugim putem. Budi znatiželjan.</p>
+        <span class="category-action">ISTRAŽI EXPLORE →</span>
+      </a>
+
+      <a href="/hr/dare.html" class="category-card category-dare">
+        <span class="category-number">05</span>
+        <h3>DARE</h3>
+        <p>Napravi ono od čega se već neko vrijeme odgovaraš.</p>
+        <span class="category-action">ISTRAŽI DARE →</span>
+      </a>
+
+      <a href="/hr/care.html" class="category-card category-care">
+        <span class="category-number">06</span>
+        <h3>CARE</h3>
+        <p>Stani. Razgovaraj. Odmori. Oporavi se. Brini o sebi.</p>
+        <span class="category-action">ISTRAŽI CARE →</span>
+      </a>
     </div>
 
-    <div class="home-intro-news">
+    <button
+      class="surprise-button"
+      type="button"
+      onclick="surpriseMeHome()"
+    >
+      🎲 IZNENADI ME
+    </button>
+  </section>
 
-      <div class="whats-new">
+  <section id="move-try-app" aria-labelledby="move-try-app-title">
+    <div class="app-install-inner">
+      <p class="app-install-eyebrow">MOVE&TRY · APLIKACIJA</p>
+      <h2 id="move-try-app-title">PONESI ZNATIŽELJU SA SOBOM.</h2>
 
-        <p class="section-label">
-          ŠTO JE NOVO
+      <p class="app-install-description">
+        Otkrij aktivnosti, pronađi gdje ih možeš isprobati,
+        spremi ono što te zanima i prati nove priče —
+        sve na jednom mjestu.
+      </p>
+
+      <a class="app-install-link" href="/app/">
+        INSTALIRAJ MOVE&TRY →
+      </a>
+
+      <p class="app-install-note">
+        Besplatno · Izravno s naše web stranice · Bez trgovine aplikacija
+      </p>
+
+      <details>
+        <summary>Kako instalirati aplikaciju?</summary>
+
+        <p>
+          <strong>Android:</strong>
+          otvori aplikaciju gumbom iznad i u pregledniku odaberi
+          „Instaliraj aplikaciju” ili „Dodaj na početni zaslon”,
+          ako je ponuđeno.
         </p>
+
+        <p>
+          <strong>iPhone:</strong>
+          otvori aplikaciju u Safariju, odaberi Dijeli
+          i zatim „Dodaj na početni zaslon”.
+        </p>
+
+        <p>
+          <strong>Računalo:</strong>
+          otvori aplikaciju u Chromeu ili Edgeu
+          i odaberi instalaciju u adresnoj traci
+          ili izborniku preglednika, ako je dostupna.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <section class="community">
+    <div class="community-grid">
+      <div class="community-panel contribute-panel" id="be-part-of-it">
+        <p class="section-label">BUDI DIO PRIČE</p>
 
         <h2>
-          NEŠTO NOVO<br>
-          ZA OTKRITI.
+          POSTOJI MNOGO NAČINA<br>
+          DA BUDEŠ DIO MOVE & TRY.
         </h2>
 
-        <a
-          href="/hr/creative-workshops-with-children-guide.html"
-          class="new-card latest-update-card latest-update-creative-workshops"
-        >
+        <p class="community-text">
+          Podijeli svoje iskustvo. Prenesi znanje. Predloži nešto novo.<br>
+          Pokaži nam mjesto koje vrijedi otkriti.<br>
+          Svaka priča, ideja i perspektiva može nekoga potaknuti da napravi prvi korak.
+        </p>
 
-          <span class="new-type">
-            CREATE · VODIČ
-          </span>
+        <p class="community-highlight">
+          Move & Try ne gradimo samo za ljude,
+          nego zajedno s njima.
+        </p>
 
-          <h3>
-            KREATIVNE RADIONICE S DJECOM
-          </h3>
+        <div class="community-actions">
+          <a href="/hr/how-to-contribute.html" class="community-link community-link-primary">
+            OTKRIJ KAKO MOŽEŠ SUDJELOVATI →
+          </a>
 
-          <p>
-            Kratak i neopterećen vodič za zajedničko stvaranje,
-            zabavno vrijeme s djetetom i prvi kreativni try.
-          </p>
+          <a
+            class="community-instagram-link"
+            href="https://www.instagram.com/moveandtry/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ILI NAM SE JAVI NA INSTAGRAMU →
+          </a>
+        </div>
 
-          <span class="new-action">
-            PROČITAJ VODIČ →
-          </span>
-
-        </a>
-
-        <a
-          href="/hr/child-adolescent-psychotherapy.html"
-          class="new-card latest-update-card latest-update-psychotherapy"
-        >
-
-          <span class="new-type">
-            CARE · NOVA AKTIVNOST
-          </span>
-
-          <h3>
-            DJEČJA I ADOLESCENTNA PSIHOTERAPIJA
-          </h3>
-
-          <p>
-            Kada potražiti podršku, kako izgleda prvi korak
-            i što psihoterapija može značiti za dijete ili adolescenta.
-          </p>
-
-          <span class="new-action">
-            ISTRAŽI PSIHOTERAPIJU →
-          </span>
-
-        </a>
-
+        <p class="community-note">
+          Priče · Znanje · Fotografije · Ideje · Mjesta · Ljudi
+        </p>
       </div>
 
-    </div>
+      <div class="community-panel where-panel" id="where-to-try">
+        <p class="section-label">GDJE PROBATI</p>
 
-  </div>
+        <h2>
+          PRONAŠAO SI NEŠTO<br>
+          ŠTO ŽELIŠ PROBATI?
+        </h2>
 
-</section>
+        <p class="community-text">
+          Od ideje do stvarnog iskustva.<br>
+          Pronađi radionice, studije, klubove,
+          stručnjake i druga mjesta
+          gdje možeš napraviti prvi korak.
+        </p>
 
-<section class="categories" id="find-your-try">
+        <p class="community-highlight">
+          Otkrij ovdje. Probaj tamo.
+        </p>
 
-  <p class="section-label">
-    PRONAĐI SVOJ SLJEDEĆI TRY
-  </p>
+        <div class="where-home-actions">
+          <a href="/hr/where-to-try.html" class="where-home-primary">
+            PRONAĐI GDJE PROBATI →
+          </a>
 
-  <h2>
-    ŠTO TI SE DANAS RADI?
-  </h2>
-
-  <div class="category-grid">
-
-    <a href="/hr/move.html" class="category-card category-move">
-      <span class="category-number">01</span>
-      <h3>MOVE</h3>
-      <p>Trči. Penji se. Pleši. Planinari. Vozi.</p>
-      <span class="category-action">ISTRAŽI MOVE →</span>
-    </a>
-
-    <a href="/hr/learn.html" class="category-card category-learn">
-      <span class="category-number">02</span>
-      <h3>LEARN</h3>
-      <p>Kodiraj. Kuhaj. Govori. Gradi. Razumij.</p>
-      <span class="category-action">ISTRAŽI LEARN →</span>
-    </a>
-
-    <a href="/hr/create.html" class="category-card category-create">
-      <span class="category-number">03</span>
-      <h3>CREATE</h3>
-      <p>Piši. Slikaj. Fotografiraj. Stvaraj.</p>
-      <span class="category-action">ISTRAŽI CREATE →</span>
-    </a>
-
-    <a href="/hr/explore.html" class="category-card category-explore">
-      <span class="category-number">04</span>
-      <h3>EXPLORE</h3>
-      <p>Otiđi nekamo. Kreni drugim putem. Budi znatiželjan.</p>
-      <span class="category-action">ISTRAŽI EXPLORE →</span>
-    </a>
-
-    <a href="/hr/dare.html" class="category-card category-dare">
-      <span class="category-number">05</span>
-      <h3>DARE</h3>
-      <p>Napravi ono od čega se već neko vrijeme odgovaraš.</p>
-      <span class="category-action">ISTRAŽI DARE →</span>
-    </a>
-
-    <a href="/hr/care.html" class="category-card category-care">
-      <span class="category-number">06</span>
-      <h3>CARE</h3>
-      <p>Stani. Razgovaraj. Odmori. Oporavi se. Brini o sebi.</p>
-      <span class="category-action">ISTRAŽI CARE →</span>
-    </a>
-
-  </div>
-
-  <button
-    class="surprise-button"
-    type="button"
-    onclick="surpriseMeHome()"
-  >
-    🎲 IZNENADI ME
-  </button>
-
-</section>
-
-<section id="move-try-app" aria-labelledby="move-try-app-title">
-  <div class="app-install-inner">
-
-    <p class="app-install-eyebrow">
-      MOVE&TRY · APLIKACIJA
-    </p>
-
-    <h2 id="move-try-app-title">
-      PONESI ZNATIŽELJU SA SOBOM.
-    </h2>
-
-    <p class="app-install-description">
-      Otkrij aktivnosti, pronađi gdje ih možeš isprobati,
-      spremi ono što te zanima i prati nove priče —
-      sve na jednom mjestu.
-    </p>
-
-    <a class="app-install-link" href="/app/">
-      INSTALIRAJ MOVE&TRY →
-    </a>
-
-    <p class="app-install-note">
-      Besplatno · Izravno s naše web stranice · Bez trgovine aplikacija
-    </p>
-
-    <details>
-      <summary>Kako instalirati aplikaciju?</summary>
-
-      <p>
-        <strong>Android:</strong>
-        otvori aplikaciju gumbom iznad i u pregledniku odaberi
-        „Instaliraj aplikaciju” ili „Dodaj na početni zaslon”,
-        ako je ponuđeno.
-      </p>
-
-      <p>
-        <strong>iPhone:</strong>
-        otvori aplikaciju u Safariju, odaberi Dijeli
-        i zatim „Dodaj na početni zaslon”.
-      </p>
-
-      <p>
-        <strong>Računalo:</strong>
-        otvori aplikaciju u Chromeu ili Edgeu
-        i odaberi instalaciju u adresnoj traci
-        ili izborniku preglednika, ako je dostupna.
-      </p>
-
-    </details>
-
-  </div>
-</section>
-
-<section class="community">
-
-  <div class="community-grid">
-
-    <div
-      class="community-panel contribute-panel"
-      id="be-part-of-it"
-    >
-
-      <p class="section-label">
-        BUDI DIO PRIČE
-      </p>
-
-      <h2>
-        POSTOJI MNOGO NAČINA<br>
-        DA BUDEŠ DIO MOVE & TRY.
-      </h2>
-
-      <p class="community-text">
-        Podijeli svoje iskustvo. Prenesi znanje. Predloži nešto novo.<br>
-        Pokaži nam mjesto koje vrijedi otkriti.<br>
-        Svaka priča, ideja i perspektiva može nekoga potaknuti da napravi prvi korak.
-      </p>
-
-      <p class="community-highlight">
-        Move & Try ne gradimo samo za ljude,
-        nego zajedno s njima.
-      </p>
-
-      <div class="community-actions">
-
-        <a
-          href="/hr/how-to-contribute.html"
-          class="community-link community-link-primary"
-        >
-          OTKRIJ KAKO MOŽEŠ SUDJELOVATI →
-        </a>
-
-        <a
-          class="community-instagram-link"
-          href="https://www.instagram.com/moveandtry/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ILI NAM SE JAVI NA INSTAGRAMU →
-        </a>
-
+          <a href="/hr/where-to-try.html" class="where-home-current">
+            TRENUTNO DOSTUPNO: IZRADA MOZAIKA · KREATIVNE RADIONICE S DJECOM · TUFTING · IZRADA PRIRODNIH PARFEMA · DJEČJA I ADOLESCENTNA PSIHOTERAPIJA →
+          </a>
+        </div>
       </div>
-
-      <p class="community-note">
-        Priče · Znanje · Fotografije · Ideje · Mjesta · Ljudi
-      </p>
-
     </div>
+  </section>
 
-    <div
-      class="community-panel where-panel"
-      id="where-to-try"
+  <section class="suggest">
+    <p class="section-label">TVOJ RED</p>
+    <h2>ŠTO BISMO SLJEDEĆE TREBALI PROBATI?</h2>
+
+    <p class="suggest-intro">
+      Postoji li nešto o čemu već neko vrijeme razmišljaš?<br>
+      Nešto što te zanima, ali još nisi napravio prvi korak?
+      <br><br>
+      <strong>Reci nam.</strong><br>
+      Tvoja ideja možda postane naš sljedeći TRY.
+    </p>
+
+    <form id="try-form">
+      <input
+        type="text"
+        aria-label="Što bi volio ili voljela probati?"
+        id="try-input"
+        name="try"
+        placeholder="Volio bih probati..."
+        required
+      >
+      <button type="submit">POŠALJI →</button>
+    </form>
+
+    <p id="suggestion-message" role="status" aria-live="polite"></p>
+
+    <p class="suggest-note">
+      Ti predlažeš. Mi istražujemo.
+      Zajedno gradimo Move & Try.
+    </p>
+
+    <p class="privacy-note">
+      Ne tražimo tvoje ime ni e-mail.
+    </p>
+  </section>
+
+  <footer class="site-footer">
+    <p>MOVE & TRY</p>
+
+    <p class="footer-tagline">
+      Ne moraš biti dobar u tome.
+      Samo trebaš probati.
+    </p>
+
+    <a href="mailto:hello@moveandtry.com">
+      hello@moveandtry.com
+    </a>
+
+    <a
+      class="footer-instagram-link"
+      href="https://www.instagram.com/moveandtry/"
+      target="_blank"
+      rel="noopener noreferrer"
     >
+      Instagram · @moveandtry
+    </a>
+  </footer>
 
-      <p class="section-label">
-        GDJE PROBATI
-      </p>
+  <script src="../script.js"></script>
 
-      <h2>
-        PRONAŠAO SI NEŠTO<br>
-        ŠTO ŽELIŠ PROBATI?
-      </h2>
-
-      <p class="community-text">
-        Od ideje do stvarnog iskustva.<br>
-        Pronađi radionice, studije, klubove,
-        stručnjake i druga mjesta
-        gdje možeš napraviti prvi korak.
-      </p>
-
-      <p class="community-highlight">
-        Otkrij ovdje. Probaj tamo.
-      </p>
-
-      <div class="where-home-actions">
-
-        <a
-          href="/hr/where-to-try.html"
-          class="where-home-primary"
-        >
-          PRONAĐI GDJE PROBATI →
-        </a>
-
-        <a
-          href="/hr/where-to-try.html"
-          class="where-home-current"
-        >
-          TRENUTNO DOSTUPNO: KREATIVNE RADIONICE S DJECOM · TUFTING · IZRADA PRIRODNIH PARFEMA · DJEČJA I ADOLESCENTNA PSIHOTERAPIJA →
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="suggest">
-
-  <p class="section-label">
-    TVOJ RED
-  </p>
-
-  <h2>
-    ŠTO BISMO SLJEDEĆE TREBALI PROBATI?
-  </h2>
-
-  <p class="suggest-intro">
-    Postoji li nešto o čemu već neko vrijeme razmišljaš?<br>
-    Nešto što te zanima, ali još nisi napravio prvi korak?
-
-    <br><br>
-
-    <strong>Reci nam.</strong><br>
-
-    Tvoja ideja možda postane naš sljedeći TRY.
-  </p>
-
-  <form id="try-form">
-
-    <input
-      type="text"
-      aria-label="Što bi volio ili voljela probati?"
-      id="try-input"
-      name="try"
-      placeholder="Volio bih probati..."
-      required
-    >
-
-    <button type="submit">
-      POŠALJI →
-    </button>
-
-  </form>
-
-  <p id="suggestion-message" role="status" aria-live="polite"></p>
-
-  <p class="suggest-note">
-    Ti predlažeš. Mi istražujemo.
-    Zajedno gradimo Move & Try.
-  </p>
-
-  <p class="privacy-note">
-    Ne tražimo tvoje ime ni e-mail.
-  </p>
-
-</section>
-
-<footer class="site-footer">
-
-  <p>
-    MOVE & TRY
-  </p>
-
-  <p class="footer-tagline">
-    Ne moraš biti dobar u tome.
-    Samo trebaš probati.
-  </p>
-
-  <a href="mailto:hello@moveandtry.com">
-    hello@moveandtry.com
-  </a>
-
-  <a
-    class="footer-instagram-link"
-    href="https://www.instagram.com/moveandtry/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Instagram · @moveandtry
-  </a>
-
-</footer>
-
-<script src="../script.js"></script>
-
-<script>
-
-  /* ==========================================
-     SURPRISE ME — HOME
-  ========================================== */
-
-  function surpriseMeHome() {
-
-    const activities = [
-      "/hr/running.html",
-      "/hr/pole-dance.html",
-      "/hr/mediation.html",
-      "/hr/horse-riding.html",
-      "/hr/natural-perfume-making.html",
-      "/hr/tufting.html",
-      "/hr/child-adolescent-psychotherapy.html"
-    ];
-
-    const storageKey =
-      "moveAndTryLastSurpriseHr";
-
-    const lastActivity =
-      sessionStorage.getItem(storageKey);
-
-    const availableActivities =
-      activities.filter(
-        activity =>
-          activity !== lastActivity
-      );
-
-    const pool =
-      availableActivities.length
-        ? availableActivities
-        : activities;
-
-    const randomActivity =
-      pool[
-        Math.floor(
-          Math.random() *
-          pool.length
-        )
+  <script>
+    function surpriseMeHome() {
+      const activities = [
+        "/hr/running.html",
+        "/hr/pole-dance.html",
+        "/hr/mediation.html",
+        "/hr/horse-riding.html",
+        "/hr/natural-perfume-making.html",
+        "/hr/tufting.html",
+        "/hr/child-adolescent-psychotherapy.html",
+        "/hr/mosaic-making.html"
       ];
 
-    sessionStorage.setItem(
-      storageKey,
-      randomActivity
-    );
+      const storageKey = "moveAndTryLastSurpriseHr";
+      const lastActivity = sessionStorage.getItem(storageKey);
+      const availableActivities = activities.filter(
+        activity => activity !== lastActivity
+      );
+      const pool = availableActivities.length ? availableActivities : activities;
+      const randomActivity = pool[Math.floor(Math.random() * pool.length)];
 
-    window.location.href =
-      randomActivity;
+      sessionStorage.setItem(storageKey, randomActivity);
+      window.location.href = randomActivity;
+    }
 
-  }
-
-  /* ==========================================
-     WHAT'S NEW — EQUAL CARD HEIGHTS
-  ========================================== */
-
-  function equalizeWhatsNewCards() {
-
-    const cards =
-      document.querySelectorAll(
+    function equalizeWhatsNewCards() {
+      const cards = document.querySelectorAll(
         '.home-intro .whats-new .new-card.latest-update-card'
       );
 
-    if (!cards.length) {
-      return;
+      if (!cards.length) {
+        return;
+      }
+
+      cards.forEach(card => {
+        card.style.minHeight = '';
+      });
+
+      let maxHeight = 340;
+
+      cards.forEach(card => {
+        maxHeight = Math.max(maxHeight, card.offsetHeight);
+      });
+
+      cards.forEach(card => {
+        card.style.minHeight = `${maxHeight}px`;
+      });
     }
 
-    cards.forEach(card => {
-      card.style.minHeight = '';
-    });
+    window.addEventListener('load', equalizeWhatsNewCards);
+    window.addEventListener('resize', equalizeWhatsNewCards);
+  </script>
 
-    let maxHeight = 340;
+  <script>
+    if (
+      'serviceWorker' in navigator &&
+      window.isSecureContext &&
+      !window.location.pathname.startsWith('/editor/')
+    ) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/sw.js', { scope: '/' })
+          .catch(error =>
+            console.warn('MOVE&TRY public service worker:', error)
+          );
+      });
+    }
+  </script>
 
-    cards.forEach(card => {
-      maxHeight = Math.max(
-        maxHeight,
-        card.offsetHeight
-      );
-    });
-
-    cards.forEach(card => {
-      card.style.minHeight =
-        `${maxHeight}px`;
-    });
-
-  }
-
-  window.addEventListener(
-    'load',
-    equalizeWhatsNewCards
-  );
-
-  window.addEventListener(
-    'resize',
-    equalizeWhatsNewCards
-  );
-
-</script>
-
-<script>
-  /* MOVE&TRY public PWA; private Editor has its own registration. */
-  if ('serviceWorker' in navigator && window.isSecureContext &&
-      !window.location.pathname.startsWith('/editor/')) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js', { scope: '/' })
-        .catch(error => console.warn('MOVE&TRY public service worker:', error));
-    });
-  }
-</script>
-
-<script src="/consent.js" defer></script>
-
+  <script src="/consent.js" defer></script>
 </body>
 </html>
