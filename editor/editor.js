@@ -299,6 +299,7 @@
 
     renderArticleList('recent-articles', visible.slice(0, 5));
     renderMyArticles();
+    renderPublishedArticles();
 
     if (isAdmin()) {
       renderAllArticles();
@@ -384,6 +385,22 @@
     }
 
     return article.status === status;
+  }
+
+  function renderPublishedArticles() {
+    // This tab is intentionally read-only and never displays other authors'
+    // publications to a non-admin user.
+    const published = articles.filter(article =>
+      article.status === 'published' &&
+      (isAdmin() || article.author_id === currentUser.id)
+    );
+    $('published-section-title').textContent = isAdmin()
+      ? 'Svi objavljeni članci'
+      : 'Moji objavljeni članci';
+    $('published-section-label').textContent = isAdmin()
+      ? 'THE JOURNAL · OBJAVLJENO'
+      : 'MOJI OBJAVLJENI RADOVI';
+    renderArticleList('published-articles', published);
   }
 
   function renderMyArticles() {
@@ -541,6 +558,7 @@
     const allowed = [
       'home',
       'mine',
+      'published',
       'all',
       'pending',
       'people'
@@ -548,7 +566,7 @@
 
     if (!allowed.includes(name)) return;
 
-    if (!isAdmin() && !['home', 'mine'].includes(name)) {
+    if (!isAdmin() && !['home', 'mine', 'published'].includes(name)) {
       name = 'home';
     }
 
