@@ -93,10 +93,13 @@
         const existing=new Set([...nav.querySelectorAll('[data-column]')].map(x=>x.dataset.column));
         for(const col of columns){
           if(col?.listed!==true||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(col.slug||''))continue;
+          // Existing public column profiles are the canonical HR/EN editorial
+          // text. A matching slug links new Editor posts to that same column,
+          // without replacing its title or multi-paragraph biography.
+          if(existing.has(col.slug))continue;
           added.names[col.slug]=col.title||col.byline||col.slug;
           added.profiles[col.slug]={title:col.title||col.byline||col.slug,
             paragraphs:col.description?[col.description]:[]};
-          if(existing.has(col.slug))continue;
           const button=el('button','journal-column',col.title||col.byline||col.slug);
           button.type='button';button.dataset.column=col.slug;
           button.dataset.journalGenerated='true';
