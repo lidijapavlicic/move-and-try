@@ -249,90 +249,108 @@
     </section>
 
     <section id="tab-people" class="section" hidden>
-      <p class="eyebrow">ADMINISTRACIJA</p>
-      <h2>Suradnici</h2>
+      <p class="eyebrow">UREDNIČKA EVIDENCIJA</p>
+      <h2>Kolumne i suradnici</h2>
+      <p class="muted journal-people-intro">Pregled uredničkih profila, javnih potpisa i pristupa Editoru. Dodavanje otvori samo kada ti zatreba.</p>
 
-      <p class="muted">
-        Pregled uredničkih profila, uloga i statusa pristupa.
-      </p>
-
-      <div class="editor-panel" style="margin-top:25px">
-        <p class="eyebrow">PRISTUP UREDNIČKOM PROSTORU</p>
-        <h3>Pozovi suradnika</h3>
-        <p class="muted small">Odaberi koje autorske mogućnosti novi korisnik dobiva. Obje mogu biti uključene. Postojećim korisnicima ovlasti mijenjaš niže bez nove pozivnice.</p>
-        <form id="invite-form">
-          <div class="field">
-            <label for="invite-name">Ime suradnika</label>
-            <input id="invite-name" type="text" maxlength="120" autocomplete="name" required>
+      <section class="editor-panel journal-directory-panel" id="column-management-panel">
+        <div class="journal-directory-header">
+          <div class="journal-directory-heading">
+            <p class="eyebrow">OSOBNE KOLUMNE</p>
+            <h3>Upravljanje kolumnama</h3>
+            <p class="muted small">Javni naziv i potpis odvojeni su od korisničkog računa. Postojeće kolumne na Journalu povezujemo istom URL oznakom.</p>
           </div>
-          <div class="field">
-            <label for="invite-email">E-mail suradnika</label>
-            <input id="invite-email" type="email" maxlength="254" autocomplete="off" required>
-          </div>
-          <fieldset class="journal-role-options">
-            <legend>Autorske mogućnosti</legend>
-            <label><input id="invite-columnist" type="checkbox"> Kolumnist — vlastita dodijeljena kolumna</label>
-            <label><input id="invite-contributor" type="checkbox" checked> Suradnik — pojedinačni članci</label>
-            <p class="muted small">Možeš označiti obje mogućnosti. Kolumnu dodjeljujemo zasebno.</p>
-          </fieldset>
-          <div class="actions">
-            <button class="btn green" id="invite-submit-btn" type="submit">POŠALJI POZIVNICU →</button>
-          </div>
-        </form>
-        <p class="message" id="invite-message" role="status" aria-live="polite"></p>
-      </div>
-
-      <div id="collaborators-list" style="margin-top:25px"></div>
-
-      <section class="editor-panel" id="column-management-panel" style="margin-top:25px">
-        <p class="eyebrow">OSOBNE KOLUMNE</p>
-        <h3>Dodijeli kolumnu</h3>
-        <p class="muted small">Jedna osobna kolumna po kolumnistu. Potpis određuješ ti, a kolumnist ga ne može mijenjati.</p>
-        <form id="column-create-form">
-          <div class="field">
-            <label for="column-writer">Pristup Editoru (neobavezno)</label>
-            <select id="column-writer">
-              <option value="">Bez korisničkog računa — samo javna kolumna</option>
-            </select>
-            <p class="muted small">Nina može biti kolumnistica bez računa. Kasnije joj možeš dodijeliti prijavu.</p>
-          </div>
-          <div class="field">
-            <label for="column-title">Naziv kolumne</label>
-            <input id="column-title" type="text" maxlength="160" required>
-          </div>
-          <div class="field">
-            <label for="column-slug">URL oznaka (engleski slug)</label>
-            <input id="column-slug" type="text" pattern="[a-z0-9]+(-[a-z0-9]+)*" maxlength="120" placeholder="moja-kolumna" required>
-          </div>
-          <div class="field">
-            <label for="column-byline">Javni potpis autora</label>
-            <input id="column-byline" type="text" maxlength="160" placeholder="Ime | MOVE&amp;TRY" required>
-          </div>
-          <div class="field">
-            <label for="column-description">Kratak opis (opcionalno)</label>
-            <textarea id="column-description"></textarea>
-          </div>
-          <button class="btn green" type="submit" id="column-create-btn">DODIJELI KOLUMNU</button>
-        </form>
-        <p class="message" id="column-message" role="status" aria-live="polite"></p>
-        <div class="journal-columns-directory" id="columns-directory">
-          <div class="journal-columns-directory-head">
-            <div>
-              <p class="eyebrow">UREDNIČKA EVIDENCIJA</p>
-              <h3>Sve kolumne</h3>
-              <p class="muted small">Kolumne ostaju na popisu bez obzira ima li autor pristup Editoru. Javna vidljivost uređuje se zasebno.</p>
-            </div>
+          <div class="journal-directory-actions">
             <span class="journal-columns-count" id="columns-count">0 kolumni</span>
+            <button id="column-create-toggle" class="btn green small-btn" type="button"
+              aria-controls="column-create-wrap" aria-expanded="false">+ NOVA KOLUMNA</button>
           </div>
+        </div>
+        <div class="journal-columns-directory" id="columns-directory">
           <div id="columns-list" class="journal-columns-list"></div>
         </div>
+        <div class="journal-entry-form" id="column-create-wrap" hidden>
+          <div class="journal-entry-form-head">
+            <div>
+              <p class="eyebrow">NOVA KOLUMNA</p>
+              <h4>Dodaj urednički profil</h4>
+            </div>
+            <button id="column-create-cancel" class="btn secondary small-btn" type="button">ZATVORI</button>
+          </div>
+          <p class="muted small">Kolumnu možeš stvoriti bez korisničkog računa. Kasnije joj po potrebi dodijeliš pristup Editoru.</p>
+          <form id="column-create-form">
+            <div class="field">
+              <label for="column-writer">Pristup Editoru (neobavezno)</label>
+              <select id="column-writer"><option value="">Bez korisničkog računa — samo javna kolumna</option></select>
+            </div>
+            <div class="field">
+              <label for="column-title">Naziv kolumne</label>
+              <input id="column-title" type="text" maxlength="160" required>
+            </div>
+            <div class="field">
+              <label for="column-slug">URL oznaka (engleski slug)</label>
+              <input id="column-slug" type="text" pattern="[a-z0-9]+(-[a-z0-9]+)*" maxlength="120" placeholder="lidija" required>
+              <p class="muted small">Za već postojeću kolumnu na Journalu koristi njezinu postojeću oznaku, kako bi novi članci bili na istom mjestu.</p>
+            </div>
+            <div class="field">
+              <label for="column-byline">Javni potpis autora</label>
+              <input id="column-byline" type="text" maxlength="160" placeholder="Ime | MOVE&amp;TRY" required>
+            </div>
+            <div class="field">
+              <label for="column-description">Kratak opis (opcionalno)</label>
+              <textarea id="column-description"></textarea>
+            </div>
+            <button class="btn green" type="submit" id="column-create-btn">SPREMI KOLUMNU</button>
+          </form>
+        </div>
+        <p class="message" id="column-message" role="status" aria-live="polite"></p>
       </section>
 
-      <div class="info-box" style="margin-top:30px">
-        <strong>Upravljanje suradnicima</strong>
-        <p>Postojećem korisniku možeš uključiti ili isključiti mogućnost pisanja kolumne i pojedinačnih članaka, bez slanja nove pozivnice. Aktivacija i deaktivacija pristupa ostaju zasebne radnje. Administratorsku ulogu nije moguće dodijeliti ovim putem.</p>
-        <p>E-mail adrese postojećih suradnika nisu dio tablice uredničkih profila, pa se ovdje prikazuju imena, uloge i status pristupa.</p>
-      </div>
+      <section class="editor-panel journal-directory-panel" id="collaborators-management-panel">
+        <div class="journal-directory-header">
+          <div class="journal-directory-heading">
+            <p class="eyebrow">PRISTUP EDITORU</p>
+            <h3>Upravljanje suradnicima</h3>
+            <p class="muted small">Tko ima korisnički račun, koje su mu ovlasti i je li pristup aktivan.</p>
+          </div>
+          <div class="journal-directory-actions">
+            <span class="journal-columns-count" id="collaborators-count">0 računa</span>
+            <button id="invite-toggle" class="btn green small-btn" type="button"
+              aria-controls="invite-wrap" aria-expanded="false">+ POZOVI SURADNIKA</button>
+          </div>
+        </div>
+        <div id="collaborators-list" class="journal-collaborators-list"></div>
+        <div class="journal-entry-form" id="invite-wrap" hidden>
+          <div class="journal-entry-form-head">
+            <div>
+              <p class="eyebrow">NOVI SURADNIK</p>
+              <h4>Pozivnica za pristup Editoru</h4>
+            </div>
+            <button id="invite-cancel" class="btn secondary small-btn" type="button">ZATVORI</button>
+          </div>
+          <form id="invite-form">
+            <div class="field">
+              <label for="invite-name">Ime suradnika</label>
+              <input id="invite-name" type="text" maxlength="120" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="invite-email">E-mail suradnika</label>
+              <input id="invite-email" type="email" maxlength="254" autocomplete="off" required>
+            </div>
+            <fieldset class="journal-role-options">
+              <legend>Autorske mogućnosti</legend>
+              <label><input id="invite-columnist" type="checkbox"> Kolumnist — vlastita dodijeljena kolumna</label>
+              <label><input id="invite-contributor" type="checkbox" checked> Suradnik — pojedinačni članci</label>
+              <p class="muted small">Možeš odabrati obje mogućnosti. Kolumnu dodjeljujemo zasebno.</p>
+            </fieldset>
+            <div class="actions">
+              <button class="btn green" id="invite-submit-btn" type="submit">POŠALJI POZIVNICU →</button>
+            </div>
+          </form>
+          <p class="message" id="invite-message" role="status" aria-live="polite"></p>
+        </div>
+        <p class="muted small journal-directory-footnote">Promjena autorskih ovlasti nije isto što i deaktivacija pristupa. Administratorska uloga ne dodjeljuje se ovdje.</p>
+      </section>
     </section>
 
     <section id="detail-panel" class="detail-panel" hidden>
