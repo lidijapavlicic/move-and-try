@@ -126,6 +126,20 @@
       },
       "published": true,
       "includeInSurprise": true
+    },
+    {
+      "id": "mosaic-making",
+      "category": "create",
+      "name": {
+        "hr": "Izrada mozaika",
+        "en": "Mosaic making"
+      },
+      "url": {
+        "hr": "/hr/mosaic-making.html",
+        "en": "/mosaic-making.html"
+      },
+      "published": true,
+      "includeInSurprise": true
     }
   ]
 }
