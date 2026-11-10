@@ -555,6 +555,7 @@
       const count=articles.filter(a=>a.column_id===column.id).length;
       const published=articles.filter(a=>a.column_id===column.id && a.status==='published').length;
       const row=createElement('section','journal-column-row');
+      row.dataset.columnId=column.id;
       const detail=createElement('div','journal-column-info');
       detail.append(createElement('strong','journal-column-name',column.title));
       detail.append(createElement('p','journal-column-byline','Potpis: '+column.public_byline));
@@ -608,7 +609,7 @@
     const list=$('columns-list');
     const current=list.querySelector('.journal-column-edit');
     if(current)current.remove();
-    const row=[...list.children].find(el=>el.querySelector('.journal-column-name')?.textContent===c.title);
+    const row=[...list.children].find(el=>el.dataset.columnId===c.id);
     if(!row)return;
 
     const form=document.createElement('form');
