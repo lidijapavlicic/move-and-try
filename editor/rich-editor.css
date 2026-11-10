@@ -133,6 +133,20 @@
 .mt-rich-reader-cover {display:block;width:100%;max-height:460px;object-fit:cover;margin:18px 0 32px;}
 
 /* Private Journal photos: sizes are editorial presets, not arbitrary HTML. */
+.mt-rich-paper [hidden],
+.mt-rich-reader [hidden],
+.mt-media-cover-controls [hidden],
+.detail-content figure [hidden] {display:none!important;}
+.detail-content figure[data-mt-media-path] {
+  display:block;margin:25px auto;text-align:center;
+}
+.detail-content figure[data-mt-media-size="small"] {width:45%;max-width:100%;}
+.detail-content figure[data-mt-media-size="medium"] {width:70%;max-width:100%;}
+.detail-content figure[data-mt-media-size="large"] {width:100%;}
+.detail-content figure[data-mt-media-path] img {
+  display:block;width:100%;height:auto;object-fit:contain;
+}
+
 .mt-rich-canvas figure[data-mt-media-path],
 .mt-rich-reader-body figure[data-mt-media-path] {
   display:block;margin:30px auto;text-align:center;
