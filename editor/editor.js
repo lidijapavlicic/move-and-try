@@ -829,6 +829,22 @@
 
     if (adminEdit && !isAdmin()) return;
 
+    if (!article && !isAdmin()) {
+      if (!permissionManagementAvailable || !columnsAvailable) {
+        setMessage('dashboard-message',
+          'Autorske ovlasti još nisu pripremljene. Novi članak zasad nije dostupan.',true);
+        return;
+      }
+      const options=currentAuthorOptions();
+      if (!options.contributor && !(options.columnist && options.column)) {
+        setMessage('dashboard-message',
+          options.columnist
+            ? 'Kolumna ti još nije dodijeljena. Obrati se administratorici.'
+            : 'Nemaš ovlast za pisanje novog članka.',true);
+        return;
+      }
+    }
+
     if (!adminEdit && article) {
       const allowed =
         article.author_id === currentUser.id &&
