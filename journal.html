@@ -1123,7 +1123,7 @@
         '.journal-category'
     );
 
-    const posts = document.querySelectorAll(
+    let posts = document.querySelectorAll(
         '.journal-post'
     );
 
@@ -1143,7 +1143,7 @@
         'journal-column-wrap'
     );
 
-    const columnButtons = document.querySelectorAll(
+    let columnButtons = document.querySelectorAll(
         '.journal-column'
     );
 
@@ -1393,20 +1393,25 @@
 
     });
 
-    columnButtons.forEach(function (button) {
+    function bindColumnButtons() {
+      columnButtons.forEach(function (button) {
+        if (button.dataset.journalFilterBound === 'true') return;
+        button.dataset.journalFilterBound = 'true';
+        button.addEventListener('click', function () {
+          activeColumn = button.dataset.column;
+          filterPosts('personal');
+        });
+      });
+    }
+    bindColumnButtons();
 
-        button.addEventListener(
-            'click',
-            function () {
-
-                activeColumn =
-                    button.dataset.column;
-
-                filterPosts('personal');
-
-            }
-        );
-
+    window.addEventListener('move-try-journal-feed-ready', function () {
+      posts = document.querySelectorAll('.journal-post');
+      columnButtons = document.querySelectorAll('.journal-column');
+      Object.assign(columnNames,window.MoveTryJournalAddedColumnNames||{});
+      Object.assign(columnProfiles,window.MoveTryJournalAddedColumnProfiles||{});
+      bindColumnButtons();
+      filterPosts(activeCategory);
     });
 
     filterPosts('all');
