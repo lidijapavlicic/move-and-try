@@ -54,20 +54,24 @@ begin
   end if;
 
   if actor_role = 'admin' then
-    -- Administrator may edit manuscripts, but their original author
-    -- is immutable. A column article is linked to its REAL columnist.
+    -- Administrator edits as editor, without assuming another columnist's
+    -- identity or replacing historical column ownership.
     if new.category = 'personal' then
-      select c.id into assigned_column
-      from public.journal_columns c
-      where c.columnist_id = new.author_id and c.is_active = true;
-      if assigned_column is not null then
+      if TG_OP = 'INSERT' and new.author_id = actor_id then
+        select c.id into assigned_column
+        from public.journal_columns c
+        where c.columnist_id = actor_id and c.is_active = true;
+        if assigned_column is null then
+          raise exception 'Dodijelite vlastitu kolumnu prije pisanja';
+        end if;
         new.column_id := assigned_column;
-      elsif TG_OP = 'INSERT' then
-        raise exception 'Prije pisanja kolumne dodijelite vlastitu kolumnu';
-      elsif old.column_id is not null then
-        raise exception 'Kolumna vise nije aktivna';
+      elsif TG_OP = 'UPDATE' and old.category = 'personal' then
+        -- Preserve immutable assignment on editorial content edits.
+        -- Also preserve old personal drafts without a column.
+        new.column_id := old.column_id;
+      else
+        raise exception 'Osobni tekstovi pripadaju izvornom autoru kolumne';
       end if;
-      -- Legacy drafts without a column stay editable until assignment.
     else
       new.column_id := null;
     end if;
@@ -83,6 +87,15 @@ begin
   from public.journal_author_permissions p
   where p.user_id = actor_id;
 
+  -- Legacy drafts from before author capability rollout must remain editable
+  -- by their original authors. They keep their existing null column_id.
+  -- They cannot be turned into a different writing type as a workaround.
+  if TG_OP = 'UPDATE' and old.column_id is null
+     and old.category = new.category then
+    new.column_id := null;
+    return new;
+  end if;
+
   if new.category = 'personal' then
     if writer_column is distinct from true then
       raise exception 'Nemate ovlast kolumnista';
@@ -92,6 +105,10 @@ begin
     where c.columnist_id = actor_id and c.is_active = true;
     if assigned_column is null then
       raise exception 'Kolumna vam jos nije dodijeljena';
+    end if;
+    if TG_OP = 'UPDATE' and old.column_id is not null
+       and old.column_id is distinct from assigned_column then
+      raise exception 'Kolumnu nije moguce promijeniti';
     end if;
     new.column_id := assigned_column;
   else
@@ -109,7 +126,7 @@ drop trigger if exists journal_enforce_author_capabilities_trigger
   on public.journal_articles;
 
 create trigger journal_enforce_author_capabilities_trigger
-before insert or update
+before insert or update of title, excerpt, content, category, cover_image, column_id
 on public.journal_articles
 for each row
 execute function public.journal_enforce_author_capabilities();
