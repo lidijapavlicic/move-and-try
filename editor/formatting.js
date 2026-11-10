@@ -155,38 +155,40 @@
         continue;
       }
 
-      const image =
-        /^!\[([^\]]*)\]\(([^)]+)\)$/.exec(clean);
+      const privateImage = /^!\[([^\]]*)\]\((mtmedia:[0-9a-f-]{36}\/[0-9a-f-]{36}\.(?:jpg|png|webp))\)(?:\{size=(small|medium|large)\})?$/i.exec(clean);
+      const image = privateImage || /^!\[([^\]]*)\]\(([^)]+)\)$/.exec(clean);
 
       if (image) {
         list = null;
         paragraph = null;
+        quoteBlock = null;
 
-        const url = safeUrl(image[2], true);
+        const isPrivate = !!privateImage;
+        const path = isPrivate ? image[2].slice('mtmedia:'.length) : null;
+        const url = isPrivate ? null : safeUrl(image[2],true);
 
-        if (!url) {
+        if (!isPrivate && !url) {
           const note = document.createElement('p');
-
-          note.textContent =
-            'Fotografija: neispravna ili nesigurna poveznica.';
-
+          note.textContent = 'Fotografija: neispravna ili nesigurna poveznica.';
           container.append(note);
           continue;
         }
 
         const figure = document.createElement('figure');
         const img = document.createElement('img');
-
-        img.src = url;
         img.alt = image[1];
         img.loading = 'lazy';
-
+        if (isPrivate) {
+          figure.dataset.mtMediaPath=path;
+          figure.dataset.mtMediaSize=image[3] || 'medium';
+          img.dataset.mtMediaRequested=image[2];
+        } else {
+          img.src=url;
+        }
         figure.append(img);
 
         if (image[1]) {
-          const caption =
-            document.createElement('figcaption');
-
+          const caption = document.createElement('figcaption');
           caption.textContent = image[1];
           figure.append(caption);
         }
