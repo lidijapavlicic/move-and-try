@@ -101,7 +101,14 @@
         const field = $(inputs[key]);
         if (field) field.value = values[key] || '';
       }
-      // Preserve the recovered category without silently switching authorship.
+      // Restore selected public column as well as the body and cover.
+      if(isAdmin()){
+        const savedColumn=values.ui_column_id || null;
+        if(savedColumn && columns.some(c=>c.id===savedColumn)){
+          currentArticleColumnId=savedColumn;
+          $('admin-column-choice').value=savedColumn;
+        }
+      }
       configureWritingMode(currentArticleId ? articleById(currentArticleId) : null,
         values.p_category === 'personal' ? 'column' : 'contribution');
       $('editor-panel').dispatchEvent(new Event('journal-editor-restore'));
@@ -587,7 +594,6 @@
     const select=$('admin-column-choice');
     field.hidden=!isAdmin();
     if(!isAdmin())return;
-    const old=select.value;
     select.replaceChildren();
     const editorial=document.createElement('option');
     editorial.value='';
@@ -599,7 +605,7 @@
       option.textContent=c.public_byline+' — '+c.title;
       select.append(option);
     }
-    const value=article?.column_id || (!article ? old : '');
+    const value=article?.column_id || '';
     select.value=value;
     if(select.value!==value)select.value='';
     select.disabled=!!article;
@@ -1048,6 +1054,7 @@
 
       if (!currentArticleId) {
         currentArticleId = result.data;
+        if (isAdmin()) $('admin-column-choice').disabled = true;
       }
 
       await refreshDashboard();
@@ -2331,10 +2338,12 @@
     const slug=$('column-slug').value.trim();
     const byline=$('column-byline').value.trim();
     const description=$('column-description').value.trim();
-    if(!writer||!title||!byline||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)){
+    if(!title||!byline||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)){
       setMessage('column-message','Provjeri kolumnista, naziv, potpis i URL oznaku.',true);return;
     }
-    if(!confirm('Dodijeliti kolumnu odabranom autoru?'))return;
+    if(!confirm(writer
+      ? 'Dodijeliti kolumnu odabranom korisniku?'
+      : 'Stvoriti javnu kolumnu bez korisničkog računa?'))return;
     void saveColumnRpc('journal_admin_create_column',{
       p_columnist_id:writer||null,p_title:title,p_slug:slug,
       p_public_byline:byline,p_description:description});
