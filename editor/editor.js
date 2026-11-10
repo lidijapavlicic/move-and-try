@@ -274,7 +274,7 @@
 
     {
       const result = await db.from('journal_author_permissions')
-        .select('user_id,can_write_column,can_contribute').limit(1000);
+        .select('user_id,can_write_column,can_contribute,contributor_byline').limit(1000);
       if (request !== dashboardRequest) return;
       if (result.error) {
         authorPermissions = new Map();
@@ -656,12 +656,25 @@
     container.append(heading,
       makeChoice(columnist,'Kolumnist — dodijeljena kolumna'),
       makeChoice(contributor,'Suradnik — pojedinačni članci'));
+    const bylineLabel=document.createElement('label');
+    bylineLabel.textContent='Javni potpis za pojedinačne članke';
+    const bylineInput=document.createElement('input');
+    bylineInput.type='text';
+    bylineInput.maxLength=160;
+    bylineInput.value=previous.contributor_byline || profile.display_name || '';
+    bylineInput.setAttribute('aria-label','Javni potpis suradnika');
+    container.append(bylineLabel,bylineInput);
     const buttons = document.createElement('div');
     buttons.className = 'actions';
     const save = makeButton('SPREMI OVLASTI',async () => {
       if (!columnist.checked && !contributor.checked &&
           !confirm('Korisnik neće imati nijednu autorsku mogućnost. Nastaviti?')) return;
       if (busy) return;
+      const byline=bylineInput.value.trim();
+      if(!byline || byline.length>160){
+        setMessage('dashboard-message','Unesi javni potpis suradnika (1–160 znakova).',true);
+        return;
+      }
       busy = true;
       save.disabled = true;
       try {
@@ -671,8 +684,13 @@
           p_contributor:contributor.checked
         });
         if (error) throw error;
+        const { error: bylineError } = await db.rpc('journal_admin_set_contributor_byline',{
+          p_user_id:userId,
+          p_byline:byline
+        });
+        if(bylineError)throw bylineError;
         await refreshDashboard();
-        setMessage('dashboard-message','Autorske ovlasti su ažurirane.');
+        setMessage('dashboard-message','Autorske ovlasti i javni potpis su ažurirani.');
       } catch (error) {
         setMessage('dashboard-message',friendlyError(error),true);
       } finally {
