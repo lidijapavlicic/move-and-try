@@ -112,7 +112,27 @@ begin
     return new;
   end if;
 
-  if actor_role <> 'editor' or new.author_id is distinct from actor_id then
+  if actor_role <> 'editor' then
+    raise exception 'Nemate autorsku ovlast za ovaj clanak';
+  end if;
+
+  -- A linked columnist can continue the pre-existing drafts of this column,
+  -- even when the administrator originally created them. The stored author_id
+  -- (original creator) is not overwritten; edit logs use the current JWT.
+  if new.author_id is distinct from actor_id and not (
+    TG_OP = 'UPDATE'
+    and new.category='personal'
+    and old.column_id is not null
+    and exists (
+      select 1 from public.journal_columns c
+      join public.journal_author_permissions perms
+        on perms.user_id=actor_id
+      where c.id=old.column_id
+        and c.columnist_id=actor_id
+        and c.is_active=true
+        and perms.can_write_column=true
+    )
+  ) then
     raise exception 'Nemate autorsku ovlast za ovaj clanak';
   end if;
 
