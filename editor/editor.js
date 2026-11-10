@@ -2248,7 +2248,7 @@
         throw new Error('Sesija je istekla. Prijavi se ponovno.');
       }
 
-      const { data, error } = await db.functions.invoke('journal-invite-collaborator', {
+      const { data, error } = await db.functions.invoke('journal-invite-collaborator-v2', {
         body: { email, display_name: name,
           can_write_column: canWriteColumn,
           can_contribute: canContribute },
