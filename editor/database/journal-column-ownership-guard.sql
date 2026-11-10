@@ -90,11 +90,14 @@ begin
     -- created the record. Never pretend Nina used the editor.
     if new.category = 'personal' then
       if TG_OP = 'INSERT' then
-        if new.column_id is null or not exists (
+        -- Preserve backwards compatibility for existing production editors
+        -- creating a personal (non-column-linked) draft. The new Journal UI
+        -- always supplies column_id for externally attributed content.
+        if new.column_id is not null and not exists (
           select 1 from public.journal_columns c
           where c.id=new.column_id and c.is_active=true
         ) then
-          raise exception 'Odaberi aktivnu kolumnu prije spremanja';
+          raise exception 'Odabrana kolumna nije aktivna';
         end if;
       elsif old.category = 'personal' then
         if new.column_id is distinct from old.column_id then
