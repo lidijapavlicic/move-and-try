@@ -1,1347 +1,901 @@
 <!DOCTYPE html>
 <html lang="hr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" type="image/png" href="/favicon.png">
-
-    <title>CREATE | Otkrij svoju kreativnost | Move & Try</title>
-
-    <meta
-        name="description"
-        content="Otkrij nove načine izražavanja kroz tufting, izradu prirodnih parfema, lončarstvo, slikanje, fotografiju, pisanje, glazbu i kreativne aktivnosti. Ne mora biti savršeno. Samo probaj."
-    >
-
-    <link rel="canonical" href="https://moveandtry.com/hr/create.html">
-    <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/create.html">
-    <link rel="alternate" hreflang="en" href="https://moveandtry.com/create.html">
-    <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/create.html">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- Google Analytics -->
-
-    <link rel="stylesheet" href="../style.css">
-
-    <!-- MOVE&TRY PWA NAVIGATION -->
-    <link rel="stylesheet" href="/app/app-navigation.css">
-
-    <style>
-
-        /* =========================
-           SHARED PHOTO CARD DIMENSIONS
-        ========================= */
-
-        .move-app-page .activity-card.tufting-photo-card,
-        .move-app-page .activity-card.perfume-photo-card,
-        .move-app-page .activity-card.pottery-photo-card,
-        .move-app-page .activity-card.children-workshops-photo-card {
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-
-            min-height: 285px;
-
-            color: #ffffff;
-            background: #17191a;
-        }
-
-
-        /* =========================
-           TUFTING CARD
-        ========================= */
-
-        .tufting-photo-card .tufting-card-photos {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .tufting-photo-card .tufting-card-photo {
-            position: absolute;
-            inset: 0;
-
-            display: block;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-            object-position: center center;
-
-            filter:
-                brightness(.62)
-                contrast(1.06)
-                saturate(.86);
-
-            animation: tuftingCardFade 12s ease-in-out infinite;
-        }
-
-        .tufting-photo-card .tufting-card-photo:first-child {
-            animation-delay: 0s;
-        }
-
-        .tufting-photo-card .tufting-card-photo:last-child {
-            animation-delay: -6s;
-        }
-
-
-        /* =========================
-           PERFUME CARD
-        ========================= */
-
-        .perfume-photo-card .perfume-card-photos {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .perfume-photo-card .perfume-card-photo {
-            position: absolute;
-            inset: 0;
-
-            display: block;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            animation: perfumeCardFade 12s ease-in-out infinite;
-        }
-
-        .perfume-photo-card .perfume-card-photo:first-child {
-            object-position: center 43%;
-            animation-delay: 0s;
-        }
-
-        .perfume-photo-card .perfume-card-photo:last-child {
-            object-position: center bottom;
-            animation-delay: -6s;
-        }
-
-
-        /* =========================
-           POTTERY CARD
-        ========================= */
-
-        .pottery-photo-card .pottery-card-photos {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .pottery-photo-card .pottery-card-photo {
-            position: absolute;
-            inset: 0;
-
-            display: block;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            animation: potteryCardFade 12s ease-in-out infinite;
-        }
-
-        .pottery-photo-card .pottery-card-photo:first-child {
-            object-position: center 48%;
-            animation-delay: 0s;
-        }
-
-        .pottery-photo-card .pottery-card-photo:last-child {
-            object-position: center 55%;
-            animation-delay: -6s;
-        }
-
-
-        /* =========================
-           CREATIVE WORKSHOPS WITH CHILDREN CARD
-        ========================= */
-
-        .children-workshops-photo-card .children-workshops-card-photos {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .children-workshops-photo-card .children-workshops-card-photo {
-            position: absolute;
-            inset: 0;
-
-            display: block;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-            object-position: center center;
-
-            filter:
-                brightness(.60)
-                contrast(1.06)
-                saturate(.88);
-
-            animation: childrenWorkshopsCardFade 12s ease-in-out infinite;
-        }
-
-        .children-workshops-photo-card .children-workshops-card-photo:first-child {
-            animation-delay: 0s;
-        }
-
-        .children-workshops-photo-card .children-workshops-card-photo:last-child {
-            animation-delay: -6s;
-        }
-
-
-        /* =========================
-           DARK OVERLAYS
-        ========================= */
-
-        .tufting-photo-card::before,
-        .perfume-photo-card::before,
-        .pottery-photo-card::before,
-        .children-workshops-photo-card::before {
-            content: "";
-
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-
-            pointer-events: none;
-        }
-
-        .tufting-photo-card::before {
-            background: linear-gradient(
-                180deg,
-                rgba(8, 8, 9, 0.36) 0%,
-                rgba(8, 8, 9, 0.58) 48%,
-                rgba(8, 8, 9, 0.91) 100%
-            );
-        }
-
-        .perfume-photo-card::before {
-            background: linear-gradient(
-                180deg,
-                rgba(10, 9, 11, 0.42) 0%,
-                rgba(10, 9, 11, 0.60) 48%,
-                rgba(10, 9, 11, 0.90) 100%
-            );
-        }
-
-        .pottery-photo-card::before {
-            background: linear-gradient(
-                180deg,
-                rgba(9, 11, 13, 0.46) 0%,
-                rgba(9, 11, 13, 0.60) 48%,
-                rgba(9, 11, 13, 0.88) 100%
-            );
-        }
-
-        .children-workshops-photo-card::before {
-            background: linear-gradient(
-                180deg,
-                rgba(8, 8, 9, 0.38) 0%,
-                rgba(8, 8, 9, 0.60) 48%,
-                rgba(8, 8, 9, 0.91) 100%
-            );
-        }
-
-
-        /* =========================
-           CARD TEXT
-        ========================= */
-
-        .tufting-photo-card .activity-content,
-        .tufting-photo-card .activity-content h3,
-        .tufting-photo-card .activity-description,
-        .tufting-photo-card .activity-available,
-        .tufting-photo-card .activity-available span,
-        .tufting-photo-card .activity-action,
-
-        .perfume-photo-card .activity-content,
-        .perfume-photo-card .activity-content h3,
-        .perfume-photo-card .activity-description,
-        .perfume-photo-card .activity-available,
-        .perfume-photo-card .activity-available span,
-        .perfume-photo-card .activity-action,
-
-        .pottery-photo-card .activity-content,
-        .pottery-photo-card .activity-content h3,
-        .pottery-photo-card .activity-description,
-        .pottery-photo-card .activity-available,
-        .pottery-photo-card .activity-available span,
-        .pottery-photo-card .activity-action,
-
-        .children-workshops-photo-card .activity-content,
-        .children-workshops-photo-card .activity-content h3,
-        .children-workshops-photo-card .activity-description,
-        .children-workshops-photo-card .activity-available,
-        .children-workshops-photo-card .activity-available span,
-        .children-workshops-photo-card .activity-action {
-            position: relative;
-            z-index: 2;
-
-            color: #ffffff;
-        }
-
-        .tufting-photo-card .activity-description,
-        .perfume-photo-card .activity-description,
-        .pottery-photo-card .activity-description,
-        .children-workshops-photo-card .activity-description {
-            color: rgba(255, 255, 255, 0.88);
-        }
-
-        .tufting-photo-card .activity-available span,
-        .perfume-photo-card .activity-available span,
-        .pottery-photo-card .activity-available span,
-        .children-workshops-photo-card .activity-available span {
-            border-color: rgba(255, 255, 255, 0.42);
-        }
-
-
-        /* =========================
-           PHOTO ANIMATIONS
-        ========================= */
-
-        @keyframes tuftingCardFade {
-            0%, 42% {
-                opacity: 1;
-            }
-
-            50%, 92% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes perfumeCardFade {
-            0%, 42% {
-                opacity: 1;
-            }
-
-            50%, 92% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes potteryCardFade {
-            0%, 42% {
-                opacity: 1;
-            }
-
-            50%, 92% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes childrenWorkshopsCardFade {
-            0%, 42% {
-                opacity: 1;
-            }
-
-            50%, 92% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-
-        /* =========================
-           ACTIVITY BROWSER
-        ========================= */
-
-        .move-activity-browser {
-            margin-top: 24px;
-
-            border: 1px solid rgba(23, 37, 30, 0.28);
-            background: rgba(255, 255, 255, 0.38);
-
-            box-shadow:
-                0 10px 30px rgba(20, 30, 24, 0.04);
-
-            overflow: hidden;
-        }
-
-
-        /* =========================
-           ACTIVITY SEARCH
-        ========================= */
-
-        .move-activity-search {
-            position: relative;
-
-            display: flex;
-            align-items: center;
-
-            padding: 16px 18px;
-
-            border-bottom: 1px solid rgba(23, 37, 30, 0.18);
-
-            background: rgba(247, 246, 241, 0.96);
-        }
-
-        .move-activity-search::before {
-            content: "⌕";
-
-            flex: 0 0 auto;
-
-            margin-right: 10px;
-
-            font-family: 'Manrope', sans-serif;
-            font-size: 21px;
-            line-height: 1;
-
-            color: #68736d;
-        }
-
-        .move-activity-search input {
-            width: 100%;
-
-            padding: 0;
-
-            border: 0;
-            outline: 0;
-
-            background: transparent;
-
-            font-family: 'Manrope', sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.10em;
-
-            color: #17251e;
-        }
-
-        .move-activity-search input::placeholder {
-            color: #7a847e;
-            opacity: 1;
-        }
-
-
-        /* =========================
-           SCROLLABLE ACTIVITY AREA
-           DESKTOP
-        ========================= */
-
-        @media (min-width: 901px) {
-
-            .move-app-page .move-app-discover {
-                min-width: 0;
-            }
-
-            .move-app-page .move-activity-scroll {
-                height: 690px;
-
-                overflow-y: scroll;
-                overflow-x: hidden;
-
-                overscroll-behavior-y: contain;
-
-                scrollbar-gutter: stable;
-
-                scrollbar-width: auto;
-                scrollbar-color:
-                    #84938a
-                    #e6e9e5;
-            }
-
-            .move-app-page .move-activity-scroll::-webkit-scrollbar {
-                width: 9px;
-            }
-
-            .move-app-page .move-activity-scroll::-webkit-scrollbar-track {
-                background: #e6e9e5;
-            }
-
-            .move-app-page .move-activity-scroll::-webkit-scrollbar-thumb {
-                background: #84938a;
-
-                border: 2px solid #e6e9e5;
-                border-radius: 20px;
-            }
-
-            .move-app-page .move-activity-scroll::-webkit-scrollbar-thumb:hover {
-                background: #697970;
-            }
-
-            .move-app-page .move-activity-scroll .activity-grid {
-                display: grid;
-
-                grid-template-columns: minmax(0, 1fr);
-
-                gap: 16px;
-
-                padding: 16px;
-            }
-
-            .move-app-page .move-activity-scroll .activity-card {
-                width: 100%;
-                min-width: 0;
-
-                box-sizing: border-box;
-            }
-        }
-
-
-        /* =========================
-           SCROLL HINT
-        ========================= */
-
-        .move-scroll-hint {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-
-            gap: 7px;
-
-            margin: 10px 2px 0;
-
-            font-family: 'Manrope', sans-serif;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-
-            color: #66716b;
-        }
-
-        .move-scroll-hint-arrow {
-            font-size: 17px;
-            line-height: 1;
-        }
-
-
-        /* =========================
-           SEARCH EMPTY STATE
-        ========================= */
-
-        .move-search-empty {
-            display: none;
-
-            padding: 36px 24px;
-
-            font-family: 'Manrope', sans-serif;
-            font-size: 13px;
-            line-height: 1.6;
-
-            color: #59635e;
-        }
-
-        .move-search-empty.is-visible {
-            display: block;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .move-activity-browser {
-                margin-top: 20px;
-            }
-
-            .move-app-page .move-activity-scroll {
-                height: auto;
-                max-height: none;
-
-                overflow: visible;
-            }
-
-            .move-app-page .move-activity-scroll .activity-grid {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 16px;
-
-                padding: 16px;
-            }
-
-            .move-scroll-hint {
-                display: none;
-            }
-        }
-
-
-        /* =========================
-           REDUCED MOTION
-        ========================= */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            .tufting-photo-card .tufting-card-photo,
-            .perfume-photo-card .perfume-card-photo,
-            .pottery-photo-card .pottery-card-photo,
-            .children-workshops-photo-card .children-workshops-card-photo {
-                animation: none;
-                opacity: 0;
-            }
-
-            .tufting-photo-card .tufting-card-photo:first-child,
-            .perfume-photo-card .perfume-card-photo:first-child,
-            .pottery-photo-card .pottery-card-photo:first-child,
-            .children-workshops-photo-card .children-workshops-card-photo:first-child {
-                opacity: 1;
-            }
-        }
-
-
-        /* =========================
-           DESKTOP — IZA MOVE & TRY
-        ========================= */
-
-        .header-behind-link,
-        .header-behind-link:visited {
-            color: #555;
-
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: .04em;
-
-            text-decoration: none;
-            white-space: nowrap;
-
-            transition: opacity .2s ease;
-        }
-
-        .header-behind-link:hover {
-            opacity: .55;
-        }
-
-        @media (max-width: 768px) {
-
-            .site-header .header-behind-link {
-                display: none !important;
-            }
-        }
-
-
-        /* Search mora stvarno sakriti activity card. */
-        #createActivityGrid .activity-card[hidden] {
-            display: none !important;
-        }
-
-    </style>
-
-    <link rel="stylesheet" href="/consent.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>CREATE | Otkrij svoju kreativnost | Move & Try</title>
+  <meta name="description" content="Otkrij nove načine izražavanja kroz tufting, izradu prirodnih parfema, lončarstvo, slikanje, fotografiju, pisanje, glazbu i kreativne aktivnosti. Ne mora biti savršeno. Samo probaj.">
+  <link rel="canonical" href="https://moveandtry.com/hr/create.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/create.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/create.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/create.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="/app/app-navigation.css">
+  <link rel="stylesheet" href="/consent.css">
+
+  <style>
+    /* SHARED PHOTO CARD DIMENSIONS */
+    .move-app-page .activity-card.mosaic-photo-card,
+    .move-app-page .activity-card.tufting-photo-card,
+    .move-app-page .activity-card.perfume-photo-card,
+    .move-app-page .activity-card.pottery-photo-card,
+    .move-app-page .activity-card.children-workshops-photo-card {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 285px;
+      color: #ffffff;
+      background: #17191a;
+    }
+
+    /* MOSAIC MAKING CARD */
+    .mosaic-photo-card .mosaic-card-photos {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .mosaic-photo-card .mosaic-card-photo {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: brightness(.62) contrast(1.06) saturate(.86);
+      animation: tuftingCardFade 12s ease-in-out infinite;
+    }
+
+    .mosaic-photo-card .mosaic-card-photo:first-child {
+      animation-delay: 0s;
+    }
+
+    .mosaic-photo-card .mosaic-card-photo:last-child {
+      animation-delay: -6s;
+    }
+
+    /* TUFTING CARD */
+    .tufting-photo-card .tufting-card-photos {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .tufting-photo-card .tufting-card-photo {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: brightness(.62) contrast(1.06) saturate(.86);
+      animation: tuftingCardFade 12s ease-in-out infinite;
+    }
+
+    .tufting-photo-card .tufting-card-photo:first-child {
+      animation-delay: 0s;
+    }
+
+    .tufting-photo-card .tufting-card-photo:last-child {
+      animation-delay: -6s;
+    }
+
+    /* PERFUME CARD */
+    .perfume-photo-card .perfume-card-photos {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .perfume-photo-card .perfume-card-photo {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: perfumeCardFade 12s ease-in-out infinite;
+    }
+
+    .perfume-photo-card .perfume-card-photo:first-child {
+      object-position: center 43%;
+      animation-delay: 0s;
+    }
+
+    .perfume-photo-card .perfume-card-photo:last-child {
+      object-position: center bottom;
+      animation-delay: -6s;
+    }
+
+    /* POTTERY CARD */
+    .pottery-photo-card .pottery-card-photos {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .pottery-photo-card .pottery-card-photo {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: potteryCardFade 12s ease-in-out infinite;
+    }
+
+    .pottery-photo-card .pottery-card-photo:first-child {
+      object-position: center 48%;
+      animation-delay: 0s;
+    }
+
+    .pottery-photo-card .pottery-card-photo:last-child {
+      object-position: center 55%;
+      animation-delay: -6s;
+    }
+
+    /* CREATIVE WORKSHOPS WITH CHILDREN CARD */
+    .children-workshops-photo-card .children-workshops-card-photos {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .children-workshops-photo-card .children-workshops-card-photo {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: brightness(.60) contrast(1.06) saturate(.88);
+      animation: childrenWorkshopsCardFade 12s ease-in-out infinite;
+    }
+
+    .children-workshops-photo-card .children-workshops-card-photo:first-child {
+      animation-delay: 0s;
+    }
+
+    .children-workshops-photo-card .children-workshops-card-photo:last-child {
+      animation-delay: -6s;
+    }
+
+    /* DARK OVERLAYS */
+    .mosaic-photo-card::before,
+    .tufting-photo-card::before,
+    .perfume-photo-card::before,
+    .pottery-photo-card::before,
+    .children-workshops-photo-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .mosaic-photo-card::before,
+    .tufting-photo-card::before {
+      background: linear-gradient(
+        180deg,
+        rgba(8, 8, 9, 0.36) 0%,
+        rgba(8, 8, 9, 0.58) 48%,
+        rgba(8, 8, 9, 0.91) 100%
+      );
+    }
+
+    .perfume-photo-card::before {
+      background: linear-gradient(
+        180deg,
+        rgba(10, 9, 11, 0.42) 0%,
+        rgba(10, 9, 11, 0.60) 48%,
+        rgba(10, 9, 11, 0.90) 100%
+      );
+    }
+
+    .pottery-photo-card::before {
+      background: linear-gradient(
+        180deg,
+        rgba(9, 11, 13, 0.46) 0%,
+        rgba(9, 11, 13, 0.60) 48%,
+        rgba(9, 11, 13, 0.88) 100%
+      );
+    }
+
+    .children-workshops-photo-card::before {
+      background: linear-gradient(
+        180deg,
+        rgba(8, 8, 9, 0.38) 0%,
+        rgba(8, 8, 9, 0.60) 48%,
+        rgba(8, 8, 9, 0.91) 100%
+      );
+    }
+
+    /* CARD TEXT */
+    .mosaic-photo-card .activity-content,
+    .mosaic-photo-card .activity-content h3,
+    .mosaic-photo-card .activity-description,
+    .mosaic-photo-card .activity-available,
+    .mosaic-photo-card .activity-available span,
+    .mosaic-photo-card .activity-action,
+    .tufting-photo-card .activity-content,
+    .tufting-photo-card .activity-content h3,
+    .tufting-photo-card .activity-description,
+    .tufting-photo-card .activity-available,
+    .tufting-photo-card .activity-available span,
+    .tufting-photo-card .activity-action,
+    .perfume-photo-card .activity-content,
+    .perfume-photo-card .activity-content h3,
+    .perfume-photo-card .activity-description,
+    .perfume-photo-card .activity-available,
+    .perfume-photo-card .activity-available span,
+    .perfume-photo-card .activity-action,
+    .pottery-photo-card .activity-content,
+    .pottery-photo-card .activity-content h3,
+    .pottery-photo-card .activity-description,
+    .pottery-photo-card .activity-available,
+    .pottery-photo-card .activity-available span,
+    .pottery-photo-card .activity-action,
+    .children-workshops-photo-card .activity-content,
+    .children-workshops-photo-card .activity-content h3,
+    .children-workshops-photo-card .activity-description,
+    .children-workshops-photo-card .activity-available,
+    .children-workshops-photo-card .activity-available span,
+    .children-workshops-photo-card .activity-action {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+    }
+
+    .mosaic-photo-card .activity-description,
+    .tufting-photo-card .activity-description,
+    .perfume-photo-card .activity-description,
+    .pottery-photo-card .activity-description,
+    .children-workshops-photo-card .activity-description {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .mosaic-photo-card .activity-available span,
+    .tufting-photo-card .activity-available span,
+    .perfume-photo-card .activity-available span,
+    .pottery-photo-card .activity-available span,
+    .children-workshops-photo-card .activity-available span {
+      border-color: rgba(255, 255, 255, 0.42);
+    }
+
+    /* PHOTO ANIMATIONS */
+    @keyframes tuftingCardFade {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes perfumeCardFade {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes potteryCardFade {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes childrenWorkshopsCardFade {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* ACTIVITY BROWSER */
+    .move-activity-browser {
+      margin-top: 24px;
+      border: 1px solid rgba(23, 37, 30, 0.28);
+      background: rgba(255, 255, 255, 0.38);
+      box-shadow: 0 10px 30px rgba(20, 30, 24, 0.04);
+      overflow: hidden;
+    }
+
+    /* ACTIVITY SEARCH */
+    .move-activity-search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(23, 37, 30, 0.18);
+      background: rgba(247, 246, 241, 0.96);
+    }
+
+    .move-activity-search::before {
+      content: "⌕";
+      flex: 0 0 auto;
+      margin-right: 10px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 21px;
+      line-height: 1;
+      color: #68736d;
+    }
+
+    .move-activity-search input {
+      width: 100%;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      color: #17251e;
+    }
+
+    .move-activity-search input::placeholder {
+      color: #7a847e;
+      opacity: 1;
+    }
+
+    /* SCROLLABLE ACTIVITY AREA */
+    @media (min-width: 901px) {
+      .move-app-page .move-app-discover {
+        min-width: 0;
+      }
+
+      .move-app-page .move-activity-scroll {
+        height: 690px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        overscroll-behavior-y: contain;
+        scrollbar-gutter: stable;
+        scrollbar-width: auto;
+        scrollbar-color: #84938a #e6e9e5;
+      }
+
+      .move-app-page .move-activity-scroll::-webkit-scrollbar {
+        width: 9px;
+      }
+
+      .move-app-page .move-activity-scroll::-webkit-scrollbar-track {
+        background: #e6e9e5;
+      }
+
+      .move-app-page .move-activity-scroll::-webkit-scrollbar-thumb {
+        background: #84938a;
+        border: 2px solid #e6e9e5;
+        border-radius: 20px;
+      }
+
+      .move-app-page .move-activity-scroll::-webkit-scrollbar-thumb:hover {
+        background: #697970;
+      }
+
+      .move-app-page .move-activity-scroll .activity-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .move-app-page .move-activity-scroll .activity-card {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+    }
+
+    /* SCROLL HINT */
+    .move-scroll-hint {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 7px;
+      margin: 10px 2px 0;
+      font-family: 'Manrope', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: #66716b;
+    }
+
+    .move-scroll-hint-arrow {
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    /* SEARCH EMPTY STATE */
+    .move-search-empty {
+      display: none;
+      padding: 36px 24px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #59635e;
+    }
+
+    .move-search-empty.is-visible {
+      display: block;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .move-activity-browser {
+        margin-top: 20px;
+      }
+
+      .move-app-page .move-activity-scroll {
+        height: auto;
+        max-height: none;
+        overflow: visible;
+      }
+
+      .move-app-page .move-activity-scroll .activity-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .move-scroll-hint {
+        display: none;
+      }
+    }
+
+    /* REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      .mosaic-photo-card .mosaic-card-photo,
+      .tufting-photo-card .tufting-card-photo,
+      .perfume-photo-card .perfume-card-photo,
+      .pottery-photo-card .pottery-card-photo,
+      .children-workshops-photo-card .children-workshops-card-photo {
+        animation: none;
+        opacity: 0;
+      }
+
+      .mosaic-photo-card .mosaic-card-photo:first-child,
+      .tufting-photo-card .tufting-card-photo:first-child,
+      .perfume-photo-card .perfume-card-photo:first-child,
+      .pottery-photo-card .pottery-card-photo:first-child,
+      .children-workshops-photo-card .children-workshops-card-photo:first-child {
+        opacity: 1;
+      }
+    }
+
+    .header-behind-link,
+    .header-behind-link:visited {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
+    }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
+    @media (max-width: 768px) {
+      .site-header .header-behind-link {
+        display: none !important;
+      }
+    }
+
+    #createActivityGrid .activity-card[hidden] {
+      display: none !important;
+    }
+  </style>
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     SITE HEADER
-========================= -->
-
-<header class="site-header">
-
-    <a
-        href="/hr/"
-        class="site-logo"
-        aria-label="Move & Try početna"
-    >
-        <img
-            src="/images/move-and-try-logo.png"
-            alt="Move & Try"
-        >
+  <header class="site-header">
+    <a href="/hr/" class="site-logo" aria-label="Move & Try početna">
+      <img src="/images/move-and-try-logo.png" alt="Move & Try">
     </a>
 
-
     <nav class="desktop-nav">
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/where-to-try.html">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
+      <a href="/hr/#find-your-try">OTKRIJ</a>
+      <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+      <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+      <a href="/hr/journal.html">THE JOURNAL</a>
     </nav>
-
 
     <div class="header-actions">
+      <a href="/hr/behind-move-and-try.html" class="header-behind-link">
+        IZA MOVE & TRY
+      </a>
 
-        <a
-            href="/hr/behind-move-and-try.html"
-            class="header-behind-link"
-        >
-            IZA MOVE & TRY
-        </a>
+      <div class="header-language">
+        <a href="/create.html" onclick="setLanguage('en')">EN</a>
+        <span>|</span>
+        <span class="language-active">HR</span>
+      </div>
 
-
-        <div class="header-language">
-
-            <a
-                href="/create.html"
-                onclick="setLanguage('en')"
-            >
-                EN
-            </a>
-
-            <span>|</span>
-
-            <span class="language-active">
-                HR
-            </span>
-
-        </div>
-
-
-        <button
-            class="menu-toggle"
-            type="button"
-            aria-label="Otvori izbornik"
-            aria-expanded="false"
-        >
-            <span></span>
-            <span></span>
-        </button>
-
+      <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
     </div>
+  </header>
 
-</header>
-
-
-<!-- =========================
-     MOBILE MENU
-========================= -->
-
-<div class="mobile-menu">
-
+  <div class="mobile-menu">
     <nav>
-
-        <a href="/hr/#find-your-try">
-            OTKRIJ
-        </a>
-
-        <a href="/hr/#be-part-of-it">
-            BUDI DIO PRIČE
-        </a>
-
-        <a href="/hr/where-to-try.html">
-            GDJE PROBATI
-        </a>
-
-        <a href="/hr/journal.html">
-            THE JOURNAL
-        </a>
-
-        <a href="/hr/behind-move-and-try.html">
-            IZA MOVE & TRY
-        </a>
-
+      <a href="/hr/#find-your-try">OTKRIJ</a>
+      <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+      <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+      <a href="/hr/journal.html">THE JOURNAL</a>
+      <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
     </nav>
 
-
     <div class="mobile-menu-language">
-
-        <a
-            href="/create.html"
-            onclick="setLanguage('en')"
-        >
-            EN
-        </a>
-
-        <span>|</span>
-
-        <span class="language-active">
-            HR
-        </span>
-
+      <a href="/create.html" onclick="setLanguage('en')">EN</a>
+      <span>|</span>
+      <span class="language-active">HR</span>
     </div>
+  </div>
 
-</div>
-
-
-<!-- =========================
-     CATEGORY PAGE
-========================= -->
-
-<main class="category-page move-app-page">
-
+  <main class="category-page move-app-page">
     <div class="move-app-layout">
 
+      <section class="move-app-intro" aria-labelledby="create-title">
+        <p class="category-page-number">03 · CREATE</p>
+        <h1 id="create-title">CREATE</h1>
 
-        <!-- =========================
-             LEFT — CATEGORY INTRO
-        ========================= -->
+        <h2>Stvori nešto.<br>Samo za sebe.</h2>
 
-        <section
-            class="move-app-intro"
-            aria-labelledby="create-title"
-        >
+        <p>
+          Kreativnost nije rezervirana za umjetnike.
+          Ne moraš znati crtati, svirati ili izrađivati savršene stvari.
+          Ponekad je dovoljno prepustiti se ideji,
+          raditi rukama i vidjeti što će nastati.
+        </p>
 
-            <p class="category-page-number">
-                03 · CREATE
-            </p>
+        <p>
+          Postoji toliko načina da izraziš svoju kreativnost —
+          od slikanja i keramike do fotografije,
+          pisanja i glazbe.
+        </p>
 
-            <h1 id="create-title">
-                CREATE
-            </h1>
+        <p class="move-app-highlight">
+          Ne mora biti savršeno. Važno je da je tvoje.
+        </p>
+      </section>
 
-            <h2>
-                Stvori nešto.<br>
-                Samo za sebe.
-            </h2>
+      <section class="move-app-discover" aria-labelledby="create-discover-title">
+        <p class="section-label">ISTRAŽI CREATE</p>
+        <h2 id="create-discover-title">ŠTO BI ŽELIO PROBATI?</h2>
 
-            <p>
-                Kreativnost nije rezervirana za umjetnike.
-                Ne moraš znati crtati, svirati ili izrađivati savršene stvari.
+        <div class="move-activity-browser">
+          <div class="move-activity-search">
+            <label for="createActivitySearch" class="visually-hidden">
+              Pretraži CREATE aktivnosti
+            </label>
 
-                Ponekad je dovoljno prepustiti se ideji,
-                raditi rukama i vidjeti što će nastati.
-            </p>
+            <input
+              type="search"
+              id="createActivitySearch"
+              placeholder="PRETRAŽI AKTIVNOSTI"
+              autocomplete="off"
+              spellcheck="false"
+            >
+          </div>
 
-            <p>
-                Postoji toliko načina da izraziš svoju kreativnost —
-                od slikanja i keramike do fotografije,
-                pisanja i glazbe.
-            </p>
+          <div
+            class="move-activity-scroll"
+            id="createActivityScroll"
+            tabindex="0"
+            aria-label="Popis CREATE aktivnosti"
+          >
+            <div class="activity-grid" id="createActivityGrid">
 
-            <p class="move-app-highlight">
-                Ne mora biti savršeno. Važno je da je tvoje.
-            </p>
-
-        </section>
-
-
-        <!-- =========================
-             RIGHT — DISCOVER
-        ========================= -->
-
-        <section
-            class="move-app-discover"
-            aria-labelledby="create-discover-title"
-        >
-
-            <p class="section-label">
-                ISTRAŽI CREATE
-            </p>
-
-            <h2 id="create-discover-title">
-                ŠTO BI ŽELIO PROBATI?
-            </h2>
-
-
-            <div class="move-activity-browser">
-
-                <div class="move-activity-search">
-
-                    <label
-                        for="createActivitySearch"
-                        class="visually-hidden"
-                    >
-                        Pretraži CREATE aktivnosti
-                    </label>
-
-                    <input
-                        type="search"
-                        id="createActivitySearch"
-                        placeholder="PRETRAŽI AKTIVNOSTI"
-                        autocomplete="off"
-                        spellcheck="false"
-                    >
-
+              <!-- IZRADA MOZAIKA -->
+              <a
+                href="/hr/mosaic-making.html"
+                class="activity-card mosaic-photo-card"
+                data-activity-name="izrada mozaika mozaik pločice kreativna radionica miroslav bušić luce sunce"
+              >
+                <div class="mosaic-card-photos" aria-hidden="true">
+                  <img
+                    class="mosaic-card-photo"
+                    src="/images/mosaic-making-detail.jpg"
+                    alt=""
+                    loading="lazy"
+                  >
+                  <img
+                    class="mosaic-card-photo"
+                    src="/images/mosaic-making-process.jpg"
+                    alt=""
+                    loading="lazy"
+                  >
                 </div>
 
-
-                <div
-                    class="move-activity-scroll"
-                    id="createActivityScroll"
-                    tabindex="0"
-                    aria-label="Popis CREATE aktivnosti"
-                >
-
-                    <div
-                        class="activity-grid"
-                        id="createActivityGrid"
-                    >
-
-
-                        <!-- KREATIVNE RADIONICE S DJECOM -->
-
-                        <a
-                            href="/hr/creative-workshops-with-children.html"
-                            class="activity-card children-workshops-photo-card"
-                            data-activity-name="kreativne radionice s djecom djeca roditelji stvaranje kreativno"
-                        >
-
-                            <div
-                                class="children-workshops-card-photos"
-                                aria-hidden="true"
-                            >
-
-                                <img
-                                    class="children-workshops-card-photo"
-                                    src="/images/creative-workshops-with-children-1.jpg"
-                                    alt=""
-                                    loading="lazy"
-                                >
-
-                                <img
-                                    class="children-workshops-card-photo"
-                                    src="/images/creative-workshops-with-children-2.jpg"
-                                    alt=""
-                                    loading="lazy"
-                                >
-
-                            </div>
-
-                            <div class="activity-content">
-
-                                <h3>
-                                    KREATIVNE RADIONICE S DJECOM
-                                </h3>
-
-                                <p class="activity-description">
-                                    Boje, materijali i zajedničko stvaranje.
-
-                                    Otkrij kreativne radionice koje roditeljima
-                                    i djeci daju priliku da zajedno probaju
-                                    nešto novo i naprave nešto svoje.
-                                </p>
-
-                                <div class="activity-available">
-                                    <span>VODIČ</span>
-                                    <span>ISKUSTVA</span>
-                                    <span>STRUČNJAK</span>
-                                    <span>GDJE PROBATI ✓</span>
-                                </div>
-
-                            </div>
-
-                            <span class="activity-action">
-                                ISTRAŽI KREATIVNE RADIONICE →
-                            </span>
-
-                        </a>
-
-
-                        <!-- TUFTING -->
-
-                        <a
-                            href="/hr/tufting.html"
-                            class="activity-card tufting-photo-card"
-                            data-activity-name="tufting tepisi tepih vuna kreativno"
-                        >
-
-                            <div
-                                class="tufting-card-photos"
-                                aria-hidden="true"
-                            >
-
-                                <img
-                                    class="tufting-card-photo"
-                                    src="/images/tufting-1.png"
-                                    alt=""
-                                    loading="lazy"
-                                >
-
-                                <img
-                                    class="tufting-card-photo"
-                                    src="/images/tufting-2.png"
-                                    alt=""
-                                    loading="lazy"
-                                >
-
-                            </div>
-
-
-                            <div class="activity-content">
-
-                                <h3>
-                                    TUFTING
-                                </h3>
-
-                                <p class="activity-description">
-                                    Platno, vuna i tufting gun.
-
-                                    Otkrij kako izgleda prvi susret
-                                    s ovom neobičnom kreativnom tehnikom
-                                    i pretvori vlastitu ideju u nešto opipljivo.
-                                </p>
-
-                                <div class="activity-available">
-                                    <span>VODIČ ✓</span>
-                                    <span>ISKUSTVA</span>
-                                    <span>RIJEČ STRUČNJAKA ✓</span>
-                                    <span>GDJE PROBATI ✓</span>
-                                </div>
-
-                            </div>
-
-
-                            <span class="activity-action">
-                                ISTRAŽI TUFTING →
-                            </span>
-
-                        </a>
-
-
-                        <!-- IZRADA PRIRODNIH PARFEMA -->
-
-                        <a
-                            href="/hr/natural-perfume-making.html"
-                            class="activity-card perfume-photo-card"
-                            data-activity-name="izrada prirodnih parfema parfem mirisi miris"
-                        >
-
-                            <div
-                                class="perfume-card-photos"
-                                aria-hidden="true"
-                            >
-
-                                <img
-                                    class="perfume-card-photo"
-                                    src="/images/natural-perfume-spray.jpg"
-                                    alt=""
-                                    loading="lazy"
-                                >
-
-                                <img
-                                    class="perfume-card-photo"
-                                    src="/images/natural-perfume-bottle.jpg"
-                                    alt=""
-                                    loading="lazy"
-                                >
-
-                            </div>
-
-
-                            <div class="activity-content">
-
-                                <h3>
-                                    IZRADA PRIRODNIH PARFEMA
-                                </h3>
-
-                                <p class="activity-description">
-                                    Upoznaj mirisne note, istraži prirodne esencije
-                                    i složi kombinaciju koja je samo tvoja.
-
-                                    Otkrij kako izgleda prvi susret
-                                    s prirodnom parfumerijom.
-                                </p>
-
-                                <div class="activity-available">
-                                    <span>VODIČ ✓</span>
-                                    <span>ISKUSTVA ✓</span>
-                                    <span>STRUČNJAK</span>
-                                    <span>GDJE PROBATI ✓</span>
-                                </div>
-
-                            </div>
-
-
-                            <span class="activity-action">
-                                ISTRAŽI IZRADU PARFEMA →
-                            </span>
-
-                        </a>
-
-
-                        <!-- LONČARSTVO -->
-
-                        <a
-                            href="/hr/pottery.html"
-                            class="activity-card pottery-photo-card"
-                            data-activity-name="lončarstvo keramika glina pottery"
-                        >
-
-                            <div
-                                class="pottery-card-photos"
-                                aria-hidden="true"
-                            >
-
-                                <img
-                                    class="pottery-card-photo"
-                                    src="/images/create-pottery-hands.jpg"
-                                    alt=""
-                                    loading="lazy"
-                                >
-
-                                <img
-                                    class="pottery-card-photo"
-                                    src="/images/create-pottery-wheel.jpg"
-                                    alt=""
-                                    loading="lazy"
-                                >
-
-                            </div>
-
-
-                            <div class="activity-content">
-
-                                <h3>
-                                    LONČARSTVO
-                                </h3>
-
-                                <p class="activity-description">
-                                    Glina među prstima, lončarsko kolo
-                                    i zadovoljstvo stvaranja nečega
-                                    vlastitim rukama.
-
-                                    Otkrij kako izgleda tvoj prvi
-                                    susret s lončarstvom.
-                                </p>
-
-                                <div class="activity-available">
-                                    <span>VODIČ</span>
-                                    <span>ISKUSTVA</span>
-                                    <span>STRUČNJACI</span>
-                                    <span>GDJE PROBATI</span>
-                                </div>
-
-                            </div>
-
-
-                            <span class="activity-action">
-                                ISTRAŽI LONČARSTVO →
-                            </span>
-
-                        </a>
-
-                    </div>
-
-
-                    <p
-                        class="move-search-empty"
-                        id="createSearchEmpty"
-                    >
-                        Nema aktivnosti koje odgovaraju pretrazi.
-                    </p>
-
+                <div class="activity-content">
+                  <h3>IZRADA MOZAIKA</h3>
+
+                  <p class="activity-description">
+                    Mali komadići pločica, boje i tvoja ideja.
+                    Otkrij kako izgleda prvi susret s mozaikom,
+                    upoznaj Miroslava Bušića i saznaj gdje probati.
+                  </p>
+
+                  <div class="activity-available">
+                    <span>VODIČ ✓</span>
+                    <span>ISKUSTVA</span>
+                    <span>RIJEČ STRUČNJAKA ✓</span>
+                    <span>GDJE PROBATI ✓</span>
+                  </div>
                 </div>
+
+                <span class="activity-action">
+                  ISTRAŽI IZRADU MOZAIKA →
+                </span>
+              </a>
+
+              <!-- KREATIVNE RADIONICE S DJECOM -->
+              <a
+                href="/hr/creative-workshops-with-children.html"
+                class="activity-card children-workshops-photo-card"
+                data-activity-name="kreativne radionice s djecom djeca roditelji stvaranje kreativno"
+              >
+                <div class="children-workshops-card-photos" aria-hidden="true">
+                  <img
+                    class="children-workshops-card-photo"
+                    src="/images/creative-workshops-with-children-1.jpg"
+                    alt=""
+                    loading="lazy"
+                  >
+                  <img
+                    class="children-workshops-card-photo"
+                    src="/images/creative-workshops-with-children-2.jpg"
+                    alt=""
+                    loading="lazy"
+                  >
+                </div>
+
+                <div class="activity-content">
+                  <h3>KREATIVNE RADIONICE S DJECOM</h3>
+
+                  <p class="activity-description">
+                    Boje, materijali i zajedničko stvaranje.
+                    Otkrij kreativne radionice koje roditeljima
+                    i djeci daju priliku da zajedno probaju
+                    nešto novo i naprave nešto svoje.
+                  </p>
+
+                  <div class="activity-available">
+                    <span>VODIČ ✓</span>
+                    <span>ISKUSTVA</span>
+                    <span>STRUČNJAK</span>
+                    <span>GDJE PROBATI ✓</span>
+                  </div>
+                </div>
+
+                <span class="activity-action">
+                  ISTRAŽI KREATIVNE RADIONICE →
+                </span>
+              </a>
+
+              <!-- TUFTING -->
+              <a
+                href="/hr/tufting.html"
+                class="activity-card tufting-photo-card"
+                data-activity-name="tufting tepisi tepih vuna kreativno"
+              >
+                <div class="tufting-card-photos" aria-hidden="true">
+                  <img class="tufting-card-photo" src="/images/tufting-1.png" alt="" loading="lazy">
+                  <img class="tufting-card-photo" src="/images/tufting-2.png" alt="" loading="lazy">
+                </div>
+
+                <div class="activity-content">
+                  <h3>TUFTING</h3>
+
+                  <p class="activity-description">
+                    Platno, vuna i tufting gun.
+                    Otkrij kako izgleda prvi susret
+                    s ovom neobičnom kreativnom tehnikom
+                    i pretvori vlastitu ideju u nešto opipljivo.
+                  </p>
+
+                  <div class="activity-available">
+                    <span>VODIČ ✓</span>
+                    <span>ISKUSTVA</span>
+                    <span>RIJEČ STRUČNJAKA ✓</span>
+                    <span>GDJE PROBATI ✓</span>
+                  </div>
+                </div>
+
+                <span class="activity-action">ISTRAŽI TUFTING →</span>
+              </a>
+
+              <!-- IZRADA PRIRODNIH PARFEMA -->
+              <a
+                href="/hr/natural-perfume-making.html"
+                class="activity-card perfume-photo-card"
+                data-activity-name="izrada prirodnih parfema parfem mirisi miris"
+              >
+                <div class="perfume-card-photos" aria-hidden="true">
+                  <img class="perfume-card-photo" src="/images/natural-perfume-spray.jpg" alt="" loading="lazy">
+                  <img class="perfume-card-photo" src="/images/natural-perfume-bottle.jpg" alt="" loading="lazy">
+                </div>
+
+                <div class="activity-content">
+                  <h3>IZRADA PRIRODNIH PARFEMA</h3>
+
+                  <p class="activity-description">
+                    Upoznaj mirisne note, istraži prirodne esencije
+                    i složi kombinaciju koja je samo tvoja.
+                    Otkrij kako izgleda prvi susret
+                    s prirodnom parfumerijom.
+                  </p>
+
+                  <div class="activity-available">
+                    <span>VODIČ ✓</span>
+                    <span>ISKUSTVA ✓</span>
+                    <span>STRUČNJAK</span>
+                    <span>GDJE PROBATI ✓</span>
+                  </div>
+                </div>
+
+                <span class="activity-action">
+                  ISTRAŽI IZRADU PARFEMA →
+                </span>
+              </a>
+
+              <!-- LONČARSTVO -->
+              <a
+                href="/hr/pottery.html"
+                class="activity-card pottery-photo-card"
+                data-activity-name="lončarstvo keramika glina pottery"
+              >
+                <div class="pottery-card-photos" aria-hidden="true">
+                  <img class="pottery-card-photo" src="/images/create-pottery-hands.jpg" alt="" loading="lazy">
+                  <img class="pottery-card-photo" src="/images/create-pottery-wheel.jpg" alt="" loading="lazy">
+                </div>
+
+                <div class="activity-content">
+                  <h3>LONČARSTVO</h3>
+
+                  <p class="activity-description">
+                    Glina među prstima, lončarsko kolo
+                    i zadovoljstvo stvaranja nečega
+                    vlastitim rukama.
+                    Otkrij kako izgleda tvoj prvi
+                    susret s lončarstvom.
+                  </p>
+
+                  <div class="activity-available">
+                    <span>VODIČ</span>
+                    <span>ISKUSTVA</span>
+                    <span>STRUČNJACI</span>
+                    <span>GDJE PROBATI</span>
+                  </div>
+                </div>
+
+                <span class="activity-action">
+                  ISTRAŽI LONČARSTVO →
+                </span>
+              </a>
 
             </div>
 
-
-            <p class="move-scroll-hint">
-
-                <span
-                    class="move-scroll-hint-arrow"
-                    aria-hidden="true"
-                >
-                    ↓
-                </span>
-
-                SKROLAJ AKTIVNOSTI
-
+            <p class="move-search-empty" id="createSearchEmpty">
+              Nema aktivnosti koje odgovaraju pretrazi.
             </p>
+          </div>
+        </div>
 
-        </section>
-
+        <p class="move-scroll-hint">
+          <span class="move-scroll-hint-arrow" aria-hidden="true">↓</span>
+          SKROLAJ AKTIVNOSTI
+        </p>
+      </section>
     </div>
-
 
     <section class="category-suggest">
+      <p class="section-label">NEŠTO NEDOSTAJE?</p>
+      <h2>IMAŠ DRUGU IDEJU?</h2>
 
-        <p class="section-label">
-            NEŠTO NEDOSTAJE?
-        </p>
+      <p>
+        Postoji nešto što bi volio stvoriti ili isprobati,
+        a još ga nema na Move &amp; Try?
+        Reci nam što bi želio vidjeti.
+      </p>
 
-        <h2>
-            IMAŠ DRUGU IDEJU?
-        </h2>
-
-        <p>
-            Postoji nešto što bi volio stvoriti ili isprobati,
-            a još ga nema na Move &amp; Try?
-
-            Reci nam što bi želio vidjeti.
-        </p>
-
-        <a
-            href="/hr/#try-form"
-            class="category-suggest-link"
-        >
-            PREDLOŽI TRY →
-        </a>
-
+      <a href="/hr/#try-form" class="category-suggest-link">
+        PREDLOŽI TRY →
+      </a>
     </section>
 
-
-    <div
-        class="category-other-categories"
-        style="text-align: center; padding: 24px 20px 48px;"
-    >
-
-        <a
-            href="/hr/#find-your-try"
-            class="category-suggest-link"
-        >
-            ISTRAŽI OSTALE KATEGORIJE →
-        </a>
-
+    <div class="category-other-categories" style="text-align: center; padding: 24px 20px 48px;">
+      <a href="/hr/#find-your-try" class="category-suggest-link">
+        ISTRAŽI OSTALE KATEGORIJE →
+      </a>
     </div>
+  </main>
 
-</main>
+  <script src="../script.js"></script>
 
-
-<script src="../script.js"></script>
-
-
-<script>
+  <script>
     (() => {
+      const searchInput = document.getElementById("createActivitySearch");
+      const activityScroll = document.getElementById("createActivityScroll");
+      const cards = Array.from(
+        document.querySelectorAll("#createActivityGrid .activity-card")
+      );
+      const emptyState = document.getElementById("createSearchEmpty");
 
-        const searchInput =
-            document.getElementById("createActivitySearch");
+      if (!searchInput || !activityScroll || !cards.length || !emptyState) {
+        return;
+      }
 
-        const activityScroll =
-            document.getElementById("createActivityScroll");
+      function normalizeText(value) {
+        return value
+          .toLocaleLowerCase("hr")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .trim();
+      }
 
-        const cards =
-            Array.from(
-                document.querySelectorAll(
-                    "#createActivityGrid .activity-card"
-                )
-            );
+      function filterActivities() {
+        const query = normalizeText(searchInput.value);
+        let visibleCount = 0;
 
-        const emptyState =
-            document.getElementById("createSearchEmpty");
+        cards.forEach(card => {
+          const searchableText = normalizeText(
+            card.dataset.activityName || card.textContent || ""
+          );
 
+          const visible = !query || searchableText.includes(query);
+          card.hidden = !visible;
 
-        if (
-            !searchInput ||
-            !activityScroll ||
-            !cards.length ||
-            !emptyState
-        ) {
-            return;
-        }
-
-
-        function normalizeText(value) {
-
-            return value
-                .toLocaleLowerCase("hr")
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .trim();
-
-        }
-
-
-        function filterActivities() {
-
-            const query =
-                normalizeText(searchInput.value);
-
-            let visibleCount = 0;
-
-
-            cards.forEach(card => {
-
-                const searchableText =
-                    normalizeText(
-                        card.dataset.activityName ||
-                        card.textContent ||
-                        ""
-                    );
-
-
-                const visible =
-                    !query ||
-                    searchableText.includes(query);
-
-
-                card.hidden = !visible;
-
-
-                if (visible) {
-                    visibleCount += 1;
-                }
-
-            });
-
-
-            emptyState.classList.toggle(
-                "is-visible",
-                visibleCount === 0
-            );
-
-
-            activityScroll.scrollTop = 0;
-
-        }
-
-
-        searchInput.addEventListener(
-            "input",
-            filterActivities
-        );
-
-    })();
-</script>
-
-
-<script defer src="/app/app-navigation.js"></script>
-
-<script>
-    if (
-        'serviceWorker' in navigator &&
-        window.isSecureContext &&
-        !window.location.pathname.startsWith('/editor/')
-    ) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker
-                .register('/sw.js', { scope: '/' })
-                .catch(error =>
-                    console.warn(
-                        'MOVE&TRY public service worker:',
-                        error
-                    )
-                );
+          if (visible) {
+            visibleCount += 1;
+          }
         });
+
+        emptyState.classList.toggle("is-visible", visibleCount === 0);
+        activityScroll.scrollTop = 0;
+      }
+
+      searchInput.addEventListener("input", filterActivities);
+    })();
+  </script>
+
+  <script defer src="/app/app-navigation.js"></script>
+
+  <script>
+    if (
+      'serviceWorker' in navigator &&
+      window.isSecureContext &&
+      !window.location.pathname.startsWith('/editor/')
+    ) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/sw.js', { scope: '/' })
+          .catch(error =>
+            console.warn('MOVE&TRY public service worker:', error)
+          );
+      });
     }
-</script>
+  </script>
 
-<script src="/consent.js" defer></script>
-
+  <script src="/consent.js" defer></script>
 </body>
 </html>
