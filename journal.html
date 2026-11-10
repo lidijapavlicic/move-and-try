@@ -1112,6 +1112,10 @@
 
 <script src="/app/app-navigation.js" defer></script>
 
+<!-- Generated articles and columns appear here after server-side publication. -->
+<script src="/journal-feed.js"></script>
+<script src="/journal-feed-render.js"></script>
+
 <script>
 (function () {
 
@@ -1187,6 +1191,9 @@
             ]
         }
     };
+
+    Object.assign(columnNames, window.MoveTryJournalAddedColumnNames || {});
+    Object.assign(columnProfiles, window.MoveTryJournalAddedColumnProfiles || {});
 
     let activeCategory = 'all';
     let activeColumn = 'all';
