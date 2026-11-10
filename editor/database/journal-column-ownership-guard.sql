@@ -89,23 +89,22 @@ begin
   end if;
 
   if actor_role = 'admin' then
-    -- Administrator edits as editor, without assuming another columnist's
-    -- identity or replacing historical column ownership.
+    -- Column = actual public columnist identity; author_id = editor who
+    -- created the record. Never pretend Nina used the editor.
     if new.category = 'personal' then
-      if TG_OP = 'INSERT' and new.author_id = actor_id then
-        select c.id into assigned_column
-        from public.journal_columns c
-        where c.columnist_id = actor_id and c.is_active = true;
-        if assigned_column is null then
-          raise exception 'Dodijelite vlastitu kolumnu prije pisanja';
+      if TG_OP = 'INSERT' then
+        if new.column_id is null or not exists (
+          select 1 from public.journal_columns c
+          where c.id=new.column_id and c.is_active=true
+        ) then
+          raise exception 'Odaberi aktivnu kolumnu prije spremanja';
         end if;
-        new.column_id := assigned_column;
-      elsif TG_OP = 'UPDATE' and old.category = 'personal' then
-        -- Preserve immutable assignment on editorial content edits.
-        -- Also preserve old personal drafts without a column.
-        new.column_id := old.column_id;
+      elsif old.category = 'personal' then
+        if new.column_id is distinct from old.column_id then
+          raise exception 'Nije moguce promijeniti kolumnu postojeceg clanka';
+        end if;
       else
-        raise exception 'Osobni tekstovi pripadaju izvornom autoru kolumne';
+        raise exception 'Ne mozes pretvoriti postojeci clanak u kolumnu';
       end if;
     else
       new.column_id := null;
