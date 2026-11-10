@@ -310,10 +310,26 @@
     }
   }
 
+  function canSeeAssignedColumnArticle(article) {
+    const assigned=activeColumnFor(currentUser?.id);
+    return !!assigned && !!authorPermissions.get(currentUser?.id)?.can_write_column &&
+      article.column_id === assigned.id;
+  }
+
+  function isMyArticle(article) {
+    return article.author_id === currentUser?.id ||
+      canSeeAssignedColumnArticle(article);
+  }
+
+  function canEditArticle(article) {
+    return ['draft','revision'].includes(article.status) &&
+      isMyArticle(article);
+  }
+
   function renderDashboard() {
     const visible = isAdmin()
       ? articles
-      : articles.filter(a => a.author_id === currentUser.id);
+      : articles.filter(isMyArticle);
 
     const drafts = visible.filter(a =>
       ['draft', 'revision'].includes(a.status)
@@ -383,9 +399,7 @@
       makeButton('PREGLEDAJ', () => openDetail(article.id))
     );
 
-    const canEditOwn =
-      article.author_id === currentUser.id &&
-      ['draft', 'revision'].includes(article.status);
+    const canEditOwn = canEditArticle(article);
 
     if (canEditOwn) {
       actions.appendChild(
@@ -432,7 +446,7 @@
     // publications to a non-admin user.
     const published = articles.filter(article =>
       article.status === 'published' &&
-      (isAdmin() || article.author_id === currentUser.id)
+      (isAdmin() || isMyArticle(article))
     );
     $('published-section-title').textContent = isAdmin()
       ? 'Svi objavljeni članci'
@@ -447,7 +461,7 @@
     const status = $('my-article-status-filter').value;
 
     const mine = articles.filter(article =>
-      article.author_id === currentUser.id &&
+      isMyArticle(article) &&
       matchesStatusFilter(article, status)
     );
 
@@ -936,9 +950,7 @@
     }
 
     if (!adminEdit && article) {
-      const allowed =
-        article.author_id === currentUser.id &&
-        ['draft', 'revision'].includes(article.status);
+      const allowed = canEditArticle(article);
 
       if (!allowed) {
         setMessage(
@@ -1040,8 +1052,13 @@
         );
       } else {
         const { ui_column_id, ...saveValues } = values;
+        const editingAssignedColumn = currentArticleId &&
+          articleById(currentArticleId)?.author_id !== currentUser.id &&
+          canSeeAssignedColumnArticle(articleById(currentArticleId));
         result = await db.rpc(
-          'journal_save_draft_bilingual_checked',
+          editingAssignedColumn
+            ? 'journal_save_assigned_column_draft_checked'
+            : 'journal_save_draft_bilingual_checked',
           {
             p_article_id: currentArticleId,
             p_expected_revision: currentArticleRevision,
@@ -1114,11 +1131,15 @@
     );
 
     try {
+      const owned=articleById(currentArticleId);
+      const delegated=owned &&
+        owned.author_id !== currentUser.id &&
+        canSeeAssignedColumnArticle(owned);
       const { error } = await db.rpc(
-        'journal_submit_article',
-        {
-          p_article_id: currentArticleId
-        }
+        delegated
+          ? 'journal_submit_assigned_column'
+          : 'journal_submit_article',
+        {p_article_id: currentArticleId}
       );
 
       if (error) throw error;
@@ -1277,10 +1298,7 @@
       }
     }
 
-    if (
-      article.author_id === currentUser.id &&
-      ['draft', 'revision'].includes(article.status)
-    ) {
+    if (canEditArticle(article)) {
       actions.appendChild(
         makeButton(
           'UREDI SVOJ ČLANAK',
