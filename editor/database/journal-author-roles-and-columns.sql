@@ -18,7 +18,7 @@ create table if not exists public.journal_author_permissions (
 
 create table if not exists public.journal_columns (
   id uuid primary key default gen_random_uuid(),
-  columnist_id uuid not null references public.journal_profiles(id) on delete restrict,
+  columnist_id uuid null references public.journal_profiles(id) on delete restrict,
   slug text not null unique check (slug ~ '^[a-z0-9]+(?:-[a-z0-9]+)*$'),
   title text not null check (length(btrim(title)) between 1 and 160),
   public_byline text not null check (length(btrim(public_byline)) between 1 and 160),
@@ -163,7 +163,7 @@ begin
     raise exception 'Administrator permission required';
   end if;
 
-  if not exists (
+  if p_columnist_id is not null and not exists (
     select 1 from public.journal_profiles p
     where p.id = p_columnist_id and p.is_active = true
       and (
@@ -220,24 +220,10 @@ begin
     raise exception 'Administrator permission required';
   end if;
 
-  select c.columnist_id into target_id
+  select c.id into target_id
   from public.journal_columns c where c.id = p_column_id for update;
   if target_id is null then
     raise exception 'Column does not exist';
-  end if;
-
-  if p_is_active and not exists (
-    select 1 from public.journal_profiles p
-    where p.id = target_id and p.is_active = true
-      and (
-        p.role = 'admin'
-        or (p.role = 'editor' and exists (
-          select 1 from public.journal_author_permissions ap
-          where ap.user_id = p.id and ap.can_write_column = true
-        ))
-      )
-  ) then
-    raise exception 'Cannot activate a column without an active columnist';
   end if;
 
   update public.journal_columns
@@ -257,5 +243,48 @@ revoke all on function public.journal_admin_update_column(
 grant execute on function public.journal_admin_update_column(
   uuid,text,text,text,text,boolean
 ) to authenticated;
+
+
+-- Administrator links an optional editor account later. Null unlinks it.
+-- Previously created articles, bylines and activity history are unchanged.
+create or replace function public.journal_admin_link_column_account(
+  p_column_id uuid,
+  p_user_id uuid
+)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if not exists (
+    select 1 from public.journal_profiles p
+    where p.id = auth.uid() and p.role = 'admin' and p.is_active = true
+  ) then raise exception 'Administrator permission required'; end if;
+
+  if not exists (
+    select 1 from public.journal_columns c where c.id = p_column_id
+  ) then raise exception 'Column does not exist'; end if;
+
+  if p_user_id is not null and not exists (
+    select 1 from public.journal_profiles p
+    where p.id=p_user_id and p.is_active=true and (
+      p.role='admin' or
+      (p.role='editor' and exists (
+        select 1 from public.journal_author_permissions perms
+        where perms.user_id=p.id and perms.can_write_column=true
+      ))
+    )
+  ) then raise exception 'Account lacks columnist permission'; end if;
+
+  update public.journal_columns
+  set columnist_id=p_user_id, updated_at=now()
+  where id=p_column_id;
+end;
+$$;
+revoke all on function public.journal_admin_link_column_account(uuid,uuid)
+  from public, anon;
+grant execute on function public.journal_admin_link_column_account(uuid,uuid)
+  to authenticated;
 
 commit;
