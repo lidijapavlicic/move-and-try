@@ -2,6 +2,43 @@
   "version": 1,
   "providers": [
     {
+      "id": "luce-sunce-mosaic-making",
+      "category": "CREATE",
+      "activity": {
+        "hr": "IZRADA MOZAIKA",
+        "en": "MOSAIC MAKING"
+      },
+      "name": "LUCE SUNCE",
+      "city": "ZAGREB",
+      "area": "GAJNICE",
+      "address": "Gajnice 20",
+      "postalCode": "",
+      "image": "/images/mosaic-workshop-participants.jpg",
+      "imageFit": "cover",
+      "description": {
+        "hr": "Radionice izrade mozaika uz Miroslava Bušića u kreativnom centru Luce Sunce. Upoznaj materijale i alate te izradi svoj prvi mozaik.",
+        "en": "Mosaic-making workshops with Miroslav Bušić at the Luce Sunce creative centre. Discover the materials and tools and create your first mosaic."
+      },
+      "tags": {
+        "hr": [
+          "RADIONICA",
+          "ZA POČETNIKE",
+          "MOZAIK"
+        ],
+        "en": [
+          "WORKSHOP",
+          "BEGINNER FRIENDLY",
+          "MOSAIC MAKING"
+        ]
+      },
+      "url": {
+        "hr": "/hr/mosaic-making-where-to-try.html",
+        "en": "/mosaic-making-where-to-try.html"
+      },
+      "publishedAt": "2026-11-10",
+      "published": true
+    },
+    {
       "id": "bakart-creative-workshops-with-children",
       "category": "CREATE",
       "activity": {
