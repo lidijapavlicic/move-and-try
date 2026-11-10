@@ -577,6 +577,14 @@
       instances.forEach(instance => instance.sync());
     }, true);
   }
-  window.MoveTryJournalRichEditor={enabled:true,initialize};
+  window.MoveTryJournalRichEditor={
+    enabled:true,
+    initialize,
+    syncAll:()=>{ instances.forEach(instance => instance.sync()); },
+    reloadField:fieldId=>{
+      const instance=instances.find(i=>i.spec.field===fieldId);
+      if(instance) instance.load();
+    }
+  };
   document.addEventListener('DOMContentLoaded',initialize,{once:true});
 })();
