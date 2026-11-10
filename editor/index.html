@@ -259,7 +259,7 @@
       <div class="editor-panel" style="margin-top:25px">
         <p class="eyebrow">PRISTUP UREDNIČKOM PROSTORU</p>
         <h3>Pozovi suradnika</h3>
-        <p class="muted small">Pozivnicu može poslati samo aktivni administrator. Novi suradnik dobiva ulogu autora / urednika.</p>
+        <p class="muted small">Odaberi koje autorske mogućnosti novi korisnik dobiva. Obje mogu biti uključene. Postojećim korisnicima ovlasti mijenjaš niže bez nove pozivnice.</p>
         <form id="invite-form">
           <div class="field">
             <label for="invite-name">Ime suradnika</label>
@@ -269,6 +269,12 @@
             <label for="invite-email">E-mail suradnika</label>
             <input id="invite-email" type="email" maxlength="254" autocomplete="off" required>
           </div>
+          <fieldset class="journal-role-options">
+            <legend>Autorske mogućnosti</legend>
+            <label><input id="invite-columnist" type="checkbox"> Kolumnist — vlastita dodijeljena kolumna</label>
+            <label><input id="invite-contributor" type="checkbox" checked> Suradnik — pojedinačni članci</label>
+            <p class="muted small">Možeš označiti obje mogućnosti. Kolumnu dodjeljujemo zasebno.</p>
+          </fieldset>
           <div class="actions">
             <button class="btn green" id="invite-submit-btn" type="submit">POŠALJI POZIVNICU →</button>
           </div>
@@ -280,7 +286,7 @@
 
       <div class="info-box" style="margin-top:30px">
         <strong>Upravljanje suradnicima</strong>
-        <p>Suradnike možeš aktivirati i deaktivirati izravno u Editoru. Njihovi članci, komentari i povijest ostaju sačuvani. Trajno brisanje korisnika i promjena uloga nisu dostupni u Editoru.</p>
+        <p>Postojećem korisniku možeš uključiti ili isključiti mogućnost pisanja kolumne i pojedinačnih članaka, bez slanja nove pozivnice. Aktivacija i deaktivacija pristupa ostaju zasebne radnje. Administratorsku ulogu nije moguće dodijeliti ovim putem.</p>
         <p>E-mail adrese postojećih suradnika nisu dio tablice uredničkih profila, pa se ovdje prikazuju imena, uloge i status pristupa.</p>
       </div>
     </section>
