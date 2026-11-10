@@ -27,7 +27,7 @@ create table if not exists public.journal_legacy_draft_snapshot (
 );
 revoke all on public.journal_legacy_draft_snapshot from anon, authenticated;
 
-do $
+do $$
 begin
   if not exists (
     select 1 from pg_catalog.pg_trigger
@@ -41,7 +41,7 @@ begin
     on conflict (article_id) do nothing;
   end if;
 end
-$;
+$$;
 
 create or replace function public.journal_enforce_author_capabilities()
 returns trigger
