@@ -47,6 +47,8 @@
   let currentProfile = null;
   let articles = [];
   let profiles = [];
+  let authorPermissions = new Map();
+  let permissionManagementAvailable = false;
   let activeTab = 'home';
   let selectedArticleId = null;
   let currentArticleId = null;
@@ -264,6 +266,25 @@
       profiles = [currentProfile];
     }
 
+    if (isAdmin()) {
+      const result = await db.from('journal_author_permissions')
+        .select('user_id,can_write_column,can_contribute').limit(1000);
+      if (request !== dashboardRequest) return;
+      if (result.error) {
+        authorPermissions = new Map();
+        permissionManagementAvailable = false;
+        setMessage('dashboard-message',
+          'Upravljanje autorskim ovlastima još nije dostupno u bazi. Postojeći članci su učitani.',
+          true);
+      } else {
+        authorPermissions = new Map((result.data || []).map(p => [p.user_id, p]));
+        permissionManagementAvailable = true;
+      }
+    } else {
+      authorPermissions = new Map();
+      permissionManagementAvailable = false;
+    }
+
     renderDashboard();
 
     if (selectedArticleId && !articleById(selectedArticleId)) {
@@ -459,6 +480,7 @@
 
     profiles.forEach(profile => {
       const row = createElement('div', 'collaborator');
+      row.dataset.profileId = profile.id;
       const info = createElement('div');
 
       info.appendChild(createElement(
@@ -466,7 +488,12 @@
       ));
 
       const authored = articles.filter(a => a.author_id === profile.id).length;
-      const role = profile.role === 'admin' ? 'Administrator' : 'Autor / urednik';
+      const perms = authorPermissions.get(profile.id);
+      const role = profile.role === 'admin'
+        ? 'Administrator'
+        : !permissionManagementAvailable ? 'Autor / urednik'
+        : [perms?.can_write_column ? 'Kolumnist' : '',
+           perms?.can_contribute ? 'Suradnik' : ''].filter(Boolean).join(' + ') || 'Bez autorskih ovlasti';
 
       info.appendChild(createElement(
         'div', 'article-meta',
@@ -482,6 +509,15 @@
       controls.appendChild(status);
 
       if (isAdmin() && profile.role === 'editor' && profile.id !== currentUser.id) {
+        if (permissionManagementAvailable) {
+          const permissionsButton = makeButton(
+            'UREDI OVLASTI',
+            () => editAuthorPermissions(profile.id),
+            'btn secondary small-btn'
+          );
+          permissionsButton.disabled = busy;
+          controls.appendChild(permissionsButton);
+        }
         const button = makeButton(
           profile.is_active ? 'DEAKTIVIRAJ' : 'AKTIVIRAJ',
           () => setCollaboratorStatus(profile.id, !profile.is_active),
@@ -494,6 +530,65 @@
       row.append(info, controls);
       target.appendChild(row);
     });
+  }
+
+  async function editAuthorPermissions(userId) {
+    if (!isAdmin() || !permissionManagementAvailable || busy) return;
+    const profile = profiles.find(p => p.id === userId);
+    if (!profile || profile.role !== 'editor' || userId === currentUser.id) return;
+    const previous = authorPermissions.get(userId) || {
+      can_write_column: false, can_contribute: false
+    };
+    const container = document.createElement('div');
+    container.className = 'journal-permission-editor';
+    const heading = document.createElement('strong');
+    heading.textContent = 'Autorske mogućnosti: ' + (profile.display_name || 'Korisnik');
+    const columnist = document.createElement('input');
+    columnist.type = 'checkbox'; columnist.checked = !!previous.can_write_column;
+    const contributor = document.createElement('input');
+    contributor.type = 'checkbox'; contributor.checked = !!previous.can_contribute;
+    const makeChoice = (control,labelText) => {
+      const label = document.createElement('label');
+      label.append(control,document.createTextNode(' ' + labelText));
+      return label;
+    };
+    container.append(heading,
+      makeChoice(columnist,'Kolumnist — dodijeljena kolumna'),
+      makeChoice(contributor,'Suradnik — pojedinačni članci'));
+    const buttons = document.createElement('div');
+    buttons.className = 'actions';
+    const save = makeButton('SPREMI OVLASTI',async () => {
+      if (!columnist.checked && !contributor.checked &&
+          !confirm('Korisnik neće imati nijednu autorsku mogućnost. Nastaviti?')) return;
+      if (busy) return;
+      busy = true;
+      save.disabled = true;
+      try {
+        const { error } = await db.rpc('journal_admin_set_author_permissions', {
+          p_user_id:userId,
+          p_columnist:columnist.checked,
+          p_contributor:contributor.checked
+        });
+        if (error) throw error;
+        await refreshDashboard();
+        setMessage('dashboard-message','Autorske ovlasti su ažurirane.');
+      } catch (error) {
+        setMessage('dashboard-message',friendlyError(error),true);
+      } finally {
+        busy = false;
+        renderCollaborators();
+      }
+    },'btn green small-btn');
+    const cancel = makeButton('ODUSTANI', () => {
+      container.remove();
+    },'btn secondary small-btn');
+    buttons.append(save,cancel);
+    container.append(buttons);
+    const target = document.getElementById('collaborators-list');
+    target.querySelector('.journal-permission-editor')?.remove();
+    const row = Array.from(target.children)
+      .find(el => el.dataset.profileId === userId);
+    if (row) row.append(container);
   }
 
   async function setCollaboratorStatus(collaboratorId, isActive) {
@@ -1997,12 +2092,25 @@
 
     const name = $('invite-name').value.trim();
     const email = $('invite-email').value.trim().toLowerCase();
+    const canWriteColumn = $('invite-columnist').checked;
+    const canContribute = $('invite-contributor').checked;
     if (!name || !email || !$('invite-email').checkValidity()) {
       setMessage('invite-message', 'Upiši ime i ispravnu e-mail adresu.', true);
       return;
     }
 
-    if (!confirm(`Poslati pozivnicu na ${email}?`)) return;
+    if (!canWriteColumn && !canContribute) {
+      setMessage('invite-message','Odaberi kolumnista, suradnika ili obje mogućnosti.',true);
+      return;
+    }
+    if (!permissionManagementAvailable) {
+      setMessage('invite-message','Autorske ovlasti još nisu pripremljene u Supabaseu. Pozivnica nije poslana.',true);
+      return;
+    }
+    if (!confirm(`Poslati pozivnicu na ${email}?\n\nOvlasti: ${[
+      canWriteColumn ? 'Kolumnist' : '',
+      canContribute ? 'Suradnik' : ''
+    ].filter(Boolean).join(' + ')}`)) return;
 
     const button = $('invite-submit-btn');
     button.disabled = true;
@@ -2015,7 +2123,9 @@
       }
 
       const { data, error } = await db.functions.invoke('journal-invite-collaborator', {
-        body: { email, display_name: name },
+        body: { email, display_name: name,
+          can_write_column: canWriteColumn,
+          can_contribute: canContribute },
         headers: { Authorization: `Bearer ${sessionData.session.access_token}` }
       });
 
