@@ -49,6 +49,9 @@
   let profiles = [];
   let authorPermissions = new Map();
   let permissionManagementAvailable = false;
+  let columns = [];
+  let columnsAvailable = false;
+  let currentWritingMode = 'contribution';
   let activeTab = 'home';
   let selectedArticleId = null;
   let currentArticleId = null;
@@ -266,7 +269,7 @@
       profiles = [currentProfile];
     }
 
-    if (isAdmin()) {
+    {
       const result = await db.from('journal_author_permissions')
         .select('user_id,can_write_column,can_contribute').limit(1000);
       if (request !== dashboardRequest) return;
@@ -280,10 +283,14 @@
         authorPermissions = new Map((result.data || []).map(p => [p.user_id, p]));
         permissionManagementAvailable = true;
       }
-    } else {
-      authorPermissions = new Map();
-      permissionManagementAvailable = false;
     }
+
+    const columnsResult = await db.from('journal_columns')
+      .select('id,columnist_id,title,slug,public_byline,description,is_active')
+      .order('title',{ascending:true}).limit(1000);
+    if (request !== dashboardRequest) return;
+    columnsAvailable = !columnsResult.error;
+    columns = columnsResult.data || [];
 
     renderDashboard();
 
@@ -326,6 +333,7 @@
       renderAllArticles();
       renderArticleList('pending-articles', pending);
       renderCollaborators();
+      renderColumns();
     }
   }
 
@@ -467,6 +475,94 @@
     });
 
     renderArticleList('all-articles', filtered);
+  }
+
+  function activeColumnFor(userId) {
+    return columns.find(c => c.columnist_id === userId && c.is_active);
+  }
+  function currentAuthorOptions() {
+    const p=authorPermissions.get(currentUser?.id);
+    return {columnist:isAdmin() || !!p?.can_write_column,
+      contributor:isAdmin() || !!p?.can_contribute,
+      column:activeColumnFor(currentUser?.id)};
+  }
+  function renderColumns() {
+    if(!isAdmin())return;
+    const panel=$('column-management-panel');
+    panel.hidden=!permissionManagementAvailable || !columnsAvailable;
+    if(panel.hidden)return;
+    const writer=$('column-writer');
+    const prior=writer.value;
+    writer.replaceChildren();
+    profiles.filter(p=>p.is_active &&
+      (p.role==='admin'||authorPermissions.get(p.id)?.can_write_column) &&
+      !columns.some(c=>c.columnist_id===p.id)).forEach(p=>{
+      const option=document.createElement('option');
+      option.value=p.id;
+      option.textContent=p.display_name||'Bez imena';
+      writer.append(option);
+    });
+    if([...writer.options].some(x=>x.value===prior))writer.value=prior;
+    $('column-create-btn').disabled=busy||!writer.options.length;
+    const list=$('columns-list');list.replaceChildren();
+    if(!columns.length)list.append(emptyMessage('Još nema dodijeljenih kolumni.'));
+    for(const c of columns){
+      const row=createElement('div','collaborator');
+      const info=createElement('div');
+      info.append(createElement('strong','article-title',c.title),
+        createElement('p','article-meta',
+          personName(c.columnist_id)+' · '+c.public_byline+' · /'+c.slug+
+          (c.is_active?' · aktivna':' · neaktivna')));
+      const button=makeButton(c.is_active?'DEAKTIVIRAJ':'AKTIVIRAJ',
+        ()=>toggleColumn(c.id),'btn secondary small-btn');
+      button.disabled=busy;row.append(info,button);list.append(row);
+    }
+  }
+  async function saveColumnRpc(name,params){
+    if(!isAdmin()||busy)return;
+    busy=true;
+    try{
+      setMessage('column-message','Spremanje kolumne...');
+      const {error}=await db.rpc(name,params);
+      if(error)throw error;
+      await refreshDashboard();
+      setMessage('column-message','Kolumna je spremljena.');
+    }catch(error){
+      setMessage('column-message',friendlyError(error),true);
+    }finally{busy=false;renderColumns();}
+  }
+  function toggleColumn(id){
+    const c=columns.find(x=>x.id===id);
+    if(!c||!confirm((c.is_active?'Deaktivirati':'Aktivirati')+' kolumnu '+c.title+'?'))return;
+    void saveColumnRpc('journal_admin_update_column',{
+      p_column_id:id,p_title:c.title,p_slug:c.slug,
+      p_public_byline:c.public_byline,p_description:c.description||'',
+      p_is_active:!c.is_active});
+  }
+  function configureWritingMode(article){
+    const field=$('writing-mode-field');
+    const category=$('article-category');
+    const mode=$('article-writing-mode');
+    if(isAdmin()||currentEditorMode==='admin'){
+      currentWritingMode='admin';field.hidden=true;category.disabled=false;
+      for(const option of category.options){option.hidden=false;option.disabled=false;}
+      return;
+    }
+    const options=currentAuthorOptions();
+    const canColumn=options.columnist && !!options.column;
+    currentWritingMode=article ? (article.category==='personal'?'column':'contribution')
+      : canColumn&&!options.contributor ? 'column' : 'contribution';
+    field.hidden=!!article || !(canColumn && options.contributor);
+    mode.value=currentWritingMode;
+    category.disabled=currentWritingMode==='column';
+    if(currentWritingMode==='column'){
+      category.value='personal';
+      $('writing-mode-description').textContent=options.column?.title||'Moja kolumna';
+    }else if(category.value==='personal'){category.value='guest';}
+    for(const option of category.options){
+      option.disabled=option.value==='personal'&&currentWritingMode!=='column';
+      option.hidden=option.disabled;
+    }
   }
 
   function renderCollaborators() {
