@@ -161,7 +161,8 @@
     <nav class="tabs" id="dashboard-tabs" aria-label="Urednički izbornik">
       <button class="tab active" type="button" data-tab="home">PREGLED</button>
       <button class="tab" type="button" data-tab="mine">MOJI ČLANCI</button>
-      <button class="tab admin-only" type="button" data-tab="all" hidden>SVI ČLANCI</button>
+      <button class="tab admin-only" type="button" data-tab="all" hidden>ČLANCI</button>
+      <button class="tab" type="button" data-tab="published" id="tab-published-button">OBJAVLJENI ČLANCI</button>
       <button class="tab admin-only" type="button" data-tab="pending" hidden>ZA ODOBRENJE</button>
       <button class="tab admin-only" type="button" data-tab="people" hidden>SURADNICI</button>
     </nav>
@@ -215,7 +216,7 @@
 
     <section id="tab-all" class="section" hidden>
       <p class="eyebrow">ADMINISTRACIJA</p>
-      <h2>Svi članci</h2>
+      <h2>Članci</h2>
 
       <div class="filters">
         <input id="article-search" type="search" placeholder="Pretraži naslove i autore...">
@@ -233,6 +234,12 @@
       </div>
 
       <div id="all-articles" class="article-list"></div>
+    </section>
+
+    <section id="tab-published" class="section" hidden>
+      <p class="eyebrow" id="published-section-label">OBJAVLJENI RADOVI</p>
+      <h2 id="published-section-title">Objavljeni članci</h2>
+      <div id="published-articles" class="article-list"></div>
     </section>
 
     <section id="tab-pending" class="section" hidden>
