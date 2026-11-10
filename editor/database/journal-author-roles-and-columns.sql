@@ -11,6 +11,7 @@ create table if not exists public.journal_author_permissions (
   user_id uuid primary key references public.journal_profiles(id) on delete cascade,
   can_write_column boolean not null default false,
   can_contribute boolean not null default false,
+  contributor_byline text null check (contributor_byline is null or length(btrim(contributor_byline)) between 1 and 160),
   updated_at timestamptz not null default now(),
   updated_by uuid null references auth.users(id) on delete set null
 );
@@ -26,6 +27,20 @@ create table if not exists public.journal_columns (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- Preserve the general author access existing editors already had.
+insert into public.journal_author_permissions
+  (user_id,can_write_column,can_contribute,contributor_byline)
+select p.id,
+  exists (
+    select 1 from public.journal_articles a
+    where a.author_id=p.id and a.category='personal'
+  ),
+  true,
+  coalesce(nullif(btrim(p.display_name),''),'MOVE&TRY Contributor')
+from public.journal_profiles p
+where p.role='editor'
+on conflict (user_id) do nothing;
 
 create unique index if not exists journal_columns_columnist_unique_idx
   on public.journal_columns(columnist_id);
@@ -116,6 +131,48 @@ revoke all on function public.journal_admin_set_author_permissions(
 grant execute on function public.journal_admin_set_author_permissions(
   uuid,boolean,boolean
 ) to authenticated;
+
+-- Set the public signature of a collaborator, independently of the
+-- columnist signature. This function is admin-only.
+create or replace function public.journal_admin_set_contributor_byline(
+  p_user_id uuid, p_byline text
+)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if not exists (
+    select 1 from public.journal_profiles p
+    where p.id = auth.uid() and p.role = 'admin' and p.is_active = true
+  ) then
+    raise exception 'Administrator permission required';
+  end if;
+  if p_user_id = auth.uid() or not exists (
+    select 1 from public.journal_profiles p
+    where p.id = p_user_id and p.role = 'editor'
+  ) then
+    raise exception 'Target user must be an existing editor';
+  end if;
+  if p_byline is null or length(btrim(p_byline)) not between 1 and 160 then
+    raise exception 'Public signature must contain 1-160 characters';
+  end if;
+
+  insert into public.journal_author_permissions
+    (user_id,can_write_column,can_contribute,contributor_byline,updated_at,updated_by)
+  values
+    (p_user_id,false,false,btrim(p_byline),now(),auth.uid())
+  on conflict (user_id) do update
+    set contributor_byline=excluded.contributor_byline,
+        updated_at=excluded.updated_at,
+        updated_by=excluded.updated_by;
+end;
+$$;
+revoke all on function public.journal_admin_set_contributor_byline(uuid,text)
+  from public, anon;
+grant execute on function public.journal_admin_set_contributor_byline(uuid,text)
+  to authenticated;
 
 -- Columns are created by the administrator and assigned to a real columnist.
 -- The columnist cannot choose someone else's column.
