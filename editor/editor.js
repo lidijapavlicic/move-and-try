@@ -1246,6 +1246,15 @@
         }, 'btn secondary'));
       }
 
+      if (['draft','revision'].includes(article.status) &&
+          article.author_id === currentUser.id) {
+        actions.appendChild(makeButton(
+          'SPREMNO ZA OBJAVU',
+          () => markOwnDraftReady(id),
+          'btn green small-btn'
+        ));
+      }
+
       if (article.status === 'submitted') {
         actions.appendChild(
           makeButton(
@@ -1573,6 +1582,32 @@
     } catch (error) {
       setMessage('detail-message', friendlyError(error), true);
     } finally { setBusy(false); }
+  }
+
+  async function markOwnDraftReady(id) {
+    const article=articleById(id);
+    if (!isAdmin() || busy || !article ||
+        article.author_id !== currentUser.id ||
+        !['draft','revision'].includes(article.status)) return;
+    if (!confirm('Označiti svoj urednički tekst kao spreman za objavu?')) return;
+    setBusy(true);
+    setMessage('detail-message','Priprema za objavljivanje...');
+    try {
+      const {error}=await db.rpc('journal_admin_mark_ready',{
+        p_article_id:id,
+        p_expected_revision:article.revision_number
+      });
+      if(error)throw error;
+      await refreshDashboard();
+      setBusy(false);
+      await openDetail(id);
+      setMessage('detail-message',
+        'Tekst je spreman za objavu. Još nije javno objavljen.');
+    } catch(error){
+      setMessage('detail-message',friendlyError(error),true);
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function approveArticle(id) {
