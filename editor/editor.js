@@ -52,6 +52,7 @@
   let columns = [];
   let columnsAvailable = false;
   let currentWritingMode = 'contribution';
+  let currentArticleColumnId = null;
   let activeTab = 'home';
   let selectedArticleId = null;
   let currentArticleId = null;
@@ -562,7 +563,7 @@
         ? String(choices.findIndex(p=>p.id===column.columnist_id)+1) : '0'
     );
     if(selected===null)return;
-    if(!/^\\d+$/.test(selected.trim())){setMessage('column-message','Odaberi broj računa.',true);return;}
+    if(!/^[0-9]+$/.test(selected.trim())){setMessage('column-message','Odaberi broj računa.',true);return;}
     const index=Number(selected);
     if(index<0||index>choices.length){
       setMessage('column-message','Nepostojeći broj računa.',true);return;
@@ -581,12 +582,41 @@
       p_public_byline:c.public_byline,p_description:c.description||'',
       p_is_active:!c.is_active});
   }
+  function configureAdminColumn(article) {
+    const field=$('admin-column-field');
+    const select=$('admin-column-choice');
+    field.hidden=!isAdmin();
+    if(!isAdmin())return;
+    const old=select.value;
+    select.replaceChildren();
+    const editorial=document.createElement('option');
+    editorial.value='';
+    editorial.textContent='MOVE&TRY Editorial — urednički članak';
+    select.append(editorial);
+    for(const c of columns.filter(c=>c.is_active || c.id===article?.column_id)){
+      const option=document.createElement('option');
+      option.value=c.id;
+      option.textContent=c.public_byline+' — '+c.title;
+      select.append(option);
+    }
+    const value=article?.column_id || (!article ? old : '');
+    select.value=value;
+    if(select.value!==value)select.value='';
+    select.disabled=!!article;
+    currentArticleColumnId=select.value||null;
+    if(currentArticleColumnId){
+      $('article-category').value='personal';
+      $('article-category').disabled=true;
+    }
+  }
+
   function configureWritingMode(article, selectedMode = null){
     const field=$('writing-mode-field');
     const category=$('article-category');
     const mode=$('article-writing-mode');
     if(isAdmin()||currentEditorMode==='admin'){
-      currentWritingMode='admin';field.hidden=true;category.disabled=false;
+      currentWritingMode='admin';field.hidden=true;
+      category.disabled=!!currentArticleColumnId;
       for(const option of category.options){option.hidden=false;option.disabled=false;}
       return;
     }
@@ -852,6 +882,7 @@
       p_category: $('article-category').value,
       p_cover_image: $('article-cover').value.trim() || null
     };
+    if (isAdmin()) values.ui_column_id = currentArticleColumnId;
     if (currentEditorMode === 'admin') {
       values.p_title_en = $('article-title-en').value.trim() || null;
       values.p_excerpt_en = $('article-excerpt-en').value.trim() || null;
@@ -931,6 +962,7 @@
     $('article-excerpt').value = article?.excerpt || '';
     $('article-content').value = article?.content || '';
     $('article-category').value = article?.category || (isAdmin()?'editorial':'guest');
+    configureAdminColumn(article);
     configureWritingMode(article);
     $('article-cover').value = article?.cover_image || '';
     $('admin-en-fields').hidden = !adminEdit;
@@ -964,6 +996,7 @@
     currentArticleId = null;
     currentArticleRevision = null;
     currentEditorMode = 'author';
+    currentArticleColumnId = null;
     editorInitialValues = null;
 
     setMessage('editor-message', '');
@@ -981,29 +1014,39 @@
       const previousArticleId = currentArticleId;
       let result;
 
-      if (currentEditorMode === 'admin') {
+      if (isAdmin() && !currentArticleId && currentArticleColumnId) {
+        const { ui_column_id, ...body } = values;
+        result = await db.rpc('journal_admin_create_column_draft', {
+          p_column_id: ui_column_id,
+          p_title: body.p_title,
+          p_excerpt: body.p_excerpt,
+          p_content: body.p_content,
+          p_cover_image: body.p_cover_image
+        });
+      } else if (currentEditorMode === 'admin') {
         result = await db.rpc(
           'journal_admin_edit_article_bilingual_checked',
           {
             p_article_id: currentArticleId,
             p_expected_revision: currentArticleRevision,
-            ...values
+            ...Object.fromEntries(Object.entries(values).filter(([key])=>key!=='ui_column_id'))
           }
         );
       } else {
+        const { ui_column_id, ...saveValues } = values;
         result = await db.rpc(
           'journal_save_draft_bilingual_checked',
           {
             p_article_id: currentArticleId,
             p_expected_revision: currentArticleRevision,
-            ...values
+            ...saveValues
           }
         );
       }
 
       if (result.error) throw result.error;
 
-      if (currentEditorMode === 'author' && !currentArticleId) {
+      if (!currentArticleId) {
         currentArticleId = result.data;
       }
 
@@ -2264,6 +2307,14 @@
     'change',
     renderAllArticles
   );
+
+  $('admin-column-choice').addEventListener('change',()=>{
+    if(!isAdmin() || currentArticleId)return;
+    currentArticleColumnId=$('admin-column-choice').value||null;
+    $('article-category').disabled=!!currentArticleColumnId;
+    $('article-category').value=currentArticleColumnId?'personal':'editorial';
+    $('article-category').dispatchEvent(new Event('input',{bubbles:true}));
+  });
 
   $('article-writing-mode').addEventListener('change',()=>{
     if(isAdmin()||currentArticleId)return;
