@@ -1,12 +1,12 @@
--- MOVE&TRY | THE JOURNAL — COLUMNISTS AND CONTRIBUTOR ROLES
--- SINGLE TRANSACTION: either everything applies or nothing changes.
--- Prepared for staging; do not run until specifically instructed.
--- No existing article rows, account roles, or history are deleted.
+-- MOVE&TRY | THE JOURNAL — ACCOUNTLESS COLUMNISTS, AUTHORS AND FUTURE ACCOUNT LINKING
+-- ATOMIC ROLLOUT: no partial schema changes if any statement fails.
+-- Not deployed until instructed. Keep PR #3 unmerged.
+-- Existing article rows and Auth user IDs are preserved.
 begin;
-set local lock_timeout = '5s';
-set local statement_timeout = '90s';
+set local lock_timeout='5s';
+set local statement_timeout='120s';
 
--- ========== SECTION 1 — editor/database/journal-author-roles-and-columns.sql ==========
+-- ===== Section 1 — editor/database/journal-author-roles-and-columns.sql =====
 -- MOVE&TRY The Journal | Author roles and columns (PREPARED MIGRATION)
 -- Review and test BEFORE running in Supabase SQL Editor.
 -- Non-breaking: does not modify journal_profiles.role, journal_articles,
@@ -295,7 +295,7 @@ revoke all on function public.journal_admin_link_column_account(uuid,uuid)
 grant execute on function public.journal_admin_link_column_account(uuid,uuid)
   to authenticated;
 
--- ========== SECTION 2 — editor/database/journal-column-ownership-guard.sql ==========
+-- ===== Section 2 — editor/database/journal-column-ownership-guard.sql =====
 -- MOVE&TRY | Journal column ownership enforcement (stage 2)
 -- PREPARED ONLY: run AFTER journal-author-roles-and-columns.sql, and
 -- only after the editor's column-mode UI and author flows are ready.
@@ -409,7 +409,27 @@ begin
     return new;
   end if;
 
-  if actor_role <> 'editor' or new.author_id is distinct from actor_id then
+  if actor_role <> 'editor' then
+    raise exception 'Nemate autorsku ovlast za ovaj clanak';
+  end if;
+
+  -- A linked columnist can continue the pre-existing drafts of this column,
+  -- even when the administrator originally created them. The stored author_id
+  -- (original creator) is not overwritten; edit logs use the current JWT.
+  if new.author_id is distinct from actor_id and not (
+    TG_OP = 'UPDATE'
+    and new.category='personal'
+    and old.column_id is not null
+    and exists (
+      select 1 from public.journal_columns c
+      join public.journal_author_permissions perms
+        on perms.user_id=actor_id
+      where c.id=old.column_id
+        and c.columnist_id=actor_id
+        and c.is_active=true
+        and perms.can_write_column=true
+    )
+  ) then
     raise exception 'Nemate autorsku ovlast za ovaj clanak';
   end if;
 
@@ -472,7 +492,7 @@ execute function public.journal_enforce_author_capabilities();
 revoke all on function public.journal_enforce_author_capabilities()
   from public, anon, authenticated;
 
--- ========== SECTION 3 — editor/database/journal-offline-column-drafts.sql ==========
+-- ===== Section 3 — editor/database/journal-offline-column-drafts.sql =====
 -- MOVE&TRY The Journal — write editorial drafts for PUBLIC columnists
 -- who do not need their own account. STAGED ONLY.
 -- Prerequisite: journal-author-roles-and-columns.sql and
@@ -533,7 +553,7 @@ grant execute on function public.journal_admin_create_column_draft(
   uuid,text,text,text,text
 ) to authenticated;
 
--- ========== SECTION 4 — editor/database/journal-admin-ready-for-publication.sql ==========
+-- ===== Section 4 — editor/database/journal-admin-ready-for-publication.sql =====
 -- MOVE&TRY The Journal | Administrator prepares own/offline-column drafts
 -- STAGED ONLY. This does NOT publish a public HTML page.
 -- Existing version/history/status triggers remain active.
@@ -582,38 +602,272 @@ revoke all on function public.journal_admin_mark_ready(uuid,bigint)
 grant execute on function public.journal_admin_mark_ready(uuid,bigint)
   to authenticated;
 
--- Guard checks run inside the transaction and abort everything on failure.
-do $checks$
+-- ===== Section 5 — editor/database/journal-columnist-takeover.sql =====
+-- MOVE&TRY | columnist can take over drafts created by an administrator
+-- Staged only. Requires journal columns / article column_id.
+-- Public authorship does not change and original author_id stays immutable.
+
+drop policy if exists journal_columnist_read_assigned_articles
+  on public.journal_articles;
+create policy journal_columnist_read_assigned_articles
+  on public.journal_articles for select to authenticated
+  using (
+    column_id is not null
+    and exists (
+      select 1 from public.journal_columns c
+      join public.journal_author_permissions ap on ap.user_id=(select auth.uid())
+      join public.journal_profiles p on p.id=(select auth.uid())
+      where c.id=journal_articles.column_id
+        and c.columnist_id=(select auth.uid())
+        and c.is_active=true
+        and ap.can_write_column=true
+        and p.is_active=true
+    )
+  );
+
+create or replace function public.journal_save_assigned_column_draft_checked(
+  p_article_id uuid,
+  p_expected_revision bigint,
+  p_title text,
+  p_excerpt text,
+  p_content text,
+  p_category text,
+  p_cover_image text
+)
+returns uuid
+language plpgsql
+security definer
+set search_path = ''
+as $$
 declare
-  v_col_nullable boolean;
-  v_guard_exists boolean;
-  v_publish_rpc boolean;
+  v_id uuid;
 begin
-  select (c.is_nullable = 'YES') into v_col_nullable
-  from information_schema.columns c
-  where c.table_schema='public'
-    and c.table_name='journal_columns'
-    and c.column_name='columnist_id';
-  if v_col_nullable is distinct from true then
-    raise exception 'Public columnists must NOT require editor accounts';
+  if auth.uid() is null or p_expected_revision is null then
+    raise exception 'Nedostaje prijava ili revizija';
+  end if;
+  if p_category is distinct from 'personal' then
+    raise exception 'Osobna kolumna ne moze promijeniti kategoriju';
+  end if;
+  if not exists (
+    select 1 from public.journal_profiles p
+    join public.journal_author_permissions ap on ap.user_id=p.id
+    where p.id=auth.uid() and p.is_active=true and p.role='editor'
+      and ap.can_write_column=true
+  ) then
+    raise exception 'Nemas aktivan pristup kolumni';
   end if;
 
-  select exists (
+  update public.journal_articles a
+  set title=coalesce(p_title,''),excerpt=p_excerpt,content=coalesce(p_content,''),
+      category='personal',cover_image=p_cover_image
+  where a.id=p_article_id
+    and a.status in ('draft','revision')
+    and a.revision_number=p_expected_revision
+    and exists (
+      select 1 from public.journal_columns c
+      where c.id=a.column_id and c.columnist_id=auth.uid()
+        and c.is_active=true
+    )
+  returning a.id into v_id;
+
+  if v_id is null then
+    raise exception 'Skica je izmijenjena ili nemaš pristup ovoj kolumni';
+  end if;
+  return v_id;
+end;
+$$;
+
+revoke all on function public.journal_save_assigned_column_draft_checked(
+  uuid,bigint,text,text,text,text,text
+) from public,anon;
+grant execute on function public.journal_save_assigned_column_draft_checked(
+  uuid,bigint,text,text,text,text,text
+) to authenticated;
+
+create or replace function public.journal_submit_assigned_column(
+  p_article_id uuid
+)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  v_id uuid;
+begin
+  if not exists (
+    select 1 from public.journal_profiles p
+    join public.journal_author_permissions ap on ap.user_id=p.id
+    where p.id=auth.uid() and p.role='editor' and p.is_active=true
+      and ap.can_write_column=true
+  ) then
+    raise exception 'Nemas aktivan pristup kolumni';
+  end if;
+
+  update public.journal_articles a
+  set status='submitted'
+  where a.id=p_article_id
+    and a.status in ('draft','revision')
+    and length(btrim(coalesce(a.title,'')))>0
+    and length(btrim(coalesce(a.excerpt,'')))>0
+    and length(btrim(coalesce(a.content,'')))>0
+    and exists (
+      select 1 from public.journal_columns c
+      where c.id=a.column_id and c.columnist_id=auth.uid()
+        and c.is_active=true
+    )
+  returning a.id into v_id;
+
+  if v_id is null then
+    raise exception 'Clanak nije potpun, vise nije skica ili nemas pristup';
+  end if;
+end;
+$$;
+
+revoke all on function public.journal_submit_assigned_column(uuid)
+  from public,anon;
+grant execute on function public.journal_submit_assigned_column(uuid)
+  to authenticated;
+
+-- ===== Section 6 — editor/database/journal-columnist-autosave-policy.sql =====
+-- MOVE&TRY | inherited column draft autosave authorization
+-- Existing autosave schema remains intact; preserve local and server recovery.
+
+drop policy if exists journal_autosave_insert_own
+  on public.journal_draft_autosaves;
+create policy journal_autosave_insert_own
+  on public.journal_draft_autosaves for insert to authenticated
+  with check (
+    owner_id=(select auth.uid())
+    and exists (
+      select 1 from public.journal_profiles p
+      where p.id=(select auth.uid()) and p.is_active=true
+    )
+    and (
+      article_id is null or exists (
+        select 1 from public.journal_articles a
+        where a.id=article_id and (
+          (a.author_id=(select auth.uid()) and a.status in ('draft','revision'))
+          or exists (
+            select 1 from public.journal_profiles p
+            where p.id=(select auth.uid())
+              and p.role='admin' and p.is_active=true
+          )
+          or (
+            a.status in ('draft','revision')
+            and exists (
+              select 1 from public.journal_columns c
+              join public.journal_author_permissions ap
+                on ap.user_id=(select auth.uid())
+              where c.id=a.column_id and c.columnist_id=(select auth.uid())
+                and c.is_active=true and ap.can_write_column=true
+            )
+          )
+        )
+      )
+    )
+  );
+
+drop policy if exists journal_autosave_update_own
+  on public.journal_draft_autosaves;
+create policy journal_autosave_update_own
+  on public.journal_draft_autosaves for update to authenticated
+  using (owner_id=(select auth.uid()))
+  with check (
+    owner_id=(select auth.uid())
+    and exists (
+      select 1 from public.journal_profiles p
+      where p.id=(select auth.uid()) and p.is_active=true
+    )
+    and (
+      article_id is null or exists (
+        select 1 from public.journal_articles a
+        where a.id=article_id and (
+          (a.author_id=(select auth.uid()) and a.status in ('draft','revision'))
+          or exists (
+            select 1 from public.journal_profiles p
+            where p.id=(select auth.uid())
+              and p.role='admin' and p.is_active=true
+          )
+          or (
+            a.status in ('draft','revision')
+            and exists (
+              select 1 from public.journal_columns c
+              join public.journal_author_permissions ap
+                on ap.user_id=(select auth.uid())
+              where c.id=a.column_id and c.columnist_id=(select auth.uid())
+                and c.is_active=true and ap.can_write_column=true
+            )
+          )
+        )
+      )
+    )
+  );
+
+-- ===== Section 7 — editor/database/journal-columnist-inherited-media.sql =====
+-- MOVE&TRY | private media for inherited columnist articles
+-- A linked columnist may read ONLY private images referenced by their column.
+-- The bucket remains private; upload stays in the uploader's own folder.
+
+drop policy if exists journal_draft_images_read on storage.objects;
+create policy journal_draft_images_read
+  on storage.objects for select to authenticated
+  using (
+    bucket_id='journal-draft-images'
+    and exists (
+      select 1 from public.journal_profiles actor
+      where actor.id=(select auth.uid()) and actor.is_active=true
+    )
+    and (
+      split_part(name,'/',1)=(select auth.uid())::text
+      or exists (
+        select 1 from public.journal_profiles admin
+        where admin.id=(select auth.uid())
+          and admin.role='admin' and admin.is_active=true
+      )
+      or exists (
+        select 1
+        from public.journal_articles article
+        join public.journal_columns c on c.id=article.column_id
+        join public.journal_author_permissions ap on ap.user_id=(select auth.uid())
+        where c.columnist_id=(select auth.uid()) and c.is_active=true
+          and ap.can_write_column=true
+          and (
+            article.cover_image=('mtmedia:'||name)
+            or position(('mtmedia:'||name) in coalesce(article.content,''))>0
+            or position(('mtmedia:'||name) in coalesce(article.content_en,''))>0
+          )
+      )
+    )
+  );
+
+-- Final checks run in this transaction. Failure rolls back all changes.
+do $verify$
+begin
+  if not exists (
+    select 1 from information_schema.columns c
+    where c.table_schema='public' and c.table_name='journal_columns'
+      and c.column_name='columnist_id' and c.is_nullable='YES'
+  ) then
+    raise exception 'Accountless columnists are not supported';
+  end if;
+  if not exists (
     select 1 from pg_catalog.pg_trigger t
     where t.tgrelid='public.journal_articles'::regclass
       and t.tgname='journal_enforce_author_capabilities_trigger'
       and not t.tgisinternal
-  ) into v_guard_exists;
-  if not v_guard_exists then
-    raise exception 'Journal author role enforcement trigger missing';
+  ) then
+    raise exception 'Column author guard is not installed';
   end if;
-
-  select to_regprocedure('public.journal_admin_create_column_draft(uuid,text,text,text,text)')
-    is not null into v_publish_rpc;
-  if not v_publish_rpc then
-    raise exception 'Offline columnist draft function is missing';
+  if to_regprocedure('public.journal_admin_create_column_draft(uuid,text,text,text,text)') is null
+  or to_regprocedure('public.journal_save_assigned_column_draft_checked(uuid,bigint,text,text,text,text,text)') is null
+  or to_regprocedure('public.journal_submit_assigned_column(uuid)') is null
+  or to_regprocedure('public.journal_admin_link_column_account(uuid,uuid)') is null
+  or to_regprocedure('public.journal_admin_mark_ready(uuid,bigint)') is null
+  then
+    raise exception 'A required Journal column workflow function is missing';
   end if;
 end;
-$checks$;
+$verify$;
 
 commit;
