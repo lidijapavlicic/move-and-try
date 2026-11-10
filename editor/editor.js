@@ -51,6 +51,7 @@
   let permissionManagementAvailable = false;
   let columns = [];
   let columnsAvailable = false;
+  let columnPublicListingAvailable = false;
   let currentWritingMode = 'contribution';
   let currentArticleColumnId = null;
   let activeTab = 'home';
@@ -296,9 +297,18 @@
       }
     }
 
-    const columnsResult = await db.from('journal_columns')
-      .select('id,columnist_id,title,slug,public_byline,description,is_active')
+    let columnsResult = await db.from('journal_columns')
+      .select('id,columnist_id,title,slug,public_byline,description,is_active,public_listing_enabled')
       .order('title',{ascending:true}).limit(1000);
+    if (request !== dashboardRequest) return;
+    columnPublicListingAvailable = !columnsResult.error;
+    if (columnsResult.error && /public_listing_enabled|column.*does not exist|schema cache/i
+        .test(String(columnsResult.error.message || ''))) {
+      // First migration is already live; public listing stage may not be.
+      columnsResult = await db.from('journal_columns')
+        .select('id,columnist_id,title,slug,public_byline,description,is_active')
+        .order('title',{ascending:true}).limit(1000);
+    }
     if (request !== dashboardRequest) return;
     columnsAvailable = !columnsResult.error;
     columns = columnsResult.data || [];
@@ -512,7 +522,7 @@
       column:activeColumnFor(currentUser?.id)};
   }
   function renderColumns() {
-    if(!isAdmin())return;
+    if (!isAdmin()) return;
     const panel=$('column-management-panel');
     panel.hidden=!permissionManagementAvailable || !columnsAvailable;
     if(panel.hidden)return;
@@ -521,7 +531,7 @@
     writer.replaceChildren();
     const noAccount=document.createElement('option');
     noAccount.value='';
-    noAccount.textContent='Bez računa — javna kolumnistica';
+    noAccount.textContent='Bez računa — javni autor';
     writer.append(noAccount);
     profiles.filter(p=>p.is_active &&
       (p.role==='admin'||authorPermissions.get(p.id)?.can_write_column) &&
@@ -533,26 +543,136 @@
     });
     if([...writer.options].some(x=>x.value===prior))writer.value=prior;
     $('column-create-btn').disabled=busy;
-    const list=$('columns-list');list.replaceChildren();
-    if(!columns.length)list.append(emptyMessage('Još nema dodijeljenih kolumni.'));
-    for(const c of columns){
-      const row=createElement('div','collaborator');
-      const info=createElement('div');
-      info.append(createElement('strong','article-title',c.title),
-        createElement('p','article-meta',
-          (c.columnist_id ? personName(c.columnist_id) : 'Bez pristupa Editoru')+
-          ' · '+c.public_byline+' · /'+c.slug+
-          (c.is_active?' · aktivna':' · neaktivna')));
-      const button=makeButton(c.is_active?'DEAKTIVIRAJ':'AKTIVIRAJ',
-        ()=>toggleColumn(c.id),'btn secondary small-btn');
-      button.disabled=busy;
-      const link=makeButton('DODIJELI PRISTUP',()=>assignColumnAccount(c.id),
-        'btn secondary small-btn');
-      link.disabled=busy;
-      const controls=createElement('div','top-actions');
-      controls.append(button,link);
-      row.append(info,controls);list.append(row);
+    $('columns-count').textContent=columns.length===1 ? '1 kolumna' : columns.length+' kolumni';
+
+    const list=$('columns-list');
+    list.replaceChildren();
+    if(!columns.length){
+      list.append(emptyMessage('Nema evidentiranih kolumni. Stvori prvu iznad.'));
+      return;
     }
+    for(const column of columns){
+      const count=articles.filter(a=>a.column_id===column.id).length;
+      const published=articles.filter(a=>a.column_id===column.id && a.status==='published').length;
+      const row=createElement('section','journal-column-row');
+      const detail=createElement('div','journal-column-info');
+      detail.append(createElement('strong','journal-column-name',column.title));
+      detail.append(createElement('p','journal-column-byline','Potpis: '+column.public_byline));
+      detail.append(createElement('p','article-meta',
+        (column.columnist_id ? 'Pristup Editoru: '+personName(column.columnist_id)
+          : 'Bez korisničkog računa')+
+        ' · '+count+' članaka · '+published+' objavljenih · /'+column.slug));
+      if(column.description){
+        detail.append(createElement('p','muted small',column.description));
+      }
+
+      const statuses=createElement('div','journal-column-statuses');
+      statuses.append(createElement('span',
+        column.is_active ? 'pill' : 'pill inactive',
+        column.is_active ? 'AKTIVNA U EDITORU' : 'DEAKTIVIRANA'));
+      const liveReady=columnPublicListingAvailable &&
+        column.public_listing_enabled===true && published>0 && column.is_active;
+      statuses.append(createElement('span','pill inactive',
+        liveReady ? 'SPREMNA ZA JAVNI POPIS'
+          : columnPublicListingAvailable && column.public_listing_enabled
+            ? 'ČEKA OBJAVLJEN ČLANAK' : 'NIJE NA JAVNOM POPISU'));
+      detail.append(statuses);
+
+      const actions=createElement('div','journal-column-actions');
+      const edit=makeButton('UREDI KOLUMNU',()=>editColumnInline(column.id),
+        'btn secondary small-btn');
+      const account=makeButton('PRISTUP AUTORA',()=>assignColumnAccount(column.id),
+        'btn secondary small-btn');
+      const toggle=makeButton(column.is_active?'DEAKTIVIRAJ':'AKTIVIRAJ',
+        ()=>toggleColumn(column.id),'btn secondary small-btn');
+      for(const button of [edit,account,toggle]){
+        button.disabled=busy;
+        actions.append(button);
+      }
+      if(columnPublicListingAvailable){
+        const publish=makeButton(column.public_listing_enabled
+          ? 'MAKNI S JAVNOG POPISA' : 'PRIPREMI JAVNI POPIS',
+          ()=>toggleColumnPublicListing(column.id),'btn secondary small-btn');
+        publish.disabled=busy;
+        actions.append(publish);
+      }
+      row.append(detail,actions);
+      list.append(row);
+    }
+  }
+
+  function editColumnInline(columnId){
+    if(!isAdmin() || busy)return;
+    const c=columns.find(x=>x.id===columnId);
+    if(!c)return;
+    const list=$('columns-list');
+    const current=list.querySelector('.journal-column-edit');
+    if(current)current.remove();
+    const row=[...list.children].find(el=>el.querySelector('.journal-column-name')?.textContent===c.title);
+    if(!row)return;
+
+    const form=document.createElement('form');
+    form.className='journal-column-edit';
+    const fields=[
+      ['Naziv kolumne',c.title,160],
+      ['URL oznaka',c.slug,120],
+      ['Javni potpis autora',c.public_byline,160],
+      ['Kratak opis',c.description||'',500]
+    ];
+    const inputs=[];
+    for(const [name,value,max] of fields){
+      const label=document.createElement('label');
+      label.textContent=name;
+      const input=document.createElement(name==='Kratak opis'?'textarea':'input');
+      if(input.tagName==='INPUT')input.type='text';
+      input.value=value;input.maxLength=max;
+      if(name!=='Kratak opis')input.required=true;
+      label.append(input);
+      form.append(label);
+      inputs.push(input);
+    }
+    const controls=createElement('div','actions');
+    const save=document.createElement('button');
+    save.type='submit';
+    save.className='btn green small-btn';
+    save.textContent='SPREMI IZMJENE';
+    const cancel=document.createElement('button');
+    cancel.type='button';
+    cancel.className='btn secondary small-btn';
+    cancel.textContent='ODUSTANI';
+    cancel.addEventListener('click',()=>form.remove());
+    controls.append(save,cancel);
+    form.append(controls);
+    form.addEventListener('submit',event=>{
+      event.preventDefault();
+      const [title,slug,byline,description]=inputs.map(input=>input.value.trim());
+      if(!title||!byline||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)){
+        setMessage('column-message','Provjeri naziv, javni potpis i engleski slug.',true);
+        return;
+      }
+      if(!confirm('Spremiti promjene kolumne '+c.title+'?'))return;
+      void saveColumnRpc('journal_admin_update_column',{
+        p_column_id:c.id,p_title:title,p_slug:slug,
+        p_public_byline:byline,p_description:description,
+        p_is_active:c.is_active
+      });
+    });
+    row.append(form);
+    form.querySelector('input')?.focus();
+  }
+
+  function toggleColumnPublicListing(id){
+    if(!columnPublicListingAvailable||!isAdmin()||busy)return;
+    const c=columns.find(x=>x.id===id);
+    if(!c)return;
+    const desired=!c.public_listing_enabled;
+    const question=desired
+      ? 'Pripremiti ovu kolumnu za javni popis? Sama promjena još ne objavljuje web-stranicu; prikazivat će se tek uz objavljen članak i povezan sustav objave.'
+      : 'Maknuti kolumnu iz budućeg javnog popisa? Članci i dalje ostaju spremljeni.';
+    if(!confirm(question))return;
+    void saveColumnRpc('journal_admin_set_column_public_listing',{
+      p_column_id:id,p_enabled:desired
+    });
   }
   async function saveColumnRpc(name,params){
     if(!isAdmin()||busy)return;
