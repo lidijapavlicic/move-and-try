@@ -101,7 +101,7 @@
     }
     try{
       const res=await fetch(base+'/rest/v1/rpc/journal_public_article',{
-        method:'POST',headers:{'apikey':key,'Authorization':'Bearer '+key,
+        method:'POST',headers:{'apikey':key,
           'Content-Type':'application/json'},body:JSON.stringify({p_id:id}),
         cache:'no-store'
       });
