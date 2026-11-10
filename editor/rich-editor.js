@@ -76,10 +76,15 @@
       }
       if (tag === 'figure') {
         const img = node.querySelector('img');
-        const url = img && validUrl(img.getAttribute('src'), true);
-        if (url) {
-          const alt = (img.getAttribute('alt') || '').replace(/[\]\r\n]/g,'');
-          blocks.push('![' + alt + '](' + url + ')');
+        const alt = (img?.getAttribute('alt') || '').replace(/[\]\r\n]/g,'');
+        const path = node.dataset.mtMediaPath;
+        const size = ['small','medium','large'].includes(node.dataset.mtMediaSize)
+          ? node.dataset.mtMediaSize : 'medium';
+        if (path && window.MoveTryJournalMedia?.isMediaRef('mtmedia:'+path)) {
+          blocks.push('![' + alt + '](mtmedia:' + path + '){size=' + size + '}');
+        } else {
+          const url = img && validUrl(img.getAttribute('src'), true);
+          if (url) blocks.push('![' + alt + '](' + url + ')');
         }
         continue;
       }
@@ -113,6 +118,7 @@
       target.querySelectorAll('figure').forEach(fig => {
         fig.contentEditable = 'false';
       });
+      window.MoveTryJournalMedia?.hydrate(target);
     } else {
       const p = document.createElement('p');
       p.textContent = String(value);
@@ -510,8 +516,16 @@
     r.cover.hidden = true;
     r.coverNotice.hidden = true;
     r.cover.removeAttribute('src');
-    const coverUrl=validUrl($('article-cover').value,true);
-    if(coverUrl){r.cover.src=coverUrl;r.cover.alt='Naslovna fotografija';r.cover.hidden=false;}
+    const coverRef=$('article-cover').value.trim();
+    if(window.MoveTryJournalMedia?.isMediaRef(coverRef)){
+      r.cover.dataset.mtMediaRequested=coverRef;
+      r.cover.alt='Naslovna fotografija';
+      r.cover.addEventListener('mt-media-error',() => {r.coverNotice.hidden=false;},{once:true});
+      void window.MoveTryJournalMedia.setImage(r.cover,coverRef);
+    }else{
+      const coverUrl=validUrl(coverRef,true);
+      if(coverUrl){r.cover.src=coverUrl;r.cover.alt='Naslovna fotografija';r.cover.hidden=false;}
+    }
     render(r.body,$(en?'article-content-en':'article-content').value);
   }
 
