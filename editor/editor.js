@@ -1712,11 +1712,21 @@
     }
     const question = schedule
       ? `Zakaži objavu članka za ${dateLabel(scheduledAt)} (Zagreb)?`
-      : 'Objaviti članak odmah? Ova radnja mijenja status u Objavljeno.';
+      : 'Objaviti članak odmah na javnom HR i EN Journalu? Fotografije će postati javne.';
     if (!confirm(question)) return;
     setBusy(true);
-    setMessage('detail-message', schedule ? 'Zakazivanje objave...' : 'Objavljivanje...');
+    setMessage('detail-message', 'Priprema javnog članka i fotografija...');
     try {
+      if (!window.MoveTryJournalPublishing?.prepare) {
+        throw Error('Modul javnog objavljivanja nije učitan. Osvježi Editor.');
+      }
+      await window.MoveTryJournalPublishing.prepare(
+        db, article, columns,
+        message => setMessage('detail-message',message)
+      );
+      setMessage('detail-message', schedule
+        ? 'Javna verzija pripremljena. Zakazivanje...'
+        : 'Javna verzija pripremljena. Objavljivanje...');
       const { error } = await db.rpc('journal_publish_or_schedule', {
         p_article_id: id,
         p_expected_revision: article.revision_number,
@@ -1727,8 +1737,8 @@
       setBusy(false);
       await openDetail(id);
       setMessage('detail-message', schedule
-        ? `Objava je zakazana za ${dateLabel(scheduledAt)}.`
-        : 'Članak je objavljen u bazi. Prikaz na javnom Journalu povezujemo zasebno.');
+        ? `Objava je zakazana za ${dateLabel(scheduledAt)}. Javna stranica pojavit će se nakon zakazanog vremena.`
+        : 'Članak je objavljen. Provjeri HR i EN javne stranice The Journala.');
     } catch (error) {
       setMessage('detail-message', friendlyError(error), true);
     } finally { setBusy(false); }
