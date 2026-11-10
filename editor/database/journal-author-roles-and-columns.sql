@@ -20,13 +20,14 @@ create table if not exists public.journal_columns (
   columnist_id uuid not null references public.journal_profiles(id) on delete restrict,
   slug text not null unique check (slug ~ '^[a-z0-9]+(?:-[a-z0-9]+)*$'),
   title text not null check (length(btrim(title)) between 1 and 160),
+  public_byline text not null check (length(btrim(public_byline)) between 1 and 160),
   description text not null default '',
   is_active boolean not null default true,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
-create index if not exists journal_columns_columnist_idx
+create unique index if not exists journal_columns_columnist_unique_idx
   on public.journal_columns(columnist_id);
 
 alter table public.journal_author_permissions enable row level security;
@@ -122,6 +123,7 @@ create or replace function public.journal_admin_create_column(
   p_columnist_id uuid,
   p_title text,
   p_slug text,
+  p_public_byline text,
   p_description text default ''
 )
 returns uuid
@@ -154,9 +156,9 @@ begin
   end if;
 
   insert into public.journal_columns
-    (columnist_id,title,slug,description)
+    (columnist_id,title,slug,public_byline,description)
   values
-    (p_columnist_id,btrim(p_title),btrim(p_slug),coalesce(p_description,''))
+    (p_columnist_id,btrim(p_title),btrim(p_slug),btrim(p_public_byline),coalesce(p_description,''))
   returning id into new_id;
 
   return new_id;
@@ -164,10 +166,74 @@ end;
 $$;
 
 revoke all on function public.journal_admin_create_column(
-  uuid,text,text,text
+  uuid,text,text,text,text
 ) from public, anon;
 grant execute on function public.journal_admin_create_column(
-  uuid,text,text,text
+  uuid,text,text,text,text
+) to authenticated;
+
+
+-- Update title, slug, public signature or disable an assigned column.
+-- Existing articles are kept (including their column_id and history).
+create or replace function public.journal_admin_update_column(
+  p_column_id uuid,
+  p_title text,
+  p_slug text,
+  p_public_byline text,
+  p_description text,
+  p_is_active boolean
+)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $
+declare
+  target_id uuid;
+begin
+  if not exists (
+    select 1 from public.journal_profiles p
+    where p.id = auth.uid() and p.role = 'admin' and p.is_active = true
+  ) then
+    raise exception 'Administrator permission required';
+  end if;
+
+  select c.columnist_id into target_id
+  from public.journal_columns c where c.id = p_column_id for update;
+  if target_id is null then
+    raise exception 'Column does not exist';
+  end if;
+
+  if p_is_active and not exists (
+    select 1 from public.journal_profiles p
+    where p.id = target_id and p.is_active = true
+      and (
+        p.role = 'admin'
+        or (p.role = 'editor' and exists (
+          select 1 from public.journal_author_permissions ap
+          where ap.user_id = p.id and ap.can_write_column = true
+        ))
+      )
+  ) then
+    raise exception 'Cannot activate a column without an active columnist';
+  end if;
+
+  update public.journal_columns
+  set title=btrim(p_title),
+      slug=btrim(p_slug),
+      public_byline=btrim(p_public_byline),
+      description=coalesce(p_description,''),
+      is_active=coalesce(p_is_active,false),
+      updated_at=now()
+  where id=p_column_id;
+end;
+$;
+
+revoke all on function public.journal_admin_update_column(
+  uuid,text,text,text,text,boolean
+) from public, anon;
+grant execute on function public.journal_admin_update_column(
+  uuid,text,text,text,text,boolean
 ) to authenticated;
 
 commit;
