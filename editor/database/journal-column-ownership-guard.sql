@@ -6,9 +6,6 @@ begin;
 
 -- One assigned column per columnist account. Dual columnist+contributor is
 -- represented by journal_author_permissions, NOT two Auth user accounts.
-create unique index if not exists journal_columns_one_per_writer_idx
-  on public.journal_columns(columnist_id);
-
 alter table public.journal_articles
   add column if not exists column_id uuid null
   references public.journal_columns(id) on delete restrict;
