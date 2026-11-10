@@ -315,7 +315,17 @@
           <button class="btn green" type="submit" id="column-create-btn">DODIJELI KOLUMNU</button>
         </form>
         <p class="message" id="column-message" role="status" aria-live="polite"></p>
-        <div id="columns-list" class="article-list" style="margin-top:20px"></div>
+        <div class="journal-columns-directory" id="columns-directory">
+          <div class="journal-columns-directory-head">
+            <div>
+              <p class="eyebrow">UREDNIČKA EVIDENCIJA</p>
+              <h3>Sve kolumne</h3>
+              <p class="muted small">Kolumne ostaju na popisu bez obzira ima li autor pristup Editoru. Javna vidljivost uređuje se zasebno.</p>
+            </div>
+            <span class="journal-columns-count" id="columns-count">0 kolumni</span>
+          </div>
+          <div id="columns-list" class="journal-columns-list"></div>
+        </div>
       </section>
 
       <div class="info-box" style="margin-top:30px">
