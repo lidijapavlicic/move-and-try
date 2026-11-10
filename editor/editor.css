@@ -494,3 +494,30 @@
   .journal-column-actions {justify-content:flex-start;max-width:none;}
   .journal-columns-directory-head {flex-wrap:wrap;}
 }
+
+
+/* Overview-first editorial administration: creation and invitation stay collapsed. */
+.journal-people-intro{max-width:750px;margin-bottom:26px}
+.journal-directory-panel{margin-top:22px}
+.journal-directory-header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.journal-directory-heading{flex:1;min-width:min(100%,250px)}
+.journal-directory-heading h3{font-size:clamp(25px,3vw,32px);margin:5px 0 9px}
+.journal-directory-heading .muted{max-width:640px;margin-bottom:0;line-height:1.65}
+.journal-directory-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.journal-directory-panel .journal-columns-directory{border-top:1px solid var(--line);margin-top:23px;padding-top:5px}
+.journal-directory-panel .journal-column-row{padding:18px 0;border-left:0;border-right:0;border-top:0}
+.journal-directory-panel .journal-collaborators-list{border-top:1px solid var(--line);margin-top:23px;padding-top:5px}
+.journal-directory-panel .collaborator{border:0;border-bottom:1px solid var(--line);padding:18px 0;margin:0;background:transparent}
+.journal-entry-form{border-top:1px solid var(--line);margin-top:26px;padding-top:25px}
+.journal-entry-form[hidden]{display:none!important}
+.journal-entry-form-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:10px}
+.journal-entry-form-head h4{font-family:"DM Serif Display",serif;font-size:26px;font-weight:400;margin:5px 0}
+.journal-entry-form form{max-width:800px;margin-top:24px}
+.journal-directory-footnote{border-top:1px solid var(--line);margin-top:24px;padding-top:18px}
+@media(max-width:760px){
+  .journal-directory-panel{padding:22px 18px}
+  .journal-directory-header{align-items:flex-start}
+  .journal-directory-actions{width:100%;justify-content:space-between}
+  .journal-directory-actions .btn{font-size:10px}
+  .journal-entry-form-head{align-items:center}
+}
