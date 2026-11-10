@@ -100,6 +100,7 @@
         const field = $(inputs[key]);
         if (field) field.value = values[key] || '';
       }
+      configureWritingMode(currentArticleId ? articleById(currentArticleId) : null);
       $('editor-panel').dispatchEvent(new Event('journal-editor-restore'));
     }
   };
@@ -856,7 +857,8 @@
     $('article-title').value = article?.title || '';
     $('article-excerpt').value = article?.excerpt || '';
     $('article-content').value = article?.content || '';
-    $('article-category').value = article?.category || 'personal';
+    $('article-category').value = article?.category || (isAdmin()?'editorial':'guest');
+    configureWritingMode(article);
     $('article-cover').value = article?.cover_image || '';
     $('admin-en-fields').hidden = !adminEdit;
     $('article-title-en').value = article?.title_en || '';
@@ -2181,6 +2183,40 @@
     'change',
     renderAllArticles
   );
+
+  $('article-writing-mode').addEventListener('change',()=>{
+    if(isAdmin()||currentArticleId)return;
+    currentWritingMode=$('article-writing-mode').value;
+    configureWritingMode(null);
+    // configureWritingMode defaults to contributor for dual-role authors;
+    // reapply the explicit selection and lock the category accordingly.
+    currentWritingMode=$('article-writing-mode').value;
+    const isColumn=currentWritingMode==='column';
+    $('article-category').disabled=isColumn;
+    $('article-category').value=isColumn?'personal':'guest';
+    for(const option of $('article-category').options){
+      option.disabled=option.value==='personal'&&!isColumn;
+      option.hidden=option.disabled;
+    }
+    $('editor-panel').dispatchEvent(new Event('input',{bubbles:true}));
+  });
+
+  $('column-create-form').addEventListener('submit',event=>{
+    event.preventDefault();
+    if(!isAdmin()||!columnsAvailable||busy)return;
+    const writer=$('column-writer').value;
+    const title=$('column-title').value.trim();
+    const slug=$('column-slug').value.trim();
+    const byline=$('column-byline').value.trim();
+    const description=$('column-description').value.trim();
+    if(!writer||!title||!byline||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)){
+      setMessage('column-message','Provjeri kolumnista, naziv, potpis i URL oznaku.',true);return;
+    }
+    if(!confirm('Dodijeliti kolumnu odabranom autoru?'))return;
+    void saveColumnRpc('journal_admin_create_column',{
+      p_columnist_id:writer,p_title:title,p_slug:slug,
+      p_public_byline:byline,p_description:description});
+  });
 
   $('invite-form').addEventListener('submit', async event => {
     event.preventDefault();
