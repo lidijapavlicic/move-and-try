@@ -453,3 +453,20 @@
       .detail-content { padding: 20px 0; }
     }
   
+/* Journal author capability management — admin only. */
+.journal-role-options,
+.journal-permission-editor {
+  display:grid;gap:11px;padding:16px;margin:15px 0;
+  border:1px solid var(--line,#dcded6);background:var(--white,#fff);
+}
+.journal-role-options legend {font-weight:700;padding:0 8px;}
+.journal-role-options label,
+.journal-permission-editor label {
+  display:flex;align-items:center;gap:10px;cursor:pointer;
+  font-size:13px;line-height:1.5;
+}
+.journal-role-options input[type="checkbox"],
+.journal-permission-editor input[type="checkbox"] {
+  width:17px;height:17px;flex:0 0 auto;
+}
+.journal-permission-editor .actions {margin-top:5px;}
