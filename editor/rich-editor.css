@@ -195,3 +195,19 @@
   .mt-rich-reader {margin:10px;padding:28px 22px;}
   .mt-rich-preview-top button {padding:7px 9px;}
 }
+
+/* Signature displayed after article body, inside the writing surface and preview. */
+.mt-rich-author-signature {
+  margin:54px 0 0;padding:23px 0 0;
+  border-top:1px solid var(--line,#dcded6);
+}
+.mt-rich-author-name {
+  margin:0 0 7px;color:var(--ink,#171916);
+  font:400 clamp(21px,3vw,26px)/1.35 "DM Serif Display",Georgia,serif;
+}
+.mt-rich-author-description {
+  margin:0;color:var(--muted,#6d716a);
+  font:400 12px/1.75 Manrope,Arial,sans-serif;
+  white-space:pre-wrap;
+}
+.mt-rich-author-description[hidden] {display:none!important;}
