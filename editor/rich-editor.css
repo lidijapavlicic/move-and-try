@@ -196,18 +196,12 @@
   .mt-rich-preview-top button {padding:7px 9px;}
 }
 
-/* Signature displayed after article body, inside the writing surface and preview. */
+/* Existing public Journal article signature styling, reused in Editor and preview. */
 .mt-rich-author-signature {
-  margin:54px 0 0;padding:23px 0 0;
-  border-top:1px solid var(--line,#dcded6);
+  margin-top:80px;padding-top:35px;border-top:1px solid #cfd3ca;
 }
 .mt-rich-author-name {
-  margin:0 0 7px;color:var(--ink,#171916);
-  font:400 clamp(21px,3vw,26px)/1.35 "DM Serif Display",Georgia,serif;
+  display:block;margin:0;color:#17251e;
+  font-family:Manrope,Arial,sans-serif;font-size:12px;
+  font-weight:800;letter-spacing:.06em;
 }
-.mt-rich-author-description {
-  margin:0;color:var(--muted,#6d716a);
-  font:400 12px/1.75 Manrope,Arial,sans-serif;
-  white-space:pre-wrap;
-}
-.mt-rich-author-description[hidden] {display:none!important;}
