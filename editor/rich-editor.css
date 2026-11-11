@@ -8,8 +8,16 @@
 }
 .mt-draft-status.error {color:#a13d3d;}
 .mt-rich-toolbar {
+  position:sticky;
+  top:0;
+  z-index:40;
   display:flex;align-items:center;gap:6px;flex-wrap:wrap;
-  overflow-x:visible;padding:8px 0 13px;white-space:normal;
+  overflow-x:visible;padding:10px 12px;white-space:normal;
+  background:#fff;
+  border:1px solid var(--line,#dcded6);
+  box-shadow:0 4px 16px rgba(23,25,22,.07);
+  isolation:isolate;
+  scroll-margin-top:16px;
 }
 .mt-rich-style-select {
   flex:0 1 205px;width:205px;max-width:100%;min-width:150px;min-height:38px;
