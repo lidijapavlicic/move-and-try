@@ -747,19 +747,16 @@
           : null);
     const column=columns.find(c=>c.id===columnId);
     let name='MOVE&TRY Editorial';
-    let description='';
     if(category==='personal' && column){
       name=column.public_byline || 'MOVE&TRY Contributor';
-      description=column.description || '';
     } else if(category!=='personal' && !isAdmin()){
       name=authorPermissions.get(currentUser?.id)?.contributor_byline ||
         currentProfile?.display_name || 'MOVE&TRY Contributor';
     } else if(category==='personal'){
       name=currentProfile?.display_name || 'MOVE&TRY Contributor';
     }
+    // Column description belongs to the column profile, not the article signature.
     $('article-byline-name').textContent=name;
-    $('article-byline-description').textContent=description;
-    $('article-byline-description').hidden=!description;
   }
 
   function configureAdminColumn(article) {
