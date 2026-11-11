@@ -169,11 +169,7 @@
       const name=document.createElement('p');
       name.id='article-byline-name';
       name.className='mt-rich-author-name';
-      const description=document.createElement('p');
-      description.id='article-byline-description';
-      description.className='mt-rich-author-description';
-      description.hidden=true;
-      byline.append(name,description);
+      byline.append(name);
       paper.append(byline);
     }
     const help = document.createElement('p');
@@ -575,13 +571,11 @@
     signature.className='mt-rich-author-signature';
     const author=document.createElement('p');
     author.className='mt-rich-author-name';
-    const authorDescription=document.createElement('p');
-    authorDescription.className='mt-rich-author-description';
-    signature.append(author,authorDescription);
+    signature.append(author);
     article.append(kicker,title,excerpt,cover,coverNotice,body,signature);
     preview.append(top,article);
     document.body.append(preview);
-    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body,signature,author,authorDescription};
+    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body,signature,author};
     preview.addEventListener('keydown',e => {if(e.key==='Escape') closePreview();});
   }
 
@@ -614,9 +608,6 @@
     render(r.body,$(en?'article-content-en':'article-content').value);
     // Reuse the exact public author identity shown below the writing canvas.
     r.author.textContent=$('article-byline-name')?.textContent || 'MOVE&TRY Editorial';
-    const description=$('article-byline-description')?.textContent || '';
-    r.authorDescription.textContent=description;
-    r.authorDescription.hidden=!description;
   }
 
   function openPreview(){
