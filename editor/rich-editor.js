@@ -160,6 +160,22 @@
     canvas.dataset.placeholder = spec.lang === 'hr' ? 'Ovdje počinje tvoja priča...' : 'Start writing here...';
 
     paper.append(heading, excerpt, canvas);
+    if(spec.lang==='hr'){
+      // Presentation only; never include a public signature in persisted article text.
+      const byline=document.createElement('footer');
+      byline.id='article-byline-preview';
+      byline.className='mt-rich-author-signature';
+      byline.setAttribute('aria-label','Javni potpis članka');
+      const name=document.createElement('p');
+      name.id='article-byline-name';
+      name.className='mt-rich-author-name';
+      const description=document.createElement('p');
+      description.id='article-byline-description';
+      description.className='mt-rich-author-description';
+      description.hidden=true;
+      byline.append(name,description);
+      paper.append(byline);
+    }
     const help = document.createElement('p');
     help.className = 'mt-rich-help';
     help.textContent = spec.lang === 'hr'
@@ -555,10 +571,17 @@
     });
     const body = document.createElement('div');
     body.className = 'mt-rich-reader-body';
-    article.append(kicker,title,excerpt,cover,coverNotice,body);
+    const signature=document.createElement('footer');
+    signature.className='mt-rich-author-signature';
+    const author=document.createElement('p');
+    author.className='mt-rich-author-name';
+    const authorDescription=document.createElement('p');
+    authorDescription.className='mt-rich-author-description';
+    signature.append(author,authorDescription);
+    article.append(kicker,title,excerpt,cover,coverNotice,body,signature);
     preview.append(top,article);
     document.body.append(preview);
-    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body};
+    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body,signature,author,authorDescription};
     preview.addEventListener('keydown',e => {if(e.key==='Escape') closePreview();});
   }
 
@@ -589,6 +612,11 @@
       if(coverUrl){r.cover.src=coverUrl;r.cover.alt='Naslovna fotografija';r.cover.hidden=false;}
     }
     render(r.body,$(en?'article-content-en':'article-content').value);
+    // Reuse the exact public author identity shown below the writing canvas.
+    r.author.textContent=$('article-byline-name')?.textContent || 'MOVE&TRY Editorial';
+    const description=$('article-byline-description')?.textContent || '';
+    r.authorDescription.textContent=description;
+    r.authorDescription.hidden=!description;
   }
 
   function openPreview(){
