@@ -521,19 +521,3 @@
   .journal-directory-actions .btn{font-size:10px}
   .journal-entry-form-head{align-items:center}
 }
-
-/* Public author byline preview on the article form. */
-.journal-byline-preview {
-  margin:14px 0 26px;padding:20px 23px;
-  border:1px solid var(--line,#dcded6);background:#f7f8f4;
-}
-.journal-byline-preview .eyebrow {margin:0 0 11px;}
-.journal-byline-name {
-  margin:0 0 5px;color:var(--ink,#171916);
-  font:400 clamp(21px,3vw,27px)/1.3 "DM Serif Display",Georgia,serif;
-}
-.journal-byline-description {
-  margin:0 0 11px;color:var(--muted,#6d716a);
-  font:500 12px/1.65 Manrope,Arial,sans-serif;
-}
-.journal-byline-preview .small {margin:9px 0 0;}
