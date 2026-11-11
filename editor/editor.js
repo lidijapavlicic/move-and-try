@@ -112,6 +112,7 @@
       }
       configureWritingMode(currentArticleId ? articleById(currentArticleId) : null,
         values.p_category === 'personal' ? 'column' : 'contribution');
+      updateArticleBylinePreview();
       $('editor-panel').dispatchEvent(new Event('journal-editor-restore'));
     }
   };
@@ -735,6 +736,32 @@
       p_public_byline:c.public_byline,p_description:c.description||'',
       p_is_active:!c.is_active});
   }
+  function updateArticleBylinePreview() {
+    const category=$('article-category').value;
+    const columnId=isAdmin()
+      ? (currentArticleColumnId || null)
+      : (currentWritingMode==='column'
+          ? (currentArticleId
+              ? articleById(currentArticleId)?.column_id
+              : currentAuthorOptions().column?.id)
+          : null);
+    const column=columns.find(c=>c.id===columnId);
+    let name='MOVE&TRY Editorial';
+    let description='';
+    if(category==='personal' && column){
+      name=column.public_byline || 'MOVE&TRY Contributor';
+      description=column.description || '';
+    } else if(category!=='personal' && !isAdmin()){
+      name=authorPermissions.get(currentUser?.id)?.contributor_byline ||
+        currentProfile?.display_name || 'MOVE&TRY Contributor';
+    } else if(category==='personal'){
+      name=currentProfile?.display_name || 'MOVE&TRY Contributor';
+    }
+    $('article-byline-name').textContent=name;
+    $('article-byline-description').textContent=description;
+    $('article-byline-description').hidden=!description;
+  }
+
   function configureAdminColumn(article) {
     const field=$('admin-column-field');
     const select=$('admin-column-choice');
@@ -1116,6 +1143,7 @@
     $('article-category').value = article?.category || (isAdmin()?'editorial':'guest');
     configureAdminColumn(article);
     configureWritingMode(article);
+    updateArticleBylinePreview();
     $('article-cover').value = article?.cover_image || '';
     $('admin-en-fields').hidden = !adminEdit;
     $('article-title-en').value = article?.title_en || '';
@@ -2518,13 +2546,17 @@
     $('article-category').disabled=!!currentArticleColumnId;
     $('article-category').value=currentArticleColumnId?'personal':'editorial';
     $('article-category').dispatchEvent(new Event('input',{bubbles:true}));
+    updateArticleBylinePreview();
   });
+
+  $('article-category').addEventListener('change',updateArticleBylinePreview);
 
   $('article-writing-mode').addEventListener('change',()=>{
     if(isAdmin()||currentArticleId)return;
     const chosen=$('article-writing-mode').value;
     configureWritingMode(null,chosen);
     $('article-category').dispatchEvent(new Event('input',{bubbles:true}));
+    updateArticleBylinePreview();
   });
 
   function toggleEntryForm(panelId, triggerId, open) {
