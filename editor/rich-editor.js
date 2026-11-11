@@ -172,9 +172,7 @@
     const instance = {spec,field,bar,paper,heading,excerpt,canvas,selection:null,loaded:null};
     const styleButtons = new Map();
 
-    function topBlock() {
-      const selection = window.getSelection();
-      let node = selection?.anchorNode;
+    function parentBlock(node) {
       if (!node || !canvas.contains(node)) return null;
       if (node.nodeType !== Node.ELEMENT_NODE) node = node.parentElement;
       if (node === canvas) return null;
@@ -182,6 +180,10 @@
         node = node.parentElement;
       }
       return node?.parentElement === canvas ? node : null;
+    }
+
+    function topBlock() {
+      return parentBlock(window.getSelection()?.anchorNode);
     }
 
     function blockKind() {
@@ -205,7 +207,7 @@
     }
 
     function restoreSelection() {
-      canvas.focus();
+      canvas.focus({preventScroll:true});
       if (!instance.selection) return;
       try {
         if (!canvas.contains(instance.selection.commonAncestorContainer)) return;
@@ -262,8 +264,64 @@
       updateToolbarState();
     }
 
+    // An "Istaknuta misao" should use exactly the highlighted text.
+    // For selections inside a single paragraph, split into before / quote /
+    // after instead of converting the entire paragraph or the next block.
+    function quoteSelectedParagraph() {
+      const selection = window.getSelection();
+      if (!selection?.rangeCount || selection.isCollapsed) return false;
+      const range = selection.getRangeAt(0);
+      const start = parentBlock(range.startContainer);
+      const end = parentBlock(range.endContainer);
+
+      // Never silently alter an adjacent paragraph when selection spans blocks.
+      if (!start || start !== end || start.tagName !== 'P') {
+        alert('Za istaknutu misao označi tekst unutar jednog odlomka.');
+        return true;
+      }
+      if (!range.toString().trim()) return true;
+
+      const beforeRange = document.createRange();
+      beforeRange.selectNodeContents(start);
+      beforeRange.setEnd(range.startContainer, range.startOffset);
+      const afterRange = document.createRange();
+      afterRange.selectNodeContents(start);
+      afterRange.setStart(range.endContainer, range.endOffset);
+
+      const before = beforeRange.cloneContents();
+      const chosen = range.cloneContents();
+      const after = afterRange.cloneContents();
+      const fragmentHasContent = fragment => !!fragment.textContent?.trim()
+        || !!fragment.querySelector?.('img,br,figure');
+
+      const elements = [];
+      if (fragmentHasContent(before)) {
+        const p = document.createElement('p');
+        p.append(before);
+        elements.push(p);
+      }
+
+      const quote = document.createElement('blockquote');
+      quote.append(chosen);
+      elements.push(quote);
+
+      let tail = null;
+      if (fragmentHasContent(after)) {
+        tail = document.createElement('p');
+        tail.append(after);
+        elements.push(tail);
+      }
+
+      start.replaceWith(...elements);
+      placeCaretAtEnd(tail || quote);
+      sync();
+      canvas.focus({preventScroll:true});
+      return true;
+    }
+
     function setParagraphStyle(style) {
       restoreSelection();
+      if (style === 'thought' && quoteSelectedParagraph()) return;
       let block = topBlock();
       if (!block) {
         block = document.createElement('p');
@@ -315,7 +373,7 @@
       placeCaretAtEnd((tag === 'ol' || tag === 'ul') ? replacement.lastElementChild : replacement);
       styleSelect.value = style;
       sync();
-      canvas.focus();
+      canvas.focus({preventScroll:true});
     }
 
     function command(action) {
@@ -357,6 +415,10 @@
       option.textContent=label;
       styleSelect.append(option);
     });
+    // Save the last text range before the native dropdown takes keyboard
+    // focus, including for mouse and touch users.
+    styleSelect.addEventListener('pointerdown', saveSelection);
+    styleSelect.addEventListener('keydown', saveSelection);
     styleSelect.addEventListener('change', () => setParagraphStyle(styleSelect.value));
     bar.append(styleSelect);
 
