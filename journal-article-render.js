@@ -120,7 +120,12 @@
         : '';
       $('journal-public-meta').textContent=(messages.category[a.category]||'THE JOURNAL')+' · '+date+' · '+(a.byline||'MOVE&TRY Editorial');
       $('journal-public-author').textContent=a.byline||'MOVE&TRY Editorial';
-      render($('journal-public-content'),content);
+      const endParts=window.MoveTryJournalEndBlocks?.split(content);
+      render($('journal-public-content'),endParts ? endParts.body : content);
+      if(endParts){
+        window.MoveTryJournalEndBlocks.renderBody($('journal-public-content'),endParts.data,lang);
+        window.MoveTryJournalEndBlocks.renderCTA($('journal-public-article'),endParts.data,lang);
+      }
       const imgUrl=safeUrl(a.cover,true);
       const hero=$('journal-public-cover');
       if(imgUrl){hero.src=imgUrl;hero.alt=title;hero.closest('figure').hidden=false;}
