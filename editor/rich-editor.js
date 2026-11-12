@@ -159,19 +159,17 @@
     canvas.setAttribute('aria-label', spec.lang === 'hr' ? 'Tekst članka' : 'Article body');
     canvas.dataset.placeholder = spec.lang === 'hr' ? 'Ovdje počinje tvoja priča...' : 'Start writing here...';
 
-    paper.append(heading, excerpt, canvas);
     if(spec.lang==='hr'){
-      // Presentation only; never include a public signature in persisted article text.
-      const byline=document.createElement('footer');
-      byline.id='article-byline-preview';
-      byline.className='mt-rich-author-signature';
-      byline.setAttribute('aria-label','Javni potpis članka');
-      const name=document.createElement('p');
-      name.id='article-byline-name';
-      name.className='mt-rich-author-name';
-      byline.append(name);
-      paper.append(byline);
+      // Public author identity belongs in the article header, not the footer.
+      const meta=document.createElement('p');
+      meta.className='mt-rich-paper-meta';
+      const byline=document.createElement('span');
+      byline.id='article-byline-name';
+      byline.className='mt-rich-header-author';
+      meta.append(byline);
+      paper.append(meta);
     }
+    paper.append(heading, excerpt, canvas);
     const help = document.createElement('p');
     help.className = 'mt-rich-help';
     help.textContent = spec.lang === 'hr'
@@ -567,15 +565,13 @@
     });
     const body = document.createElement('div');
     body.className = 'mt-rich-reader-body';
-    const signature=document.createElement('footer');
-    signature.className='mt-rich-author-signature';
-    const author=document.createElement('p');
-    author.className='mt-rich-author-name';
-    signature.append(author);
-    article.append(kicker,title,excerpt,cover,coverNotice,body,signature);
+    const author=document.createElement('span');
+    author.className='mt-rich-header-author';
+    kicker.append(document.createTextNode(' · '),author);
+    article.append(kicker,title,excerpt,cover,coverNotice,body);
     preview.append(top,article);
     document.body.append(preview);
-    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body,signature,author};
+    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body,author,article};
     preview.addEventListener('keydown',e => {if(e.key==='Escape') closePreview();});
   }
 
@@ -606,12 +602,12 @@
       if(coverUrl){r.cover.src=coverUrl;r.cover.alt='Naslovna fotografija';r.cover.hidden=false;}
     }
     render(r.body,$(en?'article-content-en':'article-content').value);
-    // Reuse the exact public author identity shown below the writing canvas.
+    // Preserve author identity in the top article metadata (as on public Journal).
     r.author.textContent=$('article-byline-name')?.textContent || 'MOVE&TRY Editorial';
     const blockData=window.MoveTryJournalEndBlocks?.read();
     if(blockData){
       window.MoveTryJournalEndBlocks.renderBody(r.body,blockData,en?'en':'hr');
-      window.MoveTryJournalEndBlocks.renderCTA(r.signature.parentElement,blockData,en?'en':'hr');
+      window.MoveTryJournalEndBlocks.renderCTA(r.article,blockData,en?'en':'hr');
     }
   }
 
