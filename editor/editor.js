@@ -757,7 +757,8 @@
       name=currentProfile?.display_name || 'MOVE&TRY Contributor';
     }
     // Column description belongs to the column profile, not the article signature.
-    $('article-byline-name').textContent=name;
+    const bylineNode=$('article-byline-name');
+    if(bylineNode)bylineNode.textContent=name;
   }
 
   function configureAdminColumn(article) {
