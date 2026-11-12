@@ -168,10 +168,12 @@
       const byline=document.createElement('span');
       byline.id='article-byline-name';
       byline.className='mt-rich-header-author';
-      meta.append(columnName,document.createTextNode(' · '),byline);
+      meta.append(columnName);
       paper.append(meta);
+      paper.append(heading,excerpt,byline,canvas);
+    } else {
+      paper.append(heading,excerpt,canvas);
     }
-    paper.append(heading, excerpt, canvas);
     const help = document.createElement('p');
     help.className = 'mt-rich-help';
     help.textContent = spec.lang === 'hr'
@@ -555,6 +557,8 @@
     title.className = 'mt-rich-reader-title';
     const excerpt = document.createElement('p');
     excerpt.className = 'mt-rich-reader-excerpt';
+    const byline = document.createElement('p');
+    byline.className='mt-rich-reader-byline';
     const cover = document.createElement('img');
     cover.className = 'mt-rich-reader-cover';
     const coverNotice = document.createElement('p');
@@ -567,13 +571,10 @@
     });
     const body = document.createElement('div');
     body.className = 'mt-rich-reader-body';
-    const author=document.createElement('span');
-    author.className='mt-rich-header-author';
-    kicker.append(document.createTextNode(' · '),author);
-    article.append(kicker,title,excerpt,cover,coverNotice,body);
+    article.append(kicker,title,excerpt,byline,cover,coverNotice,body);
     preview.append(top,article);
     document.body.append(preview);
-    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body,author,article};
+    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body,byline,kicker,article};
     preview.addEventListener('keydown',e => {if(e.key==='Escape') closePreview();});
   }
 
@@ -604,9 +605,12 @@
       if(coverUrl){r.cover.src=coverUrl;r.cover.alt='Naslovna fotografija';r.cover.hidden=false;}
     }
     render(r.body,$(en?'article-content-en':'article-content').value);
-    // Preserve author identity in the top article metadata (as on public Journal).
-    r.author.textContent=($('article-column-title-preview')?.textContent || 'THE JOURNAL')+
-      ' · '+($('article-byline-name')?.textContent || 'MOVE&TRY Editorial');
+    // Column title is the kicker; author signature is placed below the excerpt.
+    const section=$('article-column-title-preview')?.textContent || 'THE JOURNAL';
+    r.kicker.textContent=en
+      ? section.replace('KOLUMNE','COLUMNS').replace('Osobne kolumne','Personal columns')
+      : section;
+    r.byline.textContent=$('article-byline-name')?.textContent || 'MOVE&TRY Editorial';
     const blockData=window.MoveTryJournalEndBlocks?.read();
     if(blockData){
       window.MoveTryJournalEndBlocks.renderBody(r.body,blockData,en?'en':'hr');
