@@ -756,9 +756,15 @@
     } else if(category==='personal'){
       name=currentProfile?.display_name || 'MOVE&TRY Contributor';
     }
-    // Column description belongs to the column profile, not the article signature.
+    // Column title and public author signature are different data fields.
     const bylineNode=$('article-byline-name');
     if(bylineNode)bylineNode.textContent=name;
+    const columnNameNode=$('article-column-title-preview');
+    if(columnNameNode){
+      columnNameNode.textContent=category==='personal'
+        ? ('THE JOURNAL · KOLUMNE'+(column?.title?' · '+column.title:''))
+        : ('THE JOURNAL · '+(CATEGORY[category]||''));
+    }
   }
 
   function configureAdminColumn(article) {
