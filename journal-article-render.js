@@ -124,7 +124,8 @@
       const columnName=a.category==='personal' && a.columnTitle
         ? ' · '+a.columnTitle : '';
       $('journal-public-meta').textContent='THE JOURNAL · '+category+columnName+
-        (date?' · '+date:'')+' · '+(a.byline||'MOVE&TRY Editorial');
+        (date?' · '+date:'');
+      $('journal-public-byline').textContent=a.byline||'MOVE&TRY Editorial';
       // Author identity already appears in the existing article header metadata.
       // Optional end-block metadata is stored with HR content and shared across locales.
       const endParts=window.MoveTryJournalEndBlocks?.split(content);
