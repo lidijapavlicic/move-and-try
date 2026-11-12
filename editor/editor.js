@@ -1366,12 +1366,15 @@
     $('detail-meta').textContent = meta.join(' · ');
     $('detail-excerpt').textContent = article.excerpt || '';
     const hrBody = $('detail-content');
+    const endParts=window.MoveTryJournalEndBlocks?.split(article.content || '');
+    const readableContent=endParts ? endParts.body : article.content || '';
     if (window.MoveTryJournalFormatting?.renderText) {
-      window.MoveTryJournalFormatting.renderText(hrBody,article.content || '');
+      window.MoveTryJournalFormatting.renderText(hrBody,readableContent);
       window.MoveTryJournalMedia?.hydrate(hrBody);
     } else {
-      hrBody.textContent = article.content || 'Članak nema teksta.';
+      hrBody.textContent = readableContent || 'Članak nema teksta.';
     }
+    if(endParts)window.MoveTryJournalEndBlocks.renderBody(hrBody,endParts.data,'hr');
     $('detail-en-section').hidden = !isAdmin() && !article.title_en && !article.excerpt_en && !article.content_en;
     $('detail-title-en').textContent = article.title_en || 'Engleski naslov nije unesen';
     $('detail-excerpt-en').textContent = article.excerpt_en || '';
