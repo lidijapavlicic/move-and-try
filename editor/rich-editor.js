@@ -608,6 +608,11 @@
     render(r.body,$(en?'article-content-en':'article-content').value);
     // Reuse the exact public author identity shown below the writing canvas.
     r.author.textContent=$('article-byline-name')?.textContent || 'MOVE&TRY Editorial';
+    const blockData=window.MoveTryJournalEndBlocks?.read();
+    if(blockData){
+      window.MoveTryJournalEndBlocks.renderBody(r.body,blockData,en?'en':'hr');
+      window.MoveTryJournalEndBlocks.renderCTA(r.signature.parentElement,blockData,en?'en':'hr');
+    }
   }
 
   function openPreview(){
