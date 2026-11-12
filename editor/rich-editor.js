@@ -163,10 +163,12 @@
       // Public author identity belongs in the article header, not the footer.
       const meta=document.createElement('p');
       meta.className='mt-rich-paper-meta';
+      const columnName=document.createElement('span');
+      columnName.id='article-column-title-preview';
       const byline=document.createElement('span');
       byline.id='article-byline-name';
       byline.className='mt-rich-header-author';
-      meta.append(byline);
+      meta.append(columnName,document.createTextNode(' · '),byline);
       paper.append(meta);
     }
     paper.append(heading, excerpt, canvas);
@@ -548,7 +550,7 @@
     article.className = 'mt-rich-reader';
     const kicker = document.createElement('div');
     kicker.className = 'mt-rich-reader-kicker';
-    kicker.textContent = 'MOVE&TRY · THE JOURNAL';
+    kicker.textContent = 'THE JOURNAL';
     const title = document.createElement('h1');
     title.className = 'mt-rich-reader-title';
     const excerpt = document.createElement('p');
@@ -603,7 +605,8 @@
     }
     render(r.body,$(en?'article-content-en':'article-content').value);
     // Preserve author identity in the top article metadata (as on public Journal).
-    r.author.textContent=$('article-byline-name')?.textContent || 'MOVE&TRY Editorial';
+    r.author.textContent=($('article-column-title-preview')?.textContent || 'THE JOURNAL')+
+      ' · '+($('article-byline-name')?.textContent || 'MOVE&TRY Editorial');
     const blockData=window.MoveTryJournalEndBlocks?.read();
     if(blockData){
       window.MoveTryJournalEndBlocks.renderBody(r.body,blockData,en?'en':'hr');
