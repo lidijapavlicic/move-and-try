@@ -118,7 +118,13 @@
       const date=a.publishedAt
         ? new Date(a.publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB')
         : '';
-      $('journal-public-meta').textContent=(messages.category[a.category]||'THE JOURNAL')+' · '+date+' · '+(a.byline||'MOVE&TRY Editorial');
+      const category=a.category==='personal'
+        ? (lang==='hr'?'KOLUMNE':'COLUMNS')
+        : (messages.category[a.category]||'THE JOURNAL');
+      const columnName=a.category==='personal' && a.columnTitle
+        ? ' · '+a.columnTitle : '';
+      $('journal-public-meta').textContent='THE JOURNAL · '+category+columnName+
+        (date?' · '+date:'')+' · '+(a.byline||'MOVE&TRY Editorial');
       // Author identity already appears in the existing article header metadata.
       // Optional end-block metadata is stored with HR content and shared across locales.
       const endParts=window.MoveTryJournalEndBlocks?.split(content);
