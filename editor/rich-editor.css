@@ -202,3 +202,6 @@
 
 .mt-rich-reader .article-end{margin:65px -25px -25px}
 .mt-rich-paper .journal-article-links,.mt-rich-reader .journal-article-links{margin:45px 0}
+
+.mt-rich-paper > .mt-rich-header-author{display:block;font:700 11px/1.5 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e;margin:2px 0 30px}
+.mt-rich-reader-byline{margin:18px 0 38px;font:700 11px/1.6 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e}
