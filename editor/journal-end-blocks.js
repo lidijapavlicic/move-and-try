@@ -121,8 +121,13 @@
     data=parsed.data;
     admin=!!isAdmin;
     if(root){
+      $('mt-end-title').textContent=admin?'ZAVRŠNI BLOKOVI ČLANKA':'IZVORI I DODATNO ČITANJE';
+      $('mt-end-description').textContent=admin
+        ? 'Neobavezno. Koristimo postojeće blokove i izgled The Journala.'
+        : 'Neobavezno dodaj izvore i poveznice koje si koristio/la u članku.';
       $('mt-end-cta').checked=data.cta;
       $('mt-end-editor-controls').hidden=!admin;
+      $('mt-end-source-heading').hidden=!admin;
       rows('links',data.links);rows('sources',data.sources);
       $('mt-end-warning').hidden=!parsed.invalid;
     }
@@ -135,8 +140,11 @@
     if(!form||!cover||root)return;
     root=elt('section','mt-end-controls');
     root.id='mt-end-blocks';
-    root.append(elt('p','eyebrow','ZAVRŠNI BLOKOVI ČLANKA'));
-    root.append(elt('p','muted small','Neobavezno. Koristimo postojeće blokove i izgled The Journala.'));
+    const heading=elt('p','eyebrow','ZAVRŠNI BLOKOVI ČLANKA');
+    heading.id='mt-end-title';
+    const description=elt('p','muted small','Neobavezno. Koristimo postojeće blokove i izgled The Journala.');
+    description.id='mt-end-description';
+    root.append(heading,description);
     const warning=elt('p','message','Postojeći završni podaci nisu čitljivi. Nisu automatski promijenjeni.');
     warning.id='mt-end-warning';warning.hidden=true;root.append(warning);
     const controls=elt('div','mt-end-editor-controls');controls.id='mt-end-editor-controls';
@@ -148,7 +156,9 @@
     const linkRows=elt('div','mt-end-rows');linkRows.id='mt-end-links';
     controls.append(linkRows,button('+ DODAJ POVEZNICU',()=>addRow('links')));
     root.append(controls);
-    root.append(elt('h3','','Izvori i dodatno čitanje'));
+    const sourcesHeading=elt('h3','','Izvori i dodatno čitanje');
+    sourcesHeading.id='mt-end-source-heading';
+    root.append(sourcesHeading);
     const sourceRows=elt('div','mt-end-rows');sourceRows.id='mt-end-sources';
     root.append(sourceRows,button('+ DODAJ IZVOR',()=>addRow('sources')));
     cover.closest('.field').before(root);
