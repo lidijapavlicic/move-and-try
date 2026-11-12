@@ -1184,6 +1184,11 @@
   async function saveDraft(event) {
     event.preventDefault();
     if (busy) return;
+    const endBlockError=window.MoveTryJournalEndBlocks?.validate();
+    if(endBlockError){
+      setMessage('editor-message',endBlockError,true);
+      return;
+    }
 
     setBusy(true);
     setMessage('editor-message', 'Spremanje...');
