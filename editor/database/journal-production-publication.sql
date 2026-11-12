@@ -226,7 +226,7 @@ SELECT jsonb_build_object(
  'contentHr',s.content_hr,'contentEn',s.content_en,
  'cover',s.cover_public_url,
  'publishedAt',COALESCE(a.published_at,a.scheduled_at,a.updated_at),
- 'columnSlug',c.slug,
+ 'columnSlug',c.slug,'columnTitle',c.title,
  'byline',CASE WHEN a.category='personal' THEN c.public_byline
    WHEN a.category IN ('editorial','news') THEN 'MOVE&TRY Editorial'
    ELSE COALESCE(NULLIF(BTRIM(p.display_name),''),'MOVE&TRY Contributor') END

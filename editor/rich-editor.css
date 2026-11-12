@@ -8,8 +8,16 @@
 }
 .mt-draft-status.error {color:#a13d3d;}
 .mt-rich-toolbar {
+  position:sticky;
+  top:0;
+  z-index:40;
   display:flex;align-items:center;gap:6px;flex-wrap:wrap;
-  overflow-x:visible;padding:8px 0 13px;white-space:normal;
+  overflow-x:visible;padding:10px 12px;white-space:normal;
+  background:#fff;
+  border:1px solid var(--line,#dcded6);
+  box-shadow:0 4px 16px rgba(23,25,22,.07);
+  isolation:isolate;
+  scroll-margin-top:16px;
 }
 .mt-rich-style-select {
   flex:0 1 205px;width:205px;max-width:100%;min-width:150px;min-height:38px;
@@ -187,3 +195,13 @@
   .mt-rich-reader {margin:10px;padding:28px 22px;}
   .mt-rich-preview-top button {padding:7px 9px;}
 }
+
+/* Journal byline remains in the article header, never below the body. */
+.mt-rich-paper-meta{margin:0 0 24px!important;color:#74776f;font:700 10px/1.6 Manrope,Arial,sans-serif;letter-spacing:.07em}
+.mt-rich-header-author{font:inherit;color:inherit;letter-spacing:inherit}
+
+.mt-rich-reader .article-end{margin:65px -25px -25px}
+.mt-rich-paper .journal-article-links,.mt-rich-reader .journal-article-links{margin:45px 0}
+
+.mt-rich-paper > .mt-rich-header-author{display:block;font:700 11px/1.5 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e;margin:2px 0 30px}
+.mt-rich-reader-byline{margin:18px 0 38px;font:700 11px/1.6 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e}

@@ -118,9 +118,39 @@
       const date=a.publishedAt
         ? new Date(a.publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB')
         : '';
-      $('journal-public-meta').textContent=(messages.category[a.category]||'THE JOURNAL')+' · '+date+' · '+(a.byline||'MOVE&TRY Editorial');
-      $('journal-public-author').textContent=a.byline||'MOVE&TRY Editorial';
-      render($('journal-public-content'),content);
+      const category=a.category==='personal'
+        ? (lang==='hr'?'KOLUMNE':'COLUMNS')
+        : (messages.category[a.category]||'THE JOURNAL');
+      // Existing public feed already includes column titles; use it until the
+      // article-detail RPC is upgraded to return columnTitle as well.
+      let columnTitle=typeof a.columnTitle==='string'?a.columnTitle.trim():'';
+      if(a.category==='personal'&&!columnTitle&&a.columnSlug){
+        try{
+          const feedResponse=await fetch(base+'/rest/v1/rpc/journal_public_articles_feed',{
+            method:'POST',headers:{'apikey':key,'Content-Type':'application/json'},
+            body:'{}',cache:'no-store'
+          });
+          if(feedResponse.ok){
+            const feed=await feedResponse.json();
+            columnTitle=(Array.isArray(feed?.columns)?feed.columns:[])
+              .find(c=>c.slug===a.columnSlug)?.title?.trim()||'';
+          }
+        }catch(_){/* Display the category and byline if the feed is unavailable. */}
+      }
+      const columnName=a.category==='personal'&&columnTitle?' · '+columnTitle:'';
+      $('journal-public-meta').textContent='THE JOURNAL · '+category+columnName+
+        (date?' · '+date:'');
+      $('journal-public-byline').textContent=a.byline||'MOVE&TRY Editorial';
+      // Author identity already appears in the existing article header metadata.
+      // Optional end-block metadata is stored with HR content and shared across locales.
+      const endParts=window.MoveTryJournalEndBlocks?.split(content);
+      const sharedBlocks=window.MoveTryJournalEndBlocks?.split(a.contentHr||'');
+      render($('journal-public-content'),endParts ? endParts.body : content);
+      if(endParts){
+        const endData=lang==='hr' ? endParts.data : (sharedBlocks?.data||endParts.data);
+        window.MoveTryJournalEndBlocks.renderBody($('journal-public-content'),endData,lang);
+        window.MoveTryJournalEndBlocks.renderCTA($('journal-public-article'),endData,lang);
+      }
       const imgUrl=safeUrl(a.cover,true);
       const hero=$('journal-public-cover');
       if(imgUrl){hero.src=imgUrl;hero.alt=title;hero.closest('figure').hidden=false;}

@@ -112,6 +112,8 @@
       }
       configureWritingMode(currentArticleId ? articleById(currentArticleId) : null,
         values.p_category === 'personal' ? 'column' : 'contribution');
+      updateArticleBylinePreview();
+      window.MoveTryJournalEndBlocks?.load($('article-content').value,isAdmin());
       $('editor-panel').dispatchEvent(new Event('journal-editor-restore'));
     }
   };
@@ -735,6 +737,36 @@
       p_public_byline:c.public_byline,p_description:c.description||'',
       p_is_active:!c.is_active});
   }
+  function updateArticleBylinePreview() {
+    const category=$('article-category').value;
+    const columnId=isAdmin()
+      ? (currentArticleColumnId || null)
+      : (currentWritingMode==='column'
+          ? (currentArticleId
+              ? articleById(currentArticleId)?.column_id
+              : currentAuthorOptions().column?.id)
+          : null);
+    const column=columns.find(c=>c.id===columnId);
+    let name='MOVE&TRY Editorial';
+    if(category==='personal' && column){
+      name=column.public_byline || 'MOVE&TRY Contributor';
+    } else if(category!=='personal' && !isAdmin()){
+      name=authorPermissions.get(currentUser?.id)?.contributor_byline ||
+        currentProfile?.display_name || 'MOVE&TRY Contributor';
+    } else if(category==='personal'){
+      name=currentProfile?.display_name || 'MOVE&TRY Contributor';
+    }
+    // Column title and public author signature are different data fields.
+    const bylineNode=$('article-byline-name');
+    if(bylineNode)bylineNode.textContent=name;
+    const columnNameNode=$('article-column-title-preview');
+    if(columnNameNode){
+      columnNameNode.textContent=category==='personal'
+        ? ('THE JOURNAL · KOLUMNE'+(column?.title?' · '+column.title:''))
+        : ('THE JOURNAL · '+(CATEGORY[category]||''));
+    }
+  }
+
   function configureAdminColumn(article) {
     const field=$('admin-column-field');
     const select=$('admin-column-choice');
@@ -1032,7 +1064,7 @@
     const values = {
       p_title: $('article-title').value.trim(),
       p_excerpt: $('article-excerpt').value.trim(),
-      p_content: $('article-content').value.trim(),
+      p_content: window.MoveTryJournalEndBlocks?.append($('article-content').value.trim()) || $('article-content').value.trim(),
       p_category: $('article-category').value,
       p_cover_image: $('article-cover').value.trim() || null
     };
@@ -1113,9 +1145,11 @@
     $('article-title').value = article?.title || '';
     $('article-excerpt').value = article?.excerpt || '';
     $('article-content').value = article?.content || '';
+    window.MoveTryJournalEndBlocks?.load($('article-content').value,isAdmin());
     $('article-category').value = article?.category || (isAdmin()?'editorial':'guest');
     configureAdminColumn(article);
     configureWritingMode(article);
+    updateArticleBylinePreview();
     $('article-cover').value = article?.cover_image || '';
     $('admin-en-fields').hidden = !adminEdit;
     $('article-title-en').value = article?.title_en || '';
@@ -1157,6 +1191,11 @@
   async function saveDraft(event) {
     event.preventDefault();
     if (busy) return;
+    const endBlockError=window.MoveTryJournalEndBlocks?.validate();
+    if(endBlockError){
+      setMessage('editor-message',endBlockError,true);
+      return;
+    }
 
     setBusy(true);
     setMessage('editor-message', 'Spremanje...');
@@ -1339,12 +1378,15 @@
     $('detail-meta').textContent = meta.join(' · ');
     $('detail-excerpt').textContent = article.excerpt || '';
     const hrBody = $('detail-content');
+    const endParts=window.MoveTryJournalEndBlocks?.split(article.content || '');
+    const readableContent=endParts ? endParts.body : article.content || '';
     if (window.MoveTryJournalFormatting?.renderText) {
-      window.MoveTryJournalFormatting.renderText(hrBody,article.content || '');
+      window.MoveTryJournalFormatting.renderText(hrBody,readableContent);
       window.MoveTryJournalMedia?.hydrate(hrBody);
     } else {
-      hrBody.textContent = article.content || 'Članak nema teksta.';
+      hrBody.textContent = readableContent || 'Članak nema teksta.';
     }
+    if(endParts)window.MoveTryJournalEndBlocks.renderBody(hrBody,endParts.data,'hr');
     $('detail-en-section').hidden = !isAdmin() && !article.title_en && !article.excerpt_en && !article.content_en;
     $('detail-title-en').textContent = article.title_en || 'Engleski naslov nije unesen';
     $('detail-excerpt-en').textContent = article.excerpt_en || '';
@@ -2518,13 +2560,17 @@
     $('article-category').disabled=!!currentArticleColumnId;
     $('article-category').value=currentArticleColumnId?'personal':'editorial';
     $('article-category').dispatchEvent(new Event('input',{bubbles:true}));
+    updateArticleBylinePreview();
   });
+
+  $('article-category').addEventListener('change',updateArticleBylinePreview);
 
   $('article-writing-mode').addEventListener('change',()=>{
     if(isAdmin()||currentArticleId)return;
     const chosen=$('article-writing-mode').value;
     configureWritingMode(null,chosen);
     $('article-category').dispatchEvent(new Event('input',{bubbles:true}));
+    updateArticleBylinePreview();
   });
 
   function toggleEntryForm(panelId, triggerId, open) {

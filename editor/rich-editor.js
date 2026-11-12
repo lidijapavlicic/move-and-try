@@ -159,7 +159,21 @@
     canvas.setAttribute('aria-label', spec.lang === 'hr' ? 'Tekst članka' : 'Article body');
     canvas.dataset.placeholder = spec.lang === 'hr' ? 'Ovdje počinje tvoja priča...' : 'Start writing here...';
 
-    paper.append(heading, excerpt, canvas);
+    if(spec.lang==='hr'){
+      // Public author identity belongs in the article header, not the footer.
+      const meta=document.createElement('p');
+      meta.className='mt-rich-paper-meta';
+      const columnName=document.createElement('span');
+      columnName.id='article-column-title-preview';
+      const byline=document.createElement('span');
+      byline.id='article-byline-name';
+      byline.className='mt-rich-header-author';
+      meta.append(columnName);
+      paper.append(meta);
+      paper.append(heading,excerpt,byline,canvas);
+    } else {
+      paper.append(heading,excerpt,canvas);
+    }
     const help = document.createElement('p');
     help.className = 'mt-rich-help';
     help.textContent = spec.lang === 'hr'
@@ -172,9 +186,7 @@
     const instance = {spec,field,bar,paper,heading,excerpt,canvas,selection:null,loaded:null};
     const styleButtons = new Map();
 
-    function topBlock() {
-      const selection = window.getSelection();
-      let node = selection?.anchorNode;
+    function parentBlock(node) {
       if (!node || !canvas.contains(node)) return null;
       if (node.nodeType !== Node.ELEMENT_NODE) node = node.parentElement;
       if (node === canvas) return null;
@@ -182,6 +194,10 @@
         node = node.parentElement;
       }
       return node?.parentElement === canvas ? node : null;
+    }
+
+    function topBlock() {
+      return parentBlock(window.getSelection()?.anchorNode);
     }
 
     function blockKind() {
@@ -205,7 +221,7 @@
     }
 
     function restoreSelection() {
-      canvas.focus();
+      canvas.focus({preventScroll:true});
       if (!instance.selection) return;
       try {
         if (!canvas.contains(instance.selection.commonAncestorContainer)) return;
@@ -262,8 +278,64 @@
       updateToolbarState();
     }
 
+    // An "Istaknuta misao" should use exactly the highlighted text.
+    // For selections inside a single paragraph, split into before / quote /
+    // after instead of converting the entire paragraph or the next block.
+    function quoteSelectedParagraph() {
+      const selection = window.getSelection();
+      if (!selection?.rangeCount || selection.isCollapsed) return false;
+      const range = selection.getRangeAt(0);
+      const start = parentBlock(range.startContainer);
+      const end = parentBlock(range.endContainer);
+
+      // Never silently alter an adjacent paragraph when selection spans blocks.
+      if (!start || start !== end || start.tagName !== 'P') {
+        alert('Za istaknutu misao označi tekst unutar jednog odlomka.');
+        return true;
+      }
+      if (!range.toString().trim()) return true;
+
+      const beforeRange = document.createRange();
+      beforeRange.selectNodeContents(start);
+      beforeRange.setEnd(range.startContainer, range.startOffset);
+      const afterRange = document.createRange();
+      afterRange.selectNodeContents(start);
+      afterRange.setStart(range.endContainer, range.endOffset);
+
+      const before = beforeRange.cloneContents();
+      const chosen = range.cloneContents();
+      const after = afterRange.cloneContents();
+      const fragmentHasContent = fragment => !!fragment.textContent?.trim()
+        || !!fragment.querySelector?.('img,br,figure');
+
+      const elements = [];
+      if (fragmentHasContent(before)) {
+        const p = document.createElement('p');
+        p.append(before);
+        elements.push(p);
+      }
+
+      const quote = document.createElement('blockquote');
+      quote.append(chosen);
+      elements.push(quote);
+
+      let tail = null;
+      if (fragmentHasContent(after)) {
+        tail = document.createElement('p');
+        tail.append(after);
+        elements.push(tail);
+      }
+
+      start.replaceWith(...elements);
+      placeCaretAtEnd(tail || quote);
+      sync();
+      canvas.focus({preventScroll:true});
+      return true;
+    }
+
     function setParagraphStyle(style) {
       restoreSelection();
+      if (style === 'thought' && quoteSelectedParagraph()) return;
       let block = topBlock();
       if (!block) {
         block = document.createElement('p');
@@ -315,7 +387,7 @@
       placeCaretAtEnd((tag === 'ol' || tag === 'ul') ? replacement.lastElementChild : replacement);
       styleSelect.value = style;
       sync();
-      canvas.focus();
+      canvas.focus({preventScroll:true});
     }
 
     function command(action) {
@@ -357,6 +429,10 @@
       option.textContent=label;
       styleSelect.append(option);
     });
+    // Save the last text range before the native dropdown takes keyboard
+    // focus, including for mouse and touch users.
+    styleSelect.addEventListener('pointerdown', saveSelection);
+    styleSelect.addEventListener('keydown', saveSelection);
     styleSelect.addEventListener('change', () => setParagraphStyle(styleSelect.value));
     bar.append(styleSelect);
 
@@ -476,11 +552,13 @@
     article.className = 'mt-rich-reader';
     const kicker = document.createElement('div');
     kicker.className = 'mt-rich-reader-kicker';
-    kicker.textContent = 'MOVE&TRY · THE JOURNAL';
+    kicker.textContent = 'THE JOURNAL';
     const title = document.createElement('h1');
     title.className = 'mt-rich-reader-title';
     const excerpt = document.createElement('p');
     excerpt.className = 'mt-rich-reader-excerpt';
+    const byline = document.createElement('p');
+    byline.className='mt-rich-reader-byline';
     const cover = document.createElement('img');
     cover.className = 'mt-rich-reader-cover';
     const coverNotice = document.createElement('p');
@@ -493,10 +571,10 @@
     });
     const body = document.createElement('div');
     body.className = 'mt-rich-reader-body';
-    article.append(kicker,title,excerpt,cover,coverNotice,body);
+    article.append(kicker,title,excerpt,byline,cover,coverNotice,body);
     preview.append(top,article);
     document.body.append(preview);
-    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body};
+    preview.refs = {back,hr,en,mobile,desktop,title,excerpt,cover,coverNotice,body,byline,kicker,article};
     preview.addEventListener('keydown',e => {if(e.key==='Escape') closePreview();});
   }
 
@@ -527,6 +605,17 @@
       if(coverUrl){r.cover.src=coverUrl;r.cover.alt='Naslovna fotografija';r.cover.hidden=false;}
     }
     render(r.body,$(en?'article-content-en':'article-content').value);
+    // Column title is the kicker; author signature is placed below the excerpt.
+    const section=$('article-column-title-preview')?.textContent || 'THE JOURNAL';
+    r.kicker.textContent=en
+      ? section.replace('KOLUMNE','COLUMNS').replace('Osobne kolumne','Personal columns')
+      : section;
+    r.byline.textContent=$('article-byline-name')?.textContent || 'MOVE&TRY Editorial';
+    const blockData=window.MoveTryJournalEndBlocks?.read();
+    if(blockData){
+      window.MoveTryJournalEndBlocks.renderBody(r.body,blockData,en?'en':'hr');
+      window.MoveTryJournalEndBlocks.renderCTA(r.article,blockData,en?'en':'hr');
+    }
   }
 
   function openPreview(){
