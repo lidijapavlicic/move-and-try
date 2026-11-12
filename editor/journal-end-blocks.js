@@ -98,6 +98,24 @@
     return clean({cta:admin?$('mt-end-cta').checked:data.cta,
       links:admin?collect('links'):data.links,sources:collect('sources')});
   }
+  function validate() {
+    if(!root)return '';
+    const checks=[
+      ['mt-end-links',true,'povezanog sadržaja'],
+      ['mt-end-sources',false,'izvora']
+    ];
+    for(const [id,requiresUrl,label] of checks){
+      for(const row of $(id).children){
+        const title=row.querySelector('[data-entry="title"]')?.value.trim() || '';
+        const url=row.querySelector('[data-entry="url"]')?.value.trim() || '';
+        if(!title&&!url)continue;
+        if(!title)return 'Dopuni naziv '+label+'.';
+        if(requiresUrl&&!url)return 'Dopuni poveznicu '+label+'.';
+        if(url&&!safeUrl(url))return 'Provjeri HTTPS poveznicu '+label+'.';
+      }
+    }
+    return '';
+  }
   function load(value,isAdmin){
     const parsed=split(value);
     data=parsed.data;
@@ -180,7 +198,7 @@
     a.href='/hr/write-for-the-journal.html';inner.append(a);
     section.append(inner);host.append(section);
   }
-  window.MoveTryJournalEndBlocks={split,append,read,load,renderBody,renderCTA,init};
+  window.MoveTryJournalEndBlocks={split,append,read,load,validate,renderBody,renderCTA,init};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();
 })();
