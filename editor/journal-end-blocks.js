@@ -155,7 +155,7 @@
     load($('article-content').value,false);
   }
   function renderBody(host,raw,lang='hr'){
-    if(!host||lang!=='hr')return;
+    if(!host)return;
     const d=clean(raw);
     if(d.links.length){
       const links=elt('div','journal-article-links');
@@ -170,14 +170,14 @@
     }
     if(d.sources.length){
       const sources=elt('section','article-sources');
-      sources.append(elt('p','article-sources-label','ISTRAŽIVANJA · DODATNO ČITANJE'));
-      sources.append(elt('h2','','Izvori i dodatno čitanje'));
+      sources.append(elt('p','article-sources-label',lang==='en'?'RESEARCH · FURTHER READING':'ISTRAŽIVANJA · DODATNO ČITANJE'));
+      sources.append(elt('h2','',lang==='en'?'Sources and further reading':'Izvori i dodatno čitanje'));
       const list=document.createElement('ol');
       for(const item of d.sources){
         const li=document.createElement('li');
         li.append(document.createTextNode(item.citation));
         if(item.url){
-          const a=elt('a','',' Poveznica');
+          const a=elt('a','',lang==='en'?' Link':' Poveznica');
           a.href=safeUrl(item.url);a.target='_blank';a.rel='noopener noreferrer';
           li.append(a);
         }
@@ -188,14 +188,14 @@
   }
   function renderCTA(host,raw,lang='hr'){
     host.querySelectorAll(':scope > .mt-end-optional-cta').forEach(n=>n.remove());
-    if(lang!=='hr'||!clean(raw).cta)return;
+    if(!clean(raw).cta)return;
     const section=elt('section','article-end mt-end-optional-cta');
     const inner=elt('div','article-end-inner');
-    inner.append(elt('p','article-end-label','BUDI DIO THE JOURNALA'));
-    inner.append(elt('h2','article-end-title','Imaš i ti priču koju vrijedi podijeliti?'));
-    inner.append(elt('p','article-end-text','Iskustvo, ideju ili drukčiju perspektivu? Pročitaj naše smjernice i javi nam se.'));
-    const a=elt('a','article-end-link','PIŠI ZA THE JOURNAL →');
-    a.href='/hr/write-for-the-journal.html';inner.append(a);
+    inner.append(elt('p','article-end-label',lang==='en'?'BE PART OF THE JOURNAL':'BUDI DIO THE JOURNALA'));
+    inner.append(elt('h2','article-end-title',lang==='en'?'Have a story worth sharing?':'Imaš i ti priču koju vrijedi podijeliti?'));
+    inner.append(elt('p','article-end-text',lang==='en'?'An experience, an idea or a different perspective? Read our guidelines and get in touch.':'Iskustvo, ideju ili drukčiju perspektivu? Pročitaj naše smjernice i javi nam se.'));
+    const a=elt('a','article-end-link',lang==='en'?'WRITE FOR THE JOURNAL →':'PIŠI ZA THE JOURNAL →');
+    a.href=lang==='en'?'/write-for-the-journal.html':'/hr/write-for-the-journal.html';inner.append(a);
     section.append(inner);host.append(section);
   }
   window.MoveTryJournalEndBlocks={split,append,read,load,validate,renderBody,renderCTA,init};
