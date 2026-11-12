@@ -205,3 +205,6 @@
   font-family:Manrope,Arial,sans-serif;font-size:12px;
   font-weight:800;letter-spacing:.06em;
 }
+
+.mt-rich-reader .article-end{margin:65px -25px -25px}
+.mt-rich-paper .journal-article-links,.mt-rich-reader .journal-article-links{margin:45px 0}
