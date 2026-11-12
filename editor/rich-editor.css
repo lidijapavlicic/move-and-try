@@ -196,15 +196,9 @@
   .mt-rich-preview-top button {padding:7px 9px;}
 }
 
-/* Existing public Journal article signature styling, reused in Editor and preview. */
-.mt-rich-author-signature {
-  margin-top:80px;padding-top:35px;border-top:1px solid #cfd3ca;
-}
-.mt-rich-author-name {
-  display:block;margin:0;color:#17251e;
-  font-family:Manrope,Arial,sans-serif;font-size:12px;
-  font-weight:800;letter-spacing:.06em;
-}
+/* Journal byline remains in the article header, never below the body. */
+.mt-rich-paper-meta{margin:0 0 24px!important;color:#74776f;font:700 10px/1.6 Manrope,Arial,sans-serif;letter-spacing:.07em}
+.mt-rich-header-author{font:inherit;color:inherit;letter-spacing:inherit}
 
 .mt-rich-reader .article-end{margin:65px -25px -25px}
 .mt-rich-paper .journal-article-links,.mt-rich-reader .journal-article-links{margin:45px 0}
