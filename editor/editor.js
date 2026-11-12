@@ -113,6 +113,7 @@
       configureWritingMode(currentArticleId ? articleById(currentArticleId) : null,
         values.p_category === 'personal' ? 'column' : 'contribution');
       updateArticleBylinePreview();
+      window.MoveTryJournalEndBlocks?.load($('article-content').value,isAdmin());
       $('editor-panel').dispatchEvent(new Event('journal-editor-restore'));
     }
   };
@@ -1056,7 +1057,7 @@
     const values = {
       p_title: $('article-title').value.trim(),
       p_excerpt: $('article-excerpt').value.trim(),
-      p_content: $('article-content').value.trim(),
+      p_content: window.MoveTryJournalEndBlocks?.append($('article-content').value.trim()) || $('article-content').value.trim(),
       p_category: $('article-category').value,
       p_cover_image: $('article-cover').value.trim() || null
     };
@@ -1137,6 +1138,7 @@
     $('article-title').value = article?.title || '';
     $('article-excerpt').value = article?.excerpt || '';
     $('article-content').value = article?.content || '';
+    window.MoveTryJournalEndBlocks?.load($('article-content').value,isAdmin());
     $('article-category').value = article?.category || (isAdmin()?'editorial':'guest');
     configureAdminColumn(article);
     configureWritingMode(article);
