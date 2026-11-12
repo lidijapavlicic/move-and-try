@@ -119,12 +119,15 @@
         ? new Date(a.publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB')
         : '';
       $('journal-public-meta').textContent=(messages.category[a.category]||'THE JOURNAL')+' · '+date+' · '+(a.byline||'MOVE&TRY Editorial');
-      $('journal-public-author').textContent=a.byline||'MOVE&TRY Editorial';
+      // Author identity already appears in the existing article header metadata.
+      // Optional end-block metadata is stored with HR content and shared across locales.
       const endParts=window.MoveTryJournalEndBlocks?.split(content);
+      const sharedBlocks=window.MoveTryJournalEndBlocks?.split(a.contentHr||'');
       render($('journal-public-content'),endParts ? endParts.body : content);
       if(endParts){
-        window.MoveTryJournalEndBlocks.renderBody($('journal-public-content'),endParts.data,lang);
-        window.MoveTryJournalEndBlocks.renderCTA($('journal-public-article'),endParts.data,lang);
+        const endData=lang==='hr' ? endParts.data : (sharedBlocks?.data||endParts.data);
+        window.MoveTryJournalEndBlocks.renderBody($('journal-public-content'),endData,lang);
+        window.MoveTryJournalEndBlocks.renderCTA($('journal-public-article'),endData,lang);
       }
       const imgUrl=safeUrl(a.cover,true);
       const hero=$('journal-public-cover');
