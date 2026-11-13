@@ -247,6 +247,38 @@
 
     .article-info { min-width: 0; }
 
+    .article-row-actions { margin-top: 0; }
+
+    .article-row-menu { position: relative; }
+
+    .article-row-menu > summary {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      min-height: 42px;
+      padding: 0;
+      list-style: none;
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .article-row-menu > summary::-webkit-details-marker { display: none; }
+
+    .article-row-menu-items {
+      position: absolute;
+      top: calc(100% + 4px);
+      right: 0;
+      z-index: 2;
+      display: grid;
+      gap: 4px;
+      min-width: 110px;
+      padding: 5px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgb(0 0 0 / 10%);
+    }
+
     .article-title {
       margin: 0 0 6px;
       font-size: 15px;

@@ -338,10 +338,15 @@
       isMyArticle(article);
   }
 
-  function canDeleteDraft(article) {
-    return article?.status === 'draft' &&
-      !article.published_at && !article.scheduled_at &&
-      (isAdmin() || article.author_id === currentUser?.id);
+  function canAdminEditArticle(article) {
+    return isAdmin() && ['draft', 'submitted', 'revision', 'approved'].includes(article.status);
+  }
+
+  function canDeleteArticle(article) {
+    if (article.published_at || !(isAdmin() || article.author_id === currentUser?.id)) return false;
+    if (article.status === 'scheduled') return Date.parse(article.scheduled_at) > Date.now();
+    return ['draft', 'submitted', 'revision', 'approved'].includes(article.status) &&
+      !article.scheduled_at;
   }
 
   function renderDashboard() {
@@ -394,10 +399,7 @@
       )
     );
 
-    const details = [
-      statusLabel(article.status),
-      dateLabel(article.updated_at)
-    ];
+    const details = [dateLabel(article.updated_at)];
     if (article.status === 'scheduled' && article.scheduled_at) {
       details.push('Objava: ' + dateLabel(article.scheduled_at));
     }
@@ -410,19 +412,43 @@
       createElement('div', 'article-meta', details.join(' · '))
     );
 
-    const actions = createElement('div', 'actions');
-    actions.style.marginTop = '0';
+    const actions = createElement('div', 'actions article-row-actions');
 
     actions.appendChild(
       makeButton('PREGLEDAJ', () => openDetail(article.id))
     );
+    actions.appendChild(createElement('span', 'status', statusLabel(article.status)));
 
     const canEditOwn = canEditArticle(article);
+    const canEditAsAdmin = canAdminEditArticle(article);
+    const canDelete = canDeleteArticle(article);
 
-    if (canEditOwn) {
-      actions.appendChild(
-        makeButton('UREDI', () => openEditor(article))
-      );
+    if (canEditOwn || canEditAsAdmin || canDelete) {
+      const menu = createElement('details', 'article-row-menu');
+      const toggle = createElement('summary', 'btn secondary small-btn', '⋯');
+      toggle.setAttribute('aria-label', `Radnje za „${article.title || 'Bez naslova'}”`);
+      const items = createElement('div', 'article-row-menu-items');
+      if (canEditOwn || canEditAsAdmin) {
+        items.appendChild(makeButton('Uredi', () => {
+          menu.open = false;
+          openEditor(article, !canEditOwn);
+        }));
+      }
+      if (canDelete) {
+        items.appendChild(makeButton('Obriši', () => {
+          menu.open = false;
+          toggle.focus();
+          deleteArticle(article, 'dashboard-message');
+        }, 'btn danger small-btn'));
+      }
+      menu.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && menu.open) {
+          menu.open = false;
+          toggle.focus();
+        }
+      });
+      menu.append(toggle, items);
+      actions.appendChild(menu);
     }
 
     row.append(info, actions);
@@ -1429,10 +1455,7 @@
     actions.replaceChildren();
 
     if (isAdmin()) {
-      if (
-        ['draft', 'submitted', 'revision', 'approved']
-          .includes(article.status)
-      ) {
+      if (canAdminEditArticle(article)) {
         actions.appendChild(
           makeButton(
             'UREDI KAO ADMINISTRATOR',
@@ -1489,9 +1512,9 @@
       );
     }
 
-    if (canDeleteDraft(article)) {
+    if (canDeleteArticle(article)) {
       actions.appendChild(
-        makeButton('OBRIŠI NACRT', () => deleteDraft(article), 'btn danger small-btn')
+        makeButton('OBRIŠI', () => deleteArticle(article, 'detail-message'), 'btn danger small-btn')
       );
     }
 
@@ -1529,16 +1552,22 @@
     setMessage('detail-message', '');
   }
 
-  async function deleteDraft(article) {
-    if (busy || !canDeleteDraft(article)) return;
-    if (!confirm(`Trajno obrisati nacrt „${article.title || 'Bez naslova'}”?`)) return;
+  async function deleteArticle(article, messageId) {
+    if (busy) return;
+    if (!canDeleteArticle(article)) {
+      setMessage(messageId, 'Članak više nije dostupan za brisanje. Osvježi popis.', true);
+      return;
+    }
+    const scheduleNotice = article.status === 'scheduled' ? ' Zakazana objava bit će otkazana.' : '';
+    if (!confirm(`Trajno obrisati članak „${article.title || 'Bez naslova'}”?${scheduleNotice}`)) return;
     const { id, revision_number: revision } = article;
+    const ownerId = currentUser.id;
 
     setBusy(true);
-    setMessage('detail-message', 'Brisanje nacrta...');
+    setMessage(messageId, 'Brisanje članka...');
 
     try {
-      const { error } = await db.rpc('journal_delete_draft_checked', {
+      const { error } = await db.rpc('journal_delete_unpublished_article_checked', {
         p_article_id: id,
         p_expected_revision: revision
       });
@@ -1547,10 +1576,15 @@
       dashboardRequest++;
       articles = articles.filter(item => item.id !== id);
       if (selectedArticleId === id) closeDetail();
+      if (currentArticleId === id) {
+        setBusy(false);
+        closeEditor();
+      }
+      window.MoveTryJournalAutosave?.forgetArticle?.(ownerId, id);
       renderDashboard();
-      setMessage('dashboard-message', 'Nacrt je obrisan.');
+      setMessage('dashboard-message', 'Članak je obrisan.');
     } catch (error) {
-      setMessage('detail-message', friendlyError(error), true);
+      setMessage(messageId, friendlyError(error), true);
     } finally {
       setBusy(false);
     }
@@ -2477,6 +2511,9 @@
     catch (error) { setMessage('notifications-message', friendlyError(error), true); }
   });
   document.addEventListener('click', event => {
+    document.querySelectorAll('.article-row-menu[open]').forEach(menu => {
+      if (!menu.contains(event.target)) menu.open = false;
+    });
     if (!$('settings-panel').hidden && !event.target.closest('#settings-panel, #settings-btn')) closeSettings();
   });
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeSettings(); });
