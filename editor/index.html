@@ -285,7 +285,7 @@
               <select id="column-writer"><option value="">Bez korisničkog računa — samo javna kolumna</option></select>
             </div>
             <div class="field">
-              <label for="column-title">Naziv kolumne</label>
+              <label for="column-title">Naziv kolumne (HR)</label>
               <input id="column-title" type="text" maxlength="160" required>
             </div>
             <div class="field">
@@ -299,8 +299,16 @@
               <p class="muted small">Potpis se prikazuje na kraju članka. Opis kolumne je zasebno polje i ne prikazuje se u potpisu.</p>
             </div>
             <div class="field">
-              <label for="column-description">Kratak opis (opcionalno)</label>
-              <textarea id="column-description"></textarea>
+              <label for="column-description">Kratak opis (HR, neobavezno)</label>
+              <textarea id="column-description" maxlength="500"></textarea>
+            </div>
+            <div class="field" hidden>
+              <label for="column-title-en">Naziv kolumne (EN)</label>
+              <input id="column-title-en" type="text" maxlength="160">
+            </div>
+            <div class="field" hidden>
+              <label for="column-description-en">Kratak opis (EN, neobavezno)</label>
+              <textarea id="column-description-en" maxlength="500"></textarea>
             </div>
             <button class="btn green" type="submit" id="column-create-btn">SPREMI KOLUMNU</button>
           </form>
