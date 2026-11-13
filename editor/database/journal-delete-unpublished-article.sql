@@ -39,7 +39,22 @@ begin
     raise exception 'Članak više nije dostupan za brisanje ili je u međuvremenu izmijenjen.';
   end if;
 
-  delete from public.journal_articles where id = v_article.id;
+  -- Notifications depend on activity records, which depend on the article.
+  delete from public.journal_notifications n
+  using public.journal_activity_log l
+  where n.activity_id = l.id and l.article_id = v_article.id;
+
+  delete from public.journal_activity_log where article_id = v_article.id;
+  delete from public.journal_comments where article_id = v_article.id;
+  delete from public.journal_article_versions where article_id = v_article.id;
+
+  delete from public.journal_articles
+  where id = v_article.id
+    and (status <> 'scheduled' or scheduled_at > pg_catalog.clock_timestamp());
+
+  if not found then
+    raise exception 'Vrijeme zakazane objave je nastupilo. Članak se više ne može obrisati.';
+  end if;
 end;
 $$;
 
