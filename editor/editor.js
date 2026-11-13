@@ -4,6 +4,17 @@
   const SUPABASE_URL = 'https://pdyngeaykfpybeafjtpw.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK';
 
+  // Supabase removes callback credentials from the URL during initialization.
+  const { passwordLink, invalidAuthLink } = (() => {
+    const query = new URLSearchParams(window.location.search);
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const type = fragment.get('type') || query.get('type');
+    return {
+      passwordLink: type === 'recovery' || type === 'invite',
+      invalidAuthLink: [query, fragment].some(params =>
+        params.has('error') || params.has('error_code'))
+    };
+  })();
   const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   const $ = id => document.getElementById(id);
 
@@ -2269,6 +2280,8 @@
   async function enterDashboard(user) {
     const profile = await loadProfile(user);
 
+    if (passwordFlow) return;
+
     if (!profile || !profile.is_active) {
       await db.auth.signOut();
 
@@ -2318,28 +2331,11 @@
   async function initialize() {
     setToolbarVisible(false);
     try {
-      const params = new URLSearchParams(
-        window.location.search
-      );
-
-      const hash = new URLSearchParams(
-        window.location.hash.substring(1)
-      );
-
-      const type =
-        params.get('type') || hash.get('type');
-
-      passwordFlow =
-        type === 'recovery' || type === 'invite';
-
-      if (params.get('code')) {
-        const { error } =
-          await db.auth.exchangeCodeForSession(
-            params.get('code')
-          );
-
-        if (error) throw error;
+      if (invalidAuthLink) {
+        throw new Error('Poveznica je istekla ili je već iskorištena. Zatraži novu.');
       }
+      const { error: callbackError } = await db.auth.initialize();
+      if (callbackError) throw callbackError;
 
       const {
         data: { session },
@@ -2348,7 +2344,11 @@
 
       if (error) throw error;
 
-      if (passwordFlow && session) {
+      if (passwordLink || passwordFlow) {
+        if (!session) {
+          throw new Error('Poveznica je istekla ili je već iskorištena. Zatraži novu.');
+        }
+        passwordFlow = true;
         showView('password');
       } else if (session?.user) {
         await enterDashboard(session.user);
@@ -2356,11 +2356,16 @@
         showView('login');
       }
     } catch (error) {
+      if (invalidAuthLink || passwordLink || error.code === 'otp_expired') {
+        history.replaceState(history.state, '', window.location.pathname);
+      }
       showView('login');
 
       setMessage(
         'login-message',
-        friendlyError(error),
+        error.code === 'otp_expired'
+          ? 'Poveznica je istekla ili je već iskorištena. Zatraži novu.'
+          : friendlyError(error),
         true
       );
     }
@@ -2415,6 +2420,13 @@
       const confirmation =
         $('confirm-password').value;
 
+      if (!passwordFlow || !$('password-form').reportValidity()) return;
+
+      if (password.length < 12) {
+        setMessage('password-message', 'Lozinka mora imati najmanje 12 znakova.', true);
+        return;
+      }
+
       if (password !== confirmation) {
         setMessage(
           'password-message',
@@ -2437,6 +2449,7 @@
 
         if (error) throw error;
 
+        $('password-form').reset();
         history.replaceState(
           {},
           '',
@@ -2473,36 +2486,35 @@
       const email =
         $('login-email').value.trim();
 
-      if (!email) {
+      if (!email || !$('login-email').checkValidity()) {
         setMessage(
           'login-message',
-          'Prvo upiši svoju e-mail adresu.',
+          'Prvo upiši svoju ispravnu e-mail adresu.',
           true
         );
         return;
       }
 
-      setMessage(
-        'login-message',
-        'Slanje poveznice...'
-      );
+      const button = $('forgot-password');
+      if (button.disabled) return;
+      button.disabled = true;
+      setMessage('login-message', 'Slanje poveznice...');
 
-      const { error } =
-        await db.auth.resetPasswordForEmail(
-          email,
-          {
-            redirectTo:
-              	new URL('./', window.location.href).href
-          }
-        );
-
-      setMessage(
-        'login-message',
-        error
-          ? friendlyError(error)
-          : 'Ako račun postoji, poslana je poruka za promjenu lozinke.',
-        !!error
-      );
+      try {
+        const { error } = await db.auth.resetPasswordForEmail(email, {
+          redirectTo: new URL('./', window.location.href).href
+        });
+        if (error) throw error;
+        setMessage('login-message', 'Ako račun postoji, poslana je poruka za promjenu lozinke. Otvori najnoviju poruku.');
+      } catch (error) {
+        const rateLimited = error.status === 429 ||
+          error.code === 'over_email_send_rate_limit' || error.code === 'over_request_rate_limit';
+        setMessage('login-message', rateLimited
+          ? 'Previše zahtjeva za promjenu lozinke. Pričekaj pa pokušaj ponovno.'
+          : friendlyError(error), true);
+      } finally {
+        button.disabled = false;
+      }
     }
   );
 
@@ -2852,5 +2864,12 @@
     addComment
   );
 
+  db.auth.onAuthStateChange((event, session) => {
+    if (event === 'PASSWORD_RECOVERY' && session) {
+      passwordFlow = true;
+      setToolbarVisible(false);
+      showView('password');
+    }
+  });
   initialize();
 })();
