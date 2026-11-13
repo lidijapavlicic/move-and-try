@@ -121,10 +121,10 @@
       const category=a.category==='personal'
         ? (lang==='hr'?'KOLUMNE':'COLUMNS')
         : (messages.category[a.category]||'THE JOURNAL');
-      // Existing public feed already includes column titles; use it until the
-      // article-detail RPC is upgraded to return columnTitle as well.
-      let columnTitle=typeof a.columnTitle==='string'?a.columnTitle.trim():'';
-      if(a.category==='personal'&&!columnTitle&&a.columnSlug){
+      const columnTitleKey=lang==='en' && Object.hasOwn(a,'columnTitleEn')
+        ? 'columnTitleEn' : 'columnTitle';
+      let columnTitle=a[columnTitleKey]?.trim()||'';
+      if(a.category==='personal'&&!Object.hasOwn(a,columnTitleKey)&&a.columnSlug){
         try{
           const feedResponse=await fetch(base+'/rest/v1/rpc/journal_public_articles_feed',{
             method:'POST',headers:{'apikey':key,'Content-Type':'application/json'},
@@ -132,8 +132,11 @@
           });
           if(feedResponse.ok){
             const feed=await feedResponse.json();
-            columnTitle=(Array.isArray(feed?.columns)?feed.columns:[])
-              .find(c=>c.slug===a.columnSlug)?.title?.trim()||'';
+            const column=(Array.isArray(feed?.columns)?feed.columns:[])
+              .find(c=>c.slug===a.columnSlug);
+            const titleKey=lang==='en' && column && Object.hasOwn(column,'titleEn')
+              ? 'titleEn' : 'title';
+            columnTitle=column?.[titleKey]?.trim()||'';
           }
         }catch(_){/* Display the category and byline if the feed is unavailable. */}
       }

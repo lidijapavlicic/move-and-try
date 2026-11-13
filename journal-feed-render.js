@@ -90,17 +90,33 @@
       root.prepend(fragment);
       if(nav){
         nav.querySelectorAll('[data-journal-generated]').forEach(x=>x.remove());
-        const existing=new Set([...nav.querySelectorAll('[data-column]')].map(x=>x.dataset.column));
+        const existing=new Map([...nav.querySelectorAll('[data-column]')]
+          .map(button=>[button.dataset.column,button]));
         for(const col of columns){
           if(col?.listed!==true||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(col.slug||''))continue;
-          // Existing public column profiles are the canonical HR/EN editorial
-          // text. A matching slug links new Editor posts to that same column,
-          // without replacing its title or multi-paragraph biography.
-          if(existing.has(col.slug))continue;
-          added.names[col.slug]=col.title||col.byline||col.slug;
-          added.profiles[col.slug]={title:col.title||col.byline||col.slug,
-            paragraphs:col.description?[col.description]:[]};
-          const button=el('button','journal-column',col.title||col.byline||col.slug);
+          const existingButton=existing.get(col.slug);
+          const localized=lang==='en' && Object.hasOwn(col,'titleEn');
+          const title=localized ? col.titleEn?.trim() : col.title;
+          const description=localized ? col.descriptionEn : col.description;
+          if(existingButton){
+            if(!localized)continue;
+            if(title){
+              existingButton.textContent=title;
+              added.names[col.slug]=title;
+            }
+            if(title||description){
+              added.profiles[col.slug]={
+                ...(title ? {title} : {}),
+                ...(description ? {paragraphs:[description]} : {})
+              };
+            }
+            continue;
+          }
+          if(localized&&!title)continue;
+          const name=title||col.byline||col.slug;
+          added.names[col.slug]=name;
+          added.profiles[col.slug]={title:name,paragraphs:description?[description]:[]};
+          const button=el('button','journal-column',name);
           button.type='button';button.dataset.column=col.slug;
           button.dataset.journalGenerated='true';
           button.setAttribute('aria-pressed','false');

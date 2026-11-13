@@ -414,7 +414,12 @@
     };
 
     Object.assign(columnNames, window.MoveTryJournalAddedColumnNames || {});
-    Object.assign(columnProfiles, window.MoveTryJournalAddedColumnProfiles || {});
+    function mergeColumnProfiles() {
+        for (const [slug, profile] of Object.entries(window.MoveTryJournalAddedColumnProfiles || {})) {
+            columnProfiles[slug] = {...columnProfiles[slug], ...profile};
+        }
+    }
+    mergeColumnProfiles();
 
     let activeCategory = 'all';
     let activeColumn = 'all';
@@ -538,7 +543,7 @@
         posts = document.querySelectorAll('.journal-post');
         columnButtons = document.querySelectorAll('.journal-column');
         Object.assign(columnNames, window.MoveTryJournalAddedColumnNames || {});
-        Object.assign(columnProfiles, window.MoveTryJournalAddedColumnProfiles || {});
+        mergeColumnProfiles();
         bindColumnButtons();
         filterPosts(activeCategory);
     });

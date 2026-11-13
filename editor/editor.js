@@ -52,6 +52,7 @@
   let columns = [];
   let columnsAvailable = false;
   let columnPublicListingAvailable = false;
+  let columnTranslationsAvailable = false;
   let currentWritingMode = 'contribution';
   let currentArticleColumnId = null;
   let activeTab = 'home';
@@ -299,17 +300,22 @@
       }
     }
 
-    let columnsResult = await db.from('journal_columns')
-      .select('id,columnist_id,title,slug,public_byline,description,is_active,public_listing_enabled')
-      .order('title',{ascending:true}).limit(1000);
+    const columnFields = 'id,columnist_id,title,slug,public_byline,description,is_active';
+    const listingFields = columnFields + ',public_listing_enabled';
+    const readColumns = fields => db.from('journal_columns')
+      .select(fields).order('title',{ascending:true}).limit(1000);
+    let columnsResult = await readColumns(listingFields + ',title_en,description_en');
+    if (request !== dashboardRequest) return;
+    columnTranslationsAvailable = !columnsResult.error;
+    if (columnsResult.error && /title_en|description_en|column.*does not exist|schema cache/i
+        .test(String(columnsResult.error.message || ''))) {
+      columnsResult = await readColumns(listingFields);
+    }
     if (request !== dashboardRequest) return;
     columnPublicListingAvailable = !columnsResult.error;
     if (columnsResult.error && /public_listing_enabled|column.*does not exist|schema cache/i
         .test(String(columnsResult.error.message || ''))) {
-      // First migration is already live; public listing stage may not be.
-      columnsResult = await db.from('journal_columns')
-        .select('id,columnist_id,title,slug,public_byline,description,is_active')
-        .order('title',{ascending:true}).limit(1000);
+      columnsResult = await readColumns(columnFields);
     }
     if (request !== dashboardRequest) return;
     columnsAvailable = !columnsResult.error;
@@ -559,6 +565,8 @@
     if (!isAdmin()) return;
     const panel=$('column-management-panel');
     panel.hidden=!permissionManagementAvailable || !columnsAvailable;
+    $('column-title-en').closest('.field').hidden = !columnTranslationsAvailable;
+    $('column-description-en').closest('.field').hidden = !columnTranslationsAvailable;
     if(panel.hidden)return;
     const writer=$('column-writer');
     const prior=writer.value;
@@ -649,19 +657,25 @@
     const form=document.createElement('form');
     form.className='journal-column-edit';
     const fields=[
-      ['Naziv kolumne',c.title,160],
-      ['URL oznaka',c.slug,120],
-      ['Javni potpis autora',c.public_byline,160],
-      ['Kratak opis',c.description||'',500]
+      ['Naziv kolumne (HR)',c.title,160,'text'],
+      ['URL oznaka',c.slug,120,'text'],
+      ['Javni potpis autora',c.public_byline,160,'text'],
+      ['Kratak opis (HR)',c.description||'',500,'textarea']
     ];
+    if (columnTranslationsAvailable) {
+      fields.push(
+        ['Naziv kolumne (EN)',c.title_en||'',160,'text'],
+        ['Kratak opis (EN)',c.description_en||'',500,'textarea']
+      );
+    }
     const inputs=[];
-    for(const [name,value,max] of fields){
+    for(const [name,value,max,type] of fields){
       const label=document.createElement('label');
       label.textContent=name;
-      const input=document.createElement(name==='Kratak opis'?'textarea':'input');
+      const input=document.createElement(type==='textarea'?'textarea':'input');
       if(input.tagName==='INPUT')input.type='text';
       input.value=value;input.maxLength=max;
-      if(name!=='Kratak opis')input.required=true;
+      input.required=inputs.length<3;
       label.append(input);
       form.append(label);
       inputs.push(input);
@@ -680,17 +694,19 @@
     form.append(controls);
     form.addEventListener('submit',event=>{
       event.preventDefault();
-      const [title,slug,byline,description]=inputs.map(input=>input.value.trim());
+      const [title,slug,byline,description,titleEn,descriptionEn]=inputs.map(input=>input.value.trim());
       if(!title||!byline||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)){
         setMessage('column-message','Provjeri naziv, javni potpis i engleski slug.',true);
         return;
       }
       if(!confirm('Spremiti promjene kolumne '+c.title+'?'))return;
       save.disabled = true;
-      void saveColumnRpc('journal_admin_update_column',{
+      const translations = titleEn === undefined ? null
+        : {p_title_en:titleEn,p_description_en:descriptionEn};
+      void saveColumnRpc(translations ? 'journal_admin_update_column_bilingual' : 'journal_admin_update_column',{
         p_column_id:c.id,p_title:title,p_slug:slug,
         p_public_byline:byline,p_description:description,
-        p_is_active:c.is_active
+        p_is_active:c.is_active,...translations
       }).then(success => {
         // Refresh replaces the row on success and closes the edit form.
         // Keep the form and all typed values available on failure.
@@ -2688,9 +2704,13 @@
     if(!confirm(writer
       ? 'Dodijeliti kolumnu odabranom korisniku?'
       : 'Stvoriti javnu kolumnu bez korisničkog računa?'))return;
-    void saveColumnRpc('journal_admin_create_column',{
+    const translations = columnTranslationsAvailable ? {
+      p_title_en:$('column-title-en').value.trim(),
+      p_description_en:$('column-description-en').value.trim()
+    } : null;
+    void saveColumnRpc(translations ? 'journal_admin_create_column_bilingual' : 'journal_admin_create_column',{
       p_columnist_id:writer||null,p_title:title,p_slug:slug,
-      p_public_byline:byline,p_description:description
+      p_public_byline:byline,p_description:description,...translations
     }).then(success => {
       if (success) {
         $('column-create-form').reset();
