@@ -11,6 +11,7 @@
   const nav=document.querySelector('#journal-column-wrap .journal-columns');
   if(!root)return;
   const lang=document.documentElement.lang==='hr'?'hr':'en';
+  const bylines=window.MoveTryJournalByline;
   const categories={
     hr:{editorial:'UREDNIČKI TEKSTOVI',personal:'KOLUMNE',guest:'GOSTUJUĆE PRIČE',news:'NOVOSTI',inspiration:'INSPIRACIJA'},
     en:{editorial:'EDITORIAL',personal:'COLUMNS',guest:'GUEST STORIES',news:'NEWS',inspiration:'INSPIRATION'}
@@ -37,7 +38,7 @@
       return null;
     }catch(_){return null;}
   }
-  function card(a){
+  function card(a,column){
     if(!a || !categories[lang][a.category])return null;
     const href=internalUrl(lang==='hr'?a.hrUrl:a.enUrl);
     const title=lang==='hr'?a.titleHr:a.titleEn;
@@ -59,11 +60,17 @@
       node.append(photo);
     }
     const copy=el('div','journal-post-copy');
-    const dt=a.publishedAt ? new Date(a.publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB') : '';
+    const isColumn=a.category==='personal';
+    const dt=isColumn&&bylines
+      ? bylines.formatPublicationDate(a.publishedAt,lang)
+      : a.publishedAt ? new Date(a.publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB') : '';
     copy.append(el('span','journal-post-category',categories[lang][a.category]+' · '+dt));
     copy.append(el('h3','journal-post-title',title));
     copy.append(el('p','journal-post-description',summary));
-    copy.append(el('span','journal-post-author',a.byline||'MOVE&TRY Editorial'));
+    const byline=isColumn&&bylines
+      ? bylines.columnCard(a.byline,lang==='hr'?column?.title:column?.titleEn)
+      : a.byline||'MOVE&TRY Editorial';
+    copy.append(el('span','journal-post-author',byline));
     node.append(copy);
     return node;
   }
@@ -79,12 +86,14 @@
       const payload=await res.json();
       const items=Array.isArray(payload?.items)?payload.items:[];
       const columns=Array.isArray(payload?.columns)?payload.columns:[];
+      const columnsBySlug=new Map(columns.filter(column=>column?.listed===true)
+        .map(column=>[column.slug,column]));
       const known=new Set([...root.querySelectorAll('.journal-post:not([data-journal-generated])')]
         .map(x=>x.getAttribute('href')));
       root.querySelectorAll('[data-journal-generated]').forEach(x=>x.remove());
       const fragment=document.createDocumentFragment();
       for(const a of items){
-        const node=card(a);
+        const node=card(a,columnsBySlug.get(a?.columnSlug));
         if(node&&!known.has(node.getAttribute('href')))fragment.append(node);
       }
       root.prepend(fragment);

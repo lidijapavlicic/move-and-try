@@ -115,10 +115,13 @@
       document.title=title+' | The Journal | MOVE&TRY';
       $('journal-public-heading').textContent=title;
       $('journal-public-intro').textContent=excerpt||'';
-      const date=a.publishedAt
-        ? new Date(a.publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB')
-        : '';
-      const category=a.category==='personal'
+      const bylines=window.MoveTryJournalByline;
+      const isColumn=a.category==='personal';
+      const useColumnByline=isColumn&&bylines;
+      const date=useColumnByline
+        ? bylines.formatPublicationDate(a.publishedAt,lang)
+        : a.publishedAt ? new Date(a.publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB') : '';
+      const category=isColumn
         ? (lang==='hr'?'KOLUMNE':'COLUMNS')
         : (messages.category[a.category]||'THE JOURNAL');
       const columnTitleKey=lang==='en' && Object.hasOwn(a,'columnTitleEn')
@@ -140,10 +143,12 @@
           }
         }catch(_){/* Display the category and byline if the feed is unavailable. */}
       }
-      const columnName=a.category==='personal'&&columnTitle?' · '+columnTitle:'';
+      const columnName=isColumn&&columnTitle?' · '+columnTitle:'';
       $('journal-public-meta').textContent='THE JOURNAL · '+category+columnName+
-        (date?' · '+date:'');
-      $('journal-public-byline').textContent=a.byline||'MOVE&TRY Editorial';
+        (!useColumnByline&&date?' · '+date:'');
+      $('journal-public-byline').textContent=useColumnByline
+        ? [bylines.columnAuthor(a.byline),date].filter(Boolean).join(' · ')
+        : a.byline||'MOVE&TRY Editorial';
       // Author identity already appears in the existing article header metadata.
       // Optional end-block metadata is stored with HR content and shared across locales.
       const endParts=window.MoveTryJournalEndBlocks?.split(content);

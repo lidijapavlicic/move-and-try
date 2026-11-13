@@ -659,7 +659,7 @@
     const fields=[
       ['Naziv kolumne (HR)',c.title,160,'text'],
       ['URL oznaka',c.slug,120,'text'],
-      ['Javni potpis autora',c.public_byline,160,'text'],
+      ['Ime za javni potpis',c.public_byline,160,'text'],
       ['Kratak opis (HR)',c.description||'',500,'textarea']
     ];
     if (columnTranslationsAvailable) {
@@ -797,7 +797,8 @@
     const column=columns.find(c=>c.id===columnId);
     let name='MOVE&TRY Editorial';
     if(category==='personal' && column){
-      name=column.public_byline || 'MOVE&TRY Contributor';
+      name=window.MoveTryJournalByline?.columnAuthor(column.public_byline) ||
+        column.public_byline || 'MOVE&TRY Contributor';
     } else if(category!=='personal' && !isAdmin()){
       name=authorPermissions.get(currentUser?.id)?.contributor_byline ||
         currentProfile?.display_name || 'MOVE&TRY Contributor';
@@ -806,12 +807,21 @@
     }
     // Column title and public author signature are different data fields.
     const bylineNode=$('article-byline-name');
-    if(bylineNode)bylineNode.textContent=name;
+    if(bylineNode){
+      bylineNode.textContent=name;
+      const article=articleById(currentArticleId);
+      bylineNode.dataset.publishedAt=category==='personal'
+        ? article?.published_at || article?.scheduled_at || ''
+        : '';
+    }
     const columnNameNode=$('article-column-title-preview');
     if(columnNameNode){
       columnNameNode.textContent=category==='personal'
         ? ('THE JOURNAL · KOLUMNE'+(column?.title?' · '+column.title:''))
         : ('THE JOURNAL · '+(CATEGORY[category]||''));
+      columnNameNode.dataset.englishColumnKicker=category==='personal'
+        ? 'THE JOURNAL · COLUMNS'+(column?.title_en?' · '+column.title_en:'')
+        : '';
     }
   }
 
@@ -1415,8 +1425,9 @@
       meta.push(personName(article.author_id));
     }
     const assignedColumn = columns.find(c => c.id === article.column_id);
+    const columnSignature=assignedColumn?.public_byline || personName(article.author_id);
     const byline = article.category === 'personal'
-      ? assignedColumn?.public_byline || personName(article.author_id)
+      ? window.MoveTryJournalByline?.columnAuthor(columnSignature) || columnSignature
       : profiles.find(p => p.id === article.author_id)?.role === 'admin'
         ? 'MOVE&TRY Editorial'
         : authorPermissions.get(article.author_id)?.contributor_byline ||
