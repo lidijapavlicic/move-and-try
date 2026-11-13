@@ -606,11 +606,18 @@
     }
     render(r.body,$(en?'article-content-en':'article-content').value);
     // Column title is the kicker; author signature is placed below the excerpt.
-    const section=$('article-column-title-preview')?.textContent || 'THE JOURNAL';
+    const columnHeading=$('article-column-title-preview');
+    const section=columnHeading?.textContent || 'THE JOURNAL';
     r.kicker.textContent=en
-      ? section.replace('KOLUMNE','COLUMNS').replace('Osobne kolumne','Personal columns')
+      ? columnHeading?.dataset.englishColumnKicker ||
+        section.replace('KOLUMNE','COLUMNS').replace('Osobne kolumne','Personal columns')
       : section;
-    r.byline.textContent=$('article-byline-name')?.textContent || 'MOVE&TRY Editorial';
+    const byline=$('article-byline-name');
+    const date=window.MoveTryJournalByline?.formatPublicationDate(
+      byline?.dataset.publishedAt,en?'en':'hr'
+    );
+    r.byline.textContent=[byline?.textContent || 'MOVE&TRY Editorial',date]
+      .filter(Boolean).join(' · ');
     const blockData=window.MoveTryJournalEndBlocks?.read();
     if(blockData){
       window.MoveTryJournalEndBlocks.renderBody(r.body,blockData,en?'en':'hr');

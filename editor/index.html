@@ -294,9 +294,9 @@
               <p class="muted small">Za već postojeću kolumnu na Journalu koristi njezinu postojeću oznaku, kako bi novi članci bili na istom mjestu.</p>
             </div>
             <div class="field">
-              <label for="column-byline">Javni potpis autora</label>
-              <input id="column-byline" type="text" maxlength="160" placeholder="IME I PREZIME | NAZIV KOLUMNE" required>
-              <p class="muted small">Potpis se prikazuje na kraju članka. Opis kolumne je zasebno polje i ne prikazuje se u potpisu.</p>
+              <label for="column-byline">Ime za javni potpis</label>
+              <input id="column-byline" type="text" maxlength="160" placeholder="Ime i prezime" required>
+              <p class="muted small">Na kartici se uz ime automatski dodaje naziv kolumne na jeziku stranice. U članku se uz potpis prikazuje datum objave.</p>
             </div>
             <div class="field">
               <label for="column-description">Kratak opis (HR, neobavezno)</label>
@@ -547,6 +547,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
+  <script src="./journal-byline.js"></script>
   <script src="./editor.js"></script>
 <script src="./journal-end-blocks.js" defer></script>
 <script src="./rich-editor.js" defer></script>
