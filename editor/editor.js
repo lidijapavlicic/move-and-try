@@ -338,6 +338,12 @@
       isMyArticle(article);
   }
 
+  function canDeleteDraft(article) {
+    return article?.status === 'draft' &&
+      !article.published_at && !article.scheduled_at &&
+      (isAdmin() || article.author_id === currentUser?.id);
+  }
+
   function renderDashboard() {
     const visible = isAdmin()
       ? articles
@@ -1483,6 +1489,12 @@
       );
     }
 
+    if (canDeleteDraft(article)) {
+      actions.appendChild(
+        makeButton('OBRIŠI NACRT', () => deleteDraft(article), 'btn danger small-btn')
+      );
+    }
+
     setMessage('detail-message', '');
 
     $('detail-comments').replaceChildren();
@@ -1515,6 +1527,33 @@
     selectedArticleId = null;
 
     setMessage('detail-message', '');
+  }
+
+  async function deleteDraft(article) {
+    if (busy || !canDeleteDraft(article)) return;
+    if (!confirm(`Trajno obrisati nacrt „${article.title || 'Bez naslova'}”?`)) return;
+    const { id, revision_number: revision } = article;
+
+    setBusy(true);
+    setMessage('detail-message', 'Brisanje nacrta...');
+
+    try {
+      const { error } = await db.rpc('journal_delete_draft_checked', {
+        p_article_id: id,
+        p_expected_revision: revision
+      });
+      if (error) throw error;
+
+      dashboardRequest++;
+      articles = articles.filter(item => item.id !== id);
+      if (selectedArticleId === id) closeDetail();
+      renderDashboard();
+      setMessage('dashboard-message', 'Nacrt je obrisan.');
+    } catch (error) {
+      setMessage('detail-message', friendlyError(error), true);
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function loadArticleDetails(id) {
