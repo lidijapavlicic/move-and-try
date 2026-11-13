@@ -943,6 +943,13 @@
           permissionsButton.disabled = busy;
           controls.appendChild(permissionsButton);
         }
+        if (profile.is_active) {
+          controls.appendChild(makeButton(
+            'POŠALJI RESET LOZINKE',
+            event => sendCollaboratorRecovery(profile, event.currentTarget),
+            'btn secondary small-btn'
+          ));
+        }
         const button = makeButton(
           profile.is_active ? 'DEAKTIVIRAJ' : 'AKTIVIRAJ',
           () => setCollaboratorStatus(profile.id, !profile.is_active),
@@ -955,6 +962,29 @@
       row.append(info, controls);
       target.appendChild(row);
     });
+  }
+
+  async function sendCollaboratorRecovery(profile, button) {
+    if (!isAdmin() || !profile.is_active || profile.role !== 'editor' || button.disabled) return;
+    if (!confirm('Poslati poveznicu za novu lozinku korisniku: ' + profile.display_name + '?')) return;
+
+    button.disabled = true;
+    setMessage('collaborator-reset-message', 'Slanje poveznice...');
+    try {
+      const { data, error } = await db.functions.invoke('journal-reset-collaborator-password', {
+        body: { profile_id: profile.id }
+      });
+      if (error) {
+        const details = await error.context?.json?.().catch(() => null);
+        throw new Error(details?.error || friendlyError(error));
+      }
+      if (!data?.success) throw new Error('Slanje poveznice nije potvrđeno.');
+      setMessage('collaborator-reset-message', 'Zahtjev za slanje poveznice je prihvaćen.');
+    } catch (error) {
+      setMessage('collaborator-reset-message', friendlyError(error), true);
+    } finally {
+      button.disabled = false;
+    }
   }
 
   async function editAuthorPermissions(userId) {
