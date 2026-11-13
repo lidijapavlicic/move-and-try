@@ -3,912 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>The Journal | Move & Try</title>
-
 <meta name="description"
       content="THE JOURNAL by MOVE & TRY. Stories, reflections, columns, inspiration and news from the community.">
-
 <link rel="icon" type="image/png" href="/favicon.png">
-
-<link rel="canonical"
-      href="https://moveandtry.com/journal.html">
-
-<link rel="alternate" hreflang="en"
-      href="https://moveandtry.com/journal.html">
-
-<link rel="alternate" hreflang="hr"
-      href="https://moveandtry.com/hr/journal.html">
-
-<link rel="alternate" hreflang="x-default"
-      href="https://moveandtry.com/journal.html">
-
+<link rel="canonical" href="https://moveandtry.com/journal.html">
+<link rel="alternate" hreflang="en" href="https://moveandtry.com/journal.html">
+<link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/journal.html">
+<link rel="alternate" hreflang="x-default" href="https://moveandtry.com/journal.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
-
 <!-- MOVE&TRY PWA NAVIGATION -->
 <link rel="stylesheet" href="/app/app-navigation.css">
-
 <style>
-
-/* =====================================
-   THE JOURNAL — EN
-   ===================================== */
-
-.journal-page {
-    background: #F7F6F2;
-    color: #111111;
-    min-height: 100vh;
-}
+/* THE JOURNAL — EN */
+.journal-page { background: #F7F6F2; color: #111111; min-height: 100vh; }
 
 /* HEADER */
-
-.journal-page .site-header {
-    position: sticky;
-    top: 0;
-}
-
-.journal-header-actions {
-    display: flex;
-    align-items: center;
-    gap: 26px;
-}
-
-.journal-behind-link {
-    font-family: 'Manrope', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    color: #555555;
-    white-space: nowrap;
-    transition: opacity 0.2s ease;
-}
-
-.journal-behind-link:hover {
-    opacity: 0.55;
-}
+.journal-page .site-header { position: sticky; top: 0; }
+.journal-header-actions { display: flex; align-items: center; gap: 26px; }
+.journal-behind-link { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; color: #555555; white-space: nowrap; transition: opacity 0.2s ease; }
+.journal-behind-link:hover { opacity: 0.55; }
 
 /* HERO */
-
-.journal-hero {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    width: 100%;
-    background: #F1F0E9;
-    margin-bottom: -65px;
-    padding-bottom: 65px;
-}
-
-.journal-hero::before {
-    content: "";
-    position: absolute;
-    inset: -12px;
-    z-index: -2;
-    background: url('/images/journal.jpg') center center / cover no-repeat;
-    filter: blur(4px);
-}
-
-.journal-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: rgba(247, 246, 242, 0.35);
-}
-
-.journal-intro {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 115px 48px 105px;
-    text-align: center;
-}
-
-.journal-eyebrow {
-    font-family: 'Manrope', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: #6F7967;
-    margin: 0 0 25px;
-}
-
-.journal-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(64px, 10vw, 148px);
-    font-weight: 400;
-    line-height: 0.95;
-    letter-spacing: -0.045em;
-    color: #111111;
-    margin: 0;
-}
-
-.journal-subtitle {
-    font-family: 'Manrope', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.9;
-    color: #555550;
-    max-width: 620px;
-    margin: 36px auto 0;
-}
+.journal-hero { position: relative; isolation: isolate; overflow: hidden; width: 100%; background: #F1F0E9; margin-bottom: -65px; padding-bottom: 65px; }
+.journal-hero::before { content: ""; position: absolute; inset: -12px; z-index: -2; background: url('/images/journal.jpg') center center / cover no-repeat; filter: blur(4px); }
+.journal-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(247, 246, 242, 0.35); }
+.journal-intro { width: 100%; max-width: 1280px; margin: 0 auto; padding: 115px 48px 105px; text-align: center; }
+.journal-eyebrow { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #6F7967; margin: 0 0 25px; }
+.journal-title { font-family: 'DM Serif Display', serif; font-size: clamp(64px, 10vw, 148px); font-weight: 400; line-height: 0.95; letter-spacing: -0.045em; color: #111111; margin: 0; }
+.journal-subtitle { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.9; color: #555550; max-width: 620px; margin: 36px auto 0; }
 
 /* CATEGORIES */
-
-.journal-category-wrap {
-    position: relative;
-    max-width: none;
-    margin: 0;
-    padding: 65px 48px 0;
-    background: transparent;
-}
-
-.journal-categories {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 14px 34px;
-    max-width: 1184px;
-    margin: 0 auto;
-    padding: 28px 0;
-    border-top: 1px solid #D5D5D0;
-    border-bottom: 1px solid #D5D5D0;
-}
-
-.journal-category {
-    appearance: none;
-    border: 0;
-    border-bottom: 1px solid transparent;
-    border-radius: 0;
-    background: transparent;
-    padding: 8px 0;
-    cursor: pointer;
-    font-family: 'Manrope', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    color: #777777;
-    transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.journal-category:hover {
-    color: #111111;
-}
-
-.journal-category.active {
-    color: #111111;
-    border-bottom-color: #6F7967;
-}
+.journal-category-wrap { position: relative; max-width: none; margin: 0; padding: 65px 48px 0; background: transparent; }
+.journal-categories { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px 34px; max-width: 1184px; margin: 0 auto; padding: 28px 0; border-top: 1px solid #D5D5D0; border-bottom: 1px solid #D5D5D0; }
+.journal-category { appearance: none; border: 0; border-bottom: 1px solid transparent; border-radius: 0; background: transparent; padding: 8px 0; cursor: pointer; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; color: #777777; transition: color 0.2s ease, border-color 0.2s ease; }
+.journal-category:hover { color: #111111; }
+.journal-category.active { color: #111111; border-bottom-color: #6F7967; }
 
 /* COLUMN FILTER */
-
-.journal-column-wrap {
-    max-width: 1184px;
-    margin: 0 auto;
-    padding: 24px 48px 0;
-}
-
-.journal-column-wrap[hidden] {
-    display: none;
-}
-
-.journal-columns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px 30px;
-    padding: 0 0 24px;
-    border-bottom: 1px solid #D5D5D0;
-}
-
-.journal-column {
-    appearance: none;
-    border: 0;
-    border-bottom: 1px solid transparent;
-    border-radius: 0;
-    background: transparent;
-    padding: 7px 0;
-    cursor: pointer;
-    font-family: 'Manrope', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    color: #8A8A84;
-    transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.journal-column:hover {
-    color: #111111;
-}
-
-.journal-column.active {
-    color: #111111;
-    border-bottom-color: #6F7967;
-}
+.journal-column-wrap { max-width: 1184px; margin: 0 auto; padding: 24px 48px 0; }
+.journal-column-wrap[hidden] { display: none; }
+.journal-columns { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px 30px; padding: 0 0 24px; border-bottom: 1px solid #D5D5D0; }
+.journal-column { appearance: none; border: 0; border-bottom: 1px solid transparent; border-radius: 0; background: transparent; padding: 7px 0; cursor: pointer; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.07em; color: #8A8A84; transition: color 0.2s ease, border-color 0.2s ease; }
+.journal-column:hover { color: #111111; }
+.journal-column.active { color: #111111; border-bottom-color: #6F7967; }
 
 /* COLUMN PROFILE */
-
-.journal-column-profile {
-    margin: 30px auto 0;
-    padding: 34px 38px 36px;
-    border: 1px solid #BFC4B8;
-    background: rgba(111, 121, 103, 0.045);
-}
-
-.journal-column-profile[hidden] {
-    display: none;
-}
-
-.journal-column-profile-title {
-    margin: 0 0 20px;
-    font-family: 'Manrope', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #6F7967;
-}
-
-.journal-column-profile-copy {
-    max-width: 760px;
-}
-
-.journal-column-profile-copy p {
-    margin: 0 0 12px;
-    font-family: 'Manrope', sans-serif;
-    font-size: 13px;
-    line-height: 1.85;
-    color: #555550;
-}
-
-.journal-column-profile-copy p:last-child {
-    margin-bottom: 0;
-}
+.journal-column-profile { margin: 30px auto 0; padding: 34px 38px 36px; border: 1px solid #BFC4B8; background: rgba(111, 121, 103, 0.045); }
+.journal-column-profile[hidden] { display: none; }
+.journal-column-profile-title { margin: 0 0 20px; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #6F7967; }
+.journal-column-profile-copy { max-width: 760px; }
+.journal-column-profile-copy p { margin: 0 0 12px; font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.85; color: #555550; }
+.journal-column-profile-copy p:last-child { margin-bottom: 0; }
 
 /* CONTENT */
-
-.journal-content {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 75px 48px 100px;
-}
-
-.journal-content-heading {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 45px;
-}
-
-.journal-section-title {
-    font-family: 'Manrope', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-.journal-count {
-    font-family: 'Manrope', sans-serif;
-    font-size: 11px;
-    color: #888888;
-}
+.journal-content { max-width: 1280px; margin: 0 auto; padding: 75px 48px 100px; }
+.journal-content-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 45px; }
+.journal-section-title { font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; margin: 0; }
+.journal-count { font-family: 'Manrope', sans-serif; font-size: 11px; color: #888888; }
 
 /* ARTICLES */
-
-.journal-posts {
-    display: flex;
-    flex-direction: column;
-}
-
-.journal-post {
-    display: grid;
-    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
-    align-items: center;
-    column-gap: clamp(30px, 5vw, 72px);
-    padding: 0 0 46px;
-    margin: 0 0 46px;
-    border-bottom: 1px solid #D5D5D0;
-    color: inherit;
-    text-decoration: none;
-}
-
-.journal-post:last-child {
-    padding-bottom: 0;
-    margin-bottom: 0;
-    border-bottom: none;
-}
-
-.journal-post[hidden] {
-    display: none;
-}
-
-.journal-post-image {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    display: block;
-    background: #EAEAE6;
-    margin: 0;
-}
+.journal-posts { display: flex; flex-direction: column; }
+.journal-post { display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 1fr); align-items: center; column-gap: clamp(30px, 5vw, 72px); padding: 0 0 46px; margin: 0 0 46px; border-bottom: 1px solid #D5D5D0; color: inherit; text-decoration: none; }
+.journal-post:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+.journal-post[hidden] { display: none; }
+.journal-post-image { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: #EAEAE6; margin: 0; }
 
 /* TYPOGRAPHIC COVER */
-
-.journal-post-cover {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    min-width: 0;
-    aspect-ratio: 4 / 3;
-    padding: clamp(22px, 3.5vw, 40px);
-    background: #E9E7DF;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.journal-post-cover-brand {
-    font-family: 'Manrope', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.17em;
-    color: #6F7967;
-}
-
-.journal-post-cover-title {
-    margin: 18px 0;
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(35px, 4.5vw, 66px);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.035em;
-    color: #20241F;
-    text-wrap: balance;
-}
-
-.journal-post-cover-signature {
-    font-family: 'Manrope', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: #6F7967;
-}
-
-.journal-post-copy {
-    min-width: 0;
-}
-
-.journal-post-category {
-    display: block;
-    font-family: 'Manrope', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: #6F7967;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-.journal-post-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(29px, 3vw, 40px);
-    font-weight: 400;
-    line-height: 1.2;
-    margin: 0 0 14px;
-}
-
-.journal-post-description {
-    font-family: 'Manrope', sans-serif;
-    font-size: 13px;
-    line-height: 1.8;
-    color: #666666;
-    margin: 0 0 18px;
-}
-
-.journal-post-author {
-    font-family: 'Manrope', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: #777777;
-}
+.journal-post-cover { display: flex; flex-direction: column; justify-content: space-between; width: 100%; min-width: 0; aspect-ratio: 4 / 3; padding: clamp(22px, 3.5vw, 40px); background: #E9E7DF; box-sizing: border-box; overflow: hidden; }
+.journal-post-cover-brand { font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.17em; color: #6F7967; }
+.journal-post-cover-title { margin: 18px 0; font-family: 'DM Serif Display', serif; font-size: clamp(35px, 4.5vw, 66px); font-weight: 400; line-height: 1.08; letter-spacing: -0.035em; color: #20241F; text-wrap: balance; }
+.journal-post-cover-signature { font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #6F7967; }
+.journal-post-copy { min-width: 0; }
+.journal-post-category { display: block; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.12em; color: #6F7967; text-transform: uppercase; margin-bottom: 12px; }
+.journal-post-title { font-family: 'DM Serif Display', serif; font-size: clamp(29px, 3vw, 40px); font-weight: 400; line-height: 1.2; margin: 0 0 14px; }
+.journal-post-description { font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.8; color: #666666; margin: 0 0 18px; }
+.journal-post-author { font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: #777777; }
 
 /* EMPTY STATE */
-
-.journal-empty {
-    min-height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.journal-empty[hidden] {
-    display: none;
-}
-
-.journal-empty-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 400;
-    line-height: 1.2;
-    margin: 0 0 18px;
-}
-
-.journal-empty-text {
-    font-family: 'Manrope', sans-serif;
-    font-size: 14px;
-    line-height: 1.9;
-    color: #777777;
-    max-width: 470px;
-    margin: 0;
-}
-
-.journal-empty-signature {
-    font-family: 'Manrope', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    margin-top: 35px;
-    color: #6F7967;
-}
+.journal-empty { min-height: 320px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 50px 20px; }
+.journal-empty[hidden] { display: none; }
+.journal-empty-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 400; line-height: 1.2; margin: 0 0 18px; }
+.journal-empty-text { font-family: 'Manrope', sans-serif; font-size: 14px; line-height: 1.9; color: #777777; max-width: 470px; margin: 0; }
+.journal-empty-signature { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; margin-top: 35px; color: #6F7967; }
 
 /* TABLET */
-
 @media (max-width: 1100px) {
-    .journal-behind-link {
-        display: none;
-    }
+    .journal-behind-link { display: none; }
 }
 
 /* MOBILE */
-
 @media (max-width: 700px) {
-
-    .journal-intro {
-        padding: 80px 24px 75px;
-    }
-
-    .journal-title {
-        font-size: clamp(56px, 13vw, 85px);
-    }
-
-    .journal-subtitle {
-        font-size: 14px;
-        margin-top: 25px;
-    }
-
-    .journal-category-wrap {
-        padding: 45px 24px 0;
-    }
-
-    .journal-categories {
-        justify-content: flex-start;
-        gap: 12px 23px;
-        padding: 20px 0;
-    }
-
-    .journal-category {
-        font-size: 10px;
-    }
-
-    .journal-column-wrap {
-        padding: 20px 24px 0;
-    }
-
-    .journal-columns {
-        justify-content: flex-start;
-        gap: 10px 22px;
-        padding-bottom: 20px;
-    }
-
-    .journal-column {
-        font-size: 9px;
-    }
-
-    .journal-column-profile {
-        margin-top: 24px;
-        padding: 26px 24px 28px;
-    }
-
-    .journal-column-profile-title {
-        margin-bottom: 16px;
-    }
-
-    .journal-column-profile-copy p {
-        font-size: 12px;
-        line-height: 1.8;
-    }
-
-    .journal-content {
-        padding: 55px 24px 80px;
-    }
-
-    .journal-post {
-        grid-template-columns: 1fr;
-        row-gap: 20px;
-        padding-bottom: 38px;
-        margin-bottom: 38px;
-    }
-
-    .journal-post-cover {
-        padding: 28px;
-    }
-
-    .journal-post-cover-title {
-        font-size: clamp(35px, 9vw, 58px);
-    }
-
-    .journal-post-title {
-        font-size: 29px;
-    }
-
-    .journal-empty {
-        min-height: 300px;
-    }
+    .journal-intro { padding: 80px 24px 75px; }
+    .journal-title { font-size: clamp(56px, 13vw, 85px); }
+    .journal-subtitle { font-size: 14px; margin-top: 25px; }
+    .journal-category-wrap { padding: 45px 24px 0; }
+    .journal-categories { justify-content: flex-start; gap: 12px 23px; padding: 20px 0; }
+    .journal-category { font-size: 10px; }
+    .journal-column-wrap { padding: 20px 24px 0; }
+    .journal-columns { justify-content: flex-start; gap: 10px 22px; padding-bottom: 20px; }
+    .journal-column { font-size: 9px; }
+    .journal-column-profile { margin-top: 24px; padding: 26px 24px 28px; }
+    .journal-column-profile-title { margin-bottom: 16px; }
+    .journal-column-profile-copy p { font-size: 12px; line-height: 1.8; }
+    .journal-content { padding: 55px 24px 80px; }
+    .journal-post { grid-template-columns: 1fr; row-gap: 20px; padding-bottom: 38px; margin-bottom: 38px; }
+    .journal-post-cover { padding: 28px; }
+    .journal-post-cover-title { font-size: clamp(35px, 9vw, 58px); }
+    .journal-post-title { font-size: 29px; }
+    .journal-empty { min-height: 300px; }
 }
 
 /* INVITATION TO CONTRIBUTE */
-
-.journal-contribute {
-    max-width: 1184px;
-    margin: 0 auto;
-    padding: 0 48px 105px;
-    text-align: center;
-}
-
-.journal-contribute-inner {
-    border-top: 1px solid #D5D5D0;
-    padding: 78px 20px 0;
-}
-
-.journal-contribute-label {
-    margin: 0 0 22px;
-    font-family: 'Manrope', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    color: #6F7967;
-}
-
-.journal-contribute-title {
-    margin: 0 0 20px;
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(32px, 4.5vw, 52px);
-    font-weight: 400;
-    line-height: 1.12;
-}
-
-.journal-contribute-text {
-    max-width: 570px;
-    margin: 0 auto 28px;
-    font-family: 'Manrope', sans-serif;
-    font-size: 14px;
-    line-height: 1.9;
-    color: #666666;
-}
-
-.journal-contribute-link {
-    display: inline-block;
-    padding: 10px 0;
-    border-bottom: 1px solid #6F7967;
-    font-family: 'Manrope', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: #111111;
-    text-decoration: none;
-    transition: color 0.2s ease, border-color 0.2s ease;
-}
-
+.journal-contribute { max-width: 1184px; margin: 0 auto; padding: 0 48px 105px; text-align: center; }
+.journal-contribute-inner { border-top: 1px solid #D5D5D0; padding: 78px 20px 0; }
+.journal-contribute-label { margin: 0 0 22px; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.18em; color: #6F7967; }
+.journal-contribute-title { margin: 0 0 20px; font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 400; line-height: 1.12; }
+.journal-contribute-text { max-width: 570px; margin: 0 auto 28px; font-family: 'Manrope', sans-serif; font-size: 14px; line-height: 1.9; color: #666666; }
+.journal-contribute-link { display: inline-block; padding: 10px 0; border-bottom: 1px solid #6F7967; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #111111; text-decoration: none; transition: color 0.2s ease, border-color 0.2s ease; }
 .journal-contribute-link:hover,
-.journal-contribute-link:focus-visible {
-    color: #6F7967;
-    border-bottom-color: #111111;
-}
-
+.journal-contribute-link:focus-visible { color: #6F7967; border-bottom-color: #111111; }
 @media (max-width: 700px) {
-
-    .journal-contribute {
-        padding: 0 24px 75px;
-    }
-
-    .journal-contribute-inner {
-        padding: 60px 0 0;
-    }
+    .journal-contribute { padding: 0 24px 75px; }
+    .journal-contribute-inner { padding: 60px 0 0; }
 }
-
 </style>
-
 <link rel="stylesheet" href="/consent.css">
-
 </head>
 
 <body class="journal-page">
-
 <header class="site-header">
-
-    <a href="/"
-       class="site-logo"
-       aria-label="Move & Try – home">
-
-        <img src="/images/move-and-try-logo.png"
-             alt="Move & Try">
-
+    <a href="/" class="site-logo" aria-label="Move & Try – home">
+        <img src="/images/move-and-try-logo.png" alt="Move & Try">
     </a>
-
     <nav class="desktop-nav">
-
         <a href="/#find-your-try">DISCOVER</a>
-
         <a href="/#be-part-of-it">BE PART OF IT</a>
-
         <a href="/where-to-try.html">WHERE TO TRY</a>
-
-        <a href="/journal.html"
-           aria-current="page">THE JOURNAL</a>
-
+        <a href="/journal.html" aria-current="page">THE JOURNAL</a>
     </nav>
-
     <div class="header-actions journal-header-actions">
-
-        <a href="/behind-move-and-try.html"
-           class="journal-behind-link">
-            BEHIND MOVE & TRY
-        </a>
-
+        <a href="/behind-move-and-try.html" class="journal-behind-link">BEHIND MOVE & TRY</a>
         <div class="header-language">
-
             <span class="language-active">EN</span>
-
             <span>|</span>
-
-            <a href="/hr/journal.html"
-               onclick="setLanguage('hr')">
-                HR
-            </a>
-
+            <a href="/hr/journal.html" onclick="setLanguage('hr')">HR</a>
         </div>
-
-        <button class="menu-toggle"
-                type="button"
-                aria-label="Open menu"
-                aria-expanded="false">
-
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
             <span></span>
             <span></span>
-
         </button>
-
     </div>
-
 </header>
 
 <div class="mobile-menu">
-
     <nav>
-
         <a href="/#find-your-try">DISCOVER</a>
-
         <a href="/#be-part-of-it">BE PART OF IT</a>
-
         <a href="/where-to-try.html">WHERE TO TRY</a>
-
         <a href="/journal.html">THE JOURNAL</a>
-
-        <a href="/behind-move-and-try.html">
-            BEHIND MOVE & TRY
-        </a>
-
+        <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
     </nav>
-
     <div class="mobile-menu-language">
-
         <span class="language-active">EN</span>
-
         <span>|</span>
-
-        <a href="/hr/journal.html"
-           onclick="setLanguage('hr')">
-            HR
-        </a>
-
+        <a href="/hr/journal.html" onclick="setLanguage('hr')">HR</a>
     </div>
-
 </div>
 
 <main>
-
     <section class="journal-hero">
-
         <div class="journal-intro">
-
-            <p class="journal-eyebrow">
-                MOVE & TRY PRESENTS
-            </p>
-
-            <h1 class="journal-title">
-                THE JOURNAL.
-            </h1>
-
+            <p class="journal-eyebrow">MOVE & TRY PRESENTS</p>
+            <h1 class="journal-title">THE JOURNAL.</h1>
             <p class="journal-subtitle">
                 Stories, reflections, experiences and everything in between.
                 A space for people, ideas, new beginnings
                 and moments worth sharing.
             </p>
-
         </div>
-
     </section>
 
     <div class="journal-category-wrap">
-
-        <nav class="journal-categories"
-             aria-label="Journal categories">
-
-            <button class="journal-category active"
-                    type="button"
-                    data-category="all"
-                    aria-pressed="true">
-                ALL
-            </button>
-
-            <button class="journal-category"
-                    type="button"
-                    data-category="editorial"
-                    aria-pressed="false">
-                EDITORIALS
-            </button>
-
-            <button class="journal-category"
-                    type="button"
-                    data-category="personal"
-                    aria-pressed="false">
-                COLUMNS
-            </button>
-
-            <button class="journal-category"
-                    type="button"
-                    data-category="guest"
-                    aria-pressed="false">
-                GUEST STORIES
-            </button>
-
-            <button class="journal-category"
-                    type="button"
-                    data-category="news"
-                    aria-pressed="false">
-                NEWS
-            </button>
-
-            <button class="journal-category"
-                    type="button"
-                    data-category="inspiration"
-                    aria-pressed="false">
-                INSPIRATION
-            </button>
-
+        <nav class="journal-categories" aria-label="Journal categories">
+            <button class="journal-category active" type="button" data-category="all" aria-pressed="true">ALL</button>
+            <button class="journal-category" type="button" data-category="editorial" aria-pressed="false">EDITORIALS</button>
+            <button class="journal-category" type="button" data-category="personal" aria-pressed="false">COLUMNS</button>
+            <button class="journal-category" type="button" data-category="guest" aria-pressed="false">GUEST STORIES</button>
+            <button class="journal-category" type="button" data-category="news" aria-pressed="false">NEWS</button>
+            <button class="journal-category" type="button" data-category="inspiration" aria-pressed="false">INSPIRATION</button>
         </nav>
-
     </div>
 
-    <div class="journal-column-wrap"
-         id="journal-column-wrap"
-         hidden>
-
-        <nav class="journal-columns"
-             aria-label="Columns">
-
-            <button class="journal-column active"
-                    type="button"
-                    data-column="all"
-                    aria-pressed="true">
-                ALL COLUMNS
-            </button>
-
-            <button class="journal-column"
-                    type="button"
-                    data-column="lidija"
-                    aria-pressed="false">
-                LIDIJA | MOVE&amp;TRY
-            </button>
-
-            <button class="journal-column"
-                    type="button"
-                    data-column="nikolina"
-                    aria-pressed="false">
-                BEYOND WHAT WE SEE
-            </button>
-
+    <div class="journal-column-wrap" id="journal-column-wrap" hidden>
+        <nav class="journal-columns" aria-label="Columns">
+            <button class="journal-column active" type="button" data-column="all" aria-pressed="true">ALL COLUMNS</button>
+            <button class="journal-column" type="button" data-column="lidija" aria-pressed="false">LIDIJA | MOVE&amp;TRY</button>
+            <button class="journal-column" type="button" data-column="nikolina" aria-pressed="false">BEYOND WHAT WE SEE</button>
         </nav>
-
-        <section class="journal-column-profile"
-                 id="journal-column-profile"
-                 hidden>
-
-            <h3 class="journal-column-profile-title"
-                id="journal-column-profile-title">
-            </h3>
-
-            <div class="journal-column-profile-copy"
-                 id="journal-column-profile-copy">
-            </div>
-
+        <section class="journal-column-profile" id="journal-column-profile" hidden>
+            <h3 class="journal-column-profile-title" id="journal-column-profile-title"></h3>
+            <div class="journal-column-profile-copy" id="journal-column-profile-copy"></div>
         </section>
-
     </div>
 
-    <section class="journal-content"
-             aria-labelledby="journal-section-heading">
-
+    <section class="journal-content" aria-labelledby="journal-section-heading">
         <div class="journal-content-heading">
-
-            <h2 class="journal-section-title"
-                id="journal-section-heading">
-                ALL POSTS
-            </h2>
-
-            <span class="journal-count"
-                  id="journal-count">
-                4 POSTS
-            </span>
-
+            <h2 class="journal-section-title" id="journal-section-heading">ALL POSTS</h2>
+            <span class="journal-count" id="journal-count">6 POSTS</span>
         </div>
-
-        <div class="journal-posts"
-             id="journal-posts">
+        <div class="journal-posts" id="journal-posts">
+            <a class="journal-post"
+               href="/a-child-can-do-well-and-still-not-feel-well.html"
+               data-category="personal"
+               data-column="nikolina">
+                <img class="journal-post-image"
+                     src="/images/care-child-psychotherapy-connection.jpg"
+                     alt="Black-and-white photograph of a child and an adult sharing a quiet moment"
+                     loading="lazy">
+                <div class="journal-post-copy">
+                    <span class="journal-post-category">COLUMNS · 13 NOVEMBER 2026</span>
+                    <h3 class="journal-post-title">A Child Can Do Well in Everything and Still Not Feel Well</h3>
+                    <p class="journal-post-description">About the feelings that grades, behaviour and everyday achievements do not always reveal.</p>
+                    <span class="journal-post-author">Nikolina Đurić | Beyond What We See</span>
+                </div>
+            </a>
 
             <!-- SCHEDULED PUBLICATION: 7 November 2026, 11:00 Europe/Zagreb -->
-
             <a class="journal-post"
                href="/care-begins-with-psychotherapy.html"
                data-category="news"
                data-publish-at="2026-11-07T10:00:00Z"
                hidden>
-
                 <img class="journal-post-image"
                      src="/images/lumos-emotion-center.jpg"
                      alt="A space with emotion cards and children's drawings at Lumos"
                      loading="lazy">
-
                 <div class="journal-post-copy">
-
-                    <span class="journal-post-category">
-                        NEWS · 7 NOVEMBER 2026
-                    </span>
-
+                    <span class="journal-post-category">NEWS · 7 NOVEMBER 2026</span>
                     <h3 class="journal-post-title">
                         The First CARE Topic:
                         Child and Adolescent Psychotherapy
                     </h3>
-
                     <p class="journal-post-description">
                         CARE begins with psychotherapy.
                         The new topic brings together a guide for parents,
                         an expert perspective and information
                         on where to find support.
                     </p>
-
-                    <span class="journal-post-author">
-                        Lidija | MOVE&amp;TRY
-                    </span>
-
+                    <span class="journal-post-author">Lidija | MOVE&amp;TRY</span>
                 </div>
-
             </a>
 
             <a class="journal-post"
@@ -916,33 +264,19 @@
                data-category="editorial"
                data-publish-at="2026-10-29T08:00:00Z"
                hidden>
-
                 <img class="journal-post-image"
                      src="/images/journal-where-adults-meet.png"
                      alt="AI-generated illustration of adults talking in a city café"
                      loading="lazy">
-
                 <div class="journal-post-copy">
-
-                    <span class="journal-post-category">
-                        EDITORIALS · 29 OCTOBER 2026
-                    </span>
-
-                    <h3 class="journal-post-title">
-                        Where Do Adults Meet New People These Days?
-                    </h3>
-
+                    <span class="journal-post-category">EDITORIALS · 29 OCTOBER 2026</span>
+                    <h3 class="journal-post-title">Where Do Adults Meet New People These Days?</h3>
                     <p class="journal-post-description">
                         On making friends after thirty, life between work and home,
                         and the people we may never meet.
                     </p>
-
-                    <span class="journal-post-author">
-                        MOVE&amp;TRY Editorial
-                    </span>
-
+                    <span class="journal-post-author">MOVE&amp;TRY Editorial</span>
                 </div>
-
             </a>
 
             <a class="journal-post"
@@ -950,214 +284,103 @@
                data-category="news"
                data-publish-at="2026-10-25T08:00:00Z"
                hidden>
-
                 <img class="journal-post-image"
                      src="/images/natural-perfume-spray.jpg"
                      alt="Natural perfume making workshop"
                      loading="lazy">
-
                 <div class="journal-post-copy">
-
-                    <span class="journal-post-category">
-                        NEWS · 25 OCTOBER 2026
-                    </span>
-
+                    <span class="journal-post-category">NEWS · 25 OCTOBER 2026</span>
                     <h3 class="journal-post-title">
                         From Curiosity to Your Own Scent:
                         A New Activity on MOVE &amp; TRY
                     </h3>
-
                     <p class="journal-post-description">
                         From a workshop with Biljarica to a guide,
                         a real experience and a place where you can
                         try natural perfume making yourself.
                     </p>
-
-                    <span class="journal-post-author">
-                        MOVE&amp;TRY Editorial
-                    </span>
-
+                    <span class="journal-post-author">MOVE&amp;TRY Editorial</span>
                 </div>
-
             </a>
 
             <a class="journal-post"
                href="/what-if-i-try.html"
                data-category="personal"
                data-column="lidija">
-
                 <div class="journal-post-cover">
-
-                    <span class="journal-post-cover-brand">
-                        THE JOURNAL.
-                    </span>
-
-                    <h3 class="journal-post-cover-title">
-                        What If I Give It a Try?
-                    </h3>
-
-                    <span class="journal-post-cover-signature">
-                        MOVE&TRY
-                    </span>
-
+                    <span class="journal-post-cover-brand">THE JOURNAL.</span>
+                    <h3 class="journal-post-cover-title">What If I Give It a Try?</h3>
+                    <span class="journal-post-cover-signature">MOVE&TRY</span>
                 </div>
-
                 <div class="journal-post-copy">
-
-                    <span class="journal-post-category">
-                        COLUMNS · 16 OCTOBER 2026
-                    </span>
-
+                    <span class="journal-post-category">COLUMNS · 16 OCTOBER 2026</span>
                     <p class="journal-post-description">
                         On work, curiosity, people, and an idea
                         that gradually began to take shape.
                     </p>
-
-                    <span class="journal-post-author">
-                        Lidija | MOVE&TRY
-                    </span>
-
+                    <span class="journal-post-author">Lidija | MOVE&TRY</span>
                 </div>
-
             </a>
 
             <a class="journal-post"
                href="/why-adults-find-it-harder-to-try-new-things.html"
                data-category="editorial">
-
                 <img class="journal-post-image"
                      src="/images/journal-first-try.jpg"
                      alt="An adult woman learning pottery with an experienced mentor"
                      loading="lazy">
-
                 <div class="journal-post-copy">
-
-                    <span class="journal-post-category">
-                        EDITORIALS · 14 OCTOBER 2026
-                    </span>
-
-                    <h3 class="journal-post-title">
-                        Why Is It Harder to Try Something New as an Adult?
-                    </h3>
-
+                    <span class="journal-post-category">EDITORIALS · 14 OCTOBER 2026</span>
+                    <h3 class="journal-post-title">Why Is It Harder to Try Something New as an Adult?</h3>
                     <p class="journal-post-description">
                         On the curiosity we haven't necessarily lost,
                         the fear of failure, and a life in which
                         we sometimes forget what it feels like to be a beginner.
                     </p>
-
-                    <span class="journal-post-author">
-                        MOVE&TRY Editorial
-                    </span>
-
+                    <span class="journal-post-author">MOVE&TRY Editorial</span>
                 </div>
-
             </a>
-
         </div>
 
-        <div class="journal-empty"
-             id="journal-empty"
-             hidden>
-
-            <h3 class="journal-empty-title">
-                No posts in this category yet.
-            </h3>
-
-            <p class="journal-empty-text">
-                Explore another category or check back soon.
-            </p>
-
-            <span class="journal-empty-signature">
-                MOVE & TRY
-            </span>
-
+        <div class="journal-empty" id="journal-empty" hidden>
+            <h3 class="journal-empty-title">No posts in this category yet.</h3>
+            <p class="journal-empty-text">Explore another category or check back soon.</p>
+            <span class="journal-empty-signature">MOVE & TRY</span>
         </div>
-
     </section>
 
-    <section class="journal-contribute"
-             aria-labelledby="journal-contribute-title">
-
+    <section class="journal-contribute" aria-labelledby="journal-contribute-title">
         <div class="journal-contribute-inner">
-
-            <p class="journal-contribute-label">
-                BE PART OF THE JOURNAL
-            </p>
-
-            <h2 class="journal-contribute-title"
-                id="journal-contribute-title">
-                Have a story worth sharing?
-            </h2>
-
+            <p class="journal-contribute-label">BE PART OF THE JOURNAL</p>
+            <h2 class="journal-contribute-title" id="journal-contribute-title">Have a story worth sharing?</h2>
             <p class="journal-contribute-text">
                 You don't have to be a professional writer.
                 Maybe you have an experience, an idea
                 or a perspective worth sharing.
                 We'd love to hear from you.
             </p>
-
-            <a class="journal-contribute-link"
-               href="/write-for-the-journal.html">
-                WRITE FOR THE JOURNAL &rarr;
-            </a>
-
+            <a class="journal-contribute-link" href="/write-for-the-journal.html">WRITE FOR THE JOURNAL &rarr;</a>
         </div>
-
     </section>
-
 </main>
 
 <script src="script.js"></script>
-
 <script src="/app/app-navigation.js" defer></script>
-
 <!-- Generated articles and columns appear here after server-side publication. -->
 <script src="/journal-feed.js"></script>
 <script src="/journal-feed-render.js"></script>
-
 <script>
 (function () {
-
-    const buttons = document.querySelectorAll(
-        '.journal-category'
-    );
-
-    let posts = document.querySelectorAll(
-        '.journal-post'
-    );
-
-    const emptyState = document.getElementById(
-        'journal-empty'
-    );
-
-    const heading = document.getElementById(
-        'journal-section-heading'
-    );
-
-    const count = document.getElementById(
-        'journal-count'
-    );
-
-    const columnWrap = document.getElementById(
-        'journal-column-wrap'
-    );
-
-    let columnButtons = document.querySelectorAll(
-        '.journal-column'
-    );
-
-    const columnProfile = document.getElementById(
-        'journal-column-profile'
-    );
-
-    const columnProfileTitle = document.getElementById(
-        'journal-column-profile-title'
-    );
-
-    const columnProfileCopy = document.getElementById(
-        'journal-column-profile-copy'
-    );
+    const buttons = document.querySelectorAll('.journal-category');
+    let posts = document.querySelectorAll('.journal-post');
+    const emptyState = document.getElementById('journal-empty');
+    const heading = document.getElementById('journal-section-heading');
+    const count = document.getElementById('journal-count');
+    const columnWrap = document.getElementById('journal-column-wrap');
+    let columnButtons = document.querySelectorAll('.journal-column');
+    const columnProfile = document.getElementById('journal-column-profile');
+    const columnProfileTitle = document.getElementById('journal-column-profile-title');
+    const columnProfileCopy = document.getElementById('journal-column-profile-copy');
 
     const labels = {
         all: 'ALL POSTS',
@@ -1167,12 +390,10 @@
         news: 'NEWS',
         inspiration: 'INSPIRATION'
     };
-
     const columnNames = {
         lidija: 'LIDIJA | MOVE&TRY',
         nikolina: 'BEYOND WHAT WE SEE'
     };
-
     const columnProfiles = {
         lidija: {
             title: 'LIDIJA | MOVE&TRY',
@@ -1203,228 +424,133 @@
     }
 
     function renderColumnProfile() {
-
-        const profile =
-            columnProfiles[activeColumn];
-
-        if (
-            activeCategory !== 'personal' ||
-            !profile
-        ) {
+        const profile = columnProfiles[activeColumn];
+        if (activeCategory !== 'personal' || !profile) {
             columnProfile.hidden = true;
             columnProfileTitle.textContent = '';
             columnProfileCopy.innerHTML = '';
             return;
         }
-
-        columnProfileTitle.textContent =
-            profile.title;
-
+        columnProfileTitle.textContent = profile.title;
         columnProfileCopy.innerHTML = '';
-
         profile.paragraphs.forEach(function (text) {
-
-            const paragraph =
-                document.createElement('p');
-
+            const paragraph = document.createElement('p');
             paragraph.textContent = text;
-
-            columnProfileCopy.appendChild(
-                paragraph
-            );
-
+            columnProfileCopy.appendChild(paragraph);
         });
-
         columnProfile.hidden = false;
     }
 
     function updateColumnFilter() {
-
-        const showColumns =
-            activeCategory === 'personal';
-
+        const showColumns = activeCategory === 'personal';
         columnWrap.hidden = !showColumns;
-
         columnButtons.forEach(function (button) {
-
-            const selected =
-                button.dataset.column === activeColumn;
-
-            button.classList.toggle(
-                'active',
-                selected
-            );
-
-            button.setAttribute(
-                'aria-pressed',
-                String(selected)
-            );
-
+            const selected = button.dataset.column === activeColumn;
+            button.classList.toggle('active', selected);
+            button.setAttribute('aria-pressed', String(selected));
         });
-
         renderColumnProfile();
     }
 
     function isPublished(post) {
-
-        const publishAt =
-            post.dataset.publishAt;
-
+        const publishAt = post.dataset.publishAt;
         if (!publishAt) {
             return true;
         }
-
-        const timestamp =
-            Date.parse(publishAt);
-
+        const timestamp = Date.parse(publishAt);
         if (Number.isNaN(timestamp)) {
             return false;
         }
-
         return Date.now() >= timestamp;
     }
 
     function filterPosts(category) {
-
         activeCategory = category;
-
         let visibleCount = 0;
 
         buttons.forEach(function (button) {
-
-            const selected =
-                button.dataset.category === category;
-
-            button.classList.toggle(
-                'active',
-                selected
-            );
-
-            button.setAttribute(
-                'aria-pressed',
-                String(selected)
-            );
-
+            const selected = button.dataset.category === category;
+            button.classList.toggle('active', selected);
+            button.setAttribute('aria-pressed', String(selected));
         });
 
         posts.forEach(function (post) {
-
-            const published =
-                isPublished(post);
-
-            const categoryMatches =
-                category === 'all' ||
-                post.dataset.category === category;
-
+            const published = isPublished(post);
+            const categoryMatches = category === 'all' || post.dataset.category === category;
             const columnMatches =
                 category !== 'personal' ||
                 activeColumn === 'all' ||
                 post.dataset.column === activeColumn;
-
-            const matches =
-                published &&
-                categoryMatches &&
-                columnMatches;
-
+            const matches = published && categoryMatches && columnMatches;
             post.hidden = !matches;
-
             if (matches) {
                 visibleCount++;
             }
-
         });
 
         updateColumnFilter();
 
-        if (
-            category === 'personal' &&
-            activeColumn !== 'all'
-        ) {
-            heading.textContent =
-                columnNames[activeColumn] ||
-                labels[category];
+        if (category === 'personal' && activeColumn !== 'all') {
+            heading.textContent = columnNames[activeColumn] || labels[category];
         } else {
-            heading.textContent =
-                labels[category];
+            heading.textContent = labels[category];
         }
 
-        count.textContent =
-            countLabel(visibleCount);
-
-        if (
-            category === 'personal' &&
-            activeColumn === 'nikolina' &&
-            visibleCount === 0
-        ) {
+        count.textContent = countLabel(visibleCount);
+        if (category === 'personal' && activeColumn === 'nikolina' && visibleCount === 0) {
             emptyState.querySelector('.journal-empty-title').textContent =
                 'First article coming soon.';
-
             emptyState.querySelector('.journal-empty-text').textContent =
                 'The new column “Beyond What We See” will publish its first article soon.';
         } else {
             emptyState.querySelector('.journal-empty-title').textContent =
                 'No posts in this category yet.';
-
             emptyState.querySelector('.journal-empty-text').textContent =
                 'Explore another category or check back soon.';
         }
-
-        emptyState.hidden =
-            visibleCount > 0;
+        emptyState.hidden = visibleCount > 0;
     }
 
     buttons.forEach(function (button) {
-
-        button.addEventListener(
-            'click',
-            function () {
-
-                const category =
-                    button.dataset.category;
-
-                if (category === 'personal') {
-                    activeColumn = 'all';
-                }
-
-                filterPosts(category);
-
+        button.addEventListener('click', function () {
+            const category = button.dataset.category;
+            if (category === 'personal') {
+                activeColumn = 'all';
             }
-        );
-
+            filterPosts(category);
+        });
     });
 
     function bindColumnButtons() {
-      columnButtons.forEach(function (button) {
-        if (button.dataset.journalFilterBound === 'true') return;
-        button.dataset.journalFilterBound = 'true';
-        button.addEventListener('click', function () {
-          activeColumn = button.dataset.column;
-          filterPosts('personal');
+        columnButtons.forEach(function (button) {
+            if (button.dataset.journalFilterBound === 'true') return;
+            button.dataset.journalFilterBound = 'true';
+            button.addEventListener('click', function () {
+                activeColumn = button.dataset.column;
+                filterPosts('personal');
+            });
         });
-      });
     }
+
     bindColumnButtons();
 
     window.addEventListener('move-try-journal-feed-ready', function () {
-      posts = document.querySelectorAll('.journal-post');
-      columnButtons = document.querySelectorAll('.journal-column');
-      Object.assign(columnNames,window.MoveTryJournalAddedColumnNames||{});
-      Object.assign(columnProfiles,window.MoveTryJournalAddedColumnProfiles||{});
-      bindColumnButtons();
-      filterPosts(activeCategory);
+        posts = document.querySelectorAll('.journal-post');
+        columnButtons = document.querySelectorAll('.journal-column');
+        Object.assign(columnNames, window.MoveTryJournalAddedColumnNames || {});
+        Object.assign(columnProfiles, window.MoveTryJournalAddedColumnProfiles || {});
+        bindColumnButtons();
+        filterPosts(activeCategory);
     });
 
     filterPosts('all');
-
     window.setInterval(function () {
         filterPosts(activeCategory);
     }, 30000);
-
 })();
 </script>
 
 <script src="/consent.js" defer></script>
-
 <script>
 if (
     'serviceWorker' in navigator &&
@@ -1435,14 +561,10 @@ if (
         navigator.serviceWorker
             .register('/sw.js', { scope: '/' })
             .catch(error =>
-                console.warn(
-                    'MOVE&TRY public service worker:',
-                    error
-                )
+                console.warn('MOVE&TRY public service worker:', error)
             );
     });
 }
 </script>
-
 </body>
 </html>
