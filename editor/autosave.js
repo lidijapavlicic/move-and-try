@@ -256,5 +256,10 @@
   window.addEventListener('pagehide',()=>{
     if (current) copyLocal(current);
   });
-  window.MoveTryJournalAutosave={active:true};
+  window.MoveTryJournalAutosave={
+    active:true,
+    forgetArticle(ownerId, articleId) {
+      deleteLocal(keyFor({ownerId,articleId}));
+    }
+  };
 })();
