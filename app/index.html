@@ -1580,6 +1580,8 @@
     </section>
   </div>
 
+  <script src="/editor/journal-byline.js"></script>
+  <script src="/journal-feed-render.js"></script>
   <script>
     if (!window.MT_BROWSER_MODE) (() => {
       'use strict';
@@ -1918,6 +1920,7 @@
       let journalColumn = 'all';
 
       let journalPosts = null;
+      let journalPublicColumns = [];
       let journalLoading = false;
 
       function translations() {
@@ -2664,6 +2667,22 @@
         };
 
 
+        for (const column of journalPublicColumns) {
+          if (Object.hasOwn(columnLabels, column.slug)) {
+            continue;
+          }
+          const localized = language === 'en' && Object.hasOwn(column, 'titleEn');
+          const title = localized ? column.titleEn : column.title;
+          const description = localized ? column.descriptionEn : column.description;
+          if (localized && !title) {
+            continue;
+          }
+          columnLabels[column.slug] = title || column.byline || column.slug;
+          if (description) {
+            columnProfiles[language][column.slug] = [description];
+          }
+        }
+
         let filtered =
           journalFilter === 'all'
             ? journalPosts
@@ -2730,7 +2749,7 @@
                         <button
                           type="button"
                           class="app-journal-filter"
-                          data-journal-column="${key}"
+                          data-journal-column="${escapeHTML(key)}"
                           aria-pressed="${journalColumn === key}"
                         >
                           ${escapeHTML(label)}
@@ -2848,204 +2867,114 @@
 
       let journalRequest = 0;
 
+      async function loadStaticJournalPosts(requestedLanguage, signal) {
+        const url = requestedLanguage === 'hr' ? '/hr/journal.html' : '/journal.html';
+        const response = await fetch(url, { cache: 'no-cache', signal });
+        if (!response.ok) {
+          throw new Error('Journal HTTP ' + response.status);
+        }
+
+        const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+        const now = Date.now();
+        const seen = new Set();
+        const posts = [];
+        const categories = ['editorial', 'personal', 'guest', 'news', 'inspiration'];
+
+        for (const link of doc.querySelectorAll('a.journal-post[href]')) {
+          if (link.dataset.publishAt) {
+            const publishAt = Date.parse(link.dataset.publishAt);
+            if (!Number.isFinite(publishAt) || publishAt > now) {
+              continue;
+            }
+          }
+
+          const target = new URL(link.getAttribute('href'), response.url);
+          const key = /^(\/hr)?\/journal\/article\.html$/.test(target.pathname)
+            ? target.pathname + target.search
+            : target.pathname;
+          if (target.origin !== location.origin || seen.has(key)) {
+            continue;
+          }
+
+          const title = link.querySelector('.journal-post-title,.journal-post-cover-title,h2,h3')
+            ?.textContent.trim();
+          if (!title) {
+            continue;
+          }
+
+          seen.add(key);
+          const image = link.querySelector('img')?.getAttribute('src');
+          const kind = (link.dataset.category || '').toLowerCase();
+          posts.push({
+            url: target.pathname + target.search + target.hash,
+            title,
+            image: image ? new URL(image, response.url).pathname : '',
+            description: link.querySelector('.journal-post-description')?.textContent.trim() || '',
+            category: link.querySelector('.journal-post-category')?.textContent.trim() || '',
+            author: link.querySelector('.journal-post-author')?.textContent.trim() || '',
+            column: (link.dataset.column || '').toLowerCase(),
+            type: categories.includes(kind) ? kind : 'editorial'
+          });
+        }
+        return posts;
+      }
+
       async function loadJournalPosts() {
         if (journalLoading) {
           return;
         }
 
         journalLoading = true;
+        const requestId = ++journalRequest;
+        const requestedLanguage = language;
+        const publicFeed = window.MoveTryJournalPublicFeed;
 
-        const requestId =
-          ++journalRequest;
+        const boundedSignal = () => typeof AbortSignal.timeout === 'function'
+          ? AbortSignal.timeout(7000) : undefined;
+        const [staticResult, feedResult] = await Promise.allSettled([
+          loadStaticJournalPosts(requestedLanguage, boundedSignal()),
+          publicFeed?.fetchFeed(boundedSignal())
+        ]);
 
-        const requestedLanguage =
-          language;
+        if (requestId !== journalRequest || requestedLanguage !== language) {
+          return;
+        }
 
-        try {
-          const url =
-            requestedLanguage === 'hr'
-              ? '/hr/journal.html'
-              : '/journal.html';
+        if (staticResult.status === 'rejected') {
+          console.warn('MOVE&TRY Journal: static posts unavailable', staticResult.reason);
+        }
+        if (feedResult.status === 'rejected') {
+          console.warn('MOVE&TRY Journal: Editor posts unavailable', feedResult.reason);
+        }
 
-          const response =
-            await fetch(
-              url,
-              { cache: 'no-cache' }
-            );
-
-          if (!response.ok) {
-            throw new Error(
-              'Journal HTTP ' +
-              response.status
-            );
+        const staticPosts = staticResult.value || [];
+        const feed = feedResult.value;
+        journalPublicColumns = (feed?.columns || []).filter(column =>
+          column?.listed === true && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(column.slug || '')
+        );
+        const columnsBySlug = new Map(journalPublicColumns.map(column => [column.slug, column]));
+        const posts = new Map();
+        for (const item of feed?.items || []) {
+          const post = publicFeed.localizePost(item, requestedLanguage, columnsBySlug.get(item?.columnSlug));
+          if (post && !posts.has(post.url)) {
+            posts.set(post.url, post);
           }
-
-          const doc =
-            new DOMParser()
-              .parseFromString(
-                await response.text(),
-                'text/html'
-              );
-
-          const now =
-            Date.now();
-
-          const seen =
-            new Set();
-
-          const posts =
-            [
-              ...doc.querySelectorAll(
-                'a.journal-post[href]'
-              )
-            ]
-              .map(link => {
-
-                const publishAt =
-                  link.dataset.publishAt;
-
-                if (
-                  publishAt &&
-                  (
-                    !Number.isFinite(
-                      Date.parse(publishAt)
-                    ) ||
-                    Date.parse(publishAt) > now
-                  )
-                ) {
-                  return null;
-                }
-
-                const target =
-                  new URL(
-                    link.getAttribute('href'),
-                    response.url
-                  );
-
-                if (
-                  target.origin !== location.origin ||
-                  seen.has(target.pathname)
-                ) {
-                  return null;
-                }
-
-                const title =
-                  link.querySelector(
-                    '.journal-post-title,.journal-post-cover-title,h2,h3'
-                  )
-                    ?.textContent
-                    ?.trim();
-
-                if (!title) {
-                  return null;
-                }
-
-                seen.add(
-                  target.pathname
-                );
-
-                const image =
-                  link.querySelector('img')
-                    ?.getAttribute('src');
-
-                const category =
-                  link.querySelector(
-                    '.journal-post-category'
-                  )
-                    ?.textContent
-                    ?.trim() || '';
-
-                const kind =
-                  (
-                    link.dataset.category ||
-                    ''
-                  ).toLowerCase();
-
-                return {
-                  url:
-                    target.pathname +
-                    target.search +
-                    target.hash,
-
-                  title,
-
-                  image: image
-                    ? new URL(
-                        image,
-                        response.url
-                      ).pathname
-                    : '',
-
-                  description:
-                    link.querySelector(
-                      '.journal-post-description'
-                    )
-                      ?.textContent
-                      ?.trim() || '',
-
-                  category,
-
-                  author:
-                    link.querySelector(
-                      '.journal-post-author'
-                    )
-                      ?.textContent
-                      ?.trim() || '',
-
-                  column:
-                    (
-                      link.dataset.column ||
-                      ''
-                    ).toLowerCase(),
-
-                  type:
-                    [
-                      'editorial',
-                      'personal',
-                      'guest',
-                      'news',
-                      'inspiration'
-                    ]
-                      .includes(kind)
-                        ? kind
-                        : 'editorial'
-                };
-              })
-              .filter(Boolean);
-
-          if (
-            requestId === journalRequest &&
-            requestedLanguage === language
-          ) {
-            journalPosts =
-              posts;
+        }
+        for (const post of staticPosts) {
+          if (!posts.has(post.url)) {
+            posts.set(post.url, post);
           }
+        }
 
-        } catch (error) {
-          console.warn(
-            'MOVE&TRY Journal:',
-            error
-          );
+        journalPosts = [...posts.values()];
+        if (!['all', 'lidija', 'nikolina'].includes(journalColumn) &&
+            !columnsBySlug.has(journalColumn)) {
+          journalColumn = 'all';
+        }
+        journalLoading = false;
 
-          if (
-            requestId === journalRequest &&
-            requestedLanguage === language
-          ) {
-            journalPosts = [];
-          }
-
-        } finally {
-          if (
-            requestId === journalRequest
-          ) {
-            journalLoading = false;
-
-            if (
-              activeTab === 'journal'
-            ) {
-              render();
-            }
-          }
+        if (activeTab === 'journal') {
+          render();
         }
       }
 
@@ -3090,8 +3019,12 @@
           whereQuery = '';
         }
 
+        const enteringJournal = tab === 'journal' && activeTab !== 'journal';
         activeTab = tab;
 
+        if (enteringJournal) {
+          loadJournalPosts();
+        }
         render();
 
         window.scrollTo({
@@ -3119,6 +3052,7 @@
         journalRequest += 1;
         journalLoading = false;
         journalPosts = null;
+        journalPublicColumns = [];
         journalFilter = 'all';
         journalColumn = 'all';
 
