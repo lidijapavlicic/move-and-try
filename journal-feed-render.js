@@ -7,16 +7,11 @@
   'use strict';
   const API='https://pdyngeaykfpybeafjtpw.supabase.co/rest/v1/rpc/journal_public_articles_feed';
   const KEY='sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK';
-  const root=document.getElementById('journal-posts');
-  const nav=document.querySelector('#journal-column-wrap .journal-columns');
-  if(!root)return;
-  const lang=document.documentElement.lang==='hr'?'hr':'en';
   const bylines=window.MoveTryJournalByline;
   const categories={
     hr:{editorial:'UREDNIČKI TEKSTOVI',personal:'KOLUMNE',guest:'GOSTUJUĆE PRIČE',news:'NOVOSTI',inspiration:'INSPIRACIJA'},
     en:{editorial:'EDITORIAL',personal:'COLUMNS',guest:'GUEST STORIES',news:'NEWS',inspiration:'INSPIRATION'}
   };
-  const added={names:{},profiles:{}};
   function el(tag,cls,txt){
     const node=document.createElement(tag);
     if(cls)node.className=cls;
@@ -38,54 +33,78 @@
       return null;
     }catch(_){return null;}
   }
-  function card(a,column){
-    if(!a || !categories[lang][a.category])return null;
+  function localizePost(a,lang,column){
+    if(!a || !Object.hasOwn(categories[lang],a.category))return null;
     const href=internalUrl(lang==='hr'?a.hrUrl:a.enUrl);
     const title=lang==='hr'?a.titleHr:a.titleEn;
-    const summary=lang==='hr'?a.excerptHr:a.excerptEn;
-    if(!href||!title||!summary)return null;
+    const description=lang==='hr'?a.excerptHr:a.excerptEn;
+    if(!href||!title||!description)return null;
+    const publishedAt=Number.isFinite(Date.parse(a.publishedAt))?a.publishedAt:'';
+    const isColumn=a.category==='personal';
+    const date=isColumn&&bylines
+      ? bylines.formatPublicationDate(publishedAt,lang)
+      : publishedAt ? new Date(publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB') : '';
+    const author=isColumn&&bylines
+      ? bylines.columnCard(a.byline,lang==='hr'?column?.title:column?.titleEn)
+      : a.byline||'MOVE&TRY Editorial';
+    return {
+      url:href,
+      title,
+      description,
+      image:publicImage(a.cover),
+      category:[categories[lang][a.category],date].filter(Boolean).join(' · '),
+      type:a.category,
+      author,
+      column:/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(a.columnSlug||'')?a.columnSlug:'',
+      publishedAt
+    };
+  }
+  async function fetchFeed(signal){
+    const res=await fetch(API,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':KEY},
+      body:'{}',
+      cache:'no-store',
+      signal
+    });
+    if(!res.ok)throw new Error('Feed '+res.status);
+    const payload=await res.json();
+    return {
+      items:Array.isArray(payload?.items)?payload.items:[],
+      columns:Array.isArray(payload?.columns)?payload.columns:[]
+    };
+  }
+  window.MoveTryJournalPublicFeed={fetchFeed,localizePost};
+
+  const root=document.getElementById('journal-posts');
+  const nav=document.querySelector('#journal-column-wrap .journal-columns');
+  if(!root)return;
+  const lang=document.documentElement.lang==='hr'?'hr':'en';
+  const added={names:{},profiles:{}};
+  function card(post){
     const node=el('a','journal-post');
-    node.href=href;
-    node.dataset.category=a.category;
+    node.href=post.url;
+    node.dataset.category=post.type;
     node.dataset.journalGenerated='true';
     node.hidden=true;
-    if(a.columnSlug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(a.columnSlug))
-      node.dataset.column=a.columnSlug;
-    if(a.publishedAt && !Number.isNaN(Date.parse(a.publishedAt)))
-      node.dataset.publishAt=a.publishedAt;
-    const cover=publicImage(a.cover);
-    if(cover){
+    if(post.column)node.dataset.column=post.column;
+    if(post.publishedAt)node.dataset.publishAt=post.publishedAt;
+    if(post.image){
       const photo=el('img','journal-post-image');
-      photo.src=cover;photo.alt=String(title);photo.loading='lazy';
+      photo.src=post.image;photo.alt=String(post.title);photo.loading='lazy';
       node.append(photo);
     }
     const copy=el('div','journal-post-copy');
-    const isColumn=a.category==='personal';
-    const dt=isColumn&&bylines
-      ? bylines.formatPublicationDate(a.publishedAt,lang)
-      : a.publishedAt ? new Date(a.publishedAt).toLocaleDateString(lang==='hr'?'hr-HR':'en-GB') : '';
-    copy.append(el('span','journal-post-category',categories[lang][a.category]+' · '+dt));
-    copy.append(el('h3','journal-post-title',title));
-    copy.append(el('p','journal-post-description',summary));
-    const byline=isColumn&&bylines
-      ? bylines.columnCard(a.byline,lang==='hr'?column?.title:column?.titleEn)
-      : a.byline||'MOVE&TRY Editorial';
-    copy.append(el('span','journal-post-author',byline));
+    copy.append(el('span','journal-post-category',post.category));
+    copy.append(el('h3','journal-post-title',post.title));
+    copy.append(el('p','journal-post-description',post.description));
+    copy.append(el('span','journal-post-author',post.author));
     node.append(copy);
     return node;
   }
   async function load(){
     try{
-      const res=await fetch(API,{
-        method:'POST',
-        headers:{'Content-Type':'application/json','apikey':KEY},
-        body:'{}',
-        cache:'no-store'
-      });
-      if(!res.ok)throw new Error('Feed '+res.status);
-      const payload=await res.json();
-      const items=Array.isArray(payload?.items)?payload.items:[];
-      const columns=Array.isArray(payload?.columns)?payload.columns:[];
+      const {items,columns}=await fetchFeed();
       const columnsBySlug=new Map(columns.filter(column=>column?.listed===true)
         .map(column=>[column.slug,column]));
       const known=new Set([...root.querySelectorAll('.journal-post:not([data-journal-generated])')]
@@ -93,8 +112,11 @@
       root.querySelectorAll('[data-journal-generated]').forEach(x=>x.remove());
       const fragment=document.createDocumentFragment();
       for(const a of items){
-        const node=card(a,columnsBySlug.get(a?.columnSlug));
-        if(node&&!known.has(node.getAttribute('href')))fragment.append(node);
+        const post=localizePost(a,lang,columnsBySlug.get(a?.columnSlug));
+        if(post&&!known.has(post.url)){
+          known.add(post.url);
+          fragment.append(card(post));
+        }
       }
       root.prepend(fragment);
       if(nav){
