@@ -448,7 +448,7 @@
       if (canEditOwn || canEditAsAdmin) {
         items.appendChild(makeButton('Uredi', () => {
           menu.open = false;
-          openEditor(article, !canEditOwn);
+          openEditor(article, canEditAsAdmin);
         }));
       }
       if (canDelete) {
@@ -1628,7 +1628,7 @@
       }
     }
 
-    if (canEditArticle(article)) {
+    if (canEditArticle(article) && !canAdminEditArticle(article)) {
       actions.appendChild(
         makeButton(
           'UREDI SVOJ ČLANAK',

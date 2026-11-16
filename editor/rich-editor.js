@@ -23,8 +23,10 @@
   let previousOverflow = '';
 
   function validUrl(value, forImage) {
+    const raw = String(value || '').trim();
+    if (!raw) return null;
     try {
-      const url = new URL(String(value || '').trim(), location.origin);
+      const url = new URL(raw, location.origin);
       if (url.protocol === 'https:' || (!forImage && url.protocol === 'mailto:')) {
         return url.href;
       }
@@ -285,16 +287,30 @@
       const selection = window.getSelection();
       if (!selection?.rangeCount || selection.isCollapsed) return false;
       const range = selection.getRangeAt(0);
-      const start = parentBlock(range.startContainer);
-      const end = parentBlock(range.endContainer);
+      let start = parentBlock(range.startContainer);
+      let end = parentBlock(range.endContainer);
+
+      if (!range.toString().trim()) return true;
+
+      // Browsers can leave the first typed paragraph as a bare text node.
+      const text = range.startContainer;
+      if (text === range.endContainer && text.nodeType === Node.TEXT_NODE && text.parentNode === canvas) {
+        const { startOffset, endOffset } = range;
+        const paragraph = document.createElement('p');
+        text.before(paragraph);
+        paragraph.append(text);
+        range.setStart(text, startOffset);
+        range.setEnd(text, endOffset);
+        start = end = paragraph;
+      }
 
       // Never silently alter an adjacent paragraph when selection spans blocks.
-      if (!start || start !== end || start.tagName !== 'P') {
+      const isParagraph = start?.tagName === 'P' ||
+        (start?.tagName === 'DIV' && !start.querySelector('div,p,blockquote,h2,h3,ul,ol,figure,hr'));
+      if (!isParagraph || start !== end) {
         alert('Za istaknutu misao označi tekst unutar jednog odlomka.');
         return true;
       }
-      if (!range.toString().trim()) return true;
-
       const beforeRange = document.createRange();
       beforeRange.selectNodeContents(start);
       beforeRange.setEnd(range.startContainer, range.startOffset);
@@ -467,7 +483,22 @@
       canvas.focus();
     }, 'mt-rich-divider-button'));
 
-    bar.append(button('PREGLEDAJ ČLANAK','Završni pregled preko cijelog ekrana',openPreview,'mt-rich-preview-button'));
+    const previewMessage = document.createElement('p');
+    previewMessage.className = 'message error';
+    previewMessage.setAttribute('role', 'status');
+    previewMessage.hidden = true;
+    wrapper.insertBefore(previewMessage, paper);
+    bar.append(button('PREGLEDAJ ČLANAK','Završni pregled preko cijelog ekrana',event => {
+      previewMessage.hidden = true;
+      previewMessage.textContent = '';
+      try {
+        openPreview(spec.lang, event.currentTarget);
+      } catch (error) {
+        console.warn('Journal preview:', error);
+        previewMessage.hidden = false;
+        previewMessage.textContent = 'Pregled se nije otvorio. Tekst možeš nastaviti uređivati.';
+      }
+    },'mt-rich-preview-button'));
 
     instance.sync = sync;
 
@@ -569,6 +600,9 @@
       cover.hidden = true;
       coverNotice.hidden = false;
     });
+    cover.addEventListener('mt-media-error', () => {
+      coverNotice.hidden = false;
+    });
     const body = document.createElement('div');
     body.className = 'mt-rich-reader-body';
     article.append(kicker,title,excerpt,byline,cover,coverNotice,body);
@@ -594,17 +628,19 @@
     r.cover.hidden = true;
     r.coverNotice.hidden = true;
     r.cover.removeAttribute('src');
+    delete r.cover.dataset.mtMediaRequested;
     const coverRef=$('article-cover').value.trim();
     if(window.MoveTryJournalMedia?.isMediaRef(coverRef)){
       r.cover.dataset.mtMediaRequested=coverRef;
       r.cover.alt='Naslovna fotografija';
-      r.cover.addEventListener('mt-media-error',() => {r.coverNotice.hidden=false;},{once:true});
       void window.MoveTryJournalMedia.setImage(r.cover,coverRef);
     }else{
       const coverUrl=validUrl(coverRef,true);
       if(coverUrl){r.cover.src=coverUrl;r.cover.alt='Naslovna fotografija';r.cover.hidden=false;}
     }
-    render(r.body,$(en?'article-content-en':'article-content').value);
+    const fieldId = en ? 'article-content-en' : 'article-content';
+    const instance = instances.find(item => item.spec.field === fieldId);
+    render(r.body, instance ? serialize(instance.canvas) : $(fieldId).value);
     // Column title is the kicker; author signature is placed below the excerpt.
     const columnHeading=$('article-column-title-preview');
     const section=columnHeading?.textContent || 'THE JOURNAL';
@@ -625,15 +661,12 @@
     }
   }
 
-  function openPreview(){
+  function openPreview(language, trigger){
     buildPreview();
-    for (const instance of instances) {
-      if (instance.field.value !== serialize(instance.canvas)) instance.field.value=serialize(instance.canvas);
-    }
-    priorFocus = document.activeElement;
-    previewLanguage='hr';
+    previewLanguage=language;
     previewDevice='desktop';
     paintPreview();
+    priorFocus=trigger;
     previousOverflow=document.body.style.overflow;
     document.body.style.overflow='hidden';
     preview.hidden=false;
