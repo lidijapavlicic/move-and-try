@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/favicon.png">
+
   <title>Try Drawing and Painting | MOVE&amp;TRY</title>
   <meta name="description" content="Start with an object in front of you. See what you can do with a pencil or a little colour.">
 
@@ -14,7 +15,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="/app/app-navigation.css">
   <link rel="stylesheet" href="/consent.css">
@@ -25,7 +26,6 @@
       --try-green-soft: #b7c5b3;
       --try-paper: #f7f7f4;
       --try-ink: #202420;
-      --try-border: #d9ddd5;
       width: 100%;
       max-width: none;
       margin: 0;
@@ -82,6 +82,24 @@
     .mt-editorial-try .try-editorial-hero-inner {
       width: min(100%, 1100px);
       margin: 0 auto;
+    }
+
+    .mt-editorial-try .try-editorial-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, .22);
+    }
+
+    .mt-editorial-try .try-editorial-top span {
+      color: var(--try-green-soft);
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
     }
 
     .mt-editorial-try .try-editorial-category {
@@ -149,6 +167,16 @@
       margin-bottom: 0;
     }
 
+    .mt-editorial-try .section-label {
+      display: block;
+      margin: 0 0 14px;
+      color: #607665;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .17em;
+    }
+
     .mt-editorial-try .try-section h2 {
       margin: 0 0 26px;
       color: #18231b;
@@ -177,16 +205,129 @@
       margin: 0 auto;
     }
 
+    .mt-editorial-try .try-section.verdict .section-label {
+      color: var(--try-green-soft);
+    }
+
     .mt-editorial-try .try-section.verdict h2 {
       margin: 0 0 27px;
       color: #fff;
-      font-family: 'DM Serif Display', Georgia, serif;
       font-size: clamp(36px, 5vw, 60px);
-      font-weight: 400;
     }
 
     .mt-editorial-try .try-section.verdict p {
       color: rgba(255, 255, 255, .85);
+    }
+
+    .mt-editorial-try .verdict-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 34px 0;
+    }
+
+    .mt-editorial-try .verdict-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 210px;
+      padding: 25px 16px;
+      background: rgba(255, 255, 255, .09);
+      border: 1px solid rgba(255, 255, 255, .28);
+      color: #fff;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .mt-editorial-try .verdict-card:hover,
+    .mt-editorial-try .verdict-card.selected {
+      background: rgba(255, 255, 255, .16);
+    }
+
+    .mt-editorial-try .verdict-card.selected {
+      border-color: var(--try-green-soft);
+    }
+
+    .mt-editorial-try .verdict-card:disabled {
+      cursor: default;
+    }
+
+    .mt-editorial-try .verdict-icon {
+      display: block;
+      margin-bottom: 13px;
+      font-size: 27px;
+    }
+
+    .mt-editorial-try .verdict-card h3 {
+      margin: 0 0 12px;
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .mt-editorial-try .try-section.verdict .verdict-card p {
+      margin: 0 0 14px;
+      color: rgba(255, 255, 255, .80);
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .mt-editorial-try .verdict-count {
+      display: block;
+      margin-top: auto;
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .mt-editorial-try .tried-counter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      margin: 40px 0 20px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .mt-editorial-try .tried-counter strong {
+      color: #fff;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 54px;
+      font-weight: 400;
+    }
+
+    .mt-editorial-try .tried-counter span {
+      color: var(--try-green-soft);
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .15em;
+    }
+
+    .mt-editorial-try .try-section.verdict .verdict-message {
+      min-height: 24px;
+      color: #e2e9df;
+      text-align: center;
+    }
+
+    .mt-editorial-try .try-section.verdict .try-highlight {
+      margin: 42px 0 38px;
+      padding: 0;
+      border: 0;
+      color: #fff;
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(27px, 3vw, 36px);
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .mt-editorial-try .try-verdict-inner > p:has(.verdict-link) {
+      margin: 0;
+      text-align: center;
     }
 
     .mt-editorial-try .verdict-link {
@@ -246,6 +387,14 @@
         padding: 67px 20px 76px;
       }
 
+      .mt-editorial-try .verdict-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mt-editorial-try .verdict-card {
+        min-height: 0;
+      }
+
       .site-header .header-behind-link {
         display: none !important;
       }
@@ -268,11 +417,13 @@
 
   <div class="header-actions">
     <a href="/behind-move-and-try.html" class="header-behind-link">BEHIND MOVE &amp; TRY</a>
+
     <div class="header-language">
       <span class="language-active">EN</span>
       <span>|</span>
       <a href="/hr/drawing-and-painting-for-adults-guide.html" onclick="setLanguage('hr')">HR</a>
     </div>
+
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span>
       <span></span>
@@ -288,6 +439,7 @@
     <a href="/journal.html">THE JOURNAL</a>
     <a href="/behind-move-and-try.html">BEHIND MOVE &amp; TRY</a>
   </nav>
+
   <div class="mobile-menu-language">
     <span class="language-active">EN</span>
     <span>|</span>
@@ -302,6 +454,10 @@
 
   <header class="try-editorial-hero">
     <div class="try-editorial-hero-inner">
+      <div class="try-editorial-top">
+        <span>MOVE &amp; TRY / THE GUIDE</span>
+        <span>CREATE · DRAWING AND PAINTING FOR ADULTS</span>
+      </div>
       <p class="try-editorial-category">TRY · CREATE</p>
       <h1>YOUR FIRST DRAWING OR PAINTING.</h1>
       <p class="try-editorial-intro">Start with an object in front of you. See what you can do with a pencil or a little colour.</p>
@@ -311,26 +467,63 @@
 
   <div class="try-editorial-article">
     <section class="try-section" id="first-step">
+      <p class="section-label">01 / YOUR FIRST SUBJECT</p>
       <h2>START WITH SOMETHING IN FRONT OF YOU.</h2>
       <p>Choose a cup, a pear or a small branch. Look at how tall it is compared with its width and notice where the light comes from. Sketch its overall shape lightly, then add the details.</p>
     </section>
 
     <section class="try-section">
+      <p class="section-label">02 / WORKING WITH COLOUR</p>
       <h2>TRY THE SAME SUBJECT IN COLOUR.</h2>
       <p>Choose two or three colours and see what tones you can mix. Paint an area in the light and an area in shadow. See what changes when you soften the edge of the shadow.</p>
     </section>
 
     <section class="try-section">
+      <p class="section-label">03 / WORKING IN A STUDIO</p>
       <h2>IF YOU WOULD LIKE SOME GUIDANCE.</h2>
       <p>When you contact a studio, tell them what you want to try and whether you have any experience. If you like the idea of drawing and painting, ask which to start with and what to bring to your first class.</p>
+      <p><a href="/drawing-and-painting-for-adults-where-to-try.html">FIND WHERE TO TRY →</a></p>
     </section>
   </div>
 
-  <section class="try-section verdict">
+  <section class="try-section verdict" data-try-slug="drawing-and-painting-for-adults">
     <div class="try-verdict-inner">
-      <h2>WANT TO TRY IT IN A STUDIO?</h2>
-      <p>Explore drawing and painting courses for adults at Bakart Studio.</p>
-      <a href="/drawing-and-painting-for-adults-where-to-try.html" class="verdict-link">FIND WHERE TO TRY →</a>
+      <p class="section-label">04 / THE VERDICT</p>
+      <h2>HOW DID IT GO?</h2>
+      <p>Have you tried drawing or painting?</p>
+
+      <div class="verdict-grid">
+        <button type="button" class="verdict-card" data-verdict="loved">
+          <span class="verdict-icon" aria-hidden="true">❤️</span>
+          <h3>I LOVED IT</h3>
+          <p>I’m already thinking about my next subject.</p>
+          <span class="verdict-count" id="count-loved">0</span>
+        </button>
+
+        <button type="button" class="verdict-card" data-verdict="unsure">
+          <span class="verdict-icon" aria-hidden="true">🤔</span>
+          <h3>IT WAS INTERESTING</h3>
+          <p>I might try a different technique next time.</p>
+          <span class="verdict-count" id="count-unsure">0</span>
+        </button>
+
+        <button type="button" class="verdict-card" data-verdict="hated">
+          <span class="verdict-icon" aria-hidden="true">😄</span>
+          <h3>NOT FOR ME</h3>
+          <p>Now I know. It was worth a try.</p>
+          <span class="verdict-count" id="count-hated">0</span>
+        </button>
+      </div>
+
+      <div class="tried-counter">
+        <strong id="total-tried">0</strong>
+        <span>PEOPLE HAVE TRIED THIS</span>
+      </div>
+
+      <p class="verdict-message" id="verdict-message" aria-live="polite"></p>
+
+      <p class="try-highlight">Have a story about your first try?</p>
+      <p><a class="verdict-link" href="/share-experience.html">SHARE YOUR EXPERIENCE →</a></p>
     </div>
   </section>
 
