@@ -129,6 +129,25 @@ const divider = () => ({
   margin: [0, 15, 0, 17]
 });
 
+function articleQr(url) {
+  const size = 90;
+  return {
+    margin: [0, 12, 0, 0],
+    unbreakable: true,
+    stack: [
+      // The SVG reserves the space and supplies the link annotation.
+      // The QR is drawn over it without taking up additional page space.
+      {
+        svg: '<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"></svg>',
+        width: size,
+        alignment: 'center',
+        link: url
+      },
+      { qr: url, fit: size, eccLevel: 'M', alignment: 'center', relativePosition: { x: 0, y: -size } }
+    ]
+  };
+}
+
 async function pdfBlock(node, media) {
   switch (node.tagName) {
     case 'P':
@@ -202,8 +221,7 @@ export async function makePublishedPdf(html, language, articleUrl, imageFiles = 
     byline && { text: byline, style: 'byline' },
     coverBlock,
     ...blocks,
-    { text: language === 'hr' ? 'Pročitaj na MOVE&TRY' : 'Read on MOVE&TRY',
-      link: articleUrl, style: 'sourceLink' }
+    articleQr(articleUrl)
   ].filter(Boolean);
   const definition = {
     pageSize: 'A4',
@@ -219,8 +237,7 @@ export async function makePublishedPdf(html, language, articleUrl, imageFiles = 
       heading: { font: serif, fontSize: 24, margin: [0, 12, 0, 8] },
       subheading: { font: serif, fontSize: 18, margin: [0, 8, 0, 7] },
       quote: { font: serif, fontSize: 18, lineHeight: 1.35, color: '#282f27' },
-      caption: { fontSize: 9, alignment: 'center', color: '#6a6e67', margin: [0, 0, 0, 12] },
-      sourceLink: { fontSize: 9, color: '#45594a', decoration: 'underline', margin: [0, 12, 0, 0] }
+      caption: { fontSize: 9, alignment: 'center', color: '#6a6e67', margin: [0, 0, 0, 12] }
     },
     footer: (page, pages) => ({
       text: 'THE JOURNAL · MOVE&TRY                                  ' + page + ' / ' + pages,
