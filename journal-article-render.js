@@ -77,8 +77,12 @@
       if(block.startsWith('## ')){const h=document.createElement('h2');inline(h,block.slice(3));container.append(h);continue;}
       if(block.startsWith('### ')){const h=document.createElement('h3');inline(h,block.slice(4));container.append(h);continue;}
       if(block.startsWith('> ')){
-        const quote=document.createElement('p');quote.className='journal-article-highlight';
-        inline(quote,block.split('\n').map(line=>line.replace(/^>\s?/,'')).join(' '));
+        const quote=document.createElement('blockquote');
+        quote.className='journal-article-highlight';
+        block.split('\n').forEach((line,index)=>{
+          if(index)quote.append(document.createElement('br'));
+          inline(quote,line.replace(/^>\s?/,''));
+        });
         container.append(quote);continue;
       }
       const lines=block.split('\n');
@@ -92,6 +96,11 @@
       lines.forEach((line,i)=>{if(i)p.append(document.createElement('br'));inline(p,line);});
       container.append(p);
     }
+  }
+  const editorOrigin='https://editor.moveandtry.com';
+  const embedded=document.documentElement.classList.contains('journal-embedded');
+  function notifyEditor(status,id){
+    if(embedded)window.parent.postMessage({type:'moveandtry-journal-article',status,id,lang},editorOrigin);
   }
   async function init(){
     const id=new URLSearchParams(location.search).get('id');
@@ -107,11 +116,11 @@
       });
       if(!res.ok)throw Error(String(res.status));
       const a=await res.json();
-      if(!a){$('journal-public-error').textContent=messages.notFound;return;}
+      if(!a){$('journal-public-error').textContent=messages.notFound;notifyEditor('unavailable',id);return;}
       const title=lang==='hr'?a.titleHr:a.titleEn;
       const excerpt=lang==='hr'?a.excerptHr:a.excerptEn;
       const content=lang==='hr'?a.contentHr:a.contentEn;
-      if(!title||!content){$('journal-public-error').textContent=messages.notFound;return;}
+      if(!title||!content){$('journal-public-error').textContent=messages.notFound;notifyEditor('unavailable',id);return;}
       document.title=title+' | The Journal | MOVE&TRY';
       $('journal-public-heading').textContent=title;
       $('journal-public-intro').textContent=excerpt||'';
@@ -169,10 +178,45 @@
       if(meta)meta.setAttribute('content',excerpt||title);
       $('journal-public-article').hidden=false;
       $('journal-public-error').hidden=true;
+      if(embedded){
+        for(const link of $('journal-public-article').querySelectorAll('a[href]')){
+          link.target='_blank';
+          link.rel='noopener noreferrer';
+        }
+        notifyEditor('ready',id);
+      }
     }catch(e){
       $('journal-public-error').textContent=messages.error;
+      notifyEditor('error',id);
       console.warn('Public article load failed',e);
     }
+  }
+  if(embedded){
+    window.addEventListener('message',async event=>{
+      if(event.origin!==editorOrigin||event.source!==window.parent||event.data?.type!=='moveandtry-journal-pdf')return;
+      const id=new URLSearchParams(location.search).get('id');
+      const article=$('journal-public-article');
+      if(event.data.id!==id||event.data.lang!==lang||article.hidden)return;
+      const copy=article.cloneNode(true);
+      for(const element of copy.querySelectorAll('a[href],img[src]')){
+        const attr=element.tagName==='A'?'href':'src';
+        element.setAttribute(attr,new URL(element.getAttribute(attr),location.href).href);
+      }
+      const imageUrls=new Set([...copy.querySelectorAll('img[src]')].map(image=>image.src));
+      const images=await Promise.all([...imageUrls].map(async url=>{
+        if(new URL(url).origin!==location.origin||!safeUrl(url,true))return null;
+        try{
+          const response=await fetch(url,{
+            credentials:'omit',signal:AbortSignal.timeout(7500)
+          });
+          return response.ok?[url,await response.blob()]:null;
+        }catch(_){return null;}
+      }));
+      window.parent.postMessage({
+        type:'moveandtry-journal-pdf-source',
+        id,lang,requestId:event.data.requestId,html:copy.outerHTML,images:images.filter(Boolean)
+      },editorOrigin);
+    });
   }
   void init();
 })();

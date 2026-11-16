@@ -91,12 +91,6 @@
   font:400 clamp(21px,3vw,25px)/1.35 "DM Serif Display",Georgia,serif;
   margin:24px 0 12px;
 }
-.mt-rich-canvas blockquote,.mt-rich-reader-body blockquote {
-  margin:40px 0 43px;padding:10px 0 10px 27px;
-  border-left:2px solid #6f7967;
-  font:400 clamp(22px,3vw,29px)/1.48 "DM Serif Display",Georgia,serif;
-  color:#282f27;
-}
 .mt-rich-canvas ul,.mt-rich-canvas ol,.mt-rich-reader-body ul,.mt-rich-reader-body ol {
   margin:10px 0 20px;padding-left:26px;
 }

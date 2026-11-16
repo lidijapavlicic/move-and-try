@@ -1,0 +1,9 @@
+.mt-rich-canvas blockquote,
+.mt-rich-reader-body blockquote,
+.journal-article-content .journal-article-highlight {
+  margin: 40px 0 43px;
+  padding: 10px 0 10px 27px;
+  border-left: 2px solid #6f7967;
+  font: 400 clamp(22px, 3vw, 29px)/1.48 "DM Serif Display", Georgia, serif;
+  color: #282f27;
+}
