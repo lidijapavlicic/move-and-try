@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="/consent.css">
   <link rel="stylesheet" href="/app/app-navigation.css">
+
   <style>
     .header-behind-link {
       color: #555;
@@ -143,26 +144,32 @@
     }
   </style>
 </head>
+
 <body>
+
 <header class="site-header">
-  <a href="/hr/" class="site-logo" aria-label="MOVE&amp;TRY – početna">
-    <img src="/images/move-and-try-logo.png" alt="MOVE&amp;TRY">
+  <a href="/hr/" class="site-logo" aria-label="MOVE&TRY – početna">
+    <img src="/images/move-and-try-logo.png" alt="MOVE&TRY">
   </a>
+
   <nav class="desktop-nav">
     <a href="/hr/#find-your-try">OTKRIJ</a>
     <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
     <a href="/hr/where-to-try.html">GDJE PROBATI</a>
     <a href="/hr/journal.html">THE JOURNAL</a>
   </nav>
+
   <div class="header-actions">
     <a href="/hr/behind-move-and-try.html" class="header-behind-link">
-      IZA MOVE &amp; TRY
+      IZA MOVE & TRY
     </a>
+
     <div class="header-language">
       <a href="/drawing-and-painting-for-adults.html" onclick="setLanguage('en')">EN</a>
       <span>|</span>
       <span class="language-active">HR</span>
     </div>
+
     <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
       <span></span>
       <span></span>
@@ -176,8 +183,9 @@
     <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
     <a href="/hr/where-to-try.html">GDJE PROBATI</a>
     <a href="/hr/journal.html">THE JOURNAL</a>
-    <a href="/hr/behind-move-and-try.html">IZA MOVE &amp; TRY</a>
+    <a href="/hr/behind-move-and-try.html">IZA MOVE & TRY</a>
   </nav>
+
   <div class="mobile-menu-language">
     <a href="/drawing-and-painting-for-adults.html" onclick="setLanguage('en')">EN</a>
     <span>|</span>
@@ -196,19 +204,19 @@
 
     <p class="activity-page-type">CREATE</p>
     <h1>CRTANJE I SLIKANJE ZA ODRASLE</h1>
-    <p class="activity-page-intro">
-      Od prve linije do prvog poteza kistom.<br>
-      <strong>Izaberi motiv koji želiš nacrtati ili naslikati.</strong>
-    </p>
+    <p class="activity-page-intro">Od prve linije do prvog poteza kistom.<br><strong>Izaberi motiv koji želiš nacrtati ili naslikati.</strong></p>
 
     <div class="activity-nav">
       <a href="/hr/drawing-and-painting-for-adults-guide.html" class="activity-nav-active">VODIČ ✓</a>
+      <span>ISKUSTVA</span>
+      <span>RIJEČ STRUČNJAKA</span>
       <a href="/hr/drawing-and-painting-for-adults-where-to-try.html" class="activity-nav-active">GDJE PROBATI ✓</a>
     </div>
   </header>
 
   <section class="activity-content-section">
     <h2>ODABERI SVOJ PRVI MOTIV.</h2>
+
     <div class="activity-content-grid">
       <a href="/hr/drawing-and-painting-for-adults-guide.html" class="content-card">
         <span class="content-card-type">VODIČ ✓</span>
@@ -216,6 +224,20 @@
         <p>Uz jednostavan motiv isprobaj odnos oblika, svjetla i sjene ili pogledaj što možeš dobiti miješanjem boja.</p>
         <span class="content-card-action">PROČITAJ VODIČ →</span>
       </a>
+
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">ISKUSTVA</span>
+        <h3>KAKO JE IZGLEDAO PRVI SAT?</h3>
+        <p>Priče polaznika o prvom crtežu, prvoj slici i povratku crtanju ili slikanju nakon pauze.</p>
+        <span class="content-card-status">USKORO</span>
+      </div>
+
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">RIJEČ STRUČNJAKA</span>
+        <h3>ŠTO POMAŽE KAD TEK KREĆEŠ?</h3>
+        <p>Savjeti iz likovne prakse o izboru prvog motiva, materijalima i tehnikama.</p>
+        <span class="content-card-status">USKORO</span>
+      </div>
 
       <a href="/hr/drawing-and-painting-for-adults-where-to-try.html" class="content-card">
         <span class="content-card-type">GDJE PROBATI ✓</span>
@@ -229,6 +251,7 @@
 
 <script src="../script.js"></script>
 <script src="/app/app-navigation.js" defer></script>
+
 <script>
   if (
     'serviceWorker' in navigator &&
@@ -244,6 +267,8 @@
     });
   }
 </script>
+
 <script src="/consent.js" defer></script>
+
 </body>
 </html>
