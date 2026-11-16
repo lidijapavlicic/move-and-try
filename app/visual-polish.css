@@ -124,3 +124,14 @@
 .app-where-photo[data-image-fit="contain"] {
   background: #f1f0e9;
 }
+
+/* Keep the palette in frame on the Bakart Studio card. */
+.app-where-card[href$="/drawing-and-painting-for-adults-where-to-try.html"] .app-where-photo {
+  position: relative;
+}
+
+.app-where-card[href$="/drawing-and-painting-for-adults-where-to-try.html"] .app-where-photo img {
+  position: absolute;
+  inset: 0;
+  object-position: center 65%;
+}
