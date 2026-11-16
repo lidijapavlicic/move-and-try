@@ -37,6 +37,7 @@
 
   <link rel="stylesheet" href="./editor.css">
 <link rel="stylesheet" href="./rich-editor.css">
+<link rel="stylesheet" href="./journal-highlight.css">
 <link rel="stylesheet" href="./journal-end-blocks.css">
 </head>
 <body>
@@ -238,9 +239,24 @@
     </section>
 
     <section id="tab-published" class="section" hidden>
-      <p class="eyebrow" id="published-section-label">OBJAVLJENI RADOVI</p>
+      <p class="eyebrow" id="published-section-label">THE JOURNAL · OBJAVLJENO</p>
       <h2 id="published-section-title">Objavljeni članci</h2>
       <div id="published-articles" class="article-list"></div>
+      <section id="published-reader" hidden aria-label="Prikaz objavljenog članka">
+        <div class="published-reader-actions">
+          <div class="actions" role="group" aria-label="Jezik članka">
+            <button class="btn secondary small-btn" id="published-hr" type="button" aria-pressed="true">HR</button>
+            <button class="btn secondary small-btn" id="published-en" type="button" aria-pressed="false">EN</button>
+          </div>
+          <div class="actions">
+            <a class="btn secondary small-btn" id="published-web" target="_blank" rel="noopener noreferrer">OTVORI NA WEBU ↗</a>
+            <button class="btn green small-btn" id="published-pdf" type="button" disabled>PREUZMI PDF</button>
+            <button class="btn secondary small-btn" id="published-close" type="button">ZATVORI</button>
+          </div>
+        </div>
+        <p class="message" id="published-message" role="status"></p>
+        <div id="published-frame"></div>
+      </section>
     </section>
 
     <section id="tab-pending" class="section" hidden>
@@ -548,6 +564,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
   <script src="./journal-byline.js"></script>
+  <script src="./journal-published.js"></script>
   <script src="./editor.js"></script>
 <script src="./journal-end-blocks.js" defer></script>
 <script src="./rich-editor.js" defer></script>

@@ -553,3 +553,23 @@
   .journal-directory-actions .btn{font-size:10px}
   .journal-entry-form-head{align-items:center}
 }
+
+.published-reader-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.published-reader-actions .actions { margin: 0; }
+.published-reader-actions [aria-pressed="true"] {
+  background: var(--green, #687b61);
+  border-color: var(--green, #687b61);
+  color: #fff;
+}
+#published-frame iframe {
+  display: block;
+  width: 100%;
+  height: min(72vh, 920px);
+  border: 1px solid var(--line, #dcded6);
+}

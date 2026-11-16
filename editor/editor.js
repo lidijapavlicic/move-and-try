@@ -158,6 +158,7 @@
   myArticlesSection.insertBefore(myFilters, myArticlesList);
 
   function showView(name) {
+    if (name !== 'dashboard') window.MoveTryJournalPublished?.close();
     Object.entries(views).forEach(([key, element]) => {
       element.hidden = key !== name;
     });
@@ -503,19 +504,20 @@
   }
 
   function renderPublishedArticles() {
-    // This tab is intentionally read-only and never displays other authors'
-    // publications to a non-admin user.
+    const now = Date.now();
     const published = articles.filter(article =>
-      article.status === 'published' &&
-      (isAdmin() || isMyArticle(article))
+      ((article.status === 'published' && Date.parse(article.published_at || article.updated_at) <= now) ||
+        (article.status === 'scheduled' && Date.parse(article.scheduled_at) <= now)) &&
+      (isAdmin() || article.author_id === currentUser?.id)
     );
     $('published-section-title').textContent = isAdmin()
       ? 'Svi objavljeni članci'
       : 'Moji objavljeni članci';
-    $('published-section-label').textContent = isAdmin()
-      ? 'THE JOURNAL · OBJAVLJENO'
-      : 'MOJI OBJAVLJENI RADOVI';
-    renderArticleList('published-articles', published);
+    if (window.MoveTryJournalPublished) {
+      window.MoveTryJournalPublished.render(published);
+    } else {
+      renderArticleList('published-articles', published);
+    }
   }
 
   function renderMyArticles() {
@@ -1105,6 +1107,8 @@
     }
 
     activeTab = name;
+    $('new-article-btn').hidden = name === 'published';
+    window.MoveTryJournalPublished?.close();
 
     allowed.forEach(tab => {
       $('tab-' + tab).hidden = tab !== name;
