@@ -8,6 +8,12 @@ const SUPABASE_KEY = "sb_publishable_liv_WfA9YbjizQvpOrB68w_mkVgR_WK";
 
 function getTrySlug() {
 
+    const guideSlug = document.querySelector('.verdict[data-try-slug]')?.dataset.trySlug;
+
+    if (guideSlug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(guideSlug)) {
+        return guideSlug;
+    }
+
     const path = window.location.pathname.toLowerCase();
 
     const fileName =

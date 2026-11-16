@@ -128,12 +128,12 @@
       background-position: center;
     }
 
-    /* CREATIVE WORKSHOPS WITH CHILDREN */
-    .home-intro .whats-new .new-card.latest-update-creative-workshops {
+    /* DRAWING AND PAINTING FOR ADULTS */
+    .home-intro .whats-new .new-card.latest-update-drawing {
       background: #171717;
     }
 
-    .home-intro .whats-new .new-card.latest-update-creative-workshops::before {
+    .home-intro .whats-new .new-card.latest-update-drawing::before {
       background-image:
         linear-gradient(
           180deg,
@@ -141,11 +141,11 @@
           rgba(8,8,9,.60) 48%,
           rgba(8,8,9,.91) 100%
         ),
-        url('/images/creative-workshops-with-children-1.jpg');
-      background-position: center;
+        url('/images/drawing-and-painting-for-adults-sketch.jpg');
+      background-position: center 55%;
     }
 
-    .home-intro .whats-new .new-card.latest-update-creative-workshops::after {
+    .home-intro .whats-new .new-card.latest-update-drawing::after {
       background-image:
         linear-gradient(
           180deg,
@@ -153,8 +153,8 @@
           rgba(8,8,9,.60) 48%,
           rgba(8,8,9,.91) 100%
         ),
-        url('/images/creative-workshops-with-children-2.jpg');
-      background-position: center;
+        url('/images/drawing-and-painting-for-adults-palette.jpg');
+      background-position: center 58%;
     }
 
     /* CHILD AND ADOLESCENT PSYCHOTHERAPY */
@@ -667,19 +667,10 @@
     }
 
     #where-to-try .where-home-current {
-      display: inline-block;
+      margin: 0;
       color: #1f2a18;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .05em;
+      font-size: 12px;
       line-height: 1.6;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      transition: opacity .2s ease;
-    }
-
-    #where-to-try .where-home-current:hover {
-      opacity: .55;
     }
 
     .mobile-privacy-link {
@@ -844,6 +835,13 @@
             TO DISCOVER.
           </h2>
 
+          <a href="/drawing-and-painting-for-adults-where-to-try.html" class="new-card latest-update-card latest-update-drawing">
+            <span class="new-type">CREATE · WHERE TO TRY</span>
+            <h3>DRAWING AND PAINTING FOR ADULTS</h3>
+            <p>Start with a sketch or a brushstroke and find out where you can try it with guidance in Zagreb.</p>
+            <span class="new-action">FIND WHERE TO TRY →</span>
+          </a>
+
           <a
             href="/mosaic-making.html"
             class="new-card latest-update-card latest-update-mosaic"
@@ -857,18 +855,7 @@
             <span class="new-action">EXPLORE MOSAIC MAKING →</span>
           </a>
 
-          <a
-            href="/creative-workshops-with-children-guide.html"
-            class="new-card latest-update-card latest-update-creative-workshops"
-          >
-            <span class="new-type">CREATE · GUIDE</span>
-            <h3>CREATIVE WORKSHOPS WITH CHILDREN</h3>
-            <p>
-              A short, easy guide to creating together,
-              having fun with your child and trying something creative.
-            </p>
-            <span class="new-action">READ THE GUIDE →</span>
-          </a>
+          
         </div>
       </div>
     </div>
@@ -1042,9 +1029,7 @@
             FIND WHERE TO TRY →
           </a>
 
-          <a href="/where-to-try.html" class="where-home-current">
-            CURRENTLY AVAILABLE: MOSAIC MAKING · CREATIVE WORKSHOPS WITH CHILDREN · TUFTING · NATURAL PERFUME MAKING · CHILD &amp; ADOLESCENT PSYCHOTHERAPY →
-          </a>
+          <p class="where-home-current">Explore workshops, courses and other places to try something new.</p>
         </div>
       </div>
     </div>
@@ -1120,7 +1105,8 @@
         "/natural-perfume-making.html",
         "/tufting.html",
         "/child-adolescent-psychotherapy.html",
-        "/mosaic-making.html"
+        "/mosaic-making.html",
+        "/drawing-and-painting-for-adults.html"
       ];
 
       const storageKey = "moveAndTryLastSurpriseEn";

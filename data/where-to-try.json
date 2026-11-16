@@ -2,6 +2,43 @@
   "version": 1,
   "providers": [
     {
+      "id": "bakart-drawing-and-painting-for-adults",
+      "category": "CREATE",
+      "activity": {
+        "hr": "CRTANJE I SLIKANJE ZA ODRASLE",
+        "en": "DRAWING AND PAINTING FOR ADULTS"
+      },
+      "name": "BAKART STUDIO",
+      "city": "ZAGREB",
+      "area": "",
+      "address": "Kneza Borne 14",
+      "postalCode": "",
+      "image": "/images/drawing-and-painting-for-adults-palette.jpg",
+      "imageFit": "cover",
+      "description": {
+        "hr": "Tečajevi za odrasle u malim grupama, u Zagrebu. Za potpune početnike i one koji već crtaju ili slikaju.",
+        "en": "Small-group courses for adults in Zagreb, whether you are starting from scratch or already draw or paint."
+      },
+      "tags": {
+        "hr": [
+          "CRTANJE",
+          "SLIKANJE",
+          "ODRASLI"
+        ],
+        "en": [
+          "DRAWING",
+          "PAINTING",
+          "ADULTS"
+        ]
+      },
+      "url": {
+        "hr": "/hr/drawing-and-painting-for-adults-where-to-try.html",
+        "en": "/drawing-and-painting-for-adults-where-to-try.html"
+      },
+      "publishedAt": "2026-11-16",
+      "published": true
+    },
+    {
       "id": "luce-sunce-mosaic-making",
       "category": "CREATE",
       "activity": {

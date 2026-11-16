@@ -128,12 +128,12 @@
       background-position: center;
     }
 
-    /* CREATIVE WORKSHOPS WITH CHILDREN */
-    .home-intro .whats-new .new-card.latest-update-creative-workshops {
+    /* DRAWING AND PAINTING FOR ADULTS */
+    .home-intro .whats-new .new-card.latest-update-drawing {
       background: #171717;
     }
 
-    .home-intro .whats-new .new-card.latest-update-creative-workshops::before {
+    .home-intro .whats-new .new-card.latest-update-drawing::before {
       background-image:
         linear-gradient(
           180deg,
@@ -141,11 +141,11 @@
           rgba(8,8,9,.60) 48%,
           rgba(8,8,9,.91) 100%
         ),
-        url('/images/creative-workshops-with-children-1.jpg');
-      background-position: center;
+        url('/images/drawing-and-painting-for-adults-sketch.jpg');
+      background-position: center 55%;
     }
 
-    .home-intro .whats-new .new-card.latest-update-creative-workshops::after {
+    .home-intro .whats-new .new-card.latest-update-drawing::after {
       background-image:
         linear-gradient(
           180deg,
@@ -153,8 +153,8 @@
           rgba(8,8,9,.60) 48%,
           rgba(8,8,9,.91) 100%
         ),
-        url('/images/creative-workshops-with-children-2.jpg');
-      background-position: center;
+        url('/images/drawing-and-painting-for-adults-palette.jpg');
+      background-position: center 58%;
     }
 
     /* CHILD AND ADOLESCENT PSYCHOTHERAPY */
@@ -667,19 +667,10 @@
     }
 
     #where-to-try .where-home-current {
-      display: inline-block;
+      margin: 0;
       color: #1f2a18;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .05em;
+      font-size: 12px;
       line-height: 1.6;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      transition: opacity .2s ease;
-    }
-
-    #where-to-try .where-home-current:hover {
-      opacity: .55;
     }
 
     .mobile-privacy-link {
@@ -844,6 +835,13 @@
             ZA OTKRITI.
           </h2>
 
+          <a href="/hr/drawing-and-painting-for-adults-where-to-try.html" class="new-card latest-update-card latest-update-drawing">
+            <span class="new-type">CREATE · GDJE PROBATI</span>
+            <h3>CRTANJE I SLIKANJE ZA ODRASLE</h3>
+            <p>Kreni od prve skice ili poteza kistom i saznaj gdje u Zagrebu možeš probati uz vodstvo.</p>
+            <span class="new-action">POGLEDAJ GDJE PROBATI →</span>
+          </a>
+
           <a
             href="/hr/mosaic-making.html"
             class="new-card latest-update-card latest-update-mosaic"
@@ -857,18 +855,7 @@
             <span class="new-action">ISTRAŽI MOZAIK →</span>
           </a>
 
-          <a
-            href="/hr/creative-workshops-with-children-guide.html"
-            class="new-card latest-update-card latest-update-creative-workshops"
-          >
-            <span class="new-type">CREATE · VODIČ</span>
-            <h3>KREATIVNE RADIONICE S DJECOM</h3>
-            <p>
-              Kratak i neopterećen vodič za zajedničko stvaranje,
-              zabavno vrijeme s djetetom i prvi kreativni try.
-            </p>
-            <span class="new-action">PROČITAJ VODIČ →</span>
-          </a>
+          
         </div>
       </div>
     </div>
@@ -1041,9 +1028,7 @@
             PRONAĐI GDJE PROBATI →
           </a>
 
-          <a href="/hr/where-to-try.html" class="where-home-current">
-            TRENUTNO DOSTUPNO: IZRADA MOZAIKA · KREATIVNE RADIONICE S DJECOM · TUFTING · IZRADA PRIRODNIH PARFEMA · DJEČJA I ADOLESCENTNA PSIHOTERAPIJA →
-          </a>
+          <p class="where-home-current">Istraži radionice, tečajeve i druga mjesta za svoj prvi pokušaj.</p>
         </div>
       </div>
     </div>
@@ -1119,7 +1104,8 @@
         "/hr/natural-perfume-making.html",
         "/hr/tufting.html",
         "/hr/child-adolescent-psychotherapy.html",
-        "/hr/mosaic-making.html"
+        "/hr/mosaic-making.html",
+        "/hr/drawing-and-painting-for-adults.html"
       ];
 
       const storageKey = "moveAndTryLastSurpriseHr";

@@ -140,6 +140,20 @@
       },
       "published": true,
       "includeInSurprise": true
+    },
+    {
+      "id": "drawing-and-painting-for-adults",
+      "category": "create",
+      "name": {
+        "hr": "Crtanje i slikanje za odrasle",
+        "en": "Drawing and painting for adults"
+      },
+      "url": {
+        "hr": "/hr/drawing-and-painting-for-adults.html",
+        "en": "/drawing-and-painting-for-adults.html"
+      },
+      "published": true,
+      "includeInSurprise": true
     }
   ]
 }
