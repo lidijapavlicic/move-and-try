@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="/consent.css">
   <link rel="stylesheet" href="/app/app-navigation.css">
+
   <style>
     .header-behind-link {
       color: #555;
@@ -143,26 +144,32 @@
     }
   </style>
 </head>
+
 <body>
+
 <header class="site-header">
-  <a href="/" class="site-logo" aria-label="MOVE&amp;TRY home">
-    <img src="/images/move-and-try-logo.png" alt="MOVE&amp;TRY">
+  <a href="/" class="site-logo" aria-label="MOVE&TRY home">
+    <img src="/images/move-and-try-logo.png" alt="MOVE&TRY">
   </a>
+
   <nav class="desktop-nav">
     <a href="/#find-your-try">DISCOVER</a>
     <a href="/#be-part-of-it">BE PART OF IT</a>
     <a href="/where-to-try.html">WHERE TO TRY</a>
     <a href="/journal.html">THE JOURNAL</a>
   </nav>
+
   <div class="header-actions">
     <a href="/behind-move-and-try.html" class="header-behind-link">
-      BEHIND MOVE &amp; TRY
+      BEHIND MOVE & TRY
     </a>
+
     <div class="header-language">
       <span class="language-active">EN</span>
       <span>|</span>
       <a href="/hr/drawing-and-painting-for-adults.html" onclick="setLanguage('hr')">HR</a>
     </div>
+
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span>
       <span></span>
@@ -176,8 +183,9 @@
     <a href="/#be-part-of-it">BE PART OF IT</a>
     <a href="/where-to-try.html">WHERE TO TRY</a>
     <a href="/journal.html">THE JOURNAL</a>
-    <a href="/behind-move-and-try.html">BEHIND MOVE &amp; TRY</a>
+    <a href="/behind-move-and-try.html">BEHIND MOVE & TRY</a>
   </nav>
+
   <div class="mobile-menu-language">
     <span class="language-active">EN</span>
     <span>|</span>
@@ -196,19 +204,19 @@
 
     <p class="activity-page-type">CREATE</p>
     <h1>DRAWING AND PAINTING FOR ADULTS</h1>
-    <p class="activity-page-intro">
-      From your first line to your first brushstroke.<br>
-      <strong>Choose a subject you want to draw or paint.</strong>
-    </p>
+    <p class="activity-page-intro">From your first line to your first brushstroke.<br><strong>Choose a subject you want to draw or paint.</strong></p>
 
     <div class="activity-nav">
       <a href="/drawing-and-painting-for-adults-guide.html" class="activity-nav-active">GUIDE ✓</a>
+      <span>EXPERIENCES</span>
+      <span>EXPERT VOICE</span>
       <a href="/drawing-and-painting-for-adults-where-to-try.html" class="activity-nav-active">WHERE TO TRY ✓</a>
     </div>
   </header>
 
   <section class="activity-content-section">
     <h2>PICK YOUR FIRST SUBJECT.</h2>
+
     <div class="activity-content-grid">
       <a href="/drawing-and-painting-for-adults-guide.html" class="content-card">
         <span class="content-card-type">GUIDE ✓</span>
@@ -216,6 +224,20 @@
         <p>Pick a simple subject and explore shapes, light and shadow, or see what happens when you mix colours.</p>
         <span class="content-card-action">READ THE GUIDE →</span>
       </a>
+
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">EXPERIENCES</span>
+        <h3>WHAT WAS THE FIRST CLASS LIKE?</h3>
+        <p>Stories about first drawings, first paintings and getting back into art after a break.</p>
+        <span class="content-card-status">COMING SOON</span>
+      </div>
+
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">EXPERT VOICE</span>
+        <h3>WHAT HELPS WHEN YOU ARE JUST GETTING STARTED?</h3>
+        <p>Practical advice on choosing your first subject, materials and techniques.</p>
+        <span class="content-card-status">COMING SOON</span>
+      </div>
 
       <a href="/drawing-and-painting-for-adults-where-to-try.html" class="content-card">
         <span class="content-card-type">WHERE TO TRY ✓</span>
@@ -229,6 +251,7 @@
 
 <script src="script.js"></script>
 <script src="/app/app-navigation.js" defer></script>
+
 <script>
   if (
     'serviceWorker' in navigator &&
@@ -244,6 +267,8 @@
     });
   }
 </script>
+
 <script src="/consent.js" defer></script>
+
 </body>
 </html>
