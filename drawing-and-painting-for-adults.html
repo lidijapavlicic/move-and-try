@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>Drawing and Painting for Adults | MOVE&amp;TRY</title>
+  <meta name="description" content="Try drawing and painting as an adult. Find an idea for your first piece and see where you can learn with guidance.">
+  <link rel="canonical" href="https://moveandtry.com/drawing-and-painting-for-adults.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/drawing-and-painting-for-adults.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/drawing-and-painting-for-adults.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/drawing-and-painting-for-adults.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/consent.css">
+  <link rel="stylesheet" href="/app/app-navigation.css">
+  <style>
+    .header-behind-link {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
+    }
+
+    .header-behind-link:hover {
+      opacity: .55;
+    }
+
+    .activity-page .activity-header.drawing-photo-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #111;
+      color: #fff;
+      padding: 60px 48px;
+    }
+
+    .drawing-photo-hero .drawing-hero-photos {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .drawing-photo-hero .drawing-hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: brightness(.94);
+      animation: drawingHeroFade 12s ease-in-out infinite;
+    }
+
+    .drawing-photo-hero .drawing-hero-photo:first-child {
+      object-position: center 55%;
+      animation-delay: 0s;
+    }
+
+    .drawing-photo-hero .drawing-hero-photo:last-child {
+      object-position: center 58%;
+      filter: brightness(.82);
+      animation-delay: -6s;
+    }
+
+    .drawing-photo-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        180deg,
+        rgba(8, 8, 8, .28) 0%,
+        rgba(8, 8, 8, .54) 46%,
+        rgba(8, 8, 8, .90) 100%
+      );
+      pointer-events: none;
+    }
+
+    .activity-page .drawing-photo-hero .activity-page-type,
+    .activity-page .drawing-photo-hero h1,
+    .activity-page .drawing-photo-hero .activity-page-intro,
+    .activity-page .drawing-photo-hero .activity-page-intro strong,
+    .activity-page .drawing-photo-hero .activity-nav,
+    .activity-page .drawing-photo-hero .activity-nav span,
+    .activity-page .drawing-photo-hero .activity-nav a {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .activity-page .drawing-photo-hero .activity-page-type {
+      color: #f0cf57;
+    }
+
+    .activity-page .drawing-photo-hero .activity-page-intro {
+      color: rgba(255, 255, 255, .90);
+    }
+
+    .activity-page .drawing-photo-hero .activity-nav span,
+    .activity-page .drawing-photo-hero .activity-nav a {
+      border-color: rgba(255, 255, 255, .42);
+    }
+
+    @keyframes drawingHeroFade {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      .activity-page .activity-header.drawing-photo-hero {
+        min-height: 380px;
+        padding: 48px 24px;
+      }
+
+      .site-header .header-behind-link {
+        display: none !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .drawing-photo-hero .drawing-hero-photo {
+        animation: none;
+        opacity: 0;
+      }
+
+      .drawing-photo-hero .drawing-hero-photo:first-child {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="site-logo" aria-label="MOVE&amp;TRY home">
+    <img src="/images/move-and-try-logo.png" alt="MOVE&amp;TRY">
+  </a>
+  <nav class="desktop-nav">
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/where-to-try.html">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+  </nav>
+  <div class="header-actions">
+    <a href="/behind-move-and-try.html" class="header-behind-link">
+      BEHIND MOVE &amp; TRY
+    </a>
+    <div class="header-language">
+      <span class="language-active">EN</span>
+      <span>|</span>
+      <a href="/hr/drawing-and-painting-for-adults.html" onclick="setLanguage('hr')">HR</a>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <nav>
+    <a href="/#find-your-try">DISCOVER</a>
+    <a href="/#be-part-of-it">BE PART OF IT</a>
+    <a href="/where-to-try.html">WHERE TO TRY</a>
+    <a href="/journal.html">THE JOURNAL</a>
+    <a href="/behind-move-and-try.html">BEHIND MOVE &amp; TRY</a>
+  </nav>
+  <div class="mobile-menu-language">
+    <span class="language-active">EN</span>
+    <span>|</span>
+    <a href="/hr/drawing-and-painting-for-adults.html" onclick="setLanguage('hr')">HR</a>
+  </div>
+</div>
+
+<main class="activity-page">
+  <a href="/create.html" class="back-link">← CREATE</a>
+
+  <header class="activity-header drawing-photo-hero">
+    <div class="drawing-hero-photos" aria-hidden="true">
+      <img class="drawing-hero-photo" src="/images/drawing-and-painting-for-adults-sketch.jpg" alt="" fetchpriority="high">
+      <img class="drawing-hero-photo" src="/images/drawing-and-painting-for-adults-palette.jpg" alt="">
+    </div>
+
+    <p class="activity-page-type">CREATE</p>
+    <h1>DRAWING AND PAINTING FOR ADULTS</h1>
+    <p class="activity-page-intro">
+      From your first line to your first brushstroke.<br>
+      <strong>Choose a subject you want to draw or paint.</strong>
+    </p>
+
+    <div class="activity-nav">
+      <a href="/drawing-and-painting-for-adults-guide.html" class="activity-nav-active">GUIDE ✓</a>
+      <a href="/drawing-and-painting-for-adults-where-to-try.html" class="activity-nav-active">WHERE TO TRY ✓</a>
+    </div>
+  </header>
+
+  <section class="activity-content-section">
+    <h2>PICK YOUR FIRST SUBJECT.</h2>
+    <div class="activity-content-grid">
+      <a href="/drawing-and-painting-for-adults-guide.html" class="content-card">
+        <span class="content-card-type">GUIDE ✓</span>
+        <h3>HOW DO YOU GET STARTED?</h3>
+        <p>Pick a simple subject and explore shapes, light and shadow, or see what happens when you mix colours.</p>
+        <span class="content-card-action">READ THE GUIDE →</span>
+      </a>
+
+      <a href="/drawing-and-painting-for-adults-where-to-try.html" class="content-card">
+        <span class="content-card-type">WHERE TO TRY ✓</span>
+        <h3>DRAWING AND PAINTING AT BAKART STUDIO</h3>
+        <p>Small-group courses for adults in Zagreb, whether you are starting from scratch or already draw or paint.</p>
+        <span class="content-card-action">FIND WHERE TO TRY →</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+<script src="/app/app-navigation.js" defer></script>
+<script>
+  if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+  ) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js', { scope: '/' })
+        .catch(error =>
+          console.warn('MOVE&TRY public service worker:', error)
+        );
+    });
+  }
+</script>
+<script src="/consent.js" defer></script>
+</body>
+</html>
