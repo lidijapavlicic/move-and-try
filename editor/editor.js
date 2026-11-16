@@ -158,7 +158,7 @@
   myArticlesSection.insertBefore(myFilters, myArticlesList);
 
   function showView(name) {
-    if (name !== 'dashboard') window.MoveTryJournalPublished.close();
+    if (name !== 'dashboard') window.MoveTryJournalPublished?.close();
     Object.entries(views).forEach(([key, element]) => {
       element.hidden = key !== name;
     });
@@ -513,7 +513,11 @@
     $('published-section-title').textContent = isAdmin()
       ? 'Svi objavljeni članci'
       : 'Moji objavljeni članci';
-    window.MoveTryJournalPublished.render(published);
+    if (window.MoveTryJournalPublished) {
+      window.MoveTryJournalPublished.render(published);
+    } else {
+      renderArticleList('published-articles', published);
+    }
   }
 
   function renderMyArticles() {
@@ -1104,7 +1108,7 @@
 
     activeTab = name;
     $('new-article-btn').hidden = name === 'published';
-    window.MoveTryJournalPublished.close();
+    window.MoveTryJournalPublished?.close();
 
     allowed.forEach(tab => {
       $('tab-' + tab).hidden = tab !== name;

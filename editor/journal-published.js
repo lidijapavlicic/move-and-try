@@ -9,6 +9,9 @@
   const download = $('published-pdf');
   const languages = { hr: $('published-hr'), en: $('published-en') };
   const status = $('published-message');
+  const web = $('published-web');
+  const closeButton = $('published-close');
+  if (![panel, list, frameHost, download, languages.hr, languages.en, status, web, closeButton].every(Boolean)) return;
   const pdfModuleUrl = new URL('./journal-published-pdf.js', document.currentScript.src);
   let selection;
   let frame;
@@ -48,7 +51,7 @@
     const path = lang === 'hr' ? '/hr/journal/article.html' : '/journal/article.html';
     const url = new URL(path, publicOrigin);
     url.searchParams.set('id', article.id);
-    $('published-web').href = url.href;
+    web.href = url.href;
     url.searchParams.set('view', 'editor');
 
     languages.hr.setAttribute('aria-pressed', String(lang === 'hr'));
@@ -117,7 +120,7 @@
     });
   }
 
-  $('published-close').addEventListener('click', () => close(true));
+  closeButton.addEventListener('click', () => close(true));
   download.addEventListener('click', () => {
     if (download.disabled || !selection || !frame?.contentWindow) return;
     const { article, lang } = selection;
@@ -159,7 +162,7 @@
     const requestId = downloadRequest;
     try {
       const { makePublishedPdf, downloadPdf } = await import(pdfModuleUrl.href);
-      const result = await makePublishedPdf(data.html, data.lang, $('published-web').href, data.images);
+      const result = await makePublishedPdf(data.html, data.lang, web.href, data.images);
       if (requestId !== downloadRequest) return;
       downloadPdf(result);
       setStatus(result.skippedPhotos ? 'PDF je preuzet. Neke fotografije nisu bile dostupne.' : '');
