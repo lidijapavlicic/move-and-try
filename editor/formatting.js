@@ -149,6 +149,7 @@
       if (clean === '---') {
         list = null;
         paragraph = null;
+        quoteBlock = null;
         const rule = document.createElement('hr');
         rule.className = 'mt-article-divider';
         container.append(rule);
