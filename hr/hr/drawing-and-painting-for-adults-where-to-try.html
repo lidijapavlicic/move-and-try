@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>Gdje probati crtanje i slikanje | MOVE&amp;TRY</title>
+  <meta name="description" content="Otkrij tečajeve crtanja i slikanja za odrasle u Bakart Studiju u Zagrebu.">
+  <link rel="canonical" href="https://moveandtry.com/hr/drawing-and-painting-for-adults-where-to-try.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/drawing-and-painting-for-adults-where-to-try.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/drawing-and-painting-for-adults-where-to-try.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/drawing-and-painting-for-adults-where-to-try.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="/app/app-navigation.css">
+  <link rel="stylesheet" href="/consent.css">
+
+  <style>
+    :root {
+      --wtt-green: #17251e;
+      --wtt-soft-green: #b7c5b3;
+      --wtt-paper: #f7f7f4;
+      --wtt-ink: #202420;
+      --wtt-border: #d9ddd5;
+      --wtt-card: #fff;
+    }
+
+    .header-behind-link,
+    .header-behind-link:visited {
+      color: #555;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s ease;
+    }
+
+    .header-behind-link:hover { opacity: .55; }
+
+    .where-page {
+      min-height: 100vh;
+      background: var(--wtt-paper);
+      color: var(--wtt-ink);
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .where-back-wrap,
+    .where-hero,
+    .provider-section,
+    .related-section,
+    .where-note-wrap,
+    .where-contribute-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .where-back-wrap { padding: 34px 32px 0; }
+
+    .where-back {
+      color: var(--wtt-ink);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-decoration: none;
+    }
+
+    .where-hero { padding: 72px 32px 66px; }
+
+    .where-eyebrow,
+    .provider-section-label {
+      font-weight: 800;
+      letter-spacing: .14em;
+    }
+
+    .where-eyebrow {
+      margin: 0 0 22px;
+      color: #667265;
+      font-size: 12px;
+    }
+
+    .where-hero h1,
+    .provider-section > h2,
+    .provider-content h3,
+    .related-section > h2,
+    .related-card h3,
+    .where-contribute h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+    }
+
+    .where-hero h1 {
+      max-width: 980px;
+      margin: 0;
+      color: var(--wtt-green);
+      font-size: clamp(48px, 6vw, 86px);
+      line-height: .98;
+    }
+
+    .where-intro {
+      max-width: 720px;
+      margin: 32px 0 0;
+      color: #454b45;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .provider-section { padding: 0 32px 82px; }
+
+    .provider-section-label {
+      margin: 0 0 12px;
+      color: #657064;
+      font-size: 11px;
+    }
+
+    .provider-section > h2 {
+      max-width: 780px;
+      margin: 0 0 40px;
+      color: var(--wtt-green);
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.02;
+    }
+
+    .provider-card {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      max-width: 980px;
+      overflow: hidden;
+      background: var(--wtt-card);
+      border: 1px solid var(--wtt-border);
+    }
+
+    .provider-visual {
+      min-height: 100%;
+      overflow: hidden;
+      background: #111;
+      border-right: 1px solid var(--wtt-border);
+    }
+
+    .provider-photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .provider-content { padding: 40px 42px 44px; }
+
+    .provider-type {
+      display: block;
+      margin-bottom: 10px;
+      color: #728071;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .13em;
+    }
+
+    .provider-content h3 {
+      margin: 0;
+      color: var(--wtt-green);
+      font-size: clamp(38px, 4vw, 54px);
+      line-height: 1;
+    }
+
+    .provider-location {
+      margin: 13px 0 0;
+      color: #667066;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .10em;
+    }
+
+    .provider-description {
+      max-width: 670px;
+      margin: 28px 0 32px;
+      color: #4d534d;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .provider-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      margin-bottom: 34px;
+      background: var(--wtt-border);
+      border: 1px solid var(--wtt-border);
+    }
+
+    .provider-fact {
+      min-height: 118px;
+      padding: 20px;
+      background: #fafaf8;
+    }
+
+    .provider-fact-label {
+      display: block;
+      margin-bottom: 9px;
+      color: #748074;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .13em;
+    }
+
+    .provider-fact-value {
+      margin: 0;
+      color: #343a34;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .bakart-prices {
+      margin: 0 0 24px;
+      padding-left: 1.4em;
+    }
+
+    .bakart-prices li { margin: 8px 0; }
+
+    .provider-contact-label {
+      margin: 0 0 14px;
+      color: #728071;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .13em;
+    }
+
+    .provider-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+    }
+
+    .provider-action {
+      display: inline-block;
+      padding: 0 0 4px;
+      border-bottom: 1px solid var(--wtt-green);
+      color: var(--wtt-green);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-decoration: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .provider-action:hover {
+      opacity: .58;
+      transform: translateX(3px);
+    }
+
+    .provider-note {
+      max-width: 650px;
+      margin: 24px 0 0;
+      color: #727972;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .related-section,
+    .where-note-wrap { padding: 0 32px 92px; }
+
+    .related-section > h2 {
+      max-width: 700px;
+      margin: 0 0 34px;
+      color: var(--wtt-green);
+      font-size: clamp(36px, 4vw, 54px);
+      line-height: 1.04;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 980px;
+    }
+
+    .related-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 190px;
+      padding: 26px;
+      background: #fff;
+      border: 1px solid var(--wtt-border);
+      color: var(--wtt-green);
+      text-decoration: none;
+    }
+
+    .related-card-type,
+    .related-card-action {
+      color: #728071;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .13em;
+    }
+
+    .related-card h3 {
+      margin: 16px 0;
+      font-size: 28px;
+      line-height: 1.05;
+    }
+
+    .related-card.coming-soon {
+      opacity: .68;
+      cursor: default;
+    }
+
+    .where-note {
+      max-width: 860px;
+      padding: 30px 32px;
+      border-left: 3px solid var(--wtt-soft-green);
+      background: rgba(183, 197, 179, .13);
+    }
+
+    .where-note-label {
+      display: block;
+      margin-bottom: 14px;
+      color: #647062;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .13em;
+    }
+
+    .where-note p {
+      margin: 0;
+      color: #4e554e;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .where-contribute {
+      background: var(--wtt-green);
+      color: #fff;
+    }
+
+    .where-contribute-inner { padding: 80px 32px 88px; }
+
+    .where-contribute h2 {
+      max-width: 760px;
+      margin: 0 0 24px;
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1;
+    }
+
+    .where-contribute p {
+      max-width: 680px;
+      margin: 0 0 28px;
+      color: rgba(255, 255, 255, .78);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .where-contribute-link {
+      display: inline-block;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #fff;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-decoration: none;
+    }
+
+    @media (max-width: 820px) {
+      .provider-card,
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .provider-visual {
+        min-height: 320px;
+        border-right: 0;
+        border-bottom: 1px solid var(--wtt-border);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .site-header .header-behind-link { display: none !important; }
+    }
+
+    @media (max-width: 720px) {
+      .where-back-wrap,
+      .where-hero,
+      .provider-section,
+      .related-section,
+      .where-note-wrap {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .provider-content { padding: 28px 22px 32px; }
+      .provider-facts { grid-template-columns: 1fr; }
+      .where-contribute-inner { padding: 66px 22px 72px; }
+    }
+  </style>
+</head>
+
+<body>
+<header class="site-header">
+  <a href="/hr/" class="site-logo" aria-label="MOVE&amp;TRY – početna">
+    <img src="/images/move-and-try-logo.png" alt="MOVE&amp;TRY">
+  </a>
+  <nav class="desktop-nav">
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+  </nav>
+  <div class="header-actions">
+    <a href="/hr/behind-move-and-try.html" class="header-behind-link">IZA MOVE &amp; TRY</a>
+    <div class="header-language">
+      <a href="/drawing-and-painting-for-adults-where-to-try.html" onclick="setLanguage('en')">EN</a>
+      <span>|</span>
+      <span class="language-active">HR</span>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <nav>
+    <a href="/hr/#find-your-try">OTKRIJ</a>
+    <a href="/hr/#be-part-of-it">BUDI DIO PRIČE</a>
+    <a href="/hr/where-to-try.html">GDJE PROBATI</a>
+    <a href="/hr/journal.html">THE JOURNAL</a>
+    <a href="/hr/behind-move-and-try.html">IZA MOVE &amp; TRY</a>
+  </nav>
+  <div class="mobile-menu-language">
+    <a href="/drawing-and-painting-for-adults-where-to-try.html" onclick="setLanguage('en')">EN</a>
+    <span>|</span>
+    <span class="language-active">HR</span>
+  </div>
+</div>
+
+<main class="where-page">
+  <div class="where-back-wrap">
+    <a href="/hr/drawing-and-painting-for-adults.html" class="where-back">← CRTANJE I SLIKANJE ZA ODRASLE</a>
+  </div>
+
+  <header class="where-hero">
+    <p class="where-eyebrow">MOVE&amp;TRY / GDJE PROBATI</p>
+    <h1>GDJE PROBATI CRTANJE I SLIKANJE?</h1>
+    <p class="where-intro">Otkrij gdje u Zagrebu možeš napraviti prvi crtež ili sliku uz vodstvo ili nastaviti raditi na tehnici koja te zanima.</p>
+  </header>
+
+  <section class="provider-section" aria-labelledby="bakart-studio">
+    <h2 id="bakart-studio">TEČAJEVI CRTANJA I SLIKANJA</h2>
+    <article class="provider-card">
+      <div class="provider-visual">
+        <img src="/images/drawing-and-painting-for-adults-palette.jpg" alt="" class="provider-photo" loading="lazy">
+      </div>
+      <div class="provider-content">
+        <span class="provider-type">REDOVITI TEČAJEVI ZA ODRASLE</span>
+        <h3>BAKART STUDIO</h3>
+        <p class="provider-location">KNEZA BORNE 14 · ZAGREB</p>
+        <p class="provider-description">
+          Na tečajevima u Bakart Studiju radiš u maloj grupi, vlastitim tempom, uz vodstvo akademske slikarice Natashe Bakovic.
+          Možeš krenuti od osnova crtanja, proporcija i perspektive, istražiti kompoziciju, boju, svjetlo i sjenu te isprobati akrilne ili uljane boje.
+        </p>
+
+        <div class="provider-facts">
+          <div class="provider-fact">
+            <span class="provider-fact-label">ZA KOGA</span>
+            <p class="provider-fact-value">Odrasli početnici i polaznici s iskustvom</p>
+          </div>
+          <div class="provider-fact">
+            <span class="provider-fact-label">FORMAT</span>
+            <p class="provider-fact-value">Male grupe uz individualan pristup</p>
+          </div>
+          <div class="provider-fact">
+            <span class="provider-fact-label">RASPORED</span>
+            <p class="provider-fact-value">Utorak (na upit)<br>Srijeda 11:00–13:30<br>Četvrtak 17:30–20:00</p>
+          </div>
+          <div class="provider-fact">
+            <span class="provider-fact-label">MATERIJALI</span>
+            <p class="provider-fact-value">Početni materijali uključeni su u cijenu, osim kistova.</p>
+          </div>
+        </div>
+
+        <p class="provider-section-label">CIJENE</p>
+        <ul class="bakart-prices">
+          <li>Jedan termin crtanja ili slikanja (2,5 sata) · 40 €</li>
+          <li>Tečaj crtanja (6 termina) · 220 €</li>
+          <li>Slikanje za nove polaznike (4 termina) · 130 € po promotivnoj cijeni</li>
+        </ul>
+
+        <p class="provider-contact-label">KONTAKT I PRIJAVA</p>
+        <div class="provider-actions">
+          <a class="provider-action" href="https://bakart.hr/tecajevi-i-radionice/" target="_blank" rel="noopener noreferrer">PROGRAM ↗</a>
+          <a class="provider-action" href="https://bakart.hr/cjenik/" target="_blank" rel="noopener noreferrer">CJENIK ↗</a>
+          <a class="provider-action" href="https://bakart.hr/kontakt/" target="_blank" rel="noopener noreferrer">UPIT ZA TERMIN ↗</a>
+        </div>
+
+        <p class="provider-note">Pri prijavi provjeri satnicu za utorak, dostupnost mjesta i važenje promotivne cijene.</p>
+        <p class="provider-note">Ilustrativna fotografija · Tima Miroshnichenko / Pexels</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="related-section">
+    <p class="provider-section-label">ISTRAŽI AKTIVNOST</p>
+    <h2>PRIJE NEGO ŠTO PROBAŠ.</h2>
+    <div class="related-grid">
+      <a href="/hr/drawing-and-painting-for-adults-guide.html" class="related-card">
+        <div>
+          <span class="related-card-type">VODIČ ✓</span>
+          <h3>CRTANJE I SLIKANJE ZA ODRASLE</h3>
+        </div>
+        <span class="related-card-action">PROČITAJ VODIČ →</span>
+      </a>
+      <div class="related-card coming-soon">
+        <div>
+          <span class="related-card-type">ISKUSTVA</span>
+          <h3>KAKO JE IZGLEDAO PRVI SAT?</h3>
+        </div>
+        <span class="related-card-action">USKORO</span>
+      </div>
+      <a href="/hr/drawing-and-painting-for-adults.html" class="related-card">
+        <div>
+          <span class="related-card-type">AKTIVNOST</span>
+          <h3>CRTANJE I SLIKANJE ZA ODRASLE</h3>
+        </div>
+        <span class="related-card-action">ISTRAŽI AKTIVNOST →</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="where-note-wrap">
+    <aside class="where-note">
+      <span class="where-note-label">MOVE&amp;TRY NAPOMENA</span>
+      <p>
+        U rubrici „Gdje probati” povezujemo aktivnosti s ljudima, studijima i organizatorima kod kojih ih možeš isprobati.
+        Aktualne termine, cijene i uvjete provjeri izravno kod organizatora.
+      </p>
+    </aside>
+  </div>
+
+  <section class="where-contribute">
+    <div class="where-contribute-inner">
+      <p class="provider-section-label">BUDI DIO PRIČE</p>
+      <h2>NUDIŠ KREATIVNE RADIONICE ILI NEKU DRUGU AKTIVNOST?</h2>
+      <p>Vodiš studio, klub, radionicu, tečaj ili drugo mjesto na kojem ljudi mogu nešto isprobati? MOVE&amp;TRY želi povezivati znatiželju sa stvarnim ljudima i mjestima.</p>
+      <a href="/hr/be-part-of-where-to-try.html" class="where-contribute-link">BUDI DIO GDJE PROBATI →</a>
+    </div>
+  </section>
+</main>
+
+<script src="../script.js"></script>
+<script src="/app/app-navigation.js" defer></script>
+<script>
+  if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+  ) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js', { scope: '/' })
+        .catch(error => console.warn('MOVE&TRY public service worker:', error));
+    });
+  }
+</script>
+<script src="/consent.js" defer></script>
+</body>
+</html>
