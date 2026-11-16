@@ -391,6 +391,7 @@
     $('home-heading').textContent =
       isAdmin() ? 'Urednički pregled' : 'Pregled mojih članaka';
 
+    renderMyColumns();
     renderArticleList('recent-articles', visible.slice(0, 5));
     renderMyArticles();
     renderPublishedArticles();
@@ -482,9 +483,35 @@
       return;
     }
 
-    list.forEach(article => {
-      target.appendChild(makeArticleRow(article));
-    });
+    if (targetId === 'my-articles' || targetId === 'published-articles') {
+      renderColumnArticleRows(target, list, makeArticleRow);
+    } else {
+      target.append(...list.map(makeArticleRow));
+    }
+  }
+
+  function renderColumnArticleRows(target, list, makeRow) {
+    const assigned = assignedAuthorColumns();
+    if (!assigned.length) {
+      target.append(...list.map(makeRow));
+      return;
+    }
+
+    const groups = new Map(assigned.map(column => [column.id, { title: column.title, articles: [] }]));
+    const otherArticles = { title: 'Ostali članci', articles: [] };
+    for (const article of list) {
+      (groups.get(article.column_id) || otherArticles).articles.push(article);
+    }
+
+    for (const group of [...groups.values(), otherArticles]) {
+      if (!group.articles.length) continue;
+      const section = createElement('section', 'journal-author-article-group');
+      const heading = createElement('h3', '', group.title);
+      const rows = createElement('div', 'article-list');
+      rows.append(...group.articles.map(makeRow));
+      section.append(heading, rows);
+      target.append(section);
+    }
   }
 
   function matchesStatusFilter(article, status) {
@@ -512,7 +539,7 @@
       ? 'Svi objavljeni članci'
       : 'Moji objavljeni članci';
     if (window.MoveTryJournalPublished) {
-      window.MoveTryJournalPublished.render(published);
+      window.MoveTryJournalPublished.render(published, renderColumnArticleRows);
     } else {
       renderArticleList('published-articles', published);
     }
@@ -568,6 +595,47 @@
     return {columnist:isAdmin() || !!p?.can_write_column,
       contributor:isAdmin() || !!p?.can_contribute,
       columns:columns.filter(c => c.columnist_id === currentUser?.id && c.is_active)};
+  }
+
+  function assignedAuthorColumns() {
+    if (isAdmin()) return [];
+    const options = currentAuthorOptions();
+    return options.columnist ? options.columns : [];
+  }
+
+  function renderMyColumns() {
+    const section = $('my-columns-section');
+    const target = $('my-columns');
+    if (!section || !target) return;
+
+    const assigned = assignedAuthorColumns();
+    section.hidden = assigned.length === 0;
+    target.replaceChildren();
+    for (const column of assigned) {
+      const card = createElement('article', 'journal-column-row journal-author-column');
+      const info = createElement('div', 'journal-column-info');
+      const byline = window.MoveTryJournalByline?.columnAuthor(column.public_byline) || column.public_byline;
+      info.append(
+        createElement('h3', 'journal-column-name', column.title),
+        createElement('p', 'journal-column-byline', 'Javni potpis: ' + byline)
+      );
+      if (column.description?.trim()) {
+        info.append(createElement('p', 'journal-author-column-description', column.description));
+      }
+      if (column.title_en?.trim() || column.description_en?.trim()) {
+        const translation = createElement('details', 'journal-author-column-translation');
+        const translatedCopy = createElement('div');
+        translatedCopy.lang = 'en';
+        if (column.title_en?.trim()) translatedCopy.append(createElement('strong', '', column.title_en));
+        if (column.description_en?.trim()) {
+          translatedCopy.append(createElement('p', 'journal-author-column-description', column.description_en));
+        }
+        translation.append(createElement('summary', '', 'Engleska verzija'), translatedCopy);
+        info.append(translation);
+      }
+      card.append(info);
+      target.append(card);
+    }
   }
   function renderColumns() {
     if (!isAdmin()) return;

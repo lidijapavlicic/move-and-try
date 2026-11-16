@@ -68,7 +68,7 @@
     }, 10000);
   }
 
-  function render(articles) {
+  function render(articles, renderRows = (target, rows, makeRow) => target.append(...rows.map(makeRow))) {
     if (selection && !articles.some(article => article.id === selection.article.id)) close();
     const rows = [...articles].sort((a, b) =>
       Date.parse(b.published_at || b.scheduled_at || b.updated_at) -
@@ -83,7 +83,7 @@
       return;
     }
 
-    for (const article of rows) {
+    renderRows(list, rows, article => {
       const row = document.createElement('article');
       row.className = 'article-row';
       const info = document.createElement('div');
@@ -110,8 +110,8 @@
       if (selection?.article.id === article.id) trigger = button;
       info.append(title, date);
       row.append(info, button);
-      list.append(row);
-    }
+      return row;
+    });
   }
 
   for (const [lang, button] of Object.entries(languages)) {
