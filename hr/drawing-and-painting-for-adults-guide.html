@@ -4,43 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <title>Probaj crtanje i slikanje | MOVE&amp;TRY</title>
-  <meta name="description" content="Za prvi pokušaj dovoljan je predmet koji imaš pred sobom. Od njega možeš krenuti olovkom ili bojom.">
-
-  <link rel="canonical" href="https://moveandtry.com/hr/drawing-and-painting-for-adults-guide.html">
-  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/drawing-and-painting-for-adults-guide.html">
-  <link rel="alternate" hreflang="en" href="https://moveandtry.com/drawing-and-painting-for-adults-guide.html">
-  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/drawing-and-painting-for-adults-guide.html">
+  <title>Crtanje i slikanje za odrasle | MOVE&amp;TRY</title>
+  <meta name="description" content="Isprobaj crtanje i slikanje u odrasloj dobi. Pronađi ideju za prvi rad i otkrij gdje možeš učiti uz vodstvo.">
+  <link rel="canonical" href="https://moveandtry.com/hr/drawing-and-painting-for-adults.html">
+  <link rel="alternate" hreflang="hr" href="https://moveandtry.com/hr/drawing-and-painting-for-adults.html">
+  <link rel="alternate" hreflang="en" href="https://moveandtry.com/drawing-and-painting-for-adults.html">
+  <link rel="alternate" hreflang="x-default" href="https://moveandtry.com/drawing-and-painting-for-adults.html">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="/app/app-navigation.css">
   <link rel="stylesheet" href="/consent.css">
+  <link rel="stylesheet" href="/app/app-navigation.css">
 
   <style>
-    .try-page.mt-editorial-try {
-      --try-green: #17251e;
-      --try-green-soft: #b7c5b3;
-      --try-paper: #f7f7f4;
-      --try-ink: #202420;
-      --try-border: #d9ddd5;
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      padding: 0;
-      background: var(--try-paper);
-      color: var(--try-ink);
-    }
-
-    .mt-editorial-try,
-    .mt-editorial-try * {
-      box-sizing: border-box;
-    }
-
-    .header-behind-link,
-    .header-behind-link:visited {
+    .header-behind-link {
       color: #555;
       font-family: 'Manrope', sans-serif;
       font-size: 11px;
@@ -48,206 +27,120 @@
       letter-spacing: .04em;
       text-decoration: none;
       white-space: nowrap;
+      transition: opacity .2s ease;
     }
 
-    .mt-editorial-try .try-back-wrap {
-      background: var(--try-paper);
+    .header-behind-link:hover {
+      opacity: .55;
     }
 
-    .mt-editorial-try .try-back {
+    .activity-page .activity-header.drawing-photo-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #111;
+      color: #fff;
+      padding: 60px 48px;
+    }
+
+    .drawing-photo-hero .drawing-hero-photos {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .drawing-photo-hero .drawing-hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       display: block;
-      width: min(100% - 48px, 1100px);
-      margin: 0 auto;
-      padding: 29px 0;
-      color: var(--try-green);
-      font-family: 'Manrope', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .10em;
-      text-decoration: none;
+      object-fit: cover;
+      filter: brightness(.94);
+      animation: drawingHeroFade 12s ease-in-out infinite;
     }
 
-    .mt-editorial-try .try-back:hover {
-      text-decoration: underline;
+    .drawing-photo-hero .drawing-hero-photo:first-child {
+      object-position: center 55%;
+      animation-delay: 0s;
     }
 
-    .mt-editorial-try .try-editorial-hero {
-      width: 100%;
-      margin: 0;
-      padding: 76px 24px 84px;
-      background: var(--try-green);
-      color: #fff;
+    .drawing-photo-hero .drawing-hero-photo:last-child {
+      object-position: center 58%;
+      filter: brightness(.82);
+      animation-delay: -6s;
     }
 
-    .mt-editorial-try .try-editorial-hero-inner {
-      width: min(100%, 1100px);
-      margin: 0 auto;
-    }
-
-    .mt-editorial-try .try-editorial-category {
-      margin: 43px 0 18px;
-      color: #c9d6c4;
-      font-family: 'Manrope', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .17em;
-    }
-
-    .mt-editorial-try .try-editorial-hero h1 {
-      max-width: 980px;
-      margin: 0 0 26px;
-      color: #fff;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(48px, 7vw, 88px);
-      font-weight: 400;
-      line-height: 1.06;
-      letter-spacing: -.025em;
-    }
-
-    .mt-editorial-try .try-editorial-intro {
-      max-width: 720px;
-      margin: 0 0 36px;
-      color: rgba(255, 255, 255, .88);
-      font-family: 'Manrope', sans-serif;
-      font-size: clamp(16px, 1.8vw, 19px);
-      line-height: 1.85;
-    }
-
-    .mt-editorial-try .try-editorial-scroll {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      color: #c9d6c4;
-      font-family: 'Manrope', sans-serif;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-decoration: none;
-    }
-
-    .mt-editorial-try .try-editorial-scroll::before {
+    .drawing-photo-hero::before {
       content: "";
-      width: 34px;
-      height: 2px;
-      background: #a5b9a3;
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        180deg,
+        rgba(8, 8, 8, .28) 0%,
+        rgba(8, 8, 8, .54) 46%,
+        rgba(8, 8, 8, .90) 100%
+      );
+      pointer-events: none;
     }
 
-    .mt-editorial-try .try-editorial-article {
-      width: min(100% - 48px, 760px);
-      margin: 0 auto;
-      padding: 78px 0 96px;
-      font-family: 'Manrope', sans-serif;
-      font-size: 16px;
-      line-height: 1.95;
-    }
-
-    .mt-editorial-try .try-section {
-      margin: 0 0 72px;
-    }
-
-    .mt-editorial-try .try-section:last-child {
-      margin-bottom: 0;
-    }
-
-    .mt-editorial-try .try-section h2 {
-      margin: 0 0 26px;
-      color: #18231b;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(31px, 4vw, 43px);
-      font-weight: 400;
-      line-height: 1.22;
-    }
-
-    .mt-editorial-try .try-section p {
-      color: #414941;
-      line-height: 1.9;
-    }
-
-    .mt-editorial-try .try-section.verdict {
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      padding: 85px 24px 92px;
-      background: var(--try-green);
+    .activity-page .drawing-photo-hero .activity-page-type,
+    .activity-page .drawing-photo-hero h1,
+    .activity-page .drawing-photo-hero .activity-page-intro,
+    .activity-page .drawing-photo-hero .activity-page-intro strong,
+    .activity-page .drawing-photo-hero .activity-nav,
+    .activity-page .drawing-photo-hero .activity-nav span,
+    .activity-page .drawing-photo-hero .activity-nav a {
+      position: relative;
+      z-index: 1;
       color: #fff;
     }
 
-    .mt-editorial-try .try-verdict-inner {
-      width: min(100%, 900px);
-      margin: 0 auto;
+    .activity-page .drawing-photo-hero .activity-page-type {
+      color: #f0cf57;
     }
 
-    .mt-editorial-try .try-section.verdict h2 {
-      margin: 0 0 27px;
-      color: #fff;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(36px, 5vw, 60px);
-      font-weight: 400;
+    .activity-page .drawing-photo-hero .activity-page-intro {
+      color: rgba(255, 255, 255, .90);
     }
 
-    .mt-editorial-try .try-section.verdict p {
-      color: rgba(255, 255, 255, .85);
+    .activity-page .drawing-photo-hero .activity-nav span,
+    .activity-page .drawing-photo-hero .activity-nav a {
+      border-color: rgba(255, 255, 255, .42);
     }
 
-    .mt-editorial-try .verdict-link {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 24px;
-      border: 1px solid rgba(255, 255, 255, .55);
-      color: #fff;
-      font-family: 'Manrope', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-decoration: none;
+    @keyframes drawingHeroFade {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
     }
 
-    .mt-editorial-try .verdict-link:hover {
-      background: rgba(255, 255, 255, .12);
-    }
-
-    .mt-editorial-try .guide-footer-nav {
-      width: 100%;
-      padding: 36px 24px;
-      background: var(--try-paper);
-      text-align: center;
-    }
-
-    .mt-editorial-try .guide-footer-nav a {
-      color: var(--try-green);
-      font-family: 'Manrope', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .10em;
-      text-decoration: none;
-    }
-
-    @media (max-width: 700px) {
-      .mt-editorial-try .try-back {
-        width: calc(100% - 40px);
-        padding: 24px 0;
-      }
-
-      .mt-editorial-try .try-editorial-hero {
-        padding: 52px 20px 64px;
-      }
-
-      .mt-editorial-try .try-editorial-article {
-        width: calc(100% - 40px);
-        padding: 56px 0 75px;
-        font-size: 15px;
-      }
-
-      .mt-editorial-try .try-section {
-        margin-bottom: 56px;
-      }
-
-      .mt-editorial-try .try-section.verdict {
-        padding: 67px 20px 76px;
+    @media (max-width: 900px) {
+      .activity-page .activity-header.drawing-photo-hero {
+        min-height: 380px;
+        padding: 48px 24px;
       }
 
       .site-header .header-behind-link {
         display: none !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .drawing-photo-hero .drawing-hero-photo {
+        animation: none;
+        opacity: 0;
+      }
+
+      .drawing-photo-hero .drawing-hero-photo:first-child {
+        opacity: 1;
       }
     }
   </style>
@@ -268,11 +161,13 @@
 
   <div class="header-actions">
     <a href="/hr/behind-move-and-try.html" class="header-behind-link">IZA MOVE &amp; TRY</a>
+
     <div class="header-language">
-      <a href="/drawing-and-painting-for-adults-guide.html" onclick="setLanguage('en')">EN</a>
+      <a href="/drawing-and-painting-for-adults.html" onclick="setLanguage('en')">EN</a>
       <span>|</span>
       <span class="language-active">HR</span>
     </div>
+
     <button class="menu-toggle" type="button" aria-label="Otvori izbornik" aria-expanded="false">
       <span></span>
       <span></span>
@@ -288,59 +183,100 @@
     <a href="/hr/journal.html">THE JOURNAL</a>
     <a href="/hr/behind-move-and-try.html">IZA MOVE &amp; TRY</a>
   </nav>
+
   <div class="mobile-menu-language">
-    <a href="/drawing-and-painting-for-adults-guide.html" onclick="setLanguage('en')">EN</a>
+    <a href="/drawing-and-painting-for-adults.html" onclick="setLanguage('en')">EN</a>
     <span>|</span>
     <span class="language-active">HR</span>
   </div>
 </div>
 
-<main class="try-page mt-editorial-try">
-  <div class="try-back-wrap">
-    <a href="/hr/drawing-and-painting-for-adults.html" class="try-back">← CRTANJE I SLIKANJE ZA ODRASLE</a>
-  </div>
+<main class="activity-page">
+  <a href="/hr/create.html" class="back-link">← CREATE</a>
 
-  <header class="try-editorial-hero">
-    <div class="try-editorial-hero-inner">
-      <p class="try-editorial-category">TRY · CREATE</p>
-      <h1>TVOJ PRVI CRTEŽ ILI SLIKA.</h1>
-      <p class="try-editorial-intro">Za prvi pokušaj dovoljan je predmet koji imaš pred sobom. Od njega možeš krenuti olovkom ili bojom.</p>
-      <a href="#first-step" class="try-editorial-scroll">ISTRAŽI VODIČ ↓</a>
+  <header class="activity-header drawing-photo-hero">
+    <div class="drawing-hero-photos" aria-hidden="true">
+      <img class="drawing-hero-photo" src="/images/drawing-and-painting-for-adults-sketch.jpg" alt="" fetchpriority="high">
+      <img class="drawing-hero-photo" src="/images/drawing-and-painting-for-adults-palette.jpg" alt="">
+    </div>
+
+    <p class="activity-page-type">CREATE</p>
+    <h1>CRTANJE I SLIKANJE ZA ODRASLE</h1>
+    <p class="activity-page-intro">
+      Od prve linije do prvog poteza kistom.<br>
+      <strong>Izaberi motiv koji želiš nacrtati ili naslikati.</strong>
+    </p>
+
+    <div class="activity-nav">
+      <a href="/hr/drawing-and-painting-for-adults-guide.html" class="activity-nav-active">VODIČ ✓</a>
+      <span>ISKUSTVA</span>
+      <span>RIJEČ STRUČNJAKA</span>
+      <a href="/hr/drawing-and-painting-for-adults-where-to-try.html" class="activity-nav-active">GDJE PROBATI ✓</a>
     </div>
   </header>
 
-  <div class="try-editorial-article">
-    <section class="try-section" id="first-step">
-      <h2>KRENI OD NEČEGA ŠTO IMAŠ PRED SOBOM.</h2>
-      <p>Odaberi šalicu, krušku ili grančicu. Pogledaj koliko je predmet visok u odnosu na širinu i s koje strane dolazi svjetlo. Lagano označi njegov najveći oblik, pa tek onda dodaj detalje.</p>
-    </section>
+  <section class="activity-content-section">
+    <p class="section-label">ISTRAŽI CRTANJE I SLIKANJE</p>
+    <h2>ODABERI SVOJ PRVI MOTIV.</h2>
 
-    <section class="try-section">
-      <h2>ISPROBAJ ISTI MOTIV U BOJI.</h2>
-      <p>Odaberi dvije ili tri boje i pogledaj koje tonove dobiješ kad ih pomiješaš. Na istom motivu prikaži svjetliji dio i sjenu. Vidi što se promijeni kad ublažiš rub sjene.</p>
-    </section>
+    <div class="activity-content-grid">
+      <a href="/hr/drawing-and-painting-for-adults-guide.html" class="content-card">
+        <span class="content-card-type">VODIČ ✓</span>
+        <h3>KAKO KRENUTI S CRTANJEM I SLIKANJEM?</h3>
+        <p>Uz jednostavan motiv isprobaj odnos oblika, svjetla i sjene ili pogledaj što možeš dobiti miješanjem boja.</p>
+        <span class="content-card-action">PROČITAJ VODIČ →</span>
+      </a>
 
-    <section class="try-section">
-      <h2>AKO ŽELIŠ PROBATI UZ VODSTVO.</h2>
-      <p>Kad se javiš studiju, reci što te zanima i imaš li već iskustva. Ako te privlače i olovka i kist, pitaj s čime je zgodno krenuti i što ponijeti na prvi sat.</p>
-    </section>
-  </div>
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">ISKUSTVA</span>
+        <h3>KAKO JE IZGLEDAO PRVI SAT?</h3>
+        <p>Priče polaznika o prvom crtežu, prvoj slici i povratku crtanju ili slikanju nakon pauze.</p>
+        <span class="content-card-status">USKORO</span>
+      </div>
 
-  <section class="try-section verdict">
-    <div class="try-verdict-inner">
-      <h2>ŽELIŠ PROBATI U STUDIJU?</h2>
-      <p>Pogledaj tečajeve crtanja i slikanja za odrasle u Bakart Studiju.</p>
-      <a href="/hr/drawing-and-painting-for-adults-where-to-try.html" class="verdict-link">POGLEDAJ GDJE PROBATI →</a>
+      <div class="content-card content-card-coming">
+        <span class="content-card-type">RIJEČ STRUČNJAKA</span>
+        <h3>ŠTO POMAŽE KAD TEK KREĆEŠ?</h3>
+        <p>Savjeti iz likovne prakse o izboru prvog motiva, materijalima i tehnikama.</p>
+        <span class="content-card-status">USKORO</span>
+      </div>
+
+      <a href="/hr/drawing-and-painting-for-adults-where-to-try.html" class="content-card">
+        <span class="content-card-type">GDJE PROBATI ✓</span>
+        <h3>CRTANJE I SLIKANJE U BAKART STUDIJU</h3>
+        <p>Tečajevi za odrasle u malim grupama, u Zagrebu. Za potpune početnike i one koji već crtaju ili slikaju.</p>
+        <span class="content-card-action">POGLEDAJ GDJE PROBATI →</span>
+      </a>
     </div>
   </section>
 
-  <div class="guide-footer-nav">
-    <a href="/hr/drawing-and-painting-for-adults.html">← NATRAG NA AKTIVNOST</a>
-  </div>
+  <section class="activity-contribute">
+    <p class="section-label">TVOJE ISKUSTVO</p>
+    <h2>VEĆ SI PROBAO CRTATI ILI SLIKATI?</h2>
+    <p>Koji si motiv odabrao i što te iznenadilo dok si radio na njemu? Podijeli svoje iskustvo. Možda baš tvoja priča nekoga potakne da uzme olovku ili kist u ruke.</p>
+    <a href="/hr/share-experience.html" class="activity-contribute-link">
+      PODIJELI SVOJE ISKUSTVO →
+    </a>
+  </section>
 </main>
 
 <script src="../script.js"></script>
 <script src="/app/app-navigation.js" defer></script>
+<script>
+  if (
+    'serviceWorker' in navigator &&
+    window.isSecureContext &&
+    !window.location.pathname.startsWith('/editor/')
+  ) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js', { scope: '/' })
+        .catch(error =>
+          console.warn('MOVE&TRY public service worker:', error)
+        );
+    });
+  }
+</script>
 <script src="/consent.js" defer></script>
 </body>
 </html>
