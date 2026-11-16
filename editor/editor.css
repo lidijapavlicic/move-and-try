@@ -515,6 +515,14 @@
 .journal-column-name {font-size:18px;overflow-wrap:anywhere;}
 .journal-column-byline {font-weight:600;font-size:13px;overflow-wrap:anywhere;margin:0;}
 .journal-column-info .article-meta {margin:0;overflow-wrap:anywhere;}
+.journal-author-column {grid-template-columns:minmax(0,1fr);}
+.journal-author-column h3 {margin:0;}
+.journal-author-column-description {margin:4px 0 0;line-height:1.65;white-space:pre-line;overflow-wrap:anywhere;}
+.journal-author-column-translation {margin-top:4px;font-size:13px;overflow-wrap:anywhere;}
+.journal-author-column-translation summary {cursor:pointer;}
+.journal-author-column-translation div {margin-top:8px;}
+.journal-author-article-group + .journal-author-article-group {margin-top:12px;}
+.journal-author-article-group h3 {margin:0 0 10px;}
 .journal-column-statuses {display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;}
 .journal-column-actions {display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;max-width:320px;}
 .journal-column-edit {grid-column:1/-1;display:grid;gap:12px;border-top:1px solid #d9ddd7;padding-top:18px;}
