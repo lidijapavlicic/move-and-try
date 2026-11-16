@@ -115,12 +115,11 @@
         if (field) field.value = values[key] || '';
       }
       // Restore selected public column as well as the body and cover.
-      if(isAdmin()){
-        const savedColumn=values.ui_column_id || null;
-        if(savedColumn && columns.some(c=>c.id===savedColumn)){
-          currentArticleColumnId=savedColumn;
-          $('admin-column-choice').value=savedColumn;
-        }
+      if (!currentArticleId && Object.hasOwn(values, 'ui_column_id')) {
+        const savedColumn = values.ui_column_id;
+        const available = isAdmin() ? columns : currentAuthorOptions().columns;
+        currentArticleColumnId = available.some(c => c.id === savedColumn) ? savedColumn : null;
+        if (isAdmin()) $('admin-column-choice').value = currentArticleColumnId || '';
       }
       configureWritingMode(currentArticleId ? articleById(currentArticleId) : null,
         values.p_category === 'personal' ? 'column' : 'contribution');
@@ -341,9 +340,8 @@
   }
 
   function canSeeAssignedColumnArticle(article) {
-    const assigned=activeColumnFor(currentUser?.id);
-    return !!assigned && !!authorPermissions.get(currentUser?.id)?.can_write_column &&
-      article.column_id === assigned.id;
+    const options = currentAuthorOptions();
+    return options.columnist && options.columns.some(column => column.id === article.column_id);
   }
 
   function isMyArticle(article) {
@@ -353,7 +351,7 @@
 
   function canEditArticle(article) {
     return ['draft','revision'].includes(article.status) &&
-      isMyArticle(article);
+      (article.column_id && !isAdmin() ? canSeeAssignedColumnArticle(article) : isMyArticle(article));
   }
 
   function canAdminEditArticle(article) {
@@ -565,14 +563,11 @@
     renderArticleList('all-articles', filtered);
   }
 
-  function activeColumnFor(userId) {
-    return columns.find(c => c.columnist_id === userId && c.is_active);
-  }
   function currentAuthorOptions() {
     const p=authorPermissions.get(currentUser?.id);
     return {columnist:isAdmin() || !!p?.can_write_column,
       contributor:isAdmin() || !!p?.can_contribute,
-      column:activeColumnFor(currentUser?.id)};
+      columns:columns.filter(c => c.columnist_id === currentUser?.id && c.is_active)};
   }
   function renderColumns() {
     if (!isAdmin()) return;
@@ -589,8 +584,7 @@
     noAccount.textContent='Bez računa — javni autor';
     writer.append(noAccount);
     profiles.filter(p=>p.is_active &&
-      (p.role==='admin'||authorPermissions.get(p.id)?.can_write_column) &&
-      !columns.some(c=>c.columnist_id===p.id)).forEach(p=>{
+      (p.role==='admin'||authorPermissions.get(p.id)?.can_write_column)).forEach(p=>{
       const option=document.createElement('option');
       option.value=p.id;
       option.textContent=p.display_name||'Bez imena';
@@ -768,8 +762,7 @@
     if(!column)return;
     const assigned=column.columnist_id ? personName(column.columnist_id) : 'bez računa';
     const choices=profiles.filter(p=>p.is_active &&
-      (p.role==='admin' || authorPermissions.get(p.id)?.can_write_column) &&
-      (!columns.some(c=>c.columnist_id===p.id) || p.id===column.columnist_id));
+      (p.role==='admin' || authorPermissions.get(p.id)?.can_write_column));
     const lines=choices.map((p,i)=>String(i+1)+'. '+(p.display_name||'Bez imena'));
     const selected=prompt(
       'Pristup kolumni: '+column.title+'\nTrenutno: '+assigned+
@@ -800,14 +793,7 @@
   }
   function updateArticleBylinePreview() {
     const category=$('article-category').value;
-    const columnId=isAdmin()
-      ? (currentArticleColumnId || null)
-      : (currentWritingMode==='column'
-          ? (currentArticleId
-              ? articleById(currentArticleId)?.column_id
-              : currentAuthorOptions().column?.id)
-          : null);
-    const column=columns.find(c=>c.id===columnId);
+    const column=columns.find(c=>c.id===currentArticleColumnId);
     let name='MOVE&TRY Editorial';
     if(category==='personal' && column){
       name=window.MoveTryJournalByline?.columnAuthor(column.public_byline) ||
@@ -869,6 +855,10 @@
     const field=$('writing-mode-field');
     const category=$('article-category');
     const mode=$('article-writing-mode');
+    const columnField=$('author-column-field');
+    const columnChoice=$('author-column-choice');
+    columnField.hidden=true;
+    columnChoice.disabled=true;
     if(isAdmin()||currentEditorMode==='admin'){
       currentWritingMode='admin';field.hidden=true;
       category.disabled=!!currentArticleColumnId;
@@ -876,7 +866,7 @@
       return;
     }
     const options=currentAuthorOptions();
-    const canColumn=options.columnist && !!options.column;
+    const canColumn=options.columnist && options.columns.length > 0;
     currentWritingMode=article ? (article.category==='personal'?'column':'contribution')
       : (selectedMode === 'column' && canColumn ? 'column'
         : selectedMode === 'contribution' && options.contributor ? 'contribution'
@@ -886,8 +876,32 @@
     category.disabled=currentWritingMode==='column';
     if(currentWritingMode==='column'){
       category.value='personal';
-      $('writing-mode-description').textContent=options.column?.title||'Moja kolumna';
-    }else if(category.value==='personal'){category.value='guest';}
+      const available=options.columns;
+      if (article) {
+        currentArticleColumnId=article.column_id || null;
+      } else if (available.length === 1) {
+        currentArticleColumnId=available[0].id;
+      } else {
+        if (!available.some(column => column.id===currentArticleColumnId)) currentArticleColumnId=null;
+        const placeholder=createElement('option','','Odaberi kolumnu');
+        placeholder.value='';
+        placeholder.disabled=true;
+        columnChoice.replaceChildren(placeholder);
+        for (const column of available) {
+          const option=createElement('option','',column.title);
+          option.value=column.id;
+          columnChoice.append(option);
+        }
+        columnChoice.value=currentArticleColumnId || '';
+        columnField.hidden=available.length < 2;
+        columnChoice.disabled=columnField.hidden;
+      }
+      $('writing-mode-description').textContent=available.find(column => column.id===currentArticleColumnId)?.title || '';
+    } else {
+      if (category.value==='personal') category.value='guest';
+      $('writing-mode-description').textContent='';
+      currentArticleColumnId=null;
+    }
     for(const option of category.options){
       option.disabled=option.value==='personal'&&currentWritingMode!=='column';
       option.hidden=option.disabled;
@@ -1141,7 +1155,7 @@
       p_category: $('article-category').value,
       p_cover_image: $('article-cover').value.trim() || null
     };
-    if (isAdmin()) values.ui_column_id = currentArticleColumnId;
+    if (isAdmin() || currentWritingMode === 'column') values.ui_column_id = currentArticleColumnId;
     if (currentEditorMode === 'admin') {
       values.p_title_en = $('article-title-en').value.trim() || null;
       values.p_excerpt_en = $('article-excerpt-en').value.trim() || null;
@@ -1179,7 +1193,7 @@
         return;
       }
       const options=currentAuthorOptions();
-      if (!options.contributor && !(options.columnist && options.column)) {
+      if (!options.contributor && !(options.columnist && options.columns.length)) {
         setMessage('dashboard-message',
           options.columnist
             ? 'Kolumna ti još nije dodijeljena. Obrati se administratorici.'
@@ -1269,6 +1283,11 @@
       setMessage('editor-message',endBlockError,true);
       return;
     }
+    if (!currentArticleId && currentWritingMode === 'column' && !currentArticleColumnId) {
+      setMessage('editor-message', 'Odaberi kolumnu prije spremanja.', true);
+      $('author-column-choice').focus();
+      return;
+    }
 
     setBusy(true);
     setMessage('editor-message', 'Spremanje...');
@@ -1278,9 +1297,9 @@
       const previousArticleId = currentArticleId;
       let result;
 
-      if (isAdmin() && !currentArticleId && currentArticleColumnId) {
+      if (!currentArticleId && currentArticleColumnId) {
         const { ui_column_id, ...body } = values;
-        result = await db.rpc('journal_admin_create_column_draft', {
+        result = await db.rpc(isAdmin() ? 'journal_admin_create_column_draft' : 'journal_create_column_draft', {
           p_column_id: ui_column_id,
           p_title: body.p_title,
           p_excerpt: body.p_excerpt,
@@ -1298,9 +1317,7 @@
         );
       } else {
         const { ui_column_id, ...saveValues } = values;
-        const editingAssignedColumn = currentArticleId &&
-          articleById(currentArticleId)?.author_id !== currentUser.id &&
-          canSeeAssignedColumnArticle(articleById(currentArticleId));
+        const editingAssignedColumn = !isAdmin() && articleById(currentArticleId)?.column_id;
         result = await db.rpc(
           editingAssignedColumn
             ? 'journal_save_assigned_column_draft_checked'
@@ -1318,6 +1335,7 @@
       if (!currentArticleId) {
         currentArticleId = result.data;
         if (isAdmin()) $('admin-column-choice').disabled = true;
+        $('author-column-choice').disabled = true;
       }
 
       await refreshDashboard();
@@ -1377,12 +1395,9 @@
     );
 
     try {
-      const owned=articleById(currentArticleId);
-      const delegated=owned &&
-        owned.author_id !== currentUser.id &&
-        canSeeAssignedColumnArticle(owned);
+      const columnDraft=articleById(currentArticleId)?.column_id;
       const { error } = await db.rpc(
-        delegated
+        columnDraft
           ? 'journal_submit_assigned_column'
           : 'journal_submit_article',
         {p_article_id: currentArticleId}
@@ -2683,6 +2698,13 @@
   });
 
   $('article-category').addEventListener('change',updateArticleBylinePreview);
+
+  $('author-column-choice').addEventListener('change',()=>{
+    if (busy || currentArticleId || currentWritingMode !== 'column') return;
+    currentArticleColumnId=$('author-column-choice').value || null;
+    $('writing-mode-description').textContent=columns.find(column => column.id===currentArticleColumnId)?.title || '';
+    updateArticleBylinePreview();
+  });
 
   $('article-writing-mode').addEventListener('change',()=>{
     if(isAdmin()||currentArticleId)return;
