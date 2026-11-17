@@ -3,16 +3,257 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Otkrij aktivnosti za djecu i iskustva koja možete isprobati zajedno.">
   <title>MOVE&amp;TRY KIDS</title>
+
   <link rel="stylesheet" href="/consent.css">
   <script src="/consent.js" defer></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f8f5ef;
+      --ink: #173455;
+      --accent: #e8752a;
+      --line: #c4cbd1;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1rem/1.6 system-ui, sans-serif;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 4px;
+    }
+
+    .kids-header {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px 24px;
+      padding: 8px clamp(16px, 4vw, 56px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kids-logo { display: block; width: min(100%, 252px); }
+    .kids-logo img { display: block; width: 100%; height: auto; }
+    .kids-nav { display: flex; flex-wrap: wrap; gap: 10px 26px; }
+    .parent-site { justify-self: end; }
+
+    .kids-nav a, .parent-site {
+      padding-block: 6px;
+      font-size: .75rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .kids-nav a:hover, .parent-site:hover { text-decoration: underline; }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: auto;
+      padding-bottom: 64px;
+    }
+
+    .intro { max-width: 700px; padding: clamp(32px, 6vw, 80px) 0 30px; }
+    .intro p { max-width: 44ch; margin-bottom: 0; }
+
+    h1, h2 {
+      margin: 0 0 12px;
+      font-family: Georgia, serif;
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    h1 { font-size: clamp(2.45rem, 6vw, 5rem); }
+    h2 { font-size: clamp(1.85rem, 4vw, 2.75rem); }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+      gap: 16px;
+    }
+
+    .category {
+      border: 1px solid var(--line);
+      background: #fffaf3;
+    }
+
+    summary { cursor: pointer; }
+    .category summary { display: block; list-style: none; }
+    .category summary::-webkit-details-marker { display: none; }
+
+    .category-image {
+      display: block;
+      overflow: hidden;
+      aspect-ratio: 5 / 4;
+      background: #f1e9db;
+    }
+
+    .category-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity .3s ease, filter .3s ease, transform .3s ease;
+    }
+
+    .category-name {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .category-name span { color: #a34b17; }
+    .category[open] .category-name span { transform: rotate(180deg); }
+    .category p { margin: 0; padding: 0 16px 16px; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .category-image img { opacity: .67; filter: saturate(.76); }
+
+      .category:hover .category-image img,
+      .category[open] .category-image img {
+        opacity: 1;
+        filter: none;
+        transform: scale(1.035);
+      }
+    }
+
+    .category summary:focus-visible img { opacity: 1; filter: none; }
+
+    .content-section {
+      margin-top: 52px;
+      padding-top: 24px;
+      border-top: 2px solid var(--accent);
+    }
+
+    .story { max-width: 62ch; }
+    .story summary { font-weight: 700; }
+
+    @media (max-width: 760px) {
+      .kids-header { grid-template-columns: minmax(0, 1fr) auto; }
+      .kids-logo { width: min(100%, 216px); }
+      .kids-nav { grid-column: 1 / -1; grid-row: 2; }
+      .parent-site { grid-column: 2; grid-row: 1; }
+      .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .category-name { padding: 10px; font-size: .85rem; }
+      .category p { padding: 0 10px 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .category-image img { transition: none; }
+      .category:hover .category-image img,
+      .category[open] .category-image img { transform: none; }
+    }
+  </style>
 </head>
 <body>
+  <header class="kids-header">
+    <a class="kids-logo" href="./">
+      <img src="./assets/images/logo-kids.png" width="2172" height="724"
+           alt="MOVE&amp;TRY KIDS – naslovnica">
+    </a>
+
+    <nav class="kids-nav" aria-label="KIDS izbornik">
+      <a href="#otkrij">Otkrij</a>
+      <a href="#gdje-probati">Gdje probati</a>
+    </nav>
+
+    <a class="parent-site" href="/hr/">MOVE&amp;TRY <span aria-hidden="true">↗</span></a>
+  </header>
+
   <main>
-    <img src="./assets/images/logo-kids.png"
-         alt="MOVE&amp;TRY KIDS"
-         width="2172" height="724"
-         style="display: block; width: min(100%, 480px); height: auto; margin: 2rem auto">
+    <section class="intro" id="otkrij" aria-labelledby="naslov">
+      <h1 id="naslov">Što ćemo isprobati?</h1>
+      <p>Otkrij aktivnosti za djecu i iskustva koja možete isprobati zajedno.</p>
+    </section>
+
+    <section class="category-grid" aria-label="Kategorije">
+      <details class="category">
+        <summary>
+          <span class="category-image"><img src="./assets/images/move.png" width="490" height="448" alt=""></span>
+          <span class="category-name">MOVE <span aria-hidden="true">⌄</span></span>
+        </summary>
+        <p>Kretanje, igra i sport. Od prvog treninga do obiteljske vožnje biciklom.</p>
+      </details>
+
+      <details class="category">
+        <summary>
+          <span class="category-image"><img src="./assets/images/learn.png" width="490" height="448" alt=""></span>
+          <span class="category-name">LEARN <span aria-hidden="true">⌄</span></span>
+        </summary>
+        <p>Pokusi, radionice i nove vještine koje djeca mogu učiti kroz igru.</p>
+      </details>
+
+      <details class="category">
+        <summary>
+          <span class="category-image"><img src="./assets/images/create.png" width="490" height="448" alt=""></span>
+          <span class="category-name">CREATE <span aria-hidden="true">⌄</span></span>
+        </summary>
+        <p>Crtanje, glazba, keramika i stvaranje vlastitim rukama.</p>
+      </details>
+
+      <details class="category">
+        <summary>
+          <span class="category-image"><img src="./assets/images/explore.png" width="490" height="448" alt=""></span>
+          <span class="category-name">EXPLORE <span aria-hidden="true">⌄</span></span>
+        </summary>
+        <p>Mjesta za posjet i ideje za obiteljske izlete, od muzeja do poučnih staza.</p>
+      </details>
+
+      <details class="category">
+        <summary>
+          <span class="category-image"><img src="./assets/images/dare.png" width="490" height="448" alt=""></span>
+          <span class="category-name">DARE <span aria-hidden="true">⌄</span></span>
+        </summary>
+        <p>Novi izazovi koje dijete može isprobati svojim tempom.</p>
+      </details>
+
+      <details class="category">
+        <summary>
+          <span class="category-image"><img src="./assets/images/care.png" width="490" height="448" alt=""></span>
+          <span class="category-name">CARE <span aria-hidden="true">⌄</span></span>
+        </summary>
+        <p>Emocije, odnosi i briga o sebi. Teme za djecu i roditelje.</p>
+      </details>
+    </section>
+
+    <section class="content-section" aria-labelledby="price">
+      <h2 id="price">Priče za male istraživače</h2>
+
+      <details class="story">
+        <summary>Avionić koji je stalno skretao</summary>
+        <p>Mila je od papira napravila avion i na pod zalijepila traku za slijetanje.</p>
+        <p>Avion je poletio. I sletio u papuču.</p>
+        <p>— Opet lijevo — rekla je Mila.</p>
+        <p>Pomaknula je papuču i pokušala ponovno. Ovaj put avion je sletio točno tamo gdje je papuča bila.</p>
+        <p>— Možda mu je to aerodrom — rekao je djed.</p>
+        <p>Mila se nasmijala i podignula avion do očiju. Jedno mu je krilo bilo malo spušteno. Poravnala ga je prstom, stala na isto mjesto i bacila ga još jednom.</p>
+        <p>Avion je preletio traku i zaustavio se kraj djedove noge.</p>
+        <p>— Malo si promašila — rekao je djed.</p>
+        <p>— Znam — rekla je Mila i podignula avion. — Sad me zanima mogu li pogoditi papuču namjerno.</p>
+      </details>
+    </section>
+
+    <section class="content-section" id="gdje-probati" aria-labelledby="gdje-probati-naslov">
+      <h2 id="gdje-probati-naslov">Gdje probati</h2>
+      <p>Ovdje ćeš pronaći mjesta, radionice i programe koje možete isprobati.</p>
+    </section>
   </main>
 </body>
 </html>
