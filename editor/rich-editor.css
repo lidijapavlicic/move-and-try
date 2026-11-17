@@ -1,6 +1,8 @@
 
 /* MOVE&TRY | The Journal — visual writing surface */
 .mt-rich-wrapper { margin: 0 0 16px; }
+.mt-dictation { padding: 14px; border: 1px solid var(--line, #dcded6); background: #fff; }
+.mt-dictation textarea { min-height: 100px; }
 .mt-draft-status {
   margin:8px 0 17px;
   font:500 11px/1.6 Manrope,Arial,sans-serif;

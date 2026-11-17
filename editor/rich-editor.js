@@ -483,6 +483,52 @@
       canvas.focus();
     }, 'mt-rich-divider-button'));
 
+    const dictation = spec.lang === 'hr' ? window.MoveTryJournalDictation?.attach({
+      toolbar: bar,
+      paper,
+      saveSelection,
+      prepareInsertion() {
+        const savedRange = instance.selection?.cloneRange();
+        return text => {
+          canvas.focus();
+          let range = savedRange;
+          if (!range || !canvas.contains(range.commonAncestorContainer)) {
+            const paragraph = document.createElement('p');
+            canvas.append(paragraph);
+            range = document.createRange();
+            range.selectNodeContents(paragraph);
+          }
+          range.collapse(false);
+          const node = range.startContainer;
+          if (node.nodeType === Node.TEXT_NODE) {
+            const before = node.data[range.startOffset - 1] || '';
+            const after = node.data[range.startOffset] || '';
+            if (/[\p{L}\p{N}.!?]/u.test(before) && /^[\p{L}\p{N}]/u.test(text)) text = ' ' + text;
+            if (/[\p{L}\p{N}]/u.test(after) && !/\s$/u.test(text)) text += ' ';
+          }
+          const selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          if (!document.execCommand?.('insertText', false, text)) {
+            const fragment = document.createDocumentFragment();
+            const lines = text.split('\n');
+            lines.forEach((line, index) => {
+              if (index) fragment.append(document.createElement('br'));
+              fragment.append(document.createTextNode(line));
+            });
+            const end = fragment.lastChild;
+            range.insertNode(fragment);
+            range.setStartAfter(end);
+            range.collapse(true);
+            selection.removeAllRanges();
+            selection.addRange(range);
+          }
+          sync();
+        };
+      }
+    }) : null;
+    instance.closeDictation = () => dictation?.reset();
+
     const previewMessage = document.createElement('p');
     previewMessage.className = 'message error';
     previewMessage.setAttribute('role', 'status');
@@ -503,6 +549,7 @@
     instance.sync = sync;
 
     instance.load = function () {
+      instance.closeDictation();
       render(canvas,field.value);
       updateHead(instance);
       instance.selection = null;
@@ -699,6 +746,9 @@
         if (panel.hidden) closePreview();
       });
       observer.observe(panel,{attributes:true,attributeFilter:['hidden']});
+      for (const event of ['journal-editor-closing', 'journal-editor-logout']) {
+        panel.addEventListener(event, () => instances.forEach(instance => instance.closeDictation()));
+      }
     }
     // Keep the actual persisted textareas aligned with the visible editor,
     // including when Save is clicked immediately after a toolbar action.
