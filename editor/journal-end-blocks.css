@@ -3,6 +3,35 @@
 .journal-article-links{display:grid;gap:14px;margin:52px 0}
 .journal-article-link{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:20px 22px;border:1px solid #17251e;color:#17251e;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:.06em;line-height:1.5;text-decoration:none;transition:background .2s ease,color .2s ease}
 .journal-article-link:hover{background:#17251e;color:#fff}
+:is(#journal-public-content, .mt-rich-reader-body) > p:last-of-type > a:is(
+  [href="https://moveandtry.com/hr/child-adolescent-psychotherapy-expert-nikolina.html"],
+  [href="https://moveandtry.com/child-adolescent-psychotherapy-expert-nikolina.html"]
+) {
+  display: inline-block;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 12px 0 10px;
+  border-bottom: 1px solid #687b61;
+  color: #17251e;
+  font: 800 12px/1.6 Manrope, sans-serif;
+  letter-spacing: .06em;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+:is(#journal-public-content, .mt-rich-reader-body) > p:last-of-type > a:is(
+  [href="https://moveandtry.com/hr/child-adolescent-psychotherapy-expert-nikolina.html"],
+  [href="https://moveandtry.com/child-adolescent-psychotherapy-expert-nikolina.html"]
+):is(:hover, :focus-visible) {
+  color: #45594a;
+  border-color: currentColor;
+}
+:is(#journal-public-content, .mt-rich-reader-body) > p:last-of-type > a:is(
+  [href="https://moveandtry.com/hr/child-adolescent-psychotherapy-expert-nikolina.html"],
+  [href="https://moveandtry.com/child-adolescent-psychotherapy-expert-nikolina.html"]
+):focus-visible {
+  outline: 2px solid #45594a;
+  outline-offset: 4px;
+}
 .article-sources{margin:48px 0 0;padding:42px 0 50px;border-top:1px solid #d7d7d0;font-family:Manrope,sans-serif}
 .article-sources-label{font-size:10px;font-weight:800;letter-spacing:.16em;color:#6f7967;text-transform:uppercase}
 .article-sources h2{margin:15px 0 32px;font-family:'DM Serif Display',serif;font-size:clamp(31px,4vw,42px);font-weight:400}
