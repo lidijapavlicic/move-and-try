@@ -729,17 +729,17 @@
     const toPath = isWebLink ? destination.pathname : '';
     const sameSite = isWebLink &&
       destination.origin === window.location.origin;
-    const whereIndex = /^\\/(?:hr\\/)?where-to-try\\.html$/;
-    const providerDetail = /^\\/(?:hr\\/)?(?!be-part-of-)[a-z0-9-]+-where-to-try\\.html$/;
+    const whereIndex = /^\/(?:hr\/)?where-to-try\.html$/;
+    const providerDetail = /^\/(?:hr\/)?(?!be-part-of-)[a-z0-9-]+-where-to-try\.html$/;
 
     // Do not mistake MOVE&TRY's own contribution contacts for partner leads.
     const isOwnWebsite = isWebLink &&
-      /(^|\\.)moveandtry\\.com$/i.test(destination.hostname);
+      /(^|\.)moveandtry\.com$/i.test(destination.hostname);
     const isOwnInstagram = isWebLink &&
-      /(^|\\.)instagram\\.com$/i.test(destination.hostname) &&
-      /^\\/moveandtry\\/?$/i.test(destination.pathname);
+      /(^|\.)instagram\.com$/i.test(destination.hostname) &&
+      /^\/moveandtry\/?$/i.test(destination.pathname);
     const isOwnEmail = isEmailLink &&
-      /@moveandtry\\.com$/i.test(destination.pathname);
+      /@moveandtry\.com$/i.test(destination.pathname);
 
     let eventName = null;
     if (sameSite && whereIndex.test(toPath)) {
@@ -761,7 +761,7 @@
 
     const contactMethod = isEmailLink ? 'email'
       : isPhoneLink ? 'phone'
-      : /(^|\\.)instagram\\.com$/i.test(destination.hostname)
+      : /(^|\.)instagram\.com$/i.test(destination.hostname)
         ? 'instagram'
         : 'website';
 
