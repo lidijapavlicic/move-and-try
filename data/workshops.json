@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "workshops": [
+    {
+      "id": "bakart-jesenska-aplikacija",
+      "published": true,
+      "date": "2026-11-28",
+      "time": "10:30–12:00",
+      "title": {
+        "hr": "JESENSKA APLIKACIJA",
+        "en": "AUTUMN APPLIQUÉ"
+      },
+      "organizer": "BAKART STUDIO",
+      "city": "Zagreb",
+      "image": "/images/bakart-jesenska-aplikacija-workshop.png",
+      "audience": {
+        "hr": "Mame i djeca",
+        "en": "Mothers and children"
+      },
+      "materials": {
+        "hr": "Sav materijal je uključen",
+        "en": "All materials are included"
+      },
+      "description": {
+        "hr": "Zajedno stvarajte male jesenske pejzaže od pravog jesenskog lišća, posebno žutih listova ginka.",
+        "en": "Create autumn landscapes together with real leaves, especially yellow ginkgo leaves."
+      },
+      "registrationEmail": "bakart.art@gmail.com",
+      "url": {
+        "hr": "/hr/creative-workshops-with-children-where-to-try.html",
+        "en": "/creative-workshops-with-children-where-to-try.html"
+      }
+    }
+  ]
+}

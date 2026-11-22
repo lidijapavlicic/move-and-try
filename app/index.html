@@ -1327,6 +1327,7 @@
 
   <link rel="stylesheet" href="/consent.css">
   <link rel="stylesheet" href="/app/notifications.css">
+<link rel="stylesheet" href="/workshops.css">
 </head>
 
 <body>
@@ -1582,6 +1583,7 @@
 
   <script src="/editor/journal-byline.js"></script>
   <script src="/journal-feed-render.js"></script>
+  <script src="/workshops.js"></script>
   <script>
     if (!window.MT_BROWSER_MODE) (() => {
       'use strict';
@@ -2375,6 +2377,8 @@
           : 'Discover real places and people who can help you take the first step.'}
       </p>
 
+      <div class="mt-ws-mount" data-mt-workshops="app" data-lang="${language}" hidden></div>
+
       <div class="app-where-search-wrap">
 
         <span aria-hidden="true">
@@ -2992,6 +2996,8 @@
             content[activeTab] ||
             renderHome
           )();
+
+        window.MoveTryWorkshops?.mount(view);
 
         navButtons.forEach(button => {
           if (
