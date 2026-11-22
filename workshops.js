@@ -3,10 +3,10 @@
 let items=null,pending=null;
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const loc=(obj,lang)=>typeof obj==='object'&&obj?String(obj[lang]||obj.hr||''):String(obj||'');
-const safe=u=>typeof u==='string'&&/^\\/(?!\\/)[\\w./-]+$/.test(u)?u:'#';
+const safe=u=>typeof u==='string'&&/^\/(?!\/)[\w./-]+$/.test(u)?u:'#';
 const lang=node=>node.dataset.lang==='en'?'en':'hr';
 function today(){const v=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Zagreb',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const p=k=>v.find(x=>x.type===k)?.value||'';return p('year')+'-'+p('month')+'-'+p('day');}
-function upcoming(){const d=today();return(items||[]).filter(w=>w.published===true&&/^\\d{4}-\\d{2}-\\d{2}$/.test(w.date||'')&&w.date>=d).sort((a,b)=>a.date.localeCompare(b.date));}
+function upcoming(){const d=today();return(items||[]).filter(w=>w.published===true&&/^\d{4}-\d{2}-\d{2}$/.test(w.date||'')&&w.date>=d).sort((a,b)=>a.date.localeCompare(b.date));}
 function date(w,l){const [y,m,d]=w.date.split('-');return l==='hr'?Number(d)+'. '+Number(m)+'. '+y+'.':new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(w.date+'T12:00:00Z'));}
 function load(){if(items)return Promise.resolve(items);if(pending)return pending;pending=fetch('/data/workshops.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Workshops HTTP '+r.status);return r.json()}).then(j=>{if(!Array.isArray(j.workshops))throw Error('Invalid workshops');items=j.workshops;return items}).finally(()=>pending=null);return pending;}
 function ticker(ws,l){const parts=ws.map(w=>'<a class="mt-ws-event" href="'+escape(safe(loc(w.url,l)))+'"><strong>'+escape(date(w,l))+'</strong>✦ '+escape(loc(w.title,l))+' · '+escape(w.organizer)+'</a>').join('');
