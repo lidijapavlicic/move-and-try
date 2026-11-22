@@ -718,18 +718,28 @@
     } catch (_) {
       return;
     }
-    if (
-      destination.protocol !== 'http:' &&
-      destination.protocol !== 'https:'
-    ) {
-      return;
-    }
+
+    const protocol = destination.protocol;
+    const isWebLink = protocol === 'http:' || protocol === 'https:';
+    const isEmailLink = protocol === 'mailto:';
+    const isPhoneLink = protocol === 'tel:';
+    if (!isWebLink && !isEmailLink && !isPhoneLink) return;
 
     const fromPath = window.location.pathname;
-    const toPath = destination.pathname;
-    const sameSite = destination.origin === window.location.origin;
-    const whereIndex = /^\/(?:hr\/)?where-to-try\.html$/;
-    const providerDetail = /^\/(?:hr\/)?(?!be-part-of-)[a-z0-9-]+-where-to-try\.html$/;
+    const toPath = isWebLink ? destination.pathname : '';
+    const sameSite = isWebLink &&
+      destination.origin === window.location.origin;
+    const whereIndex = /^\\/(?:hr\\/)?where-to-try\\.html$/;
+    const providerDetail = /^\\/(?:hr\\/)?(?!be-part-of-)[a-z0-9-]+-where-to-try\\.html$/;
+
+    // Do not mistake MOVE&TRY's own contribution contacts for partner leads.
+    const isOwnWebsite = isWebLink &&
+      /(^|\\.)moveandtry\\.com$/i.test(destination.hostname);
+    const isOwnInstagram = isWebLink &&
+      /(^|\\.)instagram\\.com$/i.test(destination.hostname) &&
+      /^\\/moveandtry\\/?$/i.test(destination.pathname);
+    const isOwnEmail = isEmailLink &&
+      /@moveandtry\\.com$/i.test(destination.pathname);
 
     let eventName = null;
     if (sameSite && whereIndex.test(toPath)) {
@@ -737,22 +747,42 @@
     } else if (sameSite && providerDetail.test(toPath)) {
       eventName = 'mt_provider_interest';
     } else if (
-      !sameSite &&
       providerDetail.test(fromPath) &&
-      link.closest('main')
+      link.closest('main') &&
+      !isOwnWebsite &&
+      !isOwnInstagram &&
+      !isOwnEmail &&
+      ((!sameSite && isWebLink) || isEmailLink || isPhoneLink)
     ) {
       eventName = 'mt_partner_outbound';
     }
 
     if (!eventName) return;
 
-    window.gtag('event', eventName, {
-      link_url: destination.origin + destination.pathname,
-      link_text: (link.textContent || '').trim().slice(0, 100),
+    const contactMethod = isEmailLink ? 'email'
+      : isPhoneLink ? 'phone'
+      : /(^|\\.)instagram\\.com$/i.test(destination.hostname)
+        ? 'instagram'
+        : 'website';
+
+    // Do not send email addresses or phone numbers to Google Analytics.
+    const params = {
+      link_text: isWebLink
+        ? (link.textContent || '').trim().slice(0, 100)
+        : contactMethod,
       source_path: fromPath,
       target_path: toPath,
       language: language
-    });
+    };
+
+    if (isWebLink) {
+      params.link_url = destination.origin + destination.pathname;
+    }
+    if (eventName === 'mt_partner_outbound') {
+      params.contact_method = contactMethod;
+    }
+
+    window.gtag('event', eventName, params);
   }
 
   document.addEventListener('click', trackMarketingClick);
