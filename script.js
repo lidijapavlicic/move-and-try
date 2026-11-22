@@ -1414,8 +1414,7 @@ if (providerBack) {
     const target = preferred === 'hr' ? '/hr/' : '/';
     const onCroatianHome = path === '/hr/' || path === '/hr/index.html';
 
-    if ((preferred === 'hr' && !onCroatianHome) ||
-        (preferred === 'en' && onCroatianHome)) {
+    if (preferred === 'hr' && !onCroatianHome) {
         window.location.replace(target + window.location.search + window.location.hash);
     }
 })();
