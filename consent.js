@@ -690,6 +690,73 @@
     }
   };
 
+  /*
+   * MOVE&TRY marketing interest events (analytics opt-in only).
+   * GA4 enhanced measurement collects generic outbound clicks;
+   * these custom events identify our activity discovery funnel.
+   */
+  function trackMarketingClick(event) {
+    const saved = readConsent();
+    if (
+      !saved ||
+      saved.analytics !== true ||
+      !analyticsLoaded ||
+      window['ga-disable-' + GA_ID] !== false ||
+      typeof window.gtag !== 'function'
+    ) {
+      return;
+    }
+
+    const link = event.target instanceof Element
+      ? event.target.closest('a[href]')
+      : null;
+    if (!link) return;
+
+    let destination;
+    try {
+      destination = new URL(link.href, window.location.href);
+    } catch (_) {
+      return;
+    }
+    if (
+      destination.protocol !== 'http:' &&
+      destination.protocol !== 'https:'
+    ) {
+      return;
+    }
+
+    const fromPath = window.location.pathname;
+    const toPath = destination.pathname;
+    const sameSite = destination.origin === window.location.origin;
+    const whereIndex = /^\/(?:hr\/)?where-to-try\.html$/;
+    const providerDetail = /^\/(?:hr\/)?(?!be-part-of-)[a-z0-9-]+-where-to-try\.html$/;
+
+    let eventName = null;
+    if (sameSite && whereIndex.test(toPath)) {
+      eventName = 'mt_where_to_try';
+    } else if (sameSite && providerDetail.test(toPath)) {
+      eventName = 'mt_provider_interest';
+    } else if (
+      !sameSite &&
+      providerDetail.test(fromPath) &&
+      link.closest('main')
+    ) {
+      eventName = 'mt_partner_outbound';
+    }
+
+    if (!eventName) return;
+
+    window.gtag('event', eventName, {
+      link_url: destination.origin + destination.pathname,
+      link_text: (link.textContent || '').trim().slice(0, 100),
+      source_path: fromPath,
+      target_path: toPath,
+      language: language
+    });
+  }
+
+  document.addEventListener('click', trackMarketingClick);
+
   function initialize() {
     const stored = readConsent();
 
