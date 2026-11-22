@@ -1,0 +1,113 @@
+/* MOVE&TRY – shared invitation panel.
+   Applies only to the existing WHERE TO TRY contribution panels.
+   Existing page-specific headings and descriptions stay untouched. */
+main .where-contribute,
+main .where-section.where-contribute {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 86px 24px 96px;
+  background: #1f2a18;
+  color: #fff;
+  text-align: center;
+}
+main .where-contribute > .where-contribute-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+main .where-contribute :is(.provider-section-label, .section-eyebrow, .section-label) {
+  max-width: 100%;
+  margin: 0 auto 30px;
+  color: rgba(255,255,255,.60);
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .16em;
+  text-align: center;
+}
+main .where-contribute h1,
+main .where-contribute h2 {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto 31px;
+  color: #fff;
+  font-family: 'Manrope', sans-serif !important;
+  font-size: clamp(30px,4vw,42px) !important;
+  font-weight: 700 !important;
+  line-height: 1.30;
+  letter-spacing: -.02em;
+  text-align: center;
+  text-wrap: balance;
+}
+main .where-contribute p:not(.provider-section-label):not(.section-label):not(.section-eyebrow) {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 43px;
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(16px,1.9vw,20px);
+  font-weight: 400;
+  line-height: 1.7;
+  text-align: center;
+}
+main .where-contribute a.where-contribute-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: 100%;
+  min-height: 60px;
+  margin: 0 auto;
+  padding: 15px 30px;
+  border: 1px solid rgba(255,255,255,.90);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: .035em;
+  text-decoration: none;
+  text-align: center;
+}
+main .where-contribute a.where-contribute-link:hover {
+  background: #fff;
+  color: #1f2a18;
+}
+main .where-contribute a.where-contribute-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+main .where-contribute a.where-instagram-link {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 20px auto 0;
+  color: rgba(255,255,255,.84);
+  text-align: center;
+}
+@media (max-width: 720px) {
+  main .where-contribute,
+  main .where-section.where-contribute {
+    padding: 66px 22px 74px;
+  }
+  main .where-contribute h1,
+  main .where-contribute h2 {
+    font-size: clamp(28px,7.8vw,38px) !important;
+    margin-bottom: 24px;
+  }
+  main .where-contribute p:not(.provider-section-label):not(.section-label):not(.section-eyebrow) {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+}
