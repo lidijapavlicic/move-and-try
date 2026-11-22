@@ -318,6 +318,18 @@
       outline-offset: 3px;
     }
 
+    .cg-contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .cg-contact-actions .cg-action {
+      min-width: 185px;
+      margin-top: 0;
+    }
+
     .cg-secondary-link {
       display: inline-block;
       margin: 18px 0 0;
@@ -821,18 +833,24 @@
               šaljemo na pregled prije objave.
             </p>
 
-            <a href="/hr/be-part-of-where-to-try.html" class="cg-action">
-              PRIJAVI SVOJE MJESTO <span aria-hidden="true">→</span>
-            </a>
-
-            <p>
+            <div class="cg-contact-actions" aria-label="Načini prijave mjesta">
               <a
-                class="cg-secondary-link"
                 href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Gdje%20probati"
+                class="cg-action"
+                aria-label="Prijavi svoje mjesto e-mailom"
               >
-                Ili nam se javi izravno e-mailom →
+                E-MAIL <span aria-hidden="true">→</span>
               </a>
-            </p>
+              <a
+                href="https://www.instagram.com/moveandtry/"
+                class="cg-action"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Prijavi svoje mjesto putem Instagrama"
+              >
+                INSTAGRAM <span aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
         </div>
       </details>
