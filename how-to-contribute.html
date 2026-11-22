@@ -318,6 +318,18 @@
       outline-offset: 3px;
     }
 
+    .cg-contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .cg-contact-actions .cg-action {
+      min-width: 185px;
+      margin-top: 0;
+    }
+
     .cg-secondary-link {
       display: inline-block;
       margin: 18px 0 0;
@@ -820,18 +832,24 @@
               before publication.
             </p>
 
-            <a href="/be-part-of-where-to-try.html" class="cg-action">
-              SUBMIT YOUR PLACE <span aria-hidden="true">→</span>
-            </a>
-
-            <p>
+            <div class="cg-contact-actions" aria-label="Ways to submit your place">
               <a
-                class="cg-secondary-link"
                 href="mailto:hello@moveandtry.com?subject=MOVE%20%26%20TRY%20-%20Where%20to%20Try"
+                class="cg-action"
+                aria-label="Submit your place by email"
               >
-                Or contact us directly by email →
+                E-MAIL <span aria-hidden="true">→</span>
               </a>
-            </p>
+              <a
+                href="https://www.instagram.com/moveandtry/"
+                class="cg-action"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Submit your place via Instagram"
+              >
+                INSTAGRAM <span aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
         </div>
       </details>
