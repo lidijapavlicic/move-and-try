@@ -312,14 +312,14 @@
 }
 
 /* Seasonal programme, independent of workshops */
-.mt-dec-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;min-height:54px;background:#e9eee8;color:#233621;border-bottom:1px solid #cbd6c9;font-family:Manrope,sans-serif}
+.mt-dec-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;min-height:54px;background:#812c40;color:#fff4dc;border-bottom:1px solid #b98c52;font-family:Manrope,sans-serif}
 .mt-dec-window{overflow:hidden;min-width:0;mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
-.mt-dec-track{display:flex;width:max-content;animation:mt-dec-scroll 36s linear infinite}
+.mt-dec-track{display:flex;width:max-content;animation:mt-dec-scroll 180s linear infinite}
 .mt-dec-run{display:flex;flex-shrink:0;gap:40px;padding-right:40px;align-items:center}
-.mt-dec-copy{color:#233621!important;font-size:11px;font-weight:800;letter-spacing:.07em;white-space:nowrap;text-decoration:none!important}
-.mt-dec-all{display:grid;place-items:center;align-self:stretch;padding:12px 24px;border-left:1px solid #cad5c8;color:#233621!important;font-size:11px;font-weight:800;white-space:nowrap;text-decoration:none!important}
-.mt-dec-all:hover{background:#d6e1d3}.mt-dec-window:hover .mt-dec-track,.mt-dec-window:focus-within .mt-dec-track{animation-play-state:paused}
+.mt-dec-copy{color:#fff4dc!important;font-size:12px;font-weight:800;letter-spacing:.07em;white-space:nowrap;text-decoration:none!important}
+.mt-dec-all{display:grid;place-items:center;align-self:stretch;padding:12px 24px;border-left:1px solid #b98c52;background:#f1d39b;color:#532032!important;font-size:11px;font-weight:800;white-space:nowrap;text-decoration:none!important}
+.mt-dec-all:hover{background:#ffe5b5}.mt-dec-window:hover .mt-dec-track,.mt-dec-window:focus-within .mt-dec-track{animation-play-state:paused}
 @keyframes mt-dec-scroll{to{transform:translateX(-50%)}}
-.mt-dec-app-ticker .mt-dec-bar{min-height:46px}.mt-dec-app-ticker .mt-dec-all{padding:10px 12px}.mt-dec-app-ticker .mt-dec-copy{font-size:10px}
-@media(max-width:680px){.mt-dec-bar{min-height:46px}.mt-dec-all{padding:10px 12px;font-size:10px}.mt-dec-copy{font-size:10px}}
+.mt-dec-app-ticker .mt-dec-bar{min-height:46px}.mt-dec-app-ticker .mt-dec-all{padding:10px 12px}.mt-dec-app-ticker .mt-dec-copy{font-size:11px}
+@media(max-width:680px){.mt-dec-bar{min-height:46px}.mt-dec-all{padding:10px 12px;font-size:10px}.mt-dec-copy{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.mt-dec-track{animation:none;width:auto}.mt-dec-run{white-space:normal;flex-shrink:1;padding:8px 12px}.mt-dec-copy{white-space:normal}.mt-dec-copy:not(:first-child),.mt-dec-run[aria-hidden=true]{display:none}.mt-dec-window{mask-image:none}}
