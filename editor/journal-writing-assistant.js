@@ -199,6 +199,7 @@
     }
     function close() {
       requestId += 1;
+      busy = false;
       insertIntoArticle = null;
       panel.hidden = true;
       trigger.setAttribute('aria-expanded', 'false');
@@ -239,7 +240,9 @@
       body.append('language', lang);
       body.append('audio', file, file.name);
       await run(async () => {
+        const operationId = requestId;
         const text = await invoke(body);
+        if (operationId !== requestId || panel.hidden) return;
         source.value = text;
         clearResult();
         updateCount();
@@ -250,7 +253,10 @@
       const text = source.value.trim();
       if (!text || text.length > MAX_EDIT_CHARS || busy) return;
       await run(async () => {
-        result.value = await invoke({ action: 'edit', text, mode: mode.value, language: lang });
+        const operationId = requestId;
+        const suggestion = await invoke({ action: 'edit', text, mode: mode.value, language: lang });
+        if (operationId !== requestId || panel.hidden) return;
+        result.value = suggestion;
         updateControls();
         message('Prijedlog je spreman. Usporedi ga s izvornikom prije umetanja.');
       }, 'Pripremam prijedlog…');
