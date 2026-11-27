@@ -201,3 +201,20 @@
 
 .mt-rich-paper > .mt-rich-header-author{display:block;font:700 11px/1.5 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e;margin:2px 0 30px}
 .mt-rich-reader-byline{margin:18px 0 38px;font:700 11px/1.6 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e}
+
+/* Local text tools — separate from paid AI capabilities. */
+.mt-text-tools { border:1px solid #d5dacd; background:#f9faf7; color:#17251e;
+  padding:clamp(14px,3vw,24px); margin:14px 0 24px; }
+.mt-text-tools[hidden] { display:none !important; }
+.mt-text-tools h3 { margin:0 0 10px; font-size:18px; }
+.mt-text-tools label { display:block; font-size:13px; font-weight:700; margin:12px 0 6px; }
+.mt-text-tools textarea { display:block; width:100%; min-height:110px; box-sizing:border-box;
+  background:#fff; color:#17251e; border:1px solid #cbd4c8; padding:11px;
+  font:14px/1.6 inherit; }
+.mt-text-tools-note { color:#576b5c; font-size:12px; line-height:1.55; margin:8px 0; }
+.mt-text-tools-controls, .mt-text-tools-actions { display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
+.mt-text-tools-file { flex:1 1 200px; border:1px dashed #a1af9c; padding:9px; background:#fff; }
+.mt-text-tools-file span { display:block; margin-bottom:5px; }
+.mt-text-tools-file input { display:block; max-width:100%; font-size:12px; font-weight:400; }
+.mt-text-tools button { margin:5px 0; }
+.mt-text-tools-trigger { cursor:pointer; }
