@@ -1584,6 +1584,7 @@
   <script src="/editor/journal-byline.js"></script>
   <script src="/journal-feed-render.js"></script>
   <script src="/workshops.js"></script>
+  <script src="/app/december.js"></script>
   <script>
     if (!window.MT_BROWSER_MODE) (() => {
       'use strict';
@@ -2988,7 +2989,8 @@
           explore: renderExplore,
           where: renderWhere,
           journal: renderJournal,
-          saved: renderSaved
+          saved: renderSaved,
+          december: () => window.MoveTryDecember.render(language)
         };
 
         view.innerHTML =
@@ -2998,11 +3000,12 @@
           )();
 
         window.MoveTryWorkshops?.mount(view);
+        if (activeTab === "december") window.MoveTryDecember.mount(view, language);
 
         navButtons.forEach(button => {
           if (
             button.dataset.tab ===
-            activeTab
+            (activeTab === "december" ? "home" : activeTab)
           ) {
             button.setAttribute(
               'aria-current',
@@ -4310,7 +4313,8 @@
           'explore',
           'where',
           'journal',
-          'saved'
+          'saved',
+          'december'
         ].includes(initialTab)
       ) {
         activeTab =
