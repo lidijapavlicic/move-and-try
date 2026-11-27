@@ -201,3 +201,13 @@
 
 .mt-rich-paper > .mt-rich-header-author{display:block;font:700 11px/1.5 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e;margin:2px 0 30px}
 .mt-rich-reader-byline{margin:18px 0 38px;font:700 11px/1.6 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e}
+
+/* Journal file import prototype, independent from paid AI tools. */
+.mt-file-import { border:1px solid #d5dacd; padding:16px; margin:15px 0 25px; background:#f9faf7; }
+.mt-file-import[hidden] { display:none !important; }
+.mt-file-import p { line-height:1.55; }
+.mt-file-import input[type="file"] { display:block; max-width:100%; margin:12px 0; font-size:13px; }
+.mt-file-import textarea { box-sizing:border-box; width:100%; min-height:130px; padding:12px;
+  background:#fff; color:#17251e; border:1px solid #b8c5b7; font-family:inherit; font-size:14px; line-height:1.6; }
+.mt-file-import-trigger { cursor:pointer; }
+.mt-file-import .actions { display:flex; flex-wrap:wrap; gap:9px; margin-top:12px; }
