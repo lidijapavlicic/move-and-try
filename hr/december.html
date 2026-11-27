@@ -65,181 +65,23 @@
   <link rel="stylesheet" href="/consent.css">
 
   <style>
-    /* MOVE&TRY — PROSINAC 2026 */
 
-    .december-page {
-      background: #f7f6f2;
-      color: #1f2a18;
-      min-height: 70vh;
-    }
+.december-page{--wine:#812c40;--deep:#542032;--gold:#bd9151;--green:#263e34;--paper:#f7f3eb;background:var(--paper);color:#28362c;font:500 15px/1.65 Manrope,Arial,sans-serif}
+.december-page *{box-sizing:border-box}.december-page h1,.december-page h2,.december-page h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;line-height:1.04;margin:0;color:inherit}.december-page p{margin:0 0 15px}.december-page a:focus-visible,.december-page summary:focus-visible{outline:2px solid #b98c52;outline-offset:4px}
+.dec-banner{position:relative;overflow:hidden;background:linear-gradient(110deg,#542032,#96394e,#542032);color:#fff3dc;text-align:center;padding:13px;font-size:11px;font-weight:800;letter-spacing:.15em;border-block:1px solid #c5a16b}.dec-banner:after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,#fff2c51c 48%,transparent 60%);background-size:250% 100%;animation:dec-shine 12s ease-in-out infinite;pointer-events:none}@keyframes dec-shine{0%,12%{background-position:100% 0}75%,100%{background-position:0 0}}
+.dec-hero{max-width:1440px;margin:auto;padding:62px clamp(22px,5vw,72px) 34px}.dec-eyebrow{font-size:10px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--wine)}.dec-hero h1{font-size:clamp(47px,7vw,100px);letter-spacing:-.045em;margin:15px 0 18px}.dec-hero h1 i{font-weight:400;color:var(--wine)}.dec-hero p:last-child{font-size:clamp(15px,2vw,20px);color:#576457;margin:0}.dec-heroimage{height:clamp(240px,36vw,490px);background:#d8cab4;position:relative;overflow:hidden}.dec-heroimage img{width:100%;height:100%;object-fit:cover;display:block}.dec-heroimage:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#37241c3a,transparent 45%);pointer-events:none}
+.dec-intro{max-width:1440px;margin:auto;padding:55px clamp(22px,5vw,72px) 26px;border-bottom:1px solid #d5c9b5}.dec-intro h2{font-size:clamp(38px,5vw,68px);margin:10px 0 12px}.dec-intro p{max-width:600px;margin:0;color:#626957}
+.dec-layout{max-width:1440px;margin:auto;padding:32px clamp(22px,5vw,72px) 75px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:26px;align-items:stretch}
+.dec-timeline{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(145deg,#eee9da,#f8f6ef 48%,#e8ece4);border:1px solid #d9d3c4;padding:35px 22px 32px 110px;min-width:0}.dec-forest{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}.dec-timeline .dec-eyebrow{color:#736143}.dec-station{position:relative;margin:35px 0 30px}.dec-date{position:relative;display:flex;align-items:center;gap:10px;color:var(--wine);font-weight:800;font-size:11px;letter-spacing:.08em;margin-bottom:12px}.dec-date:before{content:'';position:absolute;left:-51px;width:15px;height:15px;background:var(--wine);border:4px solid #f7f3eb;border-radius:50%;box-shadow:0 0 0 1px #b58b51}.dec-date strong{font:400 43px/1 Georgia,serif;letter-spacing:-.05em}
+.dec-event{background:#fffdf8;border:1px solid #d8cbb7;border-top:3px solid var(--wine);padding:24px;box-shadow:0 10px 35px #493b2410}.dec-event h3{font-size:clamp(27px,3vw,39px);margin:12px 0}.dec-event p{font-size:13px}.dec-event .dec-meta{font-size:11px;font-weight:800;color:#6b6255}.dec-price{float:right;background:#f1e4ca;color:#613144;padding:5px 10px;font-size:13px;font-weight:800}.dec-cta{display:inline-block;text-decoration:none!important;background:var(--wine);color:#fff4dc!important;border-radius:30px;padding:12px 18px;font-size:10px;font-weight:800;letter-spacing:.08em;transition:background .2s,transform .2s}.dec-cta:hover{background:#542032;transform:translateY(-2px)}.dec-disclaimer{font-size:11px!important;color:#666;margin:14px 0 0!important}.dec-end{margin-top:32px;color:#687361;font-size:13px}.dec-end b{display:block;color:#9a7849;letter-spacing:.12em;font-size:10px;margin-bottom:8px}
+.dec-side{display:flex;flex-direction:column;gap:16px;min-width:0}.dec-sidehead{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:800;letter-spacing:.15em;color:var(--wine)}.dec-sidehead:after{content:'';height:1px;background:#d5c7b0;flex:1}.dec-side>.dec-sidehead{padding:10px 0 2px}.dec-journal{background:#fffdf8;border:1px solid #d9cdb8;flex:1;display:flex;flex-direction:column}.dec-journal-art{height:clamp(190px,23vw,300px);background:#263e34;position:relative;overflow:hidden;display:grid;place-items:center}.dec-journal-art svg{width:100%;height:100%;position:absolute;inset:0}.dec-journal-art span{position:relative;color:#f5e5c4;font:italic 35px Georgia,serif}.dec-sidecopy{flex:1;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;justify-content:center}.dec-sidecopy h3{font-size:clamp(32px,3.8vw,48px);margin:9px 0 14px}
+.dec-note,.dec-contact{padding:clamp(24px,3vw,38px);min-height:225px;display:flex;flex-direction:column;justify-content:center}.dec-note{border:1px solid #d6c9b4;background:#eee7d9}.dec-note .dec-sidehead{margin-bottom:20px}.dec-note h3,.dec-contact h3{font-size:clamp(29px,3vw,39px);margin:10px 0 15px}.dec-note p,.dec-contact p{max-width:430px;font-size:13px}.dec-note p:last-child{margin-bottom:0}.dec-contact{background:#542032;color:#fff4dc}.dec-contact .dec-eyebrow{color:#e7c791}.dec-contact p{color:#f5e6d3}.dec-contact a{align-self:flex-start;color:#fff4dc!important;font-size:11px;font-weight:800;text-underline-offset:5px;margin-bottom:8px}
+.dec-closing{padding:50px 5%;background:#263e34;color:#fff2dc;text-align:center}.dec-closing h2{font-size:clamp(31px,5vw,54px);margin-bottom:13px}.dec-closing p{color:#e5d7bd;font-size:13px}.dec-star{animation:dec-glow 6s ease-in-out infinite alternate}@keyframes dec-glow{from{opacity:.35}to{opacity:.95}}
+@media(max-width:800px){.dec-layout{grid-template-columns:minmax(0,1fr);gap:22px}.dec-timeline{padding:25px 16px 35px 74px}.dec-date:before{left:-36px}.dec-event{padding:19px}.dec-hero{padding-top:40px}.dec-journal-art{height:210px}.dec-note,.dec-contact{min-height:0}.dec-sidecopy h3{font-size:34px}}
+@media(max-width:390px){.dec-timeline{padding-left:48px}.dec-date:before{left:-26px}.dec-event{padding:15px}.dec-date{letter-spacing:0}.dec-date strong{font-size:36px}}
+@media(prefers-reduced-motion:reduce){.december-page *,.december-page *:before,.december-page *:after{animation:none!important;transition:none!important}}
 
-    .december-hero {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 68px 32px 0;
-    }
-
-    .december-back {
-      display: inline-flex;
-      margin-bottom: 28px;
-      font: 800 11px/1.4 Manrope, sans-serif;
-      letter-spacing: .07em;
-      text-decoration: none;
-      color: #1f2a18;
-    }
-
-    .december-back:hover {
-      opacity: .6;
-    }
-
-    .december-kicker {
-      margin: 0 0 17px;
-      font: 800 11px/1.5 Manrope, sans-serif;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: #697668;
-    }
-
-    .december-hero h1 {
-      max-width: 1000px;
-      margin: 0 0 20px;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(50px, 7vw, 100px);
-      font-weight: 400;
-      line-height: 1.01;
-      letter-spacing: -.025em;
-    }
-
-    .december-lead {
-      max-width: 700px;
-      margin: 0 0 38px;
-      font: 500 clamp(15px, 2vw, 20px)/1.6 Manrope, sans-serif;
-      color: #4f5c50;
-    }
-
-    .december-image-wrap {
-      overflow: hidden;
-      background: #d9d4c8;
-    }
-
-    .december-photo {
-      display: block;
-      width: 100%;
-      height: clamp(280px, 41vw, 560px);
-      object-fit: cover;
-      object-position: center 50%;
-    }
-
-    .december-body {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 76px 32px 100px;
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 82px;
-    }
-
-    .december-section-label {
-      margin: 0 0 22px;
-      font: 800 10px/1.5 Manrope, sans-serif;
-      letter-spacing: .17em;
-      color: #728071;
-    }
-
-    .december-body h2 {
-      margin: 0 0 22px;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: clamp(39px, 4.7vw, 66px);
-      font-weight: 400;
-      line-height: 1.05;
-    }
-
-    .december-body p {
-      margin: 0 0 20px;
-      font: 500 15px/1.8 Manrope, sans-serif;
-      color: #414c42;
-    }
-
-    .december-note {
-      margin: 0;
-      padding: 16px 0 0;
-      border-top: 1px solid #d7dad3;
-      font: 600 11px/1.5 Manrope, sans-serif;
-      color: #667066;
-    }
-
-    .december-contact {
-      align-self: start;
-      border-top: 1px solid #bec7bb;
-      padding-top: 24px;
-    }
-
-    .december-contact h3 {
-      margin: 0 0 18px;
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 1.15;
-    }
-
-    .december-contact a {
-      display: inline-block;
-      margin: 12px 0 0;
-      padding-bottom: 5px;
-      color: #1f2a18;
-      font: 800 11px/1.4 Manrope, sans-serif;
-      letter-spacing: .06em;
-      text-decoration: none;
-      border-bottom: 1px solid #1f2a18;
-    }
-
-    .december-contact a:hover {
-      opacity: .65;
-    }
-
-
-    .december-event{background:#fff;border:1px solid #d5dad1;border-top:3px solid #65745c;padding:clamp(22px,3vw,34px);margin:0 0 30px}
-    .december-event-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
-    .december-event-top p{margin:0;font:800 11px/1.5 Manrope,sans-serif;letter-spacing:.08em;color:#53644f}
-    .december-price{background:#edf2e8;padding:8px 12px;font-weight:800;white-space:nowrap}
-    .december-event h3,.december-next h3{font:400 32px/1.15 'DM Serif Display',Georgia,serif;margin:0 0 12px}
-    .december-event .december-byline{font-size:13px;font-weight:800}
-    .december-event .december-venue{border-top:1px solid #e1e4dc;padding-top:16px;font-size:13px}
-    .december-register{display:inline-block;background:#812c40;color:#fff4dc!important;padding:14px 20px;margin:0 0 20px;font:800 11px/1.5 Manrope,sans-serif;letter-spacing:.06em;text-decoration:none!important}.december-register:hover{background:#622034}.december-register:focus-visible{outline:2px solid #812c40;outline-offset:3px}
-    .december-event .december-disclaimer{font-size:11px;line-height:1.6;margin:0}
-    .december-next{border-top:1px solid #d7dad3;padding-top:24px}
-
-    @media (max-width: 720px) {
-      .december-hero {
-        padding: 42px 22px 0;
-      }
-
-      .december-hero h1 {
-        font-size: clamp(44px, 12vw, 64px);
-      }
-
-      .december-lead {
-        margin-bottom: 26px;
-      }
-
-      .december-photo {
-        height: auto;
-        max-height: none;
-        aspect-ratio: 3 / 2;
-        object-fit: cover;
-      }
-
-      .december-body {
-        padding: 52px 22px 70px;
-        grid-template-columns: 1fr;
-        gap: 46px;
-      }
-
-      .december-contact {
-        padding-top: 28px;
-      }
-    }
-  </style>
+</style>
 </head>
 
 <body>
@@ -315,97 +157,15 @@
   </div>
 
   <main class="december-page">
-
-    <section
-      class="december-hero"
-      aria-labelledby="december-title"
-    >
-
-      <a class="december-back" href="/hr/">
-        ← NATRAG NA MOVE&TRY
-      </a>
-
-      <p class="december-kicker">
-        MOVE&TRY / POSEBNO IZDANJE 2026.
-      </p>
-
-      <h1 id="december-title">
-        Prosinac na MOVE&TRY-u
-      </h1>
-
-      <p class="december-lead">
-        Druženja, radionice, šetnje i mala iskustva
-        koja nas povezuju.
-      </p>
-
-    </section>
-
-    <div class="december-image-wrap">
-
-      <img
-        class="december-photo"
-        src="/images/pexels-helloaesthe-14615450.jpg"
-        alt="Blagdanski prizor s grančicama bora, knjigom, češerima, slatkišem i pletenom dekom"
-        fetchpriority="high"
-      >
-
-    </div>
-
-    <section
-      class="december-body"
-      aria-label="Prosinački program i suradnje"
-    >
-
-      <div>
-        <p class="december-section-label">PROSINAC / PROGRAM</p>
-        <h2>Isprobaj nešto novo.</h2>
-        <article class="december-event">
-          <div class="december-event-top"><p>19. PROSINCA 2026. · OSIJEK</p><span class="december-price">25 €</span></div>
-          <h3>Manifestiranje 2027.</h3>
-          <p class="december-byline">Darija Klaričić Veg · Dar i Ja · 17:00–20:00</p>
-          <p>Iskustvena radionica koja spaja osobni osvrt na ciljeve za novu godinu, vođeno pisanje i upoznavanje s praksom ThetaHealinga, uz domjenak i zajedničko druženje.</p>
-          <p class="december-venue">Joga centar, Fakultetska 4, Tvrđa, Osijek<br>Broj sudionika je ograničen.</p>
-          <a class="december-register" href="https://vjemaki.hr/" target="_blank" rel="noopener noreferrer">PRIJAVE I PLAĆANJE ↗</a>
-          <p class="december-disclaimer">ThetaHealing je alternativna duhovna praksa, a ne znanstveno potvrđena terapijska metoda.</p>
-        </article>
-        <div class="december-next"><h3>Još druženja i iskustava uskoro.</h3><p>Program nadopunjujemo čim dogovorimo nove termine.</p></div>
-      </div>
-
-      <aside class="december-contact">
-
-        <p class="december-section-label">
-          BUDI DIO PRIČE
-        </p>
-
-        <h3>Imaš ideju za prosinac?</h3>
-
-        <p>
-          Ako organiziraš radionicu ili druženje,
-          ili želiš zajedno osmisliti neko novo
-          iskustvo, javi mi se.
-        </p>
-
-        <a
-          href="mailto:hello@moveandtry.com?subject=Prosinac%20na%20MOVE%26TRY-u"
-        >
-          JAVI MI SE E-MAILOM ↗
-        </a>
-
-        <p>
-          <a
-            href="https://www.instagram.com/moveandtry/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            INSTAGRAM ↗
-          </a>
-        </p>
-
-      </aside>
-
-    </section>
-
-  </main>
+<div class="dec-banner">✧ &nbsp; PROSINAC NA MOVE&amp;TRY-U · MALA ZIMSKA ISKUSTVA &nbsp; ✧</div>
+<section class="dec-hero"><p class="dec-eyebrow">MOVE&amp;TRY / POSEBNO IZDANJE 2026.</p><h1>Prosinac na <i>MOVE&amp;TRY-u.</i></h1><p>Druženja, radionice, priče i mala zimska iskustva koja nas povezuju.</p></section>
+<div class="dec-heroimage"><img src="/images/pexels-helloaesthe-14615450.jpg" alt="Blagdanski prizor s grančicama bora i knjigom" fetchpriority="high"></div>
+<section class="dec-intro" id="program"><div class="dec-eyebrow">PROSINAC · PROGRAM</div><h2>Put kroz prosinac.</h2><p>Od prvog do posljednjeg dana mjeseca. Otkrij potvrđene susrete i iskustva redom kojim dolaze.</p></section>
+<div class="dec-layout"><section class="dec-timeline" aria-label="Kronološki program"><svg aria-hidden="true" class="dec-forest" preserveAspectRatio="none" viewBox="0 0 600 850"><defs><g fill="none" id="dec-pine" stroke="#587465" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"><path d="M0 0V83 M0 3L-14 26 0 21 14 26 0 3 M0 19L-22 44 0 36 22 44 0 19 M0 34L-30 65 0 54 30 65 0 34"/></g></defs><path d="M60 -20 C110 78 22 112 56 220 S97 365 49 455 S20 607 65 700 S80 790 44 870" fill="none" opacity=".55" stroke="#d7c6a9" stroke-width="44"/><path d="M60 -20 C110 78 22 112 56 220 S97 365 49 455 S20 607 65 700 S80 790 44 870" fill="none" stroke="#ad8953" stroke-dasharray="3 9" stroke-width="1.5"/><g opacity=".45"><use href="#dec-pine" transform="translate(23 36) scale(.8)"/><use href="#dec-pine" transform="translate(100 90) scale(.65)"/><use href="#dec-pine" transform="translate(22 320) scale(.75)"/><use href="#dec-pine" transform="translate(106 610) scale(.85)"/><use href="#dec-pine" transform="translate(20 690) scale(.65)"/><use href="#dec-pine" transform="translate(550 730) scale(1.25)"/><use href="#dec-pine" transform="translate(520 760) scale(.75)"/></g><g class="dec-star"><path d="M120 32v14m-7-7h14 M28 265v12m-6-6h12 M520 70v14m-7-7h14 M100 740v14m-7-7h14" stroke="#a98247" stroke-width="1.3"/></g></svg><p class="dec-eyebrow">POČETAK PUTA</p><div class="dec-station"><div class="dec-date"><strong>19.</strong> PROSINCA 2026. · OSIJEK</div><article class="dec-event"><span class="dec-price">25 €</span><div class="dec-eyebrow">RADIONICA / DAR I JA</div><h3>Manifestiranje 2027.</h3><p class="dec-meta">Darija Klaričić Veg · 17:00–20:00</p><p>Iskustvena radionica koja spaja osobni osvrt na ciljeve za novu godinu, vođeno pisanje i upoznavanje s praksom ThetaHealinga, uz domjenak i zajedničko druženje.</p><p>Joga centar, Fakultetska 4, Tvrđa, Osijek<br>Broj sudionika je ograničen.</p><a class="dec-cta" href="https://vjemaki.hr/" target="_blank" rel="noopener noreferrer">PRIJAVE I PLAĆANJE ↗</a><p class="dec-disclaimer">ThetaHealing je alternativna duhovna praksa, a ne znanstveno potvrđena terapijska metoda.</p></article></div><div class="dec-end"><b>JOŠ SUSRETA NA PUTU</b>Ovdje ćemo dodavati nova događanja prema potvrđenim datumima.</div></section>
+<aside class="dec-side" aria-labelledby="dec-stories"><div class="dec-sidehead" id="dec-stories">PRIČE UZ PUT</div><article class="dec-journal"><div class="dec-journal-art"><svg aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 400 160"><g fill="none" opacity=".65" stroke="#c5ac7c" stroke-width="1"><path d="M-30 130Q60 20 155 0 M20 160Q80 48 180 0 M430 5Q310 70 280 165 M390 0Q290 65 250 165"/><path d="M22 100l-12-34m30 12L27 40m40 15L58 17m24 29L112 10m205 70l40-5m-51 26l-18-35m4 56l40-7m-50 30l-18-24"/></g><g class="dec-star" fill="#f3d9a1"><circle cx="52" cy="30" r="2"/><circle cx="342" cy="38" r="2"/><circle cx="310" cy="126" r="1.7"/><path d="M202 20v16m-8-8h16" stroke="#f3d9a1"/></g></svg><span>The Journal</span></div><div class="dec-sidecopy"><h3>Uskoro.</h3></div></article></aside>
+<section class="dec-note"><div class="dec-sidehead">JOŠ STIŽE</div><div class="dec-eyebrow">U PRIPREMI</div><h3>Još zimskih susreta.</h3><p>Program nadopunjujemo čim dogovorimo nove termine.</p></section>
+<section class="dec-contact"><div class="dec-eyebrow">BUDI DIO PRIČE</div><h3>Imaš ideju za prosinac?</h3><p>Organiziraš radionicu, druženje ili želiš zajedno osmisliti nešto novo?</p><a href="mailto:hello@moveandtry.com">JAVI MI SE →</a><a href="https://www.instagram.com/moveandtry/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a></section></div>
+<section class="dec-closing"><h2>Mali trenuci. Velike uspomene.</h2><p>MOVE&amp;TRY · Ne moraš biti dobar u tome. Samo trebaš probati.</p></section></main>
 
   <footer class="site-footer">
 
