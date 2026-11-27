@@ -13,6 +13,11 @@ database, published articles, article permissions, or existing draft save proced
 
 ## Important: secrets and deployment
 AI actions DO NOT work until the Supabase Edge Function is deployed and configured.
+During initial deployment AI processing is disabled unless the additional Supabase
+secret JOURNAL_AI_ENABLED is set to the literal value true. Leave it absent while
+reviewing billing controls and privacy. Pilot requests require an active ADMIN
+profile, not simply any editor profile.
+
 Only the server-side function calls the OpenAI API. Do NOT put OPENAI_API_KEY in JS,
 GitHub, or the user's browser.
 
