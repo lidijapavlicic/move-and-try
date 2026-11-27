@@ -63,8 +63,8 @@ async function authenticate(req: Request) {
     .eq("id", authenticated.user.id)
     .maybeSingle();
   if (error) throw new Error("profile-check");
-  return !!profile && profile.is_active === true &&
-    (profile.role === "admin" || profile.role === "editor");
+  // Pilot stage: admin only. Contributors can be enabled after budget/privacy review.
+  return !!profile && profile.is_active === true && profile.role === "admin";
 }
 const directions: Record<string, string> = {
   proofread: "Ispravi samo tipfelere, gramatiku, interpunkciju i velika slova. Ne mijenjaj smisao, stil ili činjenice.",
@@ -92,6 +92,11 @@ Deno.serve(async (req: Request) => {
     }
     if (!authorized) return fail(req, "Potrebna je aktivna prijava u Journal Editor.", 401);
 
+    // Safety switch: no billable requests before budget and privacy checks.
+    // Configure JOURNAL_AI_ENABLED=true in Supabase Edge Function Secrets to enable later.
+    if (Deno.env.get("JOURNAL_AI_ENABLED") !== "true") {
+      return fail(req, "AI pomoćnik je pripremljen, ali još nije aktiviran.", 503);
+    }
     const apiKey = Deno.env.get("OPENAI_API_KEY");
     if (!apiKey) return fail(req, "AI servis još nije konfiguriran. Obrati se administratoru.", 503);
 
