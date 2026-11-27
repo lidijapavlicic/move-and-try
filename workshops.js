@@ -309,10 +309,11 @@
       const language = lang(anchor);
       if (banner.dataset.lang === language) return;
       const hr = language === 'hr';
-      const href = hr ? '/hr/december.html' : '/december.html';
+      const href = inApp ? '/app/?tab=december' : hr ? '/hr/december.html' : '/december.html';
+      const appLink = inApp ? ' data-open-tab="december"' : '';
       const words = hr ? '❄ PROSINAC NA MOVE&TRY-U ❄ DRUŽENJA · RADIONICE · NOVA ISKUSTVA ❄' : '❄ DECEMBER ON MOVE&TRY ❄ GATHERINGS · WORKSHOPS · NEW EXPERIENCES ❄';
-      const copies = Array.from({length: 4}, (_, i) => '<a class="mt-dec-copy" href="' + href + '"' + (i ? ' tabindex="-1" aria-hidden="true"' : '') + '>' + words + '</a>').join('');
-      banner.innerHTML = '<div class="mt-dec-bar"><div class="mt-dec-window"><div class="mt-dec-track"><div class="mt-dec-run">' + copies + '</div><div class="mt-dec-run" aria-hidden="true" inert>' + copies + '</div></div></div><a class="mt-dec-all" href="' + href + '" aria-label="' + (hr ? 'Pogledaj prosinački program' : 'View the December programme') + '">' + (hr ? 'VIŠE →' : 'MORE →') + '</a></div>';
+      const copies = Array.from({length: 4}, (_, i) => '<a class="mt-dec-copy" href="' + href + '"' + appLink + (i ? ' tabindex="-1" aria-hidden="true"' : '') + '>' + words + '</a>').join('');
+      banner.innerHTML = '<div class="mt-dec-bar"><div class="mt-dec-window"><div class="mt-dec-track"><div class="mt-dec-run">' + copies + '</div><div class="mt-dec-run" aria-hidden="true" inert>' + copies + '</div></div></div><a class="mt-dec-all" href="' + href + '"' + appLink + ' aria-label="' + (hr ? 'Pogledaj prosinački program' : 'View the December programme') + '">' + (hr ? 'VIŠE →' : 'MORE →') + '</a></div>';
       banner.dataset.lang = language;
     });
   }
