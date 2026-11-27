@@ -290,8 +290,33 @@
     root.insertBefore(tickerNode, intro);
   }
 
+
+  function mountDecember(root) {
+    const active = today() >= '2026-11-27' && today() <= '2026-12-31';
+    root.querySelectorAll('[data-mt-workshops="ticker"]').forEach(anchor => {
+      if (!anchor.isConnected) return;
+      let banner = anchor.nextElementSibling;
+      const exists = banner?.classList.contains('mt-dec-mount');
+      if (!active) { if (exists) banner.remove(); return; }
+      if (!exists) {
+        banner = document.createElement('div');
+        banner.className = 'mt-dec-mount' + (isAppTicker(anchor) ? ' mt-dec-app-ticker' : '');
+        anchor.insertAdjacentElement('afterend', banner);
+      }
+      const language = lang(anchor);
+      if (banner.dataset.lang === language) return;
+      const hr = language === 'hr';
+      const href = hr ? '/hr/december.html' : '/december.html';
+      const words = hr ? '❄ PROSINAC NA MOVE&TRY-U ❄ DRUŽENJA · RADIONICE · NOVA ISKUSTVA ❄' : '❄ DECEMBER ON MOVE&TRY ❄ GATHERINGS · WORKSHOPS · NEW EXPERIENCES ❄';
+      const copies = Array.from({length: 4}, (_, i) => '<a class="mt-dec-copy" href="' + href + '"' + (i ? ' tabindex="-1" aria-hidden="true"' : '') + '>' + words + '</a>').join('');
+      banner.innerHTML = '<div class="mt-dec-bar"><div class="mt-dec-window"><div class="mt-dec-track"><div class="mt-dec-run">' + copies + '</div><div class="mt-dec-run" aria-hidden="true" inert>' + copies + '</div></div></div><a class="mt-dec-all" href="' + href + '" aria-label="' + (hr ? 'Pogledaj prosinački program' : 'View the December programme') + '">' + (hr ? 'VIŠE →' : 'MORE →') + '</a></div>';
+      banner.dataset.lang = language;
+    });
+  }
+
   function mount(root = document) {
     ensureAppTicker(root);
+    Promise.resolve().then(() => mountDecember(root));
 
     const nodes = root.querySelectorAll(
       '[data-mt-workshops],[data-mt-detail]'
@@ -329,7 +354,7 @@
   }
 
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && items) {
+    if (!document.hidden) {
       mount();
     }
   });
