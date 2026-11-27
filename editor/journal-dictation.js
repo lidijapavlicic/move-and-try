@@ -24,6 +24,14 @@
     const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = null;
     let insertText = null;
+    let keepListening = false;
+    let restartTimer = null;
+    let accumulatedText = '';
+    let silentRestarts = 0;
+
+    function joinText(...parts) {
+      return parts.map(part => String(part || '').trim()).filter(Boolean).join(' ');
+    }
 
     const panel = document.createElement('section');
     panel.id = 'journal-hr-dictation';
@@ -33,7 +41,7 @@
     const note = document.createElement('p');
     note.className = 'muted small';
     note.textContent = Recognition
-      ? 'Diktiraj jedan odlomak. Preglednik može poslati zvuk svojem servisu za prepoznavanje govora.'
+      ? 'Govori svojim tempom i napravi pauzu kad želiš. Diktiranje završava tek kad pritisneš Zaustavi. Preglednik može poslati zvuk svojem servisu za prepoznavanje govora.'
       : 'Diktiranje nije dostupno u ovom pregledniku. Ako imaš mikrofon na tipkovnici, možeš ga koristiti u tekstu članka.';
     const label = document.createElement('label');
     label.htmlFor = 'journal-dictation-text';
@@ -63,19 +71,10 @@
     trigger.addEventListener('pointerdown', saveSelection);
 
     const start = makeButton('Pokreni mikrofon', 'btn secondary small-btn', startRecording);
-    const stop = makeButton('Zaustavi', 'btn secondary small-btn', () => {
-      if (!recognition) return;
-      stop.disabled = true;
-      status.textContent = 'Dovršavam prijepis…';
-      try {
-        recognition.stop();
-      } catch (_) {
-        // A pause can end recognition just before the stop button is pressed.
-      }
-    });
+    const stop = makeButton('Zaustavi', 'btn secondary small-btn', stopRecording);
     const insert = makeButton('Umetni tekst', 'btn green small-btn', () => {
       const text = transcript.value.trim();
-      if (recognition || !text || !insertText) return;
+      if (keepListening || recognition || restartTimer || !text || !insertText) return;
       try {
         insertText(text);
         reset();
@@ -96,67 +95,141 @@
     label.hidden = transcript.hidden = start.hidden = stop.hidden = insert.hidden = !Recognition;
     updateControls();
     window.addEventListener('pagehide', reset);
+    // Browsers may stop the microphone in the background. Do not retry secretly.
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && keepListening) stopRecording();
+    });
 
     function updateControls() {
-      start.disabled = !!recognition;
-      stop.disabled = !recognition;
-      transcript.readOnly = !!recognition;
-      insert.disabled = !!recognition || !transcript.value.trim();
+      const busy = keepListening || !!recognition || !!restartTimer;
+      start.disabled = busy;
+      stop.disabled = !keepListening;
+      transcript.readOnly = busy;
+      insert.disabled = busy || !transcript.value.trim();
+    }
+
+    function clearRestart() {
+      if (restartTimer !== null) {
+        clearTimeout(restartTimer);
+        restartTimer = null;
+      }
     }
 
     function reset() {
+      keepListening = false;
+      clearRestart();
       const active = recognition;
       recognition = null;
-      if (active) active.abort();
+      if (active) {
+        try { active.abort(); } catch (_) { /* Already ended. */ }
+      }
       insertText = null;
       panel.hidden = true;
       trigger.setAttribute('aria-expanded', 'false');
       transcript.value = '';
+      accumulatedText = '';
       status.textContent = '';
       updateControls();
     }
 
-    function startRecording() {
-      if (!Recognition || recognition) return;
-      const existing = transcript.value.trimEnd();
-      let spoken = '';
-      let session;
-      const finish = message => {
-        if (recognition !== session) return;
-        recognition = null;
-        transcript.value = [existing, spoken].filter(Boolean).join(' ');
-        status.textContent = message || (spoken
-          ? 'Prijepis je spreman za uređivanje.'
-          : messages['no-speech']);
-        updateControls();
-      };
+    function stopRecording() {
+      if (!keepListening) return;
+      keepListening = false;
+      clearRestart();
+      status.textContent = 'Dovršavam prijepis…';
+      const active = recognition;
+      if (active) {
+        try {
+          active.stop(); // Allows the browser to deliver the final words.
+        } catch (_) {
+          // A silence may have ended this segment just before the click.
+          try { active.abort(); } catch (_) { /* Already ended. */ }
+          recognition = null;
+          status.textContent = 'Prijepis je spreman za uređivanje.';
+        }
+      } else {
+        status.textContent = 'Prijepis je spreman za uređivanje.';
+      }
+      updateControls();
+    }
 
+    function startRecording() {
+      if (!Recognition || keepListening || recognition) return;
+      accumulatedText = transcript.value.trim();
+      silentRestarts = 0;
+      keepListening = true;
+      beginSegment();
+    }
+
+    function beginSegment() {
+      if (!keepListening) return;
+      let session;
+      let finalText = '';
+      let interimText = '';
+      let errorMessage = '';
       try {
         session = new Recognition();
         recognition = session;
         session.lang = 'hr-HR';
-        session.continuous = false;
+        session.continuous = true;
+        session.interimResults = true;
         session.addEventListener('start', () => {
-          if (recognition === session) status.textContent = 'Slušam…';
+          if (recognition === session) {
+            status.textContent = 'Slušam… Možeš napraviti pauzu.';
+          }
         });
         session.addEventListener('result', event => {
           if (recognition !== session) return;
-          spoken = Array.from(event.results)
+          const results = Array.from(event.results);
+          finalText = results
             .filter(result => result.isFinal)
             .map(result => result[0].transcript.trim())
             .filter(Boolean)
             .join(' ');
-          transcript.value = [existing, spoken].filter(Boolean).join(' ');
+          interimText = results
+            .filter(result => !result.isFinal)
+            .map(result => result[0].transcript.trim())
+            .filter(Boolean)
+            .join(' ');
+          transcript.value = joinText(accumulatedText, finalText, interimText);
         });
         session.addEventListener('error', event => {
-          finish(messages[event.error] || 'Diktiranje nije uspjelo. Pokušaj ponovno.');
+          if (recognition !== session) return;
+          // Android Chrome may report no-speech during a thinking pause.
+          if (event.error === 'no-speech' && keepListening) return;
+          errorMessage = messages[event.error] || 'Diktiranje nije uspjelo. Pokušaj ponovno.';
+          keepListening = false; // Never auto-restart after permissions or network errors.
+          clearRestart();
+          status.textContent = errorMessage;
+          updateControls();
         });
-        session.addEventListener('end', () => finish());
+        session.addEventListener('end', () => {
+          if (recognition !== session) return;
+          recognition = null;
+          // Keep the last interim words too; the user can edit them.
+          const segmentText = joinText(finalText, interimText);
+          accumulatedText = joinText(accumulatedText, segmentText);
+          transcript.value = accumulatedText;
+          if (keepListening) {
+            silentRestarts = segmentText ? 0 : Math.min(silentRestarts + 1, 8);
+            status.textContent = 'Pauza… nastavljam slušati.';
+            // Some browsers ignore continuous=true: resume after an automatic end.
+            restartTimer = setTimeout(() => {
+              restartTimer = null;
+              if (keepListening) beginSegment();
+            }, 250 + silentRestarts * 200);
+          } else {
+            status.textContent = errorMessage || 'Prijepis je spreman za uređivanje.';
+          }
+          updateControls();
+        });
         status.textContent = 'Pokrećem mikrofon…';
         updateControls();
         session.start();
       } catch (_) {
-        recognition = null;
+        if (recognition === session) recognition = null;
+        keepListening = false;
+        clearRestart();
         status.textContent = 'Mikrofon se nije pokrenuo. Provjeri dozvolu i pokušaj ponovno.';
         updateControls();
       }
