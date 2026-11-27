@@ -527,7 +527,33 @@
         };
       }
     }) : null;
-    instance.closeDictation = () => dictation?.reset();
+    const writingAssistant = window.MoveTryJournalWritingAssistant?.attach({
+      toolbar: bar,
+      paper,
+      lang: spec.lang,
+      getCurrentText() {
+        sync();
+        return field.value;
+      },
+      prepareInsertion() {
+        return text => {
+          canvas.focus();
+          // Add the approved suggestion as new paragraphs. Existing article stays intact.
+          const lines = String(text).split(/\n+/).map(line => line.trim()).filter(Boolean);
+          for (const line of lines) {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = line;
+            canvas.append(paragraph);
+          }
+          sync();
+          canvas.dispatchEvent(new Event('input', { bubbles: true }));
+        };
+      }
+    });
+    instance.closeDictation = () => {
+      dictation?.reset();
+      writingAssistant?.reset();
+    };
 
     const previewMessage = document.createElement('p');
     previewMessage.className = 'message error';
