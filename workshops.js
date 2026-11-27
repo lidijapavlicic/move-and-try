@@ -295,13 +295,16 @@
     const active = today() >= '2026-11-27' && today() <= '2026-12-31';
     root.querySelectorAll('[data-mt-workshops="ticker"]').forEach(anchor => {
       if (!anchor.isConnected) return;
-      let banner = anchor.nextElementSibling;
+      const inApp = isAppTicker(anchor);
+      const hero = inApp ? null : document.querySelector('.home-hero-image');
+      let banner = hero ? hero.previousElementSibling : anchor.nextElementSibling;
       const exists = banner?.classList.contains('mt-dec-mount');
       if (!active) { if (exists) banner.remove(); return; }
       if (!exists) {
         banner = document.createElement('div');
         banner.className = 'mt-dec-mount' + (isAppTicker(anchor) ? ' mt-dec-app-ticker' : '');
-        anchor.insertAdjacentElement('afterend', banner);
+        if (hero) hero.insertAdjacentElement('beforebegin', banner);
+        else anchor.insertAdjacentElement('afterend', banner);
       }
       const language = lang(anchor);
       if (banner.dataset.lang === language) return;
