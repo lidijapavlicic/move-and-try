@@ -201,3 +201,35 @@
 
 .mt-rich-paper > .mt-rich-header-author{display:block;font:700 11px/1.5 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e;margin:2px 0 30px}
 .mt-rich-reader-byline{margin:18px 0 38px;font:700 11px/1.6 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#17251e}
+
+
+/* Journal Writing Assistant: isolated from the article layout. */
+.mt-writing-assistant {
+  border: 1px solid #d5dacd;
+  background: #f9faf7;
+  padding: clamp(16px, 3vw, 26px);
+  margin: 15px 0 25px;
+  color: #17251e;
+  font-family: Manrope, sans-serif;
+}
+.mt-writing-assistant[hidden] { display: none; }
+.mt-writing-assistant h3 { margin: 0 0 10px; font-size: 19px; }
+.mt-writing-assistant label { display: block; font-size: 13px; font-weight: 700; margin: 12px 0 6px; }
+.mt-writing-assistant textarea {
+  width: 100%; box-sizing: border-box; border: 1px solid #ccd2c7;
+  border-radius: 0; padding: 12px; background: #fff; color: #17251e;
+  font: 14px/1.6 Manrope, sans-serif; min-height: 120px;
+}
+.mt-writing-assistant select { display: block; width: 100%; max-width: 380px; padding: 10px; border: 1px solid #ccd2c7; background: white; }
+.mt-writing-assistant .mt-wa-note { font-size: 12px; line-height: 1.65; color: #59685d; margin: 8px 0 12px; }
+.mt-wa-imports { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+.mt-writing-assistant .mt-wa-file {
+  flex: 1 1 180px; margin: 0; border: 1px dashed #9cab99;
+  padding: 12px; background: white; cursor: pointer; min-width: 0;
+}
+.mt-wa-file span { display: block; margin-bottom: 7px; }
+.mt-wa-file input { display: block; max-width: 100%; font-size: 12px; font-weight: 400; }
+.mt-wa-mode-row { margin-top: 20px; }
+.mt-writing-assistant button { margin: 5px 8px 5px 0; }
+.mt-rich-assistant-button { cursor: pointer; }
+.mt-wa-actions { display: flex; flex-wrap: wrap; gap: 8px; }
