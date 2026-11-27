@@ -312,14 +312,29 @@
 }
 
 /* Seasonal programme, independent of workshops */
-.mt-dec-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;min-height:54px;background:#812c40;color:#fff4dc;border-bottom:1px solid #b98c52;font-family:Manrope,sans-serif}
+.mt-dec-bar {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center;
+  min-height: 58px; color: #fff5df;
+  background: radial-gradient(ellipse at 18% 0%, #ac5966 0%, transparent 58%), linear-gradient(105deg,#542032,#842e43 53%,#542032);
+  border-top: 1px solid #c5a16b; border-bottom: 1px solid #c5a16b;
+  font-family: Manrope,sans-serif;
+}
+.mt-dec-bar::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+  background: linear-gradient(112deg,transparent 36%,rgba(255,230,177,.13) 48%,transparent 60%);
+  background-size: 250% 100%; animation: mt-dec-shimmer 12s ease-in-out infinite;
+}
 .mt-dec-window{overflow:hidden;min-width:0;mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
 .mt-dec-track{display:flex;width:max-content;animation:mt-dec-scroll 180s linear infinite}
 .mt-dec-run{display:flex;flex-shrink:0;gap:40px;padding-right:40px;align-items:center}
-.mt-dec-copy{color:#fff4dc!important;font-size:12px;font-weight:800;letter-spacing:.07em;white-space:nowrap;text-decoration:none!important}
-.mt-dec-all{display:grid;place-items:center;align-self:stretch;padding:12px 24px;border-left:1px solid #b98c52;background:#f1d39b;color:#532032!important;font-size:11px;font-weight:800;white-space:nowrap;text-decoration:none!important}
-.mt-dec-all:hover{background:#ffe5b5}.mt-dec-window:hover .mt-dec-track,.mt-dec-window:focus-within .mt-dec-track{animation-play-state:paused}
+.mt-dec-copy{color:#fff5df!important;font-size:12px;font-weight:800;letter-spacing:.11em;white-space:nowrap;text-decoration:none!important;text-shadow:0 0 12px rgba(248,215,155,.22)}
+.mt-dec-all{position:relative;display:grid;place-items:center;align-self:center;min-height:36px;margin:6px 16px 6px 8px;padding:8px 20px;border:1px solid #f4d8a2;border-radius:999px;background:linear-gradient(110deg,#e7bd77,#fff0cf 48%,#d9aa62);color:#542032!important;font-size:11px;font-weight:800;letter-spacing:.07em;white-space:nowrap;text-decoration:none!important;box-shadow:0 2px 12px rgba(239,197,122,.24);transition:box-shadow .25s,filter .25s}
+.mt-dec-all:hover,.mt-dec-all:focus-visible{filter:brightness(1.08);box-shadow:0 0 18px rgba(255,225,164,.48)}
+.mt-dec-all:focus-visible{outline:2px solid #fff4dc;outline-offset:3px}
+.mt-dec-window:hover .mt-dec-track,.mt-dec-window:focus-within .mt-dec-track{animation-play-state:paused}
 @keyframes mt-dec-scroll{to{transform:translateX(-50%)}}
-.mt-dec-app-ticker .mt-dec-bar{min-height:46px}.mt-dec-app-ticker .mt-dec-all{padding:10px 12px}.mt-dec-app-ticker .mt-dec-copy{font-size:11px}
-@media(max-width:680px){.mt-dec-bar{min-height:46px}.mt-dec-all{padding:10px 12px;font-size:10px}.mt-dec-copy{font-size:11px}}
-@media(prefers-reduced-motion:reduce){.mt-dec-track{animation:none;width:auto}.mt-dec-run{white-space:normal;flex-shrink:1;padding:8px 12px}.mt-dec-copy{white-space:normal}.mt-dec-copy:not(:first-child),.mt-dec-run[aria-hidden=true]{display:none}.mt-dec-window{mask-image:none}}
+@keyframes mt-dec-shimmer{0%,12%{background-position:100% 0}75%,100%{background-position:0 0}}
+.mt-dec-app-ticker .mt-dec-bar{min-height:48px}.mt-dec-app-ticker .mt-dec-all{margin:5px 8px;min-height:32px;padding:7px 12px}.mt-dec-app-ticker .mt-dec-copy{font-size:11px}
+@media(max-width:680px){.mt-dec-bar{min-height:48px}.mt-dec-all{margin:5px 9px;min-height:32px;padding:7px 12px;font-size:10px}.mt-dec-copy{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.mt-dec-bar::before,.mt-dec-track{animation:none}.mt-dec-track{width:auto}.mt-dec-run{white-space:normal;flex-shrink:1;padding:8px 12px}.mt-dec-copy{white-space:normal}.mt-dec-copy:not(:first-child),.mt-dec-run[aria-hidden=true]{display:none}.mt-dec-window{mask-image:none}}
